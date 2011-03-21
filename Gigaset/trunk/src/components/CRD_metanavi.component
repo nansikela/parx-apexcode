@@ -1,0 +1,15 @@
+<apex:component id="metanavi" controller="TemplateController">
+<ul id="metanavi">
+    <li>
+        <apex:outputLink value="{!$Site.CustomWebAddress}">{!label_menu_home}</apex:outputLink>
+    </li>
+    <li>
+        <apex:outputLink value="{!ImprintUrl}">{!$Label.tplt_label_imprint}</apex:outputLink>
+    </li>
+    <apex:outputPanel id="kontaktlink" rendered="{!isAuthenticated}">
+    <li>
+        <apex:outputLink value="{!KontaktformularUrl}" id="linkcontact" styleClass="{!IF($CurrentPage.parameters.pageid=kontaktpageid,'active','')}" >{!$Label.contact}</apex:outputLink>
+    </li>
+    </apex:outputPanel>
+</ul>
+</apex:component>

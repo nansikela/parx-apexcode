@@ -1,0 +1,32 @@
+<apex:component controller="userprofileportletController" id="prouserprofileportlet" >
+    <div id="profil">
+        <div id="contactProfil" class="link_arrow">
+            <strong><apex:outputText value="{!$Label.userprofile}" id="profiletitletext" /></strong>
+            <br/>
+            <apex:outputText value="{!contact.Firstname} {!contact.Lastname}" id="r1c2" />
+            <br/>
+            <div class="hor_line"/>
+            <apex:outputLink value="{!BenutzerdatenUrl}" id="r2c2">{!$Label.userdata}</apex:outputLink>
+            <br/>
+            <apex:outputLink value="{!$Site.Prefix}/secur/logout.jsp" id="r3c2" >{!$Label.site.logout}</apex:outputLink>
+            <br/>
+        </div>
+        <span id="profilEnd"/>
+    </div>
+    <!-- 
+    <apex:panelGrid columns="1" id="profiletitle">
+        <apex:outputText value="{!$Label.userprofile}" id="profiletitletext" />
+    </apex:panelGrid>
+    <apex:panelGrid columns="3" id="profile">
+        <apex:outputText value=" " id="r1c1" />
+        <apex:outputText value="{!contact.Firstname} {!contact.Lastname}" id="r1c2" />
+        <apex:outputText value=" " id="r1c3" />
+        <apex:outputText value=" " id="r2c1" />
+        <apex:outputLink value="{!BenutzerdatenUrl}" id="r2c2">{!$Label.userdata}</apex:outputLink>
+        <apex:outputText value=" " id="r2c3" />
+        <apex:outputText value=" " id="r3c1" />
+        <apex:outputLink value="{!$Site.Prefix}/secur/logout.jsp" id="r3c2" >{!$Label.site.logout}</apex:outputLink>
+        <apex:outputText value=" " id="r3c3" />
+    </apex:panelGrid>
+    -->
+</apex:component>

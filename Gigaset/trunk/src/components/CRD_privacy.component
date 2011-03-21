@@ -1,0 +1,39 @@
+<apex:component controller="privacyController" allowDML="true" id="crdprivacy" >
+    <apex:form id="actionfunctions">
+        <apex:actionFunction name="previousStep" action="{!previousStep}"  />
+    </apex:form>
+    <div class="contactBox">
+            <div id="contact">
+                <p> </p>
+                <h1>{!$Label.privacypage_headline}</h1>
+                <p> </p>
+    
+    <apex:outputPanel id="privacy" rendered="{!step=1}">
+        <apex:outputPanel id="errormsg" style="margin-left: -20px!important;">
+            <apex:pageMessages id="errorprivacy" />
+        </apex:outputPanel>
+        <apex:outputPanel id="privacyiframe" style="margin-left: -6px;">
+        <apex:iframe src="{!privacypageurl}" scrolling="true" id="thePrivacyIframe" width="600px" height="380px" />
+        </apex:outputPanel>
+        <apex:form id="privacyform" style="margin-top: 10px;">
+            <apex:outputLabel value="{!$ObjectType.Contact.fields.Datenschutzerkl_rung_zugestimmt__c.label}*" for="commit" />
+                <apex:inputField id="commit" value="{!u.Datenschutzerkl_rung_zugestimmt__c}" required="true" styleClass="FieldRequired" />
+            <apex:outputLink styleClass="gcbtn" value="javascript:history.go(-1);">{!$Label.back}</apex:outputLink>
+            <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9"  id="nextstep0_btn"  />
+        </apex:form>
+    </apex:outputPanel>
+    <apex:outputPanel id="fail" rendered="{!step>3}">
+        <p>{!labelprivacy}: {!$Label.privacy_noaccesswithoutaccept}</p>
+        <apex:form id="previousstepform">
+        <div class="requiredInput spacer5">
+            <apex:outputLink value="{!$Site.Prefix}/secur/logout.jsp" id="r3c2" styleClass="gcbtn">{!$Label.site.logout}</apex:outputLink>
+            <apex:commandButton styleClass="spacer9" action="{!previousStep}" value="{!$Label.back}" id="previousstep_btn"  /> 
+            
+        </div>
+        </apex:form>
+    </apex:outputPanel>
+        </div>
+        <span id="end"></span>
+    </div>
+    
+</apex:component>

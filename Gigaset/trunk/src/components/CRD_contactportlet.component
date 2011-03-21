@@ -1,0 +1,9 @@
+<apex:component controller="TemplateController" id="crdcontactportlet" rendered="{!RueckrufserviceUrl!=''}" >
+    <apex:outputLink value="{!RueckrufserviceUrl}" id="linkcallback" >
+        <!-- 
+        <apex:image id="callbackimg" alt="{!$Label.callback}" value="{!URLFOR($Resource.gigasetextranetZIP, $Label.callback_imgurl)}" />
+        img/img_rueckruf.jpg
+        -->
+        <apex:image id="callbackimg" alt="{!$Label.callback}" value="{!callback_imgurl}" />
+    </apex:outputLink>
+</apex:component>

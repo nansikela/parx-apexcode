@@ -1,0 +1,24 @@
+<apex:component id="newsreader" controller="newsreader" >
+    <apex:attribute name="key"
+        type="String"
+        assignTo="{!Key}"
+        description="The key given to this component so the page can easily get access to it" />
+        
+    <apex:attribute name="newsid"
+        type="Id"
+        assignTo="{!newsid}"
+        description="The newsid given to this component so the page can easily get access to it" />
+ 
+    <apex:attribute name="pageController"
+        type="PageControllerBase"
+        assignTo="{!pageController}"
+        required="true"
+        description="The controller for the page." />
+        
+NewsId: {!newsid}
+
+<apex:outputText value="{!ci.Title__c}" id="cititle" />
+<apex:outputText value="{!ci.Abstract__c}" id="ciabstract" />
+<!--<apex:outputText value="{!ci.Text__c}" id="citext" />-->
+
+</apex:component>

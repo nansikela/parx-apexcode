@@ -1,0 +1,49 @@
+<apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false">
+    <c:CRD_header_style id="stylesheets" />
+    <div id="wrapper">
+        <div id="content_area">
+            <div id="header">
+                <apex:insert name="metanavi">
+                    <!--  Portalabh. - portal sets "lang=fr" and translations are necessary -->
+                    <c:CRD_metanavi id="metanavicomp" />
+                </apex:insert>
+                <div id="logo">
+                    <apex:insert name="logo">
+                        <c:CRD_Logo id="CRD_Logocomp" />
+                    </apex:insert>
+                </div>
+                <!--  Portalabh. -->
+                <c:CRD_navigation id="CRD_navigationcomp"  />
+            </div>
+            <!--  END header -->
+            <div id="content_wrapper">
+            
+            <div id="content">
+                
+                <apex:insert name="breadcrump">
+                    <c:CRD_breadcrump id="CRD_breadcrumpcomp" />
+                </apex:insert>
+                <apex:insert name="extranetnavigation">
+                    <!--  Portalabh. -->
+                    <!-- AND(isAuthenticated,NOT($Site.IsPasswordExpired))  -->
+                    <c:CRD_extranetnavigation rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showclearingcomp),NOT(showNextTopShop))}" id="CRD_extranetnavigationcomp" />
+                </apex:insert>
+                <apex:insert name="body" />
+            
+            </div>
+            
+            </div>
+            <div id="content_wrapperBtm"></div>
+            <!-- END content -->
+        </div>
+        <!-- END content_area -->
+        <apex:insert name="footer">
+            <c:CRD_footer id="CRD_footercomp" />
+        </apex:insert>
+    </div>
+    <!-- END wrapper -->
+        <c:CRD_footercopy id="CRD_footercopycomp" />
+    
+    
+    <site:previewAsAdmin />
+</apex:page>

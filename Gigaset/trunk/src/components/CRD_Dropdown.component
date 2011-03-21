@@ -1,0 +1,21 @@
+<apex:component id="dropdown" controller="dropdownController">
+    <apex:outputPanel layout="block" id="dropdowndiv" styleClass="dropDown">
+        <!-- {!teststring}-->
+        <ul id="destination" class="">
+            <li class="{!active}">
+                <apex:outputLink value="{!$Site.CustomWebAddress}">
+                    <span>{!activeShortlabel}</span>
+                    {!activeLabel}
+                </apex:outputLink>
+            </li>
+            <apex:repeat id="sitelist" value="{!Sites}" var="s">
+            <li>
+                <apex:outputLink value="{!s.link}" id="link">
+                    <span>{!s.shortLabel}</span>
+                    {!s.label}
+                </apex:outputLink>
+            </li>
+            </apex:repeat>
+        </ul>
+    </apex:outputPanel>
+</apex:component>

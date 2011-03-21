@@ -1,0 +1,32 @@
+<apex:component id="include_styles">
+    <apex:attribute name="styleSelector" description="style Selector decides whether to take the pro layout or the normal layout"
+        type="String" required="true"/>
+
+    <link rel="icon" type="image/png" href="{!$Resource.GigasetFavicon}" />
+    <!--  normal layout -->
+    <apex:outputPanel id="normalLayout" rendered="{!styleSelector='normal'}" >
+
+        <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/style.css')}" /> 
+        <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/parx.css')}" />
+        &lt;!--[if IE]><link href="{!URLFOR($Resource.gigasetextranetZIP, 'css/main_ie.css')}" rel="stylesheet" type="text/css" /><![endif]--&gt;
+    
+    
+        <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/mainnav.js')}"></script>
+    
+        <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/changepic.js')}"></script>
+    </apex:outputPanel>
+    
+    <!--  pro layout -->
+    <apex:outputPanel id="proLayout" rendered="{!styleSelector='pro'}" >
+        <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'csspro/style.css')}" /> 
+        <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'csspro/parx.css')}" />
+        &lt;!--[if IE]><link href="{!URLFOR($Resource.gigasetextranetZIP, 'csspro/main_ie.css')}" rel="stylesheet" type="text/css" /><![endif]--&gt;
+    
+    
+        <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/mainnav.js')}"></script>
+    
+        <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/changepic.js')}"></script>
+    </apex:outputPanel>
+
+
+</apex:component>

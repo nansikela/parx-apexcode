@@ -1,0 +1,56 @@
+<apex:page showheader="false" id="crd_kontaktformular" sidebar="false" controller="TemplateController"  title="{!$Label.de_title}" language="{!defaultlanguage}" >
+
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+                <!--  <div id="prodOver"> -->
+                    <!--Start LeftSide Content -->
+                <!-- <div class="contentText"> -->
+                        <div class="contactBox">
+                            <div id="contact">
+                                <c:CRD_kontakt />
+                            </div>
+                            <span id="end" />
+                        </div>
+                    <!--  </div> -->
+                    <!--End LeftSide Content -->
+                     
+                    <c:contentblock name="sidebarimage" rendered="{!NOT(isAuthenticated)}"/>
+                    <!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/kontakt.png')}" alt="kontakt" /> -->
+                
+                    <!--Start RightSide Content -->
+                    <div id="colRgt">
+                        <c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),showcontactportlet)}" />
+                        <c:CRD_userprofileportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp))}" />
+                        
+                        <!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/pic_cont_04.jpg')}" alt="hotline" /> -->
+                        <apex:outputPanel id="rightcolumn" rendered="{!NOT(isAuthenticated)}">
+                        <!--Start oneColInfo -->
+                        <div class="oneCol">
+                            <div class="oneColInfo">
+                                <c:contentblock name="rghtcol1" />
+                            </div>
+                            <div class="oneColBtm">
+                                <c:contentblock name="rghtcol1Btm" />
+                            </div>
+                        </div>
+                        <!--End oneColInfo --> 
+                        <!--Start oneColInfo -->
+                        <div class="oneCol">
+                            <div class="oneColInfo">
+                                <c:contentblock name="rghtcol2" />
+                            </div>
+                            <div class="oneColBtm">
+                                <c:contentblock name="rghtcol2Btm" />
+                            </div>
+                        </div>
+                        <!--End oneColInfo -->
+                        </apex:outputPanel>
+                    </div> 
+                    <!--End RightSide Content --> 
+                <!--  </div> -->
+                <!-- end prodOver -->   
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>
