@@ -1,0 +1,7 @@
+<apex:page standardController="Werbemittel_Bestellung__c" extensions="cloneWerbemittelBestellung" id="page" action="{!redirect}">
+<apex:pageMessages id="messages" rendered="{!hasError=true}"/>
+<apex:form id="backform" rendered="{!hasError=true}">
+<apex:commandLink value="{!$Label.back}" id="back" action="{!back}" />
+</apex:form>
+<site:previewAsAdmin />
+</apex:page>

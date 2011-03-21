@@ -1,0 +1,49 @@
+<apex:page showHeader="false" id="PRO_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}">
+    <c:PRO_header_style id="stylesheets" styleSelector="{!styleSelector}" />
+    <div id="wrapper">
+        <div id="content_area">
+            <div id="header">
+                <apex:insert name="metanavi">
+                    <!--  Portalabh. - portal sets "lang=fr" and translations are necessary -->
+                    <c:PRO_metanavi id="metanavicomp" />
+                </apex:insert>
+                <div id="logo">
+                    <apex:insert name="logo">
+                        <c:PRO_Logo id="DE_Logocomp" />
+                    </apex:insert>
+                </div>
+                <!--  Portalabh. -->
+                <c:PRO_navigation id="DE_navigationcomp"  />
+            </div>
+            <!--  END header -->
+            <div id="content_wrapper">
+            
+            <div id="content">
+                
+                <apex:insert name="breadcrump">
+                    <c:PRO_breadcrump id="DE_breadcrumpcomp" />
+                </apex:insert>
+                <apex:insert name="extranetnavigation">
+                    <!--  Portalabh. -->
+                    <!-- AND(isAuthenticated,NOT($Site.IsPasswordExpired))  -->
+                    <c:PRO_extranetnavigation rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showclearingcomp),NOT(showNextTopShop))}" id="DE_extranetnavigationcomp" />
+                </apex:insert>
+                <apex:insert name="body" />
+            
+            </div>
+            
+            </div>
+            <div id="content_wrapperBtm"></div>
+            <!-- END content -->
+        </div>
+        <!-- END content_area -->
+        <apex:insert name="footer">
+            <c:PRO_footer id="DE_footercomp" />
+        </apex:insert>
+    </div>
+    <!-- END wrapper -->
+        <c:PRO_footercopy id="DE_footercopycomp" />
+    
+    
+    <site:previewAsAdmin />
+</apex:page>

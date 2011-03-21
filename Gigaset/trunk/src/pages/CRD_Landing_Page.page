@@ -1,0 +1,16 @@
+<apex:page showheader="false" id="CRD_landing_page" sidebar="false" title="{!$Label.de_title}"  controller="TemplateController" language="{!defaultlanguage}" action="{!init}" >
+
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+            <c:contentblock name="maincontent" />
+            <apex:form > 
+            	<apex:commandButton value="Go To Login" action="{!redirectToLogin}">
+            		 <apex:param name="clicked" value="true" />
+            	</apex:commandButton>
+			</apex:form>
+			
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

@@ -1,0 +1,20 @@
+<apex:component id="include_styles">
+
+	<script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/mainnav.js')}"></script>
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/changepic.js')}"></script>
+
+    <link rel="icon" type="image/png" href="{!$Resource.GigasetFavicon}" />
+    <!--  normal layout -->
+    
+
+        <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/style.css')}" /> 
+        <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/parx.css')}" />
+        &lt;!--[if IE]><link href="{!URLFOR($Resource.gigasetextranetZIP, 'css/main_ie.css')}" rel="stylesheet" type="text/css" /><![endif]--&gt;
+    
+    
+
+    
+
+
+</apex:component>

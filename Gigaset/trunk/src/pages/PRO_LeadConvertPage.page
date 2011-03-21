@@ -1,0 +1,183 @@
+<apex:page id="lcPage" standardcontroller="Lead" extensions="LeadConvertController" tabstyle="Lead">
+    <apex:PageMessages id="msgs"/>
+    <script language="JavaScript">
+        
+        var accListSize;
+        
+        window.onload = function(){
+            accListSize = getElementByIdCS('accid').length;
+        }
+        
+        function checkAccounts(){
+            if(accListSize < getElementByIdCS('accid').length){
+                addAccountToList(getElementByIdCS('accid').options[getElementByIdCS('accid').selectedIndex].text, getElementByIdCS('accid').options[getElementByIdCS('accid').selectedIndex].value);
+            }
+        }
+        
+        function viewAccount(id) {
+            var acc_select = document.getElementById(id);
+            var acc_id = acc_select.options[acc_select.selectedIndex].value;
+            
+            if (acc_id == null || acc_id == "" || acc_id == 000000000000000 || acc_id == '-') {
+               alert("Es können nur vorhandene Firmen angezeigt werden.");
+            } else {
+                printWin('/'+acc_id+'/p');
+            }
+        }
+        
+        function openLookup(baseURL,width,modified,searchParam) {
+            if (modified == '1') baseURL = baseURL + searchParam; 
+            openPopup(baseURL, "lookup", 350, 480, 'width='+width+',height=480,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no');
+        }
+        
+        function setSearchTag(){
+            if(getElementByIdCS('accid').selectedIndex > 0){
+                var tag = getElementByIdCS('accid').options[getElementByIdCS('accid').selectedIndex].text;
+                var startingPos = tag.indexOf(':');
+                getElementByIdCS('acclkid').value = tag.substring(startingPos+2, tag.length);
+            }else{
+                getElementByIdCS('acclkid').value = '';
+            }
+        }
+        
+        function prepareConvert(id){
+            getElementByIdCS(id).value = getElementByIdCS('accid').options[getElementByIdCS('accid').selectedIndex].value;
+            return true;
+        }
+    </script>
+    <apex:form id="lcForm" >
+        <apex:actionFunction name="removeWarning" action="{!removeWarning}" rerender="msgs" />
+        
+        <apex:actionFunction name="convertLead" action="{!convert}">
+            <apex:param name="accountId" value="-" />
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="addAccountToList" action="{!addAccount}" rerender="btnConvert">
+            <apex:param name="accountName" value="-"/>
+            <apex:param name="accountId" value="-"/>
+        </apex:actionFunction>
+        
+        <apex:pageBlock id="lcBlock" title="Lead konvertieren">
+            <apex:pageBlockButtons location="top" id="buttons">
+                <apex:commandButton id="btnConvert" value="Konvertieren" onclick="prepareConvert('lcPage:lcForm:lcBlock:lcBlockSect:accSelection:hiddenField');" action="{!convert}" disabled="{!leadNotFocused}"/>
+                <apex:commandButton id="btnCancel" value="Abbrechen" action="{!cancel}" />  
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection id="lcBlockSect" columns="1" title="Lead konvertieren" rendered="{! NOT(contactMergeNeeded)}">
+                
+                <apex:inputField id="dsOwner" value="{!fakeAcc.OwnerId}"/> 
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Benachrichtigungs-E-Mail an Inhaber senden." for="emails"/>
+                    <apex:inputCheckbox value="{!notifyEmail}" id="emails"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem id="accSelection">  
+                    <apex:outputLabel id="lblDsAcc" value="{!$ObjectType.Lead.fields.Company.label}" />
+                    <apex:outputPanel id="accBlock" layout="block"> 
+                        <select id="accid" name="accid" title="Firmaname" onchange="removeWarning(); setSearchTag();" >
+                            <apex:repeat value="{!Accounts}" var="a">
+                                <option value="{!a.Id}">{!a.Name}</option>
+                            </apex:repeat>
+                        </select>
+                        
+                        <input type="hidden" name="acclkid_lkid" id="acclkid_lkid" value="{!selectedLead.Id}"/>
+                        <input type="hidden" name="acclkid_lkold" id="acclkid_lkold" value="{!selectedLead.Company}"/>
+                        <input type="hidden" name="acclkid_lktp" id="acclkid_lktp" value="001" />
+                        <input type="hidden" name="acclkid_mod" id="acclkid_mod" value="1"/>
+                        <input id="acclkid" maxlength="255" name="acclkid" onchange="getElementByIdCS('acclkid_lkid').value=''; getElementByIdCS('acclkid_mod').value='1';" size="20" style="display:none" type="text" />   
+                         
+                        <a href="javascript: openLookup('/_ui/common/data/LookupPage?lkpr={!selectedLead.Id}&lkfm=editPage&lknm=acclkid&leadconv=1&lktp=' + getElementByIdCS('acclkid_lktp').value, 670,'1', '&lksrch=' + escapeUTF(getElementByIdCS('acclkid').value))" title="Anzeigen (Neues Fenster)">
+                            <img src="/s.gif" alt="Firma Nachschlagen (Neues Fenster)" class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" title="Firma Nachschlagen (Neues Fenster)" />
+                        </a>
+                        <a href="javascript: viewAccount('accid');" title="Anzeigen (Neues Fenster)">Anzeigen</a>
+                        <apex:inputText id="hiddenField" style="display:none;" value="{!selectedAccId}" />
+                        
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:actionFunction action="{!resetForcing}" name="resetAccState" rerender="lblDsAcc"/>
+                        
+                <apex:pageBlockSectionItem rendered="{!isAbleCreateOpps}" > 
+                    <apex:outputLabel value="Opportunity-Name" for="OppPrefix"/>
+                    <apex:inputText id="OppPrefix" value="{!oppPrefix}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem rendered="{!isAbleCreateOpps}" >
+                    
+                    <apex:outputLabel value="Nach der Konvertierung keine neue Opportunity erstellen." for="activeOpps"/>
+                    <apex:inputCheckbox value="{!deactivateOpportunities}" id="theCheckbox"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel id="lblDsStatus" value="Konvertierter Status" for="dsStatus" />
+                     
+                    <apex:selectList id="dsStatus" value="{!convertStatusRes}" multiselect="false" size="1" required="true">
+                        <apex:selectOption itemValue="{!convertStatus.Masterlabel}" itemLabel="{!convertStatus.Masterlabel}"/> 
+                    </apex:selectList>
+                    <!--
+                    <apex:inputField id="dsStatus" value="{!selectedLead.Status}" />    -->
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- 
+            <apex:pageBlockSection id="lcBlockSect2" columns="1" title="Aufgabeninformationen" rendered="{! NOT(contactMergeNeeded)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Task.fields.Subject.label}" for="thema"/>
+                    <apex:outputPanel styleClass="requiredInput" layout="block">
+                        <apex:outputPanel styleClass="requiredBlock" layout="block"/>
+                        <apex:inputText id="thema" value="{!t.Subject}"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem> 
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Task.fields.ActivityDate.label}" for="date"/>
+                    <apex:inputField value="{!t.ActivityDate}" id="date"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Task.fields.Description.label}" for="description"/>
+                    <apex:inputField value="{!t.Description}" id="description"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection id="lcBlockSect3" columns="1" title="Zusätzliche Informationen" rendered="{! NOT(contactMergeNeeded)}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Task.fields.Status.label}" for="status"/>
+                    <apex:inputField value="{!t.Status}" id="status"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Task.fields.Priority.label}" for="priority"/>
+                    <apex:inputField value="{!t.Priority}" id="priority"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Benachrichtigungsemail senden" for="taskEmail"/>
+                    <apex:inputCheckbox value="{!sendTaskEmail}" id="taskEmail"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection id="lcBlockSect4" columns="1" title="Erinnerung" rendered="{! NOT(contactMergeNeeded)}">
+             <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Erinnerung" for="taskReminder"/>
+                    <apex:inputField value="{!t.ReminderDateTime}" id="taskReminder"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            -->
+            <apex:pageBlockSection id="lcBlockSectContact" columns="1" title="Kontakte zusammenführen" rendered="{!contactMergeNeeded}">
+                <apex:outputPanel >
+                    <apex:outputLabel id="lblDsContact" value="Kontaktname" for="dsCont" /> &nbsp;
+                    <apex:selectList id="dsCont" value="{!selCon}" multiselect="false" size="1">
+                            <apex:selectOptions value="{!Contacts}"/>
+                    </apex:selectList>  
+                </apex:outputPanel>
+                 
+                <apex:outputPanel >
+                    <apex:outputLabel value="Vorhandene Leadquellen mit Wert aus diesem Lead überschreiben." for="mergeDirection"/> &nbsp;
+                    <apex:inputCheckbox value="{!overwriteContact}" id="mergeDirection"/>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock> 
+    </apex:form>
+    <site:previewAsAdmin />
+</apex:page>

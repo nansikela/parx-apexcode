@@ -1,0 +1,12 @@
+<apex:component controller="CRD_Landing_Controller" id="landingComponent"
+    rendered="{!$Site.LoginEnabled}" language="{!defaultlanguage}">
+    
+    <apex:form id="landingForm">
+        <apex:pageMessages id="error" />
+        <apex:outputText value="{!$Site.ErrorMessage}" />
+        <apex:outputPanel layout="block">
+            
+        </apex:outputPanel>
+    </apex:form>
+    
+</apex:component>
