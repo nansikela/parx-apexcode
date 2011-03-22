@@ -5,6 +5,7 @@ public class TemplateController extends PageControllerBase {
 	public Boolean showTraining { get; set; }
 	public Boolean isDone {get; set; }
 	public Boolean isPro { get; set; }
+	public String portal { get; private set; }
     public String currentNavigationPoint { get; set; }
     public String homeurl { get; set; }
 	pageReference CMSpage = Page.page;
@@ -59,8 +60,15 @@ public class TemplateController extends PageControllerBase {
 	
 	// constructor
 	public TemplateController() {
+		System_Settings.cookie = ApexPages.currentPage().getCookies().get('guest');
+		
+		if(System_Settings.cookie == null){
+			System_Settings.cookie = new Cookie('guest','1',null,100000000,false);
+      		ApexPages.currentPage().setCookies(new Cookie[]{System_Settings.cookie});
+		}
 		test=Label.loginpage;
 		isPro=System_Settings.isPro;
+		portal=System_Settings.portal;
 		styleSelector=isPro?'pro':'normal';
 		isDone = ApexPages.currentPage().getParameters().containsKey('isDone');
 		callback_imgurl=System_Settings.getLabel('callback_imgurl');

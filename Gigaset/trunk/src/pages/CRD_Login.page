@@ -16,7 +16,7 @@
                                 </apex:outputLink>
                             </p>
                         </apex:outputPanel>
-                        <c:Login id="login" />
+                        <c:CRD_Login id="login" />
                         <!-- 
                         <c:CRD_SiteLogin id="login" />
                         -->

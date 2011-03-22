@@ -22,7 +22,8 @@ public class FNA_MapCon {
     	
     	public String Param_Lang {get;set;}
     	public String Param_Portal {get;set;}
-
+	public boolean Param_Pro {get;set;}
+		
 	public static String getBrowserName()
 	{
 		String userAgent = ApexPages.currentPage().getHeaders().get('User-Agent');
@@ -38,9 +39,16 @@ public class FNA_MapCon {
       		Param_Lang =  ApexPages.currentPage().getParameters().get('Lang');
       	if(ApexPages.currentPage().getParameters().get('Portal') != null && ApexPages.currentPage().getParameters().get('Portal') != '')
       		Param_Portal =  ApexPages.currentPage().getParameters().get('Portal');
+      	Param_Pro = false;
+      	if(ApexPages.currentPage().getParameters().get('Pro') != null  ) {
+      		if(ApexPages.currentPage().getParameters().get('Pro') == 'true')
+      			Param_Pro = true;
+      		else
+      			Param_Pro = false;
+      	}
       	city = 'Deutschland';
       	Rmax= 50;
-   //     	msg='The Account cannot be mapped, please look over the Account record for more information';//'The Account cannot be mapped, please look over the Account record for more information (Account:'+mainAccount.FNA_Status__c+')';
+   //     	msg='The Account cannot be mapped, please look over the Account record for more information';//'The Account cannot be mapped, please look over the Account record for more information (Account:'+mainAccount.FN__Mapping_Status__c+')';
 
    //     	city = '';
 
@@ -84,20 +92,20 @@ public class FNA_MapCon {
         string bla;
         try{
   //      system.debug('test ID retrieved ' + ApexPages.currentPage().getParameters().get('id'));
-            mainAccount = [Select Id,Name,Lat__c,Lon__c, Type, BillingStreet,BillingCity,BillingPostalCode,BillingState, ShippingStreet,
-                           ShippingCity,ShippingState,ShippingPostalCode, FNA_Status__c, Phone, Which_Address__c 
+            mainAccount = [Select Id,Name,FN__Lat__c,FN__Lon__c, Type, BillingStreet,BillingCity,BillingPostalCode,BillingState, ShippingStreet,
+                           ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, Phone, FN__Which_Address__c 
                            from Account where/* Id  = :ApexPages.currentPage().getParameters().get('id')*//* BillingCity bla limit = 1 ]; 
             
             m = new Mappable(mainAccount); // Make a "Mappable" object off of the account 
             //If it hasn't been located it... TRY! If it has... we're already in business!
              
-            if(mainAccount.FNA_Status__c != 'Located'){
+            if(mainAccount.FN__Mapping_Status__c != 'Located'){
                 
                 m.geoTag();
                 
-                mainAccount.lat__c = m.getLat();
-                mainAccount.lon__c = m.getLon();
-                mainAccount.FNA_Status__c = m.getStatus(); // The Status will tell us if it worked.  
+                mainAccount.FN__Lat__c = m.getLat();
+                mainAccount.FN__Lon__c = m.getLon();
+                mainAccount.FN__Mapping_Status__c = m.getStatus(); // The Status will tell us if it worked.  
                 update mainAccount; 
             }
         }catch(Exception e){
@@ -182,9 +190,16 @@ public class FNA_MapCon {
     	public void makeList(){
         	Locations = new List<Account>(); //Clear the list. 
         	try{
-            	Locations = Database.query(makeQuery()); 
-            	msg2 = String.valueOf( Locations.size());
-            	Locations = OrderSource(Locations); // Make sure the Original Account is in the list and only at the top.  
+            	boolean lookforaccounts = false;
+            	for(GlobalSettings__c GS:GlobalSettings__c.getAll().values()) {
+            		if(GS.isPro__c == Param_Pro && GS.Portal__c == Param_Portal && GS.Located_in_PartnerFinder__c)
+            			lookforaccounts = true;
+            	}
+            	if(lookforaccounts){
+            		Locations = Database.query(makeQuery()); 
+            		msg2 = String.valueOf( Locations.size());
+            		Locations = OrderSource(Locations); // Make sure the Original Account is in the list and only at the top.  
+            	}
         	}
         	catch(Exception e) {error= true; Msg=System.Label.PartnerFinder_Error2;}
     	}
@@ -201,9 +216,9 @@ public class FNA_MapCon {
 	      set<Integer> y = new set<Integer>();
 	      Integer j = 0;
 	      for(Integer k=0; k<Locations.size(); k++){  
-            	Locations.get(k).Distance__c = Math.acos(Math.sin(latStart)*Math.sin(Locations.get(k).lat__c  * Pi/180) + 
-                  Math.cos(latStart)*Math.cos(Locations.get(k).lat__c * Pi/180)  *
-                  Math.cos(Locations.get(k).lon__c * Pi/180-lonStart)) * 6371;
+            	Locations.get(k).Distance__c = Math.acos(Math.sin(latStart)*Math.sin(Locations.get(k).FN__Lat__c  * Pi/180) + 
+                  Math.cos(latStart)*Math.cos(Locations.get(k).FN__Lat__c * Pi/180)  *
+                  Math.cos(Locations.get(k).FN__Lon__c * Pi/180-lonStart)) * 6371;
                   
        // 		system.debug('distance accounts ' + Locations.get(k).Distance__c);
       		 system.debug('locationget(k) ' + Locations.get(k));
@@ -238,12 +253,13 @@ public class FNA_MapCon {
     	}
 
     	public String makeQuery(){
-        	String searchQ = 'Select Id,Name,Lat__c,Lon__c, Type, BillingStreet,BillingCity,BillingPostalCode,BillingState, ShippingStreet,';
-            searchQ+='ShippingCity,ShippingState,ShippingPostalCode, FNA_Status__c, Phone, Which_Address__c, BillingCountry, ShippingCountry from Account';
+        	String searchQ = 'Select Id,Name,FN__Lat__c,FN__Lon__c, Type, BillingStreet,BillingCity,BillingPostalCode,BillingState, ShippingStreet,';
+            searchQ+='ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, Phone, FN__Which_Address__c, BillingCountry, ShippingCountry from Account';
 
-            searchQ+=' where (( lat__c <= :latMax and lat__c >=:latMin ';
-            searchQ+=' and lon__c <= :lonMax and lon__c >=:lonMin and FNA_Status__c = \'Located\' and Which_Address__c !=\'Do Not Map\''; 
+            searchQ+=' where (( FN__Lat__c <= :latMax and FN__Lat__c >=:latMin ';
+            searchQ+=' and FN__Lon__c <= :lonMax and FN__Lon__c >=:lonMin and FN__Mapping_Status__c = \'Located\' and FN__Which_Address__c !=\'Do Not Map\''; 
           	searchQ+=' and Portal__c =: Param_Portal';
+          	searchQ+=' and Gigaset_Pro__c =: Param_Pro';
           	searchQ+='))  limit 30';
       
     //   String searchQ = 'select id from account limit 31';
