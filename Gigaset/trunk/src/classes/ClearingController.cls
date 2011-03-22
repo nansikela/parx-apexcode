@@ -1,6 +1,7 @@
 public class ClearingController {
 	
 	public Boolean isAuthenticated { get; set; }
+	public String portal {get; set; }
 	public Boolean showProfields { get; set; }
 	public Boolean showInClearing { get; set; }
 	public Set<String> gfks = new Set<String>();
@@ -25,6 +26,7 @@ public class ClearingController {
 	public String goHomeUrl { get; set; }
 	
 	public ClearingController() {
+		portal=System_Settings.portal;
 		showProfields=false;
 		showInClearing=false;
 		goHomeUrl=System_Settings.goHome().getUrl();
@@ -39,7 +41,10 @@ public class ClearingController {
 		fillGfks();
 		fillDistributions();
 		getCurrentUser();
-		if (u!=null){ getContact(); getAccount(); }
+		if (u!=null){ 
+			getContact(); 
+			//getAccount(); 
+			}
 		rq=new Request__c();
 		rq.Typ__c='Freischaltung';
 		rq.Gigaset_Extranet__c=!System_Settings.isPro;
@@ -94,14 +99,7 @@ public class ClearingController {
 	
 	public void getCurrentUser() {
 		if (isAuthenticated) {
-			try {
-				u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE Id=:UserInfo.getUserId()];
-			} catch (System.Queryexception e) {
-				System.debug('PARX Could not read User Information!');
-				ApexPages.Message apm = new ApexPages.Message(ApexPages.Severity.FATAL, System.label.presetpage_syserror1);
-	 			ApexPages.addMessage(apm);
-				//if (System_Settings.isDebug) throw e;
-			}
+			u=System_Settings.getCurrentUpdatedUser();
 			if (u!=null) {
 				u.Pro_Partner_Typ__c=null;
 			}
@@ -131,6 +129,7 @@ public class ClearingController {
 		}
 	}
 	
+	/*
 	private void getAccount() {
 		if (u!=null && a==null && u.AccountId!=null) {
 			try {
@@ -155,6 +154,7 @@ public class ClearingController {
 			}
 		}
 	}
+	*/
 	
 	private void updateUser() {
 		System.debug('PARX Updating User Data!');

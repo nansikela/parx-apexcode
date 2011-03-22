@@ -7,6 +7,7 @@ public class userdataController {
 	public Boolean isPro {get; set; }
 	public Boolean hasError { get; set; }
 	public string messages { get; set; }
+	public String portal {get; set; }
 	public Boolean showPhoneErr { get; set; }
 	public Boolean showMobileErr { get; set; }
 	public Boolean showHotlineErr { get; set; }
@@ -20,6 +21,7 @@ public class userdataController {
 
 	public userdataController() {
 		isPro = System_Settings.isPro;
+		portal=SystemSettings.portal;
 		step='start';
 		success_headline='';
 		showPhoneErr=false;

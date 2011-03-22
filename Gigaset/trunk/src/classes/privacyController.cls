@@ -7,8 +7,10 @@ public class privacyController {
 	public Integer step { get; set; }
 	public String goHomeUrl { get; set; }
 	public String privacypageurl { get; set; }
+	public String portal { get; set; }
 	
 	public privacyController() {
+		portal=System_Settings.portal;
 		goHomeUrl=SystemSettings.goHome().getUrl();
 		isAuthenticated=SystemSettings.isPortalUser();
 		step=1;
@@ -20,14 +22,7 @@ public class privacyController {
 	
 	public void getCurrentUser() {
 		if (isAuthenticated) {
-			try {
-				u=[SELECT Id, Datenschutzerkl_rung_zugestimmt__c, Zustimmung_Datenschutzerkl_rung_am__c FROM User WHERE Id=:UserInfo.getUserId()];
-			} catch (System.Queryexception e) {
-				System.debug('PARX Could not read User Information!');
-				ApexPages.Message apm = new ApexPages.Message(ApexPages.Severity.FATAL, System.label.presetpage_syserror1);
-	 			ApexPages.addMessage(apm);
-				if (SystemSettings.isDebug) throw e;
-			}
+			u=System_Settings.getCurrentUpdatedUser();
 			if (u!=null) {
 				u.Datenschutzerkl_rung_zugestimmt__c=false;
 				u.Zustimmung_Datenschutzerkl_rung_am__c=System.today();
