@@ -26,7 +26,8 @@
                 <apex:insert name="extranetnavigation">
                     <!--  Portalabh. -->
                     <!-- AND(isAuthenticated,NOT($Site.IsPasswordExpired))  -->
-                    <c:CRD_extranetnavigation rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showclearingcomp),NOT(showNextTopShop))}" id="CRD_extranetnavigationcomp" />
+                    <c:CRD_extranetnavigation rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showclearingcomp),NOT(showNextTopShop))}" id="extranetnavigationcomp" />
+                    <c:CRD_LogoPortlet rendered="{!AND(isAuthenticated,NOT(showpresetcomp),NOT(showclearingcomp))}" id="logoportlet"/>
                 </apex:insert>
                 <apex:insert name="body" />
             

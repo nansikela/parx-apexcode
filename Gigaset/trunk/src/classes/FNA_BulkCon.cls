@@ -55,27 +55,27 @@ public class FNA_BulkCon {
     	 
     public static Account setAccount(Account acc){
       //if you haven't selected which address you want to map, then I'll pick "billing" for you. 
-        if(acc.Which_Address__c !='Billing' && acc.Which_Address__c != 'Shipping' && acc.Which_Address__c !='Do Not Map')
+        if(acc.FN__Which_Address__c !='Billing' && acc.FN__Which_Address__c != 'Shipping' && acc.FN__Which_Address__c !='Do Not Map')
         {
-            acc.Which_Address__c = 'Billing'; 
+            acc.FN__Which_Address__c = 'Billing'; 
         }
         
         return acc; 
     }
     
     public static Account convertMappable(Mappable m, Account acc){
-        acc.FNA_Status__c = m.getStatus(); // what's the status? 
+        acc.FN__Mapping_Status__c = m.getStatus(); // what's the status? 
         
         if(m.getMappable()) 
         {
             totalHits++;
-            acc.Lat__c = m.getLat();
-            acc.Lon__c = m.getLon(); 
+            acc.FN__Lat__c = m.getLat();
+            acc.FN__Lon__c = m.getLon(); 
         }
         else{ 
             totalMisses++; 
-            acc.Lat__c = null;
-            acc.Lon__c = null; 
+            acc.FN__Lat__c = null;
+            acc.FN__Lon__c = null; 
         }
         return acc; 
     }
@@ -103,13 +103,13 @@ public class FNA_BulkCon {
     public static boolean shouldIStop(Account acc){
         
         /*If you get either of these errors, there's no point in continuing, let's stop*/
-        if(acc.FNA_Status__c == 'Bad Google Key')
+        if(acc.FN__Mapping_Status__c == 'Bad Google Key')
         {
             Finished = true;
             Msg = 'Your Google Map Key is not correct, please have your administrator set it and then reload this page. (Steps in \'Installation Guide\' Tab)'; 
             return true; 
         }
-        else if ( acc.FNA_Status__c == 'Google Exhausted')
+        else if ( acc.FN__Mapping_Status__c == 'Google Exhausted')
         {
             Finished = true;
             Msg = 'Google will no longer service Salesforce.com for the day, Google\'s services have been Exhausted.' 
@@ -134,12 +134,12 @@ public class FNA_BulkCon {
     
     /*Constructs the String based on Person Accounts Response. */
     public static String getQueryString(){
-        String q= 'Select BillingCountry,BillingStreet,BillingCity,BillingState,BillingPostalCode, phone,Type, lat__c, lon__c, ShippingStreet,ShippingCity,ShippingState,ShippingPostalCode, FNA_Status__c, Which_Address__c, Name, Id, distance__c from Account where ';
+        String q= 'Select BillingCountry,BillingStreet,BillingCity,BillingState,BillingPostalCode, phone,Type, FN__Lat__c, FN__Lon__c, ShippingStreet,ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, FN__Which_Address__c, Name, Id, distance__c from Account where ';
                 
         if(hasPersonAccounts){
             q+=' (IsPersonAccount = false) and '; 
         }
-        q+='(FNA_Status__c != \'Located\' and FNA_Status__c != \'Do Not Map\' and FNA_Status__c != \'Problem with Address\')  and (Which_Address__c != \'Do Not Map\') limit 10'; 
+        q+='(FN__Mapping_Status__c != \'Located\' and FN__Mapping_Status__c != \'Do Not Map\' and FN__Mapping_Status__c != \'Problem with Address\')  and (FN__Which_Address__c != \'Do Not Map\') limit 10'; 
         return q;
    }
    

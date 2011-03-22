@@ -10,6 +10,7 @@ global class System_Settings {
     global static String baseurl='http://gigaset.com/';
     global static User currentuser;
     global static GlobalSettings__c landing_config;
+	global static Cookie cookie = null;
 	
     // pageids
     global static final String userdatapageid=getPageId('Benutzerdaten');
@@ -208,22 +209,28 @@ global class System_Settings {
     
     public static PageReference redirectToLogin() {
         
+		Boolean isAlreadyLoginPage=false;
+        
+        PageReference login = null;
         PageReference basispage=Page.page;
         
-        if(System_Settings.landing_config == null){
-        	System_Settings.landing_config = [SELECT Name, Landing_Page_Aktivierung__c, Portal__c, isPro__c FROM GlobalSettings__c WHERE Portal__c = :portal AND IsPro__c = :isPro];
-        }
-        
-        PageReference login= null;
-        
-        if (System_Settings.landing_config.Landing_Page_Aktivierung__c){
-			login = new PageReference( basispage.getUrl() + '?pageid=' + getPageid('Landing')+ addParam);
-        }else{
+		if (cookie != null) {
+        	if(System_Settings.landing_config == null){
+        		System_Settings.landing_config = [SELECT Name, Landing_Page_Aktivierung__c, Portal__c, isPro__c FROM GlobalSettings__c WHERE Portal__c = :portal AND IsPro__c = :isPro];
+        	}
+ 			if (cookie.getValue().equals('1') && System_Settings.landing_config.Landing_Page_Aktivierung__c){
+				login = new PageReference( basispage.getUrl() + '?pageid=' + getPageid('Landing')+ addParam);
+       	 	}
+       	 	
+    	} else {
+        	isAlreadyLoginPage=true;
+    	}
+	
+       	if(login == null){
         	login = new PageReference( basispage.getUrl() + '?pageid=' + loginpageid + addParam);
         }
         
         login.setRedirect(true);
-        Boolean isAlreadyLoginPage=false;
         if (ApexPages.currentPage()==login) isAlreadyLoginPage=true;
         if (ApexPages.currentPage().getParameters().containsKey('pageid') && (ApexPages.currentPage().getParameters().get('pageid').startsWith(loginpageid) || ApexPages.currentPage().getParameters().get('pageid').startsWith(getPageid('Landing')))) isAlreadyLoginPage=true;
         

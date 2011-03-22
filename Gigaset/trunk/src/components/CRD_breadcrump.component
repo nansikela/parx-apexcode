@@ -1,13 +1,20 @@
 <apex:component id="breadcrump" controller="TemplateController" language="{!defaultlanguage}">
 <div id="breadcrumbs">
-        <span>
-            <apex:outputText value="{!$Label.breadcrump_you_are_here}" rendered="{!currentNavigationPoint!=''}" />
-        </span>
-            <span>
-            <apex:outputLink value="{!IF(isAuthenticated,homeurl,$Site.CustomWebAddress)}" rendered="{!currentNavigationPoint!=''}" >{!$Label.breadcrump_dealer}</apex:outputLink>
-            </span>
-            <apex:outputPanel id="arrow" rendered="{!currentNavigationPoint!=''}">></apex:outputPanel>
-            <span><apex:outputLink value="#">{!currentNavigationPoint}</apex:outputLink>
-            </span>
-    </div>
+	<apex:panelGrid columns="2" style="width: 924px;" id="breadcrumbprofilegrid">
+		<apex:outputPanel layout="block" id="breadcrumbtext" styleClass="breadcrumbtext">
+	        <span>
+	            <apex:outputText value="{!$Label.breadcrump_you_are_here}" rendered="{!currentNavigationPoint!=''}" />
+	        </span>
+	            <span>
+	            <apex:outputLink value="{!IF(isAuthenticated,homeurl,$Site.CustomWebAddress)}" rendered="{!currentNavigationPoint!=''}" >{!$Label.breadcrump_dealer}</apex:outputLink>
+	            </span>
+	            <apex:outputPanel id="arrow" rendered="{!currentNavigationPoint!=''}">></apex:outputPanel>
+	            <span><apex:outputLink value="#">{!currentNavigationPoint}</apex:outputLink>
+	            </span>
+	     </apex:outputPanel>
+	     <apex:outputPanel layout="block" id="profiletext" styleClass="profiletext">
+		 	<c:CRD_userprofileportlet rendered="{!AND(isAuthenticated,NOT(showpresetcomp),NOT(showclearingcomp))}" id="userprofileportletcomp" />
+		 </apex:outputPanel>
+     </apex:panelGrid>
+</div>
 </apex:component>

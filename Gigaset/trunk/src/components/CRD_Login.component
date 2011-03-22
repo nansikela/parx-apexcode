@@ -15,7 +15,7 @@
             <br />
             <div class="spacer6">
                 <apex:commandButton action="{!login}" style="min-width: 72px;"
-                    value="{!$Label.site.login_button}" id="loginButton" />
+                    value="{!$Label.site.login_button}" id="loginButton" styleClass="btn" />
             </div>
             <br />
             <apex:outputPanel id="thelinks" >

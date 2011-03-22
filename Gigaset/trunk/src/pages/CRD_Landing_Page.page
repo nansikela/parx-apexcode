@@ -1,4 +1,4 @@
-<apex:page showheader="false" id="CRD_landing_page" sidebar="false" title="{!$Label.de_title}"  controller="TemplateController" language="{!defaultlanguage}" action="{!init}" >
+<apex:page showheader="false" id="CRD_landing_page" sidebar="false" title="{!$Label.de_title}"  controller="TemplateController" extensions="CRD_Landing_Controller" language="{!defaultlanguage}" action="{!init}" >
 
 <apex:composition template="{!$Site.Template}">
 
@@ -9,7 +9,7 @@
             		 <apex:param name="clicked" value="true" />
             	</apex:commandButton>
 			</apex:form>
-			
+			 
     </apex:define>
 </apex:composition>
 <site:previewAsAdmin />
