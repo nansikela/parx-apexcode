@@ -7,6 +7,7 @@ public class presetController {
 	public Integer step { get; set; }
 	
 	public Set<String> gfks = new Set<String>();
+	public String portal {get; set; }
 	public Boolean showDistribution { get; set; }
 	public Boolean showDistributionErr { get; set; }
 	public String errorText { get; set; }
@@ -22,6 +23,7 @@ public class presetController {
 	public presetController() {
 		goHomeUrl=System_Settings.goHome().getUrl();
 		isAuthenticated=System_Settings.isPortalUser();
+		portal=System_Settings.portal;
 		step=1;
 		errorText=errorBase + System.label.registration_errormsg;
 		stdErrorText=errorText;
@@ -80,14 +82,7 @@ public class presetController {
 	
 	public void getCurrentUser() {
 		if (isAuthenticated) {
-			try {
-				u=[SELECT Id, Handelskanal__c, Distribution__c FROM User WHERE Id=:UserInfo.getUserId()];
-			} catch (System.Queryexception e) {
-				System.debug('PARX Could not read User Information!');
-				ApexPages.Message apm = new ApexPages.Message(ApexPages.Severity.FATAL, System.label.presetpage_syserror1);
-	 			ApexPages.addMessage(apm);
-				if (System_Settings.isDebug) throw e;
-			}
+			u=System_Settings.getCurrentUpdatedUser();
 			if (u!=null) {
 				u.Handelskanal__c=null;
 				u.Distribution__c=null;
