@@ -7,7 +7,7 @@
                 <apex:param name="selectedGfk" assignTo="{!selectedGfk}" value="" />
             </apex:actionFunction>
         </apex:form>
-        <div class="contactBox">
+        <div class="contentText">
             <div id="contact">
                 <p> </p>
                 <h1>{!$Label.clearingpage_headline}</h1>
@@ -90,16 +90,16 @@
                                         </apex:panelGrid>
                                     </apex:outputPanel>
                                 </apex:outputPanel>
-                        
+                        		<apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext" rendered="{!AND(step<2,showProfields)}">
+                        			<p>{!$Label.clearingpage_requiredfield}</p>
+                   				</apex:outputPanel>
                                 <div class="requiredInput spacer5">
                                 <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9" style="margin-left: 450px !important;" rerender="clearingpanel" id="nextstep1_btn"  />
                                 </div> 
                             </apex:form>
                         </apex:outputPanel>
                     </apex:outputPanel>
-                    <apex:outputPanel id="additionaltext" rendered="{!AND(step<2,showProfields)}">
-                        <p>{!$Label.clearingpage_requiredfield}</p>
-                    </apex:outputPanel>
+                    
                     <apex:outputPanel id="success" rendered="{!step=2}">
                         <p>{!$Label.clearingpage_thanks}</p>
                     </apex:outputPanel>
@@ -123,7 +123,6 @@
                     </div>
                 </apex:outputPanel>
             </div>
-            <span id="end"></span>
         </div>
         
     </apex:outputPanel>

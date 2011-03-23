@@ -3,21 +3,26 @@
 <apex:composition template="{!$Site.Template}">
 
         <apex:define name="body">
+        	<div id="insidecontent" style="min-height: 600px; background:transparent url(http://gigaset.com/medias/sys_master/Category_BG_CV_Living_1347_gradient.jpg) no-repeat scroll 0 0!important;" >
             <c:contentblock name="Teaser" />
-     		<apex:outputPanel layout="block" id="loginpanel">
-                 <p>{!$Label.login_intro}</p>
-                 <apex:outputPanel id="partnerloginintro" rendered="{!$Site.RegistrationEnabled}">
-                     <p>{!$Label.login_intro_partner}&nbsp; 
-                         <apex:outputLink value="{!$Page.page}?pageid={!registrationpageid}" id="registration_btn" styleClass="">
-                             <apex:outputText value="{!$Label.login_new_user}" />
-                         </apex:outputLink>
-                     </p>
-                 </apex:outputPanel>
-                 <c:CRD_Login id="login" />
-                 <apex:outputPanel layout="block" style="float: left;" id="posttext">
-                 	<p>{!$Label.login_posttext}</p>
-                 </apex:outputPanel>
-             </apex:outputPanel>
+            
+                <div class="contentText">
+                    <div id="contact" class="transparent_login" >
+                        <p>{!$Label.login_intro}</p>
+                        <apex:outputPanel id="partnerloginintro" rendered="{!$Site.RegistrationEnabled}">
+                            <p>{!$Label.login_intro_partner}&nbsp; 
+                                <apex:outputLink value="{!$Page.page}?pageid={!registrationpageid}" id="registration_btn" styleClass="">
+                                    <apex:outputText value="{!$Label.login_new_user}" />
+                                </apex:outputLink>
+                            </p>
+                        </apex:outputPanel>
+                        <c:CRD_Login id="login" />
+                        <apex:outputPanel layout="block" id="posttext" style="float: left;">
+                        	<p>{!$Label.login_posttext}</p>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </div>
     </apex:define>
 </apex:composition>
 <site:previewAsAdmin />

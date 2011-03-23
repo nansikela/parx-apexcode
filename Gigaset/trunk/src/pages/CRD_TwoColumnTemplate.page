@@ -40,6 +40,12 @@
      		<!--End LeftSide Content -->
      		<!--Start RightSide Content -->
      		<div id="colRgt">
+     			<script type="text/javascript">
+     			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
+     				if (document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
+     					document.getElementById("colRgt").style.paddingTop='60px';
+     			}
+     			</script>
          		<c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
          		<!-- News Reader component for new CR
          		<c:CRD_topnews pageController="{!this}" key="topnews" id="topnewscomp"/>

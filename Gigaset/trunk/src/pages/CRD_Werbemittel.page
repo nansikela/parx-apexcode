@@ -5,15 +5,13 @@
 <apex:composition template="{!$Site.Template}">
 
         <apex:define name="body">
-                <!--  <div id="prodOver"> -->
                     <!--Start LeftSide Content -->
                 <!-- <div class="contentText"> -->
-                        <div class="contactBox">
-                            <div id="contact">
+                        <div class="contentTextSmall">
+                            <div id="contact" class="small">
                                 <c:CRD_werbemittel rendered="{!(isAuthenticated && NOT(isDone))}" id="werbemittelcomp" />
                                 <c:CRD_werbemittelFinal rendered="{!(isAuthenticated && isDone)}" id="werbemittelcomp_finalcomp" />
                             </div>
-                            <span id="end" />
                         </div>
                     <!--  </div> -->
                     <!--End LeftSide Content -->
@@ -21,9 +19,7 @@
                     <!--Start RightSide Content -->
                     <div id="colRgt">
                         <c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),showcontactportlet)}" />
-                        <c:CRD_userprofileportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp))}" />
                         
-                        <!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/pic_cont_04.jpg')}" alt="hotline" /> -->
                         <apex:outputPanel id="rightcolumn" rendered="{!NOT(isAuthenticated)}">
                         <!--Start oneColInfo -->
                         <div class="oneCol">
@@ -47,9 +43,7 @@
                         <!--End oneColInfo -->
                         </apex:outputPanel>
                     </div> 
-                    <!--End RightSide Content --> 
-                <!--  </div> -->
-                <!-- end prodOver -->   
+                    <!--End RightSide Content -->   
     </apex:define>
 </apex:composition>
 <site:previewAsAdmin />
