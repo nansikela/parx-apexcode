@@ -2,7 +2,7 @@
     <apex:form id="actionfunctions">
         <apex:actionFunction name="previousStep" action="{!previousStep}"  />
     </apex:form>
-    <div class="contactBox">
+    <div class="contentText">
             <div id="contact">
                 <p> </p>
                 <h1>{!$Label.privacypage_headline}</h1>
@@ -33,7 +33,6 @@
         </apex:form>
     </apex:outputPanel>
         </div>
-        <span id="end"></span>
     </div>
     
 </apex:component>

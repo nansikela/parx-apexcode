@@ -36,14 +36,15 @@
             <!-- <p>{!$Label.callback_provide_further_info}</p> -->
             <apex:outputLabel value="{!$Label.callback_further_information}" for="info" />
                 <apex:inputField id="info" value="{!rq.Weitere_Informationen__c}" />
+            <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext" >
+            	<p>* {!$Label.registration_required_fields}</p>
+        	</apex:outputPanel>
             <div class="requiredInput spacer5">
                 <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
                 <apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="spacer8" id="save_btn" />
             </div>
         </apex:form>
-        <apex:outputPanel id="additionaltext">
-            <p>* {!$Label.registration_required_fields}</p>
-        </apex:outputPanel>
+        
     </apex:outputPanel>
     <apex:outputPanel id="success" rendered="{!success}">
         <p>{!$Label.callback_thanks_we_callback}</p>

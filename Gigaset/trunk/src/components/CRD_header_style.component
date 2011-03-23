@@ -10,14 +10,26 @@
     
 
         <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/style.css')}" /> 
-        <!-- now inline  <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/parx.css')}" /> -->
+        <!-- <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/parx.css')}" /> -->
         &lt;!--[if IE]><link href="{!URLFOR($Resource.gigasetextranetZIP, 'css/main_ie.css')}" rel="stylesheet" type="text/css" /><![endif]--&gt;
     
+    <script type="text/javascript">
+     			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
+     				if (document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
+     					document.getElementById("colRgt").style.paddingTop='60px';
+     			}
+    </script>
     
-
     
 	<!-- inline styles for better development performance  -->
 	<style type="text/css">
+		/* additionaltext in registration, preset, clearing, privacy, userdata */
+		.additionaltext {
+			float: left;
+			font-style: italic;
+			padding-left: 210px;
+			font-size: 10px;
+		}	
 	
 		/* CRD_LogoPortlet */
 		.absolutlyGigasetLogoImg {
@@ -28,6 +40,7 @@
 			left: 800px;
 			float: left;
 			margin-bottom: -90px;
+			z-index: 1000;
 		}
 		
 		/* CRD_breadcrump, CRD_userprofileportlet */
@@ -121,10 +134,11 @@
 		}
 		
 		.registernavi ul {
-			width: 799px;
+			width: 891px;
 			list-style: none;
 			float: left;
-			margin-left: 25px;
+			padding-left: 15px;
+			margin-left: 10px;
 			background: white;
 		}
 		
@@ -135,6 +149,34 @@
 			width: 120px;
 			margin-bottom:6px;
 			font-size:11px;
+		}
+		
+		.transparent_login {
+			/* background-color:transparent; */
+			background-color: white;
+			filter:alpha(opacity=95); /* IE's opacity*/
+			opacity: 0.95;
+			margin-top: 30px;
+			margin-left: 20px;
+		}
+		
+		.registercontact {
+			margin-left: 10px;
+			width: 876px!important;
+			padding-left: 15px!important;
+			padding-right: 15px!important;
+			filter:alpha(opacity=95); /* IE's opacity*/
+			opacity: 0.95;
+		}
+		
+		.requiredInput {
+			float: left;
+		}
+		
+		.servicehotlinetext {
+			float: left;
+			font-style: italic;
+			padding-left: 210px;
 		}
 		
 	
@@ -174,8 +216,56 @@
 }
 
 #contentText a {
-	background: url(../img/faqNavi.jpg) no-repeat 0% 3px;
+	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
 	padding:0 0 0 11px;
+}
+
+#content #prodOver .contentText {
+	width: 926px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-bottom: 20px;
+}
+
+#content .contentText {
+	width: 926px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-bottom: 20px;
+}
+
+#content #prodOver .contentTextSmall {
+	width: 675px;
+	padding-right: 15px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-bottom: 20px;
+	float: left;
+	position: relative;
+}
+
+#content .contentTextSmall {
+	width: 675px;
+	padding-right: 15px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-bottom: 20px;
+	float: left;
+	position: relative;
+}
+
+#content #contact .small {
+	width: 625px!important;
+}
+
+#content #prodOver #contact .small {
+	width: 625px!important;
+}
+
+#content .login {
+	border: lightgrey;
 }
 
 /* ---- keine Blaufärbung mehr! ------*/
@@ -250,16 +340,20 @@ h4 {
 
 .lft_login a,
 .link_arrow a {
-	background: url(../img/faqNavi.jpg) no-repeat 0% 3px;
+	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
 	padding:0 0 0 11px;
 }
 
 .link_arrow p {
 	padding:0 0 0 11px;
 }
+.link_arrow a {
+	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
+	padding:0 0 0 11px;
+}
 
 .ftp_login a:hover {
-	background: url(../img/faqNavidown.jpg) no-repeat 0% 3px;
+	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavidown.jpg')}) no-repeat 0% 3px;
 	padding:0 0 0 11px;
 }
 
@@ -267,7 +361,7 @@ h4 {
 /* ---------------- TRENNLINIE/HORIZONTAL ------------------------------*/
 
 .hor_line {
-	background: url(../img/hor_line.gif) repeat-x;
+	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/hor_line.gif')}) repeat-x;
 	margin:5px 11px 5px 0px;
 	height: 1px;
 }
@@ -277,7 +371,7 @@ h4 {
 /* ---------------- ORANGER BUTTON------------------------------*/
 
 button {
-	background:transparent url(../img/btn_front.png) no-repeat 0% 100%;
+	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.png')}) no-repeat 0% 100%;
 	border:0 none;
 	color:#FFFFFF !important;
 	font-size: 12px;
@@ -287,7 +381,7 @@ button {
 	cursor: pointer;
 }
 button span {
-	background:transparent url(../img/btn_back.png) no-repeat 100% 100%;
+	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.png')}) no-repeat 100% 100%;
 	border:0 none;
 	color:#FFFFFF !important;
 	height:30px;
@@ -297,10 +391,10 @@ button span {
 }
 
 button:hover, .buttonHover {
-	background-image:url(../img/btn_frontL.png);
+	background-image:url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_frontL.png')});
 }
 button:hover span, .buttonHover span {
-	background-image:url(../img/btn_backL.png);
+	background-image:url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_backL.png')});
 }
 form button span {
 	padding:5px 17px 13px 1px;
@@ -311,7 +405,7 @@ form button span {
 }
 
 .btn_login {
-    background-image:  url(../img/btn_back.png);
+    background-image:  url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.png')});
     background-repeat: repeat-x;
     background-position: left top;
     font-size: 100%;
@@ -349,7 +443,7 @@ form button span {
 	-moz-background-clip:border;
 	-moz-background-inline-policy:continuous;
 	-moz-background-origin:padding;
-	background:transparent url(../img/prodTeaserBig.jpg) no-repeat scroll 50% 0;
+	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/prodTeaserBig.jpg')}) no-repeat scroll 50% 0;
 	float:left;
 	margin-bottom:18px;
 	margin-left:-14px;
@@ -365,7 +459,7 @@ form button span {
 	-moz-background-clip:border;
 	-moz-background-inline-policy:continuous;
 	-moz-background-origin:padding;
-	background:transparent url(../img/prodTeaserBigBottom.jpg) no-repeat scroll 50% 100%;
+	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/prodTeaserBigBottom.jpg')}) no-repeat scroll 50% 100%;
 	bottom:-12px;
 	height:8px;
 	left:13px;
@@ -383,10 +477,14 @@ ul li, ol li {
 
 #content #colRgt { 
 	 margin: 0px;
-	 padding: 0px;
-	 float: left;
+	 padding-left: 0px;
+	 padding-bottom: 0px;
+	 padding-right: 0px;
+	 padding-top: 0px;
+	 float: right;
 	 /* min-width: 216px; */
 	 width: 216px;
+	 position: relative;
 }
 
 
@@ -396,7 +494,7 @@ ul li, ol li {
 }
 
 #content #colRgt #contactProfil { 
-	background:transparent url(../img/bg_oneCol.png) no-repeat scroll 0 0;
+	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/bg_oneCol.png')}) no-repeat scroll 0 0;
 	padding:10px 5px 0px 17px;
 	width:197px;
 	float: left;
@@ -404,7 +502,7 @@ ul li, ol li {
 }
 
 #content #colRgt #profilEnd {
-	background:transparent url(../img/bg_oneColBtm.png) no-repeat scroll 0 0;
+	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/bg_oneColBtm.png')}) no-repeat scroll 0 0;
 	height:9px;
 	width:219px;
 	float: left;
@@ -421,7 +519,7 @@ ul li, ol li {
 
 #content #contact  {
 	background: white;
-	width: 876px;
+	width: 750px;
 	padding-left: 25px;
 	padding-right: 25px;
 	padding-top: 15px;
@@ -491,6 +589,14 @@ ul li, ol li {
 	margin-bottom:6px;
 }
 
+#content #contact form .FieldRequiredTitle {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size:11px;
+	border: 1px solid #b2b2b2;
+	width: 208px!important;
+	margin-bottom:6px;
+}
+
 #content #contact form .FieldRequiredStreet {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	font-size:11px;	
@@ -505,6 +611,14 @@ ul li, ol li {
 	font-size:11px;
 	border: 1px solid #b2b2b2;
 	width: 354px!important;
+	margin-bottom:6px;
+}
+
+#content #contact form .FieldRequiredSalutation {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size:11px;
+	border: 1px solid #b2b2b2;
+	width: 85px!important;
 	margin-bottom:6px;
 }
 

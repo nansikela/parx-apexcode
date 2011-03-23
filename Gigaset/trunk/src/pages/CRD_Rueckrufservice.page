@@ -6,8 +6,8 @@
         <!-- <div id="prodOver"> -->
             <!--Start LeftSide Content -->
             <!-- <div class="contentText"> -->
-                    <div class="contactBox">
-                    <div id="contact">
+                    <div class="contentTextSmall">
+                    <div id="contact" class="small">
                         <c:CRD_rueckrufservice rendered="{!isAuthenticated}"/>
                     </div>
                         <span id="end"></span>
@@ -17,7 +17,6 @@
                 <!--Start RightSide Content -->
             <div id="colRgt">
                 <c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),showcontactportlet)}" />
-                <c:CRD_userprofileportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp))}" />
                 
                 <!--Start oneColInfo -->
                 <div class="oneCol">

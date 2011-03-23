@@ -16,8 +16,8 @@
  		<div id="prodOver">
 	 		<!--Start LeftSide Content -->
 	 		
-	 		<div class="contentTextSmall">
-	 			<div id="contact" class="small">
+	 		<div class="contentText">
+	 			<div id="contact">
 	 				<c:CRD_Training id="training" rendered="{!showTraining}" />
 	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
 	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
@@ -38,34 +38,6 @@
 			</div>
 			
      		<!--End LeftSide Content -->
-     		<!--Start RightSide Content -->
-     		<div id="colRgt">
-         		<c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
-         		<!-- News Reader component for new CR
-         		<c:CRD_topnews pageController="{!this}" key="topnews" id="topnewscomp"/>
-         		-->
-         		<!--Start oneColInfo -->
-         		<div class="oneCol">
-         			<div class="oneColInfo">
-         				<c:contentblock name="rghtcol1" rendered="{!isAuthenticated}" />
-       			</div>
-         			<div class="oneColBtm">
-         				<c:contentblock name="rghtcol1Btm" rendered="{!isAuthenticated}" />
-         			</div>
-         		</div>
-         		<!--End oneColInfo -->
-         		<!--Start oneColInfo -->
-         		<div class="oneCol">
-         			<div class="oneColInfo">
-         				<c:contentblock name="rghtcol2" rendered="{!isAuthenticated}" />
-       			</div>
-	      		<div class="oneColBtm">
-	      			<c:contentblock name="rghtcol2Btm" rendered="{!isAuthenticated}" />
-	      		</div>
-     	 		</div>
-     			<!--End oneColInfo -->
-		</div>
-    		<!--End RightSide Content -->
     <!-- end prodOver -->
 	 </div>
 	 </apex:outputPanel>

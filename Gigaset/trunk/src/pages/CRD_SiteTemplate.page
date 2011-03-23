@@ -1,6 +1,4 @@
 <apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false">
-    <c:CRD_header_style id="stylesheets" />
-    <c:CSS_Ressource id="stylesheet_Michi" />
     <div id="wrapper">
         <div id="content_area">
             <div id="header">
@@ -20,7 +18,6 @@
             <div id="content_wrapper">
             
             <div id="content">
-                
                 <apex:insert name="breadcrump">
                     <c:CRD_breadcrump id="CRD_breadcrumpcomp" />
                 </apex:insert>
@@ -31,7 +28,6 @@
                     <c:CRD_LogoPortlet rendered="{!AND(isAuthenticated,NOT(showpresetcomp),NOT(showclearingcomp))}" id="logoportlet"/>
                 </apex:insert>
                 <apex:insert name="body" />
-            
             </div>
             
             </div>
@@ -46,6 +42,7 @@
     <!-- END wrapper -->
         <c:CRD_footercopy id="CRD_footercopycomp" />
     
-    
+    <c:CRD_header_style id="stylesheets" />
+    <c:CSS_Ressource id="stylesheet_Michi" />
     <site:previewAsAdmin />
 </apex:page>

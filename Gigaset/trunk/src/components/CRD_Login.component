@@ -2,8 +2,8 @@
     rendered="{!$Site.LoginEnabled}" language="{!defaultlanguage}">
     
     <apex:form id="loginForm" forceSSL="true">
-        <apex:pageMessages id="error" />
-        <apex:outputText value="{!$Site.ErrorMessage}" />
+        <apex:pageMessages id="errorX" />
+        <!--  <apex:outputText value="{!$Site.ErrorMessage}" /> -->
         <apex:outputPanel layout="block">
             <apex:outputLabel value="{!$Label.site.username}"
                  for="username" />
@@ -15,7 +15,7 @@
             <br />
             <div class="spacer6">
                 <apex:commandButton action="{!login}" style="min-width: 72px;"
-                    value="{!$Label.site.login_button}" id="loginButton" styleClass="btn" />
+                    value="{!$Label.site.login_button}" id="loginButton" styleClass="btn_login" />
             </div>
             <br />
             <apex:outputPanel id="thelinks" >

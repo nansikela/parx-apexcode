@@ -11,6 +11,7 @@ public class CRD_Training_Redirect_Controller {
 	}
 	
 	public PageReference callTrainingModule(){
+		InterfaceLinks.generatePictureURL();
 		PageReference url = new PageReference('/'+System_Settings.portal+'/page?pageid=a0AL00000008nQ8MAI&training=1');
 		
 		//PageReference url = new PageReference('/'+SystemSettings.portal+'/page?pageid='+SystemSettings.TrainingId);
