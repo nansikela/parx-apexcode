@@ -155,22 +155,22 @@ public class registerController {
 	// getter
 	public String getActive0() {
 		if (step==0) return 'active';
-		else return '';
+		else return 'inactive';
 	}
 	
 	public String getActive1() {
 		if (step==1) return 'active';
-		else return '';
+		else return 'inactive';
 	}
 	
 	public String getActive2() {
 		if (step==2) return 'active';
-		else return '';
+		else return 'inactive';
 	}
 	
 	public String getActive3() {
 		if (step==3) return 'active';
-		else return '';
+		else return 'inactive';
 	}
 	
 	public String getServiceHotlineUrl() {

@@ -1,18 +1,11 @@
 <apex:page showheader="false" sidebar="false" id="crd_register" cache="false" expires="600"
     controller="TemplateController" title="{!$Label.de_title}" language="{!defaultlanguage}" >
-    <!-- language="{!defaultlanguage}" -->
 
-<apex:composition template="{!$Site.Template}">
 
+	<apex:composition template="{!$Site.Template}">
         <apex:define name="body">
-                <p>&nbsp;</p>
-                <!-- Start Contact -->
-                
-                    <c:CRD_register />
-
-                <c:contentblock name="sidebarimage" />
-                <!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/kontakt.png')}" alt="kontakt" /> -->
-    </apex:define>
-</apex:composition>
+        	<c:CRD_register />
+	    </apex:define>
+	</apex:composition>
 <site:previewAsAdmin />
 </apex:page>

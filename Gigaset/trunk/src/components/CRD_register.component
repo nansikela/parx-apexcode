@@ -1,6 +1,4 @@
 <apex:component controller="registerController" allowDML="true" id="crdregistration1" language="{!defaultlanguage}" >
-    <!--  language="{!defaultlanguage}"  -->
-
                 
     <apex:outputPanel id="register" >
         <apex:outputPanel id="navi" rendered="{!step<4}">
@@ -18,39 +16,120 @@
                 
                 <apex:actionFunction name="previousStep" action="{!previousStep}" rerender="register" />
             </apex:form>
-            <div class="prodTeaserFrame">
-                <apex:outputPanel id="withprivacymenu" rendered="{!showprivacy}">
-                    <div class="prodTeaserBig"> 
+                <apex:outputPanel id="withprivacymenu" rendered="{!showprivacy}" styleClass="registernavi">
                     <!-- Start Register Navi -->
                     <!-- disabled="{!step=0}"  -->
                     <ul>
                         <li>
-                        <apex:outputLink value="#"  onclick="goToStep(0)" styleClass="{!active0}" id="plinkstep0">{!$Label.clientdata_privacy}</apex:outputLink>
+	                        <apex:panelGrid columns="2" id="pgrid0">
+		                        <apex:outputPanel id="pcol10">
+		                        	<apex:outputLink value="#" onclick="goToStep(0)" id="plinkstep01" >
+		                        		<apex:outputText escape="false" value="&nbsp;1&nbsp;" id="pstepnr0" styleClass="step{!active0}" />
+		                        	</apex:outputLink>
+		                        </apex:outputPanel>
+		                        <apex:outputPanel layout="block" id="pcol20" styleClass="steptitle{!active0}" >
+		                       		<apex:outputLink value="#" onclick="goToStep(0)" id="plinkstep02" >
+		                        		<apex:outputText escape="false" value="&nbsp;{!$Label.clientdata_privacy}" id="psteptitle0" styleClass="steptitle" />
+		                        	</apex:outputLink>
+		                        </apex:outputPanel>
+	                        </apex:panelGrid>
                         </li>
-                        <li><apex:outputLink value="#"  onclick="goToStep(1)" styleClass="{!active1}" disabled="{!disabledStep1}" id="plinkstep1" >{!$Label.clientdata_companydata}</apex:outputLink></li>
-                        <li><apex:outputLink value="#"  onclick="goToStep(2)" styleClass="{!active2}" disabled="{!disabledStep2}" id="plinkstep2" >{!$Label.clientdata_userdata}</apex:outputLink></li>
-                        <li><apex:outputLink value="#"  onclick="goToStep(3)" styleClass="{!active3}" disabled="{!disabledStep3}" id="plinkstep3" >{!$Label.clientdata_companyprofile}</apex:outputLink></li>
+                        <li>
+	                        <apex:panelGrid columns="2" id="pgrid1">
+		                        <apex:outputPanel id="pcol11">
+		                        	<apex:outputLink value="#" onclick="goToStep(1)" disabled="{!disabledStep1}" id="plinkstep11" >
+		                        		<apex:outputText escape="false" value="&nbsp;2&nbsp;" id="pstepnr1" styleClass="step{!active1}" />
+		                        	</apex:outputLink>
+		                        </apex:outputPanel>
+		                        <apex:outputPanel layout="block" id="pcol21" styleClass="steptitle{!active1}" >
+		                        	<apex:outputLink value="#" onclick="goToStep(1)" disabled="{!disabledStep1}" id="plinkstep12" >
+		                        		<apex:outputText escape="false" value="&nbsp;{!$Label.clientdata_companydata}" id="psteptitle1" styleClass="steptitle" />
+		                        	</apex:outputLink>
+		                        </apex:outputPanel>
+	                        </apex:panelGrid>
+                        </li>
+                        <li>
+                        	<apex:panelGrid columns="2" id="pgrid2">
+                        		<apex:outputPanel id="pcol12">
+                        			<apex:outputLink value="#" onclick="goToStep(2)" disabled="{!disabledStep2}" id="plinkstep21" >
+	                        			<apex:outputText escape="false" value="&nbsp;3&nbsp;" id="pstepnr2" styleClass="step{!active2}" />
+	                        		</apex:outputLink>
+	                        	</apex:outputPanel>
+	                        	<apex:outputPanel layout="block" id="pcol22" styleClass="steptitle{!active2}" >
+	                        		<apex:outputLink value="#" onclick="goToStep(2)" disabled="{!disabledStep2}" id="plinkstep22" >
+	                        			<apex:outputText escape="false" value="&nbsp;{!$Label.clientdata_userdata}" id="psteptitle2" />
+	                        		</apex:outputLink>
+	                        	</apex:outputPanel>
+                        	</apex:panelGrid>
+                        </li>
+                        <li>
+                        	<apex:panelGrid columns="2" id="pgrid3">
+                        		<apex:outputPanel id="pcol13">
+                        			<apex:outputLink value="#" onclick="goToStep(3)" disabled="{!disabledStep3}" id="plinkstep31" >
+	                        			<apex:outputText escape="false" value="&nbsp;4&nbsp;" id="pstepnr3" styleClass="step{!active3}" />
+	                        		</apex:outputLink>
+	                        	</apex:outputPanel>
+	                        	<apex:outputPanel layout="block" id="pcol23" styleClass="steptitle{!active3}" >
+	                        		<apex:outputLink value="#" onclick="goToStep(3)" disabled="{!disabledStep3}" id="plinkstep32" >
+	                        			<apex:outputText escape="false" value="&nbsp;{!$Label.clientdata_companyprofile}" id="psteptitle3" />
+	                        		</apex:outputLink>
+	                        	</apex:outputPanel>
+                        	</apex:panelGrid>
+                        </li>
                     </ul>
-                    </div>
                 </apex:outputPanel>
-                <apex:outputPanel id="withoutprivacymenu" rendered="{!NOT(showprivacy)}">
-                    <div class="prodTeaserBig"> 
+                <apex:outputPanel id="withoutprivacymenu" rendered="{!NOT(showprivacy)}" styleClass="registernavi">
                     <!-- Start Register Navi -->
                     <!-- disabled="{!step=0}"  -->
                     <ul>
-                        <li><apex:outputLink value="#"  onclick="goToStep(1)" styleClass="{!active1}" disabled="{!disabledStep1}" id="linkstep1" >{!$Label.clientdata_companydata}</apex:outputLink></li>
-                        <li><apex:outputLink value="#"  onclick="goToStep(2)" styleClass="{!active2}" disabled="{!disabledStep2}" id="linkstep2" >{!$Label.clientdata_userdata}</apex:outputLink></li>
-                        <li><apex:outputLink value="#"  onclick="goToStep(3)" styleClass="{!active3}" disabled="{!disabledStep3}" id="linkstep3" >{!$Label.clientdata_companyprofile}</apex:outputLink></li>
-                    </ul>
-                    </div>
+                        <li>
+	                        <apex:panelGrid columns="2" id="grid1">
+		                        <apex:outputPanel id="col11">
+		                        	<apex:outputLink value="#" onclick="goToStep(1)" id="linkstep11" >
+		                        		<apex:outputText escape="false" value="&nbsp;1&nbsp;" id="stepnr1" styleClass="step{!active1}" />
+		                        	</apex:outputLink>
+		                        </apex:outputPanel>
+		                        <apex:outputPanel layout="block" id="col21" styleClass="steptitle{!active1}" >
+		                        	<apex:outputLink value="#" onclick="goToStep(1)" id="linkstep1" >
+		                        		<apex:outputText escape="false" value="&nbsp;{!$Label.clientdata_companydata}" id="steptitle1" styleClass="steptitle" />
+		                        	</apex:outputLink>
+		                        </apex:outputPanel>
+	                        </apex:panelGrid>
+                        </li>
+                        <li>
+                        	<apex:panelGrid columns="2" id="grid2">
+                        		<apex:outputPanel id="col12">
+                        			<apex:outputLink value="#" onclick="goToStep(2)" disabled="{!disabledStep2}" id="linkstep21" >
+	                        			<apex:outputText escape="false" value="&nbsp;2&nbsp;" id="stepnr2" styleClass="step{!active2}" />
+	                        		</apex:outputLink>
+	                        	</apex:outputPanel>
+	                        	<apex:outputPanel layout="block" id="col22" styleClass="steptitle{!active2}" >
+	                        		<apex:outputLink value="#" onclick="goToStep(2)" disabled="{!disabledStep2}" id="linkstep22" >
+	                        			<apex:outputText escape="false" value="&nbsp;{!$Label.clientdata_userdata}" id="steptitle2" />
+	                        		</apex:outputLink>
+	                        	</apex:outputPanel>
+                        	</apex:panelGrid>
+                        </li>
+                        <li>
+                        	<apex:panelGrid columns="2" id="grid3">
+                        		<apex:outputPanel id="col13">
+                        			<apex:outputLink value="#" onclick="goToStep(3)" disabled="{!disabledStep3}" id="linkstep31" >
+	                        			<apex:outputText escape="false" value="&nbsp;3&nbsp;" id="stepnr3" styleClass="step{!active3}" />
+	                        		</apex:outputLink>
+	                        	</apex:outputPanel>
+	                        	<apex:outputPanel layout="block" id="col23" styleClass="steptitle{!active3}" >
+	                        		<apex:outputLink value="#" onclick="goToStep(3)" disabled="{!disabledStep3}" id="linkstep32" >
+	                        			<apex:outputText escape="false" value="&nbsp;{!$Label.clientdata_companyprofile}" id="steptitle3" />
+	                        		</apex:outputLink>
+	                        	</apex:outputPanel>
+                        	</apex:panelGrid>
+                        </li>
+                	</ul>
                 </apex:outputPanel>
-                <div class="colors"> </div>
-            </div>
         </apex:outputPanel>
         
-        <div class="contactBox">
-            <div id="contact">
-                <p> </p>
+        <apex:outputPanel layout="block" id="registrationBox">
+           <div id="contact">
                 <h1>{!$Label.registration}</h1>
                 <p> </p>
                 <apex:outputPanel id="privacy" rendered="{!AND(step=0,showprivacy)}">
@@ -348,7 +427,7 @@
                 </apex:form>
                 
                 </apex:outputPanel>
-                <apex:outputPanel id="additionaltext" rendered="{!AND(step<4,step>0)}">
+                <apex:outputPanel layout="block" id="additionaltext" rendered="{!AND(step<4,step>0)}" style="float: left;">
                     <p>{!$Label.registration_required_fields}</p>
                 </apex:outputPanel>
                 <apex:outputPanel id="success" rendered="{!step=4}">
@@ -364,10 +443,10 @@
                         <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
                     </apex:outputPanel>
                 </div>
-            </div>
-            <span id="end"></span>
-        </div>
+           </div>
+        </apex:outputPanel>
     </apex:outputPanel>
+    <!-- TODO check if this can be transfered to style comp -->
     <apex:outputPanel id="additional_styles1" rendered="{!step!=3}"> 
     <style>
 
@@ -381,9 +460,4 @@
 
     </style>
     </apex:outputPanel>
-    <style>
-        .btn, .btnGo, .btnImportant, .btnSharing, .btnDisabled, .subscribeNow, .upgradeNow, .btnWhatsNew {
-            overflow: visible;
-        }
-    </style>
 </apex:component>
