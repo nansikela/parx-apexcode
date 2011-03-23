@@ -1,8 +1,9 @@
 <apex:component id="include_styles">
 
 	<script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/mainnav.js')}"></script>
-    
+
     <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/changepic.js')}"></script>
+
 
     <link rel="icon" type="image/png" href="{!$Resource.GigasetFavicon}" />
     <!--  normal layout -->
@@ -64,7 +65,79 @@
 		.profilelinktext {
 			color: #a3a7ae!important;
 		}
+		
+		/* register component */
+        .btn, .btnGo, .btnImportant, .btnSharing, .btnDisabled, .subscribeNow, .upgradeNow, .btnWhatsNew {
+            overflow: visible;
+        }
+        
+        .registernavi {
+        	width: 926px;
+        }
+        
+        .registernavi table {
+        	border-collapse: collapse;
+        }
 
+		.registernavi li {
+			margin-left: 2px!important;
+			margin-bottom: 10px;
+			margin-top: 10px;
+			float: left;
+		}
+		
+		.registernavi .stepactive {
+			background: #FF9713;
+			color: white;
+			text-align: center;
+			float: left;
+			border: 1px solid #FF9713;
+		}
+		
+		.registernavi .stepinactive {
+			background: darkgrey;
+			color: white;
+			text-align: center;
+			float: left;
+			border: 1px solid darkgrey;
+		}
+		
+		.registernavi .steptitleinactive {
+			border: 1px solid lightgrey;
+		    background: lightgrey;
+			min-width: 120px;
+		}
+		
+		.registernavi .steptitleactive {
+			border: 1px solid #FF9713;
+			background: lightgrey;
+			min-width: 120px;
+		}
+		
+		
+		.registernavi .steptitle {
+			background: lightgrey;
+			text-align: left;
+		}
+		
+		.registernavi ul {
+			width: 799px;
+			list-style: none;
+			float: left;
+			margin-left: 25px;
+			background: white;
+		}
+		
+		/* Login component */
+		.LoginField {
+			font-family: Arial, Verdana, Helvetica, sans-serif;
+			border: 1px solid #b2b2b2;
+			width: 120px;
+			margin-bottom:6px;
+			font-size:11px;
+		}
+		
+	
 		
 /* Parx CSS */
 /* ----------------------------------------- */
@@ -346,7 +419,14 @@ ul li, ol li {
 	background: transparent url(/img/s.gif) no-repeat scroll 0 0;
 }
 
-#content 
+#content #contact  {
+	background: white;
+	width: 876px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
 
 
 /* ------------- SELECT-DROPBOX ANPASSUNG  -----------------*/
@@ -370,7 +450,7 @@ ul li, ol li {
 	margin-bottom:5px;
     font-size:11px;
 	font-family: Arial, Verdana, Helvetica, sans-serif;
-	width: 288px!important;
+	width: 350px!important;
 }
 
 /* ------------- TEXTFIELD ANPASSUNG  -----------------*/
@@ -378,7 +458,7 @@ ul li, ol li {
 #content #contact form .FieldRequired {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	border: 1px solid #b2b2b2;
-	width: 288px;
+	width: 350px;
 	margin-bottom:6px;
 	font-size:11px;
 }
@@ -390,7 +470,7 @@ ul li, ol li {
 #content #contact form .FieldRequired2 {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	border: 1px solid #b2b2b2;
-	width: 150px;
+	width: 350px;
 	margin-bottom:6px;
 	font-size:11px;
 }
@@ -398,7 +478,7 @@ ul li, ol li {
 #content #contact form .FieldRequired3 {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	border: 1px solid #b2b2b2;
-	width: 288px;
+	width: 350px;
 	margin-bottom:6px;
 	font-size:11px;
 }
@@ -407,7 +487,7 @@ ul li, ol li {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	font-size:11px;
 	border: 1px solid #b2b2b2;
-	width: 154px!important;
+	width: 350px!important;
 	margin-bottom:6px;
 }
 
@@ -424,7 +504,7 @@ ul li, ol li {
 	font-family: Arial, Verdana, Helvetica, sans-serif;
 	font-size:11px;
 	border: 1px solid #b2b2b2;
-	width: 292px!important;
+	width: 354px!important;
 	margin-bottom:6px;
 }
 
@@ -493,6 +573,7 @@ ul li, ol li {
 }
 
 /* --------------- Button Anpassung ------------------------ */
+/* TODO has to be replaced by gigaset buttons
 #content .gcbtn {
          font-family:'Verdana', 'Geneva', sans-serif;
          text-decoration:none;
@@ -511,7 +592,7 @@ ul li, ol li {
          font-weight:bold;
          display:inline;
 }
-
+*/
 
 
 /* --------- footer -------------*/

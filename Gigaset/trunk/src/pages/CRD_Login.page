@@ -3,34 +3,21 @@
 <apex:composition template="{!$Site.Template}">
 
         <apex:define name="body">
-            <c:contentblock name="willkommen" />
             <c:contentblock name="Teaser" />
-            
-                <div class="contactBox" id="cbox" >
-                    <div id="contact">
-                        <p>{!$Label.login_intro}</p>
-                        <apex:outputPanel id="partnerloginintro" rendered="{!$Site.RegistrationEnabled}">
-                            <p>{!$Label.login_intro_partner}&nbsp; 
-                                <apex:outputLink value="{!$Page.page}?pageid={!registrationpageid}" id="registration_btn" styleClass="">
-                                    <apex:outputText value="{!$Label.login_new_user}" />
-                                </apex:outputLink>
-                            </p>
-                        </apex:outputPanel>
-                        <c:CRD_Login id="login" />
-                        <!-- 
-                        <c:CRD_SiteLogin id="login" />
-                        -->
-                        <p>{!$Label.login_posttext}</p>
-                    </div>
-                    <span id="end"></span>
-                </div>
-                <div id="colRgt">
-                    <div id="sidebar">
-                        <c:contentblock name="sidebarimage" id="sidebarimage" />
-                    </div>
-                </div>
-                <!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/kontakt.png')}" alt="kontakt" /> -->
-                <c:contentblock name="system" id="system" />
+     		<apex:outputPanel layout="block" id="loginpanel">
+                 <p>{!$Label.login_intro}</p>
+                 <apex:outputPanel id="partnerloginintro" rendered="{!$Site.RegistrationEnabled}">
+                     <p>{!$Label.login_intro_partner}&nbsp; 
+                         <apex:outputLink value="{!$Page.page}?pageid={!registrationpageid}" id="registration_btn" styleClass="">
+                             <apex:outputText value="{!$Label.login_new_user}" />
+                         </apex:outputLink>
+                     </p>
+                 </apex:outputPanel>
+                 <c:CRD_Login id="login" />
+                 <apex:outputPanel layout="block" style="float: left;" id="posttext">
+                 	<p>{!$Label.login_posttext}</p>
+                 </apex:outputPanel>
+             </apex:outputPanel>
     </apex:define>
 </apex:composition>
 <site:previewAsAdmin />

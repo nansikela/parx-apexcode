@@ -1,5 +1,6 @@
 <apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false">
     <c:CRD_header_style id="stylesheets" />
+    <c:CSS_Ressource id="stylesheet_Michi" />
     <div id="wrapper">
         <div id="content_area">
             <div id="header">

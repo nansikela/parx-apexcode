@@ -5,9 +5,11 @@
         <apex:define name="body">
             <c:contentblock name="maincontent" />
             <apex:form > 
-            	<apex:commandButton value="Go To Login" action="{!redirectToLogin}">
+            	<apex:commandButton styleclass="newBTN" value="Go To Login loooooooooooool" action="{!redirectToLogin}">
             		 <apex:param name="clicked" value="true" />
             	</apex:commandButton>
+            	
+            	<a id="btn" class="newBTN">TEEEEEEEEEEST</a>
 			</apex:form>
 			 
     </apex:define>
