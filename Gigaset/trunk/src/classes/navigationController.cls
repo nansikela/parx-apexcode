@@ -59,6 +59,10 @@ public class navigationController {
 			return System_Settings.baseurl+System_Settings.portal+'/'+System_Settings.setLanguage()+'/';
 	}
 	
+	public String getHomeUrl() {
+		return homepageid!='' ? CMSpage.getUrl() + '?pageid=' + homepageid : '#';
+	}
+	
 	public String getPicturemanagemantUrl() {
 		return DEInterfaceLinks.generatePictureURL();
 	}

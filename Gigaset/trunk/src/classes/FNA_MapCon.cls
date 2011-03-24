@@ -23,7 +23,6 @@ public class FNA_MapCon {
     	public String Param_Lang {get;set;}
     	public String Param_Portal {get;set;}
 	public boolean Param_Pro {get;set;}
-	public boolean Param_Pro_Helper {get;set;}
 		
 	public static String getBrowserName()
 	{
@@ -41,15 +40,11 @@ public class FNA_MapCon {
       	if(ApexPages.currentPage().getParameters().get('Portal') != null && ApexPages.currentPage().getParameters().get('Portal') != '')
       		Param_Portal =  ApexPages.currentPage().getParameters().get('Portal');
       	Param_Pro = false;
-      	Param_Pro_Helper = false;
       	if(ApexPages.currentPage().getParameters().get('Pro') != null  ) {
       		if(ApexPages.currentPage().getParameters().get('Pro') == 'true')
       			Param_Pro = true;
-      		else
-      			Param_Pro = false;
       	}
-      	else
-      		Param_Pro_Helper = true;
+
       	city = 'Deutschland';
       	Rmax= 50;
    //     	msg='The Account cannot be mapped, please look over the Account record for more information';//'The Account cannot be mapped, please look over the Account record for more information (Account:'+mainAccount.FN__Mapping_Status__c+')';
@@ -196,7 +191,7 @@ public class FNA_MapCon {
         	try{
             	boolean lookforaccounts = false;
             	for(GlobalSettings__c GS:GlobalSettings__c.getAll().values()) {
-            		if((GS.isPro__c == Param_Pro || Param_Pro_Helper) && GS.Portal__c == Param_Portal && GS.Located_in_PartnerFinder__c)
+            		if(((GS.isPro__c == Param_Pro) /*&& Param_Pro || !Param_Pro*/) && GS.Portal__c == Param_Portal && GS.Located_in_PartnerFinder__c)
             			lookforaccounts = true;
             	}
             	if(lookforaccounts){
@@ -263,7 +258,7 @@ public class FNA_MapCon {
             searchQ+=' where (( FN__Lat__c <= :latMax and FN__Lat__c >=:latMin ';
             searchQ+=' and FN__Lon__c <= :lonMax and FN__Lon__c >=:lonMin and FN__Mapping_Status__c = \'Located\' and FN__Which_Address__c !=\'Do Not Map\''; 
           	searchQ+=' and Portal__c =: Param_Portal';
-          	if(!Param_Pro_Helper)
+          	if(Param_Pro)
           		searchQ+=' and Gigaset_Pro__c =: Param_Pro';
           	searchQ+='))  limit 30';
       
