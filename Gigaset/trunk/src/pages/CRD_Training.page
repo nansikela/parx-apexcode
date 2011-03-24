@@ -136,7 +136,7 @@
         </script>
 
 <!-- This contains the hidden content for inline calls -->
-        <div id="top_upper_Nav" style="font-family: Arial,Helvetica,Geneva,sans-serif; width: 940px; height: 28px; position: absolute; top: -20px; left: 0px;">
+        <div id="top_upper_Nav" style="font-family: Arial,Helvetica,Geneva,sans-serif; width: 940px; height: 28px; position: absolute; left: 0px;">
         
 <!-- inline1 ist die erste Seite. Es ist in diesem outputPanel angezeigt. Die anderen "outputpanel", bzw. div (in HTML) sind versteckt-->
             <apex:outputPanel id="inline1" rendered="{!Modules_showFirstpage}">
@@ -490,8 +490,8 @@ zwischen die erste und 2. seite... aber vielleicht kann man das schöner machen?
                 </apex:outputPanel>                                 
             </apex:outputPanel>
         </div>
-<c:CSS_Ressource id="res" />
 
 </apex:form>
+
 
 </apex:page>

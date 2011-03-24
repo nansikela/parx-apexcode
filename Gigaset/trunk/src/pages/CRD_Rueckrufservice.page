@@ -7,10 +7,9 @@
             <!--Start LeftSide Content -->
             <!-- <div class="contentText"> -->
                     <div class="contentTextSmall">
-                    <div id="contact" class="small">
-                        <c:CRD_rueckrufservice rendered="{!isAuthenticated}"/>
-                    </div>
-                        <span id="end"></span>
+	                    <div id="contact" class="small">
+	                        <c:CRD_rueckrufservice rendered="{!isAuthenticated}"/>
+	                    </div>
                     </div>
                 <!-- </div> -->
                 <!--End LeftSide Content --> 
