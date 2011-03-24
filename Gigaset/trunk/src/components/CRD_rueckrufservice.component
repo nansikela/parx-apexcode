@@ -14,7 +14,7 @@
             </p>
             -->
             <apex:outputLabel value="{!$ObjectType.Request__c.fields.Datum__c.label}*" for="datum" />
-                <apex:inputField id="datum" value="{!rq.Datum__c}" required="true" styleClass="FieldRequired2" />
+                <apex:inputField id="datum" value="{!rq.Datum__c}" required="true" styleClass="FieldRequiredDateInput" />
             <!-- <p>{!$Label.callback_time_period}<br /> 
                 {!$Label.callback_times}
             </p>-->
@@ -37,7 +37,7 @@
             <apex:outputLabel value="{!$Label.callback_further_information}" for="info" />
                 <apex:inputField id="info" value="{!rq.Weitere_Informationen__c}" />
             <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext" >
-            	<p>* {!$Label.registration_required_fields}</p>
+            	<p>{!$Label.registration_required_fields}</p>
         	</apex:outputPanel>
             <div class="requiredInput spacer5">
                 <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
