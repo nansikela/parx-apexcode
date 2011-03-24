@@ -2,6 +2,9 @@
 
     <div class="prodTeaserBig" >
         <ul id="navimenu" >
+        	<apex:outputPanel id="homespan" rendered="{!HomeUrl!=''}">
+            <li><apex:outputLink value="{!HomeUrl}" id="home" target="{!IF(homepageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=homepageid,'active','')}" >{!labellink01}</apex:outputLink></li>
+            </apex:outputPanel>
             <apex:outputPanel id="link1span" rendered="{!Link01Url!=''}">
             <li><apex:outputLink value="{!Link01Url}" id="link1" target="{!IF(link01pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link01pageid,'active','')}" >{!labellink01}</apex:outputLink></li>
             </apex:outputPanel>

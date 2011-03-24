@@ -37,6 +37,77 @@ span {
 	font-size: 18pt ! important;
 }
 
+.newBTN {
+	background-image: url("resource/1297443310000/gigasetextranetZIP/img/btn_front.gif"), url("resource/1297443310000/gigasetextranetZIP/img/btn_back.gif");
+	background-repeat: repeat-y;
+	background-color: #FFFFFF !important;
+	background-position: top left, top right;
+	height: 24px;
+	border: 0 none;
+	color: white !important;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 20px 0px 24px !important;
+	vertical-align: top !important;
+}
+
+.newBTN a, .newBTN_right a{
+	position: relative;
+	top: 5px;
+	color: white !important;
+}
+
+.isRight {
+	float:right;
+}
+
+.isLeft {
+	float:left;
+}
+	
+span.newBTN:hover, div.newBTN:hover ,a.newBTN:hover, input.newBTN:hover  {
+	background-image: url("resource/1297443310000/gigasetextranetZIP/img/btn_front_L.gif"), url("resource/1297443310000/gigasetextranetZIP/img/btn_back_L.gif");
+	/*
+	background-repeat: repeat-y;
+	background-color: #FFFFFF !important;
+	background-position: top left, top right;
+	height: 24px;
+	border: 0 none;
+	color: white !important;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 20px 0px 24px !important; */
+} 
+
+	
+	/*
+	background:  no-repeat scroll 100% 0 transparent;
+	border: 0 none;
+	color: white !important;
+	display: inline-block;
+	overflow: hidden;
+	height: 30px;
+	padding: 4px 20px 0 5px !important;
+	position: relative;
+}
+
+.btnArrow {
+	background:  no-repeat scroll 0 0 transparent !important;
+	border: 0 none;
+	color: white !important;
+	cursor: pointer !important;
+	float: left;
+	font-size: 12px;
+	font-weight: bold !important;
+	height: 30px;
+	margin: 5px 0;
+	padding: 0 0 0 24px !important;
+	white-space: nowrap;
+	overflow: visible;
+	position: relative;
+	width: auto;
+}
+*/
 .tblNavigationTop {
 	position:relative; 
 	height:40px; 
@@ -344,7 +415,7 @@ a:-webkit-any-link {
 /*Text-Info Overlays - Startseite */
 
 #cboxLoadedContent {
-    margin-top:25px;
+   /* margin-top:25px; */
 }
 
 
@@ -681,5 +752,99 @@ body .bPageBlock {
 .bPageBlock .pbBody {
     background-color: transparent;
 }
+
+
+#cboxContent {
+background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) no-repeat 0 0;
+}
+
+#cboxClose {
+background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}) no-repeat 0 0;
+right: -10px;
+top: -11px;
+}
+
+#cboxLoadingGraphic,#cboxLoadingOverlay {
+background-image: url();
+}
+
+
+#cboxClose.hover {
+background-position:0px 0px;
+}
+
+
+/* Neue Einstellungen bzgl. Größenangaben der Colorbox */
+
+#cboxTopLeft,
+#cboxBottomLeft,
+#cboxBottomRight,
+#cboxTopRight {
+    width:10px;
+    height:10px;
+    background-image: none;
+/*    background-color: #ffffff;*/
+}
+
+#cboxBottomCenter,
+#cboxBottomLeft,
+#cboxBottomRight  {
+    position:relative;
+    bottom:5px;
+}
+
+#cboxTopCenter,
+#cboxBottomCenter {
+    width:960px;
+    height:10px;
+    background-image: none;
+  /*  background-color: #ffffff;*/
+}
+
+#cboxMiddleRight,
+#cboxMiddleLeft {
+    width:10px;
+    background-image: none;
+/*    background-color: #ffffff;*/
+}
+
+#cboxContent{
+    width:960px;
+    height:540px;
+    margin:0px;
+    padding:0px
+}
+
+#colorbox {
+    width:980px;
+    height:560px;
+    padding:0;
+    margin:0px;
+
+}
+
+
+
+<!-- Zusätzliche CSS Angaben für die Colorbox -->
+
+<!--
+    The following fixes png-transparency for IE6.  
+    It is also necessary for png-transparency in IE7 & IE8 to avoid 'black halos' with the fade transition
+    
+    Since this method does not support CSS background-positioning, it is incompatible with CSS sprites.
+    Colorbox preloads navigation hover classes to account for this.
+    
+    Important Note: AlphaImageLoader src paths are relative to the HTML document,
+    while regular CSS background images are relative to the CSS document.
+-->
+.cboxIE #cboxTopLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderTopLeft.png, sizingMethod='scale');}
+.cboxIE #cboxTopCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderTopCenter.png, sizingMethod='scale');}
+.cboxIE #cboxTopRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderTopRight.png, sizingMethod='scale');}
+.cboxIE #cboxBottomLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderBottomLeft.png, sizingMethod='scale');}
+.cboxIE #cboxBottomCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderBottomCenter.png, sizingMethod='scale');}
+.cboxIE #cboxBottomRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderBottomRight.png, sizingMethod='scale');}
+.cboxIE #cboxMiddleLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderMiddleLeft.png, sizingMethod='scale');}
+.cboxIE #cboxMiddleRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderMiddleRight.png, sizingMethod='scale');}
+
 </style>
 </apex:component>

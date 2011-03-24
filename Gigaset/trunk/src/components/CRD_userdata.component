@@ -26,10 +26,49 @@
         <br />
         <!-- <apex:pageMessages id="error" /> -->
         <apex:form id="userdataform" >
-            <apex:outputLabel value="{!$ObjectType.User.fields.Salutation_Kontakt__c.label}*" for="salutation" />
+        	<table>
+           	<tr>
+                <td>
+                	<apex:outputLabel value="{!$ObjectType.User.fields.Salutation_Kontakt__c.label}{!IF(portal='se','','*')}" for="ssalutation" />
+				</td>
+				<td>
+					<div id="sal">
+					<apex:inputField style="right: 4px;top: 3px;position: relative;" id="ssalutation" value="{!u.Salutation_Kontakt__c}" required="{!IF(portal='se',false,true)}" styleClass="FieldRequiredSalutation" />
+					<apex:panelGrid columns="2" id="thetitlearea">
+						<apex:outputLabel value="{!$ObjectType.User.fields.Title_Kontakt__c.label}" for="stitle" style="width: 54px!important; text-align: right;" />
+						<apex:inputField style="top: 3px;position: relative;" id="stitle" value="{!u.Title_Kontakt__c}" styleClass="FieldRequiredTitle" />
+					</apex:panelGrid>
+					</div>
+					<script type="text/javascript">
+						/* Moves the error Message behind the Title Table */
+						var parentNode;
+						var newchildNode;
+						for (var i = 0; i < document.getElementsByTagName("div").length; i++) {
+							if(document.getElementsByTagName("div")[i].id=="sal") {
+								parentNode=document.getElementsByTagName("div")[i];
+								newNode=document.createElement("DIV");
+								newNode.className="errorMsg";
+								newchildNode=parentNode.appendChild(newNode);
+							}
+							
+     						if(document.getElementsByTagName("div")[i].className=="errorMsg" && parentNode!=null) {
+     							//parentNode.appendChild(document.getElementsByTagName("div")[i]);
+     							document.getElementsByTagName("div")[i].style.marginLeft="-4px!important";
+     							oldDiv=parentNode.replaceChild(document.getElementsByTagName("div")[i],newNode);
+     							parentNode==null;
+     							break;
+     						}
+     					}
+					</script>
+				</td>
+			</tr>
+			</table>
+			<!-- 
+            <apex:outputLabel value="{!$ObjectType.User.fields.Salutation_Kontakt__c.label}{!IF(portal='se','','*')" for="salutation" />
                 <apex:inputField id="salutation" value="{!u.Salutation_Kontakt__c}" required="true" styleClass="FieldRequiredSelect" />
             <apex:outputLabel value="{!$ObjectType.User.fields.Title_Kontakt__c.label}" for="title" />
                 <apex:inputField id="title" value="{!u.Title_Kontakt__c}" styleClass="FieldRequired4" /><br />
+            -->
             <apex:outputLabel value="{!$ObjectType.User.fields.Firstname.label}*" for="firstname" />
                 <apex:inputField id="firstname" value="{!u.Firstname}" required="true" styleClass="FieldRequired" />
             <apex:outputLabel value="{!$ObjectType.User.fields.Lastname.label}*" for="lastname" />
@@ -39,77 +78,85 @@
                 <apex:inputField id="street" value="{!u.MailingStreet_Kontakt__c}" required="true" styleClass="FieldRequiredStreet" />
             <apex:outputLabel value="{!$ObjectType.User.fields.MailingState_Kontakt__c.label}" for="state" rendered="{!isPro}" />
                 <apex:inputField id="state" value="{!u.MailingState_Kontakt__c}" required="false" styleClass="FieldRequired" rendered="{!isPro}"/>  
-            <apex:outputLabel value="{!$ObjectType.User.fields.MailingPostalCode_Kontakt__c.label}*" for="plz" />
-                <apex:inputField id="plz" value="{!u.MailingPostalCode_Kontakt__c}" required="true" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$ObjectType.User.fields.MailingPostalCode_Kontakt__c.label}{!IF(portal='ae','','*')}" for="plz" />
+                <apex:inputField id="plz" value="{!u.MailingPostalCode_Kontakt__c}" required="{!IF(portal='ae',false,true)}" styleClass="FieldRequired" />
             <apex:outputLabel value="{!$ObjectType.User.fields.MailingCity_Kontakt__c.label}*" for="city" />
                 <apex:inputField id="city" value="{!u.MailingCity_Kontakt__c}" required="true" styleClass="FieldRequired" /> 
             <apex:outputLabel value="{!$ObjectType.User.fields.MailingCountry_Kontakt__c.label}*" for="country" />
                 <apex:inputField id="country" value="{!u.MailingCountry_Kontakt__c}" required="true" styleClass="FieldRequiredSelect" />
-                
-            <br />
-            <div id="phonenumberdiv">
-            <apex:panelGrid columns="4" cellpadding="0" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4" id="phonenumbergrid" >
-                <apex:outputLabel value="{!$ObjectType.User.fields.Telefon_Kontakt__c.label}" for="contactphone" />
-                <apex:panelGroup > 
-                    <apex:inputField id="contactphone" value="{!u.Telefon_Kontakt__c}" styleClass="FieldRequired2" />
-                    <apex:outputPanel id="error1" rendered="{!showPhoneErr}">
-                        <div style="margin:0px;" class="errorMsgPhone" >
-                            <apex:outputText escape="false" value="{!errorText}" />
-                        </div>
-                    </apex:outputPanel>
-                </apex:panelGroup>
-                <apex:inputField style="margin-top:-1px;" id="signphone" value="{!u.Anmeldung_Telefon__c}" rendered="{!NOT(isPro)}"/> 
-                <apex:outputLabel value="{!$ObjectType.User.fields.Anmeldung_Telefon__c.label}" for="signphone" rendered="{!NOT(isPro)}"/>
-                <apex:outputText value="" rendered="{!isPro}"/>
-                <apex:outputText value="" rendered="{!isPro}"/>
-            </apex:panelGrid>
-            <apex:panelGrid columns="4" cellpadding="0" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4" id="mobilenumbergrid" >
-                <apex:outputLabel value="{!$ObjectType.User.fields.MobilePhone_Kontakt__c.label}" for="mobilephone" />
-                <apex:panelGroup >
-                    <apex:inputField id="mobilephone" value="{!u.MobilePhone_Kontakt__c}" styleClass="FieldRequired2" />
-                    <apex:outputPanel id="error2" rendered="{!showMobileErr}">
-                        <div style="margin:0px;" class="errorMsgPhone" >
-                            <apex:outputText escape="false" value="{!errorText}" />
-                        </div>
-                    </apex:outputPanel>
-                </apex:panelGroup>
-                <apex:inputField style="margin-top:-1px;" id="signmobilephone" value="{!u.Anmeldung_Mobiltelefon__c}" rendered="{!NOT(isPro)}"/> 
-                <apex:outputLabel value="{!$ObjectType.User.fields.Anmeldung_Mobiltelefon__c.label}" for="signmobilephone" rendered="{!NOT(isPro)}"/>
-                <apex:outputText value="" rendered="{!isPro}"/>
-                <apex:outputText value="" rendered="{!isPro}"/>
-            </apex:panelGrid>
-            <apex:panelGrid style="margin:0px;" columns="4" cellpadding="0" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4" id="hotlinenumbergrid">
-                <apex:outputLabel value="{!$ObjectType.User.fields.Sonstige_Telefonnummer__c.label}" for="hotlinephone" />
-                <apex:panelGroup style="margin:0px;">
-                    <apex:inputField id="hotlinephone" value="{!u.Sonstige_Telefonnummer__c}" styleClass="FieldRequired2" />
-                    <apex:outputPanel id="error3" rendered="{!showHotlineErr}" style="margin:0px;">
-                        <div style="margin:0px;" class="errorMsgPhone" >
-                            <apex:outputText escape="false" value="{!errorText}"/>
-                        </div>
-                    </apex:outputPanel>
-                </apex:panelGroup>
-                <apex:inputField style="margin-top:-1px;" id="signhotlinephone" value="{!u.Anmeldung_Hotlinetelefon__c}" rendered="{!NOT(isPro)}"/> 
-                <apex:outputLabel value="{!$ObjectType.User.fields.Anmeldung_Hotlinetelefon__c.label}" for="signhotlinephone" rendered="{!NOT(isPro)}"/>
-                <apex:outputText value="" rendered="{!isPro}"/> 
-                <apex:outputText value="" rendered="{!isPro}"/>
-            </apex:panelGrid>
-            <apex:panelGrid columns="4" cellpadding="0" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4" id="faxnumbergrid" >
-                <apex:outputLabel value="{!$ObjectType.User.fields.Fax_Kontakt__c.label}" for="contactfax"  />
-<!--                <apex:panelGroup >-->
-                    <apex:inputField id="contactfax" value="{!u.Fax_Kontakt__c}" styleClass="FieldRequired2" />
-<!--                    <apex:outputPanel id="error4" rendered="{!showFaxErr}">-->
-<!--                        <div class="errorMsgPhone" >-->
-<!--                            <apex:outputText escape="false" value="{!errorText}" />-->
-<!--                        </div>-->
-<!--                    </apex:outputPanel>-->
-<!--                </apex:panelGroup>-->
-                
-                <apex:outputText value="" />
-                <apex:outputText value="" />
-            </apex:panelGrid>
-            </div>
-            <div class="link_arrow"><apex:outputLink rendered="{!NOT(isPro)}" value="#" onclick="F=window.open('{!ServiceHotlineUrl}','','width=460,height=630');F.focus();" >{!$Label.servicehotline_infolink}</apex:outputLink></div>
-            <br />
+                 
+            <table>    
+            <tr>
+               	<td>
+               		<apex:outputLabel value="{!$ObjectType.User.fields.Telefon_Kontakt__c.label}" for="contactphone" />
+               		<br/>&nbsp;
+               	</td>
+               	<td>
+               		<apex:outputPanel layout="block" id="scphone">
+	               		<apex:inputField id="contactphone" value="{!u.Telefon_Kontakt__c}" styleClass="FieldRequired2" style="right: 4px;top: 3px;position: relative;" />
+                		<apex:outputPanel id="serror1" rendered="{!showPhoneErr}">
+                            <div style="margin:0px;" class="errorMsgPhone" >
+                                <apex:outputText escape="false" value="{!errorText}" />
+                            </div>
+                      		</apex:outputPanel>
+               		</apex:outputPanel>
+               		<apex:outputPanel layout="block" id="scphonesignin">
+               			<apex:inputField style="right: 4px;top: 3px;position: relative; float: left;" id="signphone" value="{!u.Anmeldung_Telefon__c}" /> 
+                		<apex:outputLabel value="{!$ObjectType.User.fields.Anmeldung_Telefon__c.label}" for="signphone" />
+               		</apex:outputPanel>
+               	</td>
+               </tr>
+               <tr>
+               	<td>
+               		<apex:outputLabel value="{!$ObjectType.User.fields.MobilePhone_Kontakt__c.label}" for="mobilephone" />
+               		<br/>&nbsp;
+               	</td>
+               	<td>
+               		<apex:outputPanel layout="block" id="scmobilephone">
+               			 <apex:inputField id="mobilephone" value="{!u.MobilePhone_Kontakt__c}" styleClass="FieldRequired2" style="right: 4px;top: 3px;position: relative;" />
+                		<apex:outputPanel id="serror2" rendered="{!showMobileErr}">
+                            <div style="margin:0px;" class="errorMsgPhone" >
+                                <apex:outputText escape="false" value="{!errorText}" />
+                            </div>
+                      		</apex:outputPanel>
+               		</apex:outputPanel>
+               		<apex:outputPanel layout="block" id="scmobilephonesignin">
+               			<apex:inputField style="right: 4px;top: 3px;position: relative; float: left;" id="signmobilephone" value="{!u.Anmeldung_Mobiltelefon__c}" /> 
+                		<apex:outputLabel value="{!$ObjectType.User.fields.Anmeldung_Mobiltelefon__c.label}" for="signmobilephone" />
+               		</apex:outputPanel>
+               	</td>
+               </tr>
+               <tr>
+               	<td>
+               		<apex:outputLabel value="{!$ObjectType.User.fields.Sonstige_Telefonnummer__c.label}" for="hotlinephone" />
+               		<br/>&nbsp;
+               	</td>
+               	<td>
+               		<apex:outputPanel layout="block" id="scotherphone">
+               			<apex:inputField id="hotlinephone" value="{!u.Sonstige_Telefonnummer__c}" styleClass="FieldRequired2" style="right: 4px;top: 3px;position: relative;" />
+                		<apex:outputPanel id="serror3" rendered="{!showHotlineErr}">
+                            <div style="margin:0px;" class="errorMsgPhone" >
+                                <apex:outputText escape="false" value="{!errorText}" />
+                            </div>
+                      		</apex:outputPanel>
+               		</apex:outputPanel>
+               		<apex:outputPanel layout="block" id="scotherphonesignin">
+               			<apex:inputField style="right: 4px;top: 3px;position: relative; float: left;" id="signhotlinephone" value="{!u.Anmeldung_Hotlinetelefon__c}" /> 
+                		<apex:outputLabel value="{!$ObjectType.User.fields.Anmeldung_Hotlinetelefon__c.label}" for="signhotlinephone" />
+               		</apex:outputPanel>
+               	</td>
+               </tr>
+               <tr>
+               	<td>&nbsp;</td>
+               	<td>
+               		<div class="link_arrow servicehotlinetext"><apex:outputLink value="#" onclick="F=window.open('{!ServiceHotlineUrl}','','width=460,height=630');F.focus();" >{!$Label.servicehotline_infolink}</apex:outputLink></div>
+               	</td>
+               </tr>
+               </table>
+             
+               <apex:outputLabel value="{!$ObjectType.User.fields.Fax_Kontakt__c.label}" for="contactfax"  />
+               		<apex:inputField id="contactfax" value="{!u.Fax_Kontakt__c}" styleClass="FieldRequired2" />
+
             <apex:outputLabel value="{!$ObjectType.User.fields.Email.label}*" for="contactemail" />
                 <apex:inputField id="contactemail" value="{!u.Email}" required="true" styleClass="FieldRequired" />
             <apex:outputLabel value="{!$ObjectType.User.fields.Funktion__c.label}" for="function" />
@@ -126,12 +173,15 @@
                 <apex:inputField id="responsibility" value="{!u.Verantwortungsbereich__c}" /><br />
             -->
             <br />
+            <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext">
+        		<p>{!$Label.registration_required_fields}</p>
+        	</apex:outputPanel>
             <div class="requiredInput spacer5">
                 <apex:commandLink styleClass="gcbtn" value="{!$Label.back}" action="{!goBack}" id="goback_btn" />
                 <apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="spacer7" />
             </div>
         </apex:form>
-        <p>{!$Label.registration_required_fields}</p>
+        
     </apex:outputPanel>
     <apex:outputPanel id="userdata_success" rendered="{!step='userdata_success'}">
         <h1>{!success_headline}</h1>

@@ -11,11 +11,11 @@
 <!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
         <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
         <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
-
+<!-- 
         <script>
             
             $(document).ready(function(){
-<!-- wenn man auf dem bild clickt ist diese teil ausgeführt: -->
+<!-- wenn man auf dem bild clickt ist diese teil ausgeführt: 
                 //if('{!TrainingActivation}' == true)
                 	$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540,  href:"{!Modules_URLPage}"});
                 //  onOpen:function(){ alert('onOpen: colorbox is about to open'); },
@@ -30,7 +30,7 @@
             
             
         </script>
-
+-->
 <style type="text/css">
 
 
