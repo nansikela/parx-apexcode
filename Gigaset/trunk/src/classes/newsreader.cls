@@ -1,11 +1,13 @@
-public class newsreader extends ComponentControllerBase {
+public class newsreader extends ComponentControllerBase{
 
 	public Id newsid { get; set; }
 	public ContentItem__c ci { get; set; }
 	private String portal=System_Settings.portal;
 	private Boolean isPro=System_Settings.isPro;
+	public String newsbackgroundurl { get; private set; }
 
 	public newsreader() {
+		newsbackgroundurl='';
 		if (newsid!=null && newsid!='') {
 			try {
 				ci=[SELECT Id, Title__c, Abstract__c, Text__c FROM ContentItem__c WHERE Id=:newsid];
