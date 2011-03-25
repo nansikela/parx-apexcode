@@ -3,7 +3,8 @@
 <apex:composition template="{!$Site.Template}">
 
         <apex:define name="body">
-        	<div id="insidecontent" style="min-height: 600px; background:transparent url(http://gigaset.com/medias/sys_master/Category_BG_CV_Living_1347_gradient.jpg) no-repeat scroll 0 0!important;" >
+        	<!-- TODO background has to be loaded from dynamic document -->
+        	<div id="insidecontent" class="loginbackround" style="background:transparent url(http://gigaset.com/medias/sys_master/Category_BG_CV_Living_1347_gradient.jpg) no-repeat scroll 0 0!important;" >
             <c:contentblock name="Teaser" />
             
                 <div class="contentText">
