@@ -1,4 +1,6 @@
 <apex:page showHeader="false" id="PRO_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}">
+	<!-- seems not to work ... -->
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /> -->
     <c:PRO_header_style id="stylesheets" styleSelector="{!styleSelector}" />
     <div id="wrapper">
         <div id="content_area">

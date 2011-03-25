@@ -1,4 +1,4 @@
-<apex:page showheader="false" id="CRD_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
+<apex:page showheader="false" id="CRD_NewsReader" sidebar="false" controller="TemplateController" extensions="TrainingController"
 	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
 
 <apex:composition template="{!$Site.Template}">
@@ -16,47 +16,16 @@
  		<div id="prodOver">
 	 		<!--Start LeftSide Content -->
 	 		
-	 		<div class="contentTextSmall">
-	 			<div id="contact" class="small">
+	 		<div class="contentText">
+	 			<div id="contact">
 	 				<c:CRD_Training id="training" rendered="{!showTraining}" />
-	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
-	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
+	 				<c:CRD_newsreader id="newsreader" />
 					
+
 				</div>
 			</div>
 			
      		<!--End LeftSide Content -->
-     		<!--Start RightSide Content -->
-     		<div id="colRgt">
-     			<script type="text/javascript">
-     			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
-     				if (document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
-     					document.getElementById("colRgt").style.paddingTop='60px';
-     			}
-     			</script>
-         		<c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
-         		<!--Start oneColInfo -->
-         		<div class="oneCol">
-         			<div class="oneColInfo">
-         				<c:contentblock name="rghtcol1" rendered="{!isAuthenticated}" />
-       			</div>
-         			<div class="oneColBtm">
-         				<c:contentblock name="rghtcol1Btm" rendered="{!isAuthenticated}" />
-         			</div>
-         		</div>
-         		<!--End oneColInfo -->
-         		<!--Start oneColInfo -->
-         		<div class="oneCol">
-         			<div class="oneColInfo">
-         				<c:contentblock name="rghtcol2" rendered="{!isAuthenticated}" />
-       			</div>
-	      		<div class="oneColBtm">
-	      			<c:contentblock name="rghtcol2Btm" rendered="{!isAuthenticated}" />
-	      		</div>
-     	 		</div>
-     			<!--End oneColInfo -->
-		</div>
-    		<!--End RightSide Content -->
     <!-- end prodOver -->
 	 </div>
 	 </apex:outputPanel>

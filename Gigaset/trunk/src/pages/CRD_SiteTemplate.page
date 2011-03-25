@@ -1,4 +1,6 @@
 <apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false">
+	<!-- seems not to work ... -->
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /> -->
     <div id="wrapper">
         <div id="content_area">
             <div id="header">
