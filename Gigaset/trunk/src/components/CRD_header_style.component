@@ -275,6 +275,12 @@
 			padding-left: 210px;
 		}
 		
+		/* homepage - news */
+		.viewtopnews {
+			border: 1px solid lightgrey;
+			
+		}
+		
 	
 		
 /* Parx CSS */
@@ -363,7 +369,11 @@
 }
 
 #content .login {
-	border: lightgrey;
+	border: 1px solid lightgrey;
+}
+
+.loginbackground {
+	min-height: 600px;
 }
 
 /* ---- keine Blaufärbung mehr! ------*/
