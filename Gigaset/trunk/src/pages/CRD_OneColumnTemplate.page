@@ -22,18 +22,6 @@
 	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
 	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
 					
-	 				<!-- News Reader component for new CR
-	 				<apex:form id="testform">
-						<apex:actionPoller action="{!getRecentNewsId}" rerender="test,newsreadercomp" interval="15"/>
-
-	 					<apex:outputPanel id="test">
-	 					{!topnewsController.newsid}
-	 					
-	 					</apex:outputPanel>
-	 				</apex:form>
-	 				
-	 				<a name="news"><c:CRD_newsreader id="newsreadercomp" pageController="{!this}" key="newsreader" newsid="{!topnewsController.newsid}" /></a>
-					-->
 				</div>
 			</div>
 			

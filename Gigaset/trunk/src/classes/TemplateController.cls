@@ -1,4 +1,4 @@
-public class TemplateController extends PageControllerBase {
+public class TemplateController {
 
 	public Boolean isAuthenticated { get; set; }
 	
@@ -26,40 +26,10 @@ public class TemplateController extends PageControllerBase {
 	public Contact c0 {get;set;}
 	
 	public Boolean trainingActivation {get;set;}
-	// zu entsorgen, wird so nicht mehr benötigt
-	// Controller for topnews component to get the current newsid
-	public topnews topnewsController {set;
-		get{
-			//get the map, then the component controller using the appropriate key
-			if(getComponentControllerMap()!=null){
-				topnews mcc;
-				mcc = (topnews )getComponentControllerMap().get('topnews');
-				if(mcc!= null)
-					return mcc;
-			}
-			//just in case something goes wrong return something...this can be handled better
-			return new topnews();
-		}
-	}
-	
-	// Controller for newsreader component to set the current newsid
-	public newsreader newsreaderController {set;
-		get{
-			//get the map, then the component controller using the appropriate key
-			if(getComponentControllerMap()!=null){
-				newsreader mcc;
-				mcc = (newsreader )getComponentControllerMap().get('newsreader');
-				if(mcc!= null)
-					return mcc;
-			}
-			//just in case something goes wrong return something...this can be handled better
-			return new newsreader();
-		}
-	}
-	
 	
 	// constructor
 	public TemplateController() {
+		Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=8');
 		System_Settings.cookie = ApexPages.currentPage().getCookies().get('guest');
 		
 		if(System_Settings.cookie == null){
@@ -108,6 +78,7 @@ public class TemplateController extends PageControllerBase {
 		String link03pageid=System_Settings.link03pageid;
 		String link04pageid=System_Settings.link04pageid;
 		String link05pageid=System_Settings.link05pageid;
+		String newsreaderpageid=System_Settings.newsreaderpageid;
 		String werbemittelpageid=System_Settings.werbemittelpageid;
 		String imprintpageid=System_Settings.imprintpageid;
 		kontaktpageid=System_Settings.kontaktpageid;
@@ -124,6 +95,7 @@ public class TemplateController extends PageControllerBase {
 		if (link04pageid!='' && pageid.startsWith(link04pageid)) return System_Settings.getLabel('link04');
 		if (link05pageid!='' && pageid.startsWith(link05pageid)) return System_Settings.getLabel('link05');
 		if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return System_Settings.getLabel('Werbemittel');
+		if (newsreaderpageid!='' && pageid.startsWith(newsreaderpageid)) return System_Settings.getLabel('NewsReader');
 		// cross portal navigation points
 		if (imprintpageid!='' && pageid.startsWith(imprintpageid)) return System.Label.tplt_label_imprint;
 		if (kontaktpageid!='' && pageid.startsWith(kontaktpageid)) return System.Label.contact;
@@ -139,12 +111,13 @@ public class TemplateController extends PageControllerBase {
 	// actions
 	public PageReference init() {
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) System_Settings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
+	 	if (ApexPages.currentPage().getParameters().containsKey('newsid')) System_Settings.addParam=System_Settings.addParam+'&newsid='+ApexPages.currentPage().getParameters().get('newsid');
 	 	if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin(); 
 	 	return null;
 	}
 	
 	public PageReference initHome(){
-		return TrainingController.initHome();
+	 	return TrainingController.initHome(); 
 	} 
 	
 	// getter

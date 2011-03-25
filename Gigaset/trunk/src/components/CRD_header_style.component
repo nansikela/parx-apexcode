@@ -23,6 +23,36 @@
     
 	<!-- inline styles for better development performance  -->
 	<style type="text/css">
+		/* right column portlets */
+		.majordiv {
+			float: left;
+			width: 216px;
+		}
+		
+		/* homepage - news */
+		.viewtopnews {
+			border: 1px solid lightgrey;
+			min-height: 250px;
+		}
+		
+		/* topnews component */
+		.newsitem {
+			border-bottom: 1px solid lightgrey;
+			padding-top: 10px;
+			width: 200px;
+		}
+		
+		.viewtopnewscontent {
+			padding: 20px;
+			background-color: white;
+			filter:alpha(opacity=95); /* IE's opacity*/
+			opacity: 0.95;
+		}
+		
+		.newsbutton {
+			padding-bottom: 15px;
+		}
+
 		/* additionaltext in registration, preset, clearing, privacy, userdata */
 		.additionaltext {
 			float: left;
@@ -79,6 +109,29 @@
 			color: #a3a7ae!important;
 		}
 		
+		/* Login component */
+		.LoginField {
+			font-family: Arial, Verdana, Helvetica, sans-serif;
+			border: 1px solid #b2b2b2;
+			width: 120px;
+			margin-bottom:6px;
+			font-size:11px;
+		}
+		
+		.transparent_login {
+			/* background-color:transparent; */
+			background-color: white;
+			filter:alpha(opacity=95); /* IE's opacity*/
+			opacity: 0.95;
+			margin-top: 30px;
+			margin-left: 20px;
+			border: 1px solid lightgrey;
+		}
+		
+		.loginbackground {
+			min-height: 600px;
+		}
+		
 		/* register component */
         .btn, .btnGo, .btnImportant, .btnSharing, .btnDisabled, .subscribeNow, .upgradeNow, .btnWhatsNew {
             overflow: visible;
@@ -92,7 +145,6 @@
         	border-collapse: collapse;
         }
 
-<<<<<<< .mine
 		.registernavi li {
 			margin-left: 2px!important;
 			margin-bottom: 10px;
@@ -141,24 +193,6 @@
 			padding-left: 15px;
 			margin-left: 10px;
 			background: white;
-		}
-		
-		/* Login component */
-		.LoginField {
-			font-family: Arial, Verdana, Helvetica, sans-serif;
-			border: 1px solid #b2b2b2;
-			width: 120px;
-			margin-bottom:6px;
-			font-size:11px;
-		}
-		
-		.transparent_login {
-			/* background-color:transparent; */
-			background-color: white;
-			filter:alpha(opacity=95); /* IE's opacity*/
-			opacity: 0.95;
-			margin-top: 30px;
-			margin-left: 20px;
 		}
 		
 		.registercontact {
@@ -181,115 +215,30 @@
 			padding-left: 12px;
 		}
 		
-	
+		/* errors messages by salesforce */
+		.errorM6, .errorM4, .errorM3, .errorM2, .errorS1 {
+			border-color: #C00;
+		}
+		
+		.message {
+			background-color: #FFC;
+			border-style: solid;
+			border-width: 1px;
+			color: black;
+			padding: 6px 8px 6px 6px;
+			margin: 4px 20px;
+		}
+		
+		.message .messageTable .messageCell {
+			vertical-align: middle;
+		}
+		
 		
 /* Parx CSS */
 /* ----------------------------------------- */
 /*  Parx CSS for Gigaset Extranet */
 /* ----------------------------------------- */
-=======
-		.registernavi li {
-			margin-left: 2px!important;
-			margin-bottom: 10px;
-			margin-top: 10px;
-			float: left;
-		}
-		
-		.registernavi .stepactive {
-			background: #FF9713;
-			color: white;
-			text-align: center;
-			float: left;
-			border: 1px solid #FF9713;
-		}
-		
-		.registernavi .stepinactive {
-			background: darkgrey;
-			color: white;
-			text-align: center;
-			float: left;
-			border: 1px solid darkgrey;
-		}
-		
-		.registernavi .steptitleinactive {
-			border: 1px solid lightgrey;
-		    background: lightgrey;
-			min-width: 120px;
-		}
-		
-		.registernavi .steptitleactive {
-			border: 1px solid #FF9713;
-			background: lightgrey;
-			min-width: 120px;
-		}
-		
-		
-		.registernavi .steptitle {
-			background: lightgrey;
-			text-align: left;
-		}
-		
-		.registernavi ul {
-			width: 891px;
-			list-style: none;
-			float: left;
-			padding-left: 15px;
-			margin-left: 10px;
-			background: white;
-		}
-		
-		/* Login component */
-		.LoginField {
-			font-family: Arial, Verdana, Helvetica, sans-serif;
-			border: 1px solid #b2b2b2;
-			width: 120px;
-			margin-bottom:6px;
-			font-size:11px;
-		}
-		
-		.transparent_login {
-			/* background-color:transparent; */
-			background-color: white;
-			filter:alpha(opacity=95); /* IE's opacity*/
-			opacity: 0.95;
-			margin-top: 30px;
-			margin-left: 20px;
-		}
-		
-		.registercontact {
-			margin-left: 10px;
-			width: 876px!important;
-			padding-left: 15px!important;
-			padding-right: 15px!important;
-			filter:alpha(opacity=95); /* IE's opacity*/
-			opacity: 0.95;
-		}
-		
-		.requiredInput {
-			float: left;
-		}
-		
-		.servicehotlinetext {
-			float: left;
-			font-style: italic;
-			padding-left: 210px;
-		}
-		
-		/* homepage - news */
-		.viewtopnews {
-			border: 1px solid lightgrey;
-			
-		}
-		
-	
-		
-/* Parx CSS */
-/* ----------------------------------------- */
-/*  Parx CSS for Gigaset Extranet */
-/* ----------------------------------------- */
->>>>>>> .r8
 
-<<<<<<< .mine
 /* ---------------- ALLGEMEINE ZUSÄTZE ERROR -------------------*/
 
 .errorMsg	{
@@ -368,13 +317,6 @@
 	width: 625px!important;
 }
 
-#content .login {
-	border: 1px solid lightgrey;
-}
-
-.loginbackground {
-	min-height: 600px;
-}
 
 /* ---- keine Blaufärbung mehr! ------*/
 a, body, td, select, input, textarea, fieldset legend, .warn .textCounter, .miniTab .currentTab, .miniTab .currentTab a, .requiredLegend, .bPageBlock .noRecords, .bPageBlock .labelCol, .list td, .list th, .bPageBlock td.actionColumn .actionLink, .bWizardBlock .pbDescription, .bWizardBlock .pbTopButtons {
@@ -847,613 +789,4 @@ background-position:0px 0px;
 
 	</style>
 
-=======
-/* ---------------- ALLGEMEINE ZUSÄTZE ERROR -------------------*/
-
-.errorMsg	{
-   color: #C00;
-   margin-left: 211px;
-   margin-top: -6px;
-   margin-bottom: 7px;
-   font-size: 11px;
-}
-
-/*  ----------- phonenumberdiv  --------*/
-.errorMsgPhone {
-	color: #C00;
-   margin-left: 0px;
-   margin-top: -6px;
-   margin-bottom: 7px;
-   font-size: 11px;
-}
-
-/* ---- Korrektur main.css ----- */
-.error {
-	color: #474C54;
-	margin-left: 0px;
-}
-
-#wrapper a:hover {
-	text-decoration: none !important;
-}
-
-#contentText a {
-	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
-	padding:0 0 0 11px;
-}
-
-#content #prodOver .contentText {
-	width: 926px;
-	padding-right: 0px;
-	padding-top: 0px;
-	padding-left: 0px;
-	padding-bottom: 20px;
-}
-
-#content .contentText {
-	width: 926px;
-	padding-right: 0px;
-	padding-top: 0px;
-	padding-left: 0px;
-	padding-bottom: 20px;
-}
-
-#content #prodOver .contentTextSmall {
-	width: 675px;
-	padding-right: 15px;
-	padding-top: 0px;
-	padding-left: 0px;
-	padding-bottom: 20px;
-	float: left;
-	position: relative;
-}
-
-#content .contentTextSmall {
-	width: 675px;
-	padding-right: 15px;
-	padding-top: 0px;
-	padding-left: 0px;
-	padding-bottom: 20px;
-	float: left;
-	position: relative;
-}
-
-#content #contact .small {
-	width: 625px!important;
-}
-
-#content #prodOver #contact .small {
-	width: 625px!important;
-}
-
-#content .login {
-	border: lightgrey;
-}
-
-/* ---- keine Blaufärbung mehr! ------*/
-a, body, td, select, input, textarea, fieldset legend, .warn .textCounter, .miniTab .currentTab, .miniTab .currentTab a, .requiredLegend, .bPageBlock .noRecords, .bPageBlock .labelCol, .list td, .list th, .bPageBlock td.actionColumn .actionLink, .bWizardBlock .pbDescription, .bWizardBlock .pbTopButtons {
-	color: #474C54;
-}
-
-/* ------------ Spacer ------------- */
-
-.spacer5 {
-	margin-top:5px !important;
-}
-
-.spacer6 {
-	margin-top:5px !important;
-	margin-left: 211px !important;
-}
-
-.spacer7 {
-	margin-left: 394px !important;
-}
-
-.spacer8 {
-	margin-left: 375px !important;
-}
-
-.spacer9 {
-	margin-left: 398px !important;
-}
-
-#content .topspace1 {
-	margin-top: 33px;
-}
-
-#content {
-	min-height: 550px;
-	padding: 0px;
-}
-
-
-/* ------------ headline tags ---------------- */
-h1 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	display: block;
-	margin-bottom: 0px;
-}
-
-h2 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	display: block;
-	margin-bottom: 14px;
-}
-
-h3 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	display: block;
-	margin-bottom: 12px;
-}
-
-h4 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	display: block;
-	margin-bottom: 12px;
-}
-
-
-
-/* ---------------- LINK PFEILE------------------------------*/
-.lft_login {
-    margin-left: 211px;
-}
-
-.lft_login a,
-.link_arrow a {
-	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
-	padding:0 0 0 11px;
-}
-
-.link_arrow p {
-	padding:0 0 0 11px;
-}
-.link_arrow a {
-	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
-	padding:0 0 0 11px;
-}
-
-.ftp_login a:hover {
-	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavidown.jpg')}) no-repeat 0% 3px;
-	padding:0 0 0 11px;
-}
-
-
-/* ---------------- TRENNLINIE/HORIZONTAL ------------------------------*/
-
-.hor_line {
-	background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/hor_line.gif')}) repeat-x;
-	margin:5px 11px 5px 0px;
-	height: 1px;
-}
-
-
-
-/* ---------------- ORANGER BUTTON------------------------------*/
-
-button {
-	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.png')}) no-repeat 0% 100%;
-	border:0 none;
-	color:#FFFFFF !important;
-	font-size: 12px;
-	font-weight: bold;
-	height:30px;
-	padding:0 8px 12px 18px;
-	cursor: pointer;
-}
-button span {
-	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.png')}) no-repeat 100% 100%;
-	border:0 none;
-	color:#FFFFFF !important;
-	height:30px;
-	margin-left:1px;
-	padding:5px 17px 12px 1px;
-	white-space:nowrap;
-}
-
-button:hover, .buttonHover {
-	background-image:url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_frontL.png')});
-}
-button:hover span, .buttonHover span {
-	background-image:url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_backL.png')});
-}
-form button span {
-	padding:5px 17px 13px 1px;
-}
-
-#content #content button {
-	padding:0 8px 13px 18px;
-}
-
-.btn_login {
-    background-image:  url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.png')});
-    background-repeat: repeat-x;
-    background-position: left top;
-    font-size: 100%;
-    color:#FFFFFF;
-    cursor:pointer;
-    font-weight:bold;
-    display:inline;
-    height: 100%;
-}
-
-.btn_lft{
-    float: left;
-}
-
-.btn_login{
-    margin-left: 211px;
-}
-
-.btn {
-    margin: 0 2px;
-}
-
-/* -------------- Navigation ------------------ */
-
-#content .prodTeaserBig li {
-	margin-left: 0px!important;
-	margin-bottom: 10px;
-}
-
-#content .prodTeaserBig ul {
-	width: 799px;
-}
-
-#content .prodTeaserFrame {
-	-moz-background-clip:border;
-	-moz-background-inline-policy:continuous;
-	-moz-background-origin:padding;
-	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/prodTeaserBig.jpg')}) no-repeat scroll 50% 0;
-	float:left;
-	margin-bottom:18px;
-	margin-left:-14px;
-	margin-top:-10px;
-	padding-bottom:8px;
-	padding-left:12px;
-	padding-top:6px;
-	position:relative;
-	width:925px;
-}
-
-#content .prodTeaserFrame .colors {
-	-moz-background-clip:border;
-	-moz-background-inline-policy:continuous;
-	-moz-background-origin:padding;
-	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/prodTeaserBigBottom.jpg')}) no-repeat scroll 50% 100%;
-	bottom:-12px;
-	height:8px;
-	left:13px;
-	padding:3px 20px 12px 18px;
-	position:absolute;
-	width:870px;
-}
-
-ul li, ol li {
-	margin-left: 0px;
-	padding-left: 0;
-}
-
-/* ---------- RECHTE SPALTE  ------------- */
-
-#content #colRgt { 
-	 margin: 0px;
-	 padding-left: 0px;
-	 padding-bottom: 0px;
-	 padding-right: 0px;
-	 padding-top: 0px;
-	 float: right;
-	 /* min-width: 216px; */
-	 width: 216px;
-	 position: relative;
-}
-
-
-#content #colRgt #profil {
-	width:216px;
-	margin:9px 0px 13px -1px;
-}
-
-#content #colRgt #contactProfil { 
-	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/bg_oneCol.png')}) no-repeat scroll 0 0;
-	padding:10px 5px 0px 17px;
-	width:197px;
-	float: left;
-	position:relative;
-}
-
-#content #colRgt #profilEnd {
-	background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/bg_oneColBtm.png')}) no-repeat scroll 0 0;
-	height:9px;
-	width:219px;
-	float: left;
-	position:relative;
-}
-
-#content #prodOver .oneColInfo {
-	background: transparent url(/img/s.gif) no-repeat scroll 0 0;
-}
-
-#content #prodOver .oneColBtm {
-	background: transparent url(/img/s.gif) no-repeat scroll 0 0;
-}
-
-#content #contact  {
-	background: white;
-	width: 750px;
-	padding-left: 25px;
-	padding-right: 25px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
-
-
-/* ------------- SELECT-DROPBOX ANPASSUNG  -----------------*/
-
-#content #contact form select { 
-	width: 292px!important;
-	font-size: 11px;
-	padding:1px;
-	margin-bottom:5px;
-}
-
-#content #contact form input, form input, form select { 
-	font-size: 11px;
-	padding:1px;
-	margin-bottom:5px;
-	clear: right;
-}
-#content #contact form textarea{ 
-	height:100px;
-	padding:1px;
-	margin-bottom:5px;
-    font-size:11px;
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	width: 350px!important;
-}
-
-/* ------------- TEXTFIELD ANPASSUNG  -----------------*/
-
-#content #contact form .FieldRequired {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	border: 1px solid #b2b2b2;
-	width: 350px;
-	margin-bottom:6px;
-	font-size:11px;
-}
-
-#content #contact form .FieldRequired p{ 
-	vertical-align: middle;
-}
-
-#content #contact form .FieldRequired2 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	border: 1px solid #b2b2b2;
-	width: 350px;
-	margin-bottom:6px;
-	font-size:11px;
-}
-
-#content #contact form .FieldRequired3 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	border: 1px solid #b2b2b2;
-	width: 350px;
-	margin-bottom:6px;
-	font-size:11px;
-}
-
-#content #contact form .FieldRequired4 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	font-size:11px;
-	border: 1px solid #b2b2b2;
-	width: 350px!important;
-	margin-bottom:6px;
-}
-
-#content #contact form .FieldRequiredTitle {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	font-size:11px;
-	border: 1px solid #b2b2b2;
-	width: 208px!important;
-	margin-bottom:6px;
-}
-
-#content #contact form .FieldRequiredStreet {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	font-size:11px;	
-	border: 1px solid #b2b2b2;
-	width: 100px;
-	height: 47px;
-	margin-bottom:6px;
-}
-
-#content #contact form .FieldRequiredSelect {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	font-size:11px;
-	border: 1px solid #b2b2b2;
-	width: 354px!important;
-	margin-bottom:6px;
-}
-
-#content #contact form .FieldRequiredSalutation {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	font-size:11px;
-	border: 1px solid #b2b2b2;
-	width: 85px!important;
-	margin-bottom:6px;
-}
-
-#content #contact form .radio{ 
-	width: 350px;
-	margin-bottom:6px;
-	float:left;
-}
-#content #contact form .FieldRadio { 
-	width: 30px;
-	margin-bottom:6px;
-	float:left;
-}
-#content #contact form .check { 
-	float: left;
-	margin: 20px 0px;
-	width: 500px;
-}
-#content #contact form .check input { 
-	float: left;
-}
-
-#content #contact form .InfoserviceTable {
-	width: 100%;
-	margin: 0px;
-}
-
-#content #contact form .IST1 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	width: 209px;
-	text-align: left;
-	vertical-align: top;
-}
-
-#content #contact form .IST2 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	width: 164px;
-	text-align: left;
-	margin-left: -1px;
-	vertical-align: top;
-}
-
-#content #contact form .RRS2 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	width: 67px;
-	text-align: left;
-	margin-left: -1px;
-	vertical-align: top;
-}
-
-#content #contact form .IST3 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	width: 22px;
-	text-align: left;
-	padding-left: 10px;
-	vertical-align: top;
-	padding-top: 3px;
-}
-
-#content #contact form .IST4 {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	width: 214px;
-	text-align: left;
-	vertical-align: top;
-	padding-left: 2px;
-}
-
-/* --------------- Button Anpassung ------------------------ */
-/* TODO has to be replaced by gigaset buttons
-#content .gcbtn {
-         font-family:'Verdana', 'Geneva', sans-serif;
-         text-decoration:none;
-         background-image:url(/img/bgButton.gif);
-         background-repeat: repeat-x;
-         background-position: left top;
-         border-right:1px solid #5C5D61;
-         border-bottom:1px solid #5C5D61;
-         border-top:none;
-         border-left:none;
-         font-size:12px;
-         font-size: 90%;
-         color:#FFFFFF;
-         padding:1px 3px;
-         cursor:pointer;
-         font-weight:bold;
-         display:inline;
-}
-*/
-
-
-/* --------- footer -------------*/
-
-#footer_copy p { 
-	 /* float:left;
-	 margin-left:28px; */
-	 margin-top: 5px;
-	 width:977px;
-}
-
-/* --für den Colorbox... hier setze ich den Background. Leider kann ich diese Background im iFrame nicht verändern... */
-/* --gibt es keine möglichkeit?? */
-
-#cboxContent {
-background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) no-repeat 0 0;
-}
-
-#cboxClose {
-background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}) no-repeat 0 0;
-right: -10px;
-top: -11px;
-}
-
-#cboxLoadingGraphic,#cboxLoadingOverlay {
-background-image: url();
-}
-
-
-#cboxClose.hover {
-background-position:0px 0px;
-}
-
-
-/* Neue Einstellungen bzgl. Größenangaben der Colorbox */
-
-#cboxTopLeft,
-#cboxBottomLeft,
-#cboxBottomRight,
-#cboxTopRight {
-    width:10px;
-    height:10px;
-    background-image: none;
-/*    background-color: #ffffff;*/
-}
-
-#cboxBottomCenter,
-#cboxBottomLeft,
-#cboxBottomRight  {
-	position:relative;
-	bottom:5px;
-}
-
-#cboxTopCenter,
-#cboxBottomCenter {
-    width:960px;
-    height:10px;
-    background-image: none;
-  /*  background-color: #ffffff;*/
-}
-
-#cboxMiddleRight,
-#cboxMiddleLeft {
-    width:10px;
-    background-image: none;
-/*    background-color: #ffffff;*/
-}
-
-#cboxContent{
-    width:960px;
-    height:540px;
-    margin:0px;
-    padding:0px
-}
-
-#colorbox {
-    width:980px;
-    height:560px;
-    padding:0;
-    margin:0px;
-
-}
-
-
-	</style>
-
->>>>>>> .r8
 </apex:component>

@@ -23,6 +23,7 @@ global class System_Settings {
     global static final String imprintpageid=getPageid('Imprint');
     global static final String privacyprotectionid=getPageId('PrivacyProtection');
     global static final String landing_page = getPageId('Landing'); 
+    global static final String newsreaderpageid=getPageId('NewsReader');
     
     // menu
     global static final String kontaktpageid=getPageid('Kontakt');
@@ -277,6 +278,7 @@ global class System_Settings {
     global static String getCurrentNavigationPointLabel(String pageid) {
         // portal specific labels/navigationpoints
         if (pageid.startsWith(homepageid)|| (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return getLabel('home');
+        if (newsreaderpageid!='' && pageid.startsWith(newsreaderpageid)) return getLabel('NewsReader');
         if (link01pageid!='' && pageid.startsWith(link01pageid)) return getLabel('link01');
         if (link02pageid!='' && pageid.startsWith(link02pageid)) return getLabel('link02');
         if (link03pageid!='' && pageid.startsWith(link03pageid)) return getLabel('link03');

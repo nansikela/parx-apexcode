@@ -2,7 +2,7 @@
     rendered="{!$Site.LoginEnabled}" language="{!defaultlanguage}">
     
     <apex:form id="loginForm" forceSSL="true">
-        <apex:pageMessages id="errorX" />
+        <apex:pageMessages id="error" />
         <!--  <apex:outputText value="{!$Site.ErrorMessage}" /> -->
         <apex:outputPanel layout="block">
             <apex:outputLabel value="{!$Label.site.username}"

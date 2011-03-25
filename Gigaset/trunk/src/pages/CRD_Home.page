@@ -1,5 +1,5 @@
 <apex:page showheader="false" id="CRD_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
-	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
+	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" standardStylesheets="false">
 
 <apex:composition template="{!$Site.Template}">
  
@@ -23,7 +23,7 @@
 	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
 					
 					<!-- News Reader component for new CR -->
-					<c:CRD_newsreader id="newsreadercomp" />
+					<c:CRD_newscontent id="newsreadercomp" />
 					
 				</div>
 			</div>
@@ -32,19 +32,9 @@
      		<!--Start RightSide Content -->
      		<div id="colRgt">
          		<c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
-         		<!-- News Reader component for new CR
-         		<c:CRD_topnews pageController="{!this}" key="topnews" id="topnewscomp"/>
-         		-->
-         		<!--Start oneColInfo -->
-         		<div class="oneCol">
-         			<div class="oneColInfo">
-         				<c:CRD_topnews />
-       				</div>
-         			<div class="oneColBtm">
-         			</div>
-         		</div>
-         		<!--End oneColInfo -->
-		</div>
+         		<c:CRD_topnews rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="topnewscomp" />
+       			
+			</div>
     		<!--End RightSide Content -->
     <!-- end prodOver -->
 	 </div>

@@ -1,13 +1,13 @@
-<apex:component id="newsreader" controller="newsreader" >
+<apex:component id="newscontent" controller="newsreader" >
 	<apex:form id="theSubmitForm">
 		<apex:outputPanel id="viewoftop" layout="block" styleClass="viewtopnews" style="background: transparent url({!newsbackgroundurl}) no-repeat scroll 0 0 ;">
 			<apex:outputPanel id="newscontent" layout="block" styleClass="viewtopnewscontent">
 				<h1>{!ci.Title__c}</h1>
 				<p><apex:outputText escape="false" value="{!ci.Abstract__c}" /></p>
-				<p><apex:outputText escape="false" value="{!ci.Text__c}" /></p>
-				<apex:outputPanel id="goHomediv" layout="block" styleClass="newsbutton">
+				  
+				<apex:outputPanel id="openNewsdiv" layout="block">
 					
-					<apex:commandButton id="goHomeBtn" value="{!homeLabel}" action="{!goHome}" styleClass="newBTN isLeft" />
+					<apex:commandButton id="openNewsBtn" value="{!moreInformationLabel}" action="{!openNews}" styleClass="newBTN isLeft" />
 					
 				</apex:outputPanel>
 			</apex:outputPanel>
