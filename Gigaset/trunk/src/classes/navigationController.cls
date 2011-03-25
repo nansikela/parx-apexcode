@@ -15,6 +15,7 @@ public class navigationController {
 	public String labellink03 { get; set; }
 	public String labellink04 { get; set; }
 	public String labellink05 { get; set; }
+	public String labelhome { get; set; }
 	public String linktootherportal { get; set; }
 	public String labelwerbemittel { get; set; }
 	public Boolean isAuthenticated { get; set; }
@@ -43,6 +44,7 @@ public class navigationController {
 		labellink03=System_Settings.getCurrentNavigationPointLabel(link03pageid) != '' ? System_Settings.getCurrentNavigationPointLabel(link03pageid) : (System_Settings.getExternalURL('link03') != '' ? System_Settings.getLabel('link03') : '' );
 		labellink04=System_Settings.getCurrentNavigationPointLabel(link04pageid) != '' ? System_Settings.getCurrentNavigationPointLabel(link04pageid) : (System_Settings.getExternalURL('link04') != '' ? System_Settings.getLabel('link04') : '' );
 		labellink05=System_Settings.getCurrentNavigationPointLabel(link05pageid) != '' ? System_Settings.getCurrentNavigationPointLabel(link05pageid) : (System_Settings.getExternalURL('link05') != '' ? System_Settings.getLabel('link05') : '' );
+		labelhome=System_Settings.getCurrentNavigationPointLabel(homepageid);
 			
 		labelwerbemittel=System_Settings.getCurrentNavigationPointLabel(werbemittelpageid);
 
