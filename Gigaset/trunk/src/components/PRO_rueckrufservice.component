@@ -42,7 +42,7 @@
             </div>
         </apex:form>
         <apex:outputPanel id="additionaltext">
-            <p>* {!$Label.registration_required_fields}</p>
+            <p>{!$Label.registration_required_fields}</p>
         </apex:outputPanel>
     </apex:outputPanel>
     <apex:outputPanel id="success" rendered="{!success}">
