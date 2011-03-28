@@ -45,8 +45,8 @@ public class FNA_MapCon {
       			Param_Pro = true;
       	}
 
-      	city = 'Deutschland';
-      	Rmax= 50;
+      	city = '';
+      	Rmax= 0;
    //     	msg='The Account cannot be mapped, please look over the Account record for more information';//'The Account cannot be mapped, please look over the Account record for more information (Account:'+mainAccount.FN__Mapping_Status__c+')';
 
    //     	city = '';
@@ -54,6 +54,7 @@ public class FNA_MapCon {
         //If there is no error, let's populate the map. 
         	if(!error){Search();}
         	system.debug('debug param ' +  Param_Lang + ' ' + Param_portal);
+        	Rmax= 50;
     	} 
 
    

@@ -1,6 +1,7 @@
 <apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false">
 	<!-- seems not to work ... -->
 	<!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /> -->
+	<c:CRD_headerStylesTop id="styles_top" />
     <div id="wrapper">
         <div id="content_area">
             <div id="header">
@@ -46,5 +47,6 @@
     
     <c:CRD_header_style id="stylesheets" />
     <c:CSS_Ressource id="stylesheet_Michi" />
+    <c:CRD_headerStylesBottom id="styles_bottom"  isAuthenticated="{!isAuthenticated}" Modules_URLPage="{!Modules_URLPage}" />
     <site:previewAsAdmin />
 </apex:page>
