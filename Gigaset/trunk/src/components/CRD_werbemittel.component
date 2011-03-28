@@ -60,7 +60,7 @@
                         <apex:inputText id="quantity" value="{!opp.quantity}" style="width:30px;" onkeyup="if(check(this.value) == 0 ) {this.value='';} " />                
                 <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style=" vertical-align: middle;" styleClass="Description"/>              
                 <apex:facet name="footer">                  
-                        <apex:commandButton styleclass="newBTN" action="{!secondPage}" value="{!$Label.next}"  />               
+                        <apex:commandButton styleclass="newBTN" action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp" />               
                     </apex:facet>
             </apex:column>
         </apex:dataTable>
@@ -116,12 +116,12 @@
         <apex:dataTable id="linkList2" value="{!Terms2}" var="opp2" width="160%" columns="2">
             <apex:column >
                 <apex:facet name="footer">                  
-                    <apex:commandButton action="{!firstPage}" value="{!$Label.back}"/>      
+                    <apex:commandButton action="{!firstPage}" value="{!$Label.back}" immediate="true" rerender="werbemittelcomp,werbemittelcomp_finalcomp"/>      
                     </apex:facet>
             </apex:column>
             <apex:column >
                 <apex:facet name="footer">                  
-                    <apex:commandButton action="{!thirdPage}" value="{!$Label.Order}"/> 
+                    <apex:commandButton action="{!thirdPage}" value="{!$Label.Order}" /> 
                     </apex:facet>
             </apex:column>
         </apex:dataTable>

@@ -23,8 +23,10 @@ public class werbemittelController{
   		showthirdpage=false;
   		setbestellungTemp();
   		goHomeUrl=System_Settings.goHome().getUrl();
+  		Terms.clear();
+  		Terms2.clear();
   		Wbestellung = new List<Werbemittel_Bestellung__c>();
-  		
+  		bestellungTemp= new Werbemittel_Bestellung__c();
   	}
   	
   	public PageReference firstPage() {   //will show the first page
