@@ -52,7 +52,7 @@
                 <apex:facet name="header">{!$Label.Article_number}</apex:facet>
                 <apex:outputText value="{!opp.term.Artikelnummer__c}" styleClass="Description"/>
                 <apex:facet name="footer">  
-                    <input type="reset" name="Clear" value="{!$Label.delete}" class="btn" style=""/>
+                    <input type="reset" name="Clear" value="{!$Label.delete}" class="newBTN" style=""/>
                 </apex:facet>
             </apex:column>
             <apex:column style="vertical-align: top;">
@@ -60,7 +60,7 @@
                         <apex:inputText id="quantity" value="{!opp.quantity}" style="width:30px;" onkeyup="if(check(this.value) == 0 ) {this.value='';} " />                
                 <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style=" vertical-align: middle;" styleClass="Description"/>              
                 <apex:facet name="footer">                  
-                        <apex:commandButton action="{!secondPage}" value="{!$Label.next}"  />               
+                        <apex:commandButton styleclass="newBTN" action="{!secondPage}" value="{!$Label.next}"  />               
                     </apex:facet>
             </apex:column>
         </apex:dataTable>
