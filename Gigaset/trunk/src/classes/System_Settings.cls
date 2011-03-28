@@ -11,6 +11,7 @@ global class System_Settings {
     global static User currentuser;
     global static GlobalSettings__c landing_config;
 	global static Cookie cookie = null;
+	global static String remindPageId;
 	
     // pageids
     global static final String userdatapageid=getPageId('Benutzerdaten');
@@ -45,7 +46,7 @@ global class System_Settings {
     global static Boolean showNextTopShop;
     
     // systemsettings private methods
-    private static String getPageid(String name) {
+    public static String getPageid(String name) {
         String pid='';
         for (Pages__c p: Pages__c.getAll().values()) {
             if (p.IsActive__c && p.Portal__c==portal && p.Label__c==name && p.isPro__c==SystemSettings.isPro) pid=p.PageId__c;
