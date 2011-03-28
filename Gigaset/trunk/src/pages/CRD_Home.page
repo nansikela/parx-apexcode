@@ -1,5 +1,5 @@
 <apex:page showheader="false" id="CRD_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
-	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" standardStylesheets="false">
+	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
 
 <apex:composition template="{!$Site.Template}">
  
@@ -16,25 +16,57 @@
  		<div id="prodOver">
 	 		<!--Start LeftSide Content -->
 	 		
-	 		<div class="contentTextSmall">
-	 			<div id="contact" class="small">
+	 		<div class="contentText">
+	 			<div id="contact">
 	 				<c:CRD_Training id="training" rendered="{!showTraining}" />
 	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
 	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
 					
-					<!-- News Reader component for new CR -->
-					<c:CRD_newscontent id="newsreadercomp" />
-					
+	 				<!-- News Reader component for new CR
+	 				<apex:form id="testform">
+						<apex:actionPoller action="{!getRecentNewsId}" rerender="test,newsreadercomp" interval="15"/>
+
+	 					<apex:outputPanel id="test">
+	 					{!topnewsController.newsid}
+	 					
+	 					</apex:outputPanel>
+	 				</apex:form>
+	 				
+	 				<a name="news"><c:CRD_newsreader id="newsreadercomp" pageController="{!this}" key="newsreader" newsid="{!topnewsController.newsid}" /></a>
+					-->
 				</div>
+				<span id="end"></span>
 			</div>
 			
      		<!--End LeftSide Content -->
      		<!--Start RightSide Content -->
      		<div id="colRgt">
          		<c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
-         		<c:CRD_topnews rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="topnewscomp" />
-       			
-			</div>
+         		<c:CRD_userprofileportlet rendered="{!AND(isAuthenticated,NOT(showpresetcomp),NOT(showclearingcomp))}" id="userprofileportletcomp" />
+         		<!-- News Reader component for new CR
+         		<c:CRD_topnews pageController="{!this}" key="topnews" id="topnewscomp"/>
+         		-->
+         		<!--Start oneColInfo -->
+         		<div class="oneCol">
+         			<div class="oneColInfo">
+         				<c:contentblock name="rghtcol1" rendered="{!isAuthenticated}" />
+       			</div>
+         			<div class="oneColBtm">
+         				<c:contentblock name="rghtcol1Btm" rendered="{!isAuthenticated}" />
+         			</div>
+         		</div>
+         		<!--End oneColInfo -->
+         		<!--Start oneColInfo -->
+         		<div class="oneCol">
+         			<div class="oneColInfo">
+         				<c:contentblock name="rghtcol2" rendered="{!isAuthenticated}" />
+       			</div>
+	      		<div class="oneColBtm">
+	      			<c:contentblock name="rghtcol2Btm" rendered="{!isAuthenticated}" />
+	      		</div>
+     	 		</div>
+     			<!--End oneColInfo -->
+		</div>
     		<!--End RightSide Content -->
     <!-- end prodOver -->
 	 </div>
@@ -42,4 +74,36 @@
 	</apex:define>
 </apex:composition>
 
+        <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
+        <apex:includeScript value="{!$Resource.jquery142}"/>
+<!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
+        <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+        <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
+<!--  -->
+        <script>
+            function getURLParam(strParamName){
+				strReturn = "";
+				strHref = window.location.search;
+				if ( strHref.indexOf("?") > -1 ){
+					strQueryString = strHref.substr(strHref.indexOf("?")).toLowerCase();
+					aQueryString = strQueryString.split("&");
+					for ( iParam = 0; iParam < aQueryString.length; iParam++ ){
+						if (aQueryString[iParam].indexOf(strParamName + "=") > -1 ){
+							aParam = aQueryString[iParam].split("=");
+							strReturn = aParam[1];
+							break;
+						}
+					}
+				}
+				return strReturn;
+			}
+			  
+            $(document).ready(function(){ 
+				
+                if(getURLParam('training') == '1'){ 
+                	$.colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});
+                }
+            }); 
+        </script>
+        
 </apex:page>

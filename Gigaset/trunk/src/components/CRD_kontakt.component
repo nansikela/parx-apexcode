@@ -27,13 +27,13 @@
                 <apex:inputField id="subject" value="{!rq.Betreff__c}" required="true" styleClass="FieldRequired" />
             <apex:outputLabel value="{!$ObjectType.Request__c.fields.Text__c.label}*" for="text" />
                 <apex:inputField id="text" value="{!rq.Text__c}" required="true" styleClass="FieldRequired" />
-            <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext" >
-            	<p>{!$Label.presetpage_requiredfield}</p>
+            <apex:outputPanel style="width:100%;" layout="block" id="additionaltext" styleClass="additionaltext" >
+            {!$Label.presetpage_requiredfield}	
         	</apex:outputPanel>
-            <div class="requiredInput spacer5">
-                <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
-                <apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="spacer8" id="save_btn" />
+            <div class="newBTN isLeft">
+               <apex:outputLink value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink> <!-- gcbtn -->
             </div>
+            <apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="newBTN isRight" id="save_btn" /> <!-- spacer8 -->
         </apex:form>
         
         <!-- <p>{!$Label.check_email_address}</p> -->
