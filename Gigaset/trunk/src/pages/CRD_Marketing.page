@@ -21,7 +21,7 @@
 	 				<c:CRD_Training id="training" rendered="{!showTraining}" />
 	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
 	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
-					
+					<c:CRD_Marketing id="marketingtabscomp" isDone="{!isDone}" isAuthenticated="{!isAuthenticated}" />
 				</div>
 			</div>
 			
