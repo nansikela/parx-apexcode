@@ -217,9 +217,11 @@ global class System_Settings {
         
 		if (cookie != null) {
         	if(System_Settings.landing_config == null){
-        		System_Settings.landing_config = [SELECT Name, Landing_Page_Aktivierung__c, Portal__c, isPro__c FROM GlobalSettings__c WHERE Portal__c = :portal AND IsPro__c = :isPro];
+        		List<GlobalSettings__c> res = [SELECT Name, Landing_Page_Aktivierung__c, Portal__c, isPro__c FROM GlobalSettings__c WHERE Portal__c = :portal AND IsPro__c = :isPro LIMIT 1];
+        		if(res.size() > 0)
+        			System_Settings.landing_config = res.get(0);
         	}
- 			if (cookie.getValue().equals('1') && System_Settings.landing_config.Landing_Page_Aktivierung__c){
+ 			if (System_Settings.landing_config != null && cookie.getValue().equals('1') && System_Settings.landing_config.Landing_Page_Aktivierung__c){
 				login = new PageReference( basispage.getUrl() + '?pageid=' + getPageid('Landing')+ addParam);
        	 	}
        	 	

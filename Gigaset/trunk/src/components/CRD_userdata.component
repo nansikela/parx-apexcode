@@ -177,8 +177,12 @@
         		<p>{!$Label.registration_required_fields}</p>
         	</apex:outputPanel>
             <div class="requiredInput spacer5">
-                <apex:commandLink styleClass="gcbtn" value="{!$Label.back}" action="{!goBack}" id="goback_btn" />
-                <apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="spacer7" />
+                
+                <div class="newBTN">
+                	<apex:commandLink value="{!$Label.back}" action="{!goBack}" id="goback_btn" styleClass="isLeft"/>
+                </div>
+                <apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="newBTN isRight" />
+                
             </div>
         </apex:form>
         
@@ -214,8 +218,10 @@
                 <br />
             </apex:outputPanel>
             <div class="requiredInput spacer5 link_arrow">
-                <apex:commandLink value="{!$Label.back}" styleClass="gcbtn" action="{!goBack}" id="goback_btn" />
-                <apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="spacer7" id="savedata_btn" />
+            <div class="newBTN">
+                <apex:commandLink value="{!$Label.back}" action="{!goBack}" id="goback_btn" />
+            </div>
+                <apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="newBTN" id="savedata_btn" />
             </div>
         </apex:form>
         <!-- 
@@ -241,6 +247,7 @@
             <apex:outputLabel value="{!$ObjectType.Request__c.fields.Gruende_Selbstloeschung__c.label}" for="otherreasons" />
                 <apex:inputField value="{!rq.Gruende_Selbstloeschung__c}" id="otherreasons" /><br/>
             <div class="requiredInput spacer5">
+            <div class="newBTN">
                 <apex:commandLink value="{!$Label.back}" styleClass="gcbtn" action="{!goBack}" id="goback_btn" />
                 <apex:commandButton action="{!saveUserdelete}" value="{!$Label.site.submit}" styleClass="spacer7" id="saveusrdel_btn" />
             </div>
