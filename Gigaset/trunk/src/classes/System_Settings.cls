@@ -32,15 +32,14 @@ global class System_Settings {
     global static final String link03pageid=getPageid('Link03');
     global static final String link04pageid=getPageid('Link04');
     global static final String link05pageid=getPageid('Link05');
+    global static final String link06pageid=getPageid('Link06');
     
     global static final String TrainingId=getPageid('training');
-    
-    global static final String werbemittelpageid=getPageid('Werbemittel');
     
     // interface
     global static final String picturemanagementLink = 'https://dam.gigaset.com/index.php?extra_login=';
     //global static final String picturemanagementLink = 'http://gigaset-dev.kurt.picturemanagement.de/index.php?extra_login=';
-    global static final String werbemittelLink = 'http://62.26.5.13/webstore30/scripts/anmeldung.asp?extra_login=';
+    //global static final String werbemittelLink = 'http://62.26.5.13/webstore30/scripts/anmeldung.asp?extra_login=';
     
     global static String addParam='';
     global static Boolean showNextTopShop;
@@ -66,7 +65,6 @@ global class System_Settings {
             return Site.getCustomWebAddress().substring(7,9);
         if (Site.getName()!=null && sign=='ZZ')
             return Site.getName().toLowerCase();
-        //sign='nl';
         return sign;
     }
     
@@ -286,7 +284,8 @@ global class System_Settings {
         if (link03pageid!='' && pageid.startsWith(link03pageid)) return getLabel('link03');
         if (link04pageid!='' && pageid.startsWith(link04pageid)) return getLabel('link04');
         if (link05pageid!='' && pageid.startsWith(link05pageid)) return getLabel('link05');
-        if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return getLabel('Werbemittel');
+        if (link06pageid!='' && pageid.startsWith(link06pageid)) return getLabel('link06');
+        //if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return getLabel('Werbemittel');
         // cross portal navigation points
         if (imprintpageid!='' && pageid.startsWith(imprintpageid)) return System.Label.tplt_label_imprint;
         if (kontaktpageid!='' && pageid.startsWith(kontaktpageid)) return System.Label.contact;
