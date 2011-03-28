@@ -78,8 +78,9 @@ public class TemplateController {
 		String link03pageid=System_Settings.link03pageid;
 		String link04pageid=System_Settings.link04pageid;
 		String link05pageid=System_Settings.link05pageid;
+		String link06pageid=System_Settings.link06pageid;
 		String newsreaderpageid=System_Settings.newsreaderpageid;
-		String werbemittelpageid=System_Settings.werbemittelpageid;
+		//String werbemittelpageid=System_Settings.werbemittelpageid;
 		String imprintpageid=System_Settings.imprintpageid;
 		kontaktpageid=System_Settings.kontaktpageid;
 		registrationpageid=System_Settings.registrationpageid;
@@ -94,7 +95,8 @@ public class TemplateController {
 		if (link03pageid!='' && pageid.startsWith(link03pageid)) return System_Settings.getLabel('link03');
 		if (link04pageid!='' && pageid.startsWith(link04pageid)) return System_Settings.getLabel('link04');
 		if (link05pageid!='' && pageid.startsWith(link05pageid)) return System_Settings.getLabel('link05');
-		if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return System_Settings.getLabel('Werbemittel');
+		if (link06pageid!='' && pageid.startsWith(link06pageid)) return System_Settings.getLabel('link06');
+		//if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return System_Settings.getLabel('Werbemittel');
 		if (newsreaderpageid!='' && pageid.startsWith(newsreaderpageid)) return System_Settings.getLabel('NewsReader');
 		// cross portal navigation points
 		if (imprintpageid!='' && pageid.startsWith(imprintpageid)) return System.Label.tplt_label_imprint;
