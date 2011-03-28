@@ -20,11 +20,8 @@
             <apex:outputPanel id="link5span" rendered="{!Link05Url!=''}">
             <li><apex:outputLink value="{!Link05Url}" id="link5" target="{!IF(link05pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link05pageid,'active','')}" >{!labellink05}</apex:outputLink></li>
             </apex:outputPanel>
-            <apex:outputPanel id="pmurl" rendered="{!showpmlink}">
-            <li><apex:outputLink value="#" onclick="window.open('{!PicturemanagemantUrl}');" id="linkpicturemanagement" >{!$Label.menu_de_pm}</apex:outputLink></li>
-            </apex:outputPanel>
-            <apex:outputPanel id="werbemittelspan" rendered="{!WerbemittelUrl!=''}">
-            <li><apex:outputLink value="{!WerbemittelUrl}" id="werbemittel" styleClass="{!IF($CurrentPage.parameters.pageid=werbemittelpageid,'active','')}" >{!labelwerbemittel}</apex:outputLink></li>
+            <apex:outputPanel id="link6span" rendered="{!Link06Url!=''}">
+            <li><apex:outputLink value="{!Link06Url}" id="link6" target="{!IF(link06pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link06pageid,'active','')}" >{!labellink06}</apex:outputLink></li>
             </apex:outputPanel>
             <apex:outputPanel id="linktootherportal" rendered="{!linktootherportal!=''}">
             <li><apex:outputLink value="{!linktootherportal}" id="otherportal" >{!$Label.breadcrump_dealer}<apex:outputText value=" Pro" /></apex:outputLink></li>
