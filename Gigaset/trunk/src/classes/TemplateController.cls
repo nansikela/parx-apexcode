@@ -117,7 +117,10 @@ public class TemplateController {
 	}
 	
 	public PageReference initHome(){
-	 	return TrainingController.initHome(); 
+		TrainingController.initHome();
+		if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
+	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return System_Settings.goHome();
+	 	return null; 
 	} 
 	
 	// getter
