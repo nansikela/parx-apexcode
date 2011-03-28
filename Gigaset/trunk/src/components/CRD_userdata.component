@@ -217,12 +217,12 @@
                 <div class="link_arrow"><apex:commandLink value="{!$Label.clientdata_userdata}" action="{!editUserdata}" id="linkuserdata2" /></div>
                 <br />
             </apex:outputPanel>
-            <div class="requiredInput spacer5 link_arrow">
+            <!-- <div class="requiredInput spacer5 link_arrow"> -->
             <div class="newBTN">
                 <apex:commandLink value="{!$Label.back}" action="{!goBack}" id="goback_btn" />
             </div>
                 <apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="newBTN" id="savedata_btn" />
-            </div>
+            <!-- </div> -->
         </apex:form>
         <!-- 
         <apex:outputText value="{!$Label.userdata_is_changedata}" />
@@ -249,8 +249,8 @@
             <div class="requiredInput spacer5">
             <div class="newBTN">
                 <apex:commandLink value="{!$Label.back}" styleClass="gcbtn" action="{!goBack}" id="goback_btn" />
-                <apex:commandButton action="{!saveUserdelete}" value="{!$Label.site.submit}" styleClass="spacer7" id="saveusrdel_btn" />
             </div>
+            <apex:commandButton action="{!saveUserdelete}" value="{!$Label.site.submit}" styleClass="spacer7" id="saveusrdel_btn" />
         </apex:form>
     </apex:outputPanel>
     <apex:outputPanel id="userdelete_success" rendered="{!step='userdelete_success'}">
@@ -260,7 +260,9 @@
     </apex:outputPanel>
     <apex:outputPanel id="global" rendered="{!OR(step='start',step='userdelete_success',step='userdata_success')}">
         <apex:form id="gobackform" >
-            <apex:commandLink value="{!$Label.back}" styleClass="gcbtn spacer5" action="{!goBack}" id="goback_btn" />
+        <div class="newBTN">
+            <apex:commandLink value="{!$Label.back}" styleClass=" " action="{!goBack}" id="goback_btn" />
+        </div>
         </apex:form>
     </apex:outputPanel>
 </apex:component>
