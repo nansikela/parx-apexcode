@@ -59,9 +59,13 @@
                 <apex:facet name="header">{!$Label.Quantity}</apex:facet>
                         <apex:inputText id="quantity" value="{!opp.quantity}" style="width:30px;" onkeyup="if(check(this.value) == 0 ) {this.value='';} " />                
                 <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style=" vertical-align: middle;" styleClass="Description"/>              
-                <apex:facet name="footer">                  
-                        <apex:commandButton styleclass="newBTN" action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp" />               
-                    </apex:facet>
+                <apex:facet name="footer">  
+                	<div class="newBTN">
+                		<div class="newBTN_arrow">        
+                        	<apex:commandButton action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp" />               
+                		</div>
+                	</div>
+                </apex:facet>
             </apex:column>
         </apex:dataTable>
     </apex:form>

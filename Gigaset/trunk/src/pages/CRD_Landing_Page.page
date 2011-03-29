@@ -5,24 +5,33 @@
         <apex:define name="body">
             <c:contentblock name="maincontent" />
             <apex:form id="form"> 
-            	<apex:commandButton styleclass="newBTN isLeft" value="Go To Login loooooooooooool" action="{!redirectToLogin}">
-            		 <apex:param name="clicked" value="true" />
-            	</apex:commandButton>
+            	<div class="newBTN isLeft">
+                	<div class="newBTN_arrow">
+            			<apex:commandButton styleclass="newBTN" value="Go To Login loooooooooooool" action="{!redirectToLogin}">
+            				<apex:param name="clicked" value="true" />
+            			</apex:commandButton>
+            		</div>
+            	</div>
             	
             	<div class="newBTN isLeft">
-            		<apex:commandLink value="loooooooooooool" action="{!redirectToLogin}">
-            		 	<apex:param name="clicked" value="true" />
-            		</apex:commandLink>
+                	<div class="newBTN_arrow">
+            			<apex:commandLink value="loooooooooooool" action="{!redirectToLogin}">
+            			 	<apex:param name="clicked" value="true" />
+            			</apex:commandLink>
+            		</div>
             	</div>
             	
-				<div id="buttonLink" class="newBTN isRight">
-            		<a id="btn" >TEEEEEEEEEEST</a>
+				<div class="newBTN isRight">
+                	<div class="newBTN_arrow">
+						<a id="btn" >TEEEEEEEEEEST</a>
+            		</div>
             	</div>
             	
-            	<div id="buttonLink" class="newBTN isRight">
-            		<apex:outputLink value="#" id="theLink">ROOOOOOOOOOOOOOFL</apex:outputLink>
+            	<div class="newBTN isLeft">
+                	<div class="newBTN_arrow">
+            			<apex:outputLink value="#" id="theLink">ROOOOOOOOOOOOOOFL</apex:outputLink>
+            		</div>
             	</div>
-            	
 			</apex:form>
 			 
     </apex:define>

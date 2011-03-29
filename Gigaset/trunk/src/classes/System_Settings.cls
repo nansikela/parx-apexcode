@@ -46,11 +46,11 @@ global class System_Settings {
     global static String addParam='';
     global static Boolean showNextTopShop;
     
-    // systemsettings private methods
+    // System_Settings private methods
     public static String getPageid(String name) {
         String pid='';
         for (Pages__c p: Pages__c.getAll().values()) {
-            if (p.IsActive__c && p.Portal__c==portal && p.Label__c==name && p.isPro__c==SystemSettings.isPro) pid=p.PageId__c;
+            if (p.IsActive__c && p.Portal__c==portal && p.Label__c==name && p.isPro__c==System_Settings.isPro) pid=p.PageId__c;
         }
         
         return pid;
@@ -143,11 +143,11 @@ global class System_Settings {
     
     // the preset should only be visible for crd at the moment
     global static Boolean showPreset() {
-        if (SystemSettings.contactid!=null && SystemSettings.contactid!='' && SystemSettings.portal=='de' && !SystemSettings.isPro) {
+        if (System_Settings.contactid!=null && System_Settings.contactid!='' && System_Settings.portal=='de' && !System_Settings.isPro) {
             Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:contactid];
             if (c!=null && c.AccountId!=null ) {
-                Account a=[SELECT Id, Handelskanal__c, Distribution__c FROM Account WHERE Id=:c.AccountId];
-                if (a!=null && (a.Handelskanal__c==null || a.Handelskanal__c=='')) return true;
+                Account a=[SELECT Id, Handelskanal__c, Distribution__c, Pro_Distribution__c FROM Account WHERE Id=:c.AccountId];
+                if (a!=null && ((!isPro && (a.Handelskanal__c==null || a.Handelskanal__c=='')) || (isPro && a.Pro_Distribution__c==null || a.Pro_Distribution__c==''))) return true;
             }
         }
         return false;
@@ -159,8 +159,8 @@ global class System_Settings {
         for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
             if (gs.Portal__c==portal && gs.isPro__c==isPro ) privacyEnabled=gs.Datenschutzabfrage__c;
         }
-        if (SystemSettings.contactid!=null && SystemSettings.contactid!='' && privacyEnabled) {
-            Contact c=[SELECT Id, AccountId, Datenschutzerkl_rung_zugestimmt__c FROM Contact WHERE Id=:SystemSettings.contactid];
+        if (System_Settings.contactid!=null && System_Settings.contactid!='' && privacyEnabled) {
+            Contact c=[SELECT Id, AccountId, Datenschutzerkl_rung_zugestimmt__c FROM Contact WHERE Id=:System_Settings.contactid];
             if (c!=null && (c.Datenschutzerkl_rung_zugestimmt__c==null || !c.Datenschutzerkl_rung_zugestimmt__c)) {
                 return true;
             }
@@ -177,11 +177,11 @@ global class System_Settings {
     }
     
     global static Boolean showClearing() {
-        if (SystemSettings.contactid!=null && SystemSettings.contactid!='') {
-            Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:SystemSettings.contactid];
+        if (System_Settings.contactid!=null && System_Settings.contactid!='') {
+            Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:System_Settings.contactid];
             if (c!=null && c.AccountId!=null) {
-                if (SystemSettings.isPro && !c.Gigaset_Pro__c && c.Gigaset_Extranet__c) return true;
-                if (!SystemSettings.isPro && !c.Gigaset_Extranet__c && c.Gigaset_Pro__c) return true;
+                if (System_Settings.isPro && !c.Gigaset_Pro__c && c.Gigaset_Extranet__c) return true;
+                if (!System_Settings.isPro && !c.Gigaset_Extranet__c && c.Gigaset_Pro__c) return true;
             }
         }
         return false;
@@ -272,7 +272,7 @@ global class System_Settings {
     global static String getLabel(String ccode) {
         String label='';
         for (CustomLabel__c cl:CustomLabel__c.getAll().values()) {
-            if (cl.CommonCode__c==ccode && cl.Portal__c==portal && cl.LanguageCode__c==setLanguage() && cl.isPro__c==SystemSettings.isPro) label=cl.Label__c;
+            if (cl.CommonCode__c==ccode && cl.Portal__c==portal && cl.LanguageCode__c==setLanguage() && cl.isPro__c==System_Settings.isPro) label=cl.Label__c;
         }
         
         return label;
@@ -314,7 +314,7 @@ global class System_Settings {
     global static String getExternalURL(String ccode){
         String label='';
         for (CustomLabel__c cl:CustomLabel__c.getAll().values()) {
-            if (cl.CommonCode__c==ccode && cl.Portal__c==portal && cl.LanguageCode__c==setLanguage() && cl.isPro__c==SystemSettings.isPro) label=cl.ExternalUrl__c;
+            if (cl.CommonCode__c==ccode && cl.Portal__c==portal && cl.LanguageCode__c==setLanguage() && cl.isPro__c==System_Settings.isPro) label=cl.ExternalUrl__c;
         }
         
         return label;
@@ -333,7 +333,7 @@ global class System_Settings {
             try {
                 insert el;
             } catch (System.Dmlexception e) {
-                if (SystemSettings.isDebug) throw e;
+                if (System_Settings.isDebug) throw e;
                 // now we can't do more
             }
         }
@@ -349,7 +349,7 @@ global class System_Settings {
             try {
                 insert el;
             } catch (System.Dmlexception e) {
-                if (SystemSettings.isDebug) throw e;
+                if (System_Settings.isDebug) throw e;
                 // now we can't do more
             }
         }
@@ -488,6 +488,7 @@ global class System_Settings {
             currentuser.PRO_SYSTEM_LIEFERANTEN__c = a.PRO_SYSTEM_LIEFERANTEN__c;
             currentuser.PRO_VAR_SYSTEMPARTNER_WEITERE__c = a.PRO_VAR_SYSTEMPARTNER_WEITERE__c;
             currentuser.Description__c = a.Description;
+            currentuser.Pro_Distribution__c=a.Pro_Distribution__c;
         }
     }
 }

@@ -28,9 +28,15 @@
             {!$Label.presetpage_requiredfield}	
         	</apex:outputPanel>
             <div class="newBTN isLeft">
-               <apex:outputLink value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink> <!-- gcbtn -->
+                <div class="newBTN_arrow">
+               		<apex:outputLink value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink> <!-- gcbtn -->
+            	</div>
             </div>
-            <apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="newBTN isRight" id="save_btn" /> <!-- spacer8 -->
+            <div class="newBTN isRight">
+                <div class="newBTN_arrow">
+            		<apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" id="save_btn" /> <!-- spacer8 -->
+        		</div>
+        	</div>
         </apex:form>
         
         <!-- <p>{!$Label.check_email_address}</p> -->
