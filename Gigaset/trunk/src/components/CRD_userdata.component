@@ -188,9 +188,7 @@
         
     </apex:outputPanel>
     <apex:outputPanel id="userdata_success" rendered="{!step='userdata_success'}">
-        <h1>{!success_headline}</h1>
-        <br />
-        <p>{!$Label.userdata_savedata_success}</p>
+        <c:CRD_formResultMessage msgstyle="success" title="{!success_headline}" message="{!$Label.userdata_savedata_success}" id="userdatachangesuccesscomp"/>
     </apex:outputPanel>
     <apex:outputPanel id="infoservice" rendered="{!step='infoservice'}">
         <h1><apex:outputText value="{!$Label.userdata_infoservice}" /></h1>
@@ -254,9 +252,7 @@
         </apex:form>
     </apex:outputPanel>
     <apex:outputPanel id="userdelete_success" rendered="{!step='userdelete_success'}">
-        <h1>{!$Label.userdata_userdelete}</h1>
-        <br />
-        <p>{!$Label.userdata_ud_success}</p>
+    	<c:CRD_formResultMessage msgstyle="success" title="{!$Label.userdata_userdelete}" message="{!$Label.userdata_ud_success}" id="userdatadeletesuccesscomp"/>
     </apex:outputPanel>
     <apex:outputPanel id="global" rendered="{!OR(step='start',step='userdelete_success',step='userdata_success')}">
         <apex:form id="gobackform" >
