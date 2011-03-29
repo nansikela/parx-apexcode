@@ -1,0 +1,21 @@
+<apex:component id="resultMessage" >
+	<apex:attribute name="message" description="This is the message." 
+
+        type="String" required="true"/>
+    <apex:attribute name="title" description="This is the title." 
+
+        type="String" required="true"/>
+    <apex:attribute name="msgstyle" description="This is the style for the message (error or success)." 
+
+        type="String" required="true"/> 
+        
+	<apex:outputPanel id="messagearea" layout="block" styleClass="messageArea">
+		<apex:outputPanel layout="block" id="messagetitle" styleClass="messageTitle {!IF(msgstyle='success','messageTitleSuccess','messageTitleError')}">
+			<h1><apex:outputText id="titletext" value="{!title}" /></h1>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" id="message" styleClass="messageText">
+			<p><apex:outputText value="{!message}" id="messagetext" /></p>
+		</apex:outputPanel>
+	</apex:outputPanel>
+	
+</apex:component>

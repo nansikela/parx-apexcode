@@ -130,8 +130,10 @@
         
         <apex:outputPanel layout="block" id="registrationBox">
            <div id="contact" class="registercontact">
+           		<apex:outputPanel id="regtitel" rendered="{!step<4}">
                 <h1>{!$Label.registration}</h1>
                 <p> </p>
+                </apex:outputPanel>
                 <apex:outputPanel id="privacy" rendered="{!AND(step=0,showprivacy)}">
                     <apex:pageMessages id="errorprivacy" />
                     <apex:outputPanel id="theprivacyiframepanel" style="margin-left: -11px;">
@@ -468,14 +470,23 @@
                 
                 </apex:outputPanel>
                 
+                <!-- 
                 <apex:outputPanel id="success" rendered="{!step=4}">
                     <p>{!$Label.registration_thanks}</p>
-                    <!-- <p>{!$Label.registration_sendaccountto} <b>{!l.Email}</b></p> -->
                 </apex:outputPanel>
                 <apex:outputPanel id="saveerror" rendered="{!step=99}">
                     <p>{!$Label.registration_error}</p>
                     <apex:pageMessages id="error" />
                 </apex:outputPanel>
+                -->
+                <apex:outputPanel id="success" rendered="{!step=4}">
+                	<c:CRD_formResultMessage title="{!$Label.registration_thanks}" message="{!$Label.registration_thanks_msg}" id="msgsuccess" msgstyle="success"/>
+                </apex:outputPanel>
+                <apex:outputPanel id="saveerror" rendered="{!step=99}">
+                    <p>{!$Label.registration_error}</p>
+                    <apex:pageMessages id="error" />
+                </apex:outputPanel>
+                
                 <div class="requiredInput spacer5">
                     <apex:outputPanel id="backaftersuccess" rendered="{!step>3}" >
                         <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>

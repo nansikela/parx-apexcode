@@ -101,7 +101,7 @@
                     </apex:outputPanel>
                     
                     <apex:outputPanel id="success" rendered="{!step=2}">
-                        <p>{!$Label.clearingpage_thanks}</p>
+                    	<c:CRD_formResultMessage title="{!$Label.clearingpage_thanks}" message="{!$Label.clearingpage_thanks_msg}" msgstyle="success" />
                     </apex:outputPanel>
                     <apex:outputPanel id="saveerror" rendered="{!step=99}">
                         <p>{!$Label.clearingpage_error}</p>

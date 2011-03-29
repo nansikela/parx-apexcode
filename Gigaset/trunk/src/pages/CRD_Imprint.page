@@ -7,9 +7,11 @@
         <apex:define name="body">
         <div id="prodOver">
             <!--Start LeftSide Content -->
-            <div class="contentTextSmall">
+		<div class="contentTextSmall">
+			<div id="contact" class="small">
                 <c:contentblock name="maincontent" />
             </div>
+        </div>
         
             <!--End LeftSide Content -->
                 

@@ -57,7 +57,7 @@
                 </apex:outputPanel>
                 
                 <apex:outputPanel id="success" rendered="{!step=2}">
-                    <p>{!$Label.presetpage_thanks}</p>
+                    <c:CRD_formResultMessage msgstyle="success" title="{!$Label.presetpage_headline}" message="{!$Label.presetpage_thanks}" id="presetmsgcomp" />
                 </apex:outputPanel>
                 <apex:outputPanel id="saveerror" rendered="{!step=99}">
                     <p>{!$Label.presetpage_error}</p>
