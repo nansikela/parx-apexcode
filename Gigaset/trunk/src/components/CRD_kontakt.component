@@ -1,10 +1,7 @@
 <apex:component controller="kontaktController" allowDML="true" id="crdkontaktformular" >
-    <h1>{!$Label.contact}</h1>
-    <!-- 
-    <p class="errorMsg" rendered="{!messages!=''}" id="errormessages" >{!messages}</p>
-    -->
-    <br />
     <apex:outputPanel id="form" rendered="{!showform}">
+    	<h1>{!$Label.contact}</h1>
+	    <br />
         <p>{!$Label.contact_subtitle}</p>
         <!-- <p>{!$Label.fillout_all_fields}</p> -->
         <!-- <apex:pageMessages id="errorform" /> -->
@@ -39,11 +36,11 @@
         <!-- <p>{!$Label.check_email_address}</p> -->
     </apex:outputPanel>
     <apex:outputPanel id="success" rendered="{!success}">
-        <p>{!$Label.your_request_with_subject}</p>
-        <!--  {!rq.Betreff__c}</p>
-        <p>{!$Label.we_care_for_request}</p>-->
+        <c:CRD_formResultMessage msgstyle="success" title="{!$Label.contact}" message="{!$Label.your_request_with_subject}" id="kontaktmsgsuccesscomp" />
     </apex:outputPanel>
     <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
+    	<h1>{!$Label.contact}</h1>
+	    <br />
         <p>{!$Label.contactform_error}</p>
         <apex:pageMessages id="errorsave" />
     </apex:outputPanel>
