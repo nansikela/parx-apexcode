@@ -2,8 +2,8 @@
 <apex:composition template="{!$Site.Template}">
 
         <apex:define name="body">
-        <div class="contactBox">
-            <div id="contact">
+		<div class="contentTextSmall">
+			<div id="contact" class="small">
                 <p> </p>
                 <h2>{!$Label.site.authorization_required}</h2>
                 <p>
@@ -13,7 +13,6 @@
                 </p>
                 <c:CRD_Login />
             </div>
-            <span id="end"></span>
         </div>
         <div id="sidebar" class="">
             <apex:image id="authimg" alt="{!$Label.site.authorization_required}" value="{!URLFOR($Resource.gigasetextranetZIP, 'img/404_autorisierung.jpg')}" />

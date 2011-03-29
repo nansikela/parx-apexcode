@@ -1,8 +1,7 @@
 <apex:component controller="rueckrufserviceController" allowDML="true" id="crdrueckrufservice" > 
-    <h1>{!$Label.callback}</h1>
-    <br />
-    <!-- <p class="errorMsg" rendered="{!messages!=''}">{!messages}</p> -->
     <apex:outputPanel id="form" rendered="{!showform}">
+	    <h1>{!$Label.callback}</h1>
+	    <br />
         <p>{!$Label.callback_subtitle}</p>
         <!-- <apex:pageMessages id="errorform" /> -->
         <apex:form id="callbackform">
@@ -48,8 +47,11 @@
     </apex:outputPanel>
     <apex:outputPanel id="success" rendered="{!success}">
         <p>{!$Label.callback_thanks_we_callback}</p>
+        <c:CRD_formResultMessage msgstyle="success" title="{!$Label.callback}" message="" id="callbackmsgsuccesscomp" />
     </apex:outputPanel>
     <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
+    	<h1>{!$Label.callback}</h1>
+    	<br />
         <p>{!$Label.callback_error}</p>
         <apex:pageMessages id="errorsave" />
         <!--  <p class="errorMsg" >{!messages}</p>-->

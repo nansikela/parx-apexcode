@@ -2,8 +2,8 @@
 <apex:composition template="{!$Site.Template}">
 
 		<apex:define name="body">
-		<div class="contactBox">
-			<div id="contact">
+		<div class="contentTextSmall">
+			<div id="contact" class="small">
 				<p> </p>
 				<h2>
 					<apex:outputText escape="false" value="{!$Label.site.limit_exceeded}" />
@@ -20,7 +20,6 @@
 				</div>
 				
 			</div>
-			<span id="end"></span>
  		</div>
  		<div id="sidebar" class="">
  			<apex:image id="img404" alt="{!$Label.site.file_not_found}" value="{!URLFOR($Resource.gigasetextranetZIP, 'img/404_grenzwert.jpg')}" />

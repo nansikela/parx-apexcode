@@ -1,5 +1,5 @@
 <apex:page showheader="false" id="CRD_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
-	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
+	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" standardStylesheets="false" >
 
 <apex:composition template="{!$Site.Template}">
  
