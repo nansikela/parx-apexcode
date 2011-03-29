@@ -13,10 +13,10 @@
                  for="password" />
             <apex:inputSecret id="password" value="{!password}" styleClass="LoginField" />
             <br />
-            <div class="newBTN">
+            <div class="newBTN isRight">
                 <div class="newBTN_arrow">
-                	<apex:commandButton action="{!login}" style="min-width: 72px;"
-                    	value="{!$Label.site.login_button}" id="loginButton" styleClass="newBTN isRight" />
+                	<apex:commandButton action="{!login}" value="{!$Label.site.login_button}" id="loginButton" styleClass="newBTN" />
+                    	 <!-- style="min-width: 72px;" -->
             	</div>
             </div>
             <br />
