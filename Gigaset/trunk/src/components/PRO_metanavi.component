@@ -1,4 +1,4 @@
-<apex:component id="metanavi" controller="TemplateController">
+<apex:component id="metanavi" controller="DETemplateController">
 <ul id="metanavi">
     <li>
         <apex:outputLink value="{!$Site.CustomWebAddress}">{!label_menu_home}</apex:outputLink>

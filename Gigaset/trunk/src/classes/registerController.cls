@@ -48,6 +48,8 @@ public class registerController {
 		goHomeUrl=System_Settings.goHome().getUrl();
 		l=new Lead();
 		l.Portal__c=System_Settings.portal;
+		l.Country=System_Settings.PortalCountry;
+		l.Land_Auswahl__c=System_Settings.PortalCountry;
 		l.Gigaset_Extranet__c=!isPro;
 		l.Gigaset_Pro__c=isPro;
 		if (showprivacy) step=0;

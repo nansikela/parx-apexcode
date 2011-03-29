@@ -1,5 +1,5 @@
 <apex:page showheader="false" sidebar="false" id="pro_register" cache="false" expires="600"
-    controller="TemplateController" title="{!$Label.de_title}" language="{!defaultlanguage}" >
+    controller="DETemplateController" title="{!$Label.de_title}" language="{!defaultlanguage}" >
     <!-- language="{!defaultlanguage}" -->
 
 <apex:composition template="{!$Site.Template}">

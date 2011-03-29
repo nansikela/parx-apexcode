@@ -1,4 +1,4 @@
-<apex:page showheader="false" id="pro_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
+<apex:page showheader="false" id="pro_home" sidebar="false" controller="DETemplateController" 
     title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
 
 	<apex:composition template="{!$Site.Template}">

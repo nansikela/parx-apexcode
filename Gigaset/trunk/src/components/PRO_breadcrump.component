@@ -1,4 +1,4 @@
-<apex:component id="breadcrump" controller="TemplateController" language="{!defaultlanguage}">
+<apex:component id="breadcrump" controller="DETemplateController" language="{!defaultlanguage}">
 <div id="breadcrumbs">
         <span>
             <apex:outputText value="{!$Label.breadcrump_you_are_here}" rendered="{!currentNavigationPoint!=''}" />

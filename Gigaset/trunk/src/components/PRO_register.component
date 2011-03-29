@@ -1,4 +1,4 @@
-<apex:component controller="registerController" allowDML="true" id="proregistration1" language="{!defaultlanguage}" >
+<apex:component controller="DEregisterController" allowDML="true" id="proregistration1" language="{!defaultlanguage}" >
     <!--  language="{!defaultlanguage}"  -->
 
                 

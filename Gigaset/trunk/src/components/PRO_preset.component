@@ -1,4 +1,4 @@
-<apex:component controller="presetController" allowDML="true" id="propreset">
+<apex:component controller="DEpresetController" allowDML="true" id="propreset">
     <apex:outputPanel id="presetpanel">
         <apex:form id="javascriptform" >
             <!-- Define the JavaScript function -->
@@ -21,7 +21,7 @@
                     <apex:form id="step1form" >
                         <p><apex:outputText value="{!$Label.presetpage_subtitle}" /></p>
                         <p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
-                        <apex:outputPanel id="classification">
+                        <apex:outputPanel id="classification" rendered="{!NOT(isPro)}">
                             <apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanal" />
                                 <apex:inputField id="handelskanal" value="{!u.Handelskanal__c}"  styleClass="FieldRequiredSelect" required="true" onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" />
                                 <!-- onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" -->
@@ -44,6 +44,10 @@
                             </apex:outputPanel>
                             
                         </apex:outputPanel>
+                        <apex:outputPanel id="classificationPro" rendered="{!isPro}">
+							<apex:outputLabel value="{!$ObjectType.Lead.fields.Pro_Distribution__c.label}*" for="proDistribution" />
+								<apex:inputField id="proDistribution" value="{!u.Pro_Distribution__c}"  styleClass="pick" required="true" />
+						</apex:outputPanel>
                         
                     <br />
                     <!-- <p><b>{!$Label.registration_companyprofiledata}</b></p> -->
@@ -82,5 +86,11 @@
             </div>
             <span id="end"></span>
         </div>
+        <style>
+		.btn, .btnGo, .btnImportant, .btnSharing, .btnDisabled, .subscribeNow, .upgradeNow, .btnWhatsNew {
+			overflow: visible;
+			width: 60px!important;
+		}
+	</style>
     </apex:outputPanel>
 </apex:component>

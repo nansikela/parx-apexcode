@@ -1,4 +1,4 @@
-<apex:component controller="navigationController" id="pronavigation" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired))}" >
+<apex:component controller="DEnavigationController" id="pronavigation" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired))}" >
     <div class="prodTeaserFrame">
     <div class="prodTeaserBig" >
         <ul id="navimenu" >

@@ -1,4 +1,4 @@
-<apex:component controller="TemplateController" id="procontactportlet" rendered="{!RueckrufserviceUrl!=''}" >
+<apex:component controller="DETemplateController" id="procontactportlet" rendered="{!RueckrufserviceUrl!=''}" >
     <apex:outputLink value="{!RueckrufserviceUrl}" id="linkcallback" >
         <!-- 
         <apex:image id="callbackimg" alt="{!$Label.callback}" value="{!URLFOR($Resource.gigasetextranetZIP, $Label.callback_imgurl)}" />

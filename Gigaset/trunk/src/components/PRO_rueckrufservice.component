@@ -1,4 +1,4 @@
-<apex:component controller="rueckrufserviceController" allowDML="true" id="prorueckrufservice" > 
+<apex:component controller="DErueckrufserviceController" allowDML="true" id="prorueckrufservice" > 
     <h1>{!$Label.callback}</h1>
     <br />
     <!-- <p class="errorMsg" rendered="{!messages!=''}">{!messages}</p> -->
