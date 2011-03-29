@@ -1,4 +1,4 @@
-<apex:page showheader="false" id="pro_kontaktformular" sidebar="false" controller="TemplateController"  title="{!$Label.de_title}" language="{!defaultlanguage}" >
+<apex:page showheader="false" id="pro_kontaktformular" sidebar="false" controller="DETemplateController"  title="{!$Label.de_title}" language="{!defaultlanguage}" >
 
 <apex:composition template="{!$Site.Template}">
 

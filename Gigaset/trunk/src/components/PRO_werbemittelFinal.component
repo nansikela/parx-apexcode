@@ -1,4 +1,4 @@
-<apex:component allowDML="true" id="werbemittelcomp_final" controller="werbemittelController">
+<apex:component allowDML="true" id="werbemittelcomp_final" controller="DEwerbemittelController">
  
 
     <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1>

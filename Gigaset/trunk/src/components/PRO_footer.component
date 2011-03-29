@@ -1,4 +1,4 @@
-<apex:component id="footer" controller="TemplateController" >
+<apex:component id="footer" controller="DETemplateController" >
     <div id="footer">
         <div id="footerlogos">
             <apex:image value="{!URLFOR($Resource.gigasetextranetZIP, 'img/gigasetpro_logo.png')}" alt="Gigaset Pro" styleClass="lft" />

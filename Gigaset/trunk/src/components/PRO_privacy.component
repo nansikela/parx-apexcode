@@ -1,4 +1,4 @@
-<apex:component controller="privacyController" allowDML="true" id="proprivacy" >
+<apex:component controller="DEprivacyController" allowDML="true" id="proprivacy" >
     <apex:form id="actionfunctions">
         <apex:actionFunction name="previousStep" action="{!previousStep}"  />
     </apex:form>

@@ -1,4 +1,4 @@
-<apex:component controller="ClearingController" allowDML="true" id="proclearing" >
+<apex:component controller="DE_ClearingController" allowDML="true" id="proclearing" >
     <apex:outputPanel id="clearingpanel">
         <apex:form id="javascriptform" >
             <!-- Define the JavaScript function -->

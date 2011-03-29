@@ -1,4 +1,4 @@
-<apex:page showheader="false" id="pro_login" sidebar="false" title="{!$Label.de_title}"  controller="TemplateController" language="{!defaultlanguage}" action="{!init}" >
+<apex:page showheader="false" id="pro_login" sidebar="false" title="{!$Label.de_title}"  controller="DETemplateController" language="{!defaultlanguage}" action="{!init}" >
 
 <apex:composition template="{!$Site.Template}">
 

@@ -1,4 +1,4 @@
-<apex:page showheader="false" id="pro_imprint" sidebar="false" controller="TemplateController"  
+<apex:page showheader="false" id="pro_imprint" sidebar="false" controller="DETemplateController"  
     title="{!$Label.de_title}" language="{!defaultlanguage}"
     cache="true" expires="6000" >
 

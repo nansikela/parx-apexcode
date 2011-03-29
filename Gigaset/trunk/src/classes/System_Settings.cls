@@ -4,6 +4,7 @@ global class System_Settings {
     //global static final String portal=Site.getCustomWebAddress()==null?'':Site.getCustomWebAddress().substring(7,9);
     //global static final String portal=Site.getCustomWebAddress()==null?'':Site.getCustomWebAddress().substring(9,10)=='.'?Site.getCustomWebAddress().substring(7,9):'';
     global static final String portal=getPortalSign();
+    global static final String PortalCountry=getPortalCountry();
     global static final Boolean isPro=isPro();
     global static String contactid='';
     static String language='de';
@@ -116,6 +117,7 @@ global class System_Settings {
                         PRO_VAR_ERFAHRUNGEN__c,
                         PRO_SYSTEM_LIEFERANTEN__c,
                         PRO_VAR_SYSTEMPARTNER_WEITERE__c,
+                        Pro_Distribution__c,
                         Description__c,
                         IsPortalEnabled, 
                         IsActive
@@ -276,6 +278,14 @@ global class System_Settings {
         return label;
     }
     
+    private static String getPortalCountry() {
+		String ctry='Deutschland';
+		for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
+			if (gs.Portal__c==portal && gs.isPro__c==isPro ) ctry=gs.CountryForRegistration__c;
+		}
+		return ctry;
+	}
+    
     global static String getCurrentNavigationPointLabel(String pageid) {
         // portal specific labels/navigationpoints
         if (pageid.startsWith(homepageid)|| (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return getLabel('home');
@@ -399,6 +409,7 @@ global class System_Settings {
                     Account.BillingCountry,
                     Account.Handelskanal__c,
                     Account.Distribution__c,
+                    Account.Pro_Distribution__c,
                     Zustimmung_Datenschutzerkl_rung_am__c,
                     Datenschutzerkl_rung_zugestimmt__c,
                     In_Freischaltung__c, 
@@ -424,6 +435,7 @@ global class System_Settings {
                 PRO_VAR_ERFAHRUNGEN__c, 
                 PRO_SYSTEM_LIEFERANTEN__c, 
                 PRO_VAR_SYSTEMPARTNER_WEITERE__c,
+                Pro_Distribution__c,
                 Handelskanal__c,
                 Distribution__c,
                 Pro_Partner_Typ__c, 

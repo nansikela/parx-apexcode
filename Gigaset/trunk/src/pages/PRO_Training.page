@@ -1,4 +1,4 @@
-<apex:page controller="TemplateController" language="{!defaultlanguage}" action="{!firstPage}">
+<apex:page controller="DETemplateController" language="{!defaultlanguage}" action="{!firstPage}">
 
 <!--die 4 Button von der Startseite. Content eingebunden-->
     <div style="display:none; color:white;">

@@ -1,4 +1,4 @@
-<apex:component controller="navigationController" id="pronavigation" >
+<apex:component controller="DEnavigationController" id="pronavigation" >
 <!-- to clarify if the portals will have different consumer portals -->
     <apex:outputPanel id="topNavi">
         <ul id="Navigation">

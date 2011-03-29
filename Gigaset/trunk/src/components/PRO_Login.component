@@ -1,4 +1,4 @@
-<apex:component controller="SiteLoginController" id="loginComponent"
+<apex:component controller="DESiteLoginController" id="loginComponent"
     rendered="{!$Site.LoginEnabled}" language="{!defaultlanguage}">
     
     <apex:form id="loginForm" forceSSL="true">

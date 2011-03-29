@@ -1,4 +1,4 @@
-<apex:component controller="TemplateController" language="{!defaultlanguage}">
+<apex:component controller="DETemplateController" language="{!defaultlanguage}">
 
 <!--eigentlich ist in diesem Content die ganze seite angezeigt.-->
 <c:contentblock name="training" rendered="true" />

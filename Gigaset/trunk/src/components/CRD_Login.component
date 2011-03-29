@@ -13,9 +13,11 @@
                  for="password" />
             <apex:inputSecret id="password" value="{!password}" styleClass="LoginField" />
             <br />
-            <div class="spacer6">
-                <apex:commandButton action="{!login}" style="min-width: 72px;"
-                    value="{!$Label.site.login_button}" id="loginButton" styleClass="newBTN isRight" />
+            <div class="newBTN">
+                <div class="newBTN_arrow">
+                	<apex:commandButton action="{!login}" style="min-width: 72px;"
+                    	value="{!$Label.site.login_button}" id="loginButton" styleClass="newBTN isRight" />
+            	</div>
             </div>
             <br />
             <apex:outputPanel id="thelinks" >

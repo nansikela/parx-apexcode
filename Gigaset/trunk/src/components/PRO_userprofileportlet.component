@@ -1,4 +1,4 @@
-<apex:component controller="userprofileportletController" id="prouserprofileportlet" >
+<apex:component controller="DEuserprofileportletController" id="prouserprofileportlet" >
     <div id="profil">
         <div id="contactProfil" class="link_arrow">
             <strong><apex:outputText value="{!$Label.userprofile}" id="profiletitletext" /></strong>

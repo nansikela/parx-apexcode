@@ -1,4 +1,4 @@
-<apex:component controller="kontaktController" allowDML="true" id="kontaktformular" >
+<apex:component controller="DEkontaktController" allowDML="true" id="kontaktformular" >
     <h1>{!$Label.contact}</h1>
     <!-- 
     <p class="errorMsg" rendered="{!messages!=''}" id="errormessages" >{!messages}</p>
