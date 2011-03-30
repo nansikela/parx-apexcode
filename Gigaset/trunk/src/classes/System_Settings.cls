@@ -13,6 +13,10 @@ global class System_Settings {
     global static GlobalSettings__c landing_config;
 	global static Cookie cookie = null;
 	global static String remindPageId;
+	global static String popupPageId;
+	global static Boolean popupIsPDF = true;
+	global static Boolean popupIsFlash = false;
+	global static Boolean popupIsNative = false;
 	
     // pageids
     global static final String userdatapageid=getPageId('Benutzerdaten');
