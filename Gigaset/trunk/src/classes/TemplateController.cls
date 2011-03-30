@@ -341,4 +341,30 @@ public class TemplateController {
 	public PageReference redirectToLogin(){
 		return System_Settings.redirectDirectlyToLogin();
 	}
+	
+	public String getTarget(){
+		return 'pdf_logo.pdf';
+	}
+	
+	public String getPopupurl() {  
+		if(System_Settings.popupIsFlash)
+			return Site.getCurrentSiteUrl()+'page';
+		
+		if(System_Settings.popupIsNative)
+			return Site.getCurrentSiteUrl()+'page' + '?pageid=' + System_Settings.popupPageId;
+	
+		return null;
+	}
+	
+	public Boolean getIsPDF(){
+		return System_Settings.popupIsPDF;
+	}
+	
+	public Boolean getIsFlash(){
+		return System_Settings.popupIsPDF;
+	}
+	
+	public Boolean getIsNative(){
+		return System_Settings.popupIsPDF;
+	}
 }
