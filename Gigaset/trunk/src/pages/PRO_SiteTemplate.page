@@ -20,6 +20,10 @@
             <!--  END header -->
             <div id="content_wrapper">
             
+            <div id="custom_popup" class="custom_popup">
+				<iframe src="#"></iframe>
+			</div>
+            
             <div id="content">
                 
                 <apex:insert name="breadcrump">
