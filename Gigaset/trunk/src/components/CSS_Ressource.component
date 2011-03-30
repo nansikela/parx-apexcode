@@ -37,25 +37,8 @@ span {
 	font-size: 18pt ! important;
 }
 
-.newBTN {
-	background-image: url("resource/1297443310000/gigasetextranetZIP/img/btn_front.gif"), url("resource/1297443310000/gigasetextranetZIP/img/btn_back.gif");
-	background-repeat: repeat-y;
-	background-color: #FFFFFF !important;
-	background-position: top left, top right;
-	height: 24px;
-	border: 0 none;
-	color: white !important;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 20px 0px 24px !important;
-	vertical-align: top !important;
-}
-
-.newBTN a, .newBTN_right a{
-	position: relative;
-	top: 5px;
-	color: white !important;
-}
+/* --------------------------------------------------------------------------------------------------- */
+/* -------------------------------- CUSTOM BUTTON STYLES --------------------------------------------- */
 
 .isRight {
 	float:right;
@@ -64,9 +47,54 @@ span {
 .isLeft {
 	float:left;
 }
+
+.newBTN_area {
 	
-span.newBTN:hover, div.newBTN:hover ,a.newBTN:hover, input.newBTN:hover  {
-	background-image: url("resource/1297443310000/gigasetextranetZIP/img/btn_front_L.gif"), url("resource/1297443310000/gigasetextranetZIP/img/btn_back_L.gif");
+}
+
+.newBTN_area:hover {
+
+}
+
+	/*/np/resource/1300816624000/gigasetextranetZIP/img/btn_back.gif*/
+.newBTN_area .newBTN {
+	height: 24px !important;
+	background-repeat: repeat;
+	background-color: #FFFFFF !important;
+	background-position: top right;
+	color: white!important;
+	border: none;
+	float: left;
+	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.gif')}); */
+	background-image: url(http://gigaset.com//img/btn_back.png);
+	/*
+	background-repeat: repeat-y;
+	background-color: #FFFFFF !important;
+	background-position: top left, top right;
+	
+	border: 0 none;
+	color: white !important;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 20px 0px 0px !important; */
+}
+
+.newBTN_area .newBTN input, .newBTN_area .newBTNBlack input {
+	padding-left: 10px!important;
+	padding-right: 15px!important;
+}
+
+.newBTN_area .newBTN a, .newBTN_area .newBTNBlack a {
+	padding-left: 10px!important;
+	padding-right: 15px!important;
+	padding-top: 4px!important;
+}
+
+.newBTN_area:hover .newBTN {
+	background-repeat: repeat;
+	background-position: top right;
+	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back_L.gif')});*/
+	background-image: url(http://gigaset.com//img/btn_backL.png);
 	/*
 	background-repeat: repeat-y;
 	background-color: #FFFFFF !important;
@@ -79,35 +107,141 @@ span.newBTN:hover, div.newBTN:hover ,a.newBTN:hover, input.newBTN:hover  {
 	padding: 0px 20px 0px 24px !important; */
 } 
 
-	
+.newBTN_area .newBTN_arrow {
+	height: 24px !important;
+	background-repeat: repeat-y;
+	background-position: top left;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 0px 0px 0px !important;
+	float: left;
+	width: 24px;
+	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
+	background-image: url(http://gigaset.com//img/btn_front.png);
 	/*
-	background:  no-repeat scroll 100% 0 transparent;
+	background-repeat: repeat-y;
+	background-color: #FFFFFF !important;
+	background-position: top left, top right;
+	height: 24px;
 	border: 0 none;
 	color: white !important;
 	display: inline-block;
 	overflow: hidden;
-	height: 30px;
-	padding: 4px 20px 0 5px !important;
-	position: relative;
-}
+	padding: 0px 20px 0px 24px !important; */
+} 
 
-.btnArrow {
-	background:  no-repeat scroll 0 0 transparent !important;
+.newBTN_area:hover .newBTN_arrow {
+	height: 24px !important;
+	background-repeat: repeat-y;
+	background-position: top left;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 0px 0px 0px !important;
+	background-image: url(http://gigaset.com//img/btn_frontL.png);
+	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
+} 	
+
+/* RESET ALL STYLING EFFECTS FOR BUTTON CLASSES! */
+.newBTN_area .newBTN_arrow input, .newBTN_arrow a, .newBTN_arrow input span, .newBTN_arrow div,
+.newBTN_area .newBTN_arrowBlack input, .newBTN_arrowBlack a, .newBTN_arrowBlack input span, .newBTN_arrowBlack div {
+	background: transparent !important;
+	height: 24px !important;
 	border: 0 none;
 	color: white !important;
-	cursor: pointer !important;
-	float: left;
-	font-size: 12px;
-	font-weight: bold !important;
-	height: 30px;
-	margin: 5px 0;
-	padding: 0 0 0 24px !important;
-	white-space: nowrap;
-	overflow: visible;
-	position: relative;
-	width: auto;
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: top !important;
 }
-*/
+
+.newBTN_area .newBTN_arrow a, .newBTN_arrow input span, .newBTN_arrow div,
+.newBTN_area .newBTN_arrowBlack a, .newBTN_arrowBlack input span, .newBTN_arrowBlack div {
+	position: relative;
+	top: 5px;
+}
+
+/* black buttons */
+	/*/np/resource/1300816624000/gigasetextranetZIP/img/btn_back.gif*/
+	/*
+		http://gigaset.com//img/download_back.gif
+		http://gigaset.com//img/download_backL.gif
+		http://gigaset.com//img/downloadexe_front.gif
+		http://gigaset.com//img/downloadexe_frontL.gif
+		
+		PDFs
+		http://gigaset.com//img/downloadpdf_front.gif
+		http://gigaset.com//img/downloadpdf_frontL.gif
+	*/
+.newBTN_area .newBTNBlack {
+	height: 24px !important;
+	background-repeat: repeat;
+	background-color: #FFFFFF !important;
+	background-position: top right;
+	color: white!important;
+	border: none;
+	float: left;
+	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.gif')}); */
+	background-image: url(http://gigaset.com//img/download_back.gif);
+}
+
+.newBTN_area:hover .newBTNBlack {
+	background-repeat: repeat;
+	background-position: top right;
+	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back_L.gif')});*/
+	background-image: url(http://gigaset.com//img/download_backL.gif);
+} 
+
+.newBTN_area .newBTN_arrowBlack {
+	height: 24px !important;
+	background-repeat: repeat-y;
+	background-position: top left;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 0px 0px 0px !important;
+	float: left;
+	width: 24px;
+	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
+	background-image: url(http://gigaset.com//img/downloadexe_front.gif);
+} 
+
+.newBTN_area:hover .newBTN_arrowBlack {
+	height: 24px !important;
+	background-repeat: repeat-y;
+	background-position: top left;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 0px 0px 0px !important;
+	background-image: url(http://gigaset.com//img/downloadexe_frontL.gif);
+	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
+}
+
+/* ------------------------------------------ END ---------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------------- */
+
+#custom_popup.custom_popup {
+	width: 990px;
+	height: 500px;
+	overflow: auto;
+	background-color: black;
+	padding: 20px;
+	text-align: justify;
+	position:absolute;
+	z-index: 1;
+	display: block;
+	overflow:hidden;
+	margin-left: -15px;
+	visibility: hidden;
+	top: 0px;
+}
+
+#custom_popup.custom_popup iframe {
+	border-width: 0px;
+	overflow-x: hidden; 
+	overflow-y: hidden; 
+	width:100%;
+	height:100%;
+	background-color: white;
+}
+
 .tblNavigationTop {
 	position:relative; 
 	height:40px; 
@@ -216,7 +350,7 @@ span.newBTN:hover, div.newBTN:hover ,a.newBTN:hover, input.newBTN:hover  {
 }
  
 #cboxContent {
-    background: url(URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) repeat-x 0 0;
+    background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) repeat-x 0 0;
 }
     
 #cboxClose {

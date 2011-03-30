@@ -151,8 +151,18 @@
                     		<p>{!$Label.registration_required_fields}</p>
                 		</apex:outputPanel>
                         <apex:outputPanel id="privacybuttons" layout="block">
-                        	<apex:outputLink styleClass="gcbtn" value="javascript:history.go(-1);">{!$Label.back}</apex:outputLink>
-                        	<apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register" id="nextstep0_btn"  />
+                        <div id="btnarea" class="newBTN_area isLeft">
+	                    <div class="newBTN_arrowBlack"></div>
+	                    	<div class="newBTNBlack">
+                        	<apex:outputLink styleClass="newBTNBlack" value="javascript:history.go(-1);">{!$Label.back}</apex:outputLink>
+                        	</div>
+                        </div>
+                        <div id="btnarea" class="newBTN_area isRight">
+	                    <div class="newBTN_arrowBlack"></div>
+	                    	<div class="newBTNBlack">
+                        	<apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="newBTNBlack" rerender="register" id="nextstep0_btn"  />
+                        	</div>
+                        </div>
                         </apex:outputPanel>
                     </apex:form>
                 </apex:outputPanel>

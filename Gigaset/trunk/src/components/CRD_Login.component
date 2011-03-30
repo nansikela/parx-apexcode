@@ -13,8 +13,9 @@
                  for="password" />
             <apex:inputSecret id="password" value="{!password}" styleClass="LoginField" />
             <br />
-            <div class="newBTN isRight">
-                <div class="newBTN_arrow">
+            <div id="btnarea" class="newBTN_area isLeft" style="padding-left: 210px;">
+	                <div class="newBTN_arrow"></div>
+	                <div class="newBTN">
                 	<apex:commandButton action="{!login}" value="{!$Label.site.login_button}" id="loginButton" styleClass="newBTN" />
                     	 <!-- style="min-width: 72px;" -->
             	</div>

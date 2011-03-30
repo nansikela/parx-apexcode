@@ -59,9 +59,16 @@
                                 <apex:inputField id="description" value="{!u.Description__c}" required="false" styleClass="FieldRequiredSelect" />
                                 
                         
-                                <div class="requiredInput spacer5">
+                                <!-- <div class="requiredInput spacer5"> -->
+                                <div class="newBTN isLeft">
+				                	<div class="newBTN_arrow">
+				            			<apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="newBTN" rerender="clearingpanel" id="nextstep1_btn"  />
+				            		</div>
+				            	</div>
+				            	<!-- 
                                 <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9" style="margin-left: 450px !important;" rerender="clearingpanel" id="nextstep1_btn"  />
                                 </div> 
+                                -->
                             </apex:form>
                         </apex:outputPanel>
                         <apex:outputPanel id="noprofields" rendered="{!NOT(showProfields)}">
@@ -93,9 +100,16 @@
                         		<apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext" rendered="{!AND(step<2,showProfields)}">
                         			<p>{!$Label.clearingpage_requiredfield}</p>
                    				</apex:outputPanel>
-                                <div class="requiredInput spacer5">
+                                <!-- <div class="requiredInput spacer5"> --> 
+                                <div class="newBTN isLeft">
+				                	<div class="newBTN_arrow">
+				            			<apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="newBTN" rerender="clearingpanel" id="nextstep1_btn"  />
+				            		</div>
+				            	</div>
+				            	<!-- 
                                 <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9" style="margin-left: 450px !important;" rerender="clearingpanel" id="nextstep1_btn"  />
-                                </div> 
+                                </div>
+                                --> 
                             </apex:form>
                         </apex:outputPanel>
                     </apex:outputPanel>
