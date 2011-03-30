@@ -19,7 +19,15 @@
             </div>
             <!--  END header -->
             <div id="content_wrapper">
-            
+             
+            <div id="custom_popup" class="custom_popup"> 
+            	<a style="position:absolute; color:white; top:5px; right: 8px;" onclick="document.all.custom_popup.style.visibility = 'hidden';">X</a>
+				<apex:variable var="pdf" value="{!target}"/>
+				<apex:iframe rendered="{!isPDF}" src="{!URLFOR($Resource.pdfs, pdf)}" scrolling="false" id="iFrameOfPopupPDF" width="100%"/>
+				<apex:iframe rendered="{!isNative}" src="{!popupurl}" scrolling="false" id="iFrameOfPopup" width="100%"/>
+				<!-- <apex:flash rendered="{!isFlash}" src="{!URLFOR($Resource.flashs, flash)}" width="100%" height="100%"/> -->
+			</div> 
+			
             <div id="content">
                 <apex:insert name="breadcrump">
                     <c:CRD_breadcrump id="CRD_breadcrumpcomp" />
@@ -47,7 +55,36 @@
     
     
     <!-- <c:CRD_header_style id="stylesheets" /> -->
-    
+    <script>
+    	function getURLParam(strParamName){
+			strReturn = "";
+			strHref = window.location.search;
+			if( strHref.indexOf("?") > -1 ){
+				strQueryString = strHref.substr(strHref.indexOf("?")).toLowerCase();
+				aQueryString = strQueryString.split("&");
+				for ( iParam = 0; iParam < aQueryString.length; iParam++ ){
+					if (aQueryString[iParam].indexOf(strParamName + "=") > -1 ){
+						aParam = aQueryString[iParam].split("=");
+						strReturn = aParam[1];
+						break;
+					}
+				}
+			}
+			return strReturn;
+		}
+		
+		window.onload = function(){
+			var h = window.innerHeight;
+			var w = window.innerWidth;
+			
+			if( getURLParam('popup') == '1' ){
+				document.all.custom_popup.style.top = (h/2 - document.all.custom_popup.style.height/2)+'px';
+				document.all.custom_popup.style.visibility = 'visible';
+			} else {
+				document.all.custom_popup.style.visibility = 'hidden';
+			}
+		};
+    </script>
     <c:CSS_Ressource id="stylesheet_Michi" />
     <c:CRD_headerStylesBottom id="styles_bottom"  isAuthenticated="{!isAuthenticated}" Modules_URLPage="{!Modules_URLPage}" />
     <site:previewAsAdmin />
