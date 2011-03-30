@@ -1,35 +1,42 @@
-<apex:page showheader="false" id="CRD_landing_page" sidebar="false" title="{!$Label.de_title}"  controller="TemplateController" extensions="CRD_Landing_Controller" language="{!defaultlanguage}" action="{!init}" >
+<apex:page showheader="false" id="CRD_landing_page" sidebar="false" title="{!$Label.de_title}" 
+		controller="TemplateController" extensions="CRD_Landing_Controller"
+		standardStylesheets="false" 
+		language="{!defaultlanguage}" action="{!init}" >
 
 <apex:composition template="{!$Site.Template}">
 
         <apex:define name="body">
             <c:contentblock name="maincontent" />
             <apex:form id="form"> 
-            	<div class="newBTN isLeft">
-                	<div class="newBTN_arrow">
+            	<div id="btnarea" class="newBTN_area isLeft">
+	                    <div class="newBTN_arrow"></div>
+	                    <div class="newBTN">
             			<apex:commandButton styleclass="newBTN" value="Go To Login loooooooooooool" action="{!redirectToLogin}">
             				<apex:param name="clicked" value="true" />
             			</apex:commandButton>
             		</div>
             	</div>
             	
-            	<div class="newBTN isLeft">
-                	<div class="newBTN_arrow">
-            			<apex:commandLink value="loooooooooooool" action="{!redirectToLogin}">
+            	<div id="btnarea" class="newBTN_area isLeft">
+	                    <div class="newBTN_arrow"></div>
+	                    <div class="newBTN">
+            			<apex:commandLink value="loooooooooooool" action="{!redirectToLogin}" styleClass="newBTN">
             			 	<apex:param name="clicked" value="true" />
             			</apex:commandLink>
             		</div>
             	</div>
             	
-				<div class="newBTN isRight">
-                	<div class="newBTN_arrow">
-						<a id="btn" >TEEEEEEEEEEST</a>
+				<div id="btnarea" class="newBTN_area isRight">
+	                    <div class="newBTN_arrow"></div>
+	                    <div class="newBTN">
+						<a id="btn" class="newBTN">TEEEEEEEEEEST</a>
             		</div>
             	</div>
             	
-            	<div class="newBTN isLeft">
-                	<div class="newBTN_arrow">
-            			<apex:outputLink value="#" id="theLink">ROOOOOOOOOOOOOOFL</apex:outputLink>
+            	<div id="btnarea" class="newBTN_area isLeft">
+	                    <div class="newBTN_arrow"></div>
+	                    <div class="newBTN">
+            			<apex:outputLink styleClass="newBTN" value="#" id="theLink">ROOOOOOOOOOOOOOFL</apex:outputLink>
             		</div>
             	</div>
 			</apex:form>
