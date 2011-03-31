@@ -439,7 +439,9 @@
 	
 	/* ---------------- LINK PFEILE------------------------------*/
 	.lft_login {
-	    margin-left: 211px;
+	    padding-left: 211px;
+	    float: left;
+		padding-top: 15px;
 	}
 	
 	.lft_login a,
@@ -540,7 +542,7 @@
 	}
 	
 	#content .prodTeaserBig ul {
-		width: 926px;
+		width: 925px;
 	}
 	
 	#content .prodTeaserFrame {
