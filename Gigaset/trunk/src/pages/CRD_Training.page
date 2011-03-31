@@ -1,7 +1,7 @@
-<apex:page controller="TemplateController" language="{!defaultlanguage}" action="{!firstPage}">
+<apex:page controller="DETemplateController" language="{!defaultlanguage}" action="{!firstPage}">
 
 <!--die 4 Button von der Startseite. Content eingebunden-->
-    <div style="display:none; color:black;">
+    <div style="display:none;color:{!IF(isPro,"white","black")};">
         <div id='AboutLektora' style='padding:10px;'>
             <c:contentblock name="1-lektora" rendered="true" />
         </div>
@@ -52,7 +52,7 @@
        	<apex:actionFunction name="initModuleLoad" action="{!initModuleResult}" rerender="inline1"/>
         
         <script>
-           /*  $(document).ready(function(){
+            $(document).ready(function(){
                 //Examples of how to assign the ColorBox event to elements
             /*  $("a[rel='example1']").colorbox();
                 $("a[rel='example2']").colorbox({transition:"fade"});
@@ -136,35 +136,34 @@
         </script>
 
 <!-- This contains the hidden content for inline calls -->
-        <div id="top_upper_Nav" style="font-family: Arial,Helvetica,Geneva,sans-serif; width: 940px; height: 28px; position: absolute; left: 0px;">
+        <div style="font-family: Arial,Helvetica,Geneva,sans-serif; width: 960px; height: 28px; position: absolute; top: 0px; left: 0px; padding-top: 3px;">
         
 <!-- inline1 ist die erste Seite. Es ist in diesem outputPanel angezeigt. Die anderen "outputpanel", bzw. div (in HTML) sind versteckt-->
-            <apex:outputPanel id="inline1" rendered="{!Modules_showFirstpage}">
+            <apex:outputPanel id="inline1" rendered="{!Modules_showFirstpage}" layout="block" styleClass="background">
             
 <!-- home button -->
-				<table class="tblNavigationTop" >
+				<table style="table-layout:auto;" class="tblNavigationTop" >
                 <tr>
-                 <td width="50px">
-                </td> 
-                <td class="navigationTop">
-                <apex:outputPanel styleClass="navigationTop" > <!-- style="margin-left:48px;" -->
+                 <td width="10px">
+               	 </td>
+                <td >
+                  <div class="navigationTop">
                     <a id="click1" href="#">
                     {!Campus_Title_1}
                     </a>
-                </apex:outputPanel>
+                  </div>
+                <!--  </apex:outputPanel>-->
                  </td> 
 <!-- für die anderen Button rechts vom "home" button-->
-                
                 <apex:repeat value="{!Books}" var="book" id="theRepeat">
-                    <td width="10px">
-               	 	</td>
-                    <td class="navigationTop">
+                    
+                    <td class="navigationTopSection">
                      <div class="navigationTop" >    
                         <apex:commandLink value="{!UPPER(book.book.Titel__c)}" action="{!secondPage}" > <!-- style="margin-left:35px;" -->
                             <apex:param name="param" value="{!book.book.Titel__c}"/>
                         </apex:commandLink>
                      </div> 
-                    </td> 
+                    </td>
                 </apex:repeat> 
                 <td width="10px">
                 </td>
@@ -185,7 +184,7 @@
                     <div class="right-element" style="padding:2px 0px 0px 22px; width: 452px; height: 383px;">
 
 <!--das bild von den 5 bücher-->
-                           <apex:image value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/buecher.png')}" style="padding-left:18px;"/>
+                           <apex:image value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Books_grey.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/buecher.png'))}" style="padding-left:18px;"/>
                     
 <!-- der "repeat" widerholt für die 5 linken (für jede Buch!) -->
                            <apex:repeat value="{!Books}" var="book" id="Repeat2">
@@ -200,7 +199,7 @@
                                 </div>
 
 <!-- die roten Buchhänger -->
-                                <apex:image style="padding-left:30px; position: absolute; top: {!book.Helfer_BH_Vertical}px; left:{!book.Helfer_BH}px" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/offline/buchhaenger_offline.png')}" rendered="{!book.book.Buchhaenger__c}"/>    
+                                <apex:image style="padding-left:30px; position: absolute; top: {!book.Helfer_BH_Vertical}px; left:{!book.Helfer_BH}px" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Bookmark_offline.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/offline/buchhaenger_offline.png'))}" rendered="{!book.book.Buchhaenger__c}"/>    
 
 <!-- die nummer im Buchhänger -->
                                 <apex:outputText rendered="{!book.book.Buchhaenger__c}" styleClass="bookmarknumber" style="position: absolute; top: {!book.Helfer_BH_Vertical+75}px; left:{!book.Helfer_BH+31}px" value="{!ROUND(book.book.New_Modules__c,0)}"  />
@@ -230,7 +229,7 @@
 <!-- titel mit links. Ein <td> für jede Titel...(im repeat wiederholt)-->
                                     <td align="left" valign="top" style="padding-top:8px; padding-left:9px; height:14px;">
                                         <div class="bookHeading" >
-                                        	<apex:commandLink action="{!secondPage}" styleClass="innerBookHeading" style="color:white;" value="{!UPPER(book.book.Titel__c)}" > 
+                                        	<apex:commandLink action="{!secondPage}" styleClass="innerBookHeading" style="color:{!IF(IsPro,'black','white')};" value="{!UPPER(book.book.Titel__c)}" > 
                                             	<apex:param name="param" value="{!book.book.Titel__c}"/>
                                         	</apex:commandLink>
                                         </div>
@@ -332,8 +331,8 @@
                     </span>
                 </apex:repeat>
            -->
-                <div class="vNav" style="background:#e6e8e9;">
-                    <h1 style="font-size: 20pt; font-weight: normal; color:#474c54; margin: 12px 0px 20px 17px; height: 40px;">{!Modules_book.Titel__c}</h1>
+                <div class="vNav" style="background:{!IF(isPro,'white','#e6e8e9')};">
+                    <h1 style="font-size: 20pt; font-weight: normal; color:{!IF(isPro,'#F39100','#474c54')}; margin: 12px 0px 20px 17px; height: 40px;">{!Modules_book.Titel__c}</h1>
                     <h2 style="font-size: 18px; font-weight: normal; color:#474c54; margin: 12px 0px 30px 17px;">{!Modules_book.Subtitel__c}</h2>
                     
                     <div style="width: 416px; height: 232px; position:relative; top:0px;">
@@ -418,12 +417,12 @@ Nämlich ist man hier im iFrame und diese Background ist vom Komponent gesteuert
 dafür habe ich 1 bild darauf gelegt (der background ist ein kleines bisschen unterschieden
 zwischen die erste und 2. seite... aber vielleicht kann man das schöner machen????? -->
 
-                <apex:image style="position: absolute; top: 0px; left: 0px; z-index: -2; height: 545px; width: 960px;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_unterseiten.jpg')}" />   
+                <apex:image style="position: absolute; top: 0px; left: 0px; z-index: -2; height: 545px; width: 960px;" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/BG_Chapter.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_unterseiten.jpg'))}" />   
                 
 <!-- wenn man z.B. auf Company & Brand clickt ist diese outputpanel angezeigt (das grosse buch)-->
                 <apex:outputPanel id="inline3" rendered="{!NOT(Modules_showThirdpage)}" >       
-                    <apex:image style="position: absolute; top: 102px; right: 75px; z-index: -1;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/buch.png')}" />            
-                    
+                    <apex:image style="position: absolute; top: 102px; right: 75px; z-index: -1;" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Book_grey.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/buch.png'))}" />            
+                    <apex:image style="position: absolute; top: 500px; right: 718px; z-index: -1;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Gigaset_Pro_Logo.png')}" rendered="{!isPro}" /> 
                     <div style="position: absolute; color:#fbedca; font-size: 27px; top: 110px; left: 604px; width:225px; height:330px;text-align:center;"> <!-- left: 585px; width:265px;  -->
                         <apex:outputText style="color: #E6E6E6;font-size:18px;text-decoration: none;top:100px;position:relative;" value="{!Modules_book.Titel__c}" />             
                     </div>
@@ -437,17 +436,17 @@ zwischen die erste und 2. seite... aber vielleicht kann man das schöner machen?
 <!-- ok das haupt bild... man soll trotzdem prüfen dass diese bild in SF existiert sonst wird es nicht angezeigt.
      ausserdem gibt es ein trick. ein weisse Rahm soll auch angezeigt werden, um das bild. dafür ist den background white.
 -->
-                    <div id="textmoodbild" style="background-color:#e6e8e9; color: black;font-weight: normal;height: 361px;left: 496px; position: absolute;top: 102px; width: 416px;">
+                    <div id="textmoodbild" style="background-color: {!IF(isPro,'white','#e6e8e9')}; color: black;font-weight: normal;height: 361px;left: 496px; position: absolute;top: 102px; width: 416px;">
                         <apex:image rendered="{!AND(NOT(ISNULL(Modules_SingleModule.Bild_URL__c)),NOT(ISBLANK(Modules_SingleModule.Bild_URL__c)))}" url="{!Modules_SingleModule.Bild_URL__c}" width="396"  height="342" style="position: relative; top: 10px; left:10px ;" /> 
                     </div>
                     
 <!-- hier ist nur html... -->
                     <div id="textmoodbild3" style="width: 396px; top: 112px; position: absolute; left: 506px; height: 342px; ">
                     
-                        <h1 class="scndPageTitle" style="color:white; ">{!Campus_otherPage1}</h1>
-                        <p style="color:white; width: 356px; margin: 15px 0px 0px 17px; font-weight: normal;">{!Campus_otherPage2} {!Modules_SingleModule.Sortierung__c}: <span style="font-size:17px; font-weight: normal; color:#f39100; margin-left:2px">{!Modules_SingleModule.Titel__c}</span></p>
+                        <h1 class="scndPageTitle" style="color:{!IF(IsPro,'#474c54','white')}; ">{!Campus_otherPage1}</h1>
+                        <p style="color:{!IF(IsPro,'#474c54','white')}; width: 356px; margin: 15px 0px 0px 17px; font-weight: normal;">{!Campus_otherPage2} {!Modules_SingleModule.Sortierung__c}: <span style="font-size:17px; font-weight: normal; color:#f39100; margin-left:2px">{!Modules_SingleModule.Titel__c}</span></p>
                         <p style="font-size:12px; font-weight:normal; color:#f39100; width:200px; margin: 7px 0px 7px 17px;">{!Modules_SingleModule.Beschreibung__c}</p>
-                        <p style="font-size:12px; color:white; width: 356px; font-weight: normal; margin: 0px 0px 0px 14px; position: absolute;top: 149px;">
+                        <p style="font-size:12px; color:{!IF(IsPro,'#474c54','white')}; width: 356px; font-weight: normal; margin: 0px 0px 0px 14px;position: absolute;top: 149px;">
                         <apex:image style="position: relative; top: 1px; left:0px ;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/sanduhr_grau.png')}" />          
                         {!Campus_otherPage3} {!ROUND(Modules_SingleModule.Dauer__c,0)} {!Campus_otherPage4}
                         
@@ -460,15 +459,15 @@ zwischen die erste und 2. seite... aber vielleicht kann man das schöner machen?
                     </div>
                     
 <!-- für den opacity effekt... standard ist kein display, sonst wenn der javascript ausgeführt ist ist diese div angezeigt.-->
-                    <div id="textmoodbild1" style="display:none; width: 396px;top: 112px;position: absolute;left: 506px;height: 342px; background-color:black;"> 
+                    <div id="textmoodbild1" style="display:none; width: 396px;top: 112px;position: absolute;left: 506px;height: 342px; background-color: {!IF(IsPro,'lightgrey','black')};"> 
 <!--                     für den auto refresh ...--> 
                     </div>
-             
+                  	<apex:image style="position: absolute; top: 500px; right: 718px; z-index: -1;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Gigaset_Pro_Logo.png')}" rendered="{!isPro}" /> 
                         
 <!-- ein 2. div sollte auch gemacht werden da sonst ist der text durchsichtig.....-->
                     <div id="textmoodbild2" style="display:none; width: 396px;top: 112px;position: absolute;left: 506px; height: 342px;"> 
                         <p style="color:#ee7f00; text-align:center; font-size:22px; font-weight: normal; padding-top:80px;">{!Campus_lastPage1}</p> 
-                        <p style="color:white; text-align:center; font-weight: normal; font-size:12px; padding-top:24px;">{!Campus_lastPage2}</p> 
+                        <p style="color:{!IF(IsPro,'black','white')}; text-align:center; font-weight: normal; font-size:12px; padding-top:24px;">{!Campus_lastPage2}</p> 
 
 <!-- für die 4 buttons-->
                         <span class="class1 modul_set" style="position: absolute; margin-left: 67px; margin-top: 40px;">
@@ -490,8 +489,6 @@ zwischen die erste und 2. seite... aber vielleicht kann man das schöner machen?
                 </apex:outputPanel>                                 
             </apex:outputPanel>
         </div>
-
 </apex:form>
-
-
+<c:CSS_Ressource id="stylesheet_Michi" />
 </apex:page>
