@@ -23,8 +23,8 @@
             <div id="custom_popup" class="custom_popup"> 
             	<a style="position:absolute; color:white; top:5px; right: 8px;" onclick="document.all.custom_popup.style.visibility = 'hidden';">X</a>
 				<apex:variable var="pdf" value="{!target}"/>
-				<apex:iframe rendered="{!isPDF}" src="{!URLFOR($Resource.pdfs, pdf)}" scrolling="false" id="iFrameOfPopupPDF" width="100%"/>
-				<apex:iframe rendered="{!isNative}" src="{!popupurl}" scrolling="false" id="iFrameOfPopup" width="100%"/>
+				<!-- <apex:iframe rendered="{!isPDF}" src="{!URLFOR($Resource.pdfs, pdf)}" scrolling="false" id="iFrameOfPopupPDF" width="100%"/> -->
+				<iframe src="{!IF(isNative,' ',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup" width="100%"> </iframe>
 				<!-- <apex:flash rendered="{!isFlash}" src="{!URLFOR($Resource.flashs, flash)}" width="100%" height="100%"/> -->
 			</div> 
 			
@@ -58,10 +58,11 @@
     <script>
     	function getURLParam(strParamName){
 			strReturn = "";
-			strHref = window.location.search;
+			strHref = window.location.href; //search
 			if( strHref.indexOf("?") > -1 ){
 				strQueryString = strHref.substr(strHref.indexOf("?")).toLowerCase();
-				aQueryString = strQueryString.split("&");
+				aQueryString = strQueryString.split("#");
+				
 				for ( iParam = 0; iParam < aQueryString.length; iParam++ ){
 					if (aQueryString[iParam].indexOf(strParamName + "=") > -1 ){
 						aParam = aQueryString[iParam].split("=");
@@ -74,14 +75,13 @@
 		}
 		
 		window.onload = function(){
-			var h = window.innerHeight;
-			var w = window.innerWidth;
-			
-			if( getURLParam('popup') == '1' ){
-				document.all.custom_popup.style.top = (h/2 - document.all.custom_popup.style.height/2)+'px';
-				document.all.custom_popup.style.visibility = 'visible';
+			var result = getURLParam('popup');
+			alert(result);
+			if( result.trim() != ''){
+				document.getElementById("custom_popup").style.visibility = 'visible';
+				document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
 			} else {
-				document.all.custom_popup.style.visibility = 'hidden';
+				document.getElementById("custom_popup").style.visibility = 'hidden';
 			}
 		};
     </script>

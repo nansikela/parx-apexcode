@@ -38,16 +38,19 @@
             <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext" >
             	<p>{!$Label.registration_required_fields}</p>
         	</apex:outputPanel>
-            <div class="requiredInput spacer5">
-                <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
-                <apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="spacer8" id="save_btn" />
-            </div>
+            <apex:outputPanel id="buttons" layout="block" styleClass="buttondiv" >
+                <div id="btnarea" class="newBTN_area isRight">
+	            	<div class="newBTN_arrow"></div>
+	                <div class="newBTN">
+                		<apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="newBTN" id="save_btn" />
+                	</div>
+                </div>
+            </apex:outputPanel>
         </apex:form>
         
     </apex:outputPanel>
     <apex:outputPanel id="success" rendered="{!success}">
-        <p>{!$Label.callback_thanks_we_callback}</p>
-        <c:CRD_formResultMessage msgstyle="success" title="{!$Label.callback}" message="" id="callbackmsgsuccesscomp" />
+        <c:CRD_formResultMessage msgstyle="success" title="{!$Label.callback}" message="{!$Label.callback_thanks_we_callback}" id="callbackmsgsuccesscomp" />
     </apex:outputPanel>
     <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
     	<h1>{!$Label.callback}</h1>
@@ -57,8 +60,11 @@
         <!--  <p class="errorMsg" >{!messages}</p>-->
     </apex:outputPanel>
     <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}">
-        <div class="spacer5">
-            <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+        <div id="btnarea" class="newBTN_area isLeft">
+          	<div class="newBTN_arrow"></div>
+              <div class="newBTN">
+            	<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+       		</div>
         </div>
     </apex:outputPanel>
 </apex:component>

@@ -4,7 +4,7 @@
 
 	<apex:composition template="{!$Site.Template}">
         <apex:define name="body">
-        	<div id="insidecontent" style="min-height: 650px; background:transparent url(http://gigaset.com/medias/sys_master/Category_BG_CV_Living_1347_gradient.jpg) no-repeat scroll 0 0!important;" >
+        	<div id="insidecontent" style="min-height: 650px; background:transparent url(https://c.cs8.content.force.com/servlet/servlet.ImageServer?id=015L00000000VvS&oid=00DL00000008bYj) no-repeat scroll 0 0!important;" >
         	<c:CRD_register />
         	</div>
 	    </apex:define>

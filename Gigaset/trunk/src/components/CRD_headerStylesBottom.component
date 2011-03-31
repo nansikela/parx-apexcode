@@ -56,7 +56,7 @@
    				if (document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
    					document.getElementById("colRgt").style.paddingTop='65px';
    			}
-
+/*
   
             function getURLParam(strParamName){
 				strReturn = "";
@@ -74,23 +74,15 @@
 				}
 				return strReturn;
 			}
-			  
+		/*	  
             $(document).ready(function(){ 
-<!-- wenn man auf dem bild clickt ist diese teil ausgeführt:  -->
 				
                 if(getURLParam('training') == '1'){ 
                 	$.colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});
                 }
-                //  onOpen:function(){ alert('onOpen: colorbox is about to open'); },
-                //  onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
-                //  onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
-                //  onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
-                //  onClosed:function(){ /*alert('onClosed: colorbox has completely closed');location.href = '/de/apex/page?pageid=a0AR0000005FxEX'; */ 
-                //});
 
             });
-             
-            
+          */  
             
         </script>
 </apex:form>

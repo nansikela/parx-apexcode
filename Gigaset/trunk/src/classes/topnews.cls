@@ -21,8 +21,8 @@ public class topnews {
 		if (cilist.isEmpty()) {
 			try {
 				cilist=[SELECT Id, Title__c, Abstract__c FROM ContentItem__c 
-								//WHERE isActive__c=true 
-								//AND TopNews__c=true 
+								WHERE isActive__c=true 
+								AND TopNews__c=true 
 								//AND isPro__c=:isPro 
 								//AND Portal__c=:portal 
 								//AND (release_date__c<=:System.today() OR release_date__c=null) 

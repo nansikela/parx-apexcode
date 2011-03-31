@@ -150,7 +150,7 @@
                         <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!AND(step<4,step>0)}">
                     		<p>{!$Label.registration_required_fields}</p>
                 		</apex:outputPanel>
-                        <apex:outputPanel id="privacybuttons" layout="block">
+                        <apex:outputPanel id="privacybuttons" layout="block" styleClass="buttonformdiv">
                         <div id="btnarea" class="newBTN_area isLeft">
 	                    <div class="newBTN_arrowBlack"></div>
 	                    	<div class="newBTNBlack">
@@ -280,14 +280,41 @@
                             </apex:outputPanel>
                         </apex:outputPanel>
                         <br />
-                        <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!AND(step<4,step>0)}">
+                        <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!AND(step<4,step>0)}" style="float: left;">
                     		<p>{!$Label.registration_required_fields}</p>
                 		</apex:outputPanel>
-                        <div class="requiredInput spacer5">
-                            <apex:outputLink value="#" onclick="previousStep();" styleClass="gcbtn" id="prev1_btn" rendered="{!showprivacy}">{!$Label.back}</apex:outputLink>
-                            <apex:outputLink styleClass="gcbtn" value="javascript:history.go(-1);" rendered="{!NOT(showprivacy)}">{!$Label.back}</apex:outputLink>
-                            <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register" id="nextstep1_btn"  />
-                        </div>
+                        <apex:outputPanel id="pcompanybuttons" layout="block" styleClass="buttondiv"  rendered="{!showprivacy}">
+                        	<div id="btnarea" class="newBTN_area isLeft">
+			                    <div class="newBTN_arrowBlack"></div>
+			                    <div class="newBTNBlack">
+                            		<apex:outputLink value="#" onclick="previousStep();" styleClass="newBTNBlack" id="prev1_btn" rendered="{!showprivacy}">
+                            		{!$Label.back}
+                            		</apex:outputLink>
+                           		</div>
+                           	</div>
+                            <div id="btnarea" class="newBTN_area isRight">
+			                    <div class="newBTN_arrowBlack"></div>
+			                    <div class="newBTNBlack">
+                            		<apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="newBTNBlack" rerender="register" id="pnextstep1_btn"  />
+                            	</div>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="companybuttons" layout="block" styleClass="buttondiv"  rendered="{!NOT(showprivacy)}">
+                           	<div id="btnarea" class="newBTN_area isLeft">
+			                    <div class="newBTN_arrowBlack"></div>
+			                    <div class="newBTNBlack">
+                           			<apex:outputLink styleClass="newBTNBlack" value="javascript:history.go(-1);" rendered="{!NOT(showprivacy)}">
+                           			{!$Label.back}
+                           			</apex:outputLink>
+                       			</div>
+                       		</div>
+                            <div id="btnarea" class="newBTN_area isRight">
+			                    <div class="newBTN_arrowBlack"></div>
+			                    <div class="newBTNBlack">
+                            		<apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="newBTNBlack" rerender="register" id="nextstep1_btn"  />
+                            	</div>
+                            </div>
+                        </apex:outputPanel>
                     </apex:form>
                 </apex:outputPanel>
                 <apex:outputPanel id="step2" rendered="{!step=2}">
@@ -425,10 +452,20 @@
                         <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!AND(step<4,step>0)}">
                     		<p>{!$Label.registration_required_fields}</p>
                 		</apex:outputPanel>
-                        <div class="requiredInput spacer5 link_arrow">
-                            <apex:outputLink value="#" onclick="previousStep();" styleClass="gcbtn" id="prev1_btn">{!$Label.back}</apex:outputLink>
-                            <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register,additional_styles2,additional_styles1" id="nextstep2_btn" />
+                        <apex:outputPanel id="personalbuttons" layout="block" styleClass="buttonformdiv">
+                        <div id="btnarea" class="newBTN_area isLeft">
+	                    <div class="newBTN_arrowBlack"></div>
+	                    	<div class="newBTNBlack">
+                            <apex:outputLink value="#" onclick="previousStep();" styleClass="newBTNBlack" id="prev1_btn">{!$Label.back}</apex:outputLink>
+                            </div>
                         </div>
+                        <div id="btnarea" class="newBTN_area isRight">
+	                    <div class="newBTN_arrowBlack"></div>
+	                    	<div class="newBTNBlack">	
+                            <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="newBTNBlack" rerender="register,additional_styles2,additional_styles1" id="nextstep2_btn" />
+                        	</div>
+                        </div>
+                        </apex:outputPanel>
                     </apex:form>
                 </apex:outputPanel>
                 <apex:outputPanel id="step3" rendered="{!step=3}">
@@ -471,11 +508,20 @@
                     <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!AND(step<4,step>0)}">
                     	<p>{!$Label.registration_required_fields}</p>
                 	</apex:outputPanel>
-                    <div class="requiredInput spacer5">
-                        <apex:outputLink value="#" onclick="previousStep();" styleClass="gcbtn" id="prev2_btn">{!$Label.back}</apex:outputLink>
-                        <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register,additional_styles2,additional_styles1" id="nextstep3_btn"  />
-                    </div> 
-                    
+                    <apex:outputPanel id="classificationbuttons" layout="block" styleClass="buttonformdiv">
+                        <div id="btnarea" class="newBTN_area isLeft">
+	                    <div class="newBTN_arrowBlack"></div>
+	                    	<div class="newBTNBlack">
+                        	<apex:outputLink value="#" onclick="previousStep();" styleClass="newBTNBlack" id="prev2_btn">{!$Label.back}</apex:outputLink>
+                        	</div>
+                        </div>
+                        <div id="btnarea" class="newBTN_area isRight">
+	                    <div class="newBTN_arrowBlack"></div>
+	                    	<div class="newBTNBlack">
+                        	<apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="newBTNBlack" rerender="register,additional_styles2,additional_styles1" id="nextstep3_btn"  />
+                        	</div>
+                        </div>
+                    </apex:outputPanel>
                 </apex:form>
                 
                 </apex:outputPanel>
@@ -496,12 +542,16 @@
                     <p>{!$Label.registration_error}</p>
                     <apex:pageMessages id="error" />
                 </apex:outputPanel>
+
+                <apex:outputPanel id="backaftersuccess" rendered="{!step>3}" >
+                	<div id="btnarea" class="newBTN_area isLeft">
+                 		<div class="newBTN_arrow"></div>
+                 		<div class="newBTN">
+                    		<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+	                     </div>
+	                 </div>
+                </apex:outputPanel>
                 
-                <div class="requiredInput spacer5">
-                    <apex:outputPanel id="backaftersuccess" rendered="{!step>3}" >
-                        <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
-                    </apex:outputPanel>
-                </div>
            </div>
         </apex:outputPanel>
     </apex:outputPanel>

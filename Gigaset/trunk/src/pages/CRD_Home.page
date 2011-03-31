@@ -47,7 +47,7 @@
 <!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
         <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
         <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
-<!--  -->
+<!--  
         <script>
             $(document).ready(function(){ 
 				
@@ -56,5 +56,5 @@
                 }
             }); 
         </script>
-        
+        -->
 </apex:page>
