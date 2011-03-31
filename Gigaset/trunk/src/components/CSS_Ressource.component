@@ -40,6 +40,10 @@ span {
 /* --------------------------------------------------------------------------------------------------- */
 /* -------------------------------- CUSTOM BUTTON STYLES --------------------------------------------- */
 
+.buttonformdiv {
+	/* width: 364px; */
+}
+
 .isRight {
 	float:right;
 }
@@ -49,22 +53,31 @@ span {
 }
 
 .newBTN_area {
-	
+	cursor: pointer !important;
+	font-size: 11px!important;
+	font-weight: bold !important;
+	white-space: nowrap;
+	height: 24px !important;
 }
 
 .newBTN_area:hover {
-
+	cursor: pointer !important;
+	font-size: 11px!important;
+	font-weight: bold !important;
+	white-space: nowrap;
+	height: 24px !important;
 }
 
 	/*/np/resource/1300816624000/gigasetextranetZIP/img/btn_back.gif*/
 .newBTN_area .newBTN {
 	height: 24px !important;
 	background-repeat: repeat;
-	background-color: #FFFFFF !important;
+	/* background-color: #FFFFFF !important; */
 	background-position: top right;
 	color: white!important;
 	border: none;
 	float: left;
+
 	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.gif')}); */
 	background-image: url(http://gigaset.com//img/btn_back.png);
 	/*
@@ -79,15 +92,27 @@ span {
 	padding: 0px 20px 0px 0px !important; */
 }
 
-.newBTN_area .newBTN input, .newBTN_area .newBTNBlack input {
+.newBTN_area .newBTN input, .newBTN_area .newBTNBlack input, .newBTN_area .newBTNGrey input {
 	padding-left: 10px!important;
 	padding-right: 15px!important;
+	cursor: pointer !important;
+	font-size: 11px!important;
+	font-weight: bold !important;
+	white-space: nowrap;
+	height: 24px !important;
+	background-color: transparent;
 }
 
-.newBTN_area .newBTN a, .newBTN_area .newBTNBlack a {
+.newBTN_area .newBTN a, .newBTN_area .newBTNBlack a, .newBTN_area .newBTNGrey a {
 	padding-left: 10px!important;
-	padding-right: 15px!important;
+	padding-right: 13px!important;
 	padding-top: 4px!important;
+	cursor: pointer !important;
+	font-size: 11px!important;
+	font-weight: bold !important;
+	white-space: nowrap;
+	height: 24px !important;
+	background-color: transparent;
 }
 
 .newBTN_area:hover .newBTN {
@@ -143,7 +168,8 @@ span {
 
 /* RESET ALL STYLING EFFECTS FOR BUTTON CLASSES! */
 .newBTN_area .newBTN_arrow input, .newBTN_arrow a, .newBTN_arrow input span, .newBTN_arrow div,
-.newBTN_area .newBTN_arrowBlack input, .newBTN_arrowBlack a, .newBTN_arrowBlack input span, .newBTN_arrowBlack div {
+.newBTN_area .newBTN_arrowBlack input, .newBTN_arrowBlack a, .newBTN_arrowBlack input span, .newBTN_arrowBlack div,
+.newBTN_area .newBTN_arrowGrey input, .newBTN_arrowGrey a, .newBTN_arrowGrey input span, .newBTN_arrowGrey div {
 	background: transparent !important;
 	height: 24px !important;
 	border: 0 none;
@@ -154,7 +180,8 @@ span {
 }
 
 .newBTN_area .newBTN_arrow a, .newBTN_arrow input span, .newBTN_arrow div,
-.newBTN_area .newBTN_arrowBlack a, .newBTN_arrowBlack input span, .newBTN_arrowBlack div {
+.newBTN_area .newBTN_arrowBlack a, .newBTN_arrowBlack input span, .newBTN_arrowBlack div,
+.newBTN_area .newBTN_arrowGrey a, .newBTN_arrowGrey input span, .newBTN_arrowGrey div {
 	position: relative;
 	top: 5px;
 }
@@ -214,23 +241,90 @@ span {
 	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
 }
 
+/* grey buttons */
+.newBTN_area .newBTNGrey {
+	height: 24px !important;
+	background-repeat: repeat;
+	/* background-color: #FFFFFF !important; */
+	background-position: top right;
+	color: white!important;
+	border: none;
+	float: left;
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backGrey.png')}); 
+	/* background-image: url(http://gigaset.com//img/download_back.gif); */
+}
+/*
+.newBTN_area .newBTNTextGrey {
+	height: 24px !important;
+	background-repeat: repeat;
+	background-position: top right;
+	color: white!important;
+	border: none;
+	float: left;
+	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.gif')}); */
+	/* background-image: url(http://gigaset.com//img/download_back.gif); */
+/*
+}
+*/
+
+.newBTN_area:hover .newBTNGrey {
+	background-repeat: repeat;
+	background-position: top right;
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backGreyL.png')});
+	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back_L.gif')});*/
+	/* background-image: url(http://gigaset.com//img/download_backL.gif); */
+}
+
+.newBTN_area:hover .newBTNTextGrey {
+	background-repeat: repeat;
+	background-position: top right;
+	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back_L.gif')});*/
+	/* background-image: url(http://gigaset.com//img/download_backL.gif); */
+}  
+
+.newBTN_area .newBTN_arrowGrey {
+	height: 24px !important;
+	background-repeat: repeat-y;
+	background-position: top left;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 0px 0px 0px !important;
+	float: left;
+	width: 24px;
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowGrey.png')});
+	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
+	/* background-image: url(http://gigaset.com//img/downloadexe_front.gif); */
+} 
+
+.newBTN_area:hover .newBTN_arrowGrey {
+	height: 24px !important;
+	background-repeat: repeat-y;
+	background-position: top left;
+	display: inline-block;
+	overflow: hidden;
+	padding: 0px 0px 0px 0px !important;
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowGreyL.png')});
+	/* background-image: url(http://gigaset.com//img/downloadexe_frontL.gif); */
+	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
+}
+
 /* ------------------------------------------ END ---------------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------- */
 
 #custom_popup.custom_popup {
-	width: 990px;
-	height: 500px;
+	width: 958px;
+	height: 542px;
 	overflow: auto;
 	background-color: black;
 	padding: 20px;
 	text-align: justify;
 	position:absolute;
-	z-index: 1;
+	z-index: 9999;
 	display: block;
 	overflow:hidden;
-	margin-left: -15px;
+/*	margin-left: -15px; */
 	visibility: hidden;
-	top: 0px;
+	top: 130px;
 }
 
 #custom_popup.custom_popup iframe {
@@ -239,7 +333,7 @@ span {
 	overflow-y: hidden; 
 	width:100%;
 	height:100%;
-	background-color: white;
+/*	background-color: white;	*/
 }
 
 .tblNavigationTop {
@@ -342,6 +436,11 @@ span {
 	 position:absolute; 
 	 left:48px; 
 	 top:102px;
+}
+
+.background {
+	height:550px;
+	background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) repeat-x 0 0;
 }
 
 /*für den colorbox*/
