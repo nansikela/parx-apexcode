@@ -5,7 +5,12 @@
 <br />
       <apex:outputText value="{!$Label.userdata_order_last_step}" styleClass="Description"/> 
 <br /><br /><br />
-    <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+		<div id="btnarea" class="newBTN_area isLeft">
+	        <div class="newBTN_arrow"></div>
+	        <div class="newBTN">  
+    				<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+    		</div>
+    	</div>
                 
 
     <style>

@@ -27,16 +27,14 @@
             <apex:outputPanel style="width:100%;" layout="block" id="additionaltext" styleClass="additionaltext" >
             {!$Label.presetpage_requiredfield}	
         	</apex:outputPanel>
-            <div class="newBTN isLeft">
-                <div class="newBTN_arrow">
-               		<apex:outputLink value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink> <!-- gcbtn -->
-            	</div>
-            </div>
-            <div class="newBTN isRight">
-                <div class="newBTN_arrow">
-            		<apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" id="save_btn" /> <!-- spacer8 -->
+        	<apex:outputPanel id="buttons" layout="block" styleClass="buttondiv" >
+            <div id="btnarea" class="newBTN_area isRight">
+	                <div class="newBTN_arrow"></div>
+	                <div class="newBTN">
+            		<apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" id="save_btn" styleClass="newBTN"/> 
         		</div>
         	</div>
+        	</apex:outputPanel>
         </apex:form>
         
         <!-- <p>{!$Label.check_email_address}</p> -->
@@ -52,8 +50,11 @@
     </apex:outputPanel>
     <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}" >
         <apex:form id="backbuttonform">
-            <div class="spacer5">
-                <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+            <div id="btnarea" class="newBTN_area isLeft">
+	             <div class="newBTN_arrow"></div>
+	             <div class="newBTN">
+                <apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+                </div>
             </div>
         </apex:form>
     </apex:outputPanel>

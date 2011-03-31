@@ -34,7 +34,7 @@ public class TemplateController {
 		
 		if(System_Settings.cookie == null){
 			System_Settings.cookie = new Cookie('guest','1',null,100000000,false);
-      		ApexPages.currentPage().setCookies(new Cookie[]{System_Settings.cookie});
+      		ApexPages.currentPage().setCookies(new Cookie[]{System_Settings.cookie, new Cookie('lastURL',Apexpages.currentPage().getUrl(),null,10000000,false)});
 		}
 		test=Label.loginpage;
 		isPro=System_Settings.isPro;

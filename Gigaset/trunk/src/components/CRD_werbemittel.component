@@ -51,8 +51,13 @@
             <apex:column style="vertical-align: top;">
                 <apex:facet name="header">{!$Label.Article_number}</apex:facet>
                 <apex:outputText value="{!opp.term.Artikelnummer__c}" styleClass="Description"/>
-                <apex:facet name="footer">  
-                    <input type="reset" name="Clear" value="{!$Label.delete}" class="newBTN" style=""/>
+                <apex:facet name="footer"> 
+                	<div id="btnarea" class="newBTN_area isLeft">
+	            		<div class="newBTN_arrow"></div>
+	               		<div class="newBTN">   
+                    		<input type="reset" name="Clear" value="{!$Label.delete}" class="newBTN" style=""/>
+                    	</div>
+                    </div>
                 </apex:facet>
             </apex:column>
             <apex:column style="vertical-align: top;">
@@ -60,9 +65,10 @@
                         <apex:inputText id="quantity" value="{!opp.quantity}" style="width:30px;" onkeyup="if(check(this.value) == 0 ) {this.value='';} " />                
                 <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style=" vertical-align: middle;" styleClass="Description"/>              
                 <apex:facet name="footer">  
-                	<div class="newBTN">
-                		<div class="newBTN_arrow">        
-                        	<apex:commandButton action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp" />               
+               	<div id="btnarea" class="newBTN_area ">
+	            	<div class="newBTN_arrow"></div>
+	                <div class="newBTN">     
+                        	<apex:commandButton action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp" styleClass="newBTN" />               
                 		</div>
                 	</div>
                 </apex:facet>
@@ -119,13 +125,23 @@
 <br /><br />
         <apex:dataTable id="linkList2" value="{!Terms2}" var="opp2" width="160%" columns="2">
             <apex:column >
-                <apex:facet name="footer">                  
-                    <apex:commandButton action="{!firstPage}" value="{!$Label.back}" immediate="true" rerender="werbemittelcomp,werbemittelcomp_finalcomp"/>      
+                <apex:facet name="footer">
+                	<div id="btnarea" class="newBTN_area isLeft">
+	            		<div class="newBTN_arrow"></div>
+	                	<div class="newBTN">                  
+                    		<apex:commandButton action="{!firstPage}" value="{!$Label.back}" immediate="true" rerender="werbemittelcomp,werbemittelcomp_finalcomp" styleClass="newBTN"/>
+                    	</div>
+                    </div>      
                     </apex:facet>
             </apex:column>
             <apex:column >
-                <apex:facet name="footer">                  
-                    <apex:commandButton action="{!thirdPage}" value="{!$Label.Order}" /> 
+                <apex:facet name="footer">
+                	<div id="btnarea" class="newBTN_area isRight">
+	            		<div class="newBTN_arrow"></div>
+	                	<div class="newBTN">                       
+                    		<apex:commandButton action="{!thirdPage}" value="{!$Label.Order}" styleClass="newBTN"/>
+                    	</div>
+                    </div> 
                     </apex:facet>
             </apex:column>
         </apex:dataTable>

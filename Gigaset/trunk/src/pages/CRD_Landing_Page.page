@@ -6,41 +6,46 @@
 <apex:composition template="{!$Site.Template}">
 
         <apex:define name="body">
-            <c:contentblock name="maincontent" />
-            <apex:form id="form"> 
-            	<div id="btnarea" class="newBTN_area isLeft">
-	                    <div class="newBTN_arrow"></div>
-	                    <div class="newBTN">
-            			<apex:commandButton styleclass="newBTN" value="Go To Login loooooooooooool" action="{!redirectToLogin}">
-            				<apex:param name="clicked" value="true" />
-            			</apex:commandButton>
-            		</div>
-            	</div>
-            	
-            	<div id="btnarea" class="newBTN_area isLeft">
-	                    <div class="newBTN_arrow"></div>
-	                    <div class="newBTN">
-            			<apex:commandLink value="loooooooooooool" action="{!redirectToLogin}" styleClass="newBTN">
-            			 	<apex:param name="clicked" value="true" />
-            			</apex:commandLink>
-            		</div>
-            	</div>
-            	
-				<div id="btnarea" class="newBTN_area isRight">
-	                    <div class="newBTN_arrow"></div>
-	                    <div class="newBTN">
-						<a id="btn" class="newBTN">TEEEEEEEEEEST</a>
-            		</div>
-            	</div>
-            	
-            	<div id="btnarea" class="newBTN_area isLeft">
-	                    <div class="newBTN_arrow"></div>
-	                    <div class="newBTN">
-            			<apex:outputLink styleClass="newBTN" value="#" id="theLink">ROOOOOOOOOOOOOOFL</apex:outputLink>
-            		</div>
-            	</div>
-			</apex:form>
-			 
+        	<div id="insidecontent" class="loginbackground" >
+		         <apex:outputPanel id="landingpagecontent" styleClass="landingpagecontent" layout="block">
+		            <c:contentblock name="maincontent" />
+		            <apex:form id="form" style="margin-top: 10px;"> 
+		            	<div id="btnarea" class="newBTN_area isLeft">
+			                    <div class="newBTN_arrow"></div>
+			                    <div class="newBTN">
+		            			<apex:commandButton styleclass="newBTN" value="{!$Label.site.login_button}" action="{!redirectToLogin}">
+		            				<apex:param name="clicked" value="true" />
+		            			</apex:commandButton>
+		            		</div>
+		            	</div>
+		            	<div id="btnarea2" class="newBTN_area isLeft" style="margin-left: 10px;">
+			                    <div class="newBTN_arrowGrey"></div>
+			                    <div class="newBTNGrey">
+			                    <apex:outputLink value="{!$Page.page}?pageid={!RegistrationPageId}" id="registration_btn2"
+		                    			rendered="{!$Site.RegistrationEnabled}" styleClass="newBTNGrey" >
+		                        <apex:outputText value="{!$Label.site.new_user_q}" />
+		                        </apex:outputLink>
+		            		</div>
+		            	</div>
+		            	<!-- demos of buttons -->
+		            	<!-- 
+						<div id="btnarea" class="newBTN_area isRight">
+			                    <div class="newBTN_arrow"></div>
+			                    <div class="newBTN">
+								<a id="btn" class="newBTN">TEEEEEEEEEEST</a>
+		            		</div>
+		            	</div>
+		            	
+		            	<div id="btnarea" class="newBTN_area isLeft">
+			                    <div class="newBTN_arrow"></div>
+			                    <div class="newBTN">
+		            			<apex:outputLink styleClass="newBTN" value="#" id="theLink">ROOOOOOOOOOOOOOFL</apex:outputLink>
+		            		</div>
+		            	</div>
+		            	-->
+					</apex:form>
+				</apex:outputPanel>
+			 </div>
     </apex:define>
 </apex:composition>
 <site:previewAsAdmin />

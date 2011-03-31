@@ -52,7 +52,7 @@
        	<apex:actionFunction name="initModuleLoad" action="{!initModuleResult}" rerender="inline1"/>
         
         <script>
-            $(document).ready(function(){
+           /*  $(document).ready(function(){
                 //Examples of how to assign the ColorBox event to elements
             /*  $("a[rel='example1']").colorbox();
                 $("a[rel='example2']").colorbox({transition:"fade"});

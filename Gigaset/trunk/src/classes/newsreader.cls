@@ -21,7 +21,7 @@ public class newsreader {
 			try {
 				ci=[SELECT Id, Title__c, Abstract__c, Text__c, ImageURL__c FROM ContentItem__c 
 						WHERE isActive__c=true AND Id=:newsid];
-			} catch (System.QueryException e) {}
+			} catch (System.QueryException e) { if (System_Settings.isDebug) throw e; }
 			
 		} else {
 			try {
@@ -31,7 +31,7 @@ public class newsreader {
 						//AND Portal__c=:portal 
 						//AND (release_date__c<=:System.today() OR release_date__c=null) 
 						ORDER BY release_date__c desc limit 1];
-			} catch (System.QueryException e) {}
+			} catch (System.QueryException e) { if (System_Settings.isDebug) throw e; }
 		}
 		if (ci!=null && ci.ImageURL__c!=null) newsbackgroundurl=ci.ImageURL__c;
 	}

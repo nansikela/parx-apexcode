@@ -60,15 +60,12 @@
                                 
                         
                                 <!-- <div class="requiredInput spacer5"> -->
-                                <div class="newBTN isLeft">
-				                	<div class="newBTN_arrow">
+                                <div id="btnarea" class="newBTN_area isLeft">
+	                				<div class="newBTN_arrow"></div>
+	                				<div class="newBTN">
 				            			<apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="newBTN" rerender="clearingpanel" id="nextstep1_btn"  />
 				            		</div>
 				            	</div>
-				            	<!-- 
-                                <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9" style="margin-left: 450px !important;" rerender="clearingpanel" id="nextstep1_btn"  />
-                                </div> 
-                                -->
                             </apex:form>
                         </apex:outputPanel>
                         <apex:outputPanel id="noprofields" rendered="{!NOT(showProfields)}">
@@ -101,15 +98,12 @@
                         			<p>{!$Label.clearingpage_requiredfield}</p>
                    				</apex:outputPanel>
                                 <!-- <div class="requiredInput spacer5"> --> 
-                                <div class="newBTN isLeft">
-				                	<div class="newBTN_arrow">
+                                <div id="btnarea" class="newBTN_area isLeft">
+	                				<div class="newBTN_arrow"></div>
+	                				<div class="newBTN">
 				            			<apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="newBTN" rerender="clearingpanel" id="nextstep1_btn"  />
 				            		</div>
 				            	</div>
-				            	<!-- 
-                                <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9" style="margin-left: 450px !important;" rerender="clearingpanel" id="nextstep1_btn"  />
-                                </div>
-                                --> 
                             </apex:form>
                         </apex:outputPanel>
                     </apex:outputPanel>
@@ -122,19 +116,29 @@
                         <apex:pageMessages id="error" />
                     </apex:outputPanel>
                     
-                    <div class="requiredInput spacer5">
+
                         <apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
-                            <apex:outputLink styleClass="gcbtn" value="{!$Site.Prefix}/secur/logout.jsp" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                        	<div id="btnarea" class="newBTN_area isLeft">
+	                			<div class="newBTN_arrow"></div>
+	                			<div class="newBTN">
+                            		<apex:outputLink styleClass="newBTN" value="{!$Site.Prefix}/secur/logout.jsp" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                            	</div>
+                            </div>
                         </apex:outputPanel>
-                    </div>
+
                 </apex:outputPanel>
                 <apex:outputPanel id="alreadyInClearing" rendered="{!showInClearing}" >
                     <apex:outputText value="{!$Label.clearingpage_alreadyInClearing}" />
-                    <div class="requiredInput spacer5">
+
                         <apex:outputPanel id="backInClearing" rendered="{!showInClearing}" >
-                            <apex:outputLink styleClass="gcbtn" value="{!$Site.Prefix}/secur/logout.jsp" id="r3c2" >{!$Label.site.logout}</apex:outputLink>
+                        	<div id="btnarea" class="newBTN_area isLeft">
+	                			<div class="newBTN_arrow"></div>
+	                			<div class="newBTN">
+                            		<apex:outputLink styleClass="gcbtn" value="{!$Site.Prefix}/secur/logout.jsp" id="r3c2" >{!$Label.site.logout}</apex:outputLink>
+                            	</div>
+                            </div>
                         </apex:outputPanel>
-                    </div>
+
                 </apex:outputPanel>
             </div>
         </div>

@@ -176,18 +176,13 @@
             <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext">
         		<p>{!$Label.registration_required_fields}</p>
         	</apex:outputPanel>
-            <div class="requiredInput spacer5">
-                <div class="newBTN isLeft">
-                	<div class="newBTN_arrow">
-                		<apex:commandLink value="{!$Label.back}" action="{!goBack}" id="goback_btn"/>
+                <div id="btnarea" class="newBTN_area isRight">
+	            	<div class="newBTN_arrow"></div>
+	                <div class="newBTN">
+                		<apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="newBTN" />
                 	</div>
                 </div>
-                <div class="newBTN isRight">
-                	<div class="newBTN_arrow">
-                		<apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="newBTN isRight" />
-                	</div>
-                </div>
-            </div>
+
         </apex:form>
         
     </apex:outputPanel>
@@ -220,24 +215,14 @@
                 <br />
             </apex:outputPanel>
             <!-- <div class="requiredInput spacer5 link_arrow"> -->
-            <div class="newBTN isRight">
-                <div class="newBTN_arrow">
-                	<apex:commandLink value="{!$Label.back}" action="{!goBack}" id="goback_btn" />
-            	</div>
-            </div>
-            <div class="newBTN isRight">
-                <div class="newBTN_arrow">
+            <div id="btnarea" class="newBTN_area isRight">
+	            	<div class="newBTN_arrow"></div>
+	                <div class="newBTN">
                 	<apex:commandButton action="{!saveData}" value="{!$Label.site.submit}" styleClass="newBTN" id="savedata_btn" />
             	</div>
             </div>
             <!-- </div> -->
         </apex:form>
-        <!-- 
-        <apex:outputText value="{!$Label.userdata_is_changedata}" />
-        <apex:form id="linktoedituserdata">
-            <div class="link_arrow"><apex:commandLink value="{!$Label.clientdata_userdata}" action="{!editUserdata}" id="linkuserdata2" /></div>
-        </apex:form>
-        -->
     </apex:outputPanel>
     <apex:outputPanel id="userdelete" rendered="{!step='userdelete'}">
         <h1>{!$Label.userdata_userdelete}</h1>
@@ -254,16 +239,10 @@
             <br/>
             <apex:outputLabel value="{!$ObjectType.Request__c.fields.Gruende_Selbstloeschung__c.label}" for="otherreasons" />
                 <apex:inputField value="{!rq.Gruende_Selbstloeschung__c}" id="otherreasons" /><br/>
-            <div class="requiredInput spacer5">
-            <div class="newBTN isRight">
-                <div class="newBTN_arrow">
-                	<apex:commandLink value="{!$Label.back}" styleClass="gcbtn" action="{!goBack}" id="goback_btn" />
-                </div>
-           	</div>
-            </div>
-            <div class="newBTN isRight">
-                <div class="newBTN_arrow">
-            		<apex:commandButton action="{!saveUserdelete}" value="{!$Label.site.submit}" styleClass="spacer7" id="saveusrdel_btn" />
+            <div id="btnarea" class="newBTN_area isRight">
+	            	<div class="newBTN_arrow"></div>
+	                <div class="newBTN">
+            		<apex:commandButton action="{!saveUserdelete}" value="{!$Label.site.submit}" styleClass="newBTN" id="saveusrdel_btn" />
         		</div>
         	</div>
         </apex:form>
@@ -273,9 +252,10 @@
     </apex:outputPanel>
     <apex:outputPanel id="global" rendered="{!OR(step='start',step='userdelete_success',step='userdata_success')}">
         <apex:form id="gobackform" >
-        <div class="newBTN isRight">
-        	<div class="newBTN_arrow">
-           		<apex:commandLink value="{!$Label.back}" styleClass=" " action="{!goBack}" id="goback_btn" />
+        <div id="btnarea" class="newBTN_area isLeft">
+	            	<div class="newBTN_arrow"></div>
+	                <div class="newBTN">
+           		<apex:commandLink value="{!$Label.back}" styleClass="newBTN" action="{!goBack}" id="goback_btn" />
         	</div>	
         </div>
         </apex:form>

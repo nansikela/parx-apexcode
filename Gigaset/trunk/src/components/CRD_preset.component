@@ -50,9 +50,14 @@
                     <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!step<2}">
                     	<p>{!$Label.presetpage_requiredfield}</p>
                 	</apex:outputPanel>
-                    <div class="requiredInput spacer5">
-                        <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9" style="margin-left: 450px !important;" rerender="presetpanel" id="nextstep1_btn"  />
-                    </div> 
+                    <apex:outputPanel id="buttons" layout="block" styleClass="buttonformdiv">
+		        		<div id="btnarea" class="newBTN_area isLeft">
+				        	<div class="newBTN_arrow"></div>
+				            <div class="newBTN">
+		                        <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="newBTN" rerender="presetpanel" id="nextstep1_btn"  />
+		                    </div>
+	                    </div>
+                    </apex:outputPanel>
                 </apex:form>
                 </apex:outputPanel>
                 
@@ -77,7 +82,12 @@
                     </apex:outputPanel>
                     -->
                     <apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
-                        <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                    	<div id="btnarea" class="newBTN_area isLeft">
+				        	<div class="newBTN_arrow"></div>
+				            <div class="newBTN">
+                        		<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                        	</div>
+                        </div>
                     </apex:outputPanel>
                 </div>
             </div>
