@@ -27,6 +27,8 @@
             <li><apex:outputLink value="{!linktootherportal}" id="otherportal" >{!$Label.breadcrump_dealer}<apex:outputText value=" Pro" /></apex:outputLink></li>
             </apex:outputPanel>
         </ul>
+        <div class="horizontalrule"></div>
     </div>
+    
 
 </apex:component>

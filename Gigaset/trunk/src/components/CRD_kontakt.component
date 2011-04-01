@@ -40,7 +40,7 @@
         <!-- <p>{!$Label.check_email_address}</p> -->
     </apex:outputPanel>
     <apex:outputPanel id="success" rendered="{!success}">
-        <c:CRD_formResultMessage msgstyle="success" title="{!$Label.contact}" message="{!$Label.your_request_with_subject}" id="kontaktmsgsuccesscomp" />
+        <c:CRD_formResultMessage msgstyle="success" width="small" title="{!$Label.contact}" message="{!$Label.your_request_with_subject}" id="kontaktmsgsuccesscomp" />
     </apex:outputPanel>
     <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
     	<h1>{!$Label.contact}</h1>
@@ -51,7 +51,7 @@
     <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}" >
         <apex:form id="backbuttonform">
             <div id="btnarea" class="newBTN_area isLeft">
-	             <div class="newBTN_arrow"></div>
+	             <div class="newBTN_arrowBack"></div>
 	             <div class="newBTN">
                 <apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
                 </div>

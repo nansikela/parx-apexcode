@@ -31,26 +31,26 @@
 
             }
 
-    </script>   
+    </script>
 
     <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1><br />
     <apex:form id="orderform"> 
-        <apex:dataTable id="linkList" value="{!Terms}" var="opp" width="122%" columnsWidth="10%, 54%, 16%, 20%" cellspacing="10" >
+        <apex:dataTable id="linkList" value="{!Terms}" styleClass="cpmtableStyle" footerClass="cpmfooterClass" headerClass="cpmheaderClass" var="opp" width="122%" columnsWidth="10%, 54%, 16%, 20%" cellspacing="0px"  >
             <apex:facet name="header"></apex:facet>
 
             <apex:column >
-                <apex:facet name="header"></apex:facet>
+                <apex:facet name="header" ></apex:facet>
                 <apex:outputText escape="false" value="{!opp.term.Bild__c}" />
                   </apex:column>  
                   <apex:column style="vertical-align: top;">
                 <apex:facet name="header">{!$Label.Description}</apex:facet>
-                  <apex:outputText value="{!opp.term.Titel__c}" styleClass="Title" />
+                  <apex:outputText value="{!opp.term.Titel__c}" styleClass="cpmTitle" />
                       <br/>
-                <apex:outputText value="{!opp.term.Beschreibung__c}" styleClass="Description"  style="vertical-align: top;"/>
+                <apex:outputText value="{!opp.term.Beschreibung__c}" styleClass="cpmDescription"  style="vertical-align: top;"/>
             </apex:column>
             <apex:column style="vertical-align: top;">
                 <apex:facet name="header">{!$Label.Article_number}</apex:facet>
-                <apex:outputText value="{!opp.term.Artikelnummer__c}" styleClass="Description"/>
+                <apex:outputText value="{!opp.term.Artikelnummer__c}" styleClass="cpmDescription"/>
                 <apex:facet name="footer"> 
                 	<div id="btnarea" class="newBTN_area isLeft">
 	            		<div class="newBTN_arrow"></div>
@@ -63,14 +63,16 @@
             <apex:column style="vertical-align: top;">
                 <apex:facet name="header">{!$Label.Quantity}</apex:facet>
                         <apex:inputText id="quantity" value="{!opp.quantity}" style="width:30px;" onkeyup="if(check(this.value) == 0 ) {this.value='';} " />                
-                <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style=" vertical-align: middle;" styleClass="Description"/>              
-                <apex:facet name="footer">  
-               	<div id="btnarea" class="newBTN_area ">
+                <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style=" vertical-align: middle;" styleClass="cpmDescription"/>              
+                <apex:facet name="footer">
+              	<apex:outputPanel >   
+               	<div id="btnarea" class="newBTN_area isLeft">
 	            	<div class="newBTN_arrow"></div>
-	                <div class="newBTN">     
-                        	<apex:commandButton action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp" styleClass="newBTN" />               
+	                <div class="newBTN">
+                        	<apex:commandButton action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp" styleClass="newBTN" />              
                 		</div>
                 	</div>
+                </apex:outputPanel>
                 </apex:facet>
             </apex:column>
         </apex:dataTable>
@@ -100,23 +102,23 @@
         <br /><br />    
         <p>{!$Label.userdata_description}</p>   <br />
     
-        <apex:dataTable id="linkList" value="{!Terms2}" var="opp" width="103%" columnsWidth="58%, 19%, 23%" cellspacing="3">
+        <apex:dataTable id="linkList" value="{!Terms2}" var="opp" width="103%" columnsWidth="58%, 19%, 23%" cellspacing="0" styleClass="cpmtableStyle" footerClass="cpmfooterClass" headerClass="cpmheaderClass">
             <apex:facet name="header"></apex:facet>
 
                   <apex:column style="vertical-align: top;">
                     <apex:facet name="header">{!$Label.Description}</apex:facet>
-                  <apex:outputText value="{!opp.term.Titel__c}" styleClass="Title"/>
+                  <apex:outputText value="{!opp.term.Titel__c}" styleClass="cpmTitle"/>
                       <br/>
-                <apex:outputText value="{!opp.term.Beschreibung__c}" styleClass="Description"/>
+                <apex:outputText value="{!opp.term.Beschreibung__c}" styleClass="cpmDescription"/>
             </apex:column>
             <apex:column style="vertical-align: top;">
                 <apex:facet name="header">{!$Label.Article_number}</apex:facet>
-                <apex:outputText value="{!opp.term.Artikelnummer__c}" styleClass="Description"/>
+                <apex:outputText value="{!opp.term.Artikelnummer__c}" styleClass="cpmDescription"/>
             </apex:column>
             <apex:column style="vertical-align: top;">
                 <apex:facet name="header">{!$Label.Quantity}</apex:facet>
-                        <apex:outputText id="quantity" value="{!opp.quantity}" styleClass="Description" />
-                    <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style="vertical-align: top;" styleClass="Description"/>                      
+                        <apex:outputText id="quantity" value="{!opp.quantity}" styleClass="cpmDescription" />
+                    <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style="vertical-align: top;" styleClass="cpmDescription"/>                      
             </apex:column>
         </apex:dataTable>
 
@@ -126,46 +128,30 @@
         <apex:dataTable id="linkList2" value="{!Terms2}" var="opp2" width="160%" columns="2">
             <apex:column >
                 <apex:facet name="footer">
-                	<div id="btnarea" class="newBTN_area isLeft">
-	            		<div class="newBTN_arrow"></div>
+                	<apex:outputPanel >
+                	<div id="btnarea" class="newBTN_area">
+	            		<div class="newBTN_arrowBack"></div>
 	                	<div class="newBTN">                  
                     		<apex:commandButton action="{!firstPage}" value="{!$Label.back}" immediate="true" rerender="werbemittelcomp,werbemittelcomp_finalcomp" styleClass="newBTN"/>
                     	</div>
-                    </div>      
+                    </div>
+                    </apex:outputPanel>      
                     </apex:facet>
             </apex:column>
             <apex:column >
                 <apex:facet name="footer">
-                	<div id="btnarea" class="newBTN_area isRight">
+                	<apex:outputPanel >
+                	<div id="btnarea" class="newBTN_area">
 	            		<div class="newBTN_arrow"></div>
 	                	<div class="newBTN">                       
                     		<apex:commandButton action="{!thirdPage}" value="{!$Label.Order}" styleClass="newBTN"/>
                     	</div>
                     </div> 
+                    </apex:outputPanel>
                     </apex:facet>
             </apex:column>
         </apex:dataTable>
     </apex:form>
 </apex:outputPanel>
-
-     
-
-    <style>
-        .Title{
-                color: black;
-                font-weight: bold;
-                font-size: 12px;
-            }
-            .Ueberschrift{
-                color: black;
-                font-weight: bold;
-                font-size: 16px;
-            }
-            .Description{
-                vertical-align: text-top;
-                color: black;
-                font-size: 12px;
-            }
-    </style>
 
 </apex:component>

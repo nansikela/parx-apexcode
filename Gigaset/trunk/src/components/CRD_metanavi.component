@@ -6,7 +6,7 @@
     <li>
         <apex:outputLink value="{!ImprintUrl}">{!$Label.tplt_label_imprint}</apex:outputLink>
     </li>
-    <apex:outputPanel id="kontaktlink" rendered="{!isAuthenticated}">
+    <apex:outputPanel id="kontaktlink" rendered="{!isAuthenticated}" style="font-size: inherit;">
     <li>
         <apex:outputLink value="{!KontaktformularUrl}" id="linkcontact" styleClass="{!IF($CurrentPage.parameters.pageid=kontaktpageid,'active','')}" >{!$Label.contact}</apex:outputLink>
     </li>
