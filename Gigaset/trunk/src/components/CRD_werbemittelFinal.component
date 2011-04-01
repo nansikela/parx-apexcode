@@ -2,9 +2,9 @@
  
 
     <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1>
-<br />
-      <apex:outputText value="{!$Label.userdata_order_last_step}" styleClass="Description"/> 
-<br /><br /><br />
+<p>
+      <apex:outputText value="{!$Label.userdata_order_last_step}" />
+</p>
 		<div id="btnarea" class="newBTN_area isLeft">
 	        <div class="newBTN_arrow"></div>
 	        <div class="newBTN">  
@@ -13,12 +13,4 @@
     	</div>
                 
 
-    <style>
-            .Description{
-                vertical-align: text-top;
-                color: black;
-                font-size: 12px;
-            }
-    </style>
-  
 </apex:component>

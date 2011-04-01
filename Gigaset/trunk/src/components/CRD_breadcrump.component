@@ -8,7 +8,7 @@
 	            <span>
 	            <apex:outputLink value="{!IF(isAuthenticated,homeurl,$Site.CustomWebAddress)}" rendered="{!currentNavigationPoint!=''}" >{!$Label.breadcrump_dealer}</apex:outputLink>
 	            </span>
-	            <apex:outputPanel id="arrow" rendered="{!currentNavigationPoint!=''}">></apex:outputPanel>
+	            <apex:outputPanel id="arrow" rendered="{!currentNavigationPoint!=''}" >></apex:outputPanel>
 	            <span><apex:outputLink value="#">{!currentNavigationPoint}</apex:outputLink>
 	            </span>
 	     </apex:outputPanel>

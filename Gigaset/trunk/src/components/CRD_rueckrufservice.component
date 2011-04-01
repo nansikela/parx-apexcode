@@ -50,7 +50,7 @@
         
     </apex:outputPanel>
     <apex:outputPanel id="success" rendered="{!success}">
-        <c:CRD_formResultMessage msgstyle="success" title="{!$Label.callback}" message="{!$Label.callback_thanks_we_callback}" id="callbackmsgsuccesscomp" />
+        <c:CRD_formResultMessage msgstyle="success" width="small" title="{!$Label.callback}" message="{!$Label.callback_thanks_we_callback}" id="callbackmsgsuccesscomp" />
     </apex:outputPanel>
     <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
     	<h1>{!$Label.callback}</h1>
@@ -61,7 +61,7 @@
     </apex:outputPanel>
     <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}">
         <div id="btnarea" class="newBTN_area isLeft">
-          	<div class="newBTN_arrow"></div>
+          	<div class="newBTN_arrowBack"></div>
               <div class="newBTN">
             	<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
        		</div>

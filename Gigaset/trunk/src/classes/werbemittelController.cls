@@ -78,7 +78,6 @@ public class werbemittelController{
   			Terms2.clear();	
 		}
 		
-		
 		return null;
 	}
 	 
@@ -134,6 +133,7 @@ public class werbemittelController{
 		insert WPosten;
 		PageReference ref = ApexPages.currentPage();
 		ref.getParameters().put('isDone', '');
+		ref.getParameters().put('onOrder','');
 		ref.setRedirect(true);
   		return ref;
 	}

@@ -83,7 +83,7 @@
                     -->
                     <apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
                     	<div id="btnarea" class="newBTN_area isLeft">
-				        	<div class="newBTN_arrow"></div>
+				        	<div class="newBTN_arrowBack"></div>
 				            <div class="newBTN">
                         		<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
                         	</div>

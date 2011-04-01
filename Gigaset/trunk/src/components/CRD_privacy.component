@@ -20,7 +20,7 @@
                 <apex:inputField id="commit" value="{!u.Datenschutzerkl_rung_zugestimmt__c}" required="true" styleClass="FieldRequired" />
             <apex:outputPanel id="buttons" layout="block" styleClass="buttonformdiv">
 	        	<div id="btnarea" class="newBTN_area isLeft">
-		        	<div class="newBTN_arrow"></div>
+		        	<div class="newBTN_arrowBack"></div>
 		            <div class="newBTN">
 	            		<apex:outputLink styleClass="newBTN" value="javascript:history.go(-1);">{!$Label.back}</apex:outputLink>
 	            	</div>
@@ -45,7 +45,7 @@
             	</div>
             </div>
             <div id="btnarea" class="newBTN_area isLeft">
-	        	<div class="newBTN_arrow"></div>
+	        	<div class="newBTN_arrowBack"></div>
 	            <div class="newBTN">
             		<apex:commandButton styleClass="newBTN" action="{!previousStep}" value="{!$Label.back}" id="previousstep_btn"  />
             	</div>
