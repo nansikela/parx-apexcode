@@ -13,14 +13,16 @@
         </apex:form>
         <div class="contentText">
             <div id="contact">
-                <p> </p>
-                <h1>{!$Label.presetpage_headline}</h1>
-                <p> </p>
                 <apex:outputPanel id="step1" rendered="{!step=1}">
                     <!-- <apex:pageMessages id="errorstep1" /> -->
                     <apex:form id="step1form" >
-                        <p><apex:outputText value="{!$Label.presetpage_subtitle}" /></p>
-                        <p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
+                    	<apex:outputPanel id="formTitle1" styleClass="formTitle" layout="block">
+                			<h1>{!$Label.presetpage_headline}</h1>
+                		</apex:outputPanel>
+                    	<apex:outputPanel id="formText1" styleClass="formText" layout="block">
+	                        <p>{!$Label.presetpage_subtitle}</p>
+	                        <p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
+                        </apex:outputPanel>
                         <apex:outputPanel id="classification">
                             <apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanal" />
                                 <apex:inputField id="handelskanal" value="{!u.Handelskanal__c}"  styleClass="FieldRequiredSelect" required="true" onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" />
@@ -46,8 +48,7 @@
                         </apex:outputPanel>
                         
                     <br />
-                    <!-- <p><b>{!$Label.registration_companyprofiledata}</b></p> -->
-                    <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!step<2}">
+                    <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!step<2}" style="width: 350px;">
                     	<p>{!$Label.presetpage_requiredfield}</p>
                 	</apex:outputPanel>
                     <apex:outputPanel id="buttons" layout="block" styleClass="buttonformdiv">
@@ -62,35 +63,31 @@
                 </apex:outputPanel>
                 
                 <apex:outputPanel id="success" rendered="{!step=2}">
-                    <c:CRD_formResultMessage msgstyle="success" title="{!$Label.presetpage_headline}" message="{!$Label.presetpage_thanks}" id="presetmsgcomp" />
+                    <c:CRD_formResultMessage width="small" msgstyle="success" title="{!$Label.presetpage_headline}" message="{!$Label.presetpage_thanks}" id="presetmsgcomp" />
                 </apex:outputPanel>
                 <apex:outputPanel id="saveerror" rendered="{!step=99}">
-                    <p>{!$Label.presetpage_error}</p>
+                	<apex:outputPanel id="formText2" styleClass="formText" layout="block">
+                    	<p>{!$Label.presetpage_error}</p>
+                    </apex:outputPanel>
                     <apex:pageMessages id="error" />
                 </apex:outputPanel>
-                <div class="requiredInput spacer5">
-                    <!-- 
-                    <apex:outputPanel id="back" rendered="{!step=1}" >
-                        <apex:outputLink styleClass="anmelden" value="javascript:history.go({!backcounter});">{!$Label.back}</apex:outputLink>
-                    </apex:outputPanel>
-                    -->
-                    <!-- 
-                    <apex:outputPanel id="previousStep" rendered="{!AND(step>1,step<4)}">
-                        <apex:form id="previousstepform">
-                            <div class="spacer5"><apex:commandLink styleClass="anmelden" action="{!previousStep}" value="{!$Label.back}" rerender="register" id="previousstep_btn"  /></div> 
-                        </apex:form>
-                    </apex:outputPanel>
-                    -->
-                    <apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
-                    	<div id="btnarea" class="newBTN_area isLeft">
-				        	<div class="newBTN_arrowBack"></div>
-				            <div class="newBTN">
-                        		<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
-                        	</div>
-                        </div>
-                    </apex:outputPanel>
-                </div>
+				
+                <apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
+                
+                	<div id="btnarea" class="newBTN_area isLeft">
+			        	<div class="newBTN_arrowBack"></div>
+			            <div class="newBTN">
+                    		<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                    	</div>
+                    </div>
+                </apex:outputPanel>
+
             </div>
         </div>
     </apex:outputPanel>
+    <style type="text/css">
+    	.errorMsg {
+    		margin-left: 0px;
+    	}
+    </style>
 </apex:component>

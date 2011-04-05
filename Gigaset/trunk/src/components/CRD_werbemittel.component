@@ -32,6 +32,11 @@
             }
 
     </script>
+    <style type="text/css">
+    	.errorMsg {
+    		margin-left: 0px;
+    	}
+    </style>
 
     <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1><br />
     <apex:form id="orderform"> 
@@ -48,7 +53,7 @@
                       <br/>
                 <apex:outputText value="{!opp.term.Beschreibung__c}" styleClass="cpmDescription"  style="vertical-align: top;"/>
             </apex:column>
-            <apex:column style="vertical-align: top;">
+            <apex:column style="vertical-align: top; min-width: 100px;">
                 <apex:facet name="header">{!$Label.Article_number}</apex:facet>
                 <apex:outputText value="{!opp.term.Artikelnummer__c}" styleClass="cpmDescription"/>
                 <apex:facet name="footer"> 

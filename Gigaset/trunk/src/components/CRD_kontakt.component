@@ -1,11 +1,18 @@
 <apex:component controller="kontaktController" allowDML="true" id="crdkontaktformular" >
     <apex:outputPanel id="form" rendered="{!showform}">
-    	<h1>{!$Label.contact}</h1>
-	    <br />
-        <p>{!$Label.contact_subtitle}</p>
-        <!-- <p>{!$Label.fillout_all_fields}</p> -->
-        <!-- <apex:pageMessages id="errorform" /> -->
+    	<apex:outputPanel id="contacttitle" styleClass="formTitle" layout="block">
+    		<h1>{!$Label.contact}</h1>
+    	</apex:outputPanel>
+	    <apex:outputPanel id="formText1" styleClass="formText" layout="block">
+        	<p>{!$Label.contact_subtitle}</p>
+        </apex:outputPanel>
         <apex:form id="kontaktform" >
+        	<apex:outputPanel id="formfields" layout="black">
+        	<style type="text/css">
+        		.errorMsg {
+        			margin-left: 0px;
+        		}
+        	</style>
             <apex:outputLabel value="{!$ObjectType.Request__c.fields.Firma__c.label}*" for="company" rendered="{!NOT(isAuthenticated)}" />
                 <apex:inputField id="company" value="{!rq.Firma__c}" rendered="{!NOT(isAuthenticated)}" required="true" styleClass="FieldRequired" />
             <apex:outputLabel value="{!$ObjectType.Request__c.fields.Vorname__c.label}*" for="firstname" rendered="{!NOT(isAuthenticated)}" />
@@ -27,6 +34,7 @@
             <apex:outputPanel style="width:100%;" layout="block" id="additionaltext" styleClass="additionaltext" >
             {!$Label.presetpage_requiredfield}	
         	</apex:outputPanel>
+        	</apex:outputPanel>
         	<apex:outputPanel id="buttons" layout="block" styleClass="buttondiv" >
             <div id="btnarea" class="newBTN_area isRight">
 	                <div class="newBTN_arrow"></div>
@@ -43,9 +51,12 @@
         <c:CRD_formResultMessage msgstyle="success" width="small" title="{!$Label.contact}" message="{!$Label.your_request_with_subject}" id="kontaktmsgsuccesscomp" />
     </apex:outputPanel>
     <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
-    	<h1>{!$Label.contact}</h1>
-	    <br />
-        <p>{!$Label.contactform_error}</p>
+    	<apex:outputPanel id="contacttitle2" styleClass="formTitle" layout="block">
+    		<h1>{!$Label.contact}</h1>
+    	</apex:outputPanel>
+	    <apex:outputPanel id="formText2" styleClass="formText" layout="block">
+        	<p>{!$Label.contactform_error}</p>
+        </apex:outputPanel>
         <apex:pageMessages id="errorsave" />
     </apex:outputPanel>
     <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}" >
