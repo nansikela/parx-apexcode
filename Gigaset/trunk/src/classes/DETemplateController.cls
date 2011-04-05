@@ -1,4 +1,4 @@
-public class DETemplateController extends PageControllerBase {
+public class DETemplateController {
 
 	public Boolean isAuthenticated { get; set; }
 	 
@@ -39,7 +39,6 @@ public class DETemplateController extends PageControllerBase {
 	public boolean Modules_showThirdpage {get;set;}
 	public String Modules_LektoraURL {get;set;}
 	public Training_Book__c Modules_book {get;set;}
-	public String newsid { get; set; }
 	public list<Training_Module__c> Modules_modulesSecondPage1 {get;set;}
 	public Training_Module__c Modules_SingleModule {get;set;}
    	List<Modulen> Modules = new list<Modulen>(); 
@@ -53,44 +52,12 @@ public class DETemplateController extends PageControllerBase {
 		return SystemSettings.showNextTopShop;
 	} 
 	
-	// Controller for topnews component to get the current newsid
-	public DEtopnews topnewsController {set;
-		get{
-			//get the map, then the component controller using the appropriate key
-			if(getComponentControllerMap()!=null){
-				DEtopnews mcc;
-				mcc = (DEtopnews )getComponentControllerMap().get('topnews');
-				if(mcc!= null)
-					return mcc;
-			}
-			//just in case something goes wrong return something...this can be handled better
-			return new DEtopnews();
-		}
-	}
-	
-	// Controller for newsreader component to set the current newsid
-	public DEnewsreader newsreaderController {set;
-		get{
-			//get the map, then the component controller using the appropriate key
-			if(getComponentControllerMap()!=null){
-				DEnewsreader mcc;
-				mcc = (DEnewsreader )getComponentControllerMap().get('newsreader');
-				if(mcc!= null)
-					return mcc;
-			}
-			//just in case something goes wrong return something...this can be handled better
-			return new DEnewsreader();
-		}
-	}
-	
 	public String getModules_URLPage(){
 		return null;
 	}
 	
 	// constructor
 	public DETemplateController() {
-	
-		newsid=topnewsController.newsid;
 		test=Label.loginpage;
 		isPro=SystemSettings.isPro;
 		styleSelector=isPro?'pro':'normal';
@@ -726,10 +693,5 @@ public class DETemplateController extends PageControllerBase {
 	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return SystemSettings.goHome();
 	 	return null;
 	}
-	
-	public pageReference getRecentNewsId() {
-	 	newsid=ApexPages.currentPage().getParameters().get('newsid');
-	 	return null;
-	 }
 	 
 }
