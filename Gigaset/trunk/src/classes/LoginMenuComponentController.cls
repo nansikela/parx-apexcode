@@ -15,8 +15,7 @@ global class LoginMenuComponentController {
 	global static testMethod void testController() { 
 		LoginMenuComponentController ctrl=new LoginMenuComponentController();
        	ctrl.getForgotPasswordPageId();
-        	ctrl.getRegistrationPageId();
-        
+        ctrl.getRegistrationPageId();
 	}
 
 }

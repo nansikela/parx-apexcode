@@ -87,7 +87,7 @@ public class dropdownController {
 			}
 		} catch (System.QueryException e) {
 			System.debug('PARX No Sites found!');
-			System_Settings.logError('PARX No Sites found! ' + e.getMessage(),'DEdropdownController','constructor','','ERROR');
+			System_Settings.logError('PARX No Sites found! ' + e.getMessage(),'dropdownController','constructor','','ERROR');
 			//if (System_Settings.isdebug) throw e;
 		}
 		return sites;
@@ -95,7 +95,7 @@ public class dropdownController {
 	
 	
 	static testmethod void testDEdropdownController() {
-		DEdropdownController ctrl = new DEdropdownController();
+		dropdownController ctrl = new dropdownController();
 		ctrl.getSites();
 	}
 }

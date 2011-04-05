@@ -1,4 +1,4 @@
-public with sharing class DETrainingController extends PageControllerBase{
+public with sharing class DETrainingController {
 	
 	public Integer Modules_currentSuccess {get;set;}
 	public String Modules_URLPage {get;set;}
@@ -15,7 +15,6 @@ public with sharing class DETrainingController extends PageControllerBase{
    	List<Modulen> Modules = new list<Modulen>(); 
     public List<Modulen> Modules_modulesSecondPage2 {get;set;}
 	List<Booken> Books = new list<Booken>(); 
-	public String newsid { get; set; }
 	
 	public User u0{get;set;}
 	public Contact c0 {get;set;}
@@ -25,19 +24,6 @@ public with sharing class DETrainingController extends PageControllerBase{
 	
 	NextTopShop__c NTS;
 	PageReference CMSpage = Page.page;
-	
-	
-	public DEtopnews topnewsController {set;
-		get{
-			if(getComponentControllerMap()!=null){
-				DEtopnews mcc;
-				mcc = (DEtopnews) getComponentControllerMap().get('topnews');
-				if(mcc != null)
-					return mcc;
-			}
-			return new DEtopnews();
-		}
-	}
 	
 	public class Modulen {
 		public list<Training_Module__c> Module {get; set;}
@@ -66,12 +52,7 @@ public with sharing class DETrainingController extends PageControllerBase{
   		} 
 	}
 	
-	public DETrainingController(){
-		newsid=topnewsController.newsid;	
-	}
-	
-	public DETrainingController(DETemplateController templateCtrl){
-		newsid=topnewsController.newsid;	
+	public DETrainingController(DETemplateController templateCtrl){	
 		u0 = templateCtrl.u0;
 		c0 = templateCtrl.c0;
 	}
@@ -460,12 +441,6 @@ public with sharing class DETrainingController extends PageControllerBase{
 		return Modules_URLPage;
 	}
 	
-	 public pageReference getRecentNewsId() {
-	 	newsid=ApexPages.currentPage().getParameters().get('newsid');
-	 	return null;
-	 }
-	 
-	 	
 	public String getCampus_Title_1() {
 		return SystemSettings.getLabel('Campus_Title_1');
 	}

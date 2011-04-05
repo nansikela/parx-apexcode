@@ -21,7 +21,7 @@ public class userdataController {
 
 	public userdataController() {
 		isPro = System_Settings.isPro;
-		portal=SystemSettings.portal;
+		portal=System_Settings.portal;
 		step='start';
 		success_headline='';
 		showPhoneErr=false;
