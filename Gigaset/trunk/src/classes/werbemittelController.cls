@@ -154,9 +154,13 @@ public class werbemittelController{
       
   	public List<myterm> getTerms2() {
        	return Terms2;
-      }  
-      
-      public List<myterm> getTerms() {    //we retrieve the datas from salesforce which have to be displayed in the webshop
+      } 
+       
+    public void setTerms(myterm T) {
+       	Terms.add(T);
+    }  
+    
+    public List<myterm> getTerms() {    //we retrieve the datas from salesforce which have to be displayed in the webshop
       	//List<myterm> Terms = new List<myterm>();
 		if (Terms.isEmpty()) {
 	      	for (Werbemittel__c wm: [Select Id, Bild__c, Titel__c, Beschreibung__c, Artikelnummer__c, Verpackungseinheit__c, Name From Werbemittel__c where Aktiv__c = true and Portal__c =: System_Settings.portal order by Titel__c desc]) {
