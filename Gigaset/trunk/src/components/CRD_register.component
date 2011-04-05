@@ -347,7 +347,7 @@
 									
 		     						if(document.getElementsByTagName("div")[i].className=="errorMsg" && parentNode!=null) {
 		     							//parentNode.appendChild(document.getElementsByTagName("div")[i]);
-		     							document.getElementsByTagName("div")[i].style.marginLeft="-4px!important";
+		     							//document.getElementsByTagName("div")[i].style.marginLeft="-4px!important";
 		     							oldDiv=parentNode.replaceChild(document.getElementsByTagName("div")[i],newNode);
 		     							parentNode==null;
 		     							break;
@@ -572,10 +572,11 @@
     </apex:outputPanel>
     <!-- TODO check if this can be transfered to style comp -->
     <apex:outputPanel id="additional_styles1" rendered="{!step!=3}"> 
-    <style>
+    <style type="text/css">
 
         .errorMsg {
             margin-left:0px;
+            margin-top: -2px!important;
         }
 
         #content #contact form .error {
@@ -584,4 +585,11 @@
 
     </style>
     </apex:outputPanel>
+    <style type="text/css">
+    	&lt;!--[if IE]>
+    		.errorMsg {
+    			margin-left: -200px;
+    		}
+    	<![endif]--&gt;
+    </style>
 </apex:component>

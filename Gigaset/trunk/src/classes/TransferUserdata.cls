@@ -35,7 +35,8 @@ public class TransferUserdata {
 							Contact.Status__c, Contact.Abteilung_Auswahl__c,
 							Contact.Gigaset_Extranet__c, Contact.Gigaset_Pro__c, Contact.In_Freischaltung__c,
 							Contact.MailingCity, Contact.MailingStreet, Contact.MailingCountry, Contact.MailingState, Contact.MailingPostalCode,
-							Contact.Account.Status__c, Contact.Account.Name, Contact.Account.BillingStreet, Contact.Account.BillingCity, 
+							Contact.Account.Status__c, Contact.Account.Name, Contact.Account.BillingStreet, Contact.Account.BillingCity,
+							Contact.Account.Pro_Distribution__c, 
 							Contact.Account.BillingPostalCode, Contact.Account.BillingCountry,
 							Contact.Zustimmung_Datenschutzerkl_rung_am__c, Contact.Datenschutzerkl_rung_zugestimmt__c 
 							FROM Contact WHERE Id IN :cids]) {
@@ -53,7 +54,20 @@ public class TransferUserdata {
 	private static void getAccounts() {
 		if (!aids.isEmpty()) {
 			try {   
-				for (Account a:[SELECT Id, Handelskanal__c, Distribution__c, Pro_Partner_Typ__c, PRO_VAR_MITARBEITERTZAHL__c, PRO_VAR_ANZ_SUPPORT__c, PRO_VAR_KUNDEN_MA_ANZ__c, PRO_VAR_SCHWERPUNKT__c, PRO_VAR_SCHWERPUNKT_ANDERER__c, PRO_VAR_ERFAHRUNGEN__c, PRO_SYSTEM_LIEFERANTEN__c, PRO_VAR_SYSTEMPARTNER_WEITERE__c, Description
+				for (Account a:[SELECT Id, 
+								Handelskanal__c, 
+								Distribution__c,
+								Pro_Distribution__c, 
+								Pro_Partner_Typ__c, 
+								PRO_VAR_MITARBEITERTZAHL__c, 
+								PRO_VAR_ANZ_SUPPORT__c, 
+								PRO_VAR_KUNDEN_MA_ANZ__c, 
+								PRO_VAR_SCHWERPUNKT__c, 
+								PRO_VAR_SCHWERPUNKT_ANDERER__c, 
+								PRO_VAR_ERFAHRUNGEN__c, 
+								PRO_SYSTEM_LIEFERANTEN__c, 
+								PRO_VAR_SYSTEMPARTNER_WEITERE__c, 
+								Description
 							FROM Account WHERE Id IN :aids]) {
 					if (!amap.containsKey(a.id)) amap.put(a.id,a);
 				}
@@ -142,6 +156,7 @@ public class TransferUserdata {
 					a.PRO_SYSTEM_LIEFERANTEN__c = u.PRO_SYSTEM_LIEFERANTEN__c;
 					a.PRO_VAR_SYSTEMPARTNER_WEITERE__c = u.PRO_VAR_SYSTEMPARTNER_WEITERE__c;
 					a.Description = u.Description__c;
+					a.Pro_Distribution__c=u.Pro_Distribution__c;
 					if (!accountstoupdate.containsKey(a.id)) accountstoupdate.put(a.id,a);
 				}
 			}

@@ -1,9 +1,13 @@
 public class CRD_Landing_Controller {
 	
-	private GlobalSettings__c portal_config;
+	//private GlobalSettings__c portal_config;
 	
 	public CRD_Landing_Controller(){
-		portal_config = [SELECT Name, Landing_Page_Aktivierung__c, Portal__c, isPro__c FROM GlobalSettings__c WHERE Portal__c = :System_Settings.portal AND IsPro__c = :System_Settings.isPro];
+		/*
+		List<GlobalSettings__c> settings = [SELECT Name, Landing_Page_Aktivierung__c, Portal__c, isPro__c FROM GlobalSettings__c WHERE Portal__c = :System_Settings.portal AND IsPro__c = :System_Settings.isPro limit 1];
+		if(settings.size() > 0)
+			portal_config = settings.get(0);
+			*/
 	}
 	
 	public CRD_Landing_Controller(TemplateController ctrl){

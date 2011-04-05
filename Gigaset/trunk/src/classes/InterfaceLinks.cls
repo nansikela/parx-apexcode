@@ -221,12 +221,17 @@ public class InterfaceLinks {
         String pictureURL = generatePictureURL();
         System.debug('Picture URL is: ' + pictureURL);
         /*************** PICTURE URL KEIN TEST **************/
-        
-        /*************** WERBEMITTEL URL KEIN TEST **************/
-		//String wbtURL = generateWebBasedTrainingURL();
-		//System.debug('WBT URL is: ' + wbtURL);
-        /*************** WERBEMITTEL URL KEIN TEST **************/
-        
+        User u = [Select Id FROM User WHERE ContactId != null limit 1];
+        System.debug('/***************'+u.ID+'*****************/');
+        System.runAs(u){
+        	InterfaceLinks ctrl = new InterfaceLinks();
+     	   /*************** WERBEMITTEL URL KEIN TEST **************/
+			String wbtURL = InterfaceLinks.generateWebBasedTrainingURL();
+			//System.debug('WBT URL is: ' + wbtURL);
+        	/*************** WERBEMITTEL URL KEIN TEST **************/
+        	
+        	System.assertEquals(generateStringTestTraining('test'), encodeMD5('test'));
+        }
         System.debug('/*************** PARX END TEST *****************/');   
     }
 
