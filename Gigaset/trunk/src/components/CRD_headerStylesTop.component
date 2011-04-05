@@ -14,7 +14,35 @@
     
     <!-- inline styles for better development performance  -->
 	<style type="text/css">
+		/* general settings */
+		p {
+			font-size: 12px;
+			font-weight: normal;
+		}
 		
+		h1 {
+			font-size: 18px;
+			font-weight: normal;
+		}
+		
+		#content #contact h1 {
+			font-size: 18px;
+			font-weight: normal;
+		}
+		
+		.formTitle {
+			padding-bottom: 10px;
+		}
+		
+		.formTitle h1 {
+			font-size: 12px!important;
+			font-weight: bold!important;
+		}
+		
+		.formText {
+			padding-bottom: 5px;
+		}
+
 		/* landingpage */
 		.landingpagecontent {
 			color: white;
@@ -65,7 +93,7 @@
 		}
 		
 		.messageTitleSmall h1 {
-			font-weight: bold;
+			font-weight: normal;
 			font-size: 18px!important;
 		}
 		
@@ -443,6 +471,7 @@
 	font-weight: bold !important;
 	white-space: nowrap;
 	height: 24px !important;
+	padding-top: 10px;
 }
 
 .newBTN_area:hover {
@@ -451,20 +480,17 @@
 	font-weight: bold !important;
 	white-space: nowrap;
 	height: 24px !important;
+	padding-top: 10px;
 }
 
 	/*/np/resource/1300816624000/gigasetextranetZIP/img/btn_back.gif*/
 .newBTN_area .newBTN {
 	height: 24px !important;
 	background-repeat: repeat-x;
-	/* background-color: #FFFFFF !important; */
 	background-position: top right;
 	color: white!important;
 	border: none;
 	float: left;
-
-	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.gif')}); */
-	/* background-image: url(http://gigaset.com//img/btn_back.png)!important; */
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backOrange.png')})!important;
 }
 
@@ -494,8 +520,6 @@
 .newBTN_area:hover .newBTN {
 	background-repeat: repeat-x;
 	background-position: top right;
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back_L.gif')});*/
-	/* background-image: url(http://gigaset.com//img/btn_backL.png)!important; */
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backOrangeL.png')})!important;
 } 
 
@@ -508,7 +532,6 @@
 	padding: 0px 0px 0px 0px !important;
 	float: left;
 	width: 24px;
-	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowOrange.png')});
 } 
 
@@ -520,7 +543,6 @@
 	overflow: hidden;
 	padding: 0px 0px 0px 0px !important;
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowOrangeL.png')});
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
 }
 
 .newBTN_area .newBTN_arrowBack {
@@ -532,7 +554,6 @@
 	padding: 0px 0px 0px 0px !important;
 	float: left;
 	width: 24px;
-	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackOrange.png')});
 } 
 
@@ -544,7 +565,6 @@
 	overflow: hidden;
 	padding: 0px 0px 0px 0px !important;
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackOrangeL.png')});
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
 } 	 	
 
 /* RESET ALL STYLING EFFECTS FOR BUTTON CLASSES! */
@@ -574,17 +594,6 @@
 }
 
 /* black buttons */
-	/*/np/resource/1300816624000/gigasetextranetZIP/img/btn_back.gif*/
-	/*
-		http://gigaset.com//img/download_back.gif
-		http://gigaset.com//img/download_backL.gif
-		http://gigaset.com//img/downloadexe_front.gif
-		http://gigaset.com//img/downloadexe_frontL.gif
-		
-		PDFs
-		http://gigaset.com//img/downloadpdf_front.gif
-		http://gigaset.com//img/downloadpdf_frontL.gif
-	*/
 .newBTN_area .newBTNBlack {
 	height: 24px !important;
 	background-repeat: repeat-x;
@@ -593,15 +602,13 @@
 	color: white!important;
 	border: none;
 	float: left;
-	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back.gif')}); */
-	background-image: url(http://gigaset.com//img/download_back.gif);
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backBlack.png')});
 }
 
 .newBTN_area:hover .newBTNBlack {
 	background-repeat: repeat-x;
 	background-position: top right;
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back_L.gif')});*/
-	background-image: url(http://gigaset.com//img/download_backL.gif);
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backBlackL.png')});
 } 
 
 .newBTN_area .newBTN_arrowBlack {
@@ -613,8 +620,7 @@
 	padding: 0px 0px 0px 0px !important;
 	float: left;
 	width: 24px;
-	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
-	background-image: url(http://gigaset.com//img/downloadexe_front.gif);
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBlack.png')});
 } 
 
 .newBTN_area:hover .newBTN_arrowBlack {
@@ -624,8 +630,7 @@
 	display: inline-block;
 	overflow: hidden;
 	padding: 0px 0px 0px 0px !important;
-	background-image: url(http://gigaset.com//img/downloadexe_frontL.gif);
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBlackL.png')});
 }
 
 .newBTN_area .newBTN_arrowBackBlack {
@@ -637,47 +642,39 @@
 	padding: 0px 0px 0px 0px !important;
 	float: left;
 	width: 24px;
-	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
-	background-image: url(http://gigaset.com//img/btn_arrowBackBlack.png);
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackBlack.png')});
 } 
 
-.newBTN_area:hover .newBTN_arrowBlack {
+.newBTN_area:hover .newBTN_arrowBackBlack {
 	height: 24px !important;
 	background-repeat: no-repeat;
 	background-position: top left;
 	display: inline-block;
 	overflow: hidden;
 	padding: 0px 0px 0px 0px !important;
-	background-image: url(http://gigaset.com//img/btn_arrowBackBlackL.png);
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
+	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackBlackL.png')});
 }
 
 /* grey buttons */
 .newBTN_area .newBTNGrey {
 	height: 24px !important;
 	background-repeat: repeat-x;
-	/* background-color: #FFFFFF !important; */
 	background-position: top right;
 	color: white!important;
 	border: none;
 	float: left;
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backGrey.png')}); 
-	/* background-image: url(http://gigaset.com//img/download_back.gif); */
 }
 
 .newBTN_area:hover .newBTNGrey {
 	background-repeat: repeat-x;
 	background-position: top right;
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backGreyL.png')});
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back_L.gif')});*/
-	/* background-image: url(http://gigaset.com//img/download_backL.gif); */
 }
 
 .newBTN_area:hover .newBTNTextGrey {
 	background-repeat: repeat;
 	background-position: top right;
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_back_L.gif')});*/
-	/* background-image: url(http://gigaset.com//img/download_backL.gif); */
 }  
 
 .newBTN_area .newBTN_arrowGrey {
@@ -690,8 +687,6 @@
 	float: left;
 	width: 24px;
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowGrey.png')});
-	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
-	/* background-image: url(http://gigaset.com//img/downloadexe_front.gif); */
 } 
 
 .newBTN_area:hover .newBTN_arrowGrey {
@@ -702,8 +697,6 @@
 	overflow: hidden;
 	padding: 0px 0px 0px 0px !important;
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowGreyL.png')});
-	/* background-image: url(http://gigaset.com//img/downloadexe_frontL.gif); */
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
 }
 
 .newBTN_area .newBTN_arrowBackGrey {
@@ -716,8 +709,6 @@
 	float: left;
 	width: 24px;
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackGrey.png')});
-	/* background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front.gif')}); */
-	/* background-image: url(http://gigaset.com//img/downloadexe_front.gif); */
 } 
 
 .newBTN_area:hover .newBTN_arrowBackGrey {
@@ -728,8 +719,6 @@
 	overflow: hidden;
 	padding: 0px 0px 0px 0px !important;
 	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackGreyL.png')});
-	/* background-image: url(http://gigaset.com//img/downloadexe_frontL.gif); */
-	/*background-image: url({!URLFOR($Resource.gigasetextranetZIP, 'img/btn_front_L.gif')});*/
 }
 
 /* ------------------------------------------ END ---------------------------------------------------- */

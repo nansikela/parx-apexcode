@@ -13,15 +13,7 @@ public class CRD_Landing_Controller {
 	}
 	
 	public PageReference goToLogin(){
-		PageReference href = null;
-		
-		if(!portal_config.Landing_Page_Aktivierung__c){
-			String tag = portal_config.Name + '_%';
-			Page__c p = [SELECT Id FROM Page__c WHERE Name LIKE :tag];
-		
-			href = new PageReference('/'+System_Settings.portal+'/page?pageid='+p.Id);
-		}
-		
-		return href;
+		// TODO die Landingpage respektiert zur Zeit nicht die Deeplink Technik
+		return System_Settings.redirectToLogin();
 	}	
 }

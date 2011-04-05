@@ -1,10 +1,17 @@
 <apex:component controller="rueckrufserviceController" allowDML="true" id="crdrueckrufservice" > 
     <apex:outputPanel id="form" rendered="{!showform}">
-	    <h1>{!$Label.callback}</h1>
-	    <br />
-        <p>{!$Label.callback_subtitle}</p>
-        <!-- <apex:pageMessages id="errorform" /> -->
+    	<apex:outputPanel id="callbacktitle" styleClass="formTitle" layout="block">
+	    	<h1>{!$Label.callback}</h1>
+	    </apex:outputPanel>
+		<apex:outputPanel id="callbacksubtitle" styleClass="formText" layout="block">
+        	<p>{!$Label.callback_subtitle}</p>
+        </apex:outputPanel>
         <apex:form id="callbackform">
+        	<style type="text/css">
+        		.errorMsg {
+        			margin-left: 0px;
+        		}
+        	</style>
             <apex:outputLabel value="{!$ObjectType.Request__c.fields.Telefon__c.label}*" for="telefon" />
                 <apex:inputField id="telefon" value="{!rq.Telefon__c}" required="true" styleClass="FieldRequired2" />
             <!-- 
@@ -53,11 +60,13 @@
         <c:CRD_formResultMessage msgstyle="success" width="small" title="{!$Label.callback}" message="{!$Label.callback_thanks_we_callback}" id="callbackmsgsuccesscomp" />
     </apex:outputPanel>
     <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
-    	<h1>{!$Label.callback}</h1>
-    	<br />
-        <p>{!$Label.callback_error}</p>
+    	<apex:outputPanel id="callbacktitle2" styleClass="formTitle" layout="block">
+	    	<h1>{!$Label.callback}</h1>
+	    </apex:outputPanel>
+	    <apex:outputPanel id="formText2" styleClass="formText" layout="block">
+        	<p>{!$Label.callback_error}</p>
+        </apex:outputPanel>
         <apex:pageMessages id="errorsave" />
-        <!--  <p class="errorMsg" >{!messages}</p>-->
     </apex:outputPanel>
     <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}">
         <div id="btnarea" class="newBTN_area isLeft">

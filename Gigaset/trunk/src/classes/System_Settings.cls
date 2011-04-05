@@ -147,7 +147,8 @@ global class System_Settings {
     
     // the preset should only be visible for crd at the moment
     global static Boolean showPreset() {
-        if (System_Settings.contactid!=null && System_Settings.contactid!='' && System_Settings.portal=='de' && !System_Settings.isPro) {
+    	// if (System_Settings.contactid!=null && System_Settings.contactid!='' && System_Settings.portal=='de' && !System_Settings.isPro) {
+        if (System_Settings.contactid!=null && System_Settings.contactid!='' && !System_Settings.isPro) {
             Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:contactid];
             if (c!=null && c.AccountId!=null ) {
                 Account a=[SELECT Id, Handelskanal__c, Distribution__c, Pro_Distribution__c FROM Account WHERE Id=:c.AccountId];

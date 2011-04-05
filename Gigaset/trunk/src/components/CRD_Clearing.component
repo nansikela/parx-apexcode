@@ -9,9 +9,6 @@
         </apex:form>
         <div class="contentText">
             <div id="contact">
-                <p> </p>
-                <h1>{!$Label.clearingpage_headline}</h1>
-                <p> </p>
                 <apex:outputPanel id="toclear" rendered="{!Not(showInClearing)}">
                     <apex:outputPanel id="step1" rendered="{!step=1}">
                         <apex:outputPanel id="profields" rendered="{!showProfields}">
@@ -27,10 +24,13 @@
                                 }
                             </style>
                             <apex:form id="step1formA" >
-                                <p><apex:outputText value="{!$Label.clearingpage_subtitlePro}" /></p>
+                            	<apex:outputPanel layout="block" id="clearingtitle" styleClass="formTitle" >
+				                	<h1>{!$Label.clearingpage_headline}</h1>
+				                </apex:outputPanel>
+                            	<apex:outputPanel id="formText1" styleClass="formText"  layout="block">
+                                	<p>{!$Label.clearingpage_subtitlePro}</p>
                                 <p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
-
-
+                                </apex:outputPanel>
                                 <apex:outputLabel value="{!$ObjectType.User.fields.PRO_VAR_MITARBEITERTZAHL__c.label}*" for="employeersAmount" />
                                 <apex:inputField id="employeersAmount" value="{!u.PRO_VAR_MITARBEITERTZAHL__c}"  required="true" styleClass="FieldRequiredSelect" />
                     
@@ -70,9 +70,18 @@
                         </apex:outputPanel>
                         <apex:outputPanel id="noprofields" rendered="{!NOT(showProfields)}">
                             <apex:form id="step1formB" >
-                                <p><apex:outputText value="{!$Label.clearingpage_subtitlePro}" /></p>
-                                <br />
+                            	<apex:outputPanel layout="block" id="clearingtitle" styleClass="formTitle" >
+				                	<h1>{!$Label.clearingpage_headline}</h1>
+				                </apex:outputPanel>
+                            	<apex:outputPanel id="formText2" styleClass="formText"  layout="block">
+                                	<p>{!$Label.clearingpage_subtitlePro}</p>
+                                </apex:outputPanel>
                                 <apex:outputPanel id="classification">
+                                	<style type="text/css">
+                                		.errorMsg {
+                                			margin-left: 0px;
+                                		}
+                                	</style>
                                     <apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanal" />
                                         <apex:inputField id="handelskanal" value="{!u.Handelskanal__c}"  styleClass="FieldRequiredSelect" required="true" onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" />
                                     <!-- onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" -->
@@ -108,36 +117,41 @@
                         </apex:outputPanel>
                     </apex:outputPanel>
                     
-                    <apex:outputPanel id="success" rendered="{!step=2}">
-                    	<c:CRD_formResultMessage title="{!$Label.clearingpage_thanks}" message="{!$Label.clearingpage_thanks_msg}" msgstyle="success" />
-                    </apex:outputPanel>
+                    
                     <apex:outputPanel id="saveerror" rendered="{!step=99}">
-                        <p>{!$Label.clearingpage_error}</p>
+                        <apex:outputPanel id="formText3" styleClass="formText"  layout="block">
+                        	<p>{!$Label.clearingpage_error}</p>
+                        </apex:outputPanel>
                         <apex:pageMessages id="error" />
                     </apex:outputPanel>
-                    
-
-                        <apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
-                        	<div id="btnarea" class="newBTN_area isLeft">
-	                			<div class="newBTN_arrow"></div>
-	                			<div class="newBTN">
-                            		<apex:outputLink styleClass="newBTN" value="{!$Site.Prefix}/secur/logout.jsp" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
-                            	</div>
-                            </div>
-                        </apex:outputPanel>
-
+  
+                </apex:outputPanel>
+                <apex:outputPanel id="success" rendered="{!step=2}">
+                    	<c:CRD_formResultMessage title="{!$Label.clearingpage_headline}" message="{!$Label.clearingpage_thanks}" msgstyle="success" width="small" />
+                </apex:outputPanel>
+                <apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
+                    	<div id="btnarea" class="newBTN_area isLeft">
+             			<div class="newBTN_arrow"></div>
+             			<div class="newBTN">
+                        		<apex:outputLink styleClass="newBTN" value="{!$Site.Prefix}/secur/logout.jsp" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                        	</div>
+                        </div>
                 </apex:outputPanel>
                 <apex:outputPanel id="alreadyInClearing" rendered="{!showInClearing}" >
-                    <apex:outputText value="{!$Label.clearingpage_alreadyInClearing}" />
-
-                        <apex:outputPanel id="backInClearing" rendered="{!showInClearing}" >
-                        	<div id="btnarea" class="newBTN_area isLeft">
-	                			<div class="newBTN_arrow"></div>
-	                			<div class="newBTN">
-                            		<apex:outputLink styleClass="gcbtn" value="{!$Site.Prefix}/secur/logout.jsp" id="r3c2" >{!$Label.site.logout}</apex:outputLink>
-                            	</div>
-                            </div>
-                        </apex:outputPanel>
+                	<apex:outputPanel layout="block" id="clearingtitle" styleClass="formTitle" >
+	                	<h1>{!$Label.clearingpage_headline}</h1>
+	                </apex:outputPanel>
+                	<apex:outputPanel id="theText" layout="block" styleClass="formText" >
+                		<p>{!$Label.clearingpage_alreadyInClearing}"</p>
+					</apex:outputPanel>
+                    <apex:outputPanel id="backInClearing" rendered="{!showInClearing}" >
+                    	<div id="btnarea" class="newBTN_area isLeft">
+             			<div class="newBTN_arrow"></div>
+             			<div class="newBTN">
+                        		<apex:outputLink styleClass="newBTN" value="{!$Site.Prefix}/secur/logout.jsp" id="r3c2" >{!$Label.site.logout}</apex:outputLink>
+                        	</div>
+                        </div>
+                    </apex:outputPanel>
 
                 </apex:outputPanel>
             </div>

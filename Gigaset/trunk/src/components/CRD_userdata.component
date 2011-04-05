@@ -3,10 +3,12 @@
         <!-- <apex:pageMessages id="error" /> -->
     </apex:outputPanel>
     <apex:outputPanel id="start" rendered="{!step='start'}">
-        <h1>{!$Label.userdata_your_userdata}</h1>
-        <br />
-        <!-- <p><b><apex:outputText value="{!$Label.userdata_contentdirectory}" /></b></p> -->
-        <p>{!$Label.userdata_intro}</p>
+    	<apex:outputPanel id="userdataTitel1" styleClass="formTitle" layout="block">
+        	<h1>{!$Label.userdata_your_userdata}</h1>
+        </apex:outputPanel>
+        <apex:outputPanel id="formText1" styleClass="formText" layout="block">
+        	<p>{!$Label.userdata_intro}</p>
+        </apex:outputPanel>
         <apex:form id="menuform" > 
                 <div class="link_arrow"><apex:commandLink value="{!$Label.clientdata_userdata}" action="{!editUserdata}" id="linkuserdata" /></div>
                 <div class="link_arrow spacer5"><apex:commandLink value="{!$Label.userdata_infoservice}" action="{!editInfoservice}" id="linkinforservice" /></div>
@@ -16,14 +18,12 @@
         </apex:form>
     </apex:outputPanel>
     <apex:outputPanel id="userdata" rendered="{!step='userdata'}">
-        <h1>{!$Label.clientdata_userdata}</h1>
-        <br />
-        <!-- TODO change behaviour of errormessage! -->
-        <!-- 
-        <p class="errorMsg"><apex:outputText escape="false" value="{!messages}" id="errormessages" /></p>
-        -->
-        <p>{!$Label.userdata_userdata_intro}</p>
-        <br />
+    	<apex:outputPanel id="userdataTitel2" styleClass="formTitle" layout="block">
+        	<h1>{!$Label.clientdata_userdata}</h1>
+        </apex:outputPanel>
+        <apex:outputPanel id="formText2" styleClass="formText" layout="block">
+        	<p>{!$Label.userdata_userdata_intro}</p>
+		</apex:outputPanel>
         <!-- <apex:pageMessages id="error" /> -->
         <apex:form id="userdataform" >
         	<table>
@@ -190,11 +190,13 @@
         <c:CRD_formResultMessage msgstyle="success" title="{!success_headline}" message="{!$Label.userdata_savedata_success}" width="small" id="userdatachangesuccesscomp"/>
     </apex:outputPanel>
     <apex:outputPanel id="infoservice" rendered="{!step='infoservice'}">
-        <h1><apex:outputText value="{!$Label.userdata_infoservice}" /></h1>
-        <br />
-        <p><apex:outputText value="{!$Label.userdata_is_keepuptodate}" /><br />
-        <!-- <apex:outputText value="{!$Label.userdata_is_comway}" /><br />-->
-        <apex:outputText value="{!$Label.userdata_is_pleaseselect}" /></p>
+    	<apex:outputPanel id="userdataTitel3" styleClass="formTitle" layout="block">
+        	<h1>{!$Label.userdata_infoservice}</h1>
+        </apex:outputPanel>
+        <apex:outputPanel id="formText3" styleClass="formText" layout="block">
+	        <p>{!$Label.userdata_is_keepuptodate}<br />
+	        {!$Label.userdata_is_pleaseselect}</p>
+        </apex:outputPanel>
         <apex:form id="infoserviceform" >
             <p><apex:outputText value="{!$Label.userdata_is_whichcomway}" /><br />
             <apex:outputLabel value="{!$ObjectType.User.fields.Info_per_Email__c.label}" for="infoemail" /><apex:inputField value="{!u.Info_per_Email__c}" id="infoemail" /><br />
@@ -225,9 +227,12 @@
         </apex:form>
     </apex:outputPanel>
     <apex:outputPanel id="userdelete" rendered="{!step='userdelete'}">
+    	<apex:outputPanel id="userdataTitel4" styleClass="formTitle" layout="block">
         <h1>{!$Label.userdata_userdelete}</h1>
-        <br />
-        <p>{!$Label.userdata_ud_pleasedelete} {!$User.Username}.</p>
+        </apex:outputPanel>
+        <apex:outputPanel id="formText4" styleClass="formText" layout="block">
+        	<p>{!$Label.userdata_ud_pleasedelete} {!$User.Username}.</p>
+        </apex:outputPanel>
         <apex:form id="userdeleteform" >
             <!-- 
             <apex:selectRadio value="{!rq.Loeschung_Gruende__c}" >
@@ -260,4 +265,9 @@
         </div>
         </apex:form>
     </apex:outputPanel>
+    <style type="text/css">
+    	.errorMsg {
+    		margin-left: 0px;
+    	}
+    </style>
 </apex:component>

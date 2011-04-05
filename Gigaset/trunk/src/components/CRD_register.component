@@ -130,9 +130,8 @@
         
         <apex:outputPanel layout="block" id="registrationBox">
            <div id="contact" class="registercontact">
-           		<apex:outputPanel id="regtitel" rendered="{!step<4}">
-                <h1>{!$Label.registration}</h1>
-                <p> </p>
+           		<apex:outputPanel id="regtitel" rendered="{!step<4}" styleClass="formTitle" layout="block">
+                	<h1>{!$Label.registration}</h1>
                 </apex:outputPanel>
                 <apex:outputPanel id="privacy" rendered="{!AND(step=0,showprivacy)}">
                     <apex:pageMessages id="errorprivacy" />
@@ -152,7 +151,7 @@
                 		</apex:outputPanel>
                         <apex:outputPanel id="privacybuttons" layout="block" styleClass="buttonformdiv">
                         <div id="btnarea" class="newBTN_area isLeft">
-	                    <div class="newBTN_arrowBlack"></div>
+	                    <div class="newBTN_arrowBackBlack"></div>
 	                    	<div class="newBTNBlack">
                         	<apex:outputLink styleClass="newBTNBlack" value="javascript:history.go(-1);">{!$Label.back}</apex:outputLink>
                         	</div>
@@ -168,7 +167,9 @@
                 </apex:outputPanel>
                 
                 <apex:outputPanel id="step1" rendered="{!step=1}">
-                    <p>{!$Label.registration_subtitle}</p>
+                	<apex:outputPanel id="formText1" styleClass="formText"  layout="block">
+                    	<p>{!$Label.registration_subtitle}</p>
+                    </apex:outputPanel>
                     <apex:pageMessages id="errorstep1" /> 
                     <apex:form id="step1form" >
                         <table>
@@ -285,7 +286,7 @@
                 		</apex:outputPanel>
                         <apex:outputPanel id="pcompanybuttons" layout="block" styleClass="buttondiv"  rendered="{!showprivacy}">
                         	<div id="btnarea" class="newBTN_area isLeft">
-			                    <div class="newBTN_arrowBlack"></div>
+			                    <div class="newBTN_arrowBackBlack"></div>
 			                    <div class="newBTNBlack">
                             		<apex:outputLink value="#" onclick="previousStep();" styleClass="newBTNBlack" id="prev1_btn" rendered="{!showprivacy}">
                             		{!$Label.back}
@@ -301,7 +302,7 @@
                         </apex:outputPanel>
                         <apex:outputPanel id="companybuttons" layout="block" styleClass="buttondiv"  rendered="{!NOT(showprivacy)}">
                            	<div id="btnarea" class="newBTN_area isLeft">
-			                    <div class="newBTN_arrowBlack"></div>
+			                    <div class="newBTN_arrowBackBlack"></div>
 			                    <div class="newBTNBlack">
                            			<apex:outputLink styleClass="newBTNBlack" value="javascript:history.go(-1);" rendered="{!NOT(showprivacy)}">
                            			{!$Label.back}
@@ -325,11 +326,34 @@
                         <apex:outputLabel value="{!$ObjectType.Lead.fields.Salutation.label}{!IF(portal='se','','*')}" for="salutation" />
 						</td>
 						<td>
+							<div id="sal">
 							<apex:inputField style="right: 4px;top: 3px;position: relative;" id="salutation" value="{!l.Salutation}" required="{!IF(portal='se',false,true)}" styleClass="FieldRequiredSalutation" />
 							<apex:panelGrid columns="2" id="thetitlearea">
 								<apex:outputLabel value="{!$ObjectType.Lead.fields.Title.label}" for="stitle" style="width: 54px!important; text-align: right;"/>
 								<apex:inputField style="top: 3px;position: relative;" id="stitle" value="{!l.Title}" styleClass="FieldRequiredTitle" />
 							</apex:panelGrid>
+							</div>
+							<script type="text/javascript">
+								/* Moves the error Message behind the Title Table */
+								var parentNode;
+								var newchildNode;
+								for (var i = 0; i < document.getElementsByTagName("div").length; i++) {
+									if(document.getElementsByTagName("div")[i].id=="sal") {
+										parentNode=document.getElementsByTagName("div")[i];
+										newNode=document.createElement("DIV");
+										newNode.className="errorMsg";
+										newchildNode=parentNode.appendChild(newNode);
+									}
+									
+		     						if(document.getElementsByTagName("div")[i].className=="errorMsg" && parentNode!=null) {
+		     							//parentNode.appendChild(document.getElementsByTagName("div")[i]);
+		     							document.getElementsByTagName("div")[i].style.marginLeft="-4px!important";
+		     							oldDiv=parentNode.replaceChild(document.getElementsByTagName("div")[i],newNode);
+		     							parentNode==null;
+		     							break;
+		     						}
+		     					}
+							</script>
 						</td>
                         </tr>
                         <tr>
@@ -450,7 +474,7 @@
                 		</apex:outputPanel>
                         <apex:outputPanel id="personalbuttons" layout="block" styleClass="buttonformdiv">
                         <div id="btnarea" class="newBTN_area isLeft">
-	                    <div class="newBTN_arrowBlack"></div>
+	                    <div class="newBTN_arrowBackBlack"></div>
 	                    	<div class="newBTNBlack">
                             <apex:outputLink value="#" onclick="previousStep();" styleClass="newBTNBlack" id="prev1_btn">{!$Label.back}</apex:outputLink>
                             </div>
@@ -468,8 +492,10 @@
                     
                     <apex:form id="step3form" >
                     <apex:outputPanel id="nativeVersion" >
-                        <p><apex:outputText value="{!$Label.registration_classification}" /></p>
-                        <p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
+                    	<apex:outputPanel id="formText2" styleClass="formText"  layout="block">
+	                        <p>{!$Label.registration_classification}</p> 
+	                        <p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
+                        </apex:outputPanel>
                         <apex:outputPanel id="classification" >
                             <table><tr><td>
                             <apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanal" />
@@ -506,7 +532,7 @@
                 	</apex:outputPanel>
                     <apex:outputPanel id="classificationbuttons" layout="block" styleClass="buttonformdiv">
                         <div id="btnarea" class="newBTN_area isLeft">
-	                    <div class="newBTN_arrowBlack"></div>
+	                    <div class="newBTN_arrowBackBlack"></div>
 	                    	<div class="newBTNBlack">
                         	<apex:outputLink value="#" onclick="previousStep();" styleClass="newBTNBlack" id="prev2_btn">{!$Label.back}</apex:outputLink>
                         	</div>
@@ -522,20 +548,13 @@
                 
                 </apex:outputPanel>
                 
-                <!-- 
                 <apex:outputPanel id="success" rendered="{!step=4}">
-                    <p>{!$Label.registration_thanks}</p>
+                	<c:CRD_formResultMessage width="small" title="{!$Label.registration}" message="{!$Label.registration_thanks}" id="msgsuccess" msgstyle="success"/>
                 </apex:outputPanel>
                 <apex:outputPanel id="saveerror" rendered="{!step=99}">
-                    <p>{!$Label.registration_error}</p>
-                    <apex:pageMessages id="error" />
-                </apex:outputPanel>
-                -->
-                <apex:outputPanel id="success" rendered="{!step=4}">
-                	<c:CRD_formResultMessage title="{!$Label.registration_thanks}" message="{!$Label.registration_thanks_msg}" id="msgsuccess" msgstyle="success"/>
-                </apex:outputPanel>
-                <apex:outputPanel id="saveerror" rendered="{!step=99}">
-                    <p>{!$Label.registration_error}</p>
+                	<apex:outputPanel id="formText3" styleClass="formText" layout="block">
+                    	<p>{!$Label.registration_error}</p>
+                    </apex:outputPanel>
                     <apex:pageMessages id="error" />
                 </apex:outputPanel>
 
