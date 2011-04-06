@@ -3,6 +3,10 @@
    Guest users are never able to access this page.
  */
 public class MyProfilePageController {
+	
+	public MyProfilePageController(){
+		
+	}
 /*
     private User user;
     private boolean isEdit = false;
