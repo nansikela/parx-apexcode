@@ -347,6 +347,7 @@
 									
 		     						if(document.getElementsByTagName("div")[i].className=="errorMsg" && parentNode!=null) {
 		     							//parentNode.appendChild(document.getElementsByTagName("div")[i]);
+		     							// under IE this is not good
 		     							//document.getElementsByTagName("div")[i].style.marginLeft="-4px!important";
 		     							oldDiv=parentNode.replaceChild(document.getElementsByTagName("div")[i],newNode);
 		     							parentNode==null;
@@ -571,25 +572,16 @@
         </apex:outputPanel>
     </apex:outputPanel>
     <!-- TODO check if this can be transfered to style comp -->
-    <apex:outputPanel id="additional_styles1" rendered="{!step!=3}"> 
+    <!--  -->
+    <apex:outputPanel id="additional_styles1" rendered="{!step=3}" > 
     <style type="text/css">
 
         .errorMsg {
-            margin-left:0px;
-            margin-top: -2px!important;
-        }
-
-        #content #contact form .error {
-            margin-left:0px;
+            margin-left:211px!important;
+            /* error msg under salutation is otherwise not good in ie8 */
+            margin-top: -4px!important;
         }
 
     </style>
     </apex:outputPanel>
-    <style type="text/css">
-    	&lt;!--[if IE]>
-    		.errorMsg {
-    			margin-left: -200px;
-    		}
-    	<![endif]--&gt;
-    </style>
 </apex:component>
