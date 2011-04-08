@@ -26,8 +26,9 @@ private class TemplateTest {
 		Testclass for tests of all templates
 	*/
 
+    
     static testMethod void TemplateControllerTest() {
-    	User u = [Select ID From User Where ContactId != null limit 1];
+    	User u = [Select ID From User Where ContactId != null and isactive=true limit 1];
     	System.runas(u){
     	PageReference pageRef = Page.DE_Home;
         Test.setCurrentPage(pageRef);
@@ -133,9 +134,19 @@ private class TemplateTest {
 		
 		//training 
        User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
+	 	/* create some results */
+       list<Training_Ergebnis__c> tes = new list<Training_Ergebnis__c>();
+       for (Training_Module__c tm: tms) {
+       	Training_Ergebnis__c te= new Training_Ergebnis__c();
+       	te.Kontakt__c=u.contactId;
+       	te.Last_Click__c=system.today();
+       	te.Training_Modul__c=tm.id;
+       	tes.add(te);
+       }
+       insert tes;
 	 	System.runAs(u) {
 	 	test.startTest();
-        TrainingController.Modules_Param = [select id from Training_Module__c limit 1].Id;
+        TrainingController.Modules_Param = tms.get(0).Id;
         ApexPages.currentPage().getParameters().put('moduleId',  TrainingController.Modules_Param);
         TrainingController.getBooks();
         TrainingController.getModules();
