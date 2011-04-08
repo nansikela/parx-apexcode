@@ -40,6 +40,12 @@ private class registerControllerTest {
         ctrl.saveLead();
         ctrl.showShippingAddressAction();
         ctrl.getItems();
+        ctrl.step=1;
+        ctrl.nextStep();
+        ctrl.step=2;
+        ctrl.nextStep();
+        ctrl.step=3;
+        ctrl.nextStep();
 	 	}
     }
 }

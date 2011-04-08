@@ -298,25 +298,4 @@ public class Download{
 		return null;
 	}
 	
-	static testMethod void testDownload() {
-		User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
-			Download ctrl = new Download();
-			//ctrl.Del();
-			ctrl.toUpdatePage();
-			ctrl.goHome();
-			ctrl.lockGame();
-			ctrl.UpdateStatus();
-			ctrl.upload();
-			
-			NextTopShop__c nts = ctrl.Art;
-			boolean x = ctrl.showUpdatePage;
-			x = ctrl.showThirdPage;
-			x = ctrl.Table;
-			x = ctrl.ShowButtons;
-	//		x = ctrl.ShowButtonsAndLinks;
-			Attachment a = ctrl.document;
-			
-	 	}
-	}
 }

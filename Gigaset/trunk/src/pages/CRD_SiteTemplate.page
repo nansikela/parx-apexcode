@@ -19,14 +19,17 @@
             </div>
             <!--  END header -->
             <div id="content_wrapper">
-             
+            <!-- <apex:iframe rendered="{!isPDF}" src="{!URLFOR($Resource.pdfs, pdf)}" scrolling="false" id="iFrameOfPopupPDF" width="100%"/> -->
+            <!-- <apex:flash rendered="{!isFlash}" src="{!URLFOR($Resource.flashs, flash)}" width="100%" height="100%"/> -->
+             <!-- 
             <div id="custom_popup" class="custom_popup"> 
                 <a style="position:absolute; color:white; top:5px; right: 8px;" onclick="document.getElementById('custom_popup').style.visibility = 'hidden';">X</a>
                 <apex:variable var="pdf" value="{!target}"/>
-                <!-- <apex:iframe rendered="{!isPDF}" src="{!URLFOR($Resource.pdfs, pdf)}" scrolling="false" id="iFrameOfPopupPDF" width="100%"/> -->
+                
                 <iframe src="{!IF(isNative,' ',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup" width="100%"> </iframe>
-                <!-- <apex:flash rendered="{!isFlash}" src="{!URLFOR($Resource.flashs, flash)}" width="100%" height="100%"/> -->
+                
             </div> 
+            -->
             <!-- shadow at the end of the page, only if logged in -->
             <div id="content" style="{!IF(isAuthenticated,'background-image: url(','')}{!URLFOR($Resource.GCRedesign,'GCRedesign/greyShadowBottom.png')}{!IF(isAuthenticated,');background-color: white;background-position: bottom left;background-repeat: repeat-x;','')}">
                 <apex:insert name="breadcrump">

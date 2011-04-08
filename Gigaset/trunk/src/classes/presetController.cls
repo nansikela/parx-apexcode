@@ -84,8 +84,8 @@ public class presetController {
 		if (isAuthenticated) {
 			u=System_Settings.getCurrentUpdatedUser();
 			if (u!=null) {
-				u.Handelskanal__c=null;
-				u.Distribution__c=null;
+				//u.Handelskanal__c=null;
+				//u.Distribution__c=null;
 			}
 		}
 	}

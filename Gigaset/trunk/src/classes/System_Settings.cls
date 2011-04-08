@@ -71,6 +71,8 @@ global class System_Settings {
             return Site.getCustomWebAddress().substring(7,9);
         if (Site.getName()!=null && sign=='ZZ')
             return Site.getName().toLowerCase();
+        if ((sign==null || sign=='ZZ') && ApexPages.currentPage()!=null && ApexPages.currentPage().getUrl()!=null) sign=ApexPages.currentPage().getUrl().substring(ApexPages.currentPage().getUrl().length()-2);
+        System.debug('Found Portal: ' + sign);
         return sign;
     }
     
@@ -152,7 +154,9 @@ global class System_Settings {
             Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:contactid];
             if (c!=null && c.AccountId!=null ) {
                 Account a=[SELECT Id, Handelskanal__c, Distribution__c, Pro_Distribution__c FROM Account WHERE Id=:c.AccountId];
-                if (a!=null && ((!isPro && (a.Handelskanal__c==null || a.Handelskanal__c=='')) || (isPro && a.Pro_Distribution__c==null || a.Pro_Distribution__c==''))) return true;
+                if (a!=null && 
+					(a.Handelskanal__c==null || a.Handelskanal__c=='')
+					) return true;
             }
         }
         return false;
@@ -351,6 +355,8 @@ global class System_Settings {
             el.Message__c=msg.substring(0,msg.length()<254?msg.length():254);
             el.ErrorIdText__c=errorid==null?'':errorid;
             el.Portal__c = PortalContact;
+            el.Job__c='';
+            
             try {
                 insert el;
             } catch (System.Dmlexception e) {

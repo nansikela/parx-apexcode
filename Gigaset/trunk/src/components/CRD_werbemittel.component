@@ -1,8 +1,13 @@
 <apex:component allowDML="true" id="werbemittel" controller="werbemittelController">
+<apex:attribute name="pageController"
+	      type="PageControllerBase"
+	      assignTo="{!pageController}"
+	      required="true"
+	      description="The controller for the page." />
 
 <apex:outputPanel rendered="{!showfirstpage}" id="firstpage">
     <script type="text/javascript">
-        
+
         function check(e)  // it can have characters 0-9 and if there are any other characters, it returns an error
         {       
             var temp;
@@ -74,7 +79,7 @@
                	<div id="btnarea" class="newBTN_area isLeft">
 	            	<div class="newBTN_arrow"></div>
 	                <div class="newBTN">
-                        	<apex:commandButton action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp" styleClass="newBTN" />              
+                        	<apex:commandButton action="{!secondPage}" value="{!$Label.next}" rerender="werbemittelcomp,werbemittelcomp_finalcomp,test" styleClass="newBTN" />              
                 		</div>
                 	</div>
                 </apex:outputPanel>
@@ -137,7 +142,7 @@
                 	<div id="btnarea" class="newBTN_area">
 	            		<div class="newBTN_arrowBack"></div>
 	                	<div class="newBTN">                  
-                    		<apex:commandButton action="{!firstPage}" value="{!$Label.back}" immediate="true" rerender="werbemittelcomp,werbemittelcomp_finalcomp" styleClass="newBTN"/>
+                    		<apex:commandButton action="{!firstPage}" value="{!$Label.back}" immediate="true" rerender="werbemittelcomp" styleClass="newBTN"/>
                     	</div>
                     </div>
                     </apex:outputPanel>      
@@ -149,7 +154,7 @@
                 	<div id="btnarea" class="newBTN_area">
 	            		<div class="newBTN_arrow"></div>
 	                	<div class="newBTN">                       
-                    		<apex:commandButton action="{!thirdPage}" value="{!$Label.Order}" styleClass="newBTN"/>
+                    		<apex:commandButton action="{!thirdPage}" value="{!$Label.Order}" styleClass="newBTN" rerender="werbemittelcomp"/>
                     	</div>
                     </div> 
                     </apex:outputPanel>
@@ -157,6 +162,19 @@
             </apex:column>
         </apex:dataTable>
     </apex:form>
+</apex:outputPanel>
+
+<apex:outputPanel id="thirdpage" rendered="{!showthirdpage}">
+    <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1>
+<p>
+      <apex:outputText value="{!$Label.userdata_order_last_step}" />
+</p>
+		<div id="btnarea" class="newBTN_area isLeft">
+	        <div class="newBTN_arrow"></div>
+	        <div class="newBTN">  
+    				<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+    		</div>
+    	</div>
 </apex:outputPanel>
 
 </apex:component>

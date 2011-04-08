@@ -2,7 +2,7 @@
     <ul id="menu">
         <li>      
             <div class="link_arrow">
-                <apex:outputLink value="{!$Page.CRD_Login}" id="login_btn" styleClass="link_arrow">
+                <apex:outputLink value="{!$Site.CustomWebAddress}" id="login_btn" styleClass="link_arrow">
                         <!-- {!$Label.site.go_to_login_page} -->
                         {!$Label.gohome}
                         </apex:outputLink>
