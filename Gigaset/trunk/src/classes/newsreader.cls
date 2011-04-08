@@ -31,6 +31,7 @@ public class newsreader {
 						//AND Portal__c=:portal 
 						//AND (release_date__c<=:System.today() OR release_date__c=null) 
 						ORDER BY release_date__c desc limit 1];
+				newsid=ci.id;
 			} catch (System.QueryException e) { if (System_Settings.isDebug) throw e; }
 		}
 		if (ci!=null && ci.ImageURL__c!=null) newsbackgroundurl=ci.ImageURL__c;

@@ -1,4 +1,20 @@
-public class CRD_MarketingController {
+public class CRD_MarketingController extends PageControllerBase {
+
+	// component communication
+	public werbemittelController myComponentController { get; set; }
+	     
+	  public override void setComponentController(ComponentControllerBase compController) {
+	    myComponentController = (werbemittelController)compController;
+	  }
+	     
+	  public override ComponentControllerBase getMyComponentController() {
+	    return myComponentController;
+	  }
+	     
+	  //public PageReference callComponentControllerMethod() {
+	  //  myComponentController.incrementValue();
+	  //  return null;
+	  //} 
 
 	public String tabLabelSalesActions { get; private set; }
 	public String tabLabelSalesSupport { get; private set; }
@@ -9,6 +25,7 @@ public class CRD_MarketingController {
 	public Boolean showTabSalesSupport { get; private set; }
 	public Boolean showTabCampaignMaterial { get; private set; }
 	public Boolean showTabEventCalendar { get; private set; }
+	public Boolean onOrder { get; set; }
 
 	public CRD_MarketingController() {
 		tabLabelSalesActions=System_Settings.getLabel('tabLabelSalesActions');
@@ -19,7 +36,7 @@ public class CRD_MarketingController {
 		showTabSalesSupport=hasPageItemFor('salessupport');
 		showTabCampaignMaterial=true;
 		showTabEventCalendar=hasPageItemFor('eventcalendar');
-		
+		onOrder=false;
 	}
 	
 	// helper
@@ -32,5 +49,11 @@ public class CRD_MarketingController {
 			}
 		} catch (System.Queryexception e) {	}
 		return retval;
+	}
+	
+	// getter
+	public Boolean getOnOrderComp() {
+		onOrder=myComponentController.showsecondpage;
+		return onOrder;
 	}
 }

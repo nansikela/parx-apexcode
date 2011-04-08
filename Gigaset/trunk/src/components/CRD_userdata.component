@@ -53,7 +53,8 @@
 							
      						if(document.getElementsByTagName("div")[i].className=="errorMsg" && parentNode!=null) {
      							//parentNode.appendChild(document.getElementsByTagName("div")[i]);
-     							document.getElementsByTagName("div")[i].style.marginLeft="-4px!important";
+     							// with ie8 this is not good
+     							//document.getElementsByTagName("div")[i].style.marginLeft="-4px!important";
      							oldDiv=parentNode.replaceChild(document.getElementsByTagName("div")[i],newNode);
      							parentNode==null;
      							break;
@@ -268,6 +269,8 @@
     <style type="text/css">
     	.errorMsg {
     		margin-left: 0px;
+    		/* error msg under salutation is otherwise not good in ie8 */
+            margin-top: -2px!important;
     	}
     </style>
 </apex:component>

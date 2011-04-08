@@ -3,7 +3,7 @@ private class onContactAfterTest {
 
     static testMethod void myUnitTest() {
      	
-     	User u = [SELECT Id, Name FROM User WHERE Id = :Userinfo.getUserId()];
+     	User u = [SELECT Id, Name FROM User WHERE Id = :Userinfo.getUserId() and isactive=true];
      	list<Contact> massDML = new list<Contact>();
      	
      	System.runAs(u){

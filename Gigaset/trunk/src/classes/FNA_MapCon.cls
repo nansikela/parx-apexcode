@@ -33,8 +33,8 @@ public class FNA_MapCon {
 		return userAgent;
 	}
 	
-    	public void init(){
-     //   error = !isSourceAccountGood();
+		public void getParams() {
+			 //   error = !isSourceAccountGood();
      		if(ApexPages.currentPage().getParameters().get('Lang') != null && ApexPages.currentPage().getParameters().get('Lang') != '')
       		Param_Lang =  ApexPages.currentPage().getParameters().get('Lang');
       	if(ApexPages.currentPage().getParameters().get('Portal') != null && ApexPages.currentPage().getParameters().get('Portal') != '')
@@ -50,13 +50,15 @@ public class FNA_MapCon {
    //     	msg='The Account cannot be mapped, please look over the Account record for more information';//'The Account cannot be mapped, please look over the Account record for more information (Account:'+mainAccount.FN__Mapping_Status__c+')';
 
    //     	city = '';
-
+		}
+	
+    	public void init(){
+    		getParams();
         //If there is no error, let's populate the map. 
         	if(!error){Search();}
         	system.debug('debug param ' +  Param_Lang + ' ' + Param_portal);
         	Rmax= 50;
     	} 
-
    
     /*To do the search, I Find the Dimensions of my bounding box (serach area), Generate the list of accounts, and refresh the page. */ 
 	public PageReference Search() {
@@ -73,7 +75,8 @@ public class FNA_MapCon {
 	    		Rmax= 0;
 	    	}
 	    	else {
-      		Status = googleRequest();
+	    		city = getCleanAddress(city);
+      			Status = googleRequest();
 	    	}
       	if(Status == 'OK') {
       		findMax();
@@ -152,7 +155,6 @@ public class FNA_MapCon {
       	String Status= 'OK';    	
   //    	if(city == null || city== '')
   //    		city = 'Deutschland';
-      	city = getCleanAddress(city);
 	      String url = 'http://maps.google.com/maps/geo?q=' + city + /*',' + Lands +*/'&output=csv&oe=utf8&sensor=false&key=' + System.Label.GeoApiKey;
 	      HttpRequest req = new HttpRequest();
 	      req.setEndpoint(url);
@@ -368,24 +370,4 @@ public class FNA_MapCon {
     	public Boolean getError() {return error;}  
     	public Account getmainAccount(){return mainAccount;}
     	
-
-    	 static testMethod void myUnitTest() {
-    	 	FNA_MapCon.getBrowserName();
-    	 	FNA_MapCon ctrl=new FNA_MapCon();
-    	 	ctrl.init();
-    	 	ctrl.findMax();
-    	 	ctrl.getError();
-    	 	ctrl.getItems();
-    	 	ctrl.getLocations();
-    	 	ctrl.getmainAccount();
-    	 	ctrl.getMsg();
-    	 	ctrl.getMsg2();
-    	 	ctrl.goBack();
-    	 	ctrl.goBackMap();
-    	 	ctrl.googleRequest();
-    	 	ctrl.isSourceAccountGood();
-    	 	ctrl.makeList();
-    	 	ctrl.makeQuery();
-    	 	ctrl.Search();
-    	 }
 }

@@ -5,7 +5,7 @@
 				<h1>{!ci.Title__c}</h1>
 				<p><apex:outputText escape="false" value="{!ci.Abstract__c}" /></p>
 				  
-				<apex:outputPanel id="openNewsdiv" layout="block">
+				<apex:outputPanel id="openNewsdiv" layout="block" rendered="{!newsid!=''}">
 					<apex:form id="theSubmitForm">
 					<div id="btnarea" class="newBTN_area isLeft">
 	                	<div class="newBTN_arrow"></div>
