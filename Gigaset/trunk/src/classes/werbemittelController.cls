@@ -1,4 +1,4 @@
-public class werbemittelController{
+public class werbemittelController extends ComponentControllerBase {
 	
 	public Boolean showfirstpage {get; set;}
 	public Boolean showsecondpage {get; set;}
@@ -120,22 +120,26 @@ public class werbemittelController{
  		bestellungTemp.Status__c = 'Bestellt';
  		Wbestellung.add(bestellungTemp);
 
-		insert Wbestellung;
+		insert bestellungTemp;
 
   		for(myterm t:Terms2) {
+  			if (t.term.id!=null) {
   			WPostenTemp = new Werbemittel_Posten__c();
 			WPostenTemp.Werbemittel__c = t.term.id;
+			
   			WPostenTemp.Menge__c = decimal.valueOf(t.quantity);
   			WPostenTemp.Bestellung__c = bestellungTemp.Id;
   			WPosten.add(WPostenTemp);
-  		}		
-		
+  			}
+  		}
+			
 		insert WPosten;
-		PageReference ref = ApexPages.currentPage();
-		ref.getParameters().put('isDone', '');
-		ref.getParameters().put('onOrder','');
-		ref.setRedirect(true);
-  		return ref;
+		
+		//PageReference ref = ApexPages.currentPage();
+		//ref.getParameters().put('isDone', '');
+		//ref.setRedirect(true);
+		
+  		return null;
 	}
   	
   	public class myterm {   //our help class
