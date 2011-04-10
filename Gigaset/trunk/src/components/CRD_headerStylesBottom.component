@@ -30,13 +30,17 @@
 			  document.getElementsByTagName("head")[0].appendChild(fileref)
 			}
  			for (var i = 0; i < document.getElementsByTagName("a").length; i++) {
- 				if (document.getElementsByTagName("a")[i].href.indexOf("training")>=0) {
+ 				//if (document.getElementsByTagName("a")[i].href.indexOf("training")>=0) {
 					//alert("Training found {!URLFOR($Resource.jquery142)}..." + document.getElementsByTagName("a")[i].href);
 					loadjscssfile('{!URLFOR($Resource.jquery142)}','js');
 					loadjscssfile('{!URLFOR($Resource.jquerycolorboxjs)}','js');
 					loadjscssfile('{!URLFOR($Resource.jqueryui171customminjs)}','js');
-   				}
+   				//}
    			}
+   			
+         window.onload = function(){
+                $(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});
+            };
 		</script>
  
         <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 

@@ -2,7 +2,7 @@
 private class navigationTest {
 
     static testMethod void myUnitTest() {
-        User u = [Select Id From User Where ContactId != null limit 1];
+        User u = [Select Id From User Where ContactId != null and isactive=true limit 1];
         System.runas(u){
         	navigationController ctrl = new navigationController();
         	

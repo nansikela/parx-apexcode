@@ -95,8 +95,9 @@ public class DEpresetController {
 			//}
 			u=SystemSettings.getCurrentUpdatedUser();
 			if (u!=null) {
-				u.Handelskanal__c=null;
-				u.Distribution__c=null;
+				//u.Handelskanal__c=null;
+				//u.Distribution__c=null;
+				//u.Pro_Distribution__c=null;
 			}
 		}
 	}
