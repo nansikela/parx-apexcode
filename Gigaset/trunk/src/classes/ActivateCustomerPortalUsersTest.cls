@@ -20,32 +20,9 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-private class DEregisterControllerTest {
+private class ActivateCustomerPortalUsersTest {
 
-    static testMethod void testDEregisterController() {
-    	User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
-        DEregisterController ctrl = new DEregisterController();
-        ctrl.l.Lastname='Test';
-        ctrl.l.Company='Test';
-        ctrl.getActive1();
-        ctrl.getActive2();
-        ctrl.getActive3();
-        ctrl.getServiceHotlineUrl();
-        ctrl.goToStep();
-        ctrl.init();
-        ctrl.nextStep();
-        ctrl.previousStep();
-        ctrl.relationshipSelectionAction();
-        ctrl.saveLead();
-        ctrl.showShippingAddressAction();
-        ctrl.getItems();
-        ctrl.step=1;
-        ctrl.nextStep();
-        ctrl.step=2;
-        ctrl.nextStep();
-        ctrl.step=3;
-        ctrl.nextStep();
-	 	}
-    }
+    static testmethod void localtest() {
+		ActivateCustomerPortalUsers.activateUsers(1);
+	}
 }

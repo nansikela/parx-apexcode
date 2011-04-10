@@ -27,7 +27,7 @@ private class DETemplateTest {
 	*/
 
     static testMethod void DETemplateControllerTest() {
-    	User u = [Select ID From User Where ContactId != null limit 1];
+    	User u = [Select ID From User Where ContactId != null and isactive=true limit 1];
     	System.runas(u){
     	PageReference pageRef = Page.DE_Home;
         Test.setCurrentPage(pageRef);
@@ -133,15 +133,28 @@ private class DETemplateTest {
 		
 		//training 
        User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
+       /* create some results */
+       list<Training_Ergebnis__c> tes = new list<Training_Ergebnis__c>();
+       for (Training_Module__c tm: tms) {
+       	Training_Ergebnis__c te= new Training_Ergebnis__c();
+       	te.Kontakt__c=u.contactId;
+       	te.Last_Click__c=system.today();
+       	te.Training_Modul__c=tm.id;
+       	tes.add(te);
+       }
+       insert tes;
 	 	System.runAs(u) {
 	 	test.startTest();
-        ctrl.Modules_Param = [select id from Training_Module__c limit 1].Id;
+        ctrl.Modules_Param = tms.get(0).Id;
+        ctrlTrain.Modules_Param = tms.get(0).Id;
         ApexPages.currentPage().getParameters().put('moduleId',  ctrl.Modules_Param);
         ctrlTrain.getBooks();
         ctrlTrain.getModules();
         ctrlTrain.firstPage();
         ctrl.Poller();
+        ctrlTrain.Poller();
         ctrl.secondPage();
+        ctrlTrain.secondPage();
         ctrlTrain.showModule();
         ctrlTrain.getCampus_1_Title(); 
         ctrlTrain.getCampus_2_Title();

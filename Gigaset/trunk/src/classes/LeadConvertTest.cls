@@ -19,7 +19,7 @@ private class LeadConvertTest {
       		Lead l2 = new Lead(company = 'TestComp', Lastname = 'Rofl', RecordTypeId = r.get(1).Id);
       		insert l2;
       		
-    		User u = [SELECT Id FROM User WHERE Id = :Userinfo.getUserId()];
+    		User u = [SELECT Id FROM User WHERE Id = :Userinfo.getUserId() and isactive=true];
     	
     		System.runAs(u) {
    				LeadConvertController ctrl = new LeadConvertController(new ApexPages.StandardController(l1));

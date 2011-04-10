@@ -148,11 +148,13 @@ global class SystemSettings {
 	
 	// the preset should only be visible for crd at the moment
 	global static Boolean showPreset() {
-		if (SystemSettings.contactid!=null && SystemSettings.contactid!='' && SystemSettings.portal=='de') {
+		if (SystemSettings.contactid!=null && SystemSettings.contactid!='' && SystemSettings.portal=='nl') {
 			Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:contactid];
 			if (c!=null && c.AccountId!=null ) {
 				Account a=[SELECT Id, Handelskanal__c, Distribution__c, Pro_Distribution__c FROM Account WHERE Id=:c.AccountId];
-				if (a!=null && ((!isPro && (a.Handelskanal__c==null || a.Handelskanal__c=='')) || (isPro && a.Pro_Distribution__c==null || a.Pro_Distribution__c==''))) return true;
+				if (a!=null && 
+					(a.Handelskanal__c==null || a.Handelskanal__c=='')
+					) return true;
 			}
 		}
 		return false;
