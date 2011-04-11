@@ -49,6 +49,7 @@
         <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
 
         <script>
+         
         /*     $(document).ready(function(){ 
 				
                 if(getURLParam('training') == '1'){ 
