@@ -267,6 +267,7 @@ global class System_Settings {
 
     public static PageReference init() {
         if (ApexPages.currentPage().getParameters().containsKey('pid')) addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
+        if (ApexPages.currentPage().getParameters().containsKey('pid')) addParam=addParam + '&newsid='+ApexPages.currentPage().getParameters().get('newsid');
         System.debug(addParam);
         
         if (!isPortalUser()) return redirectToLogin();
