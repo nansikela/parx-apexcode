@@ -43,11 +43,12 @@
 </apex:composition>
 
         <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
-        <apex:includeScript value="{!$Resource.jquery142}"/>
-<!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
+        <apex:includeScript value="{!$Resource.jquery142}"/> 
+
         <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
         <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
 
+<!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
         <script>
          
         /*     $(document).ready(function(){ 

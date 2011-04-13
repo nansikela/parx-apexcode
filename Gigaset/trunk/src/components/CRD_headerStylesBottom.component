@@ -13,7 +13,7 @@
 <apex:outputPanel id="colorboxstuff" rendered="{!AND(isAuthenticated)}" >
 <apex:form >
  		<script type="text/javascript">
- 		
+ 		var training = -1;
  			function loadjscssfile(filename, filetype){
 			 if (filetype=="js"){ //if filename is a external JavaScript file
 			  var fileref=document.createElement('script')
@@ -30,12 +30,13 @@
 			  document.getElementsByTagName("head")[0].appendChild(fileref)
 			}
  			for (var i = 0; i < document.getElementsByTagName("a").length; i++) {
- 				//if (document.getElementsByTagName("a")[i].href.indexOf("training")>=0) {
+ 				if (document.getElementsByTagName("a")[i].className.indexOf("example9")>=0) {
 					//alert("Training found {!URLFOR($Resource.jquery142)}..." + document.getElementsByTagName("a")[i].href);
-				//	loadjscssfile('{!URLFOR($Resource.jquery142)}','js');
-				//	loadjscssfile('{!URLFOR($Resource.jquerycolorboxjs)}','js');
-				//	loadjscssfile('{!URLFOR($Resource.jqueryui171customminjs)}','js');
-   				//}
+					loadjscssfile('{!URLFOR($Resource.jquery142)}','js');
+					loadjscssfile('{!URLFOR($Resource.jquerycolorboxjs)}','js');
+					loadjscssfile('{!URLFOR($Resource.jqueryui171customminjs)}','js');
+					training = 1;
+				}
    			}
 		</script>
  
@@ -52,15 +53,52 @@
 <!--  -->
         <script type="text/javascript">
 			<!-- styles has to be changed afterwards -->
-			loadjscssfile('{!URLFOR($Resource.jquery142)}','js');
-			loadjscssfile('{!URLFOR($Resource.jquerycolorboxjs)}','js');
-			loadjscssfile('{!URLFOR($Resource.jqueryui171customminjs)}','js');
-   			window.onload = function(){
-                $(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});
-            };
             
+            window.onload = new function(){
+
+            	if(training == 1)
+            		$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});	
+ 			 	
+ 			 	var url = window.location.href;
+            
+            	//Umschreiben von Links, um Popup zu zeigen beim Klicken! (HIER FÜR TRAININGSMODUL!)
+           		/*  if(url.indexOf('popup=1') == -1)
+                for(var i = 0; i < document.links.length; i++){
+                    if(document.links[i].href.indexOf('/training') != -1){
+                        document.links[i].href = window.location.href + '&popup=1';
+                        document.links[i].target = '_self';
+                        break;
+                    }
+                }
+             	*/
+           	 	if(url.indexOf('&download=') == -1)
+                	for(var i = 0; i < document.links.length; i++){
+                    	if(document.links[i].href.indexOf('/download=') != -1){
+                        	var targetURL = document.links[i].href;
+                        
+                       	 	document.links[i].href = window.location.href + '&' + targetURL.slice(targetURL.lastIndexOf('/download=')+1);                   
+                        	document.links[i].target = '_self';
+                        	break;
+                    	}
+                	}
+    			/* 
+            	if(document.getElementById("custom_popup") != null && getURLParam('popup') == '1'){
+            		    document.getElementById("custom_popup").style.visibility = 'visible';
+            	    document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
+           	 } else  */
+           	 	if(document.getElementById("custom_popup") != null && getURLParam('download') != ''){
+                	document.getElementById("custom_popup").style.visibility = 'visible';
+                	document.getElementById("iFrameOfPopup").src = getURLParam('download');
+            	}/*  else if(getURLParam('popup') == '3') {
+
+            	} */ else {
+            		if(document.getElementById("custom_popup") != null)
+                		document.getElementById("custom_popup").style.visibility = 'hidden';
+            	}
+        	};
+         				
    			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
-   				if (document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
+   				if (document.getElementById("colRgt") != null && document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
    					document.getElementById("colRgt").style.paddingTop='65px';
    			}          
         </script>

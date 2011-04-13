@@ -21,16 +21,16 @@
             <div id="content_wrapper">
             <!-- <apex:iframe rendered="{!isPDF}" src="{!URLFOR($Resource.pdfs, pdf)}" scrolling="false" id="iFrameOfPopupPDF" width="100%"/> -->
             <!-- <apex:flash rendered="{!isFlash}" src="{!URLFOR($Resource.flashs, flash)}" width="100%" height="100%"/> -->
-             <!-- 
-            <div id="custom_popup" class="custom_popup"> 
+             
+            	<div id="custom_popup" class="custom_popup"> 
                 <a style="position:absolute; color:white; top:5px; right: 8px;" onclick="document.getElementById('custom_popup').style.visibility = 'hidden';">X</a>
                 <apex:variable var="pdf" value="{!target}"/>
                 
                 <iframe src="{!IF(isNative,' ',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup" width="100%"> </iframe>
                 
             </div> 
-            -->
-            <!-- shadow at the end of the page, only if logged in -->
+            
+			<!-- shadow at the end of the page, only if logged in -->
             <div id="content" style="{!IF(isAuthenticated,'background-image: url(','')}{!URLFOR($Resource.GCRedesign,'GCRedesign/greyShadowBottom.png')}{!IF(isAuthenticated,');background-color: white;background-position: bottom left;background-repeat: repeat-x;','')}">
                 <apex:insert name="breadcrump">
                     <c:CRD_breadcrump id="CRD_breadcrumpcomp" />
@@ -57,10 +57,7 @@
         <c:CRD_footercopy id="CRD_footercopycomp" />
     
     
-    <!-- <c:CRD_header_style id="stylesheets" /> -->
-    <script>
-    
-    /*
+    <script type="text/javascript">
         function getURLParam(strParamName){
             strReturn = "";
             strHref = window.location.href; //search
@@ -79,44 +76,7 @@
             return strReturn;
         }
         
-        window.onload = function(){
-            var url = window.location.href;
-            
-            //Umschreiben von Links, um Popup zu zeigen beim Klicken! (HIER FÜR TRAININGSMODUL!)
-            if(url.indexOf('popup=1') == -1)
-                for(var i = 0; i < document.links.length; i++){
-                    if(document.links[i].href.indexOf('/training') != -1){
-                        document.links[i].href = window.location.href + '&popup=1';
-                        document.links[i].target = '_self';
-                        break;
-                    }
-                }
-            
-            if(url.indexOf('&download=') == -1)
-                for(var i = 0; i < document.links.length; i++){
-                    if(document.links[i].href.indexOf('/download=') != -1){
-                        var targetURL = document.links[i].href;
-                        
-                        document.links[i].href = window.location.href + '&' + targetURL.slice(targetURL.lastIndexOf('/download=')+1);                   
-                        document.links[i].target = '_self';
-                        break;
-                    }
-                }
-    
-            if( getURLParam('popup') == '1'){
-                document.getElementById("custom_popup").style.visibility = 'visible';
-                document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
-            } else if(getURLParam('download') != ''){
-                alert(getURLParam('download'));
-                document.getElementById("custom_popup").style.visibility = 'visible';
-                document.getElementById("iFrameOfPopup").src = getURLParam('download');
-            } else if(getURLParam('popup') == '3') {
-
-            } else {
-                document.getElementById("custom_popup").style.visibility = 'hidden';
-            }
-        };
-        */
+        
     </script>
     <c:CSS_Ressource id="stylesheet_Michi" />
     <c:CRD_headerStylesBottom id="styles_bottom"  isAuthenticated="{!isAuthenticated}" Modules_URLPage="{!Modules_URLPage}" />
