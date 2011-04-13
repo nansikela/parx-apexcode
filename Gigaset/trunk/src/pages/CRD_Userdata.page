@@ -6,15 +6,15 @@
 
         <apex:define name="body">
         <!--Start LeftSide Content -->
-            <div class="contentTextSmall" >
-                <div id="contact" class="small"> 
+            <div class="contentTextSmall"  >
+                <div id="contact" class="small" > 
                     <c:CRD_userdata rendered="{!isAuthenticated}" id="cuserdata" />
                 </div>
             </div>
             <!--End LeftSide Content --> 
             
             <!--Start RightSide Content -->
-            <div id="colRgt" style="height: 300px;">
+            <div id="colRgt" >
                 <c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),showcontactportlet)}" />
                 
                 <!--Start oneColInfo -->

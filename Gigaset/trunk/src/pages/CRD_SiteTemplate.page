@@ -58,6 +58,7 @@
     
     
     <script type="text/javascript">
+    	
         function getURLParam(strParamName){
             strReturn = "";
             strHref = window.location.href; //search
@@ -75,8 +76,6 @@
             }
             return strReturn;
         }
-        
-        
     </script>
     <c:CSS_Ressource id="stylesheet_Michi" />
     <c:CRD_headerStylesBottom id="styles_bottom"  isAuthenticated="{!isAuthenticated}" Modules_URLPage="{!Modules_URLPage}" />

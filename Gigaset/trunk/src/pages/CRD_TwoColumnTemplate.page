@@ -57,35 +57,15 @@
 	 </apex:outputPanel>
 	</apex:define>
 </apex:composition>
-<script type="text/javascript">
-				function loadjscssfile(filename, filetype){
-			 		if (filetype=="js"){ //if filename is a external JavaScript file
-			  			var fileref=document.createElement('script')
-			  			fileref.setAttribute("type","text/javascript");
-			  			fileref.setAttribute("src", filename);
-			 		}
-					else if (filetype=="css"){ //if filename is an external CSS file
-			 			var fileref=document.createElement("link")
-			  			fileref.setAttribute("rel", "stylesheet");
-			  			fileref.setAttribute("type", "text/css");
-			  			fileref.setAttribute("href", filename);
-			 		}
-			 		if (typeof fileref!="undefined")
-			  			document.getElementsByTagName("head")[0].appendChild(fileref)
-				}
-				
-				/* window.onload = function(){
-     				loadjscssfile('{!URLFOR($Resource.jquery142)}','js');
-					loadjscssfile('{!URLFOR($Resource.jquerycolorboxjs)}','js');
-					loadjscssfile('{!URLFOR($Resource.jqueryui171customminjs)}','js');
-				
-					$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});	
-				};
-				 */
-     			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
-     				if (document.getElementById("colRgt") != null && document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
-     					document.getElementById("colRgt").style.paddingTop='60px';
-     			}
-     			
+	<script type="text/javascript">
+     	for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
+     		if (document.getElementById("colRgt") != null && document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
+     			document.getElementById("colRgt").style.paddingTop='60px';
+     		}
      </script>
+     
+     
+<apex:includeScript value="{!$Resource.jquery142}"/>
+<apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+<apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
 </apex:page>

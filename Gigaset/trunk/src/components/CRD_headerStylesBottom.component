@@ -12,33 +12,34 @@
 
 <apex:outputPanel id="colorboxstuff" rendered="{!AND(isAuthenticated)}" >
 <apex:form >
- 		<script type="text/javascript">
+	<script type="text/javascript">
  		var training = -1;
- 			function loadjscssfile(filename, filetype){
-			 if (filetype=="js"){ //if filename is a external JavaScript file
-			  var fileref=document.createElement('script')
-			  fileref.setAttribute("type","text/javascript");
-			  fileref.setAttribute("src", filename);
-			 }
-			 else if (filetype=="css"){ //if filename is an external CSS file
-			  var fileref=document.createElement("link")
-			  fileref.setAttribute("rel", "stylesheet");
-			  fileref.setAttribute("type", "text/css");
-			  fileref.setAttribute("href", filename);
-			 }
-			 if (typeof fileref!="undefined")
-			  document.getElementsByTagName("head")[0].appendChild(fileref)
+ 		function loadjscssfile(filename, filetype){
+			if (filetype=="js"){ //if filename is a external JavaScript file
+			 	var fileref=document.createElement('script');
+			  	fileref.type = "text/javascript";
+			  	fileref.src = filename;
+			} else if (filetype=="css"){ //if filename is an external CSS file
+			  	var fileref=document.createElement("link");
+			  	fileref.setAttribute("rel", "stylesheet");
+			  	fileref.setAttribute("type", "text/css");
+			  	fileref.setAttribute("href", filename);
 			}
- 			for (var i = 0; i < document.getElementsByTagName("a").length; i++) {
- 				if (document.getElementsByTagName("a")[i].className.indexOf("example9")>=0) {
-					//alert("Training found {!URLFOR($Resource.jquery142)}..." + document.getElementsByTagName("a")[i].href);
-					loadjscssfile('{!URLFOR($Resource.jquery142)}','js');
-					loadjscssfile('{!URLFOR($Resource.jquerycolorboxjs)}','js');
-					loadjscssfile('{!URLFOR($Resource.jqueryui171customminjs)}','js');
-					training = 1;
-				}
-   			}
-		</script>
+			if (typeof fileref!="undefined")
+			  	document.getElementsByTagName("head")[0].appendChild(fileref);
+		}
+		
+ 		for (var i = 0; i < document.getElementsByTagName("a").length; i++) {
+ 			if (document.getElementsByTagName("a")[i].className.indexOf("example9")>=0) {
+				//alert("Training found {!URLFOR($Resource.jquery142)}..." + document.getElementsByTagName("a")[i].href);
+				//loadjscssfile('{!$Resource.jquery142}','js');
+				//loadjscssfile('{!$Resource.jquerycolorboxjs}','js'); 
+				//loadjscssfile('{!$Resource.jqueryui171customminjs}','js'); 
+				
+				 training = 1;
+			}
+   		}
+	</script>
  
         <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
 <!--
@@ -102,6 +103,7 @@
    					document.getElementById("colRgt").style.paddingTop='65px';
    			}          
         </script>
+       
 </apex:form>
 </apex:outputPanel>
 </apex:component>
