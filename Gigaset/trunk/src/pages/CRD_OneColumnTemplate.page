@@ -2,11 +2,7 @@
 	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
 
 <apex:composition template="{!$Site.Template}">
- 	 <script type="text/javascript">
- 			loadjscssfile('{!URLFOR($Resource.jquery142)}','js');
-			loadjscssfile('{!URLFOR($Resource.jquerycolorboxjs)}','js');
-			loadjscssfile('{!URLFOR($Resource.jqueryui171customminjs)}','js');
- 	</script>
+
 		<apex:define name="body">
 		<c:CRD_Clearing id="declearingcomp" rendered="{!showclearingcomp}" />
 		<c:CRD_preset id="depresetcomp" rendered="{!showpresetcomp}" />
@@ -35,5 +31,7 @@
 	 </apex:outputPanel>
 	</apex:define>
 </apex:composition>
-
+<apex:includeScript value="{!$Resource.jquery142}"/>
+<apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+<apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
 </apex:page>
