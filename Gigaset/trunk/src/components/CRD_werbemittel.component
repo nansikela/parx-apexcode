@@ -42,8 +42,9 @@
     		margin-left: 0px;
     	}
     </style>
-
-    <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1><br />
+	<apex:outputPanel id="formtitle" layout="block" styleClass="formTitle">
+    	<h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1>
+    </apex:outputPanel>
     <apex:form id="orderform"> 
         <apex:dataTable id="linkList" value="{!Terms}" styleClass="cpmtableStyle" footerClass="cpmfooterClass" headerClass="cpmheaderClass" var="opp" width="122%" columnsWidth="10%, 54%, 16%, 20%" cellspacing="0px"  >
             <apex:facet name="header"></apex:facet>
@@ -90,11 +91,15 @@
 </apex:outputPanel>
 
 <apex:outputPanel rendered="{!showsecondpage}" id="secondpage">
-    <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1><br />
+	<apex:outputPanel id="formtitle2" layout="block" styleClass="formTitle">
+    	<h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1>
+    </apex:outputPanel>
     
     <apex:form id="secondstepform">
-            <p>{!$Label.Werbemittelbestellung_Intro}</p>
-        <br />
+    		<apex:outputPanel id="formtext" layout="block" styleClass="formText">
+            	<p>{!$Label.Werbemittelbestellung_Intro}</p>
+            </apex:outputPanel>
+
             <apex:outputLabel value="{!$ObjectType.Werbemittel_Bestellung__c.fields.Firmenname__c.label}*" for="firmname" />
                 <apex:inputField id="lastname" value="{!bestellungTemp.Firmenname__c}" required="true" styleClass="FieldRequired" />
             <apex:outputLabel value="{!$ObjectType.Werbemittel_Bestellung__c.fields.Kontakt__c.label}*" for="fname" />
@@ -109,9 +114,10 @@
             <apex:outputLabel value="{!$ObjectType.Werbemittel_Bestellung__c.fields.Land__c.label}*" for="country" />
                 <apex:inputField id="country" value="{!bestellungTemp.Land__c}" required="true" styleClass="FieldRequired" />
                 
-        <br /><br />    
-        <p>{!$Label.userdata_description}</p>   <br />
-    
+        <br /><br />
+        <apex:outputPanel id="formtext2" layout="block" styleClass="formText">
+        	<p>{!$Label.userdata_description}</p>
+    	</apex:outputPanel>
         <apex:dataTable id="linkList" value="{!Terms2}" var="opp" width="103%" columnsWidth="58%, 19%, 23%" cellspacing="0" styleClass="cpmtableStyle" footerClass="cpmfooterClass" headerClass="cpmheaderClass">
             <apex:facet name="header"></apex:facet>
 
@@ -165,10 +171,14 @@
 </apex:outputPanel>
 
 <apex:outputPanel id="thirdpage" rendered="{!showthirdpage}">
+	<apex:outputPanel id="formtitle3" layout="block" styleClass="formTitle">
     <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1>
-<p>
-      <apex:outputText value="{!$Label.userdata_order_last_step}" />
-</p>
+    </apex:outputPanel>
+    	 <apex:outputPanel id="formtext3" layout="block" styleClass="formText">
+		<p>
+		     {!$Label.userdata_order_last_step}"
+		</p>
+		</apex:outputPanel>
 		<div id="btnarea" class="newBTN_area isLeft">
 	        <div class="newBTN_arrow"></div>
 	        <div class="newBTN">  

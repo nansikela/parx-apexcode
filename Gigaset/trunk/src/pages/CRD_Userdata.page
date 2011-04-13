@@ -14,7 +14,7 @@
             <!--End LeftSide Content --> 
             
             <!--Start RightSide Content -->
-            <div id="colRgt">
+            <div id="colRgt" style="height: 300px;">
                 <c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),showcontactportlet)}" />
                 
                 <!--Start oneColInfo -->

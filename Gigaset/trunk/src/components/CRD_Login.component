@@ -13,7 +13,7 @@
                  for="password" />
             <apex:inputSecret id="password" value="{!password}" styleClass="LoginField" />
             <br />
-            <div id="btnarea" class="newBTN_area isLeft" style="padding-left: 210px;">
+            <div id="btnarea" class="newBTN_area isLeft" style="padding-left: 211px; width: 540px;">
 	                <div class="newBTN_arrow"></div>
 	                <div class="newBTN">
                 	<apex:commandButton action="{!login}" value="{!$Label.site.login_button}" id="loginButton" styleClass="newBTN" />
@@ -22,7 +22,7 @@
             </div>
             <br />
             <apex:outputPanel id="thelinks" >
-                <div class="lft_login">
+                <div class="lft_login" >
                 <apex:outputLink value="{!$Page.page}?pageid={!ForgotPasswordPageId}" id="forgot_btn" styleClass="link_arrow">
                         {!$Label.site.forgot_your_password_q}
                         </apex:outputLink>
