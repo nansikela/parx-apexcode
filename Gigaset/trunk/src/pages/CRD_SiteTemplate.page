@@ -1,7 +1,7 @@
 <apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false">
     <!-- seems not to work ... -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /> -->
-    <c:CRD_headerStylesTop id="styles_top" />
+    <c:CRD_headerStylesTop id="styles_top" loginBackgroundImageId="{!loginBackgroundImageId}" />
     <div id="wrapper">
         <div id="content_area">
             <div id="header">
@@ -21,13 +21,15 @@
             <div id="content_wrapper">
             <!-- <apex:iframe rendered="{!isPDF}" src="{!URLFOR($Resource.pdfs, pdf)}" scrolling="false" id="iFrameOfPopupPDF" width="100%"/> -->
             <!-- <apex:flash rendered="{!isFlash}" src="{!URLFOR($Resource.flashs, flash)}" width="100%" height="100%"/> -->
-             
-            	<div id="custom_popup" class="custom_popup"> 
-                <a style="position:absolute; color:white; top:5px; right: 8px;" onclick="document.getElementById('custom_popup').style.visibility = 'hidden';">X</a>
-                <apex:variable var="pdf" value="{!target}"/>
+             	<div id="custom_popup_bg">
+  					<a id="custom_popup_close" style="position:absolute; font-weight:bolder; color:black; right: 20px;" onclick="document.getElementById('custom_popup_bg').style.visibility = 'hidden';document.getElementById('custom_popup').style.visibility = 'hidden';">           	
+             			<img src="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}" />
+             		</a>
+            		<div id="custom_popup" class="custom_popup"> 
+               		<apex:variable var="pdf" value="{!target}"/>
                 
-                <iframe src="{!IF(isNative,' ',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup" width="100%"> </iframe>
-                
+                	<iframe src="{!IF(isNative,' ',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup" width="100%"> </iframe>
+                </div>
             </div> 
             
 			<!-- shadow at the end of the page, only if logged in -->
