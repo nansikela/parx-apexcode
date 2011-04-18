@@ -221,7 +221,7 @@ public class InterfaceLinks {
         String pictureURL = generatePictureURL();
         System.debug('Picture URL is: ' + pictureURL);
         /*************** PICTURE URL KEIN TEST **************/
-        User u = [Select Id FROM User WHERE ContactId != null limit 1];
+        User u = [Select Id FROM User WHERE ContactId != null and isactive=true limit 1];
         System.debug('/***************'+u.ID+'*****************/');
         System.runAs(u){
         	InterfaceLinks ctrl = new InterfaceLinks();

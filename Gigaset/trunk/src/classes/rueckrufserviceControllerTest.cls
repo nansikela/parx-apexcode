@@ -22,9 +22,21 @@
 @isTest
 private class rueckrufserviceControllerTest {
 
-    static testMethod void testDErueckrufserviceController() {
+    static testMethod void testrueckrufserviceController() {
+    	testData.initData mytestData =new testData.initData('de',false);
+    	System.runAs(mytestData.testuser) {
+	        rueckrufserviceController ctrl = new rueckrufserviceController();
+	        ctrl.init();
+	        ctrl.saveRequest();
+    	}
+    }
+    
+    static testMethod void testrueckrufserviceController2() {
+    	testData.initData mytestData =new testData.initData('de',false);
+
         rueckrufserviceController ctrl = new rueckrufserviceController();
         ctrl.init();
         ctrl.saveRequest();
+
     }
 }

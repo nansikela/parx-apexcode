@@ -24,6 +24,6 @@ public with sharing class CRD_LogoPortletController {
 
 	private void setImageProperties() {
 		alternateAbsolutlyGigasetLogoText=System_Settings.getLabel('alternateAbsolutlyGigasetLogoText');
-		alternateAbsolutlyGigasetLogoUrl=System_Settings.getLabel('alternateAbsolutlyGigasetLogoUrl');
+		alternateAbsolutlyGigasetLogoUrl='/servlet/servlet.ImageServer?id=' + System_Settings.getLabel('alternateAbsolutlyGigasetLogoId') + '&oid=' + UserInfo.getOrganizationId();
 	}
 }

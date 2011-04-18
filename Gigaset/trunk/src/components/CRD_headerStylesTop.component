@@ -1,5 +1,9 @@
 <apex:component id="headerstylestop" >
 
+	<apex:attribute name="loginBackgroundImageId" description="This is the document id for the login background." 
+
+        type="String" required="false"/>
+
 	<script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/mainnav.js')}"></script>
 
 	<!-- <script type="text/javascript" src="http://www.gigaset.com/lib/mainnav.js"></script> -->
@@ -10,7 +14,7 @@
 
     <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/style.css')}" /> 
     <!-- <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/parx.css')}" /> -->
-    &lt;!--[if IE6]><link href="{!URLFOR($Resource.gigasetextranetZIP, 'css/main_ie.css')}" rel="stylesheet" type="text/css" /><![endif]--&gt;
+    &lt;!--[if IE]><link href="{!URLFOR($Resource.gigasetextranetZIP, 'css/main_ie.css')}" rel="stylesheet" type="text/css" /><![endif]--&gt;
     
     
     <!-- inline styles for better development performance  -->
@@ -253,8 +257,8 @@
 			height: 90px;
 			position: relative;
 			bottom: 30px;
-			left: 800px;
-			float: left;
+			right: 10px;
+			float: right;
 			margin-bottom: -90px;
 			z-index: 1000;
 		}
@@ -336,7 +340,7 @@
 			min-height: 600px;
 			width: 926px;
 			float: left;
-			background: #575f6a url(https://c.cs8.content.force.com/servlet/servlet.ImageServer?id=015L00000000VvS&oid=00DL00000008bYj) no-repeat scroll 0 0!important;
+			background: #575f6a url({!IF(BEGINS($CurrentPage.URL,'http://gigaset'),'/np','')}/servlet/servlet.ImageServer?id={!loginBackgroundImageId}&oid={!$Organization.Id}) no-repeat scroll 0 0!important;
 		}
 		
 		/* register component */
@@ -456,11 +460,37 @@
 			vertical-align: middle;
 		}
 		
+/* ------------- PICKLIST ANPASSUNG  -----------------*/
+
+#content #contact form .pick {
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size:11px;
+	border: 1px solid #b2b2b2;
+	margin-bottom:6px;
+}
+
+.multiSelectPicklistTable
+.multiSelectPicklistRow
+.multiSelectPicklistCell{
+	background-color:#FFFFFF;	
+}
+
+#content #contact #test form select .pick{ 
+	font-size: 11px;
+	padding:1px;
+	margin-bottom:5px;
+}
+		
+
 /* --------------------------------------------------------------------------------------------------- */
 /* -------------------------------- CUSTOM BUTTON STYLES --------------------------------------------- */
 
 .buttonformdiv {
 	/* width: 364px; */
+}
+
+.buttonregisterdiv {
+	width: 561px;
 }
 
 .isRight {
@@ -510,6 +540,7 @@
 	height: 24px !important;
 	background-color: transparent;
 	font-family: Arial, sans-serif !important;
+	text-color: white!important;
 }
 
 .newBTN_area .newBTN a, .newBTN_area .newBTNBlack a, .newBTN_area .newBTNGrey a {
@@ -523,6 +554,7 @@
 	height: 24px !important;
 	background-color: transparent!important;
 	font-family: Arial, sans-serif !important;
+	text-color: white!important;
 }
 
 .newBTN_area:hover .newBTN {

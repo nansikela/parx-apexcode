@@ -30,7 +30,7 @@ private class TemplateTest {
     static testMethod void TemplateControllerTest() {
     	User u = [Select ID From User Where ContactId != null and isactive=true limit 1];
     	System.runas(u){
-    	PageReference pageRef = Page.DE_Home;
+    	PageReference pageRef = Page.CRD_Home;
         Test.setCurrentPage(pageRef);
        TemplateController ctrl = new TemplateController();
        
@@ -98,11 +98,41 @@ private class TemplateTest {
 	 ctrl.getCurrentNavigationPointLabel(System_Settings.loginpageid);
        System.assert(ctrl.isAuthenticated!=null);
        SystemSettings.logError('test', 'test', 'test', '', 'error');
+       ctrl.redirectTologin();
+       	ctrl.getBooks();
+       	ApexPages.currentPage().getParameters().put('moduleId',tms.get(0).id);
+       	ctrl.showModule();
+       	ctrl.getModules();
+       	ctrl.initModuleResult();
+       	ctrl.getFirstName();
+       	ctrl.getLastName();
+       	ctrl.getSalutation();
+       	ctrl.getModules_currentSuccess();
+       	ctrl.getModules_Param();
+       	ctrl.getModules_total();
+       	ctrl.getModules_currentpoint();
+       	ctrl.getModules_currentbar();
+       	ctrl.getModules_showFirstpage();
+       	ctrl.getModules_showThirdpage();
+       	ctrl.getModules_LektoraURL();
+       	ctrl.getNewsid();
+       	ctrl.getModules_book();
+       	ctrl.getModules_modulesSecondPage1();
+       	ctrl.getModules_SingleModule();
+       	ctrl.Poller();
+       	ctrl.secondPage();
+       	ctrl.getModules_modulesSecondPage2();
+       	ctrl.getNTS();
+       	ctrl.getTarget();
+       	ctrl.getPopupurl();
+       	ctrl.getIsPDF();
+       	ctrl.getIsFlash();
+       	ctrl.getIsNative();
     	}
     }
     
     static testMethod void trainigTests() {
-    	PageReference pageRef = Page.DE_Home;
+    	PageReference pageRef = Page.CRD_Home;
         Test.setCurrentPage(pageRef);
         TemplateController ctrl = new TemplateController();
         TrainingController ctrlTrain = new TrainingController(ctrl);

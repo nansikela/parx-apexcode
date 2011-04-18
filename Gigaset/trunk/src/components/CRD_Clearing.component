@@ -31,32 +31,38 @@
                                 	<p>{!$Label.clearingpage_subtitlePro}</p>
                                 <p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
                                 </apex:outputPanel>
-                                <apex:outputLabel value="{!$ObjectType.User.fields.PRO_VAR_MITARBEITERTZAHL__c.label}*" for="employeersAmount" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_MITARBEITERTZAHL__c.label}*" for="employeersAmount" />
                                 <apex:inputField id="employeersAmount" value="{!u.PRO_VAR_MITARBEITERTZAHL__c}"  required="true" styleClass="FieldRequiredSelect" />
                     
-                                <apex:outputLabel value="{!$ObjectType.User.fields.PRO_VAR_ANZ_SUPPORT__c.label}*" for="supportAmount" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_ANZ_SUPPORT__c.label}*" for="supportAmount" />
                                 <apex:inputField id="supportAmount" value="{!u.PRO_VAR_ANZ_SUPPORT__c}" required="true" styleClass="FieldRequiredSelect" />
                     
-                                <apex:outputLabel value="{!$ObjectType.User.fields.PRO_VAR_KUNDEN_MA_ANZ__c.label}" for="customerAmount" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_KUNDEN_MA_ANZ__c.label}" for="customerAmount" />
                                 <apex:inputField id="customerAmount" value="{!u.PRO_VAR_KUNDEN_MA_ANZ__c}" required="false" styleClass="FieldRequiredSelect" />
                 
-                                <apex:outputLabel value="{!$ObjectType.User.fields.PRO_VAR_SCHWERPUNKT__c.label}" for="companySpecialization" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_SCHWERPUNKT__c.label}" for="companySpecialization" />
                                 <apex:inputField id="companySpecialization" value="{!u.PRO_VAR_SCHWERPUNKT__c}" required="false" styleClass="pick" />
                     
-                                <apex:outputLabel value="{!$ObjectType.User.fields.PRO_VAR_SCHWERPUNKT_ANDERER__c.label}" for="otherCompanySpecialization" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_SCHWERPUNKT_ANDERER__c.label}" for="otherCompanySpecialization" />
                                 <apex:inputField id="otherCompanySpecialization" value="{!u.PRO_VAR_SCHWERPUNKT_ANDERER__c}" required="false" styleClass="FieldRequiredSelect" />
                 
-                                <apex:outputLabel value="{!$ObjectType.User.fields.PRO_VAR_ERFAHRUNGEN__c.label}" for="practise" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_ERFAHRUNGEN__c.label}" for="practise" />
                                 <apex:inputField id="otherCompanySpecializationAmount" value="{!u.PRO_VAR_ERFAHRUNGEN__c}" required="false" styleClass="pick" />
                     
-                                <apex:outputLabel value="{!$ObjectType.User.fields.PRO_SYSTEM_LIEFERANTEN__c.label}" for="sysPartner" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_SYSTEM_LIEFERANTEN__c.label}" for="sysPartner" />
                                 <apex:inputField id="sysPartner" value="{!u.PRO_SYSTEM_LIEFERANTEN__c}" required="false" styleClass="pick" />
                 
-                                <apex:outputLabel value="{!$ObjectType.User.fields.PRO_VAR_SYSTEMPARTNER_WEITERE__c.label}" for="furtherSysPartner" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_SYSTEMPARTNER_WEITERE__c.label}" for="furtherSysPartner" />
                                 <apex:inputField id="furtherSysPartner" value="{!u.PRO_VAR_SYSTEMPARTNER_WEITERE__c}" required="false" styleClass="FieldRequiredSelect" />
                 
-                                <apex:outputLabel value="{!$ObjectType.User.fields.Description__c.label}" for="description" />
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Description.label}" for="description" />
                                 <apex:inputField id="description" value="{!u.Description__c}" required="false" styleClass="FieldRequiredSelect" />
+                                
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanal" />
+								<apex:inputField id="handelskanal" value="{!u.Handelskanal__c}" styleClass="FieldRequiredSelect" required="true" />
+								
+								<apex:outputLabel value="{!$ObjectType.Lead.fields.Pro_Distribution__c.label}*" for="proDistribution" />
+								<apex:inputField id="proDistribution" value="{!u.Pro_Distribution__c}" required="true" styleClass="pick" />
                                 
                         
                                 <!-- <div class="requiredInput spacer5"> -->
