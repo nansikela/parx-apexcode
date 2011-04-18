@@ -1,20 +1,16 @@
 public with sharing class DEretrieveAccountFromContact {
 	
-	public list<Werbemittel_Bestellung__c> bestellung { get; set; }
+	public list<Werbemittel_Bestellung__c> bestellung = new list<Werbemittel_Bestellung__c>();
 		
-	public DEretrieveAccountFromContact(String temp, list<String> c) {
-		bestellung = new list<Werbemittel_Bestellung__c>();
-		if(c == null) {
-			c = new list<String>();
-			c.add(temp);
-		}	
-		getCurrentAccount(c);
+	public DEretrieveAccountFromContact(list<String> accountids) {
+		bestellung.clear();
+		getCurrentAccount(accountids);
 	}
 	
-	private void getCurrentAccount(list<String> c) {
+	private void getCurrentAccount(list<String> accountids) {
   		list<Account> a2 = [Select ShippingStreet, ShippingState, ShippingPostalCode, ShippingCountry, 
   		ShippingCity, Kontakt_Lieferanschrift__c, Firmenname_Lieferanschrift__c, BillingStreet, Name,
-  		BillingState, BillingPostalCode, BillingCountry, BillingCity From Account where Id IN :c];
+  		BillingState, BillingPostalCode, BillingCountry, BillingCity From Account where Id IN :accountids];
 		
 		Werbemittel_Bestellung__c bestellungTemp;
 		for(Account a:a2) {

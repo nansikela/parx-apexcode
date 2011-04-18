@@ -35,6 +35,14 @@ private class ScheduleContacttoUserTest {
 	  String hour = String.valueOf(Datetime.now().hour());
 	  String min = String.valueOf(Datetime.now().minute());
 	  String ss = String.valueOf(Datetime.now().second()+1);
+	  if(Datetime.now().minute() + 1 > 59) {
+			min='0';
+			hour = String.valueOf(Datetime.now().hour()+1); 
+		}
+		        
+		if(Datetime.now().hour() + 1 > 23) {
+			hour = '0'; 
+		}
 	  String nextFireTime = ss + ' ' + min + ' ' + hour + ' * * ?';
 	  system.schedule('Start me once', nextFireTime, s); 
         test.stopTest();

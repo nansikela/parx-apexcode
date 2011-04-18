@@ -581,12 +581,12 @@ public class DETemplateController {
 					listTM.add(TM);
 					 
 				}
-				if(listTM.size() == 5)
-					break;
+//				if(listTM.size() == 5)
+//					break;
 			}
 			modul.Module = listTM;
 			modul.ModuleNumber = i;
-			if(listTM.size()> 3)
+			if(listTM.size()>= 2)
 				modul.renderScroller = true;
 			else
 				modul.renderScroller = false;

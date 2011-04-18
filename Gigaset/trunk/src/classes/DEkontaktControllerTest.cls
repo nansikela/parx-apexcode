@@ -23,10 +23,32 @@
 private class DEkontaktControllerTest {
 
     static testMethod void testDEkontaktController() {
+    	testData.initData mytestData = new testData.initData('de',false);
+    	test.setCurrentPage(Page.page);
+        System.runAs(mytestData.testuser) {
         DEkontaktController ctrl=new DEkontaktController();
+        ctrl.isAuthenticated=true;
+        ApexPages.currentPage().getParameters().put('pageid',SystemSettings.kontaktpageid);
+        ApexPages.currentPage().getParameters().put('kontakttyp','Kontakt');
         
-        ctrl.init();
+	        ctrl.init();
+	        ctrl.goHomeUrl='www.google.de';
+	        ctrl.saveRequest();
+        }
+    }
+    
+    static testMethod void testDEkontaktControllergenerisch() {
+    	testData.initData mytestData = new testData.initData('de',false);
+    	test.setCurrentPage(Page.page);
+        System.runAs(mytestData.testuser) {
+        DEkontaktControllergenerisch ctrl=new DEkontaktControllergenerisch();
+        ctrl.isAuthenticated=true;
+        ApexPages.currentPage().getParameters().put('pageid',SystemSettings.kontaktpageid);
+        ApexPages.currentPage().getParameters().put('kontakttyp','Kontakt');
         
-        ctrl.saveRequest();
+	        ctrl.init();
+	        ctrl.goHomeUrl='www.google.de';
+	        ctrl.saveRequest();
+        }
     }
 }

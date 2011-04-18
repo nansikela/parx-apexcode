@@ -150,10 +150,10 @@ public class LeadConvertController {
   
   public List<AccountItem> getAccounts(){
     if(initPhase){
-      options.add(new AccountItem('-', 'Neue Firma: '+selectedLead.Company));
+      options.add(new AccountItem('-', System.Label.lc_new_account+': '+selectedLead.Company));
     
       for(Account item : matchedAccs)
-             options.add(new AccountItem(item.Id ,'Bestehende Firma: '+item.Name));
+             options.add(new AccountItem(item.Id , System.Label.lc_old_account+': '+item.Name));
     
       initPhase = false;
     }
@@ -174,10 +174,10 @@ public class LeadConvertController {
   public List<SelectOption> getContacts(){
     List<SelectOption> options = new List<SelectOption>();
     
-    options.add(new SelectOption('-', 'Neuer Kontakt: '+selectedLead.Lastname));
+    options.add(new SelectOption('-', System.Label.lc_new_contact+': '+selectedLead.Lastname));
     
     for(Contact item : contacts)
-           options.add(new SelectOption(item.Id ,'Bestehender Kontakt: '+item.Lastname));
+           options.add(new SelectOption(item.Id ,System.Label.lc_old_contact+': '+item.Lastname));
         
         return options;  
   }
@@ -248,9 +248,9 @@ public class LeadConvertController {
           
         if(!isKnown){
           if(options.size() > 0){
-            options.add(0, new AccountItem(selectedAcc.Id, 'An Bestehende anhängen: ' + selectedAcc.Name));
+            options.add(0, new AccountItem(selectedAcc.Id, System.Label.lc_old_account+': ' + selectedAcc.Name));
           }else{
-            options.add(new AccountItem(selectedAcc.Id, 'An Bestehende anhängen: ' + selectedAcc.Name));
+            options.add(new AccountItem(selectedAcc.Id, System.Label.lc_old_account+': ' + selectedAcc.Name));
           }
         }
         

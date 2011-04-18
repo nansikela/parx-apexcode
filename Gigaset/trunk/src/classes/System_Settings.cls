@@ -148,6 +148,7 @@ global class System_Settings {
     }
     
     // the preset should only be visible for crd at the moment
+    // the condition is restricted to Cordless, so it does not work for isPro=true!
     global static Boolean showPreset() {
     	// if (System_Settings.contactid!=null && System_Settings.contactid!='' && System_Settings.portal=='de' && !System_Settings.isPro) {
         if (System_Settings.contactid!=null && System_Settings.contactid!='' && !System_Settings.isPro) {

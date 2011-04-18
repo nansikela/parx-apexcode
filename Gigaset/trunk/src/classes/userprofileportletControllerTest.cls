@@ -20,23 +20,23 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-private class DErueckrufserviceControllerTest {
+private class userprofileportletControllerTest {
 
-    static testMethod void testDErueckrufserviceController() {
-    	testData.initData mytestData =new testData.initData('de',false);
-    	System.runAs(mytestData.testuser) {
-	        DErueckrufserviceController ctrl = new DErueckrufserviceController();
-	        ctrl.init();
-	        ctrl.saveRequest();
-    	}
-    }
-    
-    static testMethod void testDErueckrufserviceController2() {
-    	testData.initData mytestData =new testData.initData('de',false);
+    static testMethod void testuserprofileportletController() {
+	 	testData.initData mytestData = new testData.initData('de',false);
+	 	System.runAs(mytestData.testuser) {
+		 	userprofileportletController ctrl = new userprofileportletController();
+		 	ctrl.init();
+		 	ctrl.getBenutzerdatenUrl();
+		 	
+	 	}
+	 }
+	static testMethod void testuserprofileportletControllerNoAuth() {
+	 	testData.initData mytestData = new testData.initData('de',false);
 
-        DErueckrufserviceController ctrl = new DErueckrufserviceController();
-        ctrl.init();
-        ctrl.saveRequest();
-
-    }
+	 	userprofileportletController ctrl = new userprofileportletController();
+	 	ctrl.init();
+	 	ctrl.getBenutzerdatenUrl();
+	 	
+	 }
 }

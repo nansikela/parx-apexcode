@@ -27,6 +27,7 @@ private class DETemplateTest {
 	*/
 
     static testMethod void DETemplateControllerTest() {
+    	testData.initData mytestData1=new testData.initData('de', false);
     	User u = [Select ID From User Where ContactId != null and isactive=true limit 1];
     	System.runas(u){
     	PageReference pageRef = Page.DE_Home;
@@ -57,7 +58,7 @@ private class DETemplateTest {
        	tms.add(m);
        }
 		insert tms;
-		       
+		
        ctrl.init();
        ctrl.getImprintUrl();
        
@@ -97,10 +98,17 @@ private class DETemplateTest {
 	 ctrl.getCurrentNavigationPointLabel(SystemSettings.loginpageid);
        System.assert(ctrl.isAuthenticated!=null);
        SystemSettings.logError('test', 'test', 'test', '', 'error');
+       	ctrl.redirectTologin();
+       	ctrl.getBooks();
+       	ApexPages.currentPage().getParameters().put('moduleId',tms.get(0).id);
+       	ctrl.showModule();
+       	ctrl.getModules();
+       	ctrl.initModuleResult();
     	}
     }
     
     static testMethod void DEtrainigTests() {
+    	testData.initData mytestData2=new testData.initData('de', true);
     	PageReference pageRef = Page.DE_Home;
         Test.setCurrentPage(pageRef);
         DETemplateController ctrl = new DETemplateController();
@@ -177,6 +185,8 @@ private class DETemplateTest {
         ctrlTrain.getCampus_Title_1();
         ctrlTrain.getCampus_underTitle();
         ctrlTrain.getCampus_Welcome();
+        ctrlTrain.initModuleResult();
+        ctrlTrain.initHome();
         test.stopTest();
 	 	}
        //end of trainig 

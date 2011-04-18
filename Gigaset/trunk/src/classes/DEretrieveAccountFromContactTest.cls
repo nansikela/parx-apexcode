@@ -20,23 +20,16 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-private class DErueckrufserviceControllerTest {
+private class DEretrieveAccountFromContactTest {
 
-    static testMethod void testDErueckrufserviceController() {
-    	testData.initData mytestData =new testData.initData('de',false);
-    	System.runAs(mytestData.testuser) {
-	        DErueckrufserviceController ctrl = new DErueckrufserviceController();
-	        ctrl.init();
-	        ctrl.saveRequest();
-    	}
-    }
-    
-    static testMethod void testDErueckrufserviceController2() {
-    	testData.initData mytestData =new testData.initData('de',false);
-
-        DErueckrufserviceController ctrl = new DErueckrufserviceController();
-        ctrl.init();
-        ctrl.saveRequest();
-
+    static testMethod void DEretrieveAccountFromContactTest() {
+        testData.initData mytestData= new testData.initData('de',false);
+        DEretrieveAccountFromContact bestellungen = new DEretrieveAccountFromContact(new list<String>{mytestData.Accounts.get(0).id});
+        mytestData.Accounts.get(0).ShippingStreet='Teststr';
+        update mytestData.Accounts.get(0);
+        bestellungen = new DEretrieveAccountFromContact(new list<String>{mytestData.Accounts.get(0).id});
+        mytestData.Accounts.get(0).Firmenname_Lieferanschrift__c='Firmaname_Lieferanschrift';
+        update mytestData.Accounts.get(0);
+        bestellungen = new DEretrieveAccountFromContact(new list<String>{mytestData.Accounts.get(0).id});
     }
 }

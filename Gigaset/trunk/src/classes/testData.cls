@@ -1,5 +1,26 @@
 /* a class for test data for the unit tests */
 public class testData {
+	public class werbemittelData {
+		public list<Werbemittel__c> werbemittel { get; set; }
+		public String portal { get; set; }
+		public Boolean isPro { get; set; }
+		
+		public werbemittelData(String port, Boolean Pro) {
+			portal=port; isPro=Pro;
+			werbemittel=createWerbemittel();
+		}
+		
+		public list<Werbemittel__c> createWerbemittel() {
+			list<Werbemittel__c> wmlist= new list<Werbemittel__c>();
+			for (Integer i=0;i<5;i++) {
+				wmlist.add(new Werbemittel__c(Aktiv__c=true, Artikelnummer__c='1234',Portal__c=portal,Titel__c='Titel'));
+				
+			}
+			insert wmlist;
+			return wmlist;
+		}
+	}
+	
 	public class initData {
 		public list<CustomLabel__c> CustomLabels {get; set;}
 		public list<GlobalSettings__c> GlobalSettings { get; set; }
@@ -8,9 +29,15 @@ public class testData {
 		public list<PageTemplate__c> PageTemplates { get; set; }
 		public String portal { get; set; }
 		public Boolean isPro { get; set; }
+		public list<Account> accounts { get; set; }
+		public list<Contact> contacts { get; set; }
+		public User testuser { get; set; }
 		
 		public initData(String port, Boolean Pro) {
 			portal=port; isPro=Pro;
+			accounts=createAccounts();
+			contacts=createContacts();
+			testuser=createTestuser();
 			CustomLabels=new list<CustomLabel__c>();
 			GlobalSettings=new list<GlobalSettings__c>();
 			PagesSet=new list<pages__c>();
@@ -48,12 +75,50 @@ public class testData {
 								'CRD_Userdata', 
 								'CRD_Werbemittel'};
 		
+		/* create some accounts */
+		public list<Account> createAccounts() {
+			list<Account> accs = new list<Account>();
+			for (integer i=0;i<5;i++) {
+				accs.add(new Account(Name='ParxTestAccount' + i, BillingCountry='Deutschland', Portal__c=portal));
+			}
+			insert accs;
+			return [SELECT Id, BillingCity, BillingCountry, BillingPostalCode, BillingStreet, Name, Portal__c FROM Account WHERE Name like 'ParxTestAccount%'];
+		}
+		
+		/* create some contacts for the accounts */
+		public list<Contact> createContacts() {
+			list<Contact> cons= new list<Contact>();
+			for (Account a: Accounts) {
+				cons.add(new Contact(AccountId=a.id, Lastname='ParxTest'+ a.Id, Firstname='ParxTest', Gigaset_Extranet__c=true, Gigaset_Pro__c=isPro, Email='test@parx.de'));
+			}
+			insert cons;
+			return [SELECT Id, Lastname, Firstname, Gigaset_Extranet__c, Gigaset_Pro__c, Portal__c, AccountId, Email, toDeactivate__c FROM Contact WHERE LastName like 'ParxTest%'];
+		}
+		
+		/* now lets create a testuser for contact0 */
+		public User createTestuser() {
+			User u=new User();
+			u.Email='test@parx.de';
+			u.ContactId=contacts.get(0).Id;
+			u.LastName='TestP';
+			u.FirstName='Parx';
+			u.Username='test@parx.de';
+			u.Alias='ptpt';
+			u.EmailEncodingKey='UTF-8';
+			u.LanguageLocaleKey='de';
+			u.LocaleSidKey='de_DE_EURO';
+			u.TimeZoneSidKey='Europe/Berlin';
+			u.ProfileId=[SELECT Id FROM Profile WHERE Name like 'Kundenportal%ALL' limit 1].id;
+			insert u;
+			return u;
+		}
+		
        /* some custom labels */
        public list<CustomLabel__c> createCustomLabels() {
 	       list<CustomLabel__c> clabels =new list<CustomLabel__c>();
 	       for (Integer i=0;i<5;i++) {
 	       	String ccode='clcode'+i;
-	       	CustomLabel__c c=new CustomLabel__c(Name='clname'+i,Portal__c=portal,IsPro__c=isPro,Commoncode__c=ccode);
+	       	CustomLabel__c c=new CustomLabel__c(Name='clname'+portal+i,Portal__c=portal,IsPro__c=isPro,Commoncode__c=ccode);
 	       	c.ExternalUrl__c='http://www.parx.de';
 	       	c.Label__c='clabel';
 	       	c.LanguageCode__c='de';

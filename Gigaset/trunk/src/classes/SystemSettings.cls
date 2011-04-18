@@ -146,15 +146,22 @@ global class SystemSettings {
 		else return false;
 	}
 	
-	// the preset should only be visible for crd at the moment
+	// preset should be visible if
+	// with Cordless:
+	// Handelskanal__c or Distribution__c has no content
+	// with Pro:
+	// Handelskanal__c or Pro_Distribution__c has no content
 	global static Boolean showPreset() {
-		if (SystemSettings.contactid!=null && SystemSettings.contactid!='' && SystemSettings.portal=='nl') {
+		if (SystemSettings.contactid!=null && SystemSettings.contactid!='') {
 			Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:contactid];
 			if (c!=null && c.AccountId!=null ) {
 				Account a=[SELECT Id, Handelskanal__c, Distribution__c, Pro_Distribution__c FROM Account WHERE Id=:c.AccountId];
 				if (a!=null && 
-					(a.Handelskanal__c==null || a.Handelskanal__c=='')
-					) return true;
+					(
+					(!SystemSettings.isPro && (a.Handelskanal__c==null || a.Handelskanal__c=='')) 
+					||
+					(SystemSettings.isPro && (a.Handelskanal__c==null || a.Handelskanal__c=='' || a.Pro_Distribution__c==null || a.Pro_Distribution__c==''))
+					)) return true;
 			}
 		}
 		return false;
