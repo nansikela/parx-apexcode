@@ -59,7 +59,7 @@
                       <br/>
                 <apex:outputText value="{!opp.term.Beschreibung__c}" styleClass="cpmDescription"  style="vertical-align: top;"/>
             </apex:column>
-            <apex:column style="vertical-align: top; min-width: 100px;">
+            <apex:column style="vertical-align: top; min-width: 120px;">
                 <apex:facet name="header">{!$Label.Article_number}</apex:facet>
                 <apex:outputText value="{!opp.term.Artikelnummer__c}" styleClass="cpmDescription"/>
                 <apex:facet name="footer"> 
@@ -71,7 +71,7 @@
                     </div>
                 </apex:facet>
             </apex:column>
-            <apex:column style="vertical-align: top;">
+            <apex:column style="vertical-align: top; min-width: 100px;">
                 <apex:facet name="header">{!$Label.Quantity}</apex:facet>
                         <apex:inputText id="quantity" value="{!opp.quantity}" style="width:30px;" onkeyup="if(check(this.value) == 0 ) {this.value='';} " />                
                 <apex:outputText value="        {!opp.term.Verpackungseinheit__c}" style=" vertical-align: middle;" styleClass="cpmDescription"/>              
