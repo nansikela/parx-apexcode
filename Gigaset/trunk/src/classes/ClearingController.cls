@@ -228,21 +228,4 @@ public class ClearingController {
 	 	return null;
 	 }
 	 
-	 
-	 static testmethod void clearingtest() {
-	 	User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
-	 	ClearingController ctrl = new ClearingController();
-	 	//ctrl.u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' limit 1];
-	 	ctrl.isAuthenticated=true;
-	 	ctrl.getCurrentUser();
-	 	//ctrl.u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' limit 1];
-	 	ctrl.getContact();
-	 	
-	 	ctrl.insertRequest();
-	 	ctrl.previousStep();
-	 	ctrl.saveData();
-	 	ctrl.updateUser();
-	 	}
-	 }
 }

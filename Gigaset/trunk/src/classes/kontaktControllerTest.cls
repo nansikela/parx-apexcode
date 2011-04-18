@@ -23,10 +23,17 @@
 private class kontaktControllerTest {
 
     static testMethod void testkontaktController() {
+    	testData.initData mytestData = new testData.initData('de',false);
+    	test.setCurrentPage(Page.page);
+        System.runAs(mytestData.testuser) {
         kontaktController ctrl=new kontaktController();
-        
+        ctrl.isAuthenticated=true;
+        ApexPages.currentPage().getParameters().put('pageid',System_Settings.kontaktpageid);
+        ApexPages.currentPage().getParameters().put('kontakttyp','Kontakt');
         ctrl.init();
         
         ctrl.saveRequest();
+        }
     }
+    
 }

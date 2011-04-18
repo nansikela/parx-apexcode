@@ -48,16 +48,5 @@ public class newsreader {
 	 
 	public pageReference goHome() {
 		return System_Settings.goHome();
-	} 
-	
-	
-	static testmethod void newsreadertest() {
-	 	User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
-	 	newsreader ctrl = new newsreader();
-
-	 	}
-	 }
-	 
-	 
+	}
 }

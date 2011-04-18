@@ -21,6 +21,7 @@ public class TemplateController {
 	public String callback_imgurl { get; set; }
 	public String styleSelector { get; set; }
 	public String test {get;set;}
+	public String loginBackgroundImageId { get; private set; }
 	
 	public User u0{get;set;}
 	public Contact c0 {get;set;}
@@ -51,6 +52,7 @@ public class TemplateController {
 		showothercomp=showpresetcomp || showclearingcomp || showprivacy;
 		defaultlanguage=System_Settings.setLanguage();
 		label_menu_home=System_Settings.getCurrentNavigationPointLabel(System_Settings.homepageid);
+		loginBackgroundImageId=System_Settings.getLabel('loginBackgroundImageId');
 		kontaktpageid=System_Settings.kontaktpageid;
 		isAuthenticated=System_Settings.isPortalUser();
 		currentNavigationPoint='';
