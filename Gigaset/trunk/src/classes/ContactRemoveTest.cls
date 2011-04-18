@@ -20,23 +20,15 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-private class DErueckrufserviceControllerTest {
+private class ContactRemoveTest {
 
-    static testMethod void testDErueckrufserviceController() {
-    	testData.initData mytestData =new testData.initData('de',false);
-    	System.runAs(mytestData.testuser) {
-	        DErueckrufserviceController ctrl = new DErueckrufserviceController();
-	        ctrl.init();
-	        ctrl.saveRequest();
-    	}
-    }
-    
-    static testMethod void testDErueckrufserviceController2() {
-    	testData.initData mytestData =new testData.initData('de',false);
-
-        DErueckrufserviceController ctrl = new DErueckrufserviceController();
-        ctrl.init();
-        ctrl.saveRequest();
-
+    static testMethod void ContactRemoveTest() {
+        testData.initData mytestData=new testData.initData('de',true);
+        ContactRemove.init();
+        Contact c=mytestData.Contacts.get(0);
+        c.toDeactivate__c=true;
+        update c;
+        ContactRemove.remove(mytestData.Contacts.get(0).id);
+        ContactRemove.removeit();
     }
 }

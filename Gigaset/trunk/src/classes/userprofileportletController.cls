@@ -13,7 +13,6 @@ public class userprofileportletController {
 			} catch (System.QueryException e) {
 				System.debug('PARX User Query Error: ' + e.getMessage());
 				System_Settings.logError('PARX  User Query Error: ' + e.getMessage(),'DEuserprofileportletController','getContacts','','ERROR');
-				if (System_Settings.isDebug) throw e;
 			}
 		}
 		if (contactid!=null) {
@@ -22,7 +21,6 @@ public class userprofileportletController {
 			} catch (System.QueryException e) {
 				System.debug('PARX Contact Query Error: ' + e.getMessage());
 				System_Settings.logError('PARX  Contact Query Error: ' + e.getMessage(),'DEuserprofileportletController','getContacts','','ERROR');
-				if (System_Settings.isDebug) throw e;
 			}
 		}
 	}
@@ -37,15 +35,4 @@ public class userprofileportletController {
 	 	return null;
 	 }
 	 
-	 public static testMethod void testUserprofileportletController() {
-	 	User u = [SELECT Id, ContactId FROM User WHERE isActive=true AND ContactId!=null limit 1];
-	 	userprofileportletController ctrl = new userprofileportletController();
-	 	ctrl.init();
-	 	ctrl.getBenutzerdatenUrl();
-	 	
-	 	ctrl.userid=u.id;
-	 	ctrl.contactid=u.ContactId;
-	 	
-	 }
-
 }

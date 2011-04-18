@@ -88,15 +88,17 @@
             	    document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
            	 } else  */
            	 	if(document.getElementById("custom_popup") != null && getURLParam('download') != ''){
-           	 		document.getElementById('custom_popup_bg').style.visibility = 'visible';
-                	document.getElementById("custom_popup").style.visibility = 'visible';
+           	 		document.getElementById('custom_popup_bg').style.display = 'inline-block';
+           	 		document.getElementById('custom_popup_close').style.display = 'inline-block';
+                	document.getElementById("custom_popup").style.display = 'inline-block';
                 	document.getElementById("iFrameOfPopup").src = getURLParam('download');
             	}/*  else if(getURLParam('popup') == '3') {
 
             	} */ else {
             		if(document.getElementById("custom_popup") != null)
-            			document.getElementById('custom_popup_bg').style.visibility = 'hidden';
-                		document.getElementById("custom_popup").style.visibility = 'hidden';
+            			document.getElementById('custom_popup_bg').style.display = 'none';
+            			document.getElementById('custom_popup_close').style.display = 'none';
+                		document.getElementById("custom_popup").style.display = 'none';
             	}
         	};
          				

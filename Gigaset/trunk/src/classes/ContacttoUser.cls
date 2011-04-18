@@ -1,44 +1,19 @@
 global class ContacttoUser {
 	
 	static list<Map<String, User>> userdeeplist = new list<Map<String, User>>();
-//	static String ProfileATName='Kundenportalbenutzer AT';
-//	static String ProfileDEName='Kundenportalbenutzer DE';
-//	static String ProfileENName='Kundenportalbenutzer EN';
-//	static String ProfileNLName='Kundenportalbenutzer NL';
-//	static String profileATid;
-//	static String profileDEid;
-//	static String profileENid;
-//	static String profileNLid;
+
 	static String emailencodingkey='UTF-8';
-//	static String languagelocalekey='de';
-//	static String localesidkey='de_DE';
+
 	static String timezonesidkey='Europe/Berlin';
 	static list<Set<String>> unames= new list<Set<String>>();
 	
 	//@future(callout=true) 
-	public static void init() {
-//		list<Profile> pList = new list<Profile>([Select name, id From Profile where name LIKE 'Kundenportalbenutzer%']);
-//		for(Profile p:pList) {
-//			if(p.name == ProfileATName)
-//				profileATid = p.Id;
-//			else if(p.name == ProfileDEName)
-///				profileDEid = p.Id;
-//			else if(p.name == ProfileENName)
-//				profileENid = p.Id;
-//			else if(p.name == ProfileNLName)
-//				profileNLid = p.Id;	 
-//		}
-		
+	public static void init() {	
 		getContact();
-	//	system.debug('USER DEEPLIST 3 ' + userdeeplist); 
 		cleanOutExistingUsers();
-	//	system.debug('USER DEEPLIST 4 ' + userdeeplist); 
 		if(!userdeeplist.isEmpty()) {
-	//		system.debug('USER DEEPLIST 6 ' + userdeeplist); 
 			insertUser();
-	//		system.debug('USER DEEPLIST 7 ' + userdeeplist); 
 		}
-	//	system.debug('USER DEEPLIST 5 ' + userdeeplist); 
       }
       
       public static void changeEmail() {
@@ -127,28 +102,29 @@ global class ContacttoUser {
 				unames.add(new Set<String>());
 				j++;
 			}
-//			String profileid=profileDEid; 
-		
-//			if (c.Account.Portal__c!=null && c.Account.Portal__c.toLowerCase().equals('at')) profileid=profileATid;
-//			if (c.Account.Portal__c!=null && c.Account.Portal__c.toLowerCase().equals('en')) profileid=profileENid;
-//			if (c.Account.Portal__c!=null && c.Account.Portal__c.toLowerCase().equals('nl')) profileid=profileNLid;
 			User u=new User(
 				alias=c.Firstname!=null?c.Firstname.substring(0,1):''+c.LastName.substring(0,3),
 				email=c.Email,
 				//email=testemail,
 				username=c.Email,
-				//CommunityNickname=c.Firstname!=null?c.Firstname.substring(0,2):''+c.LastName,
 				emailencodingkey=emailencodingkey,
-		//		localesidkey=localesidkey,
 				contactId=c.id,
 				timezonesidkey=timezonesidkey,
 				lastname=c.Lastname,
 				firstname=c.FirstName!=null?c.Firstname:''
 				);
-			if(GSettings.containsKey(c.Account.Portal__c.toLowerCase())) {
-	 			u.profileid = GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Profile_Id__c;
-				u.languagelocalekey = GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Sprache__c;
-				u.localesidkey = GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Gebietsschema__c;
+			if(GSettings.containsKey(c.Account.Portal__c.toLowerCase()) 
+				&& GSettings.get(c.Account.Portal__c.toLowerCase()).containsKey(c.Gigaset_Pro__c) 
+				&& GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Profile_Id__c!=null
+				&& GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Sprache__c!=null
+				&& GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Gebietsschema__c!=null
+				) {
+
+	 				u.profileid = GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Profile_Id__c;
+
+					u.languagelocalekey = GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Sprache__c;
+
+					u.localesidkey = GSettings.get(c.Account.Portal__c.toLowerCase()).get(c.Gigaset_Pro__c).Gebietsschema__c;
 			}
 			else {
 				SystemSettings.logError('problem bei den Custom Settings. bitte prüfen!', 'ContacttoUser', 'insertUsers', '', 'UserUpdateError');
@@ -157,7 +133,6 @@ global class ContacttoUser {
 			
 			if (!userdeeplist.get(i).containsKey(c.Email)) 
 				userdeeplist.get(i).put(c.Email, u);
-				//unames.get(i).add(c.Email);
 			else {
 				SystemSettings.logError('duplicate email address:'+ c.Email, c.Portal__c, 'UserUpdateError');
 				continue;
@@ -168,11 +143,6 @@ global class ContacttoUser {
 			toUpdate.add(c);
 			
 		}
-	//	for(Case temp:ca) {
-	//		if(temp.Contact.Email != null)
-	//			temp.isAlreadyPortalUser__c = true;
-	//	}
-	//	system.debug('USER DEEPLIST ' + userdeeplist); 
 		
 		if(!ca.isEmpty() || hasContact)
 			UpdateCaseContact(Ids );
@@ -180,7 +150,6 @@ global class ContacttoUser {
       }
       
       private static void cleanOutExistingUsers() {
-      //	system.debug('SHOULd COME HERE 1');
 		if (!userdeeplist.isEmpty()) {
 			for (Integer i=0;i<userdeeplist.size();i++) {
 				for (User u: [SELECT Id, Username, Contact.Portal__c FROM User WHERE Username IN: userdeeplist.get(i).keySet()]) {
@@ -202,7 +171,6 @@ global class ContacttoUser {
 				u.setOptions(dmo);
 			} 
 			Savepoint sp = database.setSavepoint();
-			//userdeeplist.get(i).setOptions(dmo);
 			try {
 				insert userdeeplist.get(i).values();
 			} catch (System.DmlException e) { 

@@ -85,7 +85,7 @@ public class DEwerbemittelController{
       
   	public void setbestellungTemp() {
   		if(ctrl!= null && ctrl.c != null) {
-  			bestellung = new DEretrieveAccountFromContact(ctrl.c.AccountId, null);
+  			bestellung = new DEretrieveAccountFromContact(new list<String>{ctrl.c.AccountId});
   		  	bestellungTemp = bestellung.bestellung.get(0);	//anyway for the 0, it cannot be bigger cause this controller is already called by the page.	
   			if(bestellungTemp.Kontakt__c == null || bestellungTemp.Kontakt__c == '') {
   				if(ctrl.u.Firstname != '' && ctrl.u.Firstname != null)	

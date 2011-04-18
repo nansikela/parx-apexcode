@@ -23,8 +23,25 @@
 private class DownloadTest {
 
     static testMethod void testDownload() {
-		User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
+    	testData.initData mytestData = new testData.initData('de',false);
+    	Campaign campaign = new Campaign();
+    	campaign.RecordTypeId=[SELECT id FROM RecordType WHERE Name='Top Shop' AND SObjectType='Campaign' limit 1].id;
+    	campaign.Portal__c='de';
+    	campaign.IsActive=true;
+    	campaign.isPro__c=false;
+    	campaign.Name='ParxTest';
+    	insert campaign;
+    	/*
+    	Attachment att=new Attachment();
+	 		att.Name='test';
+	 		att.Description='test';
+	 		att.Parentid=mytestData.Contacts.get(0).id;
+	 		att.Body=Blob.valueOf('test');
+	 		att.Ownerid=mytestData.testuser.id;
+	 		insert att;
+	 		*/
+		
+	 	System.runAs(mytestData.testuser) {
 			Download ctrl = new Download();
 			//ctrl.Del();
 			ctrl.toUpdatePage();
@@ -50,6 +67,50 @@ private class DownloadTest {
 			insert a;
 			ApexPages.currentPage().getParameters().put('docId',a.id);
 			ctrl.Del();
+			ctrl.toUpdatePage();
+			ctrl.goHome();
+			ctrl.lockGame();
+			ctrl.UpdateStatus();
+			ctrl.upload();
 	 	}
+	}
+	
+	 static testMethod void testDownload2() {
+    	testData.initData mytestData = new testData.initData('de',false);
+    	Attachment att=new Attachment();
+	 		att.Name='test';
+	 		att.Description='test';
+	 		att.Parentid=mytestData.Contacts.get(0).id;
+	 		att.Body=Blob.valueOf('test');
+	 		att.Ownerid=mytestData.testuser.id;
+	 		insert att;
+		
+	 	
+			Download ctrl = new Download();
+			//ctrl.Del();
+			ctrl.toUpdatePage();
+			ctrl.goHome();
+			ctrl.lockGame();
+			ctrl.UpdateStatus();
+			ctrl.upload();
+			Download.myterm trm= new Download.myterm();
+			
+			NextTopShop__c nts = ctrl.Art;
+			boolean x = ctrl.showUpdatePage;
+			x = ctrl.showThirdPage;
+			x = ctrl.Table;
+			x = ctrl.ShowButtons;
+	//		x = ctrl.ShowButtonsAndLinks;
+			Attachment a = ctrl.document;
+			
+			a.Name='test';
+			NextTopShop__c acc=new NextTopShop__c();
+			insert acc;
+			a.ParentId=acc.Id;
+			a.Body=Blob.valueOf('XXX');
+			insert a;
+			ApexPages.currentPage().getParameters().put('docId',a.id);
+			ctrl.Del();
+	 	
 	}
 }

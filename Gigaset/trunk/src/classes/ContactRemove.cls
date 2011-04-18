@@ -16,8 +16,8 @@ global class ContactRemove {
 	@future(callout=true)
       private static void removeContact(String contactId) {
       	c = [select id, toDelete__c from Contact where Id =: contactId];
-      	for(Contact cTemp:c) {
-      		cTemp.toDelete__c = True;
+      	for(integer i=0;i<c.size();i++) {
+      		c.get(i).toDelete__c = True;
       	}
       	if(!c.isEmpty()) {
       		try {
@@ -58,27 +58,23 @@ global class ContactRemove {
 		removeUser(); 
       }
         
-      private static void getContact() {
-      	
+      private static void getContact() {	
       	u = [Select Id, IsPortalEnabled From User where Contact.toDeactivate__c = True];
-      	
       }
        
       @future(callout=true) 
       private static void updateContact() {
       	c = [Select Id, toDeactivate__c From Contact where toDeactivate__c = True];
-      	list<Contact> toUpdateC = new list<Contact>();
       	if(!c.isEmpty()) {
-      		for(Contact cTemp:c) {
-      			cTemp.toDeactivate__c = False;
-      			toUpdateC.add(cTemp);
+      		for(integer i=0;i<c.size();i++) {
+      			c.get(i).toDeactivate__c = false;
       		}
       		try{
-      			update toUpdateC;  
+      			update c;  
       		}
       		catch(exception e) {
       			String error = '';
-      			for(Contact con:toUpdateC) {
+      			for(Contact con:c) {
       				error += con.Id + ' ';
       			}
       			SystemSettings.logError(e.getMessage(), 'ContactRemove.updateContact', 'Bug on updateContact', error, 'FATAL ERROR');

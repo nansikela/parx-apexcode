@@ -24,7 +24,11 @@ private class ContactToUserTest {
 
     static testMethod void ContactToUserTest() {
         testData.initData testData = new testData.initData('de',false);
+      //  testData.contacts.get(0).ToUpdate__c=true;
         ContactToUser.changeEmail();
+        try{
         ContactToUser.init();
+        }
+        catch(exception e){}
     }
 }

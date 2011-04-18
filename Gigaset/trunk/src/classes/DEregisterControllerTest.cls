@@ -23,11 +23,17 @@
 private class DEregisterControllerTest {
 
     static testMethod void testDEregisterController() {
-    	User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
+    	testData.initData mytestData = new testData.initData('de',false);
+    	
+	 	test.setCurrentPage(Page.DE_Register);
+	 	ApexPages.currentPage().getParameters().put('pageid',SystemSettings.registrationpageid);
         DEregisterController ctrl = new DEregisterController();
+        ctrl.portal='de';
         ctrl.l.Lastname='Test';
         ctrl.l.Company='Test';
+        ctrl.l.Datenschutzerkl_rung_zugestimmt__c=true;
+        ctrl.selectedDistribution.add('Warenhaus');
+        ctrl.getActive0();
         ctrl.getActive1();
         ctrl.getActive2();
         ctrl.getActive3();
@@ -46,6 +52,24 @@ private class DEregisterControllerTest {
         ctrl.nextStep();
         ctrl.step=3;
         ctrl.nextStep();
-	 	}
+        ctrl.getActive1();
+        
+        ctrl.step=2;
+        ctrl.l.Anmeldung_Telefon__c=true;
+        ctrl.nextStep();
+        ctrl.l.Anmeldung_Telefon__c=false;
+        ctrl.l.Anmeldung_Mobiltelefon__c=true;
+        ctrl.nextStep();
+        ctrl.l.Anmeldung_Mobiltelefon__c=false;
+        ctrl.l.Anmeldung_Hotlinetelefon__c=true;
+        ctrl.nextStep();
+        ctrl.l.Anmeldung_Hotlinetelefon__c=false;
+        ctrl.l.Fax='+49 123454';
+        ctrl.l.Phone='+49 123454';
+        ctrl.l.Telefon_Kontakt__c='+49 123454';
+        ctrl.l.Fax_Kontakt__c='+49 123454';
+        ctrl.l.MobilePhone='+49 123454';
+        ctrl.l.Sonstige_Telefonnummer__c='+49 123454';
+        ctrl.nextStep();
     }
 }
