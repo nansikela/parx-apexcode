@@ -19,16 +19,14 @@
             </div>
             <!--  END header -->
             <div id="content_wrapper">
-            <!-- <apex:iframe rendered="{!isPDF}" src="{!URLFOR($Resource.pdfs, pdf)}" scrolling="false" id="iFrameOfPopupPDF" width="100%"/> -->
-            <!-- <apex:flash rendered="{!isFlash}" src="{!URLFOR($Resource.flashs, flash)}" width="100%" height="100%"/> -->
              	<div id="custom_popup_bg">
   					<a id="custom_popup_close" style="position:absolute; font-weight:bolder; color:black; right: 20px;" onclick="document.getElementById('custom_popup_bg').style.visibility = 'hidden';document.getElementById('custom_popup').style.visibility = 'hidden';">           	
              			<img src="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}" />
              		</a>
             		<div id="custom_popup" class="custom_popup"> 
-               		<apex:variable var="pdf" value="{!target}"/>
-                
-                	<iframe src="{!IF(isNative,' ',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup" width="100%"> </iframe>
+               			<apex:variable var="pdf" value="{!target}"/>
+                		<iframe src="{!IF(isNative,'http://127.0.0.1',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup" width="100%"> </iframe>
+                	</div>	
                 </div>
             </div> 
             
@@ -45,18 +43,17 @@
                 </apex:insert>
                 <apex:insert name="body" />
             </div>
-            
-            </div>
-            <div id="content_wrapperBtm"></div>
-            <!-- END content -->
         </div>
-        <!-- END content_area -->
-        <apex:insert name="footer">
-            <c:CRD_footer id="CRD_footercomp" />
-        </apex:insert>
-    </div>
+        <div id="content_wrapperBtm"></div>
+        <!-- END content -->
+   
+    	<!-- END content_area -->
+    	<apex:insert name="footer">
+        	<c:CRD_footer id="CRD_footercomp" />
+    	</apex:insert>
+	</div>
     <!-- END wrapper -->
-        <c:CRD_footercopy id="CRD_footercopycomp" />
+    <c:CRD_footercopy id="CRD_footercopycomp" />
     
     
     <script type="text/javascript">
