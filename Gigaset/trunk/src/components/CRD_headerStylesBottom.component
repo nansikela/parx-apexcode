@@ -63,7 +63,7 @@
  			 	var url = window.location.href;
             
             	//Umschreiben von Links, um Popup zu zeigen beim Klicken! (HIER FÜR TRAININGSMODUL!)
-           		/*  if(url.indexOf('popup=1') == -1)
+           		  if(url.indexOf('popup=1') == -1)
                 for(var i = 0; i < document.links.length; i++){
                     if(document.links[i].href.indexOf('/training') != -1){
                         document.links[i].href = window.location.href + '&popup=1';
@@ -71,7 +71,7 @@
                         break;
                     }
                 }
-             	*/
+             	
            	 	//if(url.indexOf('&download=') == -1)
                 	for(var i = 0; i < document.links.length; i++){
                     	if(document.links[i].href.indexOf('/download=') != -1){
@@ -82,11 +82,13 @@
                         	break;
                     	}
                 	}
-    			/* 
-            	if(document.getElementById("custom_popup") != null && getURLParam('popup') == '1'){
-            		    document.getElementById("custom_popup").style.visibility = 'visible';
-            	    document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
-           	 } else  */
+    			 
+            if(document.getElementById("custom_popup") != null && getURLParam('popup') == '1'){
+                document.getElementById('custom_popup_bg').style.display = 'inline-block';
+           	 	document.getElementById('custom_popup_close').style.display = 'inline-block';
+                document.getElementById("custom_popup").style.display = 'inline-block';
+           		document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
+           	 } else  
            	 	if(document.getElementById("custom_popup") != null && getURLParam('download') != ''){
            	 		document.getElementById('custom_popup_bg').style.display = 'inline-block';
            	 		document.getElementById('custom_popup_close').style.display = 'inline-block';

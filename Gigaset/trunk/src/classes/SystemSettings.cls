@@ -68,9 +68,10 @@ global class SystemSettings {
 	}
 	
 	private static String getPortalCountry() {
-		String ctry='Deutschland';
+		String ctry='Germany';
 		for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
-			if (gs.Portal__c==portal && gs.isPro__c==isPro ) ctry=gs.CountryForRegistration__c;
+			if (gs.Portal__c==getPortalSign() && gs.isPro__c==(Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().contains('pro')) ) 
+				ctry=gs.CountryForRegistration__c;
 		}
 		return ctry;
 	}
