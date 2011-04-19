@@ -417,7 +417,7 @@ Nämlich ist man hier im iFrame und diese Background ist vom Komponent gesteuert
 dafür habe ich 1 bild darauf gelegt (der background ist ein kleines bisschen unterschieden
 zwischen die erste und 2. seite... aber vielleicht kann man das schöner machen????? -->
 
-                <apex:image style="position: absolute; top: 0px; left: 0px; z-index: -2; height: 545px; width: 960px;" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/BG_Chapter.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_unterseiten.jpg'))}" />   
+                <apex:image style="position: absolute; top: -8px; left: -8px; z-index: -2; height: 545px; width: 960px;" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/BG_Chapter.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_unterseiten.jpg'))}" />   
                 
 <!-- wenn man z.B. auf Company & Brand clickt ist diese outputpanel angezeigt (das grosse buch)-->
                 <apex:outputPanel id="inline3" rendered="{!NOT(Modules_showThirdpage)}" >       

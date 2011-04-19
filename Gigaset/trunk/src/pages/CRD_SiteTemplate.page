@@ -25,7 +25,7 @@
              		</a>
             		<div id="custom_popup" class="custom_popup"> 
                			<apex:variable var="pdf" value="{!target}"/>
-                		<iframe src="{!IF(isNative,'http://127.0.0.1',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup" width="100%"> </iframe>
+                		<iframe src="{!IF(isNative,'http://127.0.0.1',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup"> </iframe>
                 	</div>	
                 </div>
             </div> 
