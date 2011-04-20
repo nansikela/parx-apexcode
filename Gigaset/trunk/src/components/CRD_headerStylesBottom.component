@@ -54,14 +54,21 @@
 <!--  -->
         <script type="text/javascript">
 			<!-- styles has to be changed afterwards -->
-            
+            function getDocHeight() {
+    			var D = document;
+    			return Math.max(
+        			Math.max(D.body.scrollHeight, D.documentElement.scrollHeight),
+        			Math.max(D.body.offsetHeight, D.documentElement.offsetHeight),
+        			Math.max(D.body.clientHeight, D.documentElement.clientHeight)
+    			);
+			}
             window.onload = new function(){
 
-            	if(training == 1)
+				if(training == 1)
             		$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});	
  			 	
  			 	var url = window.location.href;
-            
+
             	//Umschreiben von Links, um Popup zu zeigen beim Klicken! (HIER FÜR TRAININGSMODUL!)
            		  if(url.indexOf('popup=1') == -1)
                 for(var i = 0; i < document.links.length; i++){
@@ -82,10 +89,12 @@
                         	break;
                     	}
                 	}
-    			 
+    			
+    		document.getElementById('custom_popup_bg').style.height = getDocHeight()+'px';
+           	 	 
             if(document.getElementById("custom_popup") != null && getURLParam('popup') == '1'){
                 document.getElementById('custom_popup_bg').style.display = 'inline-block';
-           	 	document.getElementById('custom_popup_close').style.display = 'inline-block';
+                document.getElementById('custom_popup_close').style.display = 'inline-block';
                 document.getElementById("custom_popup").style.display = 'inline-block';
            		document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
            	 } else  
@@ -94,9 +103,7 @@
            	 		document.getElementById('custom_popup_close').style.display = 'inline-block';
                 	document.getElementById("custom_popup").style.display = 'inline-block';
                 	document.getElementById("iFrameOfPopup").src = getURLParam('download');
-            	}/*  else if(getURLParam('popup') == '3') {
-
-            	} */ else {
+            	} else {
             		if(document.getElementById("custom_popup") != null)
             			document.getElementById('custom_popup_bg').style.display = 'none';
             			document.getElementById('custom_popup_close').style.display = 'none';

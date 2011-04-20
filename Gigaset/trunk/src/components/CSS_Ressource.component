@@ -45,7 +45,9 @@ span {
 	z-index: 9990;
 	text-align: center;
 	display: none;
-	background: url({!URLFOR($Resource.popup, 'popup_bg.png')}) repeat;
+	background-repeat: repeat;
+	background-attachment: scroll; 
+	background-image: url({!URLFOR($Resource.popup, 'popup_bg.png')});
 }
 
 #custom_popup_close {
@@ -53,8 +55,8 @@ span {
 	z-index: 9999;
 	width: 25px;
 	height: 24px;
-	top:115px;
-	left:1100px;	
+	top:-10px;
+	left:950px;	
 	display: none;
 }
 
@@ -66,7 +68,7 @@ span {
 	position: relative;
 	z-index: 9995;
 	display: inline-block;
-	overflow: hidden;
+	overflow: visible;
 	top: 130px;
 	display: none;
 	background-color: white;

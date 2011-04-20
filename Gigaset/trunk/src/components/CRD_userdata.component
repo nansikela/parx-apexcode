@@ -26,17 +26,18 @@
 		</apex:outputPanel>
         <!-- <apex:pageMessages id="error" /> -->
         <apex:form id="userdataform" >
-        	<table>
+        	<apex:outputPanel id="salutationPanel" rendered="{!portal!='se'}">
+        	<table cellspacing="0" cellpadding="0">
            	<tr>
                 <td>
-                	<apex:outputLabel value="{!$ObjectType.User.fields.Salutation_Kontakt__c.label}{!IF(portal='se','','*')}" for="ssalutation" />
+                	<apex:outputLabel value="{!$ObjectType.User.fields.Salutation_Kontakt__c.label}*" for="ssalutation" />
 				</td>
 				<td>
 					<div id="sal">
-					<apex:inputField style="right: 4px;top: 3px;position: relative;" id="ssalutation" value="{!u.Salutation_Kontakt__c}" required="{!IF(portal='se',false,true)}" styleClass="FieldRequiredSalutation" />
+					<apex:inputField style="top: 5px;position: relative;" id="ssalutation" value="{!u.Salutation_Kontakt__c}" required="true" styleClass="FieldRequiredSalutation" />
 					<apex:panelGrid columns="2" id="thetitlearea">
 						<apex:outputLabel value="{!$ObjectType.User.fields.Title_Kontakt__c.label}" for="stitle" style="width: 54px!important; text-align: right;" />
-						<apex:inputField style="top: 3px;position: relative;" id="stitle" value="{!u.Title_Kontakt__c}" styleClass="FieldRequiredTitle" />
+						<apex:inputField style="top: 3px;position: relative; left: 4px;" id="stitle" value="{!u.Title_Kontakt__c}" styleClass="FieldRequiredTitle" />
 					</apex:panelGrid>
 					</div>
 					<script type="text/javascript">
@@ -64,12 +65,16 @@
 				</td>
 			</tr>
 			</table>
+			</apex:outputPanel>
 			<!-- 
             <apex:outputLabel value="{!$ObjectType.User.fields.Salutation_Kontakt__c.label}{!IF(portal='se','','*')" for="salutation" />
                 <apex:inputField id="salutation" value="{!u.Salutation_Kontakt__c}" required="true" styleClass="FieldRequiredSelect" />
-            <apex:outputLabel value="{!$ObjectType.User.fields.Title_Kontakt__c.label}" for="title" />
+            --> 
+            <apex:outputPanel id="titleSEPanel" rendered="{!portal='se'}">   
+            <apex:outputLabel value="{!$ObjectType.User.fields.Title_Kontakt__c.label}" for="title"  />
                 <apex:inputField id="title" value="{!u.Title_Kontakt__c}" styleClass="FieldRequired4" /><br />
-            -->
+            </apex:outputPanel>
+            
             <apex:outputLabel value="{!$ObjectType.User.fields.Firstname.label}*" for="firstname" />
                 <apex:inputField id="firstname" value="{!u.Firstname}" required="true" styleClass="FieldRequired" />
             <apex:outputLabel value="{!$ObjectType.User.fields.Lastname.label}*" for="lastname" />

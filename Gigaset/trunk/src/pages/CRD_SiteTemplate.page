@@ -20,10 +20,10 @@
             <!--  END header -->
             <div id="content_wrapper">
              	<div id="custom_popup_bg">
-  					<a id="custom_popup_close" style="position:absolute; font-weight:bolder; color:black; right: 20px;" onclick="document.getElementById('custom_popup_bg').style.display = 'none'; document.getElementById('custom_popup').style.display = 'none';">           	
-             			<img src="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}" />
-             		</a>
-            		<div id="custom_popup" class="custom_popup"> 
+            		<div id="custom_popup" class="custom_popup" style="display:none;"> 
+            			<a id="custom_popup_close" style="font-weight:bolder; color:black;display:none;" onclick="document.getElementById('custom_popup_bg').style.display = 'none'; document.getElementById('custom_popup').style.display = 'none';">           	
+             				<img src="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}" />
+             			</a>
                			<apex:variable var="pdf" value="{!target}"/>
                 		<iframe src="{!IF(isNative,'http://127.0.0.1',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup"> </iframe>
                 	</div>	

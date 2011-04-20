@@ -4,6 +4,7 @@ global class System_Settings {
     //global static final String portal=Site.getCustomWebAddress()==null?'':Site.getCustomWebAddress().substring(7,9);
     //global static final String portal=Site.getCustomWebAddress()==null?'':Site.getCustomWebAddress().substring(9,10)=='.'?Site.getCustomWebAddress().substring(7,9):'';
     global static final String portal=getPortalSign();
+    //global static final String portal='se';
     global static final String PortalCountry=getPortalCountry();
     global static final Boolean isPro=isPro();
     global static String contactid='';
