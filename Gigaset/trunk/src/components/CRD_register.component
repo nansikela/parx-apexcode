@@ -320,17 +320,19 @@
                 </apex:outputPanel>
                 <apex:outputPanel id="step2" rendered="{!step=2}">
                     <apex:form id="step2form" >
+                        
+                        <apex:outputPanel id="salutationPanel" rendered="{!portal!='se'}">
                         <table>
                         <tr>
                         <td>
-                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Salutation.label}{!IF(portal='se','','*')}" for="salutation" />
+                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Salutation.label}*" for="salutation" />
 						</td>
 						<td>
 							<div id="sal">
-							<apex:inputField style="right: 4px;top: 3px;position: relative;" id="salutation" value="{!l.Salutation}" required="{!IF(portal='se',false,true)}" styleClass="FieldRequiredSalutation" />
+							<apex:inputField style="right: 4px;top: 5px;position: relative;" id="salutation" value="{!l.Salutation}" required="true" styleClass="FieldRequiredSalutation" />
 							<apex:panelGrid columns="2" id="thetitlearea">
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Title.label}" for="stitle" style="width: 54px!important; text-align: right;"/>
-								<apex:inputField style="top: 3px;position: relative;" id="stitle" value="{!l.Title}" styleClass="FieldRequiredTitle" />
+								<apex:outputLabel value="{!$ObjectType.Lead.fields.Title.label}" for="stitle" style="width: 51px!important; text-align: right; top: 3px; position: relative;"/>
+								<apex:inputField style="top: 3px; left: 2px; position: relative;" id="stitle" value="{!l.Title}" styleClass="FieldRequiredTitle" />
 							</apex:panelGrid>
 							</div>
 							<script type="text/javascript">
@@ -357,6 +359,18 @@
 							</script>
 						</td>
                         </tr>
+                        </table>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="titleSEPanel" rendered="{!portal='se'}">
+                        <table>
+                        <tr>
+                        	 <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Title.label}" for="setitle" />
+                        	</td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="setitle" value="{!l.Title}" required="false" styleClass="FieldRequired" />
+                        	</td>
+                        </tr>
+                        </table>
+                        </apex:outputPanel>
+                        <table>
                         <tr>
                         <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Firstname.label}*" for="firstname" />
                         </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="firstname" value="{!l.Firstname}" required="true" styleClass="FieldRequired" />
