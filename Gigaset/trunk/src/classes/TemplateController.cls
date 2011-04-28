@@ -9,8 +9,8 @@ public class TemplateController {
     public String currentNavigationPoint { get; set; }
     public String homeurl { get; set; }
 	pageReference CMSpage = Page.page;
-	public String kontaktpageid { get; set; }
-	public String registrationpageid { get; set; }
+	public Id kontaktpageid { get; set; }
+	public Id registrationpageid { get; set; }
 	public String label_menu_home { get; set; }
 	public String defaultlanguage { get; set; }
 	public Boolean showpresetcomp { get; set; }
@@ -73,43 +73,51 @@ public class TemplateController {
 		//System.debug('******* Zustand: showprivacy: ' + showprivacy + ' / showpresetcomp: '+ showpresetcomp + ' / showclearingcomp: ' +showclearingcomp + ' / showothercomp: ' + showothercomp + ' / shownexttopshop: ' + showNextTopShop + ' / isAuthenticated: ' + isAuthenticated + ' / isPro: ' + isPro +  ' / Portal: ' + System_Settings.portal + ' / UserId: ' + UserInfo.getUserId() );
 	}
 	 
-	public String getCurrentNavigationPointLabel(String pageid) {
-		String homepageid=System_Settings.homepageid;
-		String link01pageid=System_Settings.link01pageid;
-		String link02pageid=System_Settings.link02pageid;
-		String link03pageid=System_Settings.link03pageid;
-		String link04pageid=System_Settings.link04pageid;
-		String link05pageid=System_Settings.link05pageid;
-		String link06pageid=System_Settings.link06pageid;
-		String newsreaderpageid=System_Settings.newsreaderpageid;
-		//String werbemittelpageid=System_Settings.werbemittelpageid;
-		String imprintpageid=System_Settings.imprintpageid;
-		kontaktpageid=System_Settings.kontaktpageid;
-		registrationpageid=System_Settings.registrationpageid;
-		String userdatapageid=System_Settings.userdatapageid;
-		String loginpageid=System_Settings.loginpageid;
-		String rueckrufservicepageid=System_Settings.rueckrufservicepageid;
-		String forgotpasswordpageid=System_Settings.forgotpasswordpageid;
-		// portal specific labels/navigationpoints
-		if (pageid.startsWith(homepageid)|| (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return System_Settings.getLabel('home');
-		if (link01pageid!='' && pageid.startsWith(link01pageid)) return System_Settings.getLabel('link01');
-		if (link02pageid!='' && pageid.startsWith(link02pageid)) return System_Settings.getLabel('link02');
-		if (link03pageid!='' && pageid.startsWith(link03pageid)) return System_Settings.getLabel('link03');
-		if (link04pageid!='' && pageid.startsWith(link04pageid)) return System_Settings.getLabel('link04');
-		if (link05pageid!='' && pageid.startsWith(link05pageid)) return System_Settings.getLabel('link05');
-		if (link06pageid!='' && pageid.startsWith(link06pageid)) return System_Settings.getLabel('link06');
-		//if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return System_Settings.getLabel('Werbemittel');
-		if (newsreaderpageid!='' && pageid.startsWith(newsreaderpageid)) return System_Settings.getLabel('NewsReader');
-		// cross portal navigation points
-		if (imprintpageid!='' && pageid.startsWith(imprintpageid)) return System.Label.tplt_label_imprint;
-		if (kontaktpageid!='' && pageid.startsWith(kontaktpageid)) return System.Label.contact;
-		if (userdatapageid!='' && pageid.startsWith(userdatapageid)) return System.Label.userdata_your_userdata;
-		if (loginpageid!='' && pageid.startsWith(loginpageid)) return System.Label.loginpage;
-		if (registrationpageid!='' && pageid.startsWith(registrationpageid)) return System.Label.registration;
-		if (rueckrufservicepageid!='' && pageid.startsWith(rueckrufservicepageid)) return System.Label.callback;
-		if (forgotpasswordpageid!='' && pageid.startsWith(forgotpasswordpageid)) return System.Label.forgotpassword_forgot_password;
-		if (System.currentPageReference().getUrl()!=null && System.currentPageReference().getUrl().contains('ChangePassword')) return System.Label.changepw_changepw;
-		else return '';
+	public String getCurrentNavigationPointLabel(String pid) {
+		Id pageid;
+		if (pid!=null) {
+			try {
+				pageid=Id.valueOf(pid);
+			} catch (System.Exception e) {}
+		}
+		if (pageid!=null) {
+			Id homepageid=System_Settings.homepageid;
+			Id link01pageid=System_Settings.link01pageid;
+			Id link02pageid=System_Settings.link02pageid;
+			Id link03pageid=System_Settings.link03pageid;
+			Id link04pageid=System_Settings.link04pageid;
+			Id link05pageid=System_Settings.link05pageid;
+			Id link06pageid=System_Settings.link06pageid;
+			Id newsreaderpageid=System_Settings.newsreaderpageid;
+			//String werbemittelpageid=System_Settings.werbemittelpageid;
+			Id imprintpageid=System_Settings.imprintpageid;
+			Id kontaktpageid=System_Settings.kontaktpageid;
+			Id registrationpageid=System_Settings.registrationpageid;
+			Id userdatapageid=System_Settings.userdatapageid;
+			Id loginpageid=System_Settings.loginpageid;
+			Id rueckrufservicepageid=System_Settings.rueckrufservicepageid;
+			Id forgotpasswordpageid=System_Settings.forgotpasswordpageid;
+			// portal specific labels/navigationpoints
+			if (pageid==homepageid || (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return System_Settings.getLabel('home');
+			if (link01pageid!=null && pageid==link01pageid) return System_Settings.getLabel('link01');
+			if (link02pageid!=null && pageid==link02pageid) return System_Settings.getLabel('link02');
+			if (link03pageid!=null && pageid==link03pageid) return System_Settings.getLabel('link03');
+			if (link04pageid!=null && pageid==link04pageid) return System_Settings.getLabel('link04');
+			if (link05pageid!=null && pageid==link05pageid) return System_Settings.getLabel('link05');
+			if (link06pageid!=null && pageid==link06pageid) return System_Settings.getLabel('link06');
+			//if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return System_Settings.getLabel('Werbemittel');
+			if (newsreaderpageid!=null && pageid==newsreaderpageid) return System_Settings.getLabel('NewsReader');
+			// cross portal navigation points
+			if (imprintpageid!=null && pageid==imprintpageid) return System.Label.tplt_label_imprint;
+			if (kontaktpageid!=null && pageid==kontaktpageid) return System.Label.contact;
+			if (userdatapageid!=null && pageid==userdatapageid) return System.Label.userdata_your_userdata;
+			if (loginpageid!=null && pageid==loginpageid) return System.Label.loginpage;
+			if (registrationpageid!=null && pageid==registrationpageid) return System.Label.registration;
+			if (rueckrufservicepageid!=null && pageid==rueckrufservicepageid) return System.Label.callback;
+			if (forgotpasswordpageid!=null && pageid==forgotpasswordpageid) return System.Label.forgotpassword_forgot_password;
+			if (System.currentPageReference().getUrl()!=null && System.currentPageReference().getUrl().contains('ChangePassword')) return System.Label.changepw_changepw;
+			else return '';
+		} else return '';
 	}
 
 	// actions
@@ -137,7 +145,7 @@ public class TemplateController {
 	}
 	
 	public String getRueckrufserviceUrl() {
-		if (System_Settings.rueckrufservicepageid!='')
+		if (System_Settings.rueckrufservicepageid!=null)
 			return CMSpage.getUrl() + '?pageid=' + System_Settings.rueckrufservicepageid;
 		else
 			return '';

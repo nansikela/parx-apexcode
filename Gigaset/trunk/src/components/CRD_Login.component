@@ -5,15 +5,15 @@
         <apex:pageMessages id="error" />
         <!--  <apex:outputText value="{!$Site.ErrorMessage}" /> -->
         <apex:outputPanel layout="block">
-            <apex:outputLabel value="{!$Label.site.username}"
+            <apex:outputLabel value="{!$Label.site.username}" style="width:95px;"
                  for="username" />
             <apex:inputText id="username" value="{!username}" styleClass="LoginField" />
             <br />
-            <apex:outputLabel value="{!$Label.site.password}"
+            <apex:outputLabel value="{!$Label.site.password}" style="width:95px;"
                  for="password" />
             <apex:inputSecret id="password" value="{!password}" styleClass="LoginField" />
             <br />
-            <div id="btnarea" class="newBTN_area isLeft" style="padding-left: 211px; width: 540px;">
+            <div id="btnarea" class="newBTN_area isLeft" style="padding-left: 95px; width: 540px;">
 	                <div class="newBTN_arrow"></div>
 	                <div class="newBTN">
                 	<apex:commandButton action="{!login}" value="{!$Label.site.login_button}" id="loginButton" styleClass="newBTN" />
