@@ -20,28 +20,28 @@ global class System_Settings {
 	global static Boolean popupIsNative = false;
 	
     // pageids
-    global static final String userdatapageid=getPageId('Benutzerdaten');
-    global static final String servicehotlineinfopageid=getPageid('ServiceHotline');
-    global static final String loginpageid=getPageid('Login');
-    global static final String rueckrufservicepageid=getPageid('Rueckrufservice');
-    global static final String forgotpasswordpageid=getPageid('PasswortVergessen');
-    global static final String registrationpageid=getPageid('Registrierung');
-    global static final String homepageid=getPageid('Home');
-    global static final String imprintpageid=getPageid('Imprint');
-    global static final String privacyprotectionid=getPageId('PrivacyProtection');
-    global static final String landing_page = getPageId('Landing'); 
-    global static final String newsreaderpageid=getPageId('NewsReader');
+    global static final Id userdatapageid=getPageId('Benutzerdaten');
+    global static final Id servicehotlineinfopageid=getPageid('ServiceHotline');
+    global static final Id loginpageid=getPageid('Login');
+    global static final Id rueckrufservicepageid=getPageid('Rueckrufservice');
+    global static final Id forgotpasswordpageid=getPageid('PasswortVergessen');
+    global static final Id registrationpageid=getPageid('Registrierung');
+    global static final Id homepageid=getPageid('Home');
+    global static final Id imprintpageid=getPageid('Imprint');
+    global static final Id privacyprotectionid=getPageId('PrivacyProtection');
+    global static final Id landing_page = getPageId('Landing'); 
+    global static final Id newsreaderpageid=getPageId('NewsReader');
     
     // menu
-    global static final String kontaktpageid=getPageid('Kontakt');
-    global static final String link01pageid=getPageid('Link01');
-    global static final String link02pageid=getPageid('Link02');
-    global static final String link03pageid=getPageid('Link03');
-    global static final String link04pageid=getPageid('Link04');
-    global static final String link05pageid=getPageid('Link05');
-    global static final String link06pageid=getPageid('Link06');
+    global static final Id kontaktpageid=getPageid('Kontakt');
+    global static final Id link01pageid=getPageid('Link01');
+    global static final Id link02pageid=getPageid('Link02');
+    global static final Id link03pageid=getPageid('Link03');
+    global static final Id link04pageid=getPageid('Link04');
+    global static final Id link05pageid=getPageid('Link05');
+    global static final Id link06pageid=getPageid('Link06');
     
-    global static final String TrainingId=getPageid('training');
+    global static final Id TrainingId=getPageid('training');
     
     // interface
     global static final String picturemanagementLink = 'https://dam.gigaset.com/index.php?extra_login=';
@@ -52,27 +52,27 @@ global class System_Settings {
     global static Boolean showNextTopShop;
     
     // System_Settings private methods
-    public static String getPageid(String name) {
-        String pid='';
-        for (Pages__c p: Pages__c.getAll().values()) {
-            if (p.IsActive__c && p.Portal__c==portal && p.Label__c==name && p.isPro__c==System_Settings.isPro) pid=p.PageId__c;
-        }
-        
-        return pid;
-    }
+    private static Id getPageid(String name) {
+		Id pid;
+		for (Pages__c p: Pages__c.getAll().values()) {
+			if (p.IsActive__c && p.Portal__c==portal && p.Label__c==name && p.isPro__c==isPro) pid=Id.valueOf(p.PageId__c);
+		}
+		
+		return pid;
+	}
     
     private static String getPortalSign() {
-        String sign='ZZ';
+        String sign='00';
         if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid')) {
             for (Pages__c p: Pages__c.getAll().values()) {
                 if (p.PageId__c==ApexPages.currentPage().getParameters().get('pageid')) sign=p.Portal__c;
             }
         }
-        if (Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().substring(9,10)=='.' && sign=='ZZ')
+        if (Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().substring(9,10)=='.' && sign=='00')
             return Site.getCustomWebAddress().substring(7,9);
-        if (Site.getName()!=null && sign=='ZZ')
+        if (Site.getName()!=null && sign=='00')
             return Site.getName().toLowerCase();
-        if ((sign==null || sign=='ZZ') && ApexPages.currentPage()!=null && ApexPages.currentPage().getUrl()!=null) sign=ApexPages.currentPage().getUrl().substring(ApexPages.currentPage().getUrl().length()-2);
+        if ((sign==null || sign=='00') && ApexPages.currentPage()!=null && ApexPages.currentPage().getUrl()!=null) sign=ApexPages.currentPage().getUrl().substring(ApexPages.currentPage().getUrl().length()-2);
         System.debug('Found Portal: ' + sign);
         return sign;
     }
@@ -165,7 +165,7 @@ global class System_Settings {
     }
     
     global static Boolean showPrivacy() {
-        if (privacyprotectionid=='') return false;
+        if (privacyprotectionid==null) return false;
         Boolean privacyEnabled=false;
         for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
             if (gs.Portal__c==portal && gs.isPro__c==isPro ) privacyEnabled=gs.Datenschutzabfrage__c;
@@ -180,7 +180,7 @@ global class System_Settings {
     }
     
     global static Boolean showPrivacyAnonymous() {
-        if (privacyprotectionid=='') return false;
+        if (privacyprotectionid==null) return false;
         for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
             if (gs.Portal__c==portal && gs.isPro__c==isPro ) return gs.Datenschutzabfrage__c;
         }
@@ -215,8 +215,9 @@ global class System_Settings {
     }
     
     global static String setLanguage() {
-        PortalLanguage__c pl=PortalLanguage__c.getValues(portal);
-        if (pl!=null) language=pl.LanguageCode__c;
+        for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
+			if (gs!=null && gs.Portal__c==portal && gs.isPro__c==isPro && gs.Sprache__c!=null) language=gs.Sprache__c;
+		}
         return language;
     }
     
@@ -247,7 +248,7 @@ global class System_Settings {
         
         login.setRedirect(true);
         if (ApexPages.currentPage()==login) isAlreadyLoginPage=true;
-        if (ApexPages.currentPage().getParameters().containsKey('pageid') && (ApexPages.currentPage().getParameters().get('pageid').startsWith(loginpageid) || ApexPages.currentPage().getParameters().get('pageid').startsWith(getPageid('Landing')))) isAlreadyLoginPage=true;
+        if (ApexPages.currentPage().getParameters().containsKey('pageid') && loginpageid!=null && (Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))==loginpageid || Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))==getPageid('Landing'))) isAlreadyLoginPage=true;
         
         if (isAlreadyLoginPage) return null;
         else return login;
@@ -299,25 +300,31 @@ global class System_Settings {
 		return ctry;
 	}
     
-    global static String getCurrentNavigationPointLabel(String pageid) {
+    global static String getCurrentNavigationPointLabel(String pid) {
+    	Id pageid;
+		if (pid!=null) {
+			try {
+				pageid=Id.valueOf(pid);
+			} catch (System.Exception e) {}
+		}
         // portal specific labels/navigationpoints
-        if (pageid.startsWith(homepageid)|| (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return getLabel('home');
-        if (newsreaderpageid!='' && pageid.startsWith(newsreaderpageid)) return getLabel('NewsReader');
-        if (link01pageid!='' && pageid.startsWith(link01pageid)) return getLabel('link01');
-        if (link02pageid!='' && pageid.startsWith(link02pageid)) return getLabel('link02');
-        if (link03pageid!='' && pageid.startsWith(link03pageid)) return getLabel('link03');
-        if (link04pageid!='' && pageid.startsWith(link04pageid)) return getLabel('link04');
-        if (link05pageid!='' && pageid.startsWith(link05pageid)) return getLabel('link05');
-        if (link06pageid!='' && pageid.startsWith(link06pageid)) return getLabel('link06');
+        if (pageid==homepageid|| (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return getLabel('home');
+        if (newsreaderpageid!=null && pageid==newsreaderpageid) return getLabel('NewsReader');
+        if (link01pageid!=null && pageid==link01pageid) return getLabel('link01');
+        if (link02pageid!=null && pageid==link02pageid) return getLabel('link02');
+        if (link03pageid!=null && pageid==link03pageid) return getLabel('link03');
+        if (link04pageid!=null && pageid==link04pageid) return getLabel('link04');
+        if (link05pageid!=null && pageid==link05pageid) return getLabel('link05');
+        if (link06pageid!=null && pageid==link06pageid) return getLabel('link06');
         //if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return getLabel('Werbemittel');
         // cross portal navigation points
-        if (imprintpageid!='' && pageid.startsWith(imprintpageid)) return System.Label.tplt_label_imprint;
-        if (kontaktpageid!='' && pageid.startsWith(kontaktpageid)) return System.Label.contact;
-        if (userdatapageid!='' && pageid.startsWith(userdatapageid)) return System.Label.userdata_your_userdata;
-        if (loginpageid!='' && pageid.startsWith(loginpageid)) return System.Label.loginpage;
-        if (registrationpageid!='' && pageid.startsWith(registrationpageid)) return System.Label.registration;
-        if (rueckrufservicepageid!='' && pageid.startsWith(rueckrufservicepageid)) return System.Label.callback;
-        if (forgotpasswordpageid!='' && pageid.startsWith(forgotpasswordpageid)) return System.Label.forgotpassword_forgot_password;
+        if (imprintpageid!=null && pageid==imprintpageid) return System.Label.tplt_label_imprint;
+        if (kontaktpageid!=null && pageid==kontaktpageid) return System.Label.contact;
+        if (userdatapageid!=null && pageid==userdatapageid) return System.Label.userdata_your_userdata;
+        if (loginpageid!=null && pageid==loginpageid) return System.Label.loginpage;
+        if (registrationpageid!=null && pageid==registrationpageid) return System.Label.registration;
+        if (rueckrufservicepageid!=null && pageid==rueckrufservicepageid) return System.Label.callback;
+        if (forgotpasswordpageid!=null && pageid==forgotpasswordpageid) return System.Label.forgotpassword_forgot_password;
         //if (Site.getPrefix()!=null && Site.getPrefix().contains('ChangePassword')) return Label.changepw_changepw;
         //if (ApexPages.currentPage().getUrl().contains('ChangePassword')) return Label.changepw_changepw;
         if (System.currentPageReference().getUrl()!=null && System.currentPageReference().getUrl().contains('ChangePassword')) return System.Label.changepw_changepw;
