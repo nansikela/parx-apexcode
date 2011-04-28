@@ -59,35 +59,35 @@ public class navigationController {
 	}
 	
 	public String getHomeUrl() {
-		return homepageid!='' ? CMSpage.getUrl() + '?pageid=' + homepageid : '#';
+		return homepageid!=null ? CMSpage.getUrl() + '?pageid=' + homepageid : '#';
 	}
 	
 	public String getKontaktformularUrl() {
-		return System_Settings.kontaktpageid!='' ? CMSpage.getUrl() + '?pageid=' + System_Settings.kontaktpageid:'';
+		return System_Settings.kontaktpageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.kontaktpageid:'';
 	}
 	
 	public String getLink01Url() {
-		return System_Settings.link01pageid!='' ? CMSpage.getUrl() + '?pageid=' + System_Settings.link01pageid : System_Settings.getExternalURL('link01');		
+		return System_Settings.link01pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link01pageid : System_Settings.getExternalURL('link01');		
 	}
 	
 	public String getLink02Url() {
-		return System_Settings.link02pageid!='' ? CMSpage.getUrl() + '?pageid=' + System_Settings.link02pageid : System_Settings.getExternalURL('link02');
+		return System_Settings.link02pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link02pageid : System_Settings.getExternalURL('link02');
 	}
 	
 	public String getLink03Url() {
-		return System_Settings.link03pageid!='' ? CMSpage.getUrl() + '?pageid=' + System_Settings.link03pageid : System_Settings.getExternalURL('link03');
+		return System_Settings.link03pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link03pageid : System_Settings.getExternalURL('link03');
 	}
 	
 	public String getLink04Url() {
-		return System_Settings.link04pageid!='' ? CMSpage.getUrl() + '?pageid=' + System_Settings.link04pageid : System_Settings.getExternalURL('link04');
+		return System_Settings.link04pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link04pageid : System_Settings.getExternalURL('link04');
 	}
 	
 	public String getLink05Url() {
-		return System_Settings.link05pageid!='' ? CMSpage.getUrl() + '?pageid=' + System_Settings.link05pageid : System_Settings.getExternalURL('link05');
+		return System_Settings.link05pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link05pageid : System_Settings.getExternalURL('link05');
 	}
 	
 	public String getLink06Url() {
-		return System_Settings.link06pageid!='' ? CMSpage.getUrl() + '?pageid=' + System_Settings.link06pageid : System_Settings.getExternalURL('link06');
+		return System_Settings.link06pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link06pageid : System_Settings.getExternalURL('link06');
 	}
 	
 	private Boolean isPortalUser() {

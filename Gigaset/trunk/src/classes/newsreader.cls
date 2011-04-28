@@ -29,7 +29,7 @@ public class newsreader {
 						WHERE isActive__c=true AND TopNews__c=true 
 						//AND isPro__c=:isPro 
 						//AND Portal__c=:portal 
-						//AND (release_date__c<=:System.today() OR release_date__c=null) 
+						AND (release_date__c<=:System.today() OR release_date__c=null) 
 						ORDER BY release_date__c desc limit 1];
 				newsid=ci.id;
 			} catch (System.QueryException e) { if (System_Settings.isDebug) throw e; }

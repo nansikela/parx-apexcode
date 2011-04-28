@@ -20,14 +20,20 @@ public class topnews {
 	public list<ContentItem__c> getTopNews() {
 		if (cilist.isEmpty()) {
 			try {
-				cilist=[SELECT Id, Title__c, Abstract__c FROM ContentItem__c 
+				cilist=[SELECT Id, Title__c, Abstract__c, TopNews__c FROM ContentItem__c 
 								WHERE isActive__c=true 
-								AND TopNews__c=true 
+								//AND TopNews__c=true 
 								//AND isPro__c=:isPro 
 								//AND Portal__c=:portal 
-								//AND (release_date__c<=:System.today() OR release_date__c=null) 
+								AND (release_date__c<=:System.today() OR release_date__c=null) 
 								ORDER BY release_date__c desc 
-								limit :MAXNEWSNUMBER];
+								limit :MAXNEWSNUMBER+1];
+				for (Integer i=0;i<cilist.size();i++) {
+					if (cilist.get(i).TopNews__c) {
+						cilist.remove(i);
+						break;
+					}
+				}
 			} catch (System.QueryException e) {
 				System_Settings.logError(UserInfo.getUserId(), portal, e.getMessage());
 			}
