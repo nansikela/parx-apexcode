@@ -401,7 +401,10 @@ public with sharing class DETrainingController {
 	    
 	    firstName = u0.Contact.firstName;
 	    lastName = u0.Contact.lastName;
-	    salutation = u0.Contact.salutation;
+	    if(c0 != null)
+	   		salutation = c0.salutation;
+	    else
+	    	salutation = '';
 		
 	 	if (NTS==null) {
 		 	try{

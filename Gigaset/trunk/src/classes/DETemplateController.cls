@@ -9,8 +9,9 @@ public class DETemplateController {
     public String currentNavigationPoint { get; set; }
     public String homeurl { get; set; }
 	pageReference CMSpage = Page.page;
-	public String kontaktpageid { get; set; }
-	public String registrationpageid { get; set; }
+	public Id kontaktpageid { get; set; }
+	public Id loginpageid { get; set; }
+	public Id registrationpageid { get; set; }
 	public String label_menu_home { get; set; }
 	public String defaultlanguage { get; set; }
 	public Boolean showpresetcomp { get; set; }
@@ -20,7 +21,6 @@ public class DETemplateController {
 	public Boolean showprivacy { get; set; }
 	public String callback_imgurl { get; set; }
 	public String styleSelector { get; set; }
-	public String test {get;set;}
 	
 	public User u0{get;set;}
 	public Contact c0 {get;set;}
@@ -58,8 +58,7 @@ public class DETemplateController {
 	
 	// constructor
 	public DETemplateController() {
-		test=Label.loginpage;
-		isPro=SystemSettings.isPro;
+		if (isPro==null) isPro=SystemSettings.isPro;
 		styleSelector=isPro?'pro':'normal';
 		isDone = ApexPages.currentPage().getParameters().containsKey('isDone');
 		callback_imgurl=SystemSettings.getLabel('callback_imgurl');
@@ -73,6 +72,7 @@ public class DETemplateController {
 		defaultlanguage=SystemSettings.setLanguage();
 		label_menu_home=SystemSettings.getCurrentNavigationPointLabel(SystemSettings.homepageid);
 		kontaktpageid=SystemSettings.kontaktpageid;
+		loginpageid=SystemSettings.loginpageid;
 		isAuthenticated=SystemSettings.isPortalUser();
 		currentNavigationPoint='';
 		u0 = [select Contact.Id, Contact.firstname, Contact.lastname, Contact.Salutation from User where Id=:UserInfo.getUserId()];
@@ -82,7 +82,10 @@ public class DETemplateController {
 	    System.debug('#################################################### Begrüßung: '+u0.Contact.lastname);
 	    firstName = u0.Contact.firstName;
 	    lastName = u0.Contact.lastName;
-	    salutation = u0.Contact.salutation;
+	    if(c0 != null)
+	   	salutation = c0.salutation;
+	    else
+	    	salutation = '';
 		
 		if (ApexPages.currentPage().getParameters().containsKey('pageid')) {
 			currentNavigationPoint=getCurrentNavigationPointLabel(ApexPages.currentPage().getParameters().get('pageid'));
@@ -101,37 +104,37 @@ public class DETemplateController {
 		//System.debug('******* Zustand: showprivacy: ' + showprivacy + ' / showpresetcomp: '+ showpresetcomp + ' / showclearingcomp: ' +showclearingcomp + ' / showothercomp: ' + showothercomp + ' / shownexttopshop: ' + showNextTopShop + ' / isAuthenticated: ' + isAuthenticated + ' / isPro: ' + isPro +  ' / Portal: ' + SystemSettings.portal + ' / UserId: ' + UserInfo.getUserId() );
 	}
 	 
-	public String getCurrentNavigationPointLabel(String pageid) {
-		String homepageid=SystemSettings.homepageid;
-		String link01pageid=SystemSettings.link01pageid;
-		String link02pageid=SystemSettings.link02pageid;
-		String link03pageid=SystemSettings.link03pageid;
-		String link04pageid=SystemSettings.link04pageid;
-		String link05pageid=SystemSettings.link05pageid;
-		String werbemittelpageid=SystemSettings.werbemittelpageid;
-		String imprintpageid=SystemSettings.imprintpageid;
+	public String getCurrentNavigationPointLabel(String pid) {
+		Id pageid=pid;
+		Id homepageid=SystemSettings.homepageid;
+		Id link01pageid=SystemSettings.link01pageid;
+		Id link02pageid=SystemSettings.link02pageid;
+		Id link03pageid=SystemSettings.link03pageid;
+		Id link04pageid=SystemSettings.link04pageid;
+		Id link05pageid=SystemSettings.link05pageid;
+		Id werbemittelpageid=SystemSettings.werbemittelpageid;
+		Id imprintpageid=SystemSettings.imprintpageid;
 		kontaktpageid=SystemSettings.kontaktpageid;
 		registrationpageid=SystemSettings.registrationpageid;
-		String userdatapageid=SystemSettings.userdatapageid;
-		String loginpageid=SystemSettings.loginpageid;
-		String rueckrufservicepageid=SystemSettings.rueckrufservicepageid;
-		String forgotpasswordpageid=SystemSettings.forgotpasswordpageid;
+		Id userdatapageid=SystemSettings.userdatapageid;
+		Id rueckrufservicepageid=SystemSettings.rueckrufservicepageid;
+		Id forgotpasswordpageid=SystemSettings.forgotpasswordpageid;
 		// portal specific labels/navigationpoints
-		if (pageid.startsWith(homepageid)|| (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return SystemSettings.getLabel('home');
-		if (link01pageid!='' && pageid.startsWith(link01pageid)) return SystemSettings.getLabel('link01');
-		if (link02pageid!='' && pageid.startsWith(link02pageid)) return SystemSettings.getLabel('link02');
-		if (link03pageid!='' && pageid.startsWith(link03pageid)) return SystemSettings.getLabel('link03');
-		if (link04pageid!='' && pageid.startsWith(link04pageid)) return SystemSettings.getLabel('link04');
-		if (link05pageid!='' && pageid.startsWith(link05pageid)) return SystemSettings.getLabel('link05');
-		if (werbemittelpageid!='' && pageid.startsWith(werbemittelpageid)) return SystemSettings.getLabel('Werbemittel');
+		if (pageid==homepageid|| (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return SystemSettings.getLabel('home');
+		if (link01pageid!=null && pageid==link01pageid) return SystemSettings.getLabel('link01');
+		if (link02pageid!=null && pageid==link02pageid) return SystemSettings.getLabel('link02');
+		if (link03pageid!=null && pageid==link03pageid) return SystemSettings.getLabel('link03');
+		if (link04pageid!=null && pageid==link04pageid) return SystemSettings.getLabel('link04');
+		if (link05pageid!=null && pageid==link05pageid) return SystemSettings.getLabel('link05');
+		if (werbemittelpageid!=null && pageid==werbemittelpageid) return SystemSettings.getLabel('Werbemittel');
 		// cross portal navigation points
-		if (imprintpageid!='' && pageid.startsWith(imprintpageid)) return System.Label.tplt_label_imprint;
-		if (kontaktpageid!='' && pageid.startsWith(kontaktpageid)) return System.Label.contact;
-		if (userdatapageid!='' && pageid.startsWith(userdatapageid)) return System.Label.userdata_your_userdata;
-		if (loginpageid!='' && pageid.startsWith(loginpageid)) return System.Label.loginpage;
-		if (registrationpageid!='' && pageid.startsWith(registrationpageid)) return System.Label.registration;
-		if (rueckrufservicepageid!='' && pageid.startsWith(rueckrufservicepageid)) return System.Label.callback;
-		if (forgotpasswordpageid!='' && pageid.startsWith(forgotpasswordpageid)) return System.Label.forgotpassword_forgot_password;
+		if (imprintpageid!=null && pageid==imprintpageid) return System.Label.tplt_label_imprint;
+		if (kontaktpageid!=null && pageid==kontaktpageid) return System.Label.contact;
+		if (userdatapageid!=null && pageid==userdatapageid) return System.Label.userdata_your_userdata;
+		if (loginpageid!=null && pageid==loginpageid) return System.Label.loginpage;
+		if (registrationpageid!=null && pageid==registrationpageid) return System.Label.registration;
+		if (rueckrufservicepageid!=null && pageid==rueckrufservicepageid) return System.Label.callback;
+		if (forgotpasswordpageid!=null && pageid==forgotpasswordpageid) return System.Label.forgotpassword_forgot_password;
 		if (System.currentPageReference().getUrl()!=null && System.currentPageReference().getUrl().contains('ChangePassword')) return System.Label.changepw_changepw;
 		else return '';
 	}
@@ -139,11 +142,15 @@ public class DETemplateController {
 	public PageReference redirectToLogin() {
 		
 		PageReference basispage=Page.page;
-		PageReference login=new PageReference( basispage.getUrl() + '?pageid=' + SystemSettings.loginpageid + addParam);
+		PageReference login=new PageReference( basispage.getUrl() + '?pageid=' + loginpageid + addParam);
+		System.debug('Login PageId: ' + loginpageid);
+		System.debug('Portal: ' + SystemSettings.portal);
+		System.debug('IsPro: ' + SystemSettings.isPro);
+		System.debug('SystemSettings loginpageid: ' + SystemSettings.loginpageid);
 		login.setRedirect(true);
 		Boolean isAlreadyLoginPage=false;
 		if (ApexPages.currentPage()==login) isAlreadyLoginPage=true;
-		if (ApexPages.currentPage().getParameters().containsKey('pageid') && ApexPages.currentPage().getParameters().get('pageid').startsWith(SystemSettings.loginpageid)) isAlreadyLoginPage=true;
+		if (ApexPages.currentPage().getParameters().containsKey('pageid') && ApexPages.currentPage().getParameters().get('pageid').startsWith(loginpageid)) isAlreadyLoginPage=true;
 		
 		if (isAlreadyLoginPage) return null;
 		else return login;
@@ -159,7 +166,7 @@ public class DETemplateController {
 	}
 	
 	public String getRueckrufserviceUrl() {
-		if (SystemSettings.rueckrufservicepageid!='')
+		if (SystemSettings.rueckrufservicepageid!=null)
 			return CMSpage.getUrl() + '?pageid=' + SystemSettings.rueckrufservicepageid;
 		else
 			return '';
@@ -265,7 +272,6 @@ public class DETemplateController {
 	 	if (!SystemSettings.isPortalUser()) return redirectToLogin();
 	 	return null;
 	 }
-	 
 	
 	public class Modulen {
 		public list<Training_Module__c> Module {get; set;}
@@ -637,10 +643,13 @@ public class DETemplateController {
 	    try {
 	    	c0 = [select firstname, lastname, toLabel(Salutation) from Contact where Id =: u0.Contact.Id];
 	    } catch(exception e) {}
-	    System.debug('#################################################### Begrüßung: '+u0.Contact.lastname);
+	    System.debug('#################################################### Begrüßung: '+u0.Contact.lastname + ' # Language: ' +defaultlanguage );
 	    firstName = u0.Contact.firstName;
 	    lastName = u0.Contact.lastName;
-	    salutation = u0.Contact.salutation;
+	    if(c0 != null)
+	   	salutation = c0.salutation;
+	    else
+	    	salutation = '';
 		
 	 	if (NTS==null) {
 		 	try{

@@ -1,14 +1,14 @@
 <apex:component id="headerstylestop" >
 
-	<apex:attribute name="loginBackgroundImageId" description="This is the document id for the login background." 
+    <apex:attribute name="loginBackgroundImageId" description="This is the document id for the login background." 
 
         type="String" required="false"/>
 
-	<script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/mainnav.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/mainnav.js')}"></script>
 
-	<!-- <script type="text/javascript" src="http://www.gigaset.com/lib/mainnav.js"></script> -->
+    <!-- <script type="text/javascript" src="http://www.gigaset.com/lib/mainnav.js"></script> -->
     <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/changepic.js')}"></script> 
-	<!-- <script src="http://www.gigaset.com/lib/changepic.js" type="text/javascript"></script> -->
+    <!-- <script src="http://www.gigaset.com/lib/changepic.js" type="text/javascript"></script> -->
 
     <link rel="icon" type="image/png" href="{!$Resource.GigasetFavicon}" />
 
@@ -18,181 +18,181 @@
     
     
     <!-- inline styles for better development performance  -->
-	<style type="text/css">
-		/* general settings */
-		p {
-			font-size: 12px;
-			font-weight: normal;
-		}
-		
-		h1 {
-			font-size: 18px;
-			font-weight: normal;
-		}
-		
-		#content #contact h1 {
-			font-size: 18px;
-			font-weight: normal;
-		}
-		
-		.formTitle {
-			padding-bottom: 10px;
-		}
-		
-		.formTitle h1 {
-			font-size: 12px!important;
-			font-weight: bold!important;
-		}
-		
-		.formText {
-			padding-bottom: 5px;
-		}
+    <style type="text/css">
+        /* general settings */
+        p {
+            font-size: 12px;
+            font-weight: normal;
+        }
+        
+        h1 {
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        #content #contact h1 {
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        .formTitle {
+            padding-bottom: 10px;
+        }
+        
+        .formTitle h1 {
+            font-size: 12px!important;
+            font-weight: bold!important;
+        }
+        
+        .formText {
+            padding-bottom: 5px;
+        }
 
-		/* landingpage */
-		.landingpagecontent {
-			color: white;
-			background:transparent;
-			padding: 20px 15px 20px 15px;
-		}
-		
-		/* formResultMessage component */
-		.messageArea {
-			width: 906px;
-			margin: -15px;
-			margin-bottom: 0px;		
-		}
-		
-		.messageAreaSmall {
-			width: 650px;
-			margin: -15px;
-			margin-bottom: 0px;	
-		}
-		
-		.messageTitle {
-			width: 876px;		
-			/* height: 30px; */
-			padding-left: 15px;
-			padding-right: 15px;
-			padding-top: 10px;
-			padding-bottom: 10px;
-			filter:alpha(opacity=100); /* IE's opacity*/
-			opacity: 1;
-			font-size: 12px!important;
-		}
-		
-		.messageTitle h1 {
-			font-size: 12px!important;
-			color: white;
-		}
-		
-		.messageTitleSmall {
-			width: 630px;	
-			/* height: 30px; */
-			padding-left: 15px;
-			padding-right: 15px;
-			padding-top: 10px;
-			padding-bottom: 10px;
-			filter:alpha(opacity=100); /* IE's opacity*/
-			opacity: 1;
-			background-color: white;
-		}
-		
-		.messageTitleSmall h1 {
-			font-weight: bold!important;
-			font-size: 12px!important;
-		}
-		
-		.messageTitleSuccess {
-			background-color: green;
-		}
-		
-		.messageTitleError {
-			background-color: red;
-		}
-		
-		.messageText {
-			padding-left: 15px;
-			padding-right: 15px;
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
-	
-		/* marketing component */
-		
-		.rich-tabhdr-side-cell {
-			margin-left: 2px;
-			border-top: none;
-		}
-		
-		.rich-tabhdr-side-border {
-			background-image: none;
-			border: none;
-		}
-		
-		.MarketingActiveTab {
-			/* background-color: white; */
-			color: #FF9713;
-			background-image: url({!URLFOR($Resource.GCRedesign,'GCRedesign/activeTab.jpg')});
-			background-repeat: no-repeat;
-			font-weight: bold;
-			height: 22px;
-			border: 1px solid grey;
-			border-bottom: none;
-			border-top: none;
-		}
-		
-		.MarketingInactiveTab {
-			/* background-color: lightgrey; */
-			background-image: url({!URLFOR($Resource.GCRedesign,'GCRedesign/inactiveTab.jpg')});
-			border-color: lightgrey;
-			/* background-image: none; */
-			color: #727272;
-			font-weight: bold;
-			border: 1px solid grey;
-			border-bottom: none;
-			border-top: none;
-		}
-		
-		.MarketingContent {
-			background-color: white;
-			padding: 10px;
-			border: 1px solid silver;
-		}
-		
-		.MarketingHeader {
-			background-color: white;
-		}
-		
-		/* right column portlets */
-		.majordiv {
-			float: left;
-			width: 300px;
-		}
-		
-		/* homepage - news */
-		.viewtopnews {
-			/* border is part of the immage */
-			/* border: 1px dotted lightgrey; */
-			min-height: 250px;
-		}
-		
-		/* werbemittel (campagin material) */
-		.cpmheaderClass {
-			background-color: lightgrey;
-			text-align: left;
-			padding-left: 10px;
-		}
-		.cpmtableStyle {
-		}
-		.cpmtableStyle td {
-			padding: 10px!important;
-			border-bottom: 1px solid grey;
-		}
-		.cpmfooterClass {
-			border: none!important;
-		}
-		
-		.cpmTitle{
+        /* landingpage */
+        .landingpagecontent {
+            color: white;
+            background:transparent;
+            padding: 20px 15px 20px 15px;
+        }
+        
+        /* formResultMessage component */
+        .messageArea {
+            width: 906px;
+            margin: -15px;
+            margin-bottom: 0px;     
+        }
+        
+        .messageAreaSmall {
+            width: 650px;
+            margin: -15px;
+            margin-bottom: 0px; 
+        }
+        
+        .messageTitle {
+            width: 876px;       
+            /* height: 30px; */
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            filter:alpha(opacity=100); /* IE's opacity*/
+            opacity: 1;
+            font-size: 12px!important;
+        }
+        
+        .messageTitle h1 {
+            font-size: 12px!important;
+            color: white;
+        }
+        
+        .messageTitleSmall {
+            width: 630px;   
+            /* height: 30px; */
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            filter:alpha(opacity=100); /* IE's opacity*/
+            opacity: 1;
+            background-color: white;
+        }
+        
+        .messageTitleSmall h1 {
+            font-weight: bold!important;
+            font-size: 12px!important;
+        }
+        
+        .messageTitleSuccess {
+            background-color: green;
+        }
+        
+        .messageTitleError {
+            background-color: red;
+        }
+        
+        .messageText {
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    
+        /* marketing component */
+        
+        .rich-tabhdr-side-cell {
+            margin-left: 2px;
+            border-top: none;
+        }
+        
+        .rich-tabhdr-side-border {
+            background-image: none;
+            border: none;
+        }
+        
+        .MarketingActiveTab {
+            /* background-color: white; */
+            color: #FF9713;
+            background-image: url({!URLFOR($Resource.GCRedesign,'GCRedesign/activeTab.jpg')});
+            background-repeat: no-repeat;
+            font-weight: bold;
+            height: 22px;
+            border: 1px solid grey;
+            border-bottom: none;
+            border-top: none;
+        }
+        
+        .MarketingInactiveTab {
+            /* background-color: lightgrey; */
+            background-image: url({!URLFOR($Resource.GCRedesign,'GCRedesign/inactiveTab.jpg')});
+            border-color: lightgrey;
+            /* background-image: none; */
+            color: #727272;
+            font-weight: bold;
+            border: 1px solid grey;
+            border-bottom: none;
+            border-top: none;
+        }
+        
+        .MarketingContent {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid silver;
+        }
+        
+        .MarketingHeader {
+            background-color: white;
+        }
+        
+        /* right column portlets */
+        .majordiv {
+            float: left;
+            width: 300px;
+        }
+        
+        /* homepage - news */
+        .viewtopnews {
+            /* border is part of the immage */
+            /* border: 1px dotted lightgrey; */
+            min-height: 250px;
+        }
+        
+        /* werbemittel (campagin material) */
+        .cpmheaderClass {
+            background-color: lightgrey;
+            text-align: left;
+            padding-left: 10px;
+        }
+        .cpmtableStyle {
+        }
+        .cpmtableStyle td {
+            padding: 10px!important;
+            border-bottom: 1px solid grey;
+        }
+        .cpmfooterClass {
+            border: none!important;
+        }
+        
+        .cpmTitle{
              color: black;
              font-weight: bold;
              font-size: 12px;
@@ -207,405 +207,407 @@
              color: black;
              font-size: 12px;
          }
-		
-		/* topnews component */
-		.newsitem {
-			border-bottom: 1px solid lightgrey;
-			padding-top: 10px;
-			width: 290px;
-		}
-		
-		.newsitem h1 {
-			font-size: 12px!important;
-			font-weight: bold!important;
-			color: #3e444c;
-		}
-		
-		.newsitem p {
-			font-size: 12px!important;
-			color: #58606b;
-		}
-		
-		.viewtopnewscontent {
-			padding: 20px;
-			/* background-color: white; */
-			filter:alpha(opacity=95); /* IE's opacity*/
-			opacity: 0.95;
-			min-height: 250px;
-			background-color: transparent!important;
-		}
-		/*
-		.viewtopnewscontent div {
-			background-color: transparent!important;
-		}
-		*/
-		.newsbutton {
-			padding-bottom: 15px;
-		}
+        
+        /* topnews component */
+        .newsitem {
+            border-bottom: 1px solid lightgrey;
+            padding-top: 10px;
+            width: 290px;
+        }
+        
+        .newsitem h1 {
+            font-size: 12px!important;
+            font-weight: bold!important;
+            color: #3e444c;
+        }
+        
+        .newsitem p {
+            font-size: 12px!important;
+            color: #58606b;
+        }
+        
+        .viewtopnewscontent {
+            padding: 20px;
+            /* background-color: white; */
+            filter:alpha(opacity=95); /* IE's opacity*/
+            opacity: 0.95;
+            min-height: 250px;
+            background-color: transparent!important;
+        }
+        /*
+        .viewtopnewscontent div {
+            background-color: transparent!important;
+        }
+        */
+        .newsbutton {
+            padding-bottom: 15px;
+        }
 
-		/* additionaltext in registration, preset, clearing, privacy, userdata */
-		.additionaltext {
-			float: left;
-			font-style: italic;
-			padding-left: 210px;
-			font-size: 11px;
-		}	
-	
-		/* CRD_LogoPortlet */
-		.absolutlyGigasetLogoImg {
-			width: 110px;
-			height: 90px;
-			position: relative;
-			bottom: 30px;
-			right: 10px;
-			float: right;
-			margin-bottom: -90px;
-			z-index: 1000;
-		}
-		
-		/* CRD_breadcrump, CRD_userprofileportlet */
-		#breadcrumbs {
-			background-color: #7e858d;
-			width: 926px;
-		}
-		
-		#breadcrumbs span, #breadcrumbs span a, #breadcrumbs h2.breadcumb, #breadcrumbs h2.breadcumb a {
-			color: black;
-			float: none;
-			margin-right: 2px;
-			margin-bottom: 0px;
-		}
-		
-		.breadcrumbtext {
-			margin-left: 10px;
-		}
-		
-		.breadcrumbtext span {
-			text-align: left;
-			font-size: 10px!important;
-		}
-		
-		#content .prodTeaserBig {
-			width: 924px;
-			
-		}
-		#content .horizontalrule {
-			width: 785px;
-			background-image: url({!URLFOR($Resource.GCRedesign,'GCRedesign/menu_horizontalRule.jpg')});
-			background-color: white;
-			background-position: bottom left;
-			background-repeat: no-repeat;
-			float: left;
-			height: 2px;
-			margin-left: 15px;
-		}
-		
-		.profiletext {
-			text-align: right;
-			float: none!important;
-			font-size: 10px!important;
-		}
-		
-		.profileusertext {
-			color: white!important;
-			font-size: 10px!important;
-		}
-		
-		.profilelinktext {
-			color: white!important; /*#a3a7ae!important;*/
-			font-size: 10px!important;
-		}
-		
-		/* Login component */
-		.LoginField {
-			font-family: Arial, Verdana, Helvetica, sans-serif;
-			border: 1px solid #b2b2b2;
-			width: 120px;
-			margin-bottom:6px;
-			font-size:11px;
-		}
-		
-		.transparent_login {
-			/* background-color:transparent; */
-			background-color: white; 
-			filter:alpha(opacity=95); /* IE's opacity*/
-			opacity: 0.95;
-			margin-top: 30px;
-			margin-left: 20px;
-			border: 2px solid lightgrey;
-			/* background: transparent url({!URLFOR($Resource.GCRedesign, 'GCRedesign/LoginFeld.png')}) no-repeat scroll 0 0!important; */
-		}
-		
-		.loginbackground {
-			min-height: 600px;
-			width: 926px;
-			float: left;
-			background: #575f6a url({!IF(BEGINS($CurrentPage.URL,'http://gigaset'),'/np','')}/servlet/servlet.ImageServer?id={!loginBackgroundImageId}&oid={!$Organization.Id}) no-repeat scroll 0 0!important;
-		}
-		
-		/* register component */
+        /* additionaltext in registration, preset, clearing, privacy, userdata */
+        .additionaltext {
+            float: left;
+            font-style: italic;
+            padding-left: 210px;
+            font-size: 11px;
+        }   
+    
+        /* CRD_LogoPortlet */
+        .absolutlyGigasetLogoImg {
+            width: 110px;
+            height: 90px;
+            position: relative;
+            bottom: 30px;
+            right: 10px;
+            float: right;
+            margin-bottom: -90px;
+            z-index: 1000;
+        }
+        
+        /* CRD_breadcrump, CRD_userprofileportlet */
+        #breadcrumbs {
+            background-color: #7e858d;
+            width: 926px;
+        }
+        
+        #breadcrumbs span, #breadcrumbs span a, #breadcrumbs h2.breadcumb, #breadcrumbs h2.breadcumb a {
+            color: black;
+            float: none;
+            margin-right: 2px;
+            margin-bottom: 0px;
+        }
+        
+        .breadcrumbtext {
+            margin-left: 10px;
+        }
+        
+        .breadcrumbtext span {
+            text-align: left;
+            font-size: 10px!important;
+        }
+        
+        #content .prodTeaserBig {
+            width: 924px;
+            
+        }
+        #content .horizontalrule {
+            width: 785px;
+            background-image: url({!URLFOR($Resource.GCRedesign,'GCRedesign/menu_horizontalRule.jpg')});
+            background-color: white;
+            background-position: bottom left;
+            background-repeat: no-repeat;
+            float: left;
+            height: 2px;
+            margin-left: 15px;
+        }
+        
+        .profiletext {
+            text-align: right;
+            float: none!important;
+            font-size: 10px!important;
+        }
+        
+        .profileusertext {
+            color: white!important;
+            font-size: 10px!important;
+        }
+        
+        .profilelinktext {
+            color: lightGrey!important; /*#a3a7ae!important;*/
+            font-size: 10px!important;
+        }
+        
+        /* Login component */
+        .LoginField {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            border: 1px solid #b2b2b2;
+            width: 120px;
+            margin-bottom:6px;
+            font-size:11px;
+        }
+        
+        .transparent_login {
+            /* background-color:transparent; */
+            background-color: white; 
+            filter:alpha(opacity=95); /* IE's opacity*/
+            opacity: 0.95;
+            margin-top: 30px;
+            margin-left: 20px;
+            border: 2px solid lightgrey;
+            /* background: transparent url({!URLFOR($Resource.GCRedesign, 'GCRedesign/LoginFeld.png')}) no-repeat scroll 0 0!important; */
+        }
+        
+        .loginbackground {
+            min-height: 600px;
+            width: 926px;
+            float: left;
+            /* background: #575f6a url({!IF(BEGINS($CurrentPage.URL,'http://gigaset'),'/np','')}/servlet/servlet.ImageServer?id={!loginBackgroundImageId}&oid={!$Organization.Id}) no-repeat scroll 0 0!important; */
+            background: #575f6a url({!IF(OR(BEGINS($CurrentPage.URL,'http://gigaset'),BEGINS($CurrentPage.URL,'https://gigaset')),'/np','')}/servlet/servlet.ImageServer?id={!loginBackgroundImageId}&oid={!$Organization.Id}) no-repeat scroll 0 0!important;
+
+        }
+        
+        /* register component */
         .btn, .btnGo, .btnImportant, .btnSharing, .btnDisabled, .subscribeNow, .upgradeNow, .btnWhatsNew {
             overflow: visible;
         }
         
         .registernavi {
-        	width: 926px;
+            width: 926px;
         }
         
         .registernavi table {
-        	border-collapse: collapse;
+            border-collapse: collapse;
         }
 
-		.registernavi li {
-			margin-left: 2px!important;
-			margin-bottom: 10px;
-			margin-top: 10px;
-			float: left;
-		}
-		
-		.registernavi .stepactive {
-			background: #f08602; /* orange */
-			color: white;
-			text-align: center;
-			float: left;
-			border: 1px solid #f08602; /* orange */
-			height: 18px;
-			padding-top: 1px;
-		}
-		
-		.registernavi .stepinactive {
-			background: #807d7b; /* dunkelgrau */
-			color: white;
-			text-align: center;
-			float: left;
-			border: 1px solid #807d7b; /* dunkelgrau */
-			height: 18px;
-			padding-top: 1px;
-		}
-		
-		.registernavi .steptitleinactive {
-			border: 1px solid lightgrey; /* hellgrau */
-		    background: lightgrey; /* hellgrau */
-			min-width: 120px;
-			color: #807D7B; /* dunkelgrau */
-			height: 18px;
-			padding-top: 1px;
-		}
-		
-		.registernavi .steptitleactive {
-			border: 1px solid #f08602; /* orange */
-			background: lightgrey; /* hellgrau */
-			min-width: 120px;
-			color: #807D7B; /* dunkelgrau */
-			height: 18px;
-			padding-top: 1px;
-		}
-		
-		
-		.registernavi .steptitle {
-			background: lightgrey; /* hellgrau */
-			text-align: left;
-			color: #807D7B; /* dunkelgrau */
-		}
-		
-		.registernavi ul {
-			width: 891px;
-			list-style: none;
-			float: left;
-			padding-left: 15px;
-			margin-left: 10px;
-			background: white;
-		}
-		
-		.registercontact {
-			margin-left: 10px;
-			width: 564px!important;
-			padding-left: 15px!important;
-			padding-right: 327px!important;
-			filter:alpha(opacity=95); /* IE's opacity*/
-			opacity: 0.95;
-			min-height: 450px;
-		}
-		
-		.registercontact form {
-			width: 565px!important;
-		}
-		
-		.requiredInput {
-			float: left;
-		}
-		
-		.servicehotlinetext {
-			float: left;
-			font-style: italic;
-			/* padding-left: 210px; */
-			padding-left: 12px;
-		}
-		
-		/* errors messages by salesforce */
-		.errorM6, .errorM4, .errorM3, .errorM2, .errorS1 {
-			border-color: #C00;
-		}
-		
-		.message {
-			background-color: #FFC;
-			border-style: solid;
-			border-width: 1px;
-			color: black;
-			padding: 6px 8px 6px 6px;
-			margin: 4px 20px;
-		}
-		
-		.message .messageTable .messageCell {
-			vertical-align: middle;
-		}
-		
+        .registernavi li {
+            margin-left: 2px!important;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            float: left;
+        }
+        
+        .registernavi .stepactive {
+            background: #f08602; /* orange */
+            color: white;
+            text-align: center;
+            float: left;
+            border: 1px solid #f08602; /* orange */
+            height: 18px;
+            padding-top: 1px;
+        }
+        
+        .registernavi .stepinactive {
+            background: #807d7b; /* dunkelgrau */
+            color: white;
+            text-align: center;
+            float: left;
+            border: 1px solid #807d7b; /* dunkelgrau */
+            height: 18px;
+            padding-top: 1px;
+        }
+        
+        .registernavi .steptitleinactive {
+            border: 1px solid lightgrey; /* hellgrau */
+            background: lightgrey; /* hellgrau */
+            min-width: 120px;
+            color: #807D7B; /* dunkelgrau */
+            height: 18px;
+            padding-top: 1px;
+        }
+        
+        .registernavi .steptitleactive {
+            border: 1px solid #f08602; /* orange */
+            background: lightgrey; /* hellgrau */
+            min-width: 120px;
+            color: #807D7B; /* dunkelgrau */
+            height: 18px;
+            padding-top: 1px;
+        }
+        
+        
+        .registernavi .steptitle {
+            background: lightgrey; /* hellgrau */
+            text-align: left;
+            color: #807D7B; /* dunkelgrau */
+        }
+        
+        .registernavi ul {
+            width: 891px;
+            list-style: none;
+            float: left;
+            padding-left: 15px;
+            margin-left: 10px;
+            background: white;
+        }
+        
+        .registercontact {
+            margin-left: 10px;
+            width: 564px!important;
+            padding-left: 15px!important;
+            padding-right: 327px!important;
+            filter:alpha(opacity=95); /* IE's opacity*/
+            opacity: 0.95;
+            min-height: 450px;
+        }
+        
+        .registercontact form {
+            width: 565px!important;
+        }
+        
+        .requiredInput {
+            float: left;
+        }
+        
+        .servicehotlinetext {
+            float: left;
+            font-style: italic;
+            /* padding-left: 210px; */
+            padding-left: 12px;
+        }
+        
+        /* errors messages by salesforce */
+        .errorM6, .errorM4, .errorM3, .errorM2, .errorS1 {
+            border-color: #C00;
+        }
+        
+        .message {
+            background-color: #FFC;
+            border-style: solid;
+            border-width: 1px;
+            color: black;
+            padding: 6px 8px 6px 6px;
+            margin: 4px 20px;
+        }
+        
+        .message .messageTable .messageCell {
+            vertical-align: middle;
+        }
+        
 /* ------------- PICKLIST ANPASSUNG  -----------------*/
 
 #content #contact form .pick {
-	font-family: Arial, Verdana, Helvetica, sans-serif;
-	font-size:11px;
-	border: 1px solid #b2b2b2;
-	margin-bottom:6px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size:11px;
+    border: 1px solid #b2b2b2;
+    margin-bottom:6px;
 }
 
 .multiSelectPicklistTable
 .multiSelectPicklistRow
 .multiSelectPicklistCell{
-	background-color:#FFFFFF;	
+    background-color:#FFFFFF;   
 }
 
 #content #contact #test form select .pick{ 
-	font-size: 11px;
-	padding:1px;
-	margin-bottom:5px;
+    font-size: 11px;
+    padding:1px;
+    margin-bottom:5px;
 }
-		
+        
 
 /* --------------------------------------------------------------------------------------------------- */
 /* -------------------------------- CUSTOM BUTTON STYLES --------------------------------------------- */
 
 .buttonformdiv {
-	/* width: 364px; */
+    /* width: 364px; */
 }
 
 .buttonregisterdiv {
-	width: 561px;
+    width: 561px;
 }
 
 .isRight {
-	float:right;
+    float:right;
 }
 
 .isLeft {
-	float:left;
+    float:left;
 }
 
 .newBTN_area {
-	cursor: pointer !important;
-	font-size: 11px!important;
-	font-weight: bold !important;
-	white-space: nowrap;
-	height: 24px !important;
-	padding-top: 10px;
+    cursor: pointer !important;
+    font-size: 11px!important;
+    font-weight: bold !important;
+    white-space: nowrap;
+    height: 24px !important;
+    padding-top: 10px;
 }
 
 .newBTN_area:hover {
-	cursor: pointer !important;
-	font-size: 11px!important;
-	font-weight: bold !important;
-	white-space: nowrap;
-	height: 24px !important;
-	padding-top: 10px;
+    cursor: pointer !important;
+    font-size: 11px!important;
+    font-weight: bold !important;
+    white-space: nowrap;
+    height: 24px !important;
+    padding-top: 10px;
 }
 
-	/*/np/resource/1300816624000/gigasetextranetZIP/img/btn_back.gif*/
+    /*/np/resource/1300816624000/gigasetextranetZIP/img/btn_back.gif*/
 .newBTN_area .newBTN {
-	height: 24px !important;
-	background-repeat: repeat-x;
-	background-position: top right;
-	color: white!important;
-	border: none;
-	float: left;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backOrange.png')})!important;
+    height: 24px !important;
+    background-repeat: repeat-x;
+    background-position: top right;
+    color: white!important;
+    border: none;
+    float: left;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backOrange.png')})!important;
 }
 
 .newBTN_area .newBTN input, .newBTN_area .newBTNBlack input, .newBTN_area .newBTNGrey input {
-	padding-left: 10px!important;
-	padding-right: 15px!important;
-	cursor: pointer !important;
-	font-size: 11px!important;
-	font-weight: bold !important;
-	white-space: nowrap;
-	height: 24px !important;
-	background-color: transparent;
-	font-family: Arial, sans-serif !important;
-	text-color: white!important;
+    padding-left: 10px!important;
+    padding-right: 15px!important;
+    cursor: pointer !important;
+    font-size: 11px!important;
+    font-weight: bold !important;
+    white-space: nowrap;
+    height: 24px !important;
+    background-color: transparent;
+    font-family: Arial, sans-serif !important;
+    text-color: white!important;
 }
 
 .newBTN_area .newBTN a, .newBTN_area .newBTNBlack a, .newBTN_area .newBTNGrey a {
-	padding-left: 10px!important;
-	padding-right: 13px!important;
-	padding-top: 4px!important;
-	cursor: pointer !important;
-	font-size: 11px!important;
-	font-weight: bold !important;
-	white-space: nowrap;
-	height: 24px !important;
-	background-color: transparent!important;
-	font-family: Arial, sans-serif !important;
-	text-color: white!important;
+    padding-left: 10px!important;
+    padding-right: 13px!important;
+    padding-top: 4px!important;
+    cursor: pointer !important;
+    font-size: 11px!important;
+    font-weight: bold !important;
+    white-space: nowrap;
+    height: 24px !important;
+    background-color: transparent!important;
+    font-family: Arial, sans-serif !important;
+    text-color: white!important;
 }
 
 .newBTN_area:hover .newBTN {
-	background-repeat: repeat-x;
-	background-position: top right;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backOrangeL.png')})!important;
+    background-repeat: repeat-x;
+    background-position: top right;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backOrangeL.png')})!important;
 } 
 
 .newBTN_area .newBTN_arrow {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	float: left;
-	width: 24px;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowOrange.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    float: left;
+    width: 24px;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowOrange.png')});
 } 
 
 .newBTN_area:hover .newBTN_arrow {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowOrangeL.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowOrangeL.png')});
 }
 
 .newBTN_area .newBTN_arrowBack {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	float: left;
-	width: 24px;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackOrange.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    float: left;
+    width: 24px;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackOrange.png')});
 } 
 
 .newBTN_area:hover .newBTN_arrowBack {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackOrangeL.png')});
-} 	 	
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackOrangeL.png')});
+}       
 
 /* RESET ALL STYLING EFFECTS FOR BUTTON CLASSES! */
 .newBTN_area .newBTN_arrow input, .newBTN_arrow a, .newBTN_arrow input span, .newBTN_arrow div,
@@ -614,13 +616,13 @@
 .newBTN_area .newBTN_arrowBack input, .newBTN_arrowBack a, .newBTN_arrowBack input span, .newBTN_arrowBack div,
 .newBTN_area .newBTN_arrowBackBlack input, .newBTN_arrowBackBlack a, .newBTN_arrowBackBlack input span, .newBTN_arrowBackBlack div,
 .newBTN_area .newBTN_arrowBackGrey input, .newBTN_arrowBackGrey a, .newBTN_arrowBackGrey input span, .newBTN_arrowBackGrey div {
-	background: transparent !important;
-	height: 24px !important;
-	border: 0 none;
-	color: white !important;
-	display: inline-block;
-	overflow: hidden;
-	vertical-align: top !important;
+    background: transparent !important;
+    height: 24px !important;
+    border: 0 none;
+    color: white !important;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top !important;
 }
 
 .newBTN_area .newBTN_arrow a, .newBTN_arrow input span, .newBTN_arrow div,
@@ -629,635 +631,635 @@
 .newBTN_area .newBTN_arrowBack a, .newBTN_arrowBack input span, .newBTN_arrowBack div,
 .newBTN_area .newBTN_arrowBackBlack a, .newBTN_arrowBackBlack input span, .newBTN_arrowBackBlack div,
 .newBTN_area .newBTN_arrowBackGrey a, .newBTN_arrowBackGrey input span, .newBTN_arrowBackGrey div {
-	position: relative;
-	top: 5px;
+    position: relative;
+    top: 5px;
 }
 
 /* black buttons */
 .newBTN_area .newBTNBlack {
-	height: 24px !important;
-	background-repeat: repeat-x;
-	background-color: #FFFFFF !important;
-	background-position: top right;
-	color: white!important;
-	border: none;
-	float: left;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backBlack.png')});
+    height: 24px !important;
+    background-repeat: repeat-x;
+    background-color: #FFFFFF !important;
+    background-position: top right;
+    color: white!important;
+    border: none;
+    float: left;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backBlack.png')});
 }
 
 .newBTN_area:hover .newBTNBlack {
-	background-repeat: repeat-x;
-	background-position: top right;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backBlackL.png')});
+    background-repeat: repeat-x;
+    background-position: top right;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backBlackL.png')});
 } 
 
 .newBTN_area .newBTN_arrowBlack {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	float: left;
-	width: 24px;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBlack.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    float: left;
+    width: 24px;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBlack.png')});
 } 
 
 .newBTN_area:hover .newBTN_arrowBlack {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBlackL.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBlackL.png')});
 }
 
 .newBTN_area .newBTN_arrowBackBlack {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	float: left;
-	width: 24px;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackBlack.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    float: left;
+    width: 24px;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackBlack.png')});
 } 
 
 .newBTN_area:hover .newBTN_arrowBackBlack {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackBlackL.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackBlackL.png')});
 }
 
 /* grey buttons */
 .newBTN_area .newBTNGrey {
-	height: 24px !important;
-	background-repeat: repeat-x;
-	background-position: top right;
-	color: white!important;
-	border: none;
-	float: left;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backGrey.png')}); 
+    height: 24px !important;
+    background-repeat: repeat-x;
+    background-position: top right;
+    color: white!important;
+    border: none;
+    float: left;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backGrey.png')}); 
 }
 
 .newBTN_area:hover .newBTNGrey {
-	background-repeat: repeat-x;
-	background-position: top right;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backGreyL.png')});
+    background-repeat: repeat-x;
+    background-position: top right;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_backGreyL.png')});
 }
 
 .newBTN_area:hover .newBTNTextGrey {
-	background-repeat: repeat;
-	background-position: top right;
+    background-repeat: repeat;
+    background-position: top right;
 }  
 
 .newBTN_area .newBTN_arrowGrey {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	float: left;
-	width: 24px;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowGrey.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    float: left;
+    width: 24px;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowGrey.png')});
 } 
 
 .newBTN_area:hover .newBTN_arrowGrey {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowGreyL.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowGreyL.png')});
 }
 
 .newBTN_area .newBTN_arrowBackGrey {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	float: left;
-	width: 24px;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackGrey.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    float: left;
+    width: 24px;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackGrey.png')});
 } 
 
 .newBTN_area:hover .newBTN_arrowBackGrey {
-	height: 24px !important;
-	background-repeat: no-repeat;
-	background-position: top left;
-	display: inline-block;
-	overflow: hidden;
-	padding: 0px 0px 0px 0px !important;
-	background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackGreyL.png')});
+    height: 24px !important;
+    background-repeat: no-repeat;
+    background-position: top left;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0px 0px 0px 0px !important;
+    background-image: url({!URLFOR($Resource.GCRedesign, 'GCRedesign/btn_arrowBackGreyL.png')});
 }
 
 /* ------------------------------------------ END ---------------------------------------------------- */
 /* --------------------------------------------------------------------------------------------------- */
 
 
-		
-	/* Parx CSS */
-	/* ----------------------------------------- */
-	/*  Parx CSS for Gigaset Extranet */
-	/* ----------------------------------------- */
-	
-	/* ---------------- ALLGEMEINE ZUSÄTZE ERROR -------------------*/
-	
-	.errorMsg	{
-	   color: #C00;
-	   /* margin-left: 211px; */
-	   /* margin-top: -6px; */
-	   margin-bottom: 7px;
-	   font-size: 11px;
-	}
-	
-	/*  ----------- phonenumberdiv  --------*/
-	.errorMsgPhone {
-		color: #C00;
-	   margin-left: 0px;
-	   margin-top: -6px;
-	   margin-bottom: 7px;
-	   font-size: 11px;
-	}
-	
-	/* ---- Korrektur main.css ----- */
-	.error {
-		color: #474C54;
-		margin-left: 0px;
-	}
-	
-	#wrapper a:hover {
-		text-decoration: none !important;
-	}
-	
-	#contentText a {
-		background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
-		padding:0 0 0 11px;
-	}
-	
-	#content #prodOver .contentText {
-		width: 926px;
-		padding-right: 0px;
-		padding-top: 0px;
-		padding-left: 0px;
-		padding-bottom: 20px;
-	}
-	
-	#content .contentText {
-		width: 926px;
-		padding-right: 0px;
-		padding-top: 0px;
-		padding-left: 0px;
-		padding-bottom: 20px;
-	}
-	
-	#content #prodOver .contentTextSmall {
-		width: 605px;
-		padding-right: 15px;
-		padding-top: 0px;
-		padding-left: 0px;
-		padding-bottom: 20px;
-		float: left;
-		position: relative;
-	}
-	
-	#content .contentTextSmall {
-		width: 605px;
-		padding-right: 15px;
-		padding-top: 0px;
-		padding-left: 0px;
-		padding-bottom: 20px;
-		float: left;
-		position: relative;
-	}
-	
-	#content .contentTextSmall .small {
-		width: 586px!important;
-	}
-	
-	#content #prodOver #contact .small {
-		width: 625px!important;
-	}
-	
-	
-	/* ---- keine Blaufärbung mehr! ------*/
-	a, body, td, select, input, textarea, fieldset legend, .warn .textCounter, .miniTab .currentTab, .miniTab .currentTab a, .requiredLegend, .bPageBlock .noRecords, .bPageBlock .labelCol, .list td, .list th, .bPageBlock td.actionColumn .actionLink, .bWizardBlock .pbDescription, .bWizardBlock .pbTopButtons {
-		color: #474C54;
-	}
-	
-	/* ------------ Spacer ------------- */
-	
-	.spacer5 {
-		margin-top:5px !important;
-	}
-	
-	.spacer6 {
-		margin-top:5px !important;
-		margin-left: 211px !important;
-	}
-	
-	.spacer7 {
-		margin-left: 394px !important;
-	}
-	
-	.spacer8 {
-		margin-left: 375px !important;
-	}
-	
-	.spacer9 {
-		margin-left: 398px !important;
-	}
-	
-	#content .topspace1 {
-		margin-top: 33px;
-	}
-	
-	#content {
-		min-height: 550px;
-		padding: 0px;
-	}
-	
-	
-	/* ------------ headline tags ---------------- */
-	h1 {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		display: block;
-		margin-bottom: 0px;
-	}
-	
-	h2 {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		display: block;
-		margin-bottom: 14px;
-	}
-	
-	h3 {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		display: block;
-		margin-bottom: 12px;
-	}
-	
-	h4 {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		display: block;
-		margin-bottom: 12px;
-	}
-	
-	
-	
-	/* ---------------- LINK PFEILE------------------------------*/
-	.lft_login {
-	    padding-left: 95px;
-	    float: left;
-		padding-top: 15px;
-	}
-	
-	.lft_login a,
-	.link_arrow a {
-		background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
-		padding:0 0 0 11px;
-	}
-	
-	.link_arrow p {
-		padding:0 0 0 11px;
-	}
-	.link_arrow a {
-		background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
-		padding:0 0 0 11px;
-	}
-	
-	.ftp_login a:hover {
-		background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavidown.jpg')}) no-repeat 0% 3px;
-		padding:0 0 0 11px;
-	}
-	
-	
-	/* ---------------- TRENNLINIE/HORIZONTAL ------------------------------*/
-	
-	.hor_line {
-		background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/hor_line.gif')}) repeat-x;
-		margin:5px 11px 5px 0px;
-		height: 1px;
-	}
-	
-	/* -------------- Navigation ------------------ */
-	
-	#content .prodTeaserBig li {
-		margin-left: 0px!important;
-		margin-bottom: 10px;
-	}
-	
-	#content .prodTeaserBig ul {
-		width: 925px;
-	}
-	
-	#content .prodTeaserFrame {
-		-moz-background-clip:border;
-		-moz-background-inline-policy:continuous;
-		-moz-background-origin:padding;
-		background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/prodTeaserBig.jpg')}) no-repeat scroll 50% 0;
-		float:left;
-		margin-bottom:18px;
-		margin-left:-14px;
-		margin-top:-10px;
-		padding-bottom:8px;
-		padding-left:12px;
-		padding-top:6px;
-		position:relative;
-		width:925px;
-	}
-	
-	#content .prodTeaserFrame .colors {
-		-moz-background-clip:border;
-		-moz-background-inline-policy:continuous;
-		-moz-background-origin:padding;
-		background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/prodTeaserBigBottom.jpg')}) no-repeat scroll 50% 100%;
-		bottom:-12px;
-		height:8px;
-		left:13px;
-		padding:3px 20px 12px 18px;
-		position:absolute;
-		width:870px;
-	}
-	
-	ul li, ol li {
-		margin-left: 0px;
-		padding-left: 0;
-	}
-	
-	/* ---------- RECHTE SPALTE  ------------- */
-	
-	#content #colRgt { 
-		 margin: 0px;
-		 padding-left: 0px;
-		 padding-bottom: 0px;
-		 padding-right: 0px;
-		 padding-top: 0px;
-		 float: right;
-		 /* min-width: 216px; */
-		 width: 300px;
-		 position: relative;
-	}
-	
-	
-	#content #colRgt #profil {
-		width:300px;
-		margin:9px 0px 13px -1px;
-	}
-	
-	#content #colRgt #contactProfil { 
-		background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/bg_oneCol.png')}) no-repeat scroll 0 0;
-		padding:10px 5px 0px 17px;
-		width:197px;
-		float: left;
-		position:relative;
-	}
-	
-	#content #colRgt #profilEnd {
-		background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/bg_oneColBtm.png')}) no-repeat scroll 0 0;
-		height:9px;
-		width:300px;
-		float: left;
-		position:relative;
-	}
-	
-	#content #prodOver .oneColInfo {
-		background: transparent url(/img/s.gif) no-repeat scroll 0 0;
-	}
-	
-	#content #prodOver .oneColBtm {
-		background: transparent url(/img/s.gif) no-repeat scroll 0 0;
-	}
-	
-	#content #contact  {
-		background: white;
-		width: 650px;
-		padding-left: 18px;
-		padding-right: 0px;
-		padding-top: 15px;
-		padding-bottom: 15px;
-	}
-	
-	
-	/* ------------- SELECT-DROPBOX ANPASSUNG  -----------------*/
-	
-	#content #contact form select { 
-		width: 292px!important;
-		font-size: 11px;
-		padding:1px;
-		margin-bottom:5px;
-	}
-	
-	#content #contact form input, form input, form select { 
-		font-size: 11px;
-		padding:1px;
-		margin-bottom:5px;
-		clear: right;
-	}
-	#content #contact form textarea{ 
-		height:100px;
-		padding:1px;
-		margin-bottom:5px;
-	    font-size:11px;
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		width: 350px!important;
-	}
-	
-	/* ------------- TEXTFIELD ANPASSUNG  -----------------*/
-	
-	#content #contact form .FieldRequired {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		border: 1px solid #b2b2b2;
-		width: 350px;
-		margin-bottom:6px;
-		font-size:11px;
-	}
-	
-	#content #contact form .FieldRequired p{ 
-		vertical-align: middle;
-	}
-	
-	#content #contact form .FieldRequired2 {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		border: 1px solid #b2b2b2;
-		width: 350px;
-		margin-bottom:6px;
-		font-size:11px;
-	}
-	
-	#content #contact form .FieldRequiredDateInput {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		border: 1px solid #b2b2b2;
-		width: 275px;
-		margin-bottom:6px;
-		font-size:11px;
-	}
-	
-	#content #contact form .FieldRequired3 {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		border: 1px solid #b2b2b2;
-		width: 350px;
-		margin-bottom:6px;
-		font-size:11px;
-	}
-	
-	#content #contact form .FieldRequired4 {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		font-size:11px;
-		border: 1px solid #b2b2b2;
-		width: 350px!important;
-		margin-bottom:6px;
-	}
-	
-	#content #contact form .FieldRequiredTitle {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		font-size:11px;
-		border: 1px solid #b2b2b2;
-		width: 203px!important;
-		margin-bottom:6px;
-	}
-	
-	#content #contact form .FieldRequiredStreet {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		font-size:11px;	
-		border: 1px solid #b2b2b2;
-		width: 100px;
-		height: 47px;
-		margin-bottom:6px;
-	}
-	
-	#content #contact form .FieldRequiredSelect {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		font-size:11px;
-		border: 1px solid #b2b2b2;
-		width: 354px!important;
-		margin-bottom:6px;
-	}
-	
-	#content #contact form .FieldRequiredSalutation {
-		font-family: Arial, Verdana, Helvetica, sans-serif;
-		font-size:9px;
-		border: 1px solid #b2b2b2;
-		width: 85px!important;
-		margin-bottom:6px;
-	}
-	
-	#content #contact form .radio{ 
-		width: 350px;
-		margin-bottom:6px;
-		float:left;
-	}
-	#content #contact form .FieldRadio { 
-		width: 30px;
-		margin-bottom:6px;
-		float:left;
-	}
-	#content #contact form .check { 
-		float: left;
-		margin: 20px 0px;
-		width: 500px;
-	}
-	#content #contact form .check input { 
-		float: left;
-	}
-	
-	#content #contact form .InfoserviceTable {
-		width: 100%;
-		margin: 0px;
-	}
-	
-	
-	/* --------- footer -------------*/
-	
-	#footer_copy p { 
-		 /* float:left;
-		 margin-left:28px; */
-		 margin-top: 5px;
-		 width:977px;
-		 font-size: 9px;
-	}
-	
-	/* --für den Colorbox... hier setze ich den Background. Leider kann ich diese Background im iFrame nicht verändern... */
-	/* --gibt es keine möglichkeit?? */
-	
-	#cboxContent {
-	background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) no-repeat 0 0;
-	}
-	
-	#cboxClose {
-	background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}) no-repeat 0 0;
-	right: -10px;
-	top: -11px;
-	}
-	
-	#cboxLoadingGraphic,#cboxLoadingOverlay {
-	background-image: url();
-	}
-	
-	
-	#cboxClose.hover {
-	background-position:0px 0px;
-	}
-	
-	
-	/* Neue Einstellungen bzgl. Größenangaben der Colorbox */
-	
-	#cboxTopLeft,
-	#cboxBottomLeft,
-	#cboxBottomRight,
-	#cboxTopRight {
-	    width:10px;
-	    height:10px;
-	    background-image: none;
-	/*    background-color: #ffffff;*/
-	}
-	
-	#cboxBottomCenter,
-	#cboxBottomLeft,
-	#cboxBottomRight  {
-		position:relative;
-		bottom:5px;
-	}
-	
-	#cboxTopCenter,
-	#cboxBottomCenter {
-	    width:960px;
-	    height:10px;
-	    background-image: none;
-	  /*  background-color: #ffffff;*/
-	}
-	
-	#cboxMiddleRight,
-	#cboxMiddleLeft {
-	    width:10px;
-	    background-image: none;
-	/*    background-color: #ffffff;*/
-	}
-	
-	#cboxContent{
-	    width:960px;
-	    height:540px;
-	    margin:0px;
-	    padding:0px
-	}
-	
-	#colorbox {
-	    width:980px;
-	    height:560px;
-	    padding:0;
-	    margin:0px;
-	
-	}
+        
+    /* Parx CSS */
+    /* ----------------------------------------- */
+    /*  Parx CSS for Gigaset Extranet */
+    /* ----------------------------------------- */
+    
+    /* ---------------- ALLGEMEINE ZUSÄTZE ERROR -------------------*/
+    
+    .errorMsg   {
+       color: #C00;
+       /* margin-left: 211px; */
+       /* margin-top: -6px; */
+       margin-bottom: 7px;
+       font-size: 11px;
+    }
+    
+    /*  ----------- phonenumberdiv  --------*/
+    .errorMsgPhone {
+        color: #C00;
+       margin-left: 0px;
+       margin-top: -6px;
+       margin-bottom: 7px;
+       font-size: 11px;
+    }
+    
+    /* ---- Korrektur main.css ----- */
+    .error {
+        color: #474C54;
+        margin-left: 0px;
+    }
+    
+    #wrapper a:hover {
+        text-decoration: none !important;
+    }
+    
+    #contentText a {
+        background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
+        padding:0 0 0 11px;
+    }
+    
+    #content #prodOver .contentText {
+        width: 926px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        padding-bottom: 20px;
+    }
+    
+    #content .contentText {
+        width: 926px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-left: 0px;
+        padding-bottom: 20px;
+    }
+    
+    #content #prodOver .contentTextSmall {
+        width: 605px;
+        padding-right: 15px;
+        padding-top: 0px;
+        padding-left: 0px;
+        padding-bottom: 20px;
+        float: left;
+        position: relative;
+    }
+    
+    #content .contentTextSmall {
+        width: 605px;
+        padding-right: 15px;
+        padding-top: 0px;
+        padding-left: 0px;
+        padding-bottom: 20px;
+        float: left;
+        position: relative;
+    }
+    
+    #content .contentTextSmall .small {
+        width: 586px!important;
+    }
+    
+    #content #prodOver #contact .small {
+        width: 625px!important;
+    }
+    
+    
+    /* ---- keine Blaufärbung mehr! ------*/
+    a, body, td, select, input, textarea, fieldset legend, .warn .textCounter, .miniTab .currentTab, .miniTab .currentTab a, .requiredLegend, .bPageBlock .noRecords, .bPageBlock .labelCol, .list td, .list th, .bPageBlock td.actionColumn .actionLink, .bWizardBlock .pbDescription, .bWizardBlock .pbTopButtons {
+        color: #474C54;
+    }
+    
+    /* ------------ Spacer ------------- */
+    
+    .spacer5 {
+        margin-top:5px !important;
+    }
+    
+    .spacer6 {
+        margin-top:5px !important;
+        margin-left: 211px !important;
+    }
+    
+    .spacer7 {
+        margin-left: 394px !important;
+    }
+    
+    .spacer8 {
+        margin-left: 375px !important;
+    }
+    
+    .spacer9 {
+        margin-left: 398px !important;
+    }
+    
+    #content .topspace1 {
+        margin-top: 33px;
+    }
+    
+    #content {
+        min-height: 550px;
+        padding: 0px;
+    }
+    
+    
+    /* ------------ headline tags ---------------- */
+    h1 {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        display: block;
+        margin-bottom: 0px;
+    }
+    
+    h2 {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        display: block;
+        margin-bottom: 14px;
+    }
+    
+    h3 {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        display: block;
+        margin-bottom: 12px;
+    }
+    
+    h4 {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        display: block;
+        margin-bottom: 12px;
+    }
+    
+    
+    
+    /* ---------------- LINK PFEILE------------------------------*/
+    .lft_login {
+        padding-left: 95px;
+        float: left;
+        padding-top: 15px;
+    }
+    
+    .lft_login a,
+    .link_arrow a {
+        background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
+        padding:0 0 0 11px;
+    }
+    
+    .link_arrow p {
+        padding:0 0 0 11px;
+    }
+    .link_arrow a {
+        background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavi.jpg')}) no-repeat 0% 3px;
+        padding:0 0 0 11px;
+    }
+    
+    .ftp_login a:hover {
+        background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/faqNavidown.jpg')}) no-repeat 0% 3px;
+        padding:0 0 0 11px;
+    }
+    
+    
+    /* ---------------- TRENNLINIE/HORIZONTAL ------------------------------*/
+    
+    .hor_line {
+        background: url({!URLFOR($Resource.gigasetextranetZIP, 'img/hor_line.gif')}) repeat-x;
+        margin:5px 11px 5px 0px;
+        height: 1px;
+    }
+    
+    /* -------------- Navigation ------------------ */
+    
+    #content .prodTeaserBig li {
+        margin-left: 0px!important;
+        margin-bottom: 10px;
+    }
+    
+    #content .prodTeaserBig ul {
+        width: 925px;
+    }
+    
+    #content .prodTeaserFrame {
+        -moz-background-clip:border;
+        -moz-background-inline-policy:continuous;
+        -moz-background-origin:padding;
+        background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/prodTeaserBig.jpg')}) no-repeat scroll 50% 0;
+        float:left;
+        margin-bottom:18px;
+        margin-left:-14px;
+        margin-top:-10px;
+        padding-bottom:8px;
+        padding-left:12px;
+        padding-top:6px;
+        position:relative;
+        width:925px;
+    }
+    
+    #content .prodTeaserFrame .colors {
+        -moz-background-clip:border;
+        -moz-background-inline-policy:continuous;
+        -moz-background-origin:padding;
+        background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/prodTeaserBigBottom.jpg')}) no-repeat scroll 50% 100%;
+        bottom:-12px;
+        height:8px;
+        left:13px;
+        padding:3px 20px 12px 18px;
+        position:absolute;
+        width:870px;
+    }
+    
+    ul li, ol li {
+        margin-left: 0px;
+        padding-left: 0;
+    }
+    
+    /* ---------- RECHTE SPALTE  ------------- */
+    
+    #content #colRgt { 
+         margin: 0px;
+         padding-left: 0px;
+         padding-bottom: 0px;
+         padding-right: 0px;
+         padding-top: 0px;
+         float: right;
+         /* min-width: 216px; */
+         width: 300px;
+         position: relative;
+    }
+    
+    
+    #content #colRgt #profil {
+        width:300px;
+        margin:9px 0px 13px -1px;
+    }
+    
+    #content #colRgt #contactProfil { 
+        background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/bg_oneCol.png')}) no-repeat scroll 0 0;
+        padding:10px 5px 0px 17px;
+        width:197px;
+        float: left;
+        position:relative;
+    }
+    
+    #content #colRgt #profilEnd {
+        background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/bg_oneColBtm.png')}) no-repeat scroll 0 0;
+        height:9px;
+        width:300px;
+        float: left;
+        position:relative;
+    }
+    
+    #content #prodOver .oneColInfo {
+        background: transparent url(/img/s.gif) no-repeat scroll 0 0;
+    }
+    
+    #content #prodOver .oneColBtm {
+        background: transparent url(/img/s.gif) no-repeat scroll 0 0;
+    }
+    
+    #content #contact  {
+        background: white;
+        width: 650px;
+        padding-left: 18px;
+        padding-right: 0px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    
+    /* ------------- SELECT-DROPBOX ANPASSUNG  -----------------*/
+    
+    #content #contact form select { 
+        width: 292px!important;
+        font-size: 11px;
+        padding:1px;
+        margin-bottom:5px;
+    }
+    
+    #content #contact form input, form input, form select { 
+        font-size: 11px;
+        padding:1px;
+        margin-bottom:5px;
+        clear: right;
+    }
+    #content #contact form textarea{ 
+        height:100px;
+        padding:1px;
+        margin-bottom:5px;
+        font-size:11px;
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        width: 350px!important;
+    }
+    
+    /* ------------- TEXTFIELD ANPASSUNG  -----------------*/
+    
+    #content #contact form .FieldRequired {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        border: 1px solid #b2b2b2;
+        width: 350px;
+        margin-bottom:6px;
+        font-size:11px;
+    }
+    
+    #content #contact form .FieldRequired p{ 
+        vertical-align: middle;
+    }
+    
+    #content #contact form .FieldRequired2 {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        border: 1px solid #b2b2b2;
+        width: 350px;
+        margin-bottom:6px;
+        font-size:11px;
+    }
+    
+    #content #contact form .FieldRequiredDateInput {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        border: 1px solid #b2b2b2;
+        width: 275px;
+        margin-bottom:6px;
+        font-size:11px;
+    }
+    
+    #content #contact form .FieldRequired3 {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        border: 1px solid #b2b2b2;
+        width: 350px;
+        margin-bottom:6px;
+        font-size:11px;
+    }
+    
+    #content #contact form .FieldRequired4 {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        font-size:11px;
+        border: 1px solid #b2b2b2;
+        width: 350px!important;
+        margin-bottom:6px;
+    }
+    
+    #content #contact form .FieldRequiredTitle {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        font-size:11px;
+        border: 1px solid #b2b2b2;
+        width: 203px!important;
+        margin-bottom:6px;
+    }
+    
+    #content #contact form .FieldRequiredStreet {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        font-size:11px; 
+        border: 1px solid #b2b2b2;
+        width: 100px;
+        height: 47px;
+        margin-bottom:6px;
+    }
+    
+    #content #contact form .FieldRequiredSelect {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        font-size:11px;
+        border: 1px solid #b2b2b2;
+        width: 354px!important;
+        margin-bottom:6px;
+    }
+    
+    #content #contact form .FieldRequiredSalutation {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        font-size:9px;
+        border: 1px solid #b2b2b2;
+        width: 85px!important;
+        margin-bottom:6px;
+    }
+    
+    #content #contact form .radio{ 
+        width: 350px;
+        margin-bottom:6px;
+        float:left;
+    }
+    #content #contact form .FieldRadio { 
+        width: 30px;
+        margin-bottom:6px;
+        float:left;
+    }
+    #content #contact form .check { 
+        float: left;
+        margin: 20px 0px;
+        width: 500px;
+    }
+    #content #contact form .check input { 
+        float: left;
+    }
+    
+    #content #contact form .InfoserviceTable {
+        width: 100%;
+        margin: 0px;
+    }
+    
+    
+    /* --------- footer -------------*/
+    
+    #footer_copy p { 
+         /* float:left;
+         margin-left:28px; */
+         margin-top: 5px;
+         width:977px;
+         font-size: 9px;
+    }
+    
+    /* --für den Colorbox... hier setze ich den Background. Leider kann ich diese Background im iFrame nicht verändern... */
+    /* --gibt es keine möglichkeit?? */
+    
+    #cboxContent {
+    background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) no-repeat 0 0;
+    }
+    
+    #cboxClose {
+    background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}) no-repeat 0 0;
+    right: -10px;
+    top: -11px;
+    }
+    
+    #cboxLoadingGraphic,#cboxLoadingOverlay {
+    background-image: url();
+    }
+    
+    
+    #cboxClose.hover {
+    background-position:0px 0px;
+    }
+    
+    
+    /* Neue Einstellungen bzgl. Größenangaben der Colorbox */
+    
+    #cboxTopLeft,
+    #cboxBottomLeft,
+    #cboxBottomRight,
+    #cboxTopRight {
+        width:10px;
+        height:10px;
+        background-image: none;
+    /*    background-color: #ffffff;*/
+    }
+    
+    #cboxBottomCenter,
+    #cboxBottomLeft,
+    #cboxBottomRight  {
+        position:relative;
+        bottom:5px;
+    }
+    
+    #cboxTopCenter,
+    #cboxBottomCenter {
+        width:960px;
+        height:10px;
+        background-image: none;
+      /*  background-color: #ffffff;*/
+    }
+    
+    #cboxMiddleRight,
+    #cboxMiddleLeft {
+        width:10px;
+        background-image: none;
+    /*    background-color: #ffffff;*/
+    }
+    
+    #cboxContent{
+        width:960px;
+        height:540px;
+        margin:0px;
+        padding:0px
+    }
+    
+    #colorbox {
+        width:980px;
+        height:560px;
+        padding:0;
+        margin:0px;
+    
+    }
     </style>
     
 

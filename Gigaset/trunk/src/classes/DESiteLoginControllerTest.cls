@@ -25,7 +25,7 @@ private class DESiteLoginControllerTest {
     static testMethod void initTest() {
         DESiteLoginController ctrl=new DESiteLoginController();
         ctrl.password='parx@gigaset.de';
-        ctrl.username='vunisu87';
+        ctrl.username='asdf1234';
         ctrl.login();
         ctrl.getForgotPasswordPageId();
         ctrl.getRegistrationPageId();

@@ -44,7 +44,9 @@ private class TransferUserdataTest {
         u.Info_per_Email__c=true;
         u.Handelskanal__c='test';
         test.startTest();
-        update u;
+        System.runAs(u) {
+        	update u;
+        }
         test.stopTest();
         Contact c=[SELECT Id, Fax, Email, AccountId FROM Contact WHERE Id=:u.ContactId];
         System.assertEquals(u.Email,c.Email);
