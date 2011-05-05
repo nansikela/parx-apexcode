@@ -5,10 +5,10 @@
             <apex:repeat value="{!menuItems}" var="item" id="proMenu">
                 <li class="">
                     <apex:outputPanel rendered="{!item.ExternalUrl__c == ''}">
-                        <a href="{!$Site.CustomWebAddress}">{!item.Label__c}</a>
+                        <a class="MainNavigation" href="{!$Site.CustomWebAddress}">{!item.Label__c}</a>
                     </apex:outputPanel>
                     <apex:outputPanel rendered="{!NOT(item.ExternalUrl__c == '')}">
-                        <a href="{!BaseTopNaviUrl}{!item.ExternalUrl__c}">{!item.Label__c}</a>
+                        <a class="MainNavigation" href="{!BaseTopNaviUrl}{!item.ExternalUrl__c}">{!item.Label__c}</a>
                     </apex:outputPanel>
                 </li>
             </apex:repeat>
