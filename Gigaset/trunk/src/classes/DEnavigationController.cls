@@ -64,31 +64,31 @@ public class DEnavigationController {
 	}
 	
 	public String getWerbemittelUrl() {
-		return SystemSettings.werbemittelpageid!='' ? CMSpage.getUrl() + '?pageid=' + SystemSettings.werbemittelpageid:'';
+		return SystemSettings.werbemittelpageid!=null ? CMSpage.getUrl() + '?pageid=' + SystemSettings.werbemittelpageid:'';
 	}
 	
 	public String getKontaktformularUrl() {
-		return SystemSettings.kontaktpageid!='' ? CMSpage.getUrl() + '?pageid=' + SystemSettings.kontaktpageid:'';
+		return SystemSettings.kontaktpageid!=null ? CMSpage.getUrl() + '?pageid=' + SystemSettings.kontaktpageid:'';
 	}
 	
 	public String getLink01Url() {
-		return SystemSettings.link01pageid!='' ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link01pageid : SystemSettings.getExternalURL('link01');		
+		return SystemSettings.link01pageid!=null ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link01pageid : SystemSettings.getExternalURL('link01');		
 	}
 	
 	public String getLink02Url() {
-		return SystemSettings.link02pageid!='' ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link02pageid : SystemSettings.getExternalURL('link02');
+		return SystemSettings.link02pageid!=null ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link02pageid : SystemSettings.getExternalURL('link02');
 	}
 	
 	public String getLink03Url() {
-		return SystemSettings.link03pageid!='' ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link03pageid : SystemSettings.getExternalURL('link03');
+		return SystemSettings.link03pageid!=null ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link03pageid : SystemSettings.getExternalURL('link03');
 	}
 	
 	public String getLink04Url() {
-		return SystemSettings.link04pageid!='' ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link04pageid : SystemSettings.getExternalURL('link04');
+		return SystemSettings.link04pageid!=null ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link04pageid : SystemSettings.getExternalURL('link04');
 	}
 	
 	public String getLink05Url() {
-		return SystemSettings.link05pageid!='' ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link05pageid : SystemSettings.getExternalURL('link05');
+		return SystemSettings.link05pageid!=null ? CMSpage.getUrl() + '?pageid=' + SystemSettings.link05pageid : SystemSettings.getExternalURL('link05');
 	}
 	
 	private Boolean isPortalUser() {

@@ -50,6 +50,10 @@ public class LeadConvertController {
   private List<Contact> contacts = new List<Contact>();
   private List<AccountItem> options = new List<AccountItem>();
   
+  private Account selectedAcc;
+  private Boolean isKnown = false;
+  private static Database.LeadConvert lc;
+  
   /*
   public LeadConvertController(){
     leadId = getParam('LeadId');
@@ -94,6 +98,7 @@ public class LeadConvertController {
   }
   */
   public LeadConvertController(ApexPages.StandardController controller){
+    System.debug('Constructor!');
     selectedLead = (Lead) controller.getRecord();
     
     missing_opp_name = false;
@@ -186,10 +191,9 @@ public class LeadConvertController {
     return ApexPages.currentPage().getParameters().get(name);  
   }
   
-  public PageReference removeWarning(){
+  public void removeWarning(){
     Apexpages.getMessages().clear();
     forceAccMerging = false;
-    return null;
   }
   
   public PageReference changeLeadFocus(){
@@ -197,110 +201,206 @@ public class LeadConvertController {
     return null;
   } 
   
-  public PageReference convert() {    
-        if(leadId == null){
-          ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'LeadId missing!'));
+  public Boolean checkLeadID(){
+  		if(leadId == null) {
+        	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'LeadId missing!'));
       		ApexPages.currentPage().getParameters().put('id', selectedLead.Id);
-        
-          return null;
-        }
-        System.debug('Starting lead conversion with Id: '+ selectedAccId);
+        	return false;
+    	}
+    	return true;
+  }
+  
+  public void debugger(){
+  	System.debug('Starting lead conversion with Id: '+ selectedAccId);
         map<String, String> test = ApexPages.currentPage().getParameters();
-        for(String s:test.keySet()){
-          system.debug(s +': ' + test.get(s));
-        }
-        Database.LeadConvert lc = new database.LeadConvert();
-    
-        if(selectedAccId != null && !selectedAccId.equals('') && !selectedAccId.equals('-')){
-          Account selectedAcc = [SELECT Id, Name, RecordType.Name FROM Account WHERE Id = :selectedAccId limit 1];    
-         
-         if(forceAccMerging || selectedAcc.RecordType.Name == selectedLead.RecordType.Name){
-        lc.setAccountId(selectedAcc.Id);
-        oppPrefix = selectedAcc.Name + '-';
         
-        contacts = [SELECT Id, Lastname FROM Contact WHERE Lastname = :selectedLead.LastName AND AccountId = :selectedAcc.Id limit 9000];
+        for(String s:test.keySet())
+        	system.debug(s +': ' + test.get(s));
+  }
+  
+  
+  public Boolean checkSelectedAccount() {
+  		if(selectedAccId != null && !selectedAccId.equals('') && !selectedAccId.equals('-')){
+          	selectedAcc = [SELECT Id, Name, RecordType.Name FROM Account WHERE Id = :selectedAccId limit 1];    
+          	return true;
+  		}
+  		return false;	
+  }
+  
+  
+  public Boolean checkAccountsRecordType(){
+  	
+  		if(selectedAcc.RecordType.Name == selectedLead.RecordType.Name) 		
+  			return true;
+ 
+  		return false;
+  }
+  
+  
+  public Boolean checkIfAnyContactsExisting() {
+  		contacts = [SELECT Id, Lastname FROM Contact WHERE Lastname = :selectedLead.LastName AND AccountId = :selectedAcc.Id limit 9000];
       
-        if(contacts != null && contacts.size() > 0 && !contactMergeNeeded){
-          contactMergeNeeded = true;
-          return null;  
-        }
+        if(contacts != null && contacts.size() > 0 && !contactMergeNeeded)
+        	contactMergeNeeded = true;
         
-        if(contactMergeNeeded && selCon != '-' && selCon != null && selCon != ''){
+  		return contactMergeNeeded;
+  }
+  
+  
+  public Boolean validateSelectedContact(){
+  		if(contactMergeNeeded && selCon != '-' && selCon != null && selCon != '')
+  			return true;
+  			
+  		return false;	
+  }
+  
+  
+  public Boolean checkIfSelectedAccountIsKnown(){
+        
+        for(AccountItem item : options)
+        {
+        	System.debug('item ID: '+item.getId() + ' / selectedAcc ID: '+selectedAcc.Id);
+        	
+        	if(item.getId().equals(selectedAcc.Id))
+        	{
+            	isKnown = true;
+            	System.debug('isKnown');
+          	}
+        }
           
-          lc.setContactId(contacts.get(0).Id);
-          lc.setOverwriteLeadSource(overwriteContact);
+        if(!isKnown)
+        {
+        	if(options.size() > 0)
+            	options.add(0, new AccountItem(selectedAcc.Id, System.Label.lc_old_account+': ' + selectedAcc.Name));
+          	else
+            	options.add(new AccountItem(selectedAcc.Id, System.Label.lc_old_account+': ' + selectedAcc.Name));
         }
-      
-      }else{
-        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.WARNING, System.Label.lead_convert_merge_mismatch));
+        
+        return isKnown;	
+  }
+  
+  
+  public PageReference alertAccountRecordTypeMismatch(){
+    	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.WARNING, System.Label.lead_convert_merge_mismatch));
         ApexPages.currentPage().getParameters().put('id', selectedLead.Id);
         forceAccMerging = true;
+        		
+    	return null;	
+  }
+  
+  public PageReference convert() { 
+  		System.debug('forceAccMerging: ' + forceAccMerging);   
+       	if(!checkLeadID())
+          	return null;
         
-        Boolean isKnown = false;
+        debugger();
         
-        for(AccountItem item : options){
-          System.debug('item ID: '+item.getId() + ' / selectedAcc ID: '+selectedAcc.Id);
-          if(item.getId().equals(selectedAcc.Id)){
-            isKnown = true;
-            System.debug('isKnown');
-          }
+        lc = new database.LeadConvert();
+    	System.debug('selectedAccId: '+selectedAccId);
+        
+        if(checkSelectedAccount()) 
+        {	
+        	System.debug('forceAccMerging: ' + forceAccMerging);
+        	if(forceAccMerging || checkAccountsRecordType()) 
+        	{
+        		removeWarning();
+        		
+        		System.debug('Account selected! ' + selectedAcc.Id);
+        		lc.setAccountId(selectedAcc.Id);
+        		oppPrefix = selectedAcc.Name + '-';
+  			
+        		checkIfSelectedAccountIsKnown();
+        		
+        		if(!checkIfAnyContactsExisting()) 
+        		{		
+        			if(validateSelectedContact()) 
+        			{
+        				lc.setContactId(contacts.get(0).Id);
+        				lc.setOverwriteLeadSource(overwriteContact);
+        			}		
+        		} else {
+        			//Wenn zumindest ein Kontakt mit ähnlichem Nachnamen gefunden wurde, dann halte an und lass Anwender auswählen!
+        			System.debug('Contact found!');
+        			return null;
+        		}
+        	} else {
+        		//Wenn zwar ein Account gefunden wurde, jedoch der RecordType nicht gestimmt hat, dann alarmiere den Anwender darüber!
+        		return alertAccountRecordTypeMismatch();
+        	}
         }
-          
-        if(!isKnown){
-          if(options.size() > 0){
-            options.add(0, new AccountItem(selectedAcc.Id, System.Label.lc_old_account+': ' + selectedAcc.Name));
-          }else{
-            options.add(new AccountItem(selectedAcc.Id, System.Label.lc_old_account+': ' + selectedAcc.Name));
-          }
-        }
+        /*
+        if(selectedAccId != null && !selectedAccId.equals('') && !selectedAccId.equals('-')){
+          	Account selectedAcc = [SELECT Id, Name, RecordType.Name FROM Account WHERE Id = :selectedAccId limit 1];    
+         
+        	if(forceAccMerging || selectedAcc.RecordType.Name == selectedLead.RecordType.Name){
+        		System.debug('Account selected! ' + selectedAcc.Id);
+        		lc.setAccountId(selectedAcc.Id);
+        		oppPrefix = selectedAcc.Name + '-';
         
-      }  
-        }
+        		contacts = [SELECT Id, Lastname FROM Contact WHERE Lastname = :selectedLead.LastName AND AccountId = :selectedAcc.Id limit 9000];
+      
+        		if(contacts != null && contacts.size() > 0 && !contactMergeNeeded){
+          			contactMergeNeeded = true;
+          			return null;  
+        		}
         
+        		if(contactMergeNeeded && selCon != '-' && selCon != null && selCon != ''){
+          			lc.setContactId(contacts.get(0).Id);
+          			lc.setOverwriteLeadSource(overwriteContact);
+        		}
+      
+      		} else {
+        		
+        		return alertAccountRecordTypeMismatch();
+      		}  
+        }
+        */
         lc.setLeadId(leadId);
-    lc.setOwnerId(Userinfo.getUserId());
-    lc.setConvertedStatus(convertStatusRes);
+    	lc.setOwnerId(Userinfo.getUserId());
+    	lc.setConvertedStatus(convertStatusRes);
     
-    lc.setSendNotificationEmail(notifyEmail);
-    lc.setDoNotCreateOpportunity(deactivateOpportunities);
-    if(!deactivateOpportunities)
-      lc.setOpportunityName(oppPrefix);
+    	lc.setSendNotificationEmail(notifyEmail);
+    	lc.setDoNotCreateOpportunity(deactivateOpportunities);
+    	if(!deactivateOpportunities)
+      		lc.setOpportunityName(oppPrefix);
     
-    if((oppPrefix.trim().equals('') || oppPrefix == null) && !deactivateOpportunities){
-    	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, System.Label.lead_convert_missing_required_field));
-    	missing_opp_name = true;
-    	return null;
+    	if((oppPrefix.trim().equals('') || oppPrefix == null) && !deactivateOpportunities){
+    		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, System.Label.lead_convert_missing_required_field));
+    		//ApexPages.currentPage().getParameters().put('id', selectedLead.Id);
+    		missing_opp_name = true;
+    		return null;
+    	}
+    
+    	System.debug(lc);
+      	Database.LeadConvertResult lcr = Database.convertLead(lc);
+      
+      	if(lcr.isSuccess()){
+        	Account acc = [SELECT Id, RecordTypeId FROM Account WHERE Id = :lcr.getAccountId()];
+        
+        	if((selectedLead.RecordTypeId != null || selectedLead.RecordTypeId != '') && (selectedAccId == null || selectedAccId == '' || selectedAccId == '-')){
+           		RecordType rType = [SELECT Id FROM RecordType WHERE SobjectType = 'Account' AND Name = :selectedLead.RecordType.Name];
+        		acc.RecordTypeId = rType.Id;  
+        		update acc;
+        	}
+        
+        	if(t.Subject != null && t.Subject != ''){  
+          		if(!deactivateOpportunities)
+            		t.WhatId = lcr.getOpportunityId();
+          
+          		t.WhoId = lcr.getContactId();
+          
+          		insert t;
+        	}
+        
+      		return new ApexPages.Standardcontroller(acc).view();
+      	}
+      	return null;  
+	}
+    
+    
+    public PageReference cancel(){
+    	return new ApexPages.Standardcontroller(selectedLead).view();
     }
-    
-    System.debug(lc);
-      Database.LeadConvertResult lcr = Database.convertLead(lc);
-      
-      if(lcr.isSuccess()){
-        Account acc = [SELECT Id, RecordTypeId FROM Account WHERE Id = :lcr.getAccountId()];
-        
-        if((selectedLead.RecordTypeId != null || selectedLead.RecordTypeId != '') && (selectedAccId == null || selectedAccId == '' || selectedAccId == '-')){
-           RecordType rType = [SELECT Id FROM RecordType WHERE SobjectType = 'Account' AND Name = :selectedLead.RecordType.Name];
-        acc.RecordTypeId = rType.Id;  
-        update acc;
-        }
-        
-        if(t.Subject != null && t.Subject != ''){  
-          if(!deactivateOpportunities)
-            t.WhatId = lcr.getOpportunityId();
-          
-          t.WhoId = lcr.getContactId();
-          
-          insert t;
-        }
-        
-      return new ApexPages.Standardcontroller(acc).view();
-      }
-      return null;  
-      }
-      
-      public PageReference cancel(){
-          return new ApexPages.Standardcontroller(selectedLead).view();
-      }
     
     public PageReference resetForcing(){
         forceAccMerging = false;

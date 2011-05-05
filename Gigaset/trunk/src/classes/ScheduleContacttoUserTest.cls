@@ -27,7 +27,7 @@ private class ScheduleContacttoUserTest {
         insert a;
         contact c= new Contact(LastName='test', AccountId=a.Id, Email='test@asd.com', toActivate__c=True);
         insert c;
-        case ca = new case(Origin ='Telefon', AccountId=a.Id, ContactId=c.Id);
+        case ca = new case(Origin ='Telefon', AccountId=a.Id, ContactId=c.Id, Description='test',Type='Frage');
         insert ca;
         
         test.startTest();

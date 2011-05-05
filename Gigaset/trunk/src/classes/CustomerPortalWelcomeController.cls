@@ -1,7 +1,7 @@
 public class CustomerPortalWelcomeController {
    
    User loggedInUser = [Select id,contactId,Contact.AccountId from User where id = :UserInfo.getUserId()];
-   
+   public String defaultlanguage { get; set; }
 //   public List<Asset> MyRegisteredProducts {get; set;}
    public List<Case> MyRecentCases {get; set;}
 //   public List<Solution> TopSolutions {get; set;}
@@ -21,7 +21,7 @@ public class CustomerPortalWelcomeController {
  //                               from Asset 
  //                               where ContactId = :loggedInUser.ContactId 
  //                               order by SerialNumber desc limit 3];
-        
+        defaultlanguage= [select LanguageLocaleKey from User where Id =: UserInfo.getUserId()].LanguageLocaleKey ;
         MyRecentCases = [select id,CaseNumber,Subject,Status,LastModifiedDate,ContactId
                          from Case 
                          where ContactId = :loggedInUser.ContactId 
@@ -64,8 +64,14 @@ public class CustomerPortalWelcomeController {
     	   System.runAs(u) {
     	   	    list<Case> cList = new list<Case>();
     	   	    Case c = new Case();
+    	   	    c.Description='test';
+    	   	    c.Type='Frage';
     	   	    Case c2 = new Case();
+    	   	    c2.Description='test';
+    	   	    c2.Type='Frage';
     	   	    Case c3 = new Case();
+    	   	    c3.Beschreibung_der_Systemumgebung__c='test';
+    	   	    c3.Type='Frage';
     	   	    cList.add(c);
     	   	    cList.add(c2);
     	   	    cList.add(c3);
