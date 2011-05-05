@@ -81,6 +81,7 @@ public class TemplateController {
 			} catch (System.Exception e) {}
 		}
 		if (pageid!=null) {
+			Id landingpageid=System_Settings.landing_page;
 			Id homepageid=System_Settings.homepageid;
 			Id link01pageid=System_Settings.link01pageid;
 			Id link02pageid=System_Settings.link02pageid;
@@ -98,6 +99,7 @@ public class TemplateController {
 			Id rueckrufservicepageid=System_Settings.rueckrufservicepageid;
 			Id forgotpasswordpageid=System_Settings.forgotpasswordpageid;
 			// portal specific labels/navigationpoints
+			if(landingpageid!=null && pageid==landingpageid) return System.Label.loginpage;//System_Settings.getLabel('Landing');
 			if (pageid==homepageid || (Site.getPrefix()!=null && Site.getPrefix().contains('Home'))) return System_Settings.getLabel('home');
 			if (link01pageid!=null && pageid==link01pageid) return System_Settings.getLabel('link01');
 			if (link02pageid!=null && pageid==link02pageid) return System_Settings.getLabel('link02');
