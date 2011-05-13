@@ -1,10 +1,9 @@
 <apex:page controller="DETemplateController" language="{!defaultlanguage}" action="{!firstPage}">
-
 <!--die 4 Button von der Startseite. Content eingebunden-->
     <div style="display:none;color:{!IF(isPro,"white","black")};">
         <div id='AboutLektora' style='padding:10px;'>
             <c:contentblock name="1-lektora" rendered="true" />
-        </div>
+        </div> 
         <div id='yourbenefits' style='padding:10px;'>
             <c:contentblock name="2-YourBenefits" rendered="true" />
         </div>
@@ -19,13 +18,13 @@
 <apex:form > 
         
 <!--        hier sind die script/css in der Seite hinzugefügt-->
-        <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
         <apex:includeScript value="{!$Resource.jquery142}"/>
         <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
         <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
         <apex:stylesheet value="{!URLFOR($Resource.scrollerTest, 'scrollerTest/slider.css')}"/>
         <apex:includeScript value="{!URLFOR($Resource.scrollerTest, 'scrollerTest/slider.js')}"/>
-        <apex:includeScript value="{!$Resource.virtualpaginatejs}"/>
+        <apex:includeScript value="{!$Resource.virtualpaginatejs}"/> 
         
         <script>
         
@@ -53,6 +52,7 @@
         
         <script>
             $(document).ready(function(){
+ 				document.documentMode = 7;
                 //Examples of how to assign the ColorBox event to elements
             /*  $("a[rel='example1']").colorbox();
                 $("a[rel='example2']").colorbox({transition:"fade"});
@@ -189,15 +189,13 @@
 <!-- der "repeat" widerholt für die 5 linken (für jede Buch!) -->
                            <apex:repeat value="{!Books}" var="book" id="Repeat2">
 
-<!-- der schiefe Text mit den link... ein Matrix sollte benutzt werden da es meines Wissens in IE die anzeige möglichkeit ist -->
-                                 <div class="bookDiv" style="position:absolute; vertical-align: middle; text-align: right; width:250px; height:65px; top: {!book.Helfer4}px; left:{!book.Helfer3 - 15}px; -ms-filter:'progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, sizingMethod='auto expand')'; filter:progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, sizingMethod='auto expand'); -moz-transform:  matrix({!book.Helfer5}, {!book.Helfer8}pt, 65pt); -moz-transform-origin:  -100px , 125px; -webkit-transform:  matrix({!book.Helfer5}, {!book.Helfer7 -65} , 85); -o-transform: matrix({!book.Helfer5}, {!book.Helfer7 -65}, 25);"> 
-                               <!-- 	 <div style="position:absolute; line-height: 55px;text-align: right;width:250px;height:55px;top: {!book.Helfer4}px; left:{!book.Helfer3}px; -ms-filter: 'progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6},Dx=100, Dy=100,sizingMethod='auto expand')';filter: progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6},Dx=100, Dy=100,sizingMethod='auto expand');-moz-transform:  matrix({!book.Helfer5}, {!book.Helfer8}pt, 65pt);-moz-transform-origin:  -100px , 125px; -webkit-transform:  matrix({!book.Helfer5}, {!book.Helfer7-65} , 85);-o-transform:  matrix({!book.Helfer5}, {!book.Helfer7-65}, 25);"> -->
-                               	<!-- line-height: 55px;  -->
-                                     <apex:commandLink action="{!secondPage}" value="{!book.book.Titel__c}" style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:15pt; ">                          <!--vertical-align:middle; style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:16pt; vertical-align:middle; position: relative; top:17px;" -->
-                                        <apex:param name="param" value="{!book.book.Titel__c}" />
-                                    </apex:commandLink>
-                                </div>
-
+<!-- der schiefe Text mit den link... ein Matrix sollte benutzt werden da es meines Wissens in IE die anzeige möglichkeit ist -->	
+                                	<!--  -->          
+                                    <div class="bookDiv" style="display:block; position:absolute; vertical-align: middle; text-align: right; width:250px; height:65px; top: {!book.Helfer4}px; left:{!book.Helfer3 - 15}px; -ms-filter:'progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, SizingMethod='auto expand')'; filter:progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, SizingMethod='auto expand'); -moz-transform:  matrix({!book.Helfer5}, {!book.Helfer8}pt, 65pt); -moz-transform-origin:  -100px , 125px; -webkit-transform:  matrix({!book.Helfer5}, {!book.Helfer7 -65} , 85); -o-transform: matrix({!book.Helfer5}, {!book.Helfer7 -65}, 25);"> 
+                   						<apex:commandLink action="{!secondPage}" value="{!book.book.Titel__c}" style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:15pt; ">                          <!--vertical-align:middle; style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:16pt; vertical-align:middle; position: relative; top:17px;" -->
+                                        	<apex:param name="param" value="{!book.book.Titel__c}" />
+                   						</apex:commandLink>
+                   					</div>
 <!-- die roten Buchhänger -->
                                 <apex:image style="padding-left:30px; position: absolute; top: {!book.Helfer_BH_Vertical}px; left:{!book.Helfer_BH}px" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Bookmark_offline.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/offline/buchhaenger_offline.png'))}" rendered="{!book.book.Buchhaenger__c}"/>    
 
