@@ -33,6 +33,7 @@
         #content #contact h1 {
             font-size: 18px;
             font-weight: normal;
+            float: none!important;
         }
         
         .formTitle {
@@ -136,7 +137,7 @@
             background-repeat: no-repeat;
             font-weight: bold;
             height: 22px;
-            border: 1px solid grey;
+            border: 1px solid silver;
             border-bottom: none;
             border-top: none;
         }
@@ -148,7 +149,7 @@
             /* background-image: none; */
             color: #727272;
             font-weight: bold;
-            border: 1px solid grey;
+            border: 1px solid silver;
             border-bottom: none;
             border-top: none;
         }
@@ -157,6 +158,7 @@
             background-color: white;
             padding: 10px;
             border: 1px solid silver;
+            border-top: none;
         }
         
         .MarketingHeader {
@@ -231,8 +233,8 @@
             width: 290px!important;
         }
         
-        #newsarea form {
-        	width: 550px!important;
+        #content #contact #newsarea form {
+        	/* width: 550px!important; */
         	padding: 0px!important;
         	margin: 0px!important;
         }
@@ -284,7 +286,7 @@
         /* CRD_breadcrump, CRD_userprofileportlet */
         #breadcrumbs {
             background-color: #7e858d;
-            width: 926px;
+            width: 942px;
         }
         
         #breadcrumbs span, #breadcrumbs span a, #breadcrumbs h2.breadcumb, #breadcrumbs h2.breadcumb a {
@@ -304,7 +306,7 @@
         }
         
         #content .prodTeaserBig {
-            width: 924px;
+            width: 940px;
             
         }
         #content .horizontalrule {
@@ -356,7 +358,7 @@
         
         .loginbackground {
             min-height: 600px;
-            width: 926px;
+            width: 942px;
             float: left;
             /* background: #575f6a url({!IF(BEGINS($CurrentPage.URL,'http://gigaset'),'/np','')}/servlet/servlet.ImageServer?id={!loginBackgroundImageId}&oid={!$Organization.Id}) no-repeat scroll 0 0!important; */
             background: #575f6a url({!IF(OR(BEGINS($CurrentPage.URL,'http://gigaset'),BEGINS($CurrentPage.URL,'https://gigaset')),'/np','')}/servlet/servlet.ImageServer?id={!loginBackgroundImageId}&oid={!$Organization.Id}) no-repeat scroll 0 0!important;
@@ -369,7 +371,7 @@
         }
         
         .registernavi {
-            width: 926px;
+            width: 942px;
         }
         
         .registernavi table {
@@ -429,17 +431,19 @@
         }
         
         .registernavi ul {
-            width: 891px;
+            width: 907px;
             list-style: none;
             float: left;
             padding-left: 15px;
             margin-left: 10px;
+            margin-right: 10px;
             background: white;
         }
         
         .registercontact {
             margin-left: 10px;
-            width: 564px!important;
+            margin-right: 10px;
+            width: 580px!important;
             padding-left: 15px!important;
             padding-right: 327px!important;
             filter:alpha(opacity=95); /* IE's opacity*/
@@ -448,7 +452,7 @@
         }
         
         .registercontact form {
-            width: 565px!important;
+            width: 581px!important;
         }
         
         .requiredInput {
@@ -816,6 +820,10 @@
         margin-left: 0px;
     }
     
+    #content {
+    	width: 942px!important;
+    }
+    
     #wrapper a:hover {
         text-decoration: none !important;
     }
@@ -826,7 +834,7 @@
     }
     
     #content #prodOver .contentText {
-        width: 926px;
+        width: 942px;
         padding-right: 0px;
         padding-top: 0px;
         padding-left: 0px;
@@ -834,7 +842,7 @@
     }
     
     #content .contentText {
-        width: 926px;
+        width: 942px;
         padding-right: 0px;
         padding-top: 0px;
         padding-left: 0px;
@@ -978,7 +986,7 @@
     }
     
     #content .prodTeaserBig ul {
-        width: 925px;
+        width: 941px;
     }
     
     #content .prodTeaserFrame {
