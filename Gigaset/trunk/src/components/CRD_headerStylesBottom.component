@@ -114,7 +114,21 @@
    			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
    				if (document.getElementById("colRgt") != null && document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
    					document.getElementById("colRgt").style.paddingTop='65px';
-   			}          
+   			}
+   			var imgcounter=0;
+   			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
+   				// /faces/a4j/g/3_3_3.Finalimages/spacer.gif
+   				if (document.getElementsByTagName("img")[i].src.indexOf('/faces/a4j/g/3_3_3.Finalimages/spacer.gif')>=0 && imgcounter<1) {
+   					imgcounter++;
+   					document.getElementsByTagName("img")[i].parentNode.removeChild(document.getElementsByTagName("img")[i]);
+   				}
+   			}
+   			for (var i = 0; i < document.getElementsByTagName("td").length; i++) {
+   				// /faces/a4j/g/3_3_3.Finalimages/spacer.gif
+   				if (document.getElementsByTagName("td")[i].className.indexOf('rich-tabhdr-side-border')>=0) {
+   					document.getElementsByTagName("td")[i].parentNode.removeChild(document.getElementsByTagName("td")[i]);
+   				}
+   			}        
         </script>
        
 </apex:form>
