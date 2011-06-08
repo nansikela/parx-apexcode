@@ -20,11 +20,11 @@ public class topnews {
 	public list<ContentItem__c> getTopNews() {
 		if (cilist.isEmpty()) {
 			try {
-				cilist=[SELECT Id, Title__c, Abstract__c, TopNews__c FROM ContentItem__c 
+				cilist=[SELECT Id, Title__c, Abstract__c, TopNews__c, NewsURL__c FROM ContentItem__c 
 								WHERE isActive__c=true 
 								//AND TopNews__c=true 
-								//AND isPro__c=:isPro 
-								//AND Portal__c=:portal 
+								AND isPro__c=:isPro 
+								AND Portal__c=:portal 
 								AND (release_date__c<=:System.today() OR release_date__c=null) 
 								ORDER BY release_date__c desc 
 								limit :MAXNEWSNUMBER+1];
@@ -45,8 +45,12 @@ public class topnews {
 	// actions
 	public pageReference selectNews() {
 		PageReference newsreaderpage = null;
-        
-        newsreaderpage = new PageReference(Page.page.getUrl() + '?pageid=' + System_Settings.newsreaderpageid + '&newsid=' + selectedNewsId);
+        for (ContentItem__c ci: cilist) {
+        	if (ci.id==selectedNewsId && ci.NewsURL__c!=null && ci.NewsURL__c!='') {
+        		newsreaderpage = new PageReference(ci.NewsURL__c);
+        	}
+        }
+        if (newsreaderpage==null) newsreaderpage = new PageReference(Page.page.getUrl() + '?pageid=' + System_Settings.newsreaderpageid + '&newsid=' + selectedNewsId);
 		
         newsreaderpage.setRedirect(true);
 		return newsreaderpage;

@@ -19,16 +19,16 @@ public class newsreader {
 		homeLabel=System_Settings.getLabel('home');
 		if (newsid!='' && (newsid.length()==15 || newsid.length()==18)) {
 			try {
-				ci=[SELECT Id, Title__c, Abstract__c, Text__c, ImageURL__c FROM ContentItem__c 
-						WHERE isActive__c=true AND Id=:newsid];
+				ci=[SELECT Id, Title__c, Abstract__c, Text__c, ImageURL__c, NewsURL__c FROM ContentItem__c 
+						WHERE isActive__c=true AND Portal__c = :System_Settings.portal AND Id=:newsid];
 			} catch (System.QueryException e) { if (System_Settings.isDebug) throw e; }
 			
 		} else {
 			try {
-				ci=[SELECT Id, Title__c, Abstract__c, Text__c, ImageURL__c FROM ContentItem__c 
+				ci=[SELECT Id, Title__c, Abstract__c, Text__c, ImageURL__c, NewsUrl__c FROM ContentItem__c 
 						WHERE isActive__c=true AND TopNews__c=true 
-						//AND isPro__c=:isPro 
-						//AND Portal__c=:portal 
+						AND isPro__c=:isPro 
+						AND Portal__c=:portal 
 						AND (release_date__c<=:System.today() OR release_date__c=null) 
 						ORDER BY release_date__c desc limit 1];
 				newsid=ci.id;
@@ -39,8 +39,11 @@ public class newsreader {
 	
 	public pageReference openNews() {
 	 	PageReference newsreaderpage = null;
-        
-        newsreaderpage = new PageReference(Page.page.getUrl() + '?pageid=' + System_Settings.newsreaderpageid + '&newsid=' + newsid);
+    	if (ci.NewsURL__c!=null && ci.NewsURL__c!='') {
+    		newsreaderpage = new PageReference(ci.NewsURL__c);
+    	}
+        else
+        	newsreaderpage = new PageReference(Page.page.getUrl() + '?pageid=' + System_Settings.newsreaderpageid + '&newsid=' + newsid);
 		
         newsreaderpage.setRedirect(true);
 		return newsreaderpage;

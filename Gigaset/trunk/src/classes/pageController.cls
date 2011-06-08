@@ -20,7 +20,7 @@ public class pageController {
 	public String pagetemplatename {get;set;}
 	public String defaultlanguage {get;set;}
 
-	public pageController() {
+	public pageController() {	
 		defaultlanguage=SystemSettings.setLanguage();
 		String pageid = System.currentPageReference().getParameters().get('pageid');
 		try {
