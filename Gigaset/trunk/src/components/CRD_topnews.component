@@ -1,5 +1,5 @@
 <apex:component id="topnews" controller="topnews">
-	<apex:outputPanel layout="block" id="contactportletdiv" styleClass="majordiv">
+	<apex:outputPanel layout="block" id="newsportletdiv" styleClass="majordiv">
     <apex:repeat value="{!TopNews}" var="n" id="thenewslist">
     	<apex:outputPanel id="newsitem" layout="block" styleClass="newsitem" style="{!IF(n.Id=lastnewsid,'border-bottom: 0px solid white;','')}">
     		<apex:form id="opennewsform">

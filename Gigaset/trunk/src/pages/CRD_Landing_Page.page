@@ -1,9 +1,9 @@
 <apex:page showheader="false" id="CRD_landing_page" sidebar="false" title="{!$Label.de_title}" 
-		controller="TemplateController" extensions="CRD_Landing_Controller"
+		controller="TemplateController"
 		standardStylesheets="false" 
 		language="{!defaultlanguage}" action="{!init}" >
 
-<apex:composition template="{!$Site.Template}">
+<apex:composition template="{!$Site.Template}">  
 
         <apex:define name="body">
         	<div id="insidecontent" class="loginbackground" >
@@ -17,11 +17,11 @@
 		            				<apex:param name="clicked" value="true" />
 		            			</apex:commandButton>
 		            		</div>
-		            	</div>
+		            	</div> 
 		            	<div id="btnarea2" class="newBTN_area isLeft" style="margin-left: 10px;">
 			                    <div class="newBTN_arrowGrey"></div>
-			                    <div class="newBTNGrey">
-			                    <apex:outputLink value="{!$Page.page}?pageid={!RegistrationPageId}" id="registration_btn2"
+			                    <div class="newBTNGrey">  
+			                    <apex:outputLink value="{!$Page.page}?pageid={!RegistrationID}" id="registration_btn2"
 		                    			rendered="{!$Site.RegistrationEnabled}" styleClass="newBTNGrey" >
 		                        <apex:outputText value="{!$Label.site.new_user_q}" />
 		                        </apex:outputLink>

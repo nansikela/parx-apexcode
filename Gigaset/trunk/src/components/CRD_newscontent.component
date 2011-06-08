@@ -1,6 +1,6 @@
 <apex:component id="newscontent" controller="newsreader" >
 	
-		<apex:outputPanel id="viewoftop" layout="block" styleClass="viewtopnews" style="background: transparent url({!newsbackgroundurl}) no-repeat scroll 0 0 ;">
+		<apex:outputPanel id="viewoftop" layout="block" styleClass="viewtopnews" style="float: left; width: 590px; background: transparent url({!newsbackgroundurl}) no-repeat scroll 0 0 ;">
 			<apex:outputPanel id="newscontent" layout="block" styleClass="viewtopnewscontent">
 				<h1>{!ci.Title__c}</h1>
 				<p><apex:outputText escape="false" value="{!ci.Abstract__c}" /></p>

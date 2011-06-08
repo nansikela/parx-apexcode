@@ -19,7 +19,7 @@
 				headerAlignment="left"
 				headerSpacing="0px"
 				height="100%"
-				width="875px"
+				width="902px"
 			>
 			<apex:tab label="{!tabLabelSalesActions}" name="actions" id="tabSalesActions" rendered="{!showTabSalesActions}" >
 				

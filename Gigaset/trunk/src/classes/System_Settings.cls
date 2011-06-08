@@ -63,18 +63,34 @@ global class System_Settings {
     
     private static String getPortalSign() {
         String sign='00';
-        if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid')) {
-            for (Pages__c p: Pages__c.getAll().values()) {
-                if (p.PageId__c==ApexPages.currentPage().getParameters().get('pageid')) sign=p.Portal__c;
-            }
-        }
-        if (Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().substring(9,10)=='.' && sign=='00')
-            return Site.getCustomWebAddress().substring(7,9);
-        if (Site.getName()!=null && sign=='00')
-            return Site.getName().toLowerCase();
-        if ((sign==null || sign=='00') && ApexPages.currentPage()!=null && ApexPages.currentPage().getUrl()!=null) sign=ApexPages.currentPage().getUrl().substring(ApexPages.currentPage().getUrl().length()-2);
-        System.debug('Found Portal: ' + sign);
-        return sign;
+		// get portal from page
+		if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid')) {
+			for (Pages__c p: Pages__c.getAll().values()) {
+				if (p.PageId__c==ApexPages.currentPage().getParameters().get('pageid')) sign=p.Portal__c;
+			}
+		}
+		System.debug('Found Portal 1: ' + sign);
+		
+		// get portal form custom webaddress
+		if (Site.getCustomWebAddress()!=null) System.debug('####### CustomWebAddress: ' + Site.getCustomWebAddress() + ' / substring: ' + Site.getCustomWebAddress().substring(7,9));
+		if (Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().substring(9,10)=='.' && sign=='00')
+			return Site.getCustomWebAddress().substring(7,9);
+		else if (Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().substring(11,12)=='.' && sign=='00')
+			return Site.getCustomWebAddress().substring(7,11);
+		System.debug('Found Portal 2: ' + sign);
+		
+		// get portal form site name
+		if (Site.getName()!=null && sign=='00')
+			if (Site.getName().toLowerCase().contains('pro'))
+				return Site.getName().substring(0,Site.getName().toLowerCase().indexOf('pro')).toLowerCase();
+			else
+				return Site.getName().toLowerCase();
+		System.debug('Found Portal 3: ' + sign);
+		
+		// get portal form existing url
+		if ((sign==null || sign=='00') && ApexPages.currentPage()!=null && ApexPages.currentPage().getUrl()!=null) sign=ApexPages.currentPage().getUrl().substring(ApexPages.currentPage().getUrl().length()-2);
+		System.debug('Found Portal: ' + sign);
+		return sign;
     }
     
     private static Boolean isPro() {
@@ -236,6 +252,7 @@ global class System_Settings {
         	}
  			if (System_Settings.landing_config != null && cookie.getValue().equals('1') && System_Settings.landing_config.Landing_Page_Aktivierung__c){
 				login = new PageReference( basispage.getUrl() + '?pageid=' + getPageid('Landing')+ addParam);
+       	 		CRD_Landing_Controller.landingpage_already_visited();
        	 	}
        	 	
     	} else {
