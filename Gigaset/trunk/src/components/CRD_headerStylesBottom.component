@@ -70,10 +70,13 @@
  			 	var url = window.location.href;
 
             	//Umschreiben von Links, um Popup zu zeigen beim Klicken! (HIER FÜR TRAININGSMODUL!)
-           		  if(url.indexOf('popup=1') == -1)
+           		//  if(url.indexOf('popup=1') == -1)
                 for(var i = 0; i < document.links.length; i++){
                     if(document.links[i].href.indexOf('/training') != -1){
-                        document.links[i].href = window.location.href + '&popup=1';
+                    	if(window.location.href.indexOf('popup=1') == -1)
+                    		document.links[i].href = window.location.href + '&popup=1';
+                        else
+                        	document.links[i].href = window.location.href;
                         document.links[i].target = '_self';
                         break;
                     }
