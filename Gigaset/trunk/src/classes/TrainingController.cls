@@ -396,7 +396,10 @@ global class TrainingController {
 	global static PageReference initHome() {
 	 	Modules_showThirdpage = false;
 		Modules_showFirstpage = true;
-		Modules_URLPage = '/np/' + CMSpage.getUrl() + '?pageid=' + System_Settings.TrainingId;
+		if(UserInfo.getOrganizationId() == '00D20000000M2NzEAK') //liveId
+			Modules_URLPage = CMSpage.getUrl() + '?pageid=' + SystemSettings.TrainingId;
+		else
+			Modules_URLPage = '/np/' + CMSpage.getUrl() + '?pageid=' + System_Settings.TrainingId;
 		Cookie TopShop;
 		u0 = [select Contact.Id, Contact.firstname, Contact.lastname, Contact.Salutation from User where Id=:UserInfo.getUserId()];
 	    try {
