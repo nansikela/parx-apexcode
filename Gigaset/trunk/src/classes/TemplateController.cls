@@ -124,6 +124,7 @@ public class TemplateController {
 
 	// actions
 	public PageReference init() {
+		CRD_Landing_Controller.init();
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) System_Settings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	if (ApexPages.currentPage().getParameters().containsKey('newsid')) System_Settings.addParam=System_Settings.addParam+'&newsid='+ApexPages.currentPage().getParameters().get('newsid');
 	 	if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin(); 
@@ -136,6 +137,11 @@ public class TemplateController {
 	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return System_Settings.goHome();
 	 	return null; 
 	} 
+	
+	public Id getRegistrationID(){
+		// TODO die Landingpage respektiert zur Zeit nicht die Deeplink Technik
+		return System_Settings.registrationpageid;
+	}	
 	
 	// getter
 	public String getKontaktformularUrl() {
