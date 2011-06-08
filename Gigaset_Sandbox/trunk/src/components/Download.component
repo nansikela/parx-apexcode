@@ -1,0 +1,185 @@
+<apex:component controller="Download" allowDML="true">
+ 
+  <script type="text/javascript">
+var newwindow;
+function poptastic(url)
+{
+	newwindow=window.open(url,'name','height=400,width=600');
+	if (window.focus) {newwindow.focus()}
+}
+</script>
+   
+   <style type="text/css">
+        /* Color for the title bar */
+        
+      .CheckboxCheckIE	{
+    		
+        	<!--[If IE]>margin-left:-30px;<![endif]-->
+	}
+	
+	.CommandButtonCheckIE	{
+		text-align:center;
+		margin-left:222px;
+        	<!--[If !IE]>
+			margin-top:-20px;
+		<![endif]-->	
+	}
+	
+	#content #prodOver .contentText a {
+		background: transparent url(../img/bgButton.gif);
+		display: inline;
+		font-weight: bold;
+		padding-left: 1px;
+		padding-right: 3px;
+		position: relative;
+	}
+	#content #prodOver .contentText a:hover {
+	    background:transparent url(../img/bgButton.gif);
+	    color:white;
+	}
+	
+	.button {
+		font-size: 90%;
+	}
+	
+	.classA {
+		width: 10%;
+		vertical-align: top;
+	}
+	
+	.classB {
+		width: 90%;
+	}
+	
+	.classC {
+		width: 50%;
+	}
+	
+	.classD {
+		width: 50%;
+		text-align:right;
+	}
+
+/*
+
+        .bPageBlock .pbHeader
+        {
+            background-color:orange;
+        }
+        .bPageBlock
+        {     
+        	border-bottom-color:orange;
+        	border-left-color:orange;
+        	border-right-color:orange;
+        	border-top-color:orange;
+        }
+        
+        .bPageBlock .detailList tr td, .bPageBlock .detailList tr th {
+		border-bottom-color: orange;
+	  }
+	  
+	.ptBody {
+	background-color: orange;
+	}
+	*/
+    </style>
+
+<apex:outputPanel id="downloadpanel"  layout="block" style="width:650px;">      
+
+<apex:pageMessages />
+<div style="margin-left: -10px;">
+	<c:contentblock name="nexttopshop" rendered="{!NOT(showUpdatePage)}" />
+</div>
+	<apex:form rendered="{!AND(NOT(showUpdatePage),NOT(showThirdPage))}" >
+		<br/><br/>
+		<apex:commandButton action="{!toUpdatePage}" value="{!$Label.NTS_image_upload}" />
+		<apex:commandButton action="{!goHome}" value="{!$Label.NTS_homepage}"/>
+		<apex:commandButton value="{!$Label.NTS_no_participation}" onclick="if(!confirm('{!$Label.NTS_warning_message}')) return false;" action="{!lockGame}"/>
+	</apex:form>	      
+	
+	<apex:form enctype="multipart/form-data" rendered="{!AND(showUpdatePage,NOT(showThirdPage))}" >
+	
+	<apex:outputLabel value="{!$Label.NTS_Titel}" style="font-weight:bold;"/>
+	<br/><br/>
+	<apex:outputPanel layout="block" >
+	<apex:outputText value="{!$Label.NTS_Message_Update_Page}" escape="false"/>
+	
+	<br/><br/>
+	</apex:outputPanel>
+
+
+<!--			<apex:outputPanel rendered="{!AND(ShowButtons)}">-->
+				<apex:panelGrid columns="2" width="70%" columnClasses="classA, classB" id="linkList2" >
+					<apex:outputLabel value="{!$Label.NTS_file}" style="font-weight:bold;" />
+				    <apex:inputFile value="{!document.body}" filename="{!document.name}" size="54" />
+					
+					<apex:outputLabel value="{!$Label.NTS_description}" for="description" style="font-weight:bold;"/>
+					<apex:inputTextarea value="{!document.description}" id="description" />
+					
+					<br/>
+					<apex:inputField value="{!Art.Art__c}" styleClass="FieldRequiredSelect" />
+					
+					<br/>
+					<apex:panelGroup rendered="{!Table}"><br/></apex:panelGroup>
+					<apex:panelGroup rendered="{!NOT(Table)}"></apex:panelGroup>
+					<apex:panelGroup rendered="{!Table}"><br/></apex:panelGroup>
+					
+					<apex:commandButton action="{!goHome}" value="{!$Label.NTS_homepage}" rendered="{!NOT(Table)}"/>
+					<apex:commandButton action="{!upload}" value="{!$Label.NTS_save}" rendered="{!ShowButtons}" styleClass="CommandButtonCheckIE"/>				
+<!--					 ... style="text-align:center;margin-left:222px;margin-top:-20px;" -->
+				</apex:panelGrid>
+<!--      		</apex:outputPanel>--> 
+      		<br/>
+		    <apex:dataTable rendered="{!Table}" id="linkList" value="{!Terms}" var="doc" width="101%" columnsWidth="50%,33%, 33%" cellspacing="10">
+				<apex:column style="vertical-align: top;">
+					<apex:outputText value="{!$Label.NTS_image}&nbsp;{!doc.Iteration}" escape="false" style="font-weight:bold;"/>
+		      	</apex:column>
+		      	
+				<apex:column style="padding-left:150px;">
+					<apex:image url="/servlet/servlet.FileDownload?file={!doc.term.Id}" width="295"   /> 
+					<br/><br/>
+					<apex:outputText value="{!$Label.NTS_description}: " style="font-weight:bold;" rendered="{!doc.showDescription}"/>
+					<apex:outputText value="{!doc.term.Description}" />
+					<br/>
+					<br/>
+				</apex:column>
+				<apex:column style="vertical-align: top;">
+				   	<apex:commandLink action="{!Del}" value="{!$Label.NTS_del}"  styleClass="button" style="top: 0px;"> 
+						<apex:param name="docId" value="{!doc.term.Id}"/>
+					</apex:commandLink>
+
+
+					<apex:facet name="footer"> 
+          	 				     	 		
+          	 				
+          	 			</apex:facet>
+				</apex:column>
+			</apex:dataTable>
+			
+			<apex:panelGrid columns="2" width="88%" columnClasses="classC, classD" id="linkList3" rendered="{!Table}" style="margin-top:30px;">
+					
+<!--					/{!portalUser}-->
+					<br/>
+					<apex:outputText value="{!$Label.NTS_AGBs} &lt;a href=&quot;javascript:poptastic(&#39;/page?pageid={!GeneralConditionId}&#39;);&quot; style=&quot;background:transparent; color:black; text-decoration:underline; font-weight:normal; &quot; &gt;{!$Label.NTS_AGBs2}&lt;/a&gt;" escape="false" style="margin-left:3px;">  
+						<apex:inputCheckbox value="{!acceptConditions}" id="checkbox"  styleClass="CheckboxCheckIE" />					
+					</apex:outputText>
+					
+					<apex:panelGroup ><br/></apex:panelGroup>
+					<apex:panelGroup ><br/></apex:panelGroup>
+					
+					<apex:commandButton action="{!goHome}" value="{!$Label.NTS_homepage}"/>      	 		
+          	 		<apex:commandButton value="{!$Label.NTS_send}"  onclick="if(!(document.getElementById('{!$Component.checkbox}').checked)){ alert('{!$Label.NTS_conditions_must_be_accepted}'); return false;} else{ if(!confirm('{!$Label.NTS_confirmation}')) return false;}" action="{!updateStatus}" style="margin-top:5px;margin-left: 169px;"/> 
+			</apex:panelGrid> 
+			
+	</apex:form>
+	
+	<apex:form rendered="{!showThirdPage}" >
+		<apex:outputLabel value="{!$Label.NTS_Titel}" style="font-weight:bold;"/>
+		<br/><br/>
+		<apex:outputText escape="false" value="{!$Label.NTS_finalMessage}"/> <br/><br/>
+		<apex:commandButton action="{!goHome}" value="{!$Label.NTS_homepage}"/>
+	</apex:form>
+	
+  </apex:outputPanel>
+
+</apex:component>

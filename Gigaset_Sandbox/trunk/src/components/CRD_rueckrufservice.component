@@ -1,0 +1,79 @@
+<apex:component controller="rueckrufserviceController" allowDML="true" id="crdrueckrufservice" > 
+    <apex:outputPanel id="form" rendered="{!showform}">
+    	<apex:outputPanel id="callbacktitle" styleClass="formTitle" layout="block">
+	    	<h1>{!$Label.callback}</h1>
+	    </apex:outputPanel>
+		<apex:outputPanel id="callbacksubtitle" styleClass="formText" layout="block">
+        	<p>{!$Label.callback_subtitle}</p>
+        </apex:outputPanel>
+        <apex:form id="callbackform">
+        	<style type="text/css">
+        		.errorMsg {
+        			margin-left: 0px;
+        		}
+        	</style>
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Telefon__c.label}*" for="telefon" />
+                <apex:inputField id="telefon" value="{!rq.Telefon__c}" required="true" styleClass="FieldRequired2" />
+            <!-- 
+            <p>{!$Label.callback_at_which_day}<br /> 
+            {!$Label.callback_precise_time} 
+            </p>
+            -->
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Datum__c.label}*" for="datum" />
+                <apex:inputField id="datum" value="{!rq.Datum__c}" required="true" styleClass="FieldRequiredDateInput" />
+            <!-- <p>{!$Label.callback_time_period}<br /> 
+                {!$Label.callback_times}
+            </p>-->
+            <apex:panelGrid columns="4" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4" id="clockgrid" >
+            <apex:outputLabel value="{!$Label.callback_earliest_time}*" for="von" />
+                <apex:inputField id="von" value="{!rq.Von__c}" required="true" styleClass="FieldRequired4" /> 
+                <apex:outputText value="{!$Label.rueckrufservice_uhr}" />
+                <apex:outputText value=" " />
+                
+            <apex:outputLabel value="{!$Label.callback_latest_time}*" for="bis" />
+                <apex:inputField id="bis" value="{!rq.Bis__c}" required="true" styleClass="FieldRequired4" /> 
+                <apex:outputText value="{!$Label.rueckrufservice_uhr}" />
+                <apex:outputText value=" " />
+            </apex:panelGrid>
+            <apex:outputLabel value="{!$Label.callback_which_product}*" for="produkt" />
+                <apex:inputField id="produkt" value="{!rq.Produkt__c}" required="true" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$Label.callback_subject}*" for="thema" />
+                <apex:inputField id="thema" value="{!rq.Thema__c}" required="true" styleClass="FieldRequired" />
+            <!-- <p>{!$Label.callback_provide_further_info}</p> -->
+            <apex:outputLabel value="{!$Label.callback_further_information}" for="info" />
+                <apex:inputField id="info" value="{!rq.Weitere_Informationen__c}" />
+            <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext" >
+            	<p>{!$Label.registration_required_fields}</p>
+        	</apex:outputPanel>
+            <apex:outputPanel id="buttons" layout="block" styleClass="buttondiv" >
+                <div id="btnarea" class="newBTN_area isRight">
+	            	<div class="newBTN_arrow"></div>
+	                <div class="newBTN">
+                		<apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="newBTN" id="save_btn" />
+                	</div>
+                </div>
+            </apex:outputPanel>
+        </apex:form>
+        
+    </apex:outputPanel>
+    <apex:outputPanel id="success" rendered="{!success}">
+        <c:CRD_formResultMessage msgstyle="success" width="small" title="{!$Label.callback}" message="{!$Label.callback_thanks_we_callback}" id="callbackmsgsuccesscomp" />
+    </apex:outputPanel>
+    <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
+    	<apex:outputPanel id="callbacktitle2" styleClass="formTitle" layout="block">
+	    	<h1>{!$Label.callback}</h1>
+	    </apex:outputPanel>
+	    <apex:outputPanel id="formText2" styleClass="formText" layout="block">
+        	<p>{!$Label.callback_error}</p>
+        </apex:outputPanel>
+        <apex:pageMessages id="errorsave" />
+    </apex:outputPanel>
+    <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}">
+        <div id="btnarea" class="newBTN_area isLeft">
+          	<div class="newBTN_arrowBack"></div>
+              <div class="newBTN">
+            	<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+       		</div>
+        </div>
+    </apex:outputPanel>
+</apex:component>

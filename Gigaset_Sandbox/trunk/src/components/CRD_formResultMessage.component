@@ -1,0 +1,24 @@
+<apex:component id="resultMessage" >
+	<apex:attribute name="message" description="This is the message." 
+
+        type="String" required="true"/>
+    <apex:attribute name="title" description="This is the title." 
+
+        type="String" required="true"/>
+    <apex:attribute name="msgstyle" description="This is the style for the message (error or success)." 
+
+        type="String" required="false" default="success"/> 
+    <apex:attribute name="width" description="This is the width for the message (small or wide)." 
+
+        type="String" required="false" default=""/> 
+        
+	<apex:outputPanel id="messagearea" layout="block" styleClass="messageArea{!IF(width='small','Small','')}">
+		<apex:outputPanel layout="block" id="messagetitle" styleClass="messageTitle{!IF(width='small','Small','')} {!IF(width='small','',IF(msgstyle='success','messageTitleSuccess','messageTitleError'))}">
+			<h1>{!title}</h1>
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" id="message" styleClass="messageText">
+			<p>{!message}</p>
+		</apex:outputPanel>
+	</apex:outputPanel>
+	
+</apex:component>

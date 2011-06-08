@@ -1,0 +1,406 @@
+<apex:component controller="DEregisterController" allowDML="true" id="proregistration1" language="{!defaultlanguage}" >
+    <!--  language="{!defaultlanguage}"  -->
+
+                
+    <apex:outputPanel id="register" >
+        <apex:outputPanel id="navi" rendered="{!step<4}">
+            <apex:form id="javascriptform" > 
+            
+                <!-- Define the JavaScript function -->
+                <apex:actionFunction name="goToStep" action="{!goToStep}" rerender="register" >
+                    <apex:param name="step" assignTo="{!step}" value="" />
+                </apex:actionFunction>
+                <apex:actionFunction name="showShippingAddress" action="{!showShippingAddressAction}" rerender="shipping" status="shippingadressstatus" /> 
+                
+                <apex:actionFunction name="relationshipSelection" action="{!relationshipSelectionAction}" rerender="register"  >
+                    <apex:param name="selectedGfk" assignTo="{!selectedGfk}" value="" />
+                </apex:actionFunction>
+                
+                <apex:actionFunction name="previousStep" action="{!previousStep}" rerender="register" />
+            </apex:form>
+            <div class="prodTeaserFrame">
+                <apex:outputPanel id="withprivacymenu" rendered="{!showprivacy}">
+                    <div class="prodTeaserBig"> 
+                    <!-- Start Register Navi -->
+                    <!-- disabled="{!step=0}"  -->
+                    <ul>
+                        <li>
+                        <apex:outputLink value="#"  onclick="goToStep(0)" styleClass="{!active0}" id="plinkstep0">{!$Label.clientdata_privacy}</apex:outputLink>
+                        </li>
+                        <li><apex:outputLink value="#"  onclick="goToStep(1)" styleClass="{!active1}" disabled="{!disabledStep1}" id="plinkstep1" >{!$Label.clientdata_companydata}</apex:outputLink></li>
+                        <li><apex:outputLink value="#"  onclick="goToStep(2)" styleClass="{!active2}" disabled="{!disabledStep2}" id="plinkstep2" >{!$Label.clientdata_userdata}</apex:outputLink></li>
+                        <li><apex:outputLink value="#"  onclick="goToStep(3)" styleClass="{!active3}" disabled="{!disabledStep3}" id="plinkstep3" >{!$Label.clientdata_companyprofile}</apex:outputLink></li>
+                    </ul>
+                    </div>
+                </apex:outputPanel>
+                <apex:outputPanel id="withoutprivacymenu" rendered="{!NOT(showprivacy)}">
+                    <div class="prodTeaserBig"> 
+                    <!-- Start Register Navi -->
+                    <!-- disabled="{!step=0}"  -->
+                    <ul>
+                        <li><apex:outputLink value="#"  onclick="goToStep(1)" styleClass="{!active1}" disabled="{!disabledStep1}" id="linkstep1" >{!$Label.clientdata_companydata}</apex:outputLink></li>
+                        <li><apex:outputLink value="#"  onclick="goToStep(2)" styleClass="{!active2}" disabled="{!disabledStep2}" id="linkstep2" >{!$Label.clientdata_userdata}</apex:outputLink></li>
+                        <li><apex:outputLink value="#"  onclick="goToStep(3)" styleClass="{!active3}" disabled="{!disabledStep3}" id="linkstep3" >{!$Label.clientdata_companyprofile}</apex:outputLink></li>
+                    </ul>
+                    </div>
+                </apex:outputPanel>
+                <div class="colors"> </div>
+            </div>
+        </apex:outputPanel>
+        
+        <div class="contactBox">
+            <div id="contact">
+                <p> </p>
+                <h1>{!$Label.registration}</h1>
+                <p> </p>
+                <apex:outputPanel id="privacy" rendered="{!AND(step=0,showprivacy)}">
+                    <apex:pageMessages id="errorprivacy" />
+                    <apex:outputPanel id="theprivacyiframepanel" style="margin-left: -11px;">
+                    <apex:iframe src="{!privacypageurl}" scrolling="true" id="thePrivacyIframe" width="600px" height="400px"/>
+                    </apex:outputPanel>
+                    <!-- <c:contentblock name="main"/> -->
+                    <apex:form id="privacyform" style="margin-top: 18px;">
+                        <table>
+                        <tr>
+                        <td>
+                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Datenschutzerkl_rung_zugestimmt__c.label}*" for="commit" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="commit" value="{!l.Datenschutzerkl_rung_zugestimmt__c}" required="true" styleClass="FieldRequired" />
+                        </td></tr></table>
+                        <apex:outputLink styleClass="gcbtn" value="javascript:history.go(-1);">{!$Label.back}</apex:outputLink>
+                        <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register" id="nextstep0_btn"  />
+                    </apex:form>
+                </apex:outputPanel>
+                
+                <apex:outputPanel id="step1" rendered="{!step=1}">
+                    <p>{!$Label.registration_subtitle}</p>
+                    <apex:pageMessages id="errorstep1" /> 
+                    <apex:form id="step1form" >
+                        <table>
+                        <tr>
+                        <td>
+                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Company.label}*" for="company" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="company" value="{!l.Company}" required="true" styleClass="FieldRequired" />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Street.label}*" for="street" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="street" value="{!l.Street}" required="true" styleClass="FieldRequiredStreet" />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.State.label}" for="state"  />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="state" value="{!l.State}" required="false" styleClass="FieldRequired" />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.PostalCode.label}{!IF(portal='ae','','*')}" for="plz" />
+						</td><td>	<apex:inputField style="right: 4px;top: 3px;position: relative;" id="plz" value="{!l.PostalCode}" required="{!IF(portal='ae',false,true)}" styleClass="FieldRequired" />
+						</td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.City.label}*" for="city" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="city" value="{!l.City}" required="true" styleClass="FieldRequired" />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Land_Auswahl__c.label}*" for="country" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="country" value="{!l.Land_Auswahl__c}" required="true" styleClass="FieldRequiredSelect" />
+                        </td>
+                        </tr>
+                        </table>
+                        <br />
+                        <table>
+                        <tr>
+                        <td>
+                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Phone.label}" for="phone" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="phone" value="{!l.Phone}" styleClass="FieldRequired2" /><br />
+                                <apex:outputPanel id="errorc1" rendered="{!showPhoneErr}">
+                                    <div class="errorMsg" >
+                                        <apex:outputText escape="false" value="{!errorText}" />
+                                    </div>
+                                </apex:outputPanel>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Fax.label}" for="fax" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="fax" value="{!l.Fax}" styleClass="FieldRequired2" /><br />
+                                <apex:outputPanel id="errorc2" rendered="{!showFaxErr}">
+                                    <div class="errorMsg" >
+                                        <apex:outputText escape="false" value="{!errorText}" />
+                                    </div>
+                                </apex:outputPanel>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Website.label}" for="website" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="website" value="{!l.Website}" styleClass="FieldRequired3" /><br />
+                        </td>
+                        </tr>
+                        </table>
+                        <br />
+                        <apex:outputPanel id="shipping">
+                            <apex:outputPanel id="shippingselection">
+                            
+                            <apex:outputLabel value="{!$Label.register_shipping}" for="showShippingAddress" />
+                            <apex:actionRegion >
+                                <apex:inputCheckbox id="showShippingAddress" onclick="showShippingAddress();" title="{!$Label.register_shipping}" value="{!showShippingAddressDummy}" />
+                            </apex:actionRegion>
+                            </apex:outputPanel>
+                            <apex:outputText value=" " /><apex:actionStatus startText=" {!$Label.global_status}" id="shippingadressstatus" startStyle="vertical-align: baseline;"/>
+                            <apex:outputPanel id="shippingaddress" rendered="{!showShippingaddress}">
+                                <br /><br />
+                                <table>
+                                <tr>
+                                <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Firmenname_Lieferanschrift__c.label}*" for="shippingcompanyname" />
+                                </td><td>   <apex:inputField style="margin-left:0px;right: 4px;top: 3px;position: relative;" id="shippingcompanyname" value="{!l.Firmenname_Lieferanschrift__c}" required="true"  styleClass="FieldRequired" />
+                                </td>
+                                </tr>
+                                <tr>
+                                <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Kontakt_Lieferanschrift__c.label}" for="shippingcontact" />
+                                </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="shippingcontact" value="{!l.Kontakt_Lieferanschrift__c}" styleClass="FieldRequired3" />
+                                </td>
+                                </tr>
+                                </table>
+                                <br />
+                                <table>
+                                <tr>
+                                <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Strasse_Lieferanschrift__c.label}*" for="shippingstreet" />
+                                </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="shippingstreet" value="{!l.Strasse_Lieferanschrift__c}" required="true" styleClass="FieldRequiredStreet" />
+                                </td>
+                                </tr>
+                                <tr>
+                                <td><apex:outputLabel value="{!$ObjectType.Lead.fields.PLZ_Lieferanschrift__c.label}*" for="shippingpostalcode" />
+                                </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="shippingpostalcode" value="{!l.PLZ_Lieferanschrift__c}" required="true" styleClass="FieldRequired" />
+                                </td>
+                                </tr>
+                                <tr>
+                                <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Stadt_Lieferanschrift__c.label}*" for="shippingcity" />
+                                </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="shippingcity" value="{!l.Stadt_Lieferanschrift__c}" required="true" styleClass="FieldRequired" />
+                                </td>
+                                </tr>
+                                <tr>
+                                <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Land_Lieferanschrift__c.label}*" for="shippingcountry" />
+                                </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="shippingcountry" value="{!l.Land_Lieferanschrift__c}" required="true" styleClass="FieldRequiredSelect" />
+                                </td>
+                                </tr></table>
+                            </apex:outputPanel>
+                            <apex:outputPanel id="neededspace" rendered="{!NOT(showShippingaddress)}">
+                                <br />
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        <br />
+                        <div class="requiredInput spacer5">
+                            <apex:outputLink value="#" onclick="previousStep();" styleClass="gcbtn" id="prev1_btn" rendered="{!showprivacy}">{!$Label.back}</apex:outputLink>
+                            <apex:outputLink styleClass="gcbtn" value="javascript:history.go(-1);" rendered="{!NOT(showprivacy)}">{!$Label.back}</apex:outputLink>
+                            <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register" id="nextstep1_btn"  />
+                        </div>
+                    </apex:form>
+                </apex:outputPanel>
+                <apex:outputPanel id="step2" rendered="{!step=2}">
+                    <apex:form id="step2form" >
+                        <table>
+                        <tr>
+                        <td>
+                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Salutation.label}{!IF(portal='se','','*')}" for="salutation" />
+						</td><td>	<apex:inputField style="right: 4px;top: 3px;position: relative;" id="salutation" value="{!l.Salutation}" required="{!IF(portal='se',false,true)}" styleClass="FieldRequiredSelect" />
+						</td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Title.label}" for="title" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="title" value="{!l.Title}" styleClass="FieldRequired4" /><br />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Firstname.label}*" for="firstname" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="firstname" value="{!l.Firstname}" required="true" styleClass="FieldRequired" />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Lastname.label}*" for="lastname" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="lastname" value="{!l.Lastname}" required="true" styleClass="FieldRequired" />
+                        </td></tr></table>
+                        <br />
+                        <div id="phonenumbersdiv">
+                        <apex:panelGrid columns="4" cellpadding="0" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4" >
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Telefon_Kontakt__c.label}" for="contactphone" />
+                            <apex:panelGroup >
+                                <apex:inputField id="contactphone" value="{!l.Telefon_Kontakt__c}" styleClass="FieldRequired2" />
+                                <apex:outputPanel id="error1" rendered="{!showPhoneErr}">
+                                    <div style="margin:0px;" class="errorMsgPhone" >
+                                        <apex:outputText escape="false" value="{!errorText}" />
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:panelGroup>
+                            <apex:outputText value="" />
+                            <apex:outputText value="" />
+                        </apex:panelGrid>
+                        <apex:panelGrid columns="4" cellpadding="0" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4">
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.MobilePhone.label}" for="mobilephone" />
+                            <apex:panelGroup >
+                                <apex:inputField id="mobilephone" value="{!l.MobilePhone}" styleClass="FieldRequired2" />
+                                <apex:outputPanel id="error2" rendered="{!showMobileErr}">
+                                    <div style="margin:0px;" class="errorMsgPhone" >
+                                        <apex:outputText escape="false" value="{!errorText}" />
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:panelGroup>
+                            <apex:outputText value="" />
+                            <apex:outputText value="" />
+                        </apex:panelGrid>
+                        <apex:panelGrid columns="4" cellpadding="0" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4">
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Sonstige_Telefonnummer__c.label}" for="Sonstigephone" />
+                            <apex:panelGroup >
+                                <apex:inputField id="sonstigephone" value="{!l.Sonstige_Telefonnummer__c}" styleClass="FieldRequired2" />
+                                <apex:outputPanel id="error3" rendered="{!showHotlineErr}">
+                                    <div style="margin:0px;" class="errorMsgPhone" >
+                                        <apex:outputText escape="false" value="{!errorText}" />
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:panelGroup>
+                            <apex:outputText value="" />
+                            <apex:outputText value="" />
+                        </apex:panelGrid>
+                        <apex:panelGrid columns="4" cellpadding="0" cellspacing="0" styleClass="InfoserviceTable" columnClasses="IST1, IST2, IST3, IST4">
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Fax_Kontakt__c.label}" for="contactfax" />
+                            <apex:panelGroup >
+                                <apex:inputField id="contactfax" value="{!l.Fax_Kontakt__c}" styleClass="FieldRequired2" />
+                                <apex:outputPanel id="error4" rendered="{!showFaxErr}">
+                                    <div style="margin:0px;" class="errorMsgPhone" >
+                                        <apex:outputText escape="false" value="{!errorText}" />
+                                    </div>
+                                </apex:outputPanel>
+                            </apex:panelGroup>
+                            <apex:outputText value="" />
+                            <apex:outputText value="" />
+                        </apex:panelGrid>
+                        </div>
+                        <div class="link_arrow"></div>
+                        <br />
+                        <table><tr><td>
+                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Email.label}*" for="contactemail" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="contactemail" value="{!l.Email}" required="true" styleClass="FieldRequired" />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Funktion__c.label}" for="function" />
+                        </td><td>   <apex:inputText style="right: 4px;top: 3px;position: relative;" id="functiont" value="{!l.Funktion__c}" styleClass="FieldRequired"  />
+                        <br />
+                        </td>
+                        </tr>
+                        <tr>
+                        <td><apex:outputLabel value="{!$ObjectType.Lead.fields.Abteilung__c.label}" for="department" />
+                        </td><td>   <apex:inputText style="right: 4px;top: 3px;position: relative;" id="departmentt" value="{!l.Abteilung__c}" styleClass="FieldRequired" />
+                        <br />
+                        
+                        </td>
+                        </tr>
+                        </table>
+                        <br />
+                        <div class="requiredInput spacer5 link_arrow">
+                            <apex:outputLink value="#" onclick="previousStep();" styleClass="gcbtn" id="prev1_btn">{!$Label.back}</apex:outputLink>
+                            <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register,additional_styles2,additional_styles1" id="nextstep2_btn" />
+                        </div>
+                    </apex:form>
+                </apex:outputPanel>
+                <apex:outputPanel id="step3" rendered="{!step=3}">
+                    
+                    <apex:form id="step3form" >
+                    
+                <apex:outputPanel id="proVersion" >
+                    <style>
+                        .errorMsg {
+                            margin-left:211px!important;
+                        }
+                        #content #contact form select {
+                            width: 139px!important;
+                        }
+                        #content #contact form select {
+                            width: 139px!important;
+                        }
+                    </style>
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_MITARBEITERTZAHL__c.label}*" for="employeersAmount" />
+                    <apex:inputField id="employeersAmount" value="{!l.PRO_VAR_MITARBEITERTZAHL__c}" required="true" styleClass="FieldRequiredSelect" />
+                    
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_ANZ_SUPPORT__c.label}*" for="supportAmount" />
+                    <apex:inputField id="supportAmount" value="{!l.PRO_VAR_ANZ_SUPPORT__c}" required="true" styleClass="FieldRequiredSelect" />
+                    
+                    
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_KUNDEN_MA_ANZ__c.label}" for="customerAmount" />
+                    <apex:inputField id="customerAmount" value="{!l.PRO_VAR_KUNDEN_MA_ANZ__c}" required="false" styleClass="FieldRequiredSelect" />
+                    
+                
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_SCHWERPUNKT__c.label}" for="companySpecialization" />
+                    <apex:inputField id="companySpecialization" value="{!l.PRO_VAR_SCHWERPUNKT__c}" required="false" styleClass="pick"  />
+                    
+                    
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_SCHWERPUNKT_ANDERER__c.label}" for="otherCompanySpecialization" />
+                    <apex:inputField id="otherCompanySpecialization" value="{!l.PRO_VAR_SCHWERPUNKT_ANDERER__c}" required="false" styleClass="FieldRequiredSelect" />
+                
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_ERFAHRUNGEN__c.label}" for="practise" />
+                    <apex:inputField id="otherCompanySpecializationAmount" value="{!l.PRO_VAR_ERFAHRUNGEN__c}" required="false" styleClass="pick"  />
+                    
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_SYSTEM_LIEFERANTEN__c.label}" for="sysPartner" />
+                    <apex:inputField id="sysPartner" value="{!l.PRO_SYSTEM_LIEFERANTEN__c}" required="false" styleClass="pick"  />
+                
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_VAR_SYSTEMPARTNER_WEITERE__c.label}" for="furtherSysPartner" />
+                    <apex:inputField id="furtherSysPartner" value="{!l.PRO_VAR_SYSTEMPARTNER_WEITERE__c}" required="false" styleClass="FieldRequiredSelect" />
+                
+                    <apex:outputLabel value="{!$ObjectType.Lead.fields.Description.label}" for="description" />
+                    <apex:inputField id="description" value="{!l.Description}" required="false" styleClass="FieldRequiredSelect" />
+                
+                </apex:outputPanel>
+                    <br />
+                    <div class="requiredInput spacer5">
+                        <apex:outputLink value="#" onclick="previousStep();" styleClass="gcbtn" id="prev2_btn">{!$Label.back}</apex:outputLink>
+                        <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register,additional_styles2,additional_styles1" id="nextstep3_btn"  />
+                    </div> 
+                    
+                </apex:form>
+                
+                </apex:outputPanel>
+                <apex:outputPanel id="additionaltext" rendered="{! AND(step<3,step>0)}">
+                    <p>{!$Label.registration_required_fields}</p>
+                </apex:outputPanel>
+                <apex:outputPanel id="success" rendered="{!step=4}">
+                    <p>{!$Label.registration_thanks}</p>
+                    <!-- <p>{!$Label.registration_sendaccountto} <b>{!l.Email}</b></p> -->
+                </apex:outputPanel>
+                <apex:outputPanel id="saveerror" rendered="{!step=99}">
+                    <p>{!$Label.registration_error}</p>
+                    <apex:pageMessages id="error" />
+                </apex:outputPanel>
+                <div class="requiredInput spacer5">
+                    <apex:outputPanel id="backaftersuccess" rendered="{!step>3}" >
+                        <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                    </apex:outputPanel>
+                </div>
+            </div>
+            <span id="end"></span>
+        </div>
+    </apex:outputPanel>
+    <apex:outputPanel id="additional_styles1" rendered="{!step!=3}"> 
+    <style>
+
+        .errorMsg {
+            margin-left:0px;
+        }
+
+        #content #contact form .error {
+            margin-left:0px;
+        }
+
+    </style>
+    </apex:outputPanel>
+    <apex:outputPanel id="additional_styles2" rendered="{!step=3}"> 
+    <style>
+        .errorMsg {
+            margin-left:211px;
+        }
+    </style>
+    </apex:outputPanel>
+    <style>
+        .btn, .btnGo, .btnImportant, .btnSharing, .btnDisabled, .subscribeNow, .upgradeNow, .btnWhatsNew {
+            overflow: visible;
+        }
+    </style>
+</apex:component>

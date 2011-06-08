@@ -1,0 +1,22 @@
+<apex:page showheader="false" id="CRD_login" sidebar="false" title="{!$Label.de_title}"  controller="TemplateController" standardStylesheets="false" language="{!defaultlanguage}" action="{!init}" >
+
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+        	<c:contentblock name="Teaser" />
+        	<!-- TODO background has to be loaded from dynamic document -->
+        	<div id="insidecontent" class="loginbackground" >
+                <div class="contentText">
+                    <div id="contact" class="transparent_login" >
+                        <p>{!$Label.login_intro}</p>
+                        <c:CRD_Login id="login" />
+                        <apex:outputPanel layout="block" id="posttext" style="float: left;">
+                        	<p>{!$Label.login_posttext}</p>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+            </div>
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

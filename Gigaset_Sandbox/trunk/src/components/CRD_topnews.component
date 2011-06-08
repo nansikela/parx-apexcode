@@ -1,0 +1,16 @@
+<apex:component id="topnews" controller="topnews">
+	<apex:outputPanel layout="block" id="newsportletdiv" styleClass="majordiv">
+    <apex:repeat value="{!TopNews}" var="n" id="thenewslist">
+    	<apex:outputPanel id="newsitem" layout="block" styleClass="newsitem" style="{!IF(n.Id=lastnewsid,'border-bottom: 0px solid white;','')}">
+    		<apex:form id="opennewsform">
+	    		<apex:commandLink id="openNews" action="{!selectNews}">
+	    			<apex:param name="selectedNewsId" assignTo="{!selectedNewsId}" value="{!n.Id}"/>
+	    		<h1>{!n.Title__c}</h1>
+	    		<p><apex:outputText escape="false" value="{!n.Abstract__c}"/></p>
+	    		
+	    		</apex:commandLink>
+    		</apex:form>
+    	</apex:outputPanel>
+    </apex:repeat>
+    </apex:outputPanel>
+</apex:component>

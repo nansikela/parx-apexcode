@@ -1,0 +1,19 @@
+<apex:component allowDML="true" id="werbemittelcomp_final" controller="DEwerbemittelController">
+ 
+
+    <h1>{!$Label.userdata_ueberschrift_werbemittelbestellung}</h1>
+<br />
+      <apex:outputText value="{!$Label.userdata_order_last_step}" styleClass="Description"/> 
+<br /><br /><br />
+    <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                
+
+    <style>
+            .Description{
+                vertical-align: text-top;
+                color: black;
+                font-size: 12px;
+            }
+    </style>
+  
+</apex:component>

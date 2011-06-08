@@ -1,0 +1,7 @@
+<apex:component id="footercopy" controller="DETemplateController">
+    <div id="footer_copy">
+        <p>
+        {!Copyright}
+        </p>
+    </div>
+</apex:component>

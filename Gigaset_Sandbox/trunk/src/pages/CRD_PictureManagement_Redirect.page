@@ -1,0 +1,3 @@
+<apex:page controller="CRD_PM_Redirect_Controller" action="{!callPM}">
+Please wait a moment...
+</apex:page>

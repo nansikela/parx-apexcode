@@ -1,0 +1,110 @@
+<apex:component controller="DEpresetController" allowDML="true" id="depreset">
+	<apex:outputPanel id="presetpanel">
+		<apex:form id="javascriptform" >
+			<!-- Define the JavaScript function -->
+			<apex:actionFunction name="goToStep" action="{!goToStep}" rerender="presetpanel" >
+				<apex:param name="step" assignTo="{!step}" value="" />
+			</apex:actionFunction>
+			<apex:actionFunction name="relationshipSelection" action="{!relationshipSelectionAction}" rerender="presetpanel"  >
+				<apex:param name="selectedGfk" assignTo="{!selectedGfk}" value="" />
+			</apex:actionFunction>
+			
+			<apex:actionFunction name="previousStep" action="{!previousStep}" rerender="presetpanel" />
+		</apex:form>
+		<div class="contactBox">
+			<div id="contact">
+				<p> </p>
+				<h1>{!$Label.presetpage_headline}</h1>
+				<p> </p>
+				<apex:outputPanel id="step1" rendered="{!step=1}">
+					<!-- <apex:pageMessages id="errorstep1" /> -->
+					<apex:form id="step1form" >
+						<p><apex:outputText value="{!$Label.presetpage_subtitle}" /></p>
+						<p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
+						<apex:outputPanel id="classification" rendered="{!NOT(isPro)}">
+							<apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanal" />
+								<apex:inputField id="handelskanal" value="{!u.Handelskanal__c}"  styleClass="FieldRequiredSelect" required="true" onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" />
+								<!-- onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" -->
+							<apex:outputPanel id="distribution" rendered="{!showDistribution}">
+								<apex:outputLabel value="{!$ObjectType.Lead.fields.Distribution__c.label}*" for="distributionfield" />
+								<!-- 
+									<apex:inputField id="distributionfield" value="{!u.Distribution__c}" required="true" styleClass="FieldRequired" style="width:209px" />
+								-->
+								<apex:selectList value="{!selectedDistribution}" multiselect="true" styleClass="FieldRequiredSelect" id="distributionselectlist" size="4">
+									<apex:selectOptions value="{!items}"/>
+								</apex:selectList>
+								<apex:panelGrid columns="2" rendered="{!showDistributionErr}">
+									<apex:outputText value=" " style="width:209px;" />
+									<apex:panelGroup >
+										<div class="errorMsg" style="margin-left: 209px;">
+											<apex:outputText escape="false" value="{!errorText}" />
+										</div>
+									</apex:panelGroup>
+								</apex:panelGrid>
+							</apex:outputPanel>
+							
+						</apex:outputPanel>
+						<apex:outputPanel id="classificationPro" rendered="{!isPro}">
+							<apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanalpro" />
+								<apex:inputField id="handelskanalpro" value="{!u.Handelskanal__c}"  styleClass="FieldRequiredSelect" required="true"  />
+							 
+							<apex:outputLabel value="{!$ObjectType.Lead.fields.Pro_Distribution__c.label}*" for="proDistribution" />
+								<apex:inputField id="proDistribution" value="{!u.Pro_Distribution__c}"  styleClass="pick" required="true" />
+							
+						</apex:outputPanel>
+						
+					<br />
+					<!-- <p><b>{!$Label.registration_companyprofiledata}</b></p> -->
+					<div class="requiredInput spacer5">
+						<apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9" style="margin-left: 450px !important;" rerender="presetpanel" id="nextstep1_btn"  />
+					</div> 
+				</apex:form>
+				</apex:outputPanel>
+				<apex:outputPanel id="additionaltext" rendered="{!step<2}">
+					<p>{!$Label.presetpage_requiredfield}</p>
+				</apex:outputPanel>
+				<apex:outputPanel id="success" rendered="{!step=2}">
+					<p>{!$Label.presetpage_thanks}</p>
+				</apex:outputPanel>
+				<apex:outputPanel id="saveerror" rendered="{!step=99}">
+					<p>{!$Label.presetpage_error}</p>
+					<apex:pageMessages id="error" />
+				</apex:outputPanel>
+				<div class="requiredInput spacer5">
+					<!-- 
+					<apex:outputPanel id="back" rendered="{!step=1}" >
+						<apex:outputLink styleClass="anmelden" value="javascript:history.go({!backcounter});">{!$Label.back}</apex:outputLink>
+					</apex:outputPanel>
+					-->
+					<!-- 
+					<apex:outputPanel id="previousStep" rendered="{!AND(step>1,step<4)}">
+						<apex:form id="previousstepform">
+							<div class="spacer5"><apex:commandLink styleClass="anmelden" action="{!previousStep}" value="{!$Label.back}" rerender="register" id="previousstep_btn"  /></div> 
+						</apex:form>
+					</apex:outputPanel>
+					-->
+					<apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
+						<apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+					</apex:outputPanel>
+				</div>
+			</div>
+			<span id="end"></span>
+		</div>
+	</apex:outputPanel>
+	<style>
+		.btn, .btnGo, .btnImportant, .btnSharing, .btnDisabled, .subscribeNow, .upgradeNow, .btnWhatsNew {
+			overflow: visible;
+			width: 60px!important;
+		}
+		/* ------------- PICKLIST ANPASSUNG  -----------------*/
+
+.pick {
+		display: inline!important;
+}
+.requiredInput table {
+		display: none!important;
+}
+
+
+	</style>
+</apex:component>

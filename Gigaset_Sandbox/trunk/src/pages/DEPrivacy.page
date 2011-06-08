@@ -1,0 +1,3 @@
+<apex:page controller="DEPrivacyRedirectController" action="redirect" id="DEprivacyRedirect">
+
+</apex:page>

@@ -1,0 +1,12 @@
+<apex:component id="footer" >
+	<apex:attribute name="isPro" description="This informs us about the user login." 
+
+        type="Boolean" required="false" assignTo="{!isPro}"/>
+
+	<div id="footer">
+		<div id="footerlogos">
+			<apex:image value="{!IF(isPro,URLFOR($Resource.gigasetextranetZIP, 'img/gigasetpro_logo.png'),URLFOR($Resource.gigasetextranetZIP, 'img/made_in_germany_logo.png'))}" alt="{!IF(isPro,'Gigaset Pro','Made in Germany')}" styleClass="lft" />
+			<apex:image value="{!IF(isPro,URLFOR($Resource.gigasetextranetZIP, 'img/inspiring_conversation_logo_pro.png'),URLFOR($Resource.gigasetextranetZIP, 'img/siemens_logo.png'))}" alt="{!IF(isPro,'Inspiring Conversation','Logo Siemens')}" styleClass="rght" height="18" width="108" />
+		</div>
+	</div>
+</apex:component>

@@ -1,0 +1,100 @@
+<apex:page controller="DEKontaktControllerGenerisch" id="CRD_Kontaktformulargenerisch" showheader="false" sidebar="false" title="{!$Label.de_title}" language="{!defaultlanguage}" >
+<apex:composition template="{!$Site.Template}">  
+        <apex:define name="body">
+                <!--  <div id="prodOver"> -->
+                    <!--Start LeftSide Content -->
+                <apex:outputPanel id="global" rendered="{!isAuthenticated}">
+                        <div class="contentTextSmall">
+                            <div id="contact" class="small">
+                                <apex:outputPanel layout="block" id="formtitle" styleClass="formTitle">
+                                    <h1>{!HeaderLabel}</h1>
+                                </apex:outputPanel>
+                              <apex:outputPanel id="form" rendered="{!showform}">
+                                <apex:outputPanel layout="block" id="formtext1" styleClass="formText">
+                                   <p>{!TextLabel}</p>
+                                </apex:outputPanel>
+
+                                  <apex:form id="kontaktform" >
+                                      <apex:outputLabel value="{!$ObjectType.Request__c.fields.Text__c.label}"  />
+                                         <apex:inputField value="{!rq.Text__c}" />
+                                      <apex:outputPanel id="buttons" layout="block" styleClass="buttondiv" >
+                                        <div id="btnarea" class="newBTN_area isLeft">
+                                                <div class="newBTN_arrow"></div>
+                                                <div class="newBTN">
+                                                    <apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+                                                </div>
+                                            </div>
+                                        <div id="btnarea" class="newBTN_area isRight">
+                                                <div class="newBTN_arrow"></div>
+                                                <div class="newBTN">    
+                                                    <apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="newBTN" id="save_btn" />
+                                                </div>
+                                            </div>
+                                      </apex:outputPanel>
+                                  </apex:form>
+                              </apex:outputPanel>
+                              <apex:outputPanel id="success" rendered="{!success}">
+                                <apex:outputPanel layout="block" id="formtext2" styleClass="formText">
+                                  <p>{!ReturnLabel}</p>
+                                 </apex:outputPanel>
+                              </apex:outputPanel>
+                              <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
+                                <apex:outputPanel layout="block" id="formtext3" styleClass="formText">
+                                  <p>{!$Label.contactform_error}</p>
+                                  </apex:outputPanel>
+                                  <apex:pageMessages id="errorsave" />
+                              </apex:outputPanel>
+                              <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}" >
+                                  <apex:form id="backbuttonform">
+                                      <apex:outputPanel id="buttons" layout="block" styleClass="buttondiv" >
+                                        <div id="btnarea" class="newBTN_area isLeft">
+                                                <div class="newBTN_arrowBack"></div>
+                                                <div class="newBTN">
+                                                    <apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+                                                </div>
+                                        </div>
+                                      </apex:outputPanel>
+                                  </apex:form>
+                              </apex:outputPanel>
+                            </div>
+                        </div>
+
+                    <!--End LeftSide Content -->
+            </apex:outputPanel>
+                
+                    <!--Start RightSide Content -->
+                    <div id="colRgt">
+                        
+                        <apex:outputPanel id="rightcolumn" rendered="{!NOT(isAuthenticated)}">
+                        <!--Start oneColInfo -->
+                        <div class="oneCol">
+                            <div class="oneColInfo">
+                                <c:contentblock name="rghtcol1" />
+                            </div>
+                            <div class="oneColBtm">
+                                <c:contentblock name="rghtcol1Btm" />
+                            </div>
+                        </div>
+                        <!--End oneColInfo --> 
+                        <!--Start oneColInfo -->
+                        <div class="oneCol">
+                            <div class="oneColInfo">
+                                <c:contentblock name="rghtcol2" />
+                            </div>
+                            <div class="oneColBtm">
+                                <c:contentblock name="rghtcol2Btm" />
+                            </div>
+                        </div>
+                        <!--End oneColInfo -->
+                        </apex:outputPanel>
+                    </div> 
+                    <!--End RightSide Content --> 
+    </apex:define>
+</apex:composition>
+
+<style>
+          .datePicker{
+            display:none;
+        }
+</style>
+</apex:page>

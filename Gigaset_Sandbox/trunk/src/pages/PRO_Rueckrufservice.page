@@ -1,0 +1,49 @@
+<apex:page showheader="false" id="pro_rueckrufservice" sidebar="false" controller="DETemplateController"  title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!init}" >
+
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+        <!-- <div id="prodOver"> -->
+            <!--Start LeftSide Content -->
+            <!-- <div class="contentText"> -->
+                    <div class="contactBox">
+                    <div id="contact">
+                        <c:PRO_rueckrufservice rendered="{!isAuthenticated}"/>
+                    </div>
+                        <span id="end"></span>
+                    </div>
+                <!-- </div> -->
+                <!--End LeftSide Content --> 
+                <!--Start RightSide Content -->
+            <div id="colRgt">
+                <c:PRO_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),showcontactportlet)}" />
+                <c:PRO_userprofileportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp))}" />
+                
+                <!--Start oneColInfo -->
+                <div class="oneCol">
+                    <div class="oneColInfo">
+                        <c:contentblock name="rghtcol1" />
+                    </div>
+                    <div class="oneColBtm">
+                        <c:contentblock name="rghtcol1Btm" />
+                    </div>
+                </div>
+                <!--End oneColInfo --> 
+                <!--Start oneColInfo -->
+                <div class="oneCol">
+                    <div class="oneColInfo">
+                        <c:contentblock name="rghtcol2" />
+                    </div>
+                    <div class="oneColBtm">
+                        <c:contentblock name="rghtcol2Btm" />
+                    </div>
+                </div>
+                <!--End oneColInfo -->
+            </div>
+            <!--End RightSide Content --> 
+        <!-- </div> -->
+        <!-- end prodOver -->
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

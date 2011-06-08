@@ -1,0 +1,1036 @@
+<apex:page controller="DETemplateController" language="{!defaultlanguage}" id="training" action="{!firstPage}">
+
+<!--die 4 Button von der Startseite. Content eingebunden-->
+    <div style="display:none;color:{!IF(isPro,"white","black")};">
+        <div id='AboutLektora' style='padding:10px;'>
+            <c:contentblock name="1-lektora" rendered="true" />
+        </div>
+        <div id='yourbenefits' style='padding:10px;'>
+            <c:contentblock name="2-YourBenefits" rendered="true" />
+        </div>
+        <div id='gettingstarted' style='padding:10px;'>
+            <c:contentblock name="3-GettingStarted" rendered="true" />
+        </div>
+        <div id='news' style='padding:10px;'>
+            <c:contentblock name="4-News" rendered="true" />
+        </div>
+    </div>
+    
+<apex:form id="training_form"> 
+        
+<!--        hier sind die script/css in der Seite hinzugefügt-->
+        <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/>
+        <apex:includeScript value="{!$Resource.jquery142}"/>
+        <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+        <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
+        <apex:stylesheet value="{!URLFOR($Resource.scrollerTest, 'scrollerTest/slider.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.scrollerTest, 'scrollerTest/slider.js')}"/>
+        <apex:includeScript value="{!$Resource.virtualpaginatejs}"/>
+        
+        <script>
+        
+//      für die letzte Seite, mit dem schwarz / durchsichtich Seite. Es verändert eigentlich nur ein div und zeigt diese bild an ...
+
+            function changePropertySecondPage()  {  
+            	initModuleLoad();
+                document.getElementById("textmoodbild1").style.display = 'inline';
+                document.getElementById("textmoodbild1").style.opacity = 0.85; //0.95 
+                document.getElementById("textmoodbild1").style.filter = "alpha(opacity:85)"; //95
+                document.getElementById("textmoodbild2").style.display = 'inline';
+                //window.open("{!Modules_LektoraURL}","Training","menubar=no,width=1024,height=768,toolbar=no");
+                var width = 980;
+                var height = 695;
+                var left = parseInt((screen.availWidth/2) - (width/2));
+                var top = parseInt((screen.availHeight/2) - (height/2));
+                var windowFeatures = "width=" + width + ",height=" + height + ",menubar=no,toolbar=no,left=" + left + ",top=" + top + "screenX=" + left + ",screenY=" + top;
+                window.open("{!Modules_LektoraURL}", "Training", windowFeatures);  
+                      
+                return true;
+            } 
+        </script>
+       	
+       	<apex:actionFunction name="initModuleLoad" action="{!initModuleResult}" rerender="inline1"/>
+        
+        <script>
+            $(document).ready(function(){
+                //Examples of how to assign the ColorBox event to elements
+            /*  $("a[rel='example1']").colorbox();
+                $("a[rel='example2']").colorbox({transition:"fade"});
+                $("a[rel='example3']").colorbox({transition:"none", width:"75%", height:"75%"});
+                $("a[rel='example4']").colorbox({slideshow:true});
+                $(".example5").colorbox();
+                $(".example6").colorbox({iframe:true, innerWidth:425, innerHeight:344});
+                $(".example7").colorbox({width:"80%", height:"80%", iframe:true});
+                $(".example8").colorbox({width:"50%", inline:true, href:"#inline_example1"});
+                $(".example10").colorbox({inline:true, href:"#inline_example2",
+                onClosed:function(){ $.colorbox({inline:true, href:"#inline_example1"});}
+                
+                });
+                */
+                
+                //wenn man auf 1 den 4 Buttons clickt ist folgende ausgeführt.
+                //warum ist manchmal der Content nicht richtig aufgeladen ???
+                
+                $(".AboutLektora").colorbox({inline:true, href:"#AboutLektora", opacity:0.5, innerWidth:600, innerHeight: 300, overlayClose:false,
+                    onLoad:function(){
+                        document.getElementById("cboxContent").style.background = "white" ;
+                        document.getElementById("cboxMiddleLeft").style.background = "white" ;
+                        document.getElementById("cboxBottomLeft").style.background = "white" ;
+                        document.getElementById("cboxBottomCenter").style.background = "white" ;
+                        document.getElementById("cboxBottomRight").style.background = "white" ;
+                        document.getElementById("cboxMiddleRight").style.background = "white" ;
+                        document.getElementById("cboxTopRight").style.background = "white" ;
+                        document.getElementById("cboxTopCenter").style.background = "white" ;
+                        document.getElementById("cboxTopLeft").style.background = "white" ;
+                        document.getElementById("cboxClose").style.top = "-7px" ;
+                        document.getElementById("cboxClose").style.right = "-5px" ;
+                    }
+                });
+                $(".yourbenefits").colorbox({inline:true, href:"#yourbenefits", opacity:0.5, innerWidth:600, innerHeight: 300, overlayClose:false,
+                    onLoad:function(){
+                        document.getElementById("cboxContent").style.background = "white" ;
+                        document.getElementById("cboxMiddleLeft").style.background = "white" ;
+                        document.getElementById("cboxBottomLeft").style.background = "white" ;
+                        document.getElementById("cboxBottomCenter").style.background = "white" ;
+                        document.getElementById("cboxBottomRight").style.background = "white" ;
+                        document.getElementById("cboxMiddleRight").style.background = "white" ;
+                        document.getElementById("cboxTopRight").style.background = "white" ;
+                        document.getElementById("cboxTopCenter").style.background = "white" ;
+                        document.getElementById("cboxTopLeft").style.background = "white" ;
+                        document.getElementById("cboxClose").style.top = "-7px" ;
+                        document.getElementById("cboxClose").style.right = "-5px" ;
+                    }
+                });
+                $(".gettingstarted").colorbox({inline:true, href:"#gettingstarted", opacity:0.5, innerWidth:600, innerHeight: 300, overlayClose:false,
+                    onLoad:function(){
+                        document.getElementById("cboxContent").style.background = "white" ;
+                        document.getElementById("cboxMiddleLeft").style.background = "white" ;
+                        document.getElementById("cboxBottomLeft").style.background = "white" ;
+                        document.getElementById("cboxBottomCenter").style.background = "white" ;
+                        document.getElementById("cboxBottomRight").style.background = "white" ;
+                        document.getElementById("cboxMiddleRight").style.background = "white" ;
+                        document.getElementById("cboxTopRight").style.background = "white" ;
+                        document.getElementById("cboxTopCenter").style.background = "white" ;
+                        document.getElementById("cboxTopLeft").style.background = "white" ;
+                        document.getElementById("cboxClose").style.top = "-7px" ;
+                        document.getElementById("cboxClose").style.right = "-5px" ;
+                    }
+                });
+                $(".news").colorbox({inline:true, href:"#news", opacity:0.5, innerWidth:600, innerHeight: 300, overlayClose:false,
+                    onLoad:function(){
+                        document.getElementById("cboxContent").style.background = "white" ;
+                        document.getElementById("cboxMiddleLeft").style.background = "white" ;
+                        document.getElementById("cboxBottomLeft").style.background = "white" ;
+                        document.getElementById("cboxBottomCenter").style.background = "white" ;
+                        document.getElementById("cboxBottomRight").style.background = "white" ;
+                        document.getElementById("cboxMiddleRight").style.background = "white" ;
+                        document.getElementById("cboxTopRight").style.background = "white" ;
+                        document.getElementById("cboxTopCenter").style.background = "white" ;
+                        document.getElementById("cboxTopLeft").style.background = "white" ;
+                        document.getElementById("cboxClose").style.top = "-7px" ;
+                        document.getElementById("cboxClose").style.right = "-5px" ;
+                    }
+                });
+            });
+        
+        </script>
+
+<!-- This contains the hidden content for inline calls -->
+        <div style="font-family: Arial,Helvetica,Geneva,sans-serif; width: 940px; height: 28px; position: absolute; top: 0px; left: 0px; padding-top: 3px;">
+        
+<!-- inline1 ist die erste Seite. Es ist in diesem outputPanel angezeigt. Die anderen "outputpanel", bzw. div (in HTML) sind versteckt-->
+            <apex:outputPanel id="inline1" rendered="{!Modules_showFirstpage}">
+            
+<!-- home button -->
+				<table style="table-layout:auto;" class="tblNavigationTop" >
+                <tr>
+                 <td width="10px">
+               	 </td>
+                <td >
+                  <div class="navigationTop">
+                    <a id="click1" href="#">
+                    {!Campus_Title_1}
+                    </a>
+                  </div>
+                <!--  </apex:outputPanel>-->
+                 </td> 
+<!-- für die anderen Button rechts vom "home" button-->
+                <apex:repeat value="{!Books}" var="book" id="theRepeat">
+                    
+                    <td class="navigationTopSection">
+                     <div class="navigationTop" >    
+                        <apex:commandLink value="{!UPPER(book.book.Titel__c)}" action="{!secondPage}" > <!-- style="margin-left:35px;" -->
+                            <apex:param name="param" value="{!book.book.Titel__c}"/>
+                        </apex:commandLink>
+                     </div> 
+                    </td>
+                </apex:repeat> 
+                <td width="10px">
+                </td>
+               </tr>
+                </table>
+                
+<!-- unter die haupt buttons...-->
+                <div class="container" style="margin: 50px 0px 0px 69px; position: relative; height: 210px;">
+                    <div class="left-element" style="width: 400px;">
+                    	<apex:outputPanel styleClass="welcomeheadline">
+                        	{!Campus_Welcome},<br>{!salutation} {!if(OR(ISNULL(salutation),ISBLANK(salutation)), ' ',lastname + '!')}</br>
+                        </apex:outputPanel>
+                        
+                        <p><apex:outputText styleClass="description" escape="false" value="{!Campus_main_Description1} {!Campus_main_Description2}"/></p>
+                        
+                        <br/>
+                    </div>
+                    <div class="right-element" style="padding:2px 0px 0px 22px; width: 452px; height: 383px;">
+
+<!--das bild von den 5 bücher-->
+                           <apex:image usemap="#Landkarte" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Books_grey.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/buecher.png'))}" style="padding-left:18px; border:0px;"/>
+                    
+<!-- der "repeat" widerholt für die 5 linken (für jede Buch!) -->
+                          <map name="Landkarte">
+                           <apex:repeat value="{!Books}" var="book" id="Repeat2">
+
+<!-- der schiefe Text mit den link... ein Matrix sollte benutzt werden da es meines Wissens in IE die anzeige möglichkeit ist -->
+                                 
+                                 <div class="bookDiv" style="position:absolute; vertical-align: middle; text-align: right; width:250px; height:65px; top: {!book.Helfer4}px; left:{!book.Helfer3 - 15}px; -ms-filter:'progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, sizingMethod='auto expand')'; filter:progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, sizingMethod='auto expand'); -moz-transform:  matrix({!book.Helfer5}, {!book.Helfer8}pt, 65pt); -moz-transform-origin:  -100px , 125px; -webkit-transform:  matrix({!book.Helfer5}, {!book.Helfer7 -65} , 85); -o-transform: matrix({!book.Helfer5}, {!book.Helfer7 -65}, 25);"> 
+                               		<area shape="poly" coords="{!book.x1},{!book.y1},{!book.x2},{!book.y2},{!book.x3},{!book.y3},{!book.x4},{!book.y4}" href="#" onclick="{!book.function}();" alt="{!book.book.Titel__c}" title="{!book.book.Titel__c}" />                                
+                                    	<apex:actionFunction name="{!book.function}" rerender="training_form" action="{!secondPage}" >
+                                    		<apex:param name="param" value="{!book.book.Titel__c}" />
+                                   		</apex:actionFunction>
+                   						
+                                     <apex:commandLink action="{!secondPage}" value="{!book.book.Titel__c}" style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:15pt; ">                          <!--vertical-align:middle; style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:16pt; vertical-align:middle; position: relative; top:17px;" -->
+                                        <apex:param name="param" value="{!book.book.Titel__c}" />
+                                    </apex:commandLink>
+                                </div>
+
+<!-- die roten Buchhänger -->
+                                <apex:image style="padding-left:30px; position: absolute; top: {!book.Helfer_BH_Vertical}px; left:{!book.Helfer_BH}px" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Bookmark_offline.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/offline/buchhaenger_offline.png'))}" rendered="{!book.book.Buchhaenger__c}"/>    
+
+<!-- die nummer im Buchhänger -->
+                                <apex:outputText rendered="{!book.book.Buchhaenger__c}" styleClass="bookmarknumber" style="position: absolute; top: {!book.Helfer_BH_Vertical+75}px; left:{!book.Helfer_BH+31}px" value="{!ROUND(book.book.New_Modules__c,0)}"  />
+                           </apex:repeat>
+                       </map>
+                    </div>
+                </div>
+                
+<!-- die 4 buttons...-->
+                <div  class="box_btn" style="position: relative; margin-left:69px; top: 0px;">
+                    <span class="class1">
+                        <a id="click1" href="#" class="AboutLektora" style="position: absolute; top:0; left:0;">{!Campus_1_Title}</a>
+                        <a id="click1" href="#" class="yourbenefits" style="position: absolute; top:0px; left: 200px;">{!Campus_2_Title}</a>
+                        <a id="click1" href="#" class="gettingstarted" style="position: absolute; top:47px; left: 0px;">{!Campus_3_Title}</a>
+                        <a id="click1" href="#" class="news" style="position: absolute; top:47px; left: 200px;">{!Campus_4_Title}</a>
+                    </span>
+                </div>
+                
+                <h2 class="undertitle" style="margin: 48px 0px 0px 48px; position: relative; height: 21px;">{!Campus_underTitle}</h2>
+                <div class="container" style="margin: 1px 0px 0px 29px; width: 940px; position: relative;">
+                    <div class="left-element tabelle_start">
+
+<!-- eine Tabelle für die unten Teil von der ersten Seite...-->
+                        <table cellpadding="0" cellspacing="0" frame="void" style="height: 72px; margin-top: 1px; margin-left:10px;" rules="cols">
+                            <tr>
+                                <apex:repeat value="{!Books}" var="book" id="theRepeat2">
+                                
+<!-- titel mit links. Ein <td> für jede Titel...(im repeat wiederholt)-->
+                                    <td align="left" valign="top" style="padding-top:8px; padding-left:9px; height:14px;">
+                                        <div class="bookHeading" >
+                                        	<apex:commandLink action="{!secondPage}" styleClass="innerBookHeading" style="color:{!IF(IsPro,'black','white')};" value="{!UPPER(book.book.Titel__c)}" > 
+                                            	<apex:param name="param" value="{!book.book.Titel__c}"/>
+                                        	</apex:commandLink>
+                                        </div>
+                                    </td>
+                                </apex:repeat>
+                            </tr>
+                            <tr>
+                                <apex:repeat value="{!Modules}" var="modul" id="theRepeat3">
+                                    <td align="left" style="padding-left:9px;">
+
+<!-- ok, not nice ... diese teil soll ersetzt werden. alle die "div" sind für den "scrollbar" falls es angezeigt werden soll-->
+                            
+                             <div class="arrows" style="left:115px; position:relative; top:0px; height:40px">
+                                <apex:outputPanel rendered="{!modul.renderScroller}">
+                                    <span class="arrow_up" onMouseDown="scrollContent('{!modul.ModuleNumber}',-1)" onmouseup="cancelScroll('{!modul.ModuleNumber}')"><img src="{!URLFOR($Resource.scrollerTest, 'scrollerTest/arrow_up.png')}" width="14" height="7" /></span>
+                                    <span class="arrow_down" style="top:0px;margin-top:34px;" onMouseDown="scrollContent('{!modul.ModuleNumber}',1)" onmouseup="cancelScroll('{!modul.ModuleNumber}')"><img src="{!URLFOR($Resource.scrollerTest, 'scrollerTest/arrow_down.png')}" width="14" height="7" /></span>
+                                </apex:outputPanel>
+                            </div>
+                            
+                            
+                              <div class="slider" style="top:28px; width:110px; height: 37px;">
+                                  <div class="slidercontent" id="{!modul.ModuleNumber}">
+                                      <div id="textsection" class="slidersection" style="line-height: 12px; padding:0px; position:relative;">
+                                                        <apex:repeat value="{!modul.Module}" var="modul2" id="theRepeat33">
+                                                            <apex:commandLink value="{!modul2.Titel__c}" action="{!showModule}" styleClass="moduleName"> 
+                                                                <apex:param name="moduleId" value="{!modul2.Id}"/>
+                                                            </apex:commandLink>
+                                                            <br/>
+                                                        </apex:repeat>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                    </td>
+                                </apex:repeat>
+                            </tr>
+                        </table>
+                    </div>
+
+                    
+                    
+<!-- das bild vom Teil unten rechts-->
+                    <apex:image style="margin-left: 747px;margin-top: -19px;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/fortschrits_flaeche.png')}" />
+                           
+                    <div class="right-element" style="top:-11px;">
+                        <p class="progressHeading" style='color:#ffffff;'>{!Campus_smallBox1}</p>
+                        <p class="progressDesc" style='color:#ffffff;'>{!Campus_smallBox2}</p>
+                        <p class="progressDesc" style='color:#FF8600;'>{!Modules_currentSuccess}/{!Modules_total} {!Campus_smallBox3}</p>
+                        <p class="progressBar">
+
+<!-- der wert kommt vom Controller modules_currentbar...-->
+                            <span><em style="padding:-1px 0px 0px 5px; left:{!Modules_currentbar}%">50%</em></span>
+                        </p>
+                        <p class="progressStat" >{!Campus_smallBox4} <span class="progressStatResult">{!Modules_currentpoint}</span></p>
+                    </div>
+                    
+                </div>
+            </apex:outputPanel>
+            
+            
+<!-- 2. Seite -->            
+<!-- ok hier die 2. Seite, es gibt ein not(module_showFirstPage). falls module_showfirstpage true ist ist diese seite nicht angezeigt aber die erste ist angezeigt... und umgekehrt! (not(true) -> false) -->
+            <apex:outputPanel id="inline2" rendered="{!NOT(Modules_showFirstpage)}" >  
+
+<!-- wieder wie für die erste seite-->
+                <table class="tblNavigationTop" >
+                <tr>
+                <td width="50px">
+                </td> 
+                <td class="navigationTop">
+                <apex:outputPanel styleClass="navigationTop" > <!--  style="margin-left:48px;" -->
+                    <apex:commandLink action="{!firstPage}" value="{!Campus_Title_1}" />
+                </apex:outputPanel>
+                </td> 
+<!-- für die anderen Button rechts vom "home" button-->
+                <apex:repeat value="{!Books}" var="book" id="theRepeat10">
+                 <td width="10px">
+                </td> 
+                    <td class="navigationTop">
+                     <div class="navigationTop" >    
+                        <apex:commandLink value="{!UPPER(book.book.Titel__c)}" action="{!secondPage}" >  <!-- style="margin-left:35px;" -->
+                            <apex:param name="param" value="{!book.book.Titel__c}"/>
+                        </apex:commandLink>
+                     </div> 
+                    </td>     
+                </apex:repeat>
+                <td width="10px">
+                </td> 
+               </tr>
+               </table>
+                <!-- 
+                <span class="navigationTop" style="margin-left:48px; margin-top:16px;">
+                    <apex:commandLink action="{!firstPage}" value="{!Campus_Title_1}" />
+                </span>
+                <apex:repeat value="{!Books}" var="book" id="theRepeat10">
+                    <span class="navigationTop">
+                        <apex:commandLink value="{!UPPER(book.book.Titel__c)}" action="{!secondPage}"  style="margin-left:35px;"> 
+                            <apex:param name="param" value="{!book.book.Titel__c}"/>
+                        </apex:commandLink>
+                    </span>
+                </apex:repeat>
+           -->
+                <div class="vNav" style="background:{!IF(isPro,'white','#e6e8e9')};">
+                    <h1 style="font-size: 20pt; font-weight: normal; color:{!IF(isPro,'#F39100','#474c54')}; margin: 12px 0px 20px 17px; height: 40px;">{!Modules_book.Titel__c}</h1>
+                    <h2 style="font-size: 18px; font-weight: normal; color:#474c54; margin: 12px 0px 30px 17px;">{!Modules_book.Subtitel__c}</h2>
+                    
+                    <div style="width: 416px; height: 232px; position:relative; top:0px;">
+
+<!-- ok hier für jede virtual seite ist ein <p class virtualpage2 hidepiece> zu schreiben-->
+                        <span style="color:#474c54; font-size:12px; line-height: auto; font-weight:normal; display:block; margin: 0px 17px 16px 17px;">{!Modules_book.Beschreibung__c}</span>
+                        
+                        <p class="virtualpage2 hidepiece" id="poller2"> 
+                            <apex:outputPanel id="forthepoller">
+                                <apex:repeat value="{!Modules_modulesSecondPage1}" var="Module" id="theRepeat11">
+                                    <span class="class2" style="position:relative;">
+                                        <apex:commandLink value="{!Module.Titel__c}" action="{!showModule}"  style="position: relative;font-weight:normal; left: 17px;font-size:12px; padding-bottom:1px;"> 
+                                            <apex:param name="moduleId" value="{!Module.Id}"/>
+                                        </apex:commandLink>
+                                    
+                                    
+    <!-- falls der hacken, bzw. coin angezeigt werden soll ist "rendered" zu true gesetzt-->
+                                      
+                                       <apex:image rendered="{!Module.showTick__c}" style="position: relative;top:0px; left:25px;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/haken.png')}" /> 
+                                       <apex:image rendered="{!Module.showCoins__c}" style="position: relative;top:0px; left:28px;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/coins.png')}" />         
+                                    </span>
+                                    <br/>
+                                </apex:repeat> 
+                            </apex:outputPanel>            
+                        </p>
+                       
+<!-- mit einem repeat ist der trick gemacht ... bisher ist es zu 5 modulen pro seite begrenzt, könnte aber ruhig erhöht sein-->
+                        <apex:repeat value="{!Modules_modulesSecondPage2}" var="modul" id="theRepeat666">
+                            <p class="virtualpage2 hidepiece" id="poller1">
+                                  <apex:outputPanel id="forthepoller2">              
+                                    <apex:repeat value="{!modul.Module}" var="Module" id="theRepeat112">
+                                        <span class="class2" style="position:relative;">
+                                            <apex:commandLink value="{!Module.Titel__c}" action="{!showModule}" style="position: relative; left: 17px; font-weight:normal; font-size:12px; padding-bottom:1px;"> 
+                                                <apex:param name="moduleId" value="{!Module.Id}"/>
+                                            </apex:commandLink>
+                                        
+                                            <apex:image rendered="{!Module.showTick__c}" style="position: relative; top:0px;  left:25px;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/haken.png')}" />          
+                                            <apex:image rendered="{!Module.showCoins__c}" style="position: relative;top:0px; left:28px;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/coins.png')}" />                 
+                                        </span>
+                                        <br/>
+                                    </apex:repeat>
+                               </apex:outputPanel>
+                            </p>
+                        </apex:repeat>
+                    </div> 
+                   
+<!--für der anzeige mit dem Arrow, x / y ...-->
+                    <div id="scriptspaginate" class="paginationstyle" >
+                        <!--<a href="#" rel="first">F</a> -->
+                        <a href="#" rel="previous" style="background-color: transparent; padding:0px;position: relative;top: 1px;left: 4px;"> 
+                            <apex:image style="border:none;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/pfeil_li.png')}" />          
+                      </a>
+                        <span class="paginateinfo" style="margin-left: 5px; margin-right: 5px; color:#f39100; font-weight:bold;"/> 
+
+                        <a href="#" rel="next" style="background-color: transparent; padding:0px;position: relative;right: 2px;top: 1px;"> 
+                              <apex:image style="border:none;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/pfeil_re.png')}" />          
+                      </a>
+
+<!--                        style="background:url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/pfeil_re.png')}) no-repeat 0 2px;"/                -->
+                        <!--<a href="#" rel="last">L</a>-->
+                    </div>
+                     
+<!--der mini script für diese virtualen seiten-->
+                    <script type="text/javascript">
+                    var newscripts=new virtualpaginate({
+                                    piececlass: "virtualpage2",
+                                    piececontainer: 'p', //Let script know you're using "p" tags as separator (instead of default "div")
+                                    pieces_per_page: 1,
+                                    defaultpage: 0,
+                                    wraparound: false,
+                                    persist: false
+                                })
+                                
+                    newscripts.buildpagination(["scriptspaginate", "scriptspaginate2"])
+                    </script>  
+
+                       <apex:actionPoller action="{!Poller}" rerender="forthepoller" interval="15"/>
+                       <apex:actionPoller action="{!Poller}" rerender="forthepoller2" interval="15"/>   
+                </div>
+<!-- ok hier not nice... ich habe keine möglichkeit gefunden den haupt background zu ändern.
+Nämlich ist man hier im iFrame und diese Background ist vom Komponent gesteuert...
+dafür habe ich 1 bild darauf gelegt (der background ist ein kleines bisschen unterschieden
+zwischen die erste und 2. seite... aber vielleicht kann man das schöner machen????? -->
+
+                <apex:image style="position: absolute; top: 0px; left: 0px; z-index: -2; height: 545px; width: 960px;" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/BG_Chapter.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_unterseiten.jpg'))}" />   
+                
+<!-- wenn man z.B. auf Company & Brand clickt ist diese outputpanel angezeigt (das grosse buch)-->
+                <apex:outputPanel id="inline3" rendered="{!NOT(Modules_showThirdpage)}" >       
+                    <apex:image style="position: absolute; top: 102px; right: 75px; z-index: -1;" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Book_grey.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/buch.png'))}" />            
+                    <apex:image style="position: absolute; top: 500px; right: 718px; z-index: -1;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Gigaset_Pro_Logo.png')}" rendered="{!isPro}" /> 
+                    <div style="position: absolute; color:#fbedca; font-size: 27px; top: 110px; left: 604px; width:225px; height:330px;text-align:center;"> <!-- left: 585px; width:265px;  -->
+                        <apex:outputText style="color: #E6E6E6;font-size:18px;text-decoration: none;top:100px;position:relative;" value="{!Modules_book.Titel__c}" />             
+                    </div>
+                    
+                    
+                </apex:outputPanel>
+                
+<!-- der panel inline3 ist mit den inline4 getoggelt. Falls ein angezeigt ist ist der andere versteckt und umgekehrt...-->
+                <apex:outputPanel id="inline4" rendered="{!Modules_showThirdpage}" >      
+                  
+<!-- ok das haupt bild... man soll trotzdem prüfen dass diese bild in SF existiert sonst wird es nicht angezeigt.
+     ausserdem gibt es ein trick. ein weisse Rahm soll auch angezeigt werden, um das bild. dafür ist den background white.
+-->
+                    <div id="textmoodbild" style="background-color: {!IF(isPro,'white','#e6e8e9')}; color: black;font-weight: normal;height: 361px;left: 496px; position: absolute;top: 102px; width: 416px;">
+                        <apex:image rendered="{!AND(NOT(ISNULL(Modules_SingleModule.Bild_URL__c)),NOT(ISBLANK(Modules_SingleModule.Bild_URL__c)))}" url="{!Modules_SingleModule.Bild_URL__c}" width="396"  height="342" style="position: relative; top: 10px; left:10px ;" /> 
+                    </div>
+                    
+<!-- hier ist nur html... -->
+                    <div id="textmoodbild3" style="width: 396px; top: 112px; position: absolute; left: 506px; height: 342px; ">
+                    
+                        <h1 class="scndPageTitle" style="color:{!IF(IsPro,'#474c54','white')}; ">{!Campus_otherPage1}</h1>
+                        <p style="color:{!IF(IsPro,'#474c54','white')}; width: 356px; margin: 15px 0px 0px 17px; font-weight: normal;">{!Campus_otherPage2} {!Modules_SingleModule.Sortierung__c}: <span style="font-size:17px; font-weight: normal; color:#f39100; margin-left:2px">{!Modules_SingleModule.Titel__c}</span></p>
+                        <p style="font-size:12px; font-weight:normal; color:#f39100; width:200px; margin: 7px 0px 7px 17px;">{!Modules_SingleModule.Beschreibung__c}</p>
+                        <p style="font-size:12px; color:{!IF(IsPro,'#474c54','white')}; width: 356px; font-weight: normal; margin: 0px 0px 0px 14px;position: absolute;top: 149px;">
+                        <apex:image style="position: relative; top: 1px; left:0px ;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/sanduhr_grau.png')}" />          
+                        {!Campus_otherPage3} {!ROUND(Modules_SingleModule.Dauer__c,0)} {!Campus_otherPage4}
+                        
+                        <apex:image style="position: relative;top: 1px; right:0px; padding-left:20px;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/coins_grau.png')}" />            
+                        {!ROUND(Modules_SingleModule.Punkte__c,0)} {!Campus_otherPage5}</p>
+                       	
+                    	<span class="class4" style="padding-left:0px;top: 165px;position: absolute;">
+                            <a id="click1" class="demolink" href="JavaScript:void()" style="margin: 18px 0px 0px 17px; text-align: center;" onclick="return changePropertySecondPage();">{!Campus_otherPage6}</a>
+                        </span>
+                    </div>
+                    
+<!-- für den opacity effekt... standard ist kein display, sonst wenn der javascript ausgeführt ist ist diese div angezeigt.-->
+                    <div id="textmoodbild1" style="display:none; width: 396px;top: 112px;position: absolute;left: 506px;height: 342px; background-color: {!IF(IsPro,'lightgrey','black')};"> 
+<!--                     für den auto refresh ...--> 
+                    </div>
+                  	<apex:image style="position: absolute; top: 500px; right: 718px; z-index: -1;" value="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Gigaset_Pro_Logo.png')}" rendered="{!isPro}" /> 
+                        
+<!-- ein 2. div sollte auch gemacht werden da sonst ist der text durchsichtig.....-->
+                    <div id="textmoodbild2" style="display:none; width: 396px;top: 112px;position: absolute;left: 506px; height: 342px;"> 
+                        <p style="color:#ee7f00; text-align:center; font-size:22px; font-weight: normal; padding-top:80px;">{!Campus_lastPage1}</p> 
+                        <p style="color:{!IF(IsPro,'black','white')}; text-align:center; font-weight: normal; font-size:12px; padding-top:24px;">{!Campus_lastPage2}</p> 
+
+<!-- für die 4 buttons-->
+                        <span class="class1 modul_set" style="position: absolute; margin-left: 67px; margin-top: 40px;">
+                            <apex:commandLink rendered="{!NOT(ISBLANK(Modules_SingleModule.Verwandtes_Modul_1__c))}" value="{!Modules_SingleModule.Verwandtes_Modul_Name_1__c}" action="{!showModule}" style="position: absolute; top: 0px; left: -63px; background:url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/button.png')}) no-repeat 0 0;">
+                                <apex:param name="moduleId" value="{!RIGHT(Modules_SingleModule.Verwandtes_Modul_1__c,18)}"/>
+                            </apex:commandLink>
+                            <apex:commandLink rendered="{!NOT(ISBLANK(Modules_SingleModule.Verwandtes_Modul_2__c))}" value="{!Modules_SingleModule.Verwandtes_Modul_Name_2__c}" action="{!showModule}" style="position: absolute; top: 0pt; left: 137px; background:url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/button.png')}) no-repeat 0 0;">
+                                <apex:param name="moduleId" value="{!RIGHT(Modules_SingleModule.Verwandtes_Modul_2__c,18)}"/>
+                            </apex:commandLink>
+                            <apex:commandLink rendered="{!NOT(ISBLANK(Modules_SingleModule.Verwandtes_Modul_3__c))}" value="{!Modules_SingleModule.Verwandtes_Modul_Name_3__c}" action="{!showModule}" style="position: absolute; top: 35pt; left: -63px; background:url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/button.png')}) no-repeat 0 0;">
+                                <apex:param name="moduleId" value="{!RIGHT(Modules_SingleModule.Verwandtes_Modul_3__c,18)}"/>
+                            </apex:commandLink>
+                            <apex:commandLink rendered="{!NOT(ISBLANK(Modules_SingleModule.Verwandtes_Modul_4__c))}" value="{!Modules_SingleModule.Verwandtes_Modul_Name_4__c}" action="{!showModule}" style="position: absolute; top: 35pt; left: 137px; background:url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/button.png')}) no-repeat 0 0;">
+                                <apex:param name="moduleId" value="{!RIGHT(Modules_SingleModule.Verwandtes_Modul_4__c,18)}"/>
+                            </apex:commandLink>
+                        </span>
+					
+                    </div>
+                </apex:outputPanel>                                 
+            </apex:outputPanel>
+        </div>
+
+<style type="text/css">
+/' fuer die texte */
+div {
+	font-family: Arial, sans-serif ! important;
+	font-size: 12pt;
+}
+
+p {
+	font-family: Arial, sans-serif ! important;
+	font-size: 12pt;
+}
+
+span {
+	font-family: Arial, sans-serif ! important;
+	font-size: 12pt;
+}
+
+.textbold {
+	font-weight: bold ! important;
+}
+
+.text10pt {
+	font-size: 10pt ! important;
+}
+
+.text12pt {
+	font-size: 12pt ! important;
+}
+
+.text17pt {
+	font-size: 17pt ! important;
+}
+
+.text18pt {
+	font-size: 18pt ! important;
+}
+
+.tblNavigationTop {
+	position:relative; 
+	height:40px; 
+	top:10px; 
+	width: 100%;
+	left:10px;
+}
+
+.navigationTopSection {
+	max-width: 166px;
+	text-align: center;
+}
+
+.navigationTop {
+	font-size: 12px!important;
+	text-align: left;	
+	margin-left:15px;
+	color: {!IF(IsPro,"black","white")};
+}
+
+div.navigationTop a {
+    color: {!IF(isPro,'black','white')};
+    padding: 0px;
+}
+    
+.navigationTop span a {
+    color: {!IF(isPro,'black','white')};
+    padding: 0px;
+}
+    
+.navigationTop a:hover {
+    /* olor:#f39100; */
+    text-decoration: underline;
+    color: orange;
+}
+
+.welcomeheadline {
+	font-size:20pt;
+	width: 380px; 
+	color: {!IF(isPro,'#F39100','white')}; <!--{!IF(IsPro,'black','white')}; #474c54--> 
+	padding:10px 0 0 0;
+	position: relative; <!-- leer --> 
+	bottom: 25px;	<!-- leer -->
+}
+
+.description {
+	/*top: 100px; <!-- 26 -->*/ 
+	position:relative;
+	width: 380px;  
+	color:{!IF(IsPro,'black','white')};
+}
+
+.bookDiv{
+	line-height: 20px;
+	-ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotate=1)';
+	/*filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */         
+	/*-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* IE8 */ 
+	/*
+	-ms-filter:"progid:DXImageTransform.Microsoft.Matrix(M11=0.00000000, M12=-1.00000000, M21=1.00000000, M22=0.00000000, Dx=100, Dy=100, sizingMethod='auto expand')"; 
+	filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.00000000, M12=-1.00000000, M21=1.00000000, M22=0.00000000, Dx=100, Dy=100, sizingMethod='auto expand');
+	-moz-transform:  matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -70pt, 65pt);
+	-moz-transform-origin:  -100px , 125px; 
+	-webkit-transform:  matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -95 , 85);
+	-o-transform: matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -95, 25);
+	*/
+}
+
+.bookmarknumber {
+	width:25px; 
+	text-align:center; 
+	color:#ffffff; 
+	font-family: Arial, Helvetica, Geneva, sans-serif; 
+	font-weight: bold; 
+	font-size:17px;
+}
+
+.undertitle {
+	font-size: 17px; 
+	font-weight: normal; 
+	color:{!IF(IsPro,'black','white')};
+}
+
+.bookHeading {
+	width:130px;
+	font-size:10px; 
+	font-weight:bold; 
+	text-transform: uppercase;
+	position:relative;
+	top:14px;
+}
+
+.innerBookHeading {
+	position:absolute;
+	bottom:0px;
+}
+
+.moduleName {
+	color:#ef7c00; 
+	font-size:10px;
+}
+
+.vNav {
+	 width:416px; 
+	 height:361px; 
+	 position:absolute; 
+	 left:48px; 
+	 top:102px;
+}
+
+/*für den colorbox*/
+#cboxLoadingGraphic,#cboxLoadingOverlay {
+background-image: url();
+}
+ 
+    #cboxContent {
+        background: url({!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/BG_Landing.jpg'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg'))}) repeat-x 0 0;
+    }
+    
+    #cboxClose {
+        background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}) no-repeat 0 0;
+    }
+
+    #cboxClose.hover {
+        background-position:0px 0px;
+    }
+
+
+    a {
+        text-decoration:none;
+    }
+
+    a.hover {
+        color:orange;
+    }
+    
+/*mein progressbar der ganz gut läuft...*/
+.progressHeading{
+ 	font-size:12px !important; 
+ 	font-weight: bold !important;   
+ 	padding: 0px 0px 0px 5px; 
+ 	width: 130px; 
+}
+ 
+.progressDesc{
+	font-size:10px !important; 
+	font-weight: normal !important; 
+	padding:3px 0px 0px 5px; 
+	position:relative; 
+	bottom:5px;
+}
+
+.progressBar {
+    height:10px;
+    position:relative;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+.progressBar span {
+    position:absolute;
+    display:block;
+    width:130px;
+    height:8px;
+    background:url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/fortschrittsbalken_orange.png')}) no-repeat ; <!-- 0 0 -->
+    background-size: 100%;
+    top:-3px;
+    overflow:hidden;
+    text-indent:-8000px;
+}
+.progressBar em{
+    position:absolute;
+    display:block;
+    width:130px; <!-- 200 -->
+    height:20px;
+    background:url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/fortschrittsbalken_grau.png')}) no-repeat; <!--repeat-x 0 0 -->
+    background-size: 100%;
+    top:0;
+}
+
+.progressStat{
+	color:white; 
+	font-size:11px !important; 
+	font-weight: bold !important; 
+	padding:2px 0px 0px 5px; 
+	position:relative; 
+	bottom:12px;
+}
+
+.progressStatResult{
+	color:#FF8600; 
+	font-size:11px !important; 
+	font-weight: bold !important;
+}
+
+<!-- Allgemeine Angaben -->
+
+/* Tabelle Startseite */
+<!--[if IE]> 
+table {
+    border 0;
+    border-style: none;
+}
+<![endif]-->
+table td {
+    border 0;
+    border-style: 1px solid #ffffff;
+}
+
+.tabelle_start table {
+    border-color: {!IF(isPro,'black','white')};
+}
+
+.tabelle_start td {
+    width:139px;
+}
+
+
+.container {
+   position: relative;
+   height: 62px;
+   width: 850px;
+   font-family: Arial, sans-serif;
+   }
+  
+.container p,span {
+   font-size: 12px;
+   line-height: auto;
+   font-style: normal;
+   font-weight: normal;
+   }
+   
+.container h1 {
+   font-style: normal;
+   font-weight: normal;
+   padding:0;
+   marging:0;
+   }
+
+.left-element {
+   font-family: Arial, sans-serif;
+   position: absolute;
+   left: 0;
+   width: 100%;
+   padding: 0;
+   margin:0;
+   }
+   
+.left-element h1 {
+   font-family: Arial, sans-serif;
+   font-style: normal;
+   font-weight: normal;
+   font-size: 30px;
+   line-height: 36px;
+   padding: 0px 0px 30px 0px;
+   margin:0;
+   }
+
+.right-element {
+    position: absolute;
+    right: 0px;
+    width: 20%;
+   }
+    
+p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* ok hier mein scrollbar der schlecht läuft... und soll sowieso ersetzt werden.. */
+    #content-slider {
+      border: 0px;
+      width: 5px;
+      height: 35px;
+      background: transparent;
+      position: relative;
+    }
+
+    .ui-slider-handle {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background: url(http://gooli.org/blog/wp-content/uploads/2008/08/scrolling-icon.png) no-repeat 0 0; 
+      border: 0;
+
+    }
+    .ui-slider-vertical .ui-slider-handle {
+        margin-left: 120px;
+        margin-bottom: -1.1em;
+    }
+
+#content-scroll {
+    margin-top: 0px;
+    width: 100px;
+    height: 50px;
+    overflow: hidden;
+    border: 0;
+}
+
+
+a:-webkit-any-link {
+    text-decoration: none;
+}
+    
+.content-item {
+    height: 40px;
+    float: left;
+}
+
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow {
+    top: 0px;
+}
+
+/*Text-Info Overlays - Startseite */
+
+#cboxLoadedContent {
+    margin-top:25px;
+}
+
+
+#AboutLektora, #yourbenefits, #gettingstarted, #news {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    color:#474c54;
+}
+
+#AboutLektora p, #yourbenefits p, #gettingstarted p, #news p {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size:12px;
+    line-height: 18px;
+}
+
+#AboutLektora h1, #yourbenefits h1, #gettingstarted h1, #news h1 {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size:30px;
+    margin-bottom: 20px;
+}
+
+   
+/*für die orangen button*/
+    
+.box_btn {
+    width: 324px;
+    height:80px;
+    margin-left: 58px;
+    padding:0px;
+
+}
+
+.AboutLektora, .yourbenefits, .gettingstarted, .news, .demolink {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+    font-size:12px;
+    background:url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/button.png')}) no-repeat left top;
+    width: 190px;
+    height:35px;
+}
+
+.class1 a {
+ /*   font-family: Arial, Helvetica, Geneva, sans-serif;*/
+    color: white;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    padding-top:11px;
+    padding-left:10px;
+    width: 190px;
+    height:23px;
+}
+ /*   
+.class1 a:hover{
+    color:#660000;
+}
+*/
+
+/*Zum Modul Button*/
+.class4 a {
+    font-family: Arial, sans-serif;
+    color: white;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    padding-top:11px;
+    width: 190px;
+    height:25px;
+}
+  /*  
+.class4 a:hover{
+    color:#660000;
+}*/
+    
+/*für die link, mit den kleinen arrow*/
+
+.class2 a {
+    background:transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/link_arrow_withe_trans_pro.gif')}) no-repeat scroll -2px 50%;
+    padding-left:10px;
+    color:#474c54;
+    font-size:12px;
+    font-weight:normal;
+    position: relative;
+}
+    
+.class2 a:hover { 
+    color:#f39100;
+    background: transparent url({!URLFOR($Resource.gigasetextranetZIP, 'img/link_arrow_withe_trans_pro_orange.gif')}) no-repeat scroll -2px 50%;
+}
+    
+    
+/*für die titel in orange*/
+.class3 {
+    padding: 0px;
+}
+    
+
+
+.modul_set {
+
+}
+    
+/*Sample CSS used for the Virtual Pagination Demos. Modify/ remove as desired*/
+/*ok hier gibt es vielleicht zu vielen stil... aber hauptsache es läuft gut :)*/
+
+.paginationstyle{ /*Style for demo pagination divs*/
+    width: 406px; 
+    text-align:right; 
+    font-weight:bold; 
+    font-size:14px;
+    position: absolute; 
+    top: 318px;
+    
+    
+    /*
+    width: 250px;
+    text-align: center;*/
+    padding:0;
+    margin: 20px 20px 0px 0px;
+}
+
+.paginationstyle select{ /*Style for demo pagination divs' select menu*/
+/*    border: 1px solid navy; */
+    margin: 0 15px;
+}
+    
+.paginationstyle a{ /*Pagination links style*/
+    padding: 0 5px;
+    text-decoration: none;
+    color: navy;
+    background-color: white;
+}
+    
+    .paginationstyle a:hover, .paginationstyle a.selected{
+        color: #000;
+    /*        background-color: #FEE496;*/
+        background-color: #e7e8ea;
+    }
+    
+    .paginationstyle a.disabled, .paginationstyle a.disabled:hover{ /*Style for "disabled" previous or next link*/
+        background-color: white;
+        cursor: default;
+        color: #929292;
+        border-color: transparent;
+    }
+    
+    .paginationstyle a.imglinks{ /*Pagination Image links style (class="imglinks") */
+        border: 0;
+        padding: 0;
+    }
+    
+    .paginationstyle a.imglinks img{
+        vertical-align: bottom;
+        border: 0;
+    }
+    
+    .paginationstyle a.imglinks a:hover{
+        background: none;
+    }
+     
+    .paginationstyle .flatview a:hover, .paginationstyle .flatview a.selected{ /*Pagination div "flatview" links style*/
+        color: #000;
+        background-color: yellow;
+    }
+
+    .virtualpage2 .hidepiece p {
+     font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #474c54;
+    }    
+
+.scndPageTitle{
+	font-size: 25px; 
+	font-weight:normal; 
+	width:356px; 
+	margin: 26px 0px 0px 17px;
+}
+</style>
+
+</apex:form>
+
+</apex:page>

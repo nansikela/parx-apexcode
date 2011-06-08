@@ -1,0 +1,135 @@
+<apex:component controller="DETemplateController" language="{!defaultlanguage}">
+
+<!--eigentlich ist in diesem Content die ganze seite angezeigt.-->
+<c:contentblock name="training" rendered="true" />
+
+
+<apex:form >
+
+        <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
+        <apex:includeScript value="{!$Resource.jquery142}"/>
+<!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
+        <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+        <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
+
+        <script>
+            
+            $(document).ready(function(){
+<!-- wenn man auf dem bild clickt ist diese teil ausgeführt: -->
+                $(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540,  href:"{!Modules_URLPage}"
+                //  onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+                //  onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+                //  onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+                //  onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+                //  onClosed:function(){ /*alert('onClosed: colorbox has completely closed');location.href = '/de/apex/page?pageid=a0AR0000005FxEX'; */ }
+                });
+
+            });
+            
+            
+            
+        </script>
+
+<style type="text/css">
+
+
+<!--für den Colorbox... hier setze ich den Background. Leider kann ich diese Background im iFrame nicht verändern... -->
+<!--gibt es keine möglichkeit??-->
+
+#cboxContent {
+background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) no-repeat 0 0;
+}
+
+#cboxClose {
+background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}) no-repeat 0 0;
+right: -10px;
+top: -11px;
+}
+
+#cboxLoadingGraphic,#cboxLoadingOverlay {
+background-image: url();
+}
+
+
+#cboxClose.hover {
+background-position:0px 0px;
+}
+
+
+/* Neue Einstellungen bzgl. Größenangaben der Colorbox */
+
+#cboxTopLeft,
+#cboxBottomLeft,
+#cboxBottomRight,
+#cboxTopRight {
+    width:10px;
+    height:10px;
+    background-image: none;
+/*    background-color: #ffffff;*/
+}
+
+#cboxBottomCenter,
+#cboxBottomLeft,
+#cboxBottomRight  {
+    position:relative;
+    bottom:5px;
+}
+
+#cboxTopCenter,
+#cboxBottomCenter {
+    width:960px;
+    height:10px;
+    background-image: none;
+  /*  background-color: #ffffff;*/
+}
+
+#cboxMiddleRight,
+#cboxMiddleLeft {
+    width:10px;
+    background-image: none;
+/*    background-color: #ffffff;*/
+}
+
+#cboxContent{
+    width:960px;
+    height:540px;
+    margin:0px;
+    padding:0px
+}
+
+#colorbox {
+    width:980px;
+    height:560px;
+    padding:0;
+    margin:0px;
+
+}
+
+
+
+<!-- Zusätzliche CSS Angaben für die Colorbox -->
+
+<!--
+    The following fixes png-transparency for IE6.  
+    It is also necessary for png-transparency in IE7 & IE8 to avoid 'black halos' with the fade transition
+    
+    Since this method does not support CSS background-positioning, it is incompatible with CSS sprites.
+    Colorbox preloads navigation hover classes to account for this.
+    
+    !! Important Note: AlphaImageLoader src paths are relative to the HTML document,
+    while regular CSS background images are relative to the CSS document.
+
+.cboxIE #cboxTopLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderTopLeft.png, sizingMethod='scale');}
+.cboxIE #cboxTopCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderTopCenter.png, sizingMethod='scale');}
+.cboxIE #cboxTopRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderTopRight.png, sizingMethod='scale');}
+.cboxIE #cboxBottomLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderBottomLeft.png, sizingMethod='scale');}
+.cboxIE #cboxBottomCenter{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderBottomCenter.png, sizingMethod='scale');}
+.cboxIE #cboxBottomRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderBottomRight.png, sizingMethod='scale');}
+.cboxIE #cboxMiddleLeft{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderMiddleLeft.png, sizingMethod='scale');}
+.cboxIE #cboxMiddleRight{background:transparent; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/internet_explorer/borderMiddleRight.png, sizingMethod='scale');}
+-->
+
+</style>
+</apex:form>
+
+</apex:component>

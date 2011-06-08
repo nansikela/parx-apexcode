@@ -1,0 +1,3 @@
+<apex:page controller="PrivacyRedirectController" action="redirect" id="privacyRedirect">
+<site:previewAsAdmin />
+</apex:page>

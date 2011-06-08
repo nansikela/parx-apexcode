@@ -1,0 +1,32 @@
+<apex:page showHeader="false" title="{!$Label.site.in_maintenance}">
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+		<div class="contentTextSmall">
+			<div id="contact" class="small">
+                <p> </p>
+                <h2>
+                    <apex:outputText escape="false" value="{!$Label.site.down_for_maintenance}" >
+                        <apex:param value="{!$Site.CurrentSiteUrl}"/>
+                    </apex:outputText>
+                    </h2>
+                    <p>
+                <apex:outputText value="{!$Label.site.sorry_for_inconvenience_back_shortly}"/>
+                    <apex:outputText escape="false" value=" {!$Label.site.get_in_touch}">
+                         <apex:param value="mailto:{!$Site.AdminEmailAddress}"/>
+                         <apex:param value="{!$Label.site.email_us}"/>
+                    </apex:outputText>
+                </p>
+                <div class="link_arrow">
+                    <a href="mailto:{!$Site.AdminEmailAddress}">{!$Label.global_send_email}</a>
+                </div>
+                
+            </div>
+        </div>
+        <div id="sidebar" class="">
+            <apex:image id="img404" alt="{!$Label.site.file_not_found}" value="{!URLFOR($Resource.gigasetextranetZIP, 'img/404_wartung.jpg')}" />
+        </div>
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

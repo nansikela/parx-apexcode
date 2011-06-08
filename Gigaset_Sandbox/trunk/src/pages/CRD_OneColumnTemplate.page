@@ -1,0 +1,37 @@
+<apex:page showheader="false" id="CRD_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
+	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
+
+<apex:composition template="{!$Site.Template}">
+
+		<apex:define name="body">
+		<c:CRD_Clearing id="declearingcomp" rendered="{!showclearingcomp}" />
+		<c:CRD_preset id="depresetcomp" rendered="{!showpresetcomp}" />
+		<!-- this can work only if we are not inside a component
+			but we need to be inside a componet with the registration, bad enough -->
+		<!-- <apex:include pageName="DEPrivacy" id="DEPrivacyInclude" rendered="{!showprivacy}"/> -->
+		<c:CRD_privacy id="deprivacycomp" rendered="{!showprivacy}" />
+ 		
+ 		<!-- <div id="prodOver"> -->
+ 		<apex:outputPanel id="truecontent" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showothercomp)/*,NOT(showNextTopShop)*/)}">
+ 		<div id="prodOver">
+	 		<!--Start LeftSide Content -->
+	 		
+	 		<div class="contentText">
+	 			<div id="contact">
+	 				<c:CRD_Training id="training" rendered="{!showTraining}" />
+	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
+	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
+					
+				</div>
+			</div>
+			
+     		<!--End LeftSide Content -->
+    <!-- end prodOver -->
+	 </div>
+	 </apex:outputPanel>
+	</apex:define>
+</apex:composition>
+<apex:includeScript value="{!$Resource.jquery142}"/>
+<apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+<apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
+</apex:page>

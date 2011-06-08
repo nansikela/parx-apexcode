@@ -1,0 +1,36 @@
+<apex:component controller="DESiteLoginController" id="loginComponent"
+	rendered="{!$Site.LoginEnabled}" language="{!defaultlanguage}">
+	
+	<apex:form id="loginForm" forceSSL="true">
+		<apex:pageMessages id="error" />
+		<apex:outputText value="{!$Site.ErrorMessage}" />
+		<apex:outputPanel layout="block">
+			<apex:outputLabel value="{!$Label.site.username}"
+				 for="username" />
+			<apex:inputText id="username" value="{!username}" styleClass="FieldRequired2" />
+			<br />
+			<apex:outputLabel value="{!$Label.site.password}"
+				 for="password" />
+			<apex:inputSecret id="password" value="{!password}" styleClass="FieldRequired2" />
+			<br />
+			<div class="spacer6">
+				<apex:commandButton action="{!login}" style="min-width: 72px;"
+					value="{!$Label.site.login_button}" id="loginButton" />
+			</div>
+			<br />
+			<apex:outputPanel id="thelinks" >
+				<div class="lft_login">
+				<apex:outputLink value="{!$Page.page}?pageid={!ForgotPasswordPageId}" id="forgot_btn" styleClass="link_arrow">
+                        {!$Label.site.forgot_your_password_q}
+                    	</apex:outputLink>
+				<br />
+				<apex:outputLink value="{!$Page.page}?pageid={!RegistrationPageId}" id="registration_btn"
+					rendered="{!$Site.RegistrationEnabled}" styleClass="link_arrow">
+                        <apex:outputText value="{!$Label.site.new_user_q}" />
+                    	</apex:outputLink>
+                    	</div>
+			</apex:outputPanel>
+		</apex:outputPanel>
+	</apex:form>
+	
+</apex:component>

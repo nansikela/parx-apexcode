@@ -1,0 +1,83 @@
+<apex:page controller="CustomerPortalWelcomeController" showHeader="false" language="{!defaultlanguage}">
+<script type="text/javascript">
+
+var date1 = '{!TODAY() + 7}';
+var date2 = '{!TODAY() + 15}';
+var date3 = '{!TODAY() + 24}';
+
+</script> 
+
+<apex:form >   
+    
+   <!-- This section shows the customer's recent cases in a table -->
+    <apex:pageBlock title="{!$Label.RecentCase}">
+      <apex:pageBlockTable value="{!MyRecentCases}" var="currentCase" id="caseTable">
+         <apex:column >
+            <apex:facet name="header">
+                 <apex:commandLink value="{!$ObjectType.Case.fields.CaseNumber.label}" action="{!SortCases}" rerender="caseTable">
+                     <apex:param name="sortField2" value="CaseNumber" assignTo="{!sortField2}"/>
+                 </apex:commandLink>
+            </apex:facet>
+            <a href="/{!currentCase.id}" target="_top">{!currentCase.CaseNumber}</a>
+         </apex:column>
+         <apex:column >
+            <apex:facet name="header"> 
+                 <apex:commandLink value="{!$ObjectType.Case.fields.Subject.label}" action="{!SortCases}" rerender="caseTable">
+                     <apex:param name="sortField2" value="Subject" assignTo="{!sortField2}"/>
+                 </apex:commandLink>
+            </apex:facet>
+            <a href="/{!currentCase.id}" target="_top">{!currentCase.Subject}</a>
+         </apex:column>
+         <apex:column >
+            <apex:facet name="header">
+                 <apex:commandLink value="{!$ObjectType.Case.fields.Status.label}" action="{!SortCases}" rerender="caseTable">
+                     <apex:param name="sortField2" value="Status" assignTo="{!sortField2}"/>
+                 </apex:commandLink>
+            </apex:facet>
+            <apex:outputField value="{!currentCase.Status}" />
+         </apex:column> 
+
+      </apex:pageBlockTable>
+   </apex:pageBlock>
+  
+   
+ 
+</apex:form>  
+<style>
+   .welcome_marketingheaderimage {
+        width:30%;
+        padding:10px 0;
+   }
+   body{
+    /*
+        background-color: transparent;
+    */      
+    }
+    #intro {
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .text{
+        font-size: 12px;
+        text-align: top left;
+    }
+    
+    .list .headerRow th, .list .headerRow th a {
+        font-size: 12px;
+    }
+    
+    .list tr.even th, .list tr.odd th, .list tr.even td, .list tr.odd td {
+        font-size: 12px;
+    }
+    
+    .bPageBlock .pbTitle {
+        font-size: 12px;
+    }
+    
+    .bPageBlock .pbHeader { /*Header section*/
+        padding: 4px;
+    }
+</style>
+</apex:page>

@@ -1,0 +1,34 @@
+<apex:page showHeader="false" title="{!$Label.site.file_not_found}">
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+        <div class="contactBox" >
+            <div id="contact">
+                <h2>{!$Label.site.file_not_found}</h2>
+                <apex:outputText value="{!$Label.site.stay_tuned}"/>
+                    <apex:outputText escape="false" value=" {!$Label.site.get_in_touch}">
+                         <apex:param value="mailto:{!$Site.AdminEmailAddress}"/>
+                         <apex:param value="{!$Label.site.email_us}"/>
+                    </apex:outputText>
+                <br />
+                <div class="link_arrow">
+                    <a href="mailto:{!$Site.AdminEmailAddress}">{!$Label.global_send_email}</a>
+                </div>
+
+
+                <br />
+                <div class="hor_line"></div>
+                <br/>
+
+                <c:PRO_LoginMenu />
+                
+            </div>
+            <span id="end"></span>
+        </div>
+        <div id="sidebar" class="">
+            <apex:image id="img404" alt="{!$Label.site.file_not_found}" value="{!URLFOR($Resource.gigasetextranetZIP, 'img/404_seite.jpg')}" />
+        </div>
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>
