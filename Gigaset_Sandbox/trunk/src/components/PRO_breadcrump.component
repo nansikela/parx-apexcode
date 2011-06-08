@@ -1,0 +1,13 @@
+<apex:component id="breadcrump" controller="DETemplateController" language="{!defaultlanguage}">
+<div id="breadcrumbs">
+        <span>
+            <apex:outputText value="{!$Label.breadcrump_you_are_here}" rendered="{!currentNavigationPoint!=''}" />
+        </span>
+            <span>
+            <apex:outputLink value="{!IF(isAuthenticated,homeurl,$Site.CustomWebAddress)}" rendered="{!currentNavigationPoint!=''}" >{!$Label.breadcrump_dealer}</apex:outputLink>
+            </span>
+            <apex:outputPanel id="arrow" rendered="{!currentNavigationPoint!=''}">></apex:outputPanel>
+            <span><apex:outputLink value="#">{!currentNavigationPoint}</apex:outputLink>
+            </span>
+    </div>
+</apex:component>

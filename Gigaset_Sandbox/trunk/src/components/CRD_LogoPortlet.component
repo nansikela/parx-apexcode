@@ -1,0 +1,5 @@
+<apex:component id="logoportletcmp" controller="CRD_LogoPortletController" rendered="{!showLogo}">
+	<apex:outputPanel id="absolutlyGigasetLogoPanel">
+		<apex:image id="absolutlyGigasetLogoImg" alt="{!alternateAbsolutlyGigasetLogoText}" value="{!alternateAbsolutlyGigasetLogoUrl}" styleClass="absolutlyGigasetLogoImg"  />
+	</apex:outputPanel>
+</apex:component>

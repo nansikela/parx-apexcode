@@ -1,0 +1,11 @@
+<apex:component id="footercopy" controller="DETemplateController">
+	<apex:attribute name="isPro" description="This informs us about the user login." 
+
+        type="Boolean" required="false" assignTo="{!isPro}"/>
+        
+	<div id="footer_copy">
+		<p>
+		{!Copyright}
+		</p>
+	</div>
+</apex:component>

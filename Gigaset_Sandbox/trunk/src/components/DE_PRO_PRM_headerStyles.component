@@ -1,0 +1,22 @@
+<apex:component >
+<style type="text/css">
+#content {
+	width: 943px!important;
+	padding: 0px!important;
+	min-height: 600px!important;
+}
+
+#content .contactBox {
+	width: 943px!important;
+	padding: 0px!important;
+	margin: 0px!important;
+}
+
+#content .contactBox #contact {
+	width: 943px!important;
+	background: none!important;
+	padding: 0px!important;
+}
+
+</style>
+</apex:component>

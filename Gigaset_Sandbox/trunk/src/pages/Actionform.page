@@ -1,0 +1,89 @@
+<apex:page controller="DEKontaktControllerGenerisch" id="de_kontaktformulargenerisch" showheader="false" sidebar="false" title="{!$Label.de_title}" language="{!defaultlanguage}">
+<apex:composition template="{!$Site.Template}">  
+        <apex:define name="body">
+                <!--  <div id="prodOver"> -->
+                    <!--Start LeftSide Content -->
+            <apex:outputPanel id="global" rendered="{!isAuthenticated}">
+                        <div class="contactBox">
+                            <div id="contact">
+                              
+                                <h1>{!HeaderLabel}</h1>
+
+                              <br />
+                              <apex:outputPanel id="form" rendered="{!showform}">
+                                   <p>{!TextLabel}</p>
+                                  <!-- <p>{!$Label.fillout_all_fields}</p> -->
+                                  <!-- <apex:pageMessages id="errorform" /> -->
+                                  <apex:form id="kontaktform" >
+                                      <apex:outputLabel value="{!$ObjectType.Request__c.fields.Text__c.label}"  />
+                                         <apex:inputField value="{!rq.Text__c}" style="width: 273px !important;"/>
+                                      <div class="requiredInput spacer5">
+                                          <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+                                          <apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="spacer8" id="save_btn" style="width:60px !important;" />
+                                      </div>
+                                  </apex:form>
+                              </apex:outputPanel>
+                              <apex:outputPanel id="success" rendered="{!success}">
+                                  <p>{!ReturnLabel}</p>
+                              </apex:outputPanel>
+                              <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
+                                  <p>{!$Label.contactform_error}</p>
+                                  <apex:pageMessages id="errorsave" />
+                              </apex:outputPanel>
+                              <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}" >
+                                  <apex:form id="backbuttonform">
+                                      <div class="spacer5">
+                                          <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+                                      </div>
+                                  </apex:form>
+                              </apex:outputPanel>
+                            </div>
+                            <span id="end" />
+                        </div>
+            </apex:outputPanel>
+                    <!--End LeftSide Content -->
+                     
+                    <c:contentblock name="sidebarimage" rendered="{!NOT(isAuthenticated)}"/>
+                    <!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/kontakt.png')}" alt="kontakt" /> -->
+                
+                    <!--Start RightSide Content -->
+                    <div id="colRgt">
+                        <c:DEcontactportlet rendered="{!AND(isAuthenticated)}" />
+                        <c:DEuserprofileportlet rendered="{!AND(isAuthenticated)}" />
+                        
+                        <!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/pic_cont_04.jpg')}" alt="hotline" /> -->
+                        <apex:outputPanel id="rightcolumn" rendered="{!NOT(isAuthenticated)}">
+                        <!--Start oneColInfo -->
+                        <div class="oneCol">
+                            <div class="oneColInfo">
+                                <c:contentblock name="rghtcol1" />
+                            </div>
+                            <div class="oneColBtm">
+                                <c:contentblock name="rghtcol1Btm" />
+                            </div>
+                        </div>
+                        <!--End oneColInfo --> 
+                        <!--Start oneColInfo -->
+                        <div class="oneCol">
+                            <div class="oneColInfo">
+                                <c:contentblock name="rghtcol2" />
+                            </div>
+                            <div class="oneColBtm">
+                                <c:contentblock name="rghtcol2Btm" />
+                            </div>
+                        </div>
+                        <!--End oneColInfo -->
+                        </apex:outputPanel>
+                    </div> 
+                    <!--End RightSide Content --> 
+                <!--  </div> -->
+                <!-- end prodOver -->   
+    </apex:define>
+</apex:composition>
+
+<style>
+          .datePicker{
+            display:none;
+        }
+</style>
+</apex:page>

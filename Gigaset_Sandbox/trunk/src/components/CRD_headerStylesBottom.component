@@ -1,0 +1,139 @@
+<apex:component id="headerStylesBottom">
+	 <apex:attribute name="isAuthenticated" description="This informs us about the user login." 
+
+        type="Boolean" required="true"/>
+
+    <apex:attribute name="Modules_URLPage" description="This is Modules URL for Training." 
+
+        type="String" required="true"/>
+	
+
+<!-- Stuff we need at the end of nearly every page -->
+
+<apex:outputPanel id="colorboxstuff" rendered="{!AND(isAuthenticated)}" >
+<apex:form >
+	<script type="text/javascript">
+ 		var training = -1;
+ 		function loadjscssfile(filename, filetype){
+			if (filetype=="js"){ //if filename is a external JavaScript file
+			 	var fileref=document.createElement('script');
+			  	fileref.type = "text/javascript";
+			  	fileref.src = filename;
+			} else if (filetype=="css"){ //if filename is an external CSS file
+			  	var fileref=document.createElement("link");
+			  	fileref.setAttribute("rel", "stylesheet");
+			  	fileref.setAttribute("type", "text/css");
+			  	fileref.setAttribute("href", filename);
+			}
+			if (typeof fileref!="undefined")
+			  	document.getElementsByTagName("head")[0].appendChild(fileref);
+		}
+		
+ 		for (var i = 0; i < document.getElementsByTagName("a").length; i++) {
+ 			if (document.getElementsByTagName("a")[i].className.indexOf("example9")>=0) {
+				//alert("Training found {!URLFOR($Resource.jquery142)}..." + document.getElementsByTagName("a")[i].href);
+				//loadjscssfile('{!$Resource.jquery142}','js');
+				//loadjscssfile('{!$Resource.jquerycolorboxjs}','js'); 
+				//loadjscssfile('{!$Resource.jqueryui171customminjs}','js'); 
+				
+				 training = 1;
+			}
+   		}
+	</script>
+ 
+        <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
+<!--
+         <apex:includeScript value="{!$Resource.jquery142}"/>
+
+		
+         <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+        <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
+--> 
+<!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
+        
+<!--  -->
+        <script type="text/javascript">
+			<!-- styles has to be changed afterwards -->
+            function getDocHeight() {
+    			var D = document;
+    			return Math.max(
+        			Math.max(D.body.scrollHeight, D.documentElement.scrollHeight),
+        			Math.max(D.body.offsetHeight, D.documentElement.offsetHeight),
+        			Math.max(D.body.clientHeight, D.documentElement.clientHeight)
+    			);
+			}
+            window.onload = new function(){
+
+				if(training == 1)
+            		$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});	
+ 			 	
+ 			 	var url = window.location.href;
+
+            	//Umschreiben von Links, um Popup zu zeigen beim Klicken! (HIER FÜR TRAININGSMODUL!)
+           		//  if(url.indexOf('popup=1') == -1)
+                for(var i = 0; i < document.links.length; i++){
+                    if(document.links[i].href.indexOf('/training') != -1){
+                    	if(window.location.href.indexOf('popup=1') == -1)
+                    		document.links[i].href = window.location.href + '&popup=1';
+                        else
+                        	document.links[i].href = window.location.href;
+                        document.links[i].target = '_self';
+                        break;
+                    }
+                }
+             	
+           	 	//if(url.indexOf('&download=') == -1)
+                	for(var i = 0; i < document.links.length; i++){
+                    	if(document.links[i].href.indexOf('/download=') != -1){
+                        	var targetURL = document.links[i].href;
+                        
+                       	 	document.links[i].href = window.location.href + '&' + targetURL.slice(targetURL.lastIndexOf('/download=')+1);                   
+                        	document.links[i].target = '_self';
+                        	break;
+                    	}
+                	}
+    			
+    		document.getElementById('custom_popup_bg').style.height = getDocHeight()+'px';
+           	 	 
+            if(document.getElementById("custom_popup") != null && getURLParam('popup') == '1'){
+                document.getElementById('custom_popup_bg').style.display = 'inline-block';
+                document.getElementById('custom_popup_close').style.display = 'inline-block';
+                document.getElementById("custom_popup").style.display = 'inline-block';
+           		document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
+           	 } else  
+           	 	if(document.getElementById("custom_popup") != null && getURLParam('download') != ''){
+           	 		document.getElementById('custom_popup_bg').style.display = 'inline-block';
+           	 		document.getElementById('custom_popup_close').style.display = 'inline-block';
+                	document.getElementById("custom_popup").style.display = 'inline-block';
+                	document.getElementById("iFrameOfPopup").src = getURLParam('download');
+            	} else {
+            		if(document.getElementById("custom_popup") != null)
+            			document.getElementById('custom_popup_bg').style.display = 'none';
+            			document.getElementById('custom_popup_close').style.display = 'none';
+                		document.getElementById("custom_popup").style.display = 'none';
+            	}
+        	};
+         				
+   			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
+   				if (document.getElementById("colRgt") != null && document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
+   					document.getElementById("colRgt").style.paddingTop='65px';
+   			}
+   			var imgcounter=0;
+   			for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
+   				// /faces/a4j/g/3_3_3.Finalimages/spacer.gif
+   				if (document.getElementsByTagName("img")[i].src.indexOf('/faces/a4j/g/3_3_3.Finalimages/spacer.gif')>=0 && imgcounter<1) {
+   					imgcounter++;
+   					document.getElementsByTagName("img")[i].parentNode.removeChild(document.getElementsByTagName("img")[i]);
+   				}
+   			}
+   			for (var i = 0; i < document.getElementsByTagName("td").length; i++) {
+   				// /faces/a4j/g/3_3_3.Finalimages/spacer.gif
+   				if (document.getElementsByTagName("td")[i].className.indexOf('rich-tabhdr-side-border')>=0) {
+   					document.getElementsByTagName("td")[i].parentNode.removeChild(document.getElementsByTagName("td")[i]);
+   				}
+   			}        
+        </script>
+       
+</apex:form>
+</apex:outputPanel>
+</apex:component>

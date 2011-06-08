@@ -1,0 +1,93 @@
+<apex:component controller="presetController" allowDML="true" id="crdpreset">
+    <apex:outputPanel id="presetpanel">
+        <apex:form id="javascriptform" >
+            <!-- Define the JavaScript function -->
+            <apex:actionFunction name="goToStep" action="{!goToStep}" rerender="presetpanel" >
+                <apex:param name="step" assignTo="{!step}" value="" />
+            </apex:actionFunction>
+            <apex:actionFunction name="relationshipSelection" action="{!relationshipSelectionAction}" rerender="presetpanel"  >
+                <apex:param name="selectedGfk" assignTo="{!selectedGfk}" value="" />
+            </apex:actionFunction>
+            
+            <apex:actionFunction name="previousStep" action="{!previousStep}" rerender="presetpanel" />
+        </apex:form>
+        <div class="contentText">
+            <div id="contact">
+                <apex:outputPanel id="step1" rendered="{!step=1}">
+                    <!-- <apex:pageMessages id="errorstep1" /> -->
+                    <apex:form id="step1form" >
+                    	<apex:outputPanel id="formTitle1" styleClass="formTitle" layout="block">
+                			<h1>{!$Label.presetpage_headline}</h1>
+                		</apex:outputPanel>
+                    	<apex:outputPanel id="formText1" styleClass="formText" layout="block">
+	                        <p>{!$Label.presetpage_subtitle}</p>
+	                        <p><apex:actionStatus startText=" {!$Label.global_status}" id="afterselectionstatus" /></p>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="classification">
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanal" />
+                                <apex:inputField id="handelskanal" value="{!u.Handelskanal__c}"  styleClass="FieldRequiredSelect" required="true" onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" />
+                                <!-- onchange="relationshipSelection(document.getElementById('{!$Component.handelskanal}').value);" -->
+                            <apex:outputPanel id="distribution" rendered="{!showDistribution}">
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Distribution__c.label}*" for="distributionfield" />
+                                <!-- 
+                                    <apex:inputField id="distributionfield" value="{!u.Distribution__c}" required="true" styleClass="FieldRequired" style="width:209px" />
+                                -->
+                                <apex:selectList value="{!selectedDistribution}" multiselect="true" styleClass="FieldRequiredSelect" id="distributionselectlist" size="4">
+                                    <apex:selectOptions value="{!items}"/>
+                                </apex:selectList>
+                                <apex:panelGrid columns="2" rendered="{!showDistributionErr}">
+                                    <apex:outputText value=" " style="width:209px;" />
+                                    <apex:panelGroup >
+                                        <div class="errorMsg" style="margin-left: 209px;">
+                                            <apex:outputText escape="false" value="{!errorText}" />
+                                        </div>
+                                    </apex:panelGroup>
+                                </apex:panelGrid>
+                            </apex:outputPanel>
+                            
+                        </apex:outputPanel>
+                        
+                    <br />
+                    <apex:outputPanel layout="block" id="additionaltext" styleClass="additionaltext"  rendered="{!step<2}" style="width: 350px;">
+                    	<p>{!$Label.presetpage_requiredfield}</p>
+                	</apex:outputPanel>
+                    <apex:outputPanel id="buttons" layout="block" styleClass="buttonformdiv">
+		        		<div id="btnarea" class="newBTN_area isLeft">
+				        	<div class="newBTN_arrow"></div>
+				            <div class="newBTN">
+		                        <apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="newBTN" rerender="presetpanel" id="nextstep1_btn"  />
+		                    </div>
+	                    </div>
+                    </apex:outputPanel>
+                </apex:form>
+                </apex:outputPanel>
+                
+                <apex:outputPanel id="success" rendered="{!step=2}">
+                    <c:CRD_formResultMessage width="small" msgstyle="success" title="{!$Label.presetpage_headline}" message="{!$Label.presetpage_thanks}" id="presetmsgcomp" />
+                </apex:outputPanel>
+                <apex:outputPanel id="saveerror" rendered="{!step=99}">
+                	<apex:outputPanel id="formText2" styleClass="formText" layout="block">
+                    	<p>{!$Label.presetpage_error}</p>
+                    </apex:outputPanel>
+                    <apex:pageMessages id="error" />
+                </apex:outputPanel>
+				
+                <apex:outputPanel id="backaftersuccess" rendered="{!step>1}" >
+                
+                	<div id="btnarea" class="newBTN_area isLeft">
+			        	<div class="newBTN_arrowBack"></div>
+			            <div class="newBTN">
+                    		<apex:outputLink styleClass="newBTN" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
+                    	</div>
+                    </div>
+                </apex:outputPanel>
+
+            </div>
+        </div>
+    </apex:outputPanel>
+    <style type="text/css">
+    	.errorMsg {
+    		margin-left: 0px;
+    	}
+    </style>
+</apex:component>

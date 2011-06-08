@@ -1,0 +1,71 @@
+<apex:page showheader="false" id="CRD_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
+	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" standardStylesheets="false" >
+
+<apex:composition template="{!$Site.Template}">
+ 
+		<apex:define name="body">
+		<c:CRD_Clearing id="declearingcomp" rendered="{!showclearingcomp}" />
+		<c:CRD_preset id="depresetcomp" rendered="{!showpresetcomp}" />
+		<!-- this can work only if we are not inside a component
+			but we need to be inside a componet with the registration, bad enough -->
+		<!-- <apex:include pageName="DEPrivacy" id="DEPrivacyInclude" rendered="{!showprivacy}"/> -->
+		<c:CRD_privacy id="deprivacycomp" rendered="{!showprivacy}" />
+ 		
+ 		<!-- <div id="prodOver"> -->
+ 		<apex:outputPanel id="truecontent" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showothercomp)/*,NOT(showNextTopShop)*/)}">
+ 		<div id="prodOver">
+	 		<!--Start LeftSide Content -->
+	 		
+	 		<div class="contentTextSmall">
+	 			<div id="contact" class="small">
+	 				<c:CRD_Training id="training" rendered="{!showTraining}" />
+	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
+	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
+					
+				</div>
+			</div>
+			
+     		<!--End LeftSide Content -->
+     		<!--Start RightSide Content -->
+     		<div id="colRgt">
+     		
+         		<c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
+         		<!--Start oneColInfo -->
+         		<div class="oneCol">
+         			<div class="oneColInfo">
+         				<c:contentblock name="rghtcol1" rendered="{!isAuthenticated}" />
+       			</div>
+         			<div class="oneColBtm">
+         				<c:contentblock name="rghtcol1Btm" rendered="{!isAuthenticated}" />
+         			</div>
+         		</div>
+         		<!--End oneColInfo -->
+         		<!--Start oneColInfo -->
+         		<div class="oneCol">
+         			<div class="oneColInfo">
+         				<c:contentblock name="rghtcol2" rendered="{!isAuthenticated}" />
+       			</div>
+	      		<div class="oneColBtm">
+	      			<c:contentblock name="rghtcol2Btm" rendered="{!isAuthenticated}" />
+	      		</div>
+     	 		</div>
+     			<!--End oneColInfo -->
+		</div>
+    		<!--End RightSide Content -->
+    <!-- end prodOver -->
+	 </div>
+	 </apex:outputPanel>
+	</apex:define>
+</apex:composition>
+	<script type="text/javascript">
+     	for (var i = 0; i < document.getElementsByTagName("img").length; i++) {
+     		if (document.getElementById("colRgt") != null && document.getElementsByTagName("img")[i].id.indexOf("bsolutlyGigaset")>=0)
+     			document.getElementById("colRgt").style.paddingTop='60px';
+     		}
+     </script>
+     
+     
+<apex:includeScript value="{!$Resource.jquery142}"/>
+<apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+<apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
+</apex:page>

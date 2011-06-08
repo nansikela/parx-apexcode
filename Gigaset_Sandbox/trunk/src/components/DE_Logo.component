@@ -1,0 +1,5 @@
+<apex:component id="logo" >
+	<apex:outputLink value="{!$Site.CustomWebAddress}" id="logolink">
+		<apex:image value="{!URLFOR($Resource.gigasetextranetZIP, 'img/gigaset_logo.png')}" />
+	</apex:outputLink>
+</apex:component>

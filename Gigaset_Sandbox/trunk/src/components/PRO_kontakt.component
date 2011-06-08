@@ -1,0 +1,56 @@
+<apex:component controller="DEkontaktController" allowDML="true" id="kontaktformular" >
+    <h1>{!$Label.contact}</h1>
+    <!-- 
+    <p class="errorMsg" rendered="{!messages!=''}" id="errormessages" >{!messages}</p>
+    -->
+    <br />
+    <apex:outputPanel id="form" rendered="{!showform}">
+        <p>{!$Label.contact_subtitle}</p>
+        <!-- <p>{!$Label.fillout_all_fields}</p> -->
+        <!-- <apex:pageMessages id="errorform" /> -->
+        <apex:form id="kontaktform" >
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Firma__c.label}*" for="company" rendered="{!NOT(isAuthenticated)}" />
+                <apex:inputField id="company" value="{!rq.Firma__c}" rendered="{!NOT(isAuthenticated)}" required="true" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Vorname__c.label}*" for="firstname" rendered="{!NOT(isAuthenticated)}" />
+                <apex:inputField id="firstname" value="{!rq.Vorname__c}" rendered="{!NOT(isAuthenticated)}" required="true" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Nachname__c.label}*" for="lastname" rendered="{!NOT(isAuthenticated)}" />
+                <apex:inputField id="lastname" value="{!rq.Nachname__c}" rendered="{!NOT(isAuthenticated)}" required="true" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.PLZ__c.label}" for="postalcode" rendered="{!NOT(isAuthenticated)}" />
+                <apex:inputField id="postalcode" value="{!rq.PLZ__c}" rendered="{!NOT(isAuthenticated)}" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Stadt__c.label}" for="city" rendered="{!NOT(isAuthenticated)}" />
+                <apex:inputField id="city" value="{!rq.Stadt__c}" rendered="{!NOT(isAuthenticated)}" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Land__c.label}*" for="country" rendered="{!NOT(isAuthenticated)}" />
+                <apex:inputField id="country" value="{!rq.Land__c}" rendered="{!NOT(isAuthenticated)}" required="true" styleClass="FieldRequiredSelect" />
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Email__c.label}*" for="email" />
+                <apex:inputField id="email" value="{!rq.Email__c}" required="true" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Betreff__c.label}*" for="subject" />
+                <apex:inputField id="subject" value="{!rq.Betreff__c}" required="true" styleClass="FieldRequired" />
+            <apex:outputLabel value="{!$ObjectType.Request__c.fields.Text__c.label}*" for="text" />
+                <apex:inputField id="text" value="{!rq.Text__c}" required="true" styleClass="FieldRequired" />
+            <div class="requiredInput spacer5">
+                <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+                <apex:commandButton action="{!saveRequest}" value="{!$Label.site.submit}" styleClass="spacer8" id="save_btn" />
+            </div>
+        </apex:form>
+        <apex:outputPanel id="additionaltext">
+            <p>{!$Label.presetpage_requiredfield}</p>
+        </apex:outputPanel>
+        <!-- <p>{!$Label.check_email_address}</p> -->
+    </apex:outputPanel>
+    <apex:outputPanel id="success" rendered="{!success}">
+        <p>{!$Label.your_request_with_subject}</p>
+        <!--  {!rq.Betreff__c}</p>
+        <p>{!$Label.we_care_for_request}</p>-->
+    </apex:outputPanel>
+    <apex:outputPanel id="saveerror" rendered="{!AND(success=false,showform=false)}">
+        <p>{!$Label.contactform_error}</p>
+        <apex:pageMessages id="errorsave" />
+    </apex:outputPanel>
+    <apex:outputPanel id="backbutton" rendered="{!OR(success,AND(success=false,showform=false))}" >
+        <apex:form id="backbuttonform">
+            <div class="spacer5">
+                <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.back}</apex:outputLink>
+            </div>
+        </apex:form>
+    </apex:outputPanel>
+</apex:component>

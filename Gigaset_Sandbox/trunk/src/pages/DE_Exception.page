@@ -1,0 +1,41 @@
+<apex:page showHeader="false" title="{!$Label.site.error2}">
+<apex:composition template="{!$Site.Template}">
+
+		<apex:define name="body">
+		<div class="contactBox">
+			<div id="contact">
+				<p> </p>
+				<h2><apex:outputText value="{!$Label.site.error}">      
+                  		<apex:param value="{!$Site.ErrorMessage}"/>
+                   			<!-- this parameter needs to be italic in the site.error label -->
+                  		</apex:outputText>
+                  	</h2>
+                  	<apex:pageMessages id="errors" />
+                  	<p>
+				<apex:outputText value="{!$Label.site.stay_tuned}"/>
+                  	<apex:outputText escape="false" value=" {!$Label.site.get_in_touch}">
+                  		 <apex:param value="mailto:{!$Site.AdminEmailAddress}"/>
+                  		 <apex:param value="{!$Label.site.email_us}"/>
+                  	</apex:outputText>
+				</p>
+				<div class="link_arrow">
+					<a href="mailto:{!$Site.AdminEmailAddress}">{!$Label.global_send_email}</a>
+				</div>
+
+
+				<br />
+				<div class="hor_line"></div>
+				<br/>
+
+				<c:DE_LoginMenu />
+				
+			</div>
+			<span id="end"></span>
+ 		</div>
+ 		<div id="sidebar" class="">
+ 			<apex:image id="img404" alt="{!$Label.site.file_not_found}" value="{!URLFOR($Resource.gigasetextranetZIP, 'img/404_fehler.jpg')}" />
+ 		</div>
+	</apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

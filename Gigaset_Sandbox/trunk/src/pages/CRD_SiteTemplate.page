@@ -1,0 +1,82 @@
+<apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false">
+    <!-- seems not to work ... -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /> -->
+    <c:CRD_headerStylesTop id="styles_top" loginBackgroundImageId="{!loginBackgroundImageId}" />
+    <div id="wrapper">
+        <div id="content_area">
+            <div id="header">
+                <apex:insert name="metanavi">
+                    <!--  Portalabh. - portal sets "lang=fr" and translations are necessary -->
+                    <c:CRD_metanavi id="metanavicomp" />
+                </apex:insert>
+                <div id="logo">
+                    <apex:insert name="logo">
+                        <c:CRD_Logo id="CRD_Logocomp" />
+                    </apex:insert>
+                </div>
+                <!--  Portalabh. -->
+                <c:CRD_navigation id="CRD_navigationcomp"  />
+            </div>
+            <!--  END header -->
+            <div id="content_wrapper">
+             	<div id="custom_popup_bg">
+            		<div id="custom_popup" class="custom_popup" style="display:none;"> 
+            			<a id="custom_popup_close" style="font-weight:bolder; color:black;display:none;" onclick="document.getElementById('custom_popup_bg').style.display = 'none'; document.getElementById('custom_popup').style.display = 'none';">           	
+             				<img src="{!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}" />
+             			</a>
+               			<apex:variable var="pdf" value="{!target}"/>
+                		<iframe src="{!IF(isNative,'http://127.0.0.1',URLFOR($Resource.pdfs, pdf))}" frameborder="0" scrolling="no" id="iFrameOfPopup"> </iframe>
+                	</div>	
+                </div>
+            </div> 
+            
+			<!-- shadow at the end of the page, only if logged in -->
+            <div id="content" style="{!IF(isAuthenticated,'background-image: url(','')}{!URLFOR($Resource.GCRedesign,'GCRedesign/greyShadowBottom.png')}{!IF(isAuthenticated,');background-color: white;background-position: bottom left;background-repeat: repeat-x;','')}">
+                <apex:insert name="breadcrump">
+                    <c:CRD_breadcrump id="CRD_breadcrumpcomp" />
+                </apex:insert>
+                <apex:insert name="extranetnavigation">
+                    <!--  Portalabh. -->
+                    <!-- AND(isAuthenticated,NOT($Site.IsPasswordExpired))  -->
+                    <c:CRD_extranetnavigation rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showclearingcomp),NOT(showNextTopShop))}" id="extranetnavigationcomp" />
+                    <c:CRD_LogoPortlet rendered="{!AND(isAuthenticated,NOT(showpresetcomp),NOT(showclearingcomp),NOT($Site.IsPasswordExpired))}" id="logoportlet"/>
+                </apex:insert>
+                <apex:insert name="body" />
+            </div>
+        </div>
+        <div id="content_wrapperBtm"></div>
+        <!-- END content -->
+   
+    	<!-- END content_area -->
+    	<apex:insert name="footer">
+        	<c:CRD_footer id="CRD_footercomp" />
+    	</apex:insert>
+	</div>
+    <!-- END wrapper -->
+    <c:CRD_footercopy id="CRD_footercopycomp" />
+    
+    
+    <script type="text/javascript">
+    	
+        function getURLParam(strParamName){
+            strReturn = "";
+            strHref = window.location.href; //search
+            if( strHref.indexOf("?") > -1 ){
+                strQueryString = strHref.substr(strHref.indexOf("?")).toLowerCase();
+                aQueryString = strQueryString.split("&");
+                
+                for ( iParam = 0; iParam < aQueryString.length; iParam++ ){
+                    if (aQueryString[iParam].indexOf(strParamName + "=") > -1 ){
+                        aParam = aQueryString[iParam].split("=");
+                        strReturn = aParam[1];
+                        break;
+                    }
+                }
+            }
+            return strReturn;
+        }
+    </script>
+    <c:CSS_Ressource id="stylesheet_Michi" />
+    <c:CRD_headerStylesBottom id="styles_bottom"  isAuthenticated="{!isAuthenticated}" Modules_URLPage="{!Modules_URLPage}" />
+    <site:previewAsAdmin />
+</apex:page>

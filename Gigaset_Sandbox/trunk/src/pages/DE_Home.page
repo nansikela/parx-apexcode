@@ -1,0 +1,183 @@
+<apex:page showheader="false" id="de_home" sidebar="false" controller="DETemplateController" extensions="DETrainingController"
+    title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
+
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+
+        <c:DE_Clearing id="declearingcomp" rendered="{!showclearingcomp}" />
+        <c:DE_preset id="depresetcomp" rendered="{!showpresetcomp}" />
+        <!-- this can work only if we are not inside a component
+            but we need to be inside a componet with the registration, bad enough -->
+        <!-- <apex:include pageName="DEPrivacy" id="DEPrivacyInclude" rendered="{!showprivacy}"/> -->
+        <c:DE_privacy id="deprivacycomp" rendered="{!showprivacy}" />
+        
+        <!-- <div id="prodOver"> -->
+        <apex:outputPanel id="truecontent" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showothercomp)/*,NOT(showNextTopShop)*/)}">
+        <div id="prodOver">
+            <!--Start LeftSide Content -->
+            
+            <div class="contentText">
+                <div id="contact">
+                    <c:DE_Training id="training" rendered="{!AND(showTraining,OR(ProAuthorisiert,NOT(ProAuthorizationSwitch)))}" />
+                    <c:contentblock name="maincontent"  rendered="{!AND(NOT(showNextTopShop),NOT(AND(ProAuthorizationSwitch,NOT(ProAuthorisiert))))}"/>
+                    <c:contentblock name="ProAuthorizationContent"  rendered="{!AND(ProAuthorizationSwitch,NOT(ProAuthorisiert))}"/>
+                    <c:Download id="Download" rendered="{!AND(showNextTopShop,OR(ProAuthorisiert,NOT(ProAuthorizationSwitch)))}"/>
+
+                    <!-- News Reader component for new CR
+                    <apex:form id="testform">
+                        <apex:actionPoller action="{!getRecentNewsId}" rerender="test,newsreadercomp" interval="15"/>
+
+                        <apex:outputPanel id="test">
+                        {!topnewsController.newsid}
+                        
+                        </apex:outputPanel>
+                    </apex:form>
+                    
+                    <a name="news"><c:DE_newsreader id="newsreadercomp" pageController="{!this}" key="newsreader" newsid="{!topnewsController.newsid}" /></a>
+                    -->
+                </div>
+                <span id="end"></span>
+            </div>
+            
+            <!--End LeftSide Content -->
+            <!--Start RightSide Content -->
+            <div id="colRgt">
+               
+                <c:DEcontactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
+                <c:DEuserprofileportlet rendered="{!AND(isAuthenticated,NOT(showpresetcomp),NOT(showclearingcomp))}" id="userprofileportletcomp" />
+                <!-- News Reader component for new CR
+                <c:DE_topnews pageController="{!this}" key="topnews" id="topnewscomp"/>
+                -->
+                <!--Start oneColInfo -->
+                <div class="oneCol">
+                    <div class="oneColInfo">
+                        <c:contentblock name="rghtcol1" rendered="{!isAuthenticated}" />
+                </div>
+                    <div class="oneColBtm">
+                        <c:contentblock name="rghtcol1Btm" rendered="{!isAuthenticated}" />
+                    </div>
+                </div>
+                <!--End oneColInfo -->
+                <!--Start oneColInfo -->
+                <div class="oneCol">
+                    <div class="oneColInfo">
+                        <c:contentblock name="rghtcol2" rendered="{!isAuthenticated}" />
+                </div>
+                <div class="oneColBtm">
+                    <c:contentblock name="rghtcol2Btm" rendered="{!isAuthenticated}" />
+                </div>
+                </div>
+                <!--End oneColInfo -->
+        </div>
+            <!--End RightSide Content -->
+    <!-- end prodOver -->
+     </div>
+     </apex:outputPanel>
+    </apex:define>
+</apex:composition>
+
+<apex:form >
+
+        <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
+        <apex:includeScript value="{!$Resource.jquery142}"/>
+<!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
+        <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
+        <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
+
+        <script>
+            
+            $(document).ready(function(){
+<!-- wenn man auf dem bild clickt ist diese teil ausgeführt: -->
+                $(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"
+                //  onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+                //  onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+                //  onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+                //  onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+                //  onClosed:function(){ /*alert('onClosed: colorbox has completely closed');location.href = '/de/apex/page?pageid=a0AR0000005FxEX'; */ }
+                });
+
+            });
+            
+            
+            
+        </script>
+
+<style type="text/css">
+
+
+<!--für den Colorbox... hier setze ich den Background. Leider kann ich diese Background im iFrame nicht verändern... -->
+<!--gibt es keine möglichkeit??-->
+
+#cboxContent {
+background: url({!IF(isPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/BG_Landing.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg'))}) no-repeat 0 0;
+}
+
+#cboxClose {
+background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/schliesen.png')}) no-repeat 0 0;
+right: -10px;
+top: -11px;
+}
+
+#cboxLoadingGraphic,#cboxLoadingOverlay {
+background-image: url();
+}
+
+
+#cboxClose.hover {
+background-position:0px 0px;
+}
+
+
+/* Neue Einstellungen bzgl. Größenangaben der Colorbox */
+
+#cboxTopLeft,
+#cboxBottomLeft,
+#cboxBottomRight,
+#cboxTopRight {
+    width:10px;
+    height:10px;
+    background-image: none;
+/*    background-color: #ffffff;*/
+}
+
+#cboxBottomCenter,
+#cboxBottomLeft,
+#cboxBottomRight  {
+    position:relative;
+    bottom:5px;
+}
+
+#cboxTopCenter,
+#cboxBottomCenter {
+    width:960px;
+    height:10px;
+    background-image: none;
+  /*  background-color: #ffffff;*/
+}
+
+#cboxMiddleRight,
+#cboxMiddleLeft {
+    width:10px;
+    background-image: none;
+/*    background-color: #ffffff;*/
+}
+
+#cboxContent{
+    width:960px;
+    height:540px;
+    margin:0px;
+    padding:0px
+}
+
+#colorbox {
+    width:980px;
+    height:560px;
+    padding:0;
+    margin:0px;
+
+}
+
+</style>
+</apex:form>
+</apex:page>

@@ -1,0 +1,16 @@
+<apex:page showheader="false" id="de_pro_prm" sidebar="false" controller="PRM" language="{!defaultlanguage}">
+<!--  action="{!init}" > -->
+<c:DE_PRO_PRM_headerStyles id="prmstyles" />
+<apex:composition template="{!$Site.Template}">
+
+		<apex:define name="body">
+		 	
+        		<div class="contactBox" id="cbox" >
+        			<div id="contact">
+        				<apex:iframe src="{!PortalURL}" 
+        					id="prm"  scrolling="true" />
+        			</div>
+        		</div>
+	</apex:define>
+</apex:composition>
+</apex:page>

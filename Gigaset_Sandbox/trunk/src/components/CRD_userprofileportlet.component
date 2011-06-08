@@ -1,0 +1,7 @@
+<apex:component controller="userprofileportletController" id="crduserprofileportlet" >
+        <div class="profiletext">
+            <apex:outputText value="{!contact.Firstname} {!contact.Lastname}" id="r1c2"  styleClass="profileusertext" />
+            <apex:outputLink value="{!BenutzerdatenUrl}" id="r2c2" styleClass="profilelinktext" >&nbsp;> {!$Label.userdata}</apex:outputLink>
+            <apex:outputLink value="{!$Site.Prefix}/secur/logout.jsp" id="r3c2" styleClass="profilelinktext" >&nbsp;> {!$Label.site.logout}</apex:outputLink>
+        </div>
+</apex:component>

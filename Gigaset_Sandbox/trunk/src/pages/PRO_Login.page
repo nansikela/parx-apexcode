@@ -1,0 +1,37 @@
+<apex:page showheader="false" id="pro_login" sidebar="false" title="{!$Label.de_title}"  controller="DETemplateController" language="{!defaultlanguage}" action="{!init}" >
+
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+            <c:contentblock name="willkommen" />
+            <c:contentblock name="Teaser" />
+            
+                <div class="contactBox" id="cbox" >
+                    <div id="contact">
+                        <p>{!$Label.login_intro}</p>
+                        <apex:outputPanel id="partnerloginintro" rendered="{!AND(isPro,$Site.RegistrationEnabled)}">
+                            <p>{!$Label.login_intro_partner}&nbsp; 
+                                <apex:outputLink value="{!$Page.page}?pageid={!registrationpageid}" id="registration_btn" styleClass="">
+                                    <apex:outputText value="{!$Label.login_new_user}" />
+                                </apex:outputLink>
+                            </p>
+                        </apex:outputPanel>
+                        <c:PRO_Login id="login" />
+                        <!-- 
+                        <c:PRO_SiteLogin id="login" />
+                        -->
+                        <p>{!$Label.login_posttext}</p>
+                    </div>
+                    <span id="end"></span>
+                </div>
+                <div id="colRgt">
+                    <div id="sidebar">
+                        <c:contentblock name="sidebarimage" id="sidebarimage" />
+                    </div>
+                </div>
+                <!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/kontakt.png')}" alt="kontakt" /> -->
+                <c:contentblock name="system" id="system" />
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

@@ -1,0 +1,13 @@
+<apex:page showheader="false" sidebar="false" id="crd_register" cache="false" expires="600"
+    controller="TemplateController" title="{!$Label.de_title}" language="{!defaultlanguage}" standardStylesheets="false" >
+
+
+	<apex:composition template="{!$Site.Template}">
+        <apex:define name="body">
+        	<apex:outputPanel layout="block" id="insidecontent" styleClass="loginbackground" >
+        		<c:CRD_register />
+        	</apex:outputPanel>
+	    </apex:define>
+	</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

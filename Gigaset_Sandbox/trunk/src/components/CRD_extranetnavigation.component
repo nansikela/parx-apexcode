@@ -1,0 +1,34 @@
+<apex:component controller="navigationController" id="crdnavigation" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired))}" >
+
+    <div class="prodTeaserBig" >
+        <ul id="navimenu" >
+        	<apex:outputPanel id="homespan" rendered="{!HomeUrl!=''}">
+            <li><apex:outputLink value="{!HomeUrl}" id="home" target="{!IF(homepageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=homepageid,'active','')}" >{!labelhome}</apex:outputLink></li>
+            </apex:outputPanel>
+            <apex:outputPanel id="link1span" rendered="{!Link01Url!=''}">
+            <li><apex:outputLink value="{!Link01Url}" id="link1" target="{!IF(link01pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link01pageid,'active','')}" >{!labellink01}</apex:outputLink></li>
+            </apex:outputPanel>
+            <apex:outputPanel id="link2span" rendered="{!Link02Url!=''}">
+            <li><apex:outputLink value="{!Link02Url}" id="link2" target="{!IF(link02pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link02pageid,'active','')}" >{!labellink02}</apex:outputLink></li>
+            </apex:outputPanel>
+            <apex:outputPanel id="link3span" rendered="{!Link03Url!=''}">
+            <li><apex:outputLink value="{!Link03Url}" id="link3" target="{!IF(link03pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link03pageid,'active','')}" >{!labellink03}</apex:outputLink></li>
+            </apex:outputPanel>
+            <apex:outputPanel id="link4span" rendered="{!Link04Url!=''}">
+            <li><apex:outputLink value="{!Link04Url}" id="link4" target="{!IF(link04pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link04pageid,'active','')}" >{!labellink04}</apex:outputLink></li>
+            </apex:outputPanel> 
+            <apex:outputPanel id="link5span" rendered="{!Link05Url!=''}">
+            <li><apex:outputLink value="{!Link05Url}" id="link5" target="{!IF(link05pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link05pageid,'active','')}" >{!labellink05}</apex:outputLink></li>
+            </apex:outputPanel>
+            <apex:outputPanel id="link6span" rendered="{!Link06Url!=''}">
+            <li><apex:outputLink value="{!Link06Url}" id="link6" target="{!IF(link06pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link06pageid,'active','')}" >{!labellink06}</apex:outputLink></li>
+            </apex:outputPanel>
+            <apex:outputPanel id="linktootherportal" rendered="{!linktootherportal!=''}">
+            <li><apex:outputLink value="{!linktootherportal}" id="otherportal" >{!$Label.breadcrump_dealer}<apex:outputText value=" Pro" /></apex:outputLink></li>
+            </apex:outputPanel>
+        </ul>
+        <div class="horizontalrule"></div>
+    </div>
+    
+
+</apex:component>

@@ -1,0 +1,43 @@
+<apex:component id="marketingtabs" controller="CRD_MarketingController">
+	<apex:attribute name="isAuthenticated" description="This informs us about the user login." 
+
+        type="Boolean" required="true"/>
+
+   	<apex:attribute name="isDone" description="This is the indication that selection of campaign materials isDone." 
+
+        type="Boolean" required="true"/>
+
+
+	<apex:outputPanel id="tabarea" layout="block" >
+		<apex:tabPanel switchType="client" id="theMarketingTabPanel" value="{!If(OR(isDone,onOrder),'material','')}"
+				activeTabClass="MarketingActiveTab" 
+				contentClass="MarketingContent"
+				headerClass="MarketingHeader"
+				inactiveTabClass="MarketingInactiveTab"
+				styleClass=""
+				tabClass="" 
+				headerAlignment="left"
+				headerSpacing="0px"
+				height="100%"
+				width="902px"
+			>
+			<apex:tab label="{!tabLabelSalesActions}" name="actions" id="tabSalesActions" rendered="{!showTabSalesActions}" >
+				
+			</apex:tab>
+        	<apex:tab label="{!tabLabelSalesSupport}" name="support" id="tabSalesSupport" rendered="{!showTabSalesSupport}" >
+        		<c:contentblock name="salessupport" />
+        	</apex:tab>
+        	
+        	<apex:tab label="{!tabLabelCampaignMaterial}" name="material" id="tabCampaignMaterial" rendered="{!showTabCampaignMaterial}" >
+        	<apex:outputText id="test" value="{!onOrderComp}" rendered="{!NOT(isDone)}" style="display: none;" />
+        		<c:CRD_werbemittel rendered="{!(isAuthenticated )}" id="werbemittelcomp" pageController="{!this}" />
+             	<!--  <c:CRD_werbemittelFinal rendered="{!(isAuthenticated && isDone)}" id="werbemittelcomp_finalcomp" /> -->
+        	</apex:tab>
+        	<apex:tab label="{!tabLabelEventCalendar}" name="calendar" id="tabEventCalendar" rendered="{!showTabEventCalendar}" >
+        		<c:contentblock name="eventcalendar" />
+        	</apex:tab>
+   		</apex:tabPanel>
+	</apex:outputPanel>
+	<apex:outputPanel id="dummy"></apex:outputPanel>
+
+</apex:component>

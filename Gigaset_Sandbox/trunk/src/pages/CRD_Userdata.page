@@ -1,0 +1,46 @@
+<apex:page showheader="false" sidebar="false" id="crd_userdata"
+    controller="TemplateController" title="{!$Label.de_title}"
+    language="{!defaultlanguage}" action="{!init}">
+
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+        <!--Start LeftSide Content -->
+            <div class="contentTextSmall"  >
+                <div id="contact" class="small" > 
+                    <c:CRD_userdata rendered="{!isAuthenticated}" id="cuserdata" />
+                </div>
+            </div>
+            <!--End LeftSide Content --> 
+            
+            <!--Start RightSide Content -->
+            <div id="colRgt" >
+                <c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),showcontactportlet)}" />
+                
+                <!--Start oneColInfo -->
+                <div class="oneCol">
+                    <div class="oneColInfo">
+                        <c:contentblock name="rghtcol1" />
+                    </div>
+                    <div class="oneColBtm">
+                        <c:contentblock name="rghtcol1Btm" />
+                    </div>
+                </div>
+                <!--End oneColInfo --> 
+                <!--Start oneColInfo -->
+                <div class="oneCol">
+                    <div class="oneColInfo">
+                        <c:contentblock name="rghtcol2" />
+                    </div>
+                    <div class="oneColBtm">
+                        <c:contentblock name="rghtcol2Btm" />
+                    </div>
+                </div>
+                <!--End oneColInfo -->
+            </div>
+            <!--End RightSide Content --> 
+        <!-- end prodOver -->
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

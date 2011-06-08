@@ -1,0 +1,30 @@
+<apex:component id="LoginMenu" rendered="{!$Site.LoginEnabled}" controller="DE_LoginMenuComponentController" >
+	<ul id="menu">
+		<li>      
+			<div class="link_arrow">
+				<apex:outputLink value="{!$Page.DE_Login}" id="login_btn" styleClass="link_arrow">
+                        <!-- {!$Label.site.go_to_login_page} -->
+                        {!$Label.gohome}
+                    	</apex:outputLink>
+			</div>
+		</li>
+  
+		<li>
+			<div class="link_arrow spacer5">
+				<apex:outputLink value="{!$Page.page}?pageid={!ForgotPasswordPageId}" id="forgot_btn" styleClass="link_arrow">
+                        {!$Label.site.forgot_your_password_q}
+                    	</apex:outputLink>
+                    	<br />
+			</div>
+		</li>
+
+		<li>
+			<div class="link_arrow spacer5"> 
+				<apex:outputLink value="{!$Page.page}?pageid={!RegistrationPageId}" id="registration_btn"
+					rendered="{!$Site.RegistrationEnabled}" styleClass="link_arrow">
+                        {!$Label.site.new_user_q}
+                    	</apex:outputLink>
+			</div>
+		</li>
+	</ul>
+</apex:component>
