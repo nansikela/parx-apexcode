@@ -1,4 +1,4 @@
-<apex:page controller="DETemplateController" language="{!defaultlanguage}" action="{!firstPage}">
+<apex:page controller="DETemplateController" language="{!defaultlanguage}" id="training" action="{!firstPage}">
 <!--die 4 Button von der Startseite. Content eingebunden-->
     <div style="display:none;color:{!IF(isPro,"white","black")};">
         <div id='AboutLektora' style='padding:10px;'>
@@ -15,7 +15,7 @@
         </div>
     </div>
     
-<apex:form > 
+<apex:form id="training_form"> 
         
 <!--        hier sind die script/css in der Seite hinzugefügt-->
         <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
@@ -52,7 +52,7 @@
         
         <script>
             $(document).ready(function(){
- 				document.documentMode = 7;
+ 				
                 //Examples of how to assign the ColorBox event to elements
             /*  $("a[rel='example1']").colorbox();
                 $("a[rel='example2']").colorbox({transition:"fade"});
@@ -184,17 +184,24 @@
                     <div class="right-element" style="padding:2px 0px 0px 22px; width: 452px; height: 383px;">
 
 <!--das bild von den 5 bücher-->
-                           <apex:image value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Books_grey.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/buecher.png'))}" style="padding-left:18px;"/>
+                           <apex:image usemap="#Landkarte" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Books_grey.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/buecher.png'))}" style="padding-left:18px; border:0px;"/>
                     
 <!-- der "repeat" widerholt für die 5 linken (für jede Buch!) -->
+                        <map name="Landkarte">
                            <apex:repeat value="{!Books}" var="book" id="Repeat2">
-
+									
 <!-- der schiefe Text mit den link... ein Matrix sollte benutzt werden da es meines Wissens in IE die anzeige möglichkeit ist -->	
-                                	<!--  -->          
-                                    <div class="bookDiv" style="display:block; position:absolute; vertical-align: middle; text-align: right; width:250px; height:65px; top: {!book.Helfer4}px; left:{!book.Helfer3 - 15}px; -ms-filter:'progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, SizingMethod='auto expand')'; filter:progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, SizingMethod='auto expand'); -moz-transform:  matrix({!book.Helfer5}, {!book.Helfer8}pt, 65pt); -moz-transform-origin:  -100px , 125px; -webkit-transform:  matrix({!book.Helfer5}, {!book.Helfer7 -65} , 85); -o-transform: matrix({!book.Helfer5}, {!book.Helfer7 -65}, 25);"> 
-                   						<apex:commandLink action="{!secondPage}" value="{!book.book.Titel__c}" style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:15pt; ">                          <!--vertical-align:middle; style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:16pt; vertical-align:middle; position: relative; top:17px;" -->
+
+                                    <div class="bookDiv" style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:15pt; display:block; position:absolute; vertical-align: middle; text-align: right; width:250px; height:65px; top: {!book.Helfer4}px; left:{!book.Helfer3 - 15}px; -ms-filter:'progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, SizingMethod='auto expand')'; filter:progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, SizingMethod='auto expand'); -moz-transform:  matrix({!book.Helfer5}, {!book.Helfer8}pt, 65pt); -moz-transform-origin:  -100px , 125px; -webkit-transform:  matrix({!book.Helfer5}, {!book.Helfer7 -65} , 85); -o-transform: matrix({!book.Helfer5}, {!book.Helfer7 -65}, 25);"> 
+                   						<area shape="poly" coords="{!book.x1},{!book.y1},{!book.x2},{!book.y2},{!book.x3},{!book.y3},{!book.x4},{!book.y4}" href="#" onclick="{!book.function}();" alt="{!book.book.Titel__c}" title="{!book.book.Titel__c}" />                                
+                                    	<apex:actionFunction name="{!book.function}" rerender="training_form" action="{!secondPage}" >
+                                    		<apex:param name="param" value="{!book.book.Titel__c}" />
+                                   		</apex:actionFunction>
+                   						
+                   						<apex:commandLink action="{!secondPage}" value="{!book.book.Titel__c}" style="color:white; font-family: Arial, Helvetica, Geneva, sans-serif; font-size:15pt; ">                          
                                         	<apex:param name="param" value="{!book.book.Titel__c}" />
                    						</apex:commandLink>
+                   						
                    					</div>
 <!-- die roten Buchhänger -->
                                 <apex:image style="padding-left:30px; position: absolute; top: {!book.Helfer_BH_Vertical}px; left:{!book.Helfer_BH}px" value="{!IF(IsPro,URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/Pro/Bookmark_offline.png'),URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/offline/buchhaenger_offline.png'))}" rendered="{!book.book.Buchhaenger__c}"/>    
@@ -202,6 +209,7 @@
 <!-- die nummer im Buchhänger -->
                                 <apex:outputText rendered="{!book.book.Buchhaenger__c}" styleClass="bookmarknumber" style="position: absolute; top: {!book.Helfer_BH_Vertical+75}px; left:{!book.Helfer_BH+31}px" value="{!ROUND(book.book.New_Modules__c,0)}"  />
                            </apex:repeat>
+                       </map>
                     </div>
                 </div>
                 
