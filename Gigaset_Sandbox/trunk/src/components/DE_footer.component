@@ -1,7 +1,10 @@
 <apex:component id="footer" >
-	<apex:attribute name="isPro" description="This informs us about the user login." 
+<apex:attribute name="isPro" description="pro or not pro" 
 
         type="Boolean" required="false" assignTo="{!isPro}"/>
+<apex:attribute name="portal" description="portal if can't get it from the controller" 
+
+        type="String" required="false" assignTo="{!portal}"/>
 
 	<div id="footer">
 		<div id="footerlogos">

@@ -3,14 +3,9 @@
 	<div id="wrapper">
 		<div id="content_area">
 			<div id="header">
-				<!-- 
-				<apex:insert name="dropDown">
-					<c:DE_Dropdown id="DE_Dropdowncomp" />	
-				</apex:insert>
-				-->
 				<apex:insert name="metanavi">
 					<!--  Portalabh. - portal sets "lang=fr" and translations are necessary -->
-					<c:DE_metanavi id="metanavicomp" isPro="{!isPro}" />
+					<c:DE_metanavi id="metanavicomp" isPro="{!isPro}" portal="{!portal}" />
 				</apex:insert>
 				<div id="logo">
 					<apex:insert name="logo">
@@ -18,7 +13,7 @@
 					</apex:insert>
 				</div>
 				<!--  Portalabh. -->
-				<c:DE_navigation id="DE_navigationcomp" isPro="{!isPro}"  />
+				<c:DE_navigation id="DE_navigationcomp" isPro="{!isPro}" portal="{!portal}" />
 				<!-- 
 				<div id="search"> 
 				</div>
@@ -44,11 +39,11 @@
 		</div>
 		<!-- END content_area -->
 		<apex:insert name="footer">
-			<c:DE_footer id="DE_footercomp" isPro="{!isPro}" />
+			<c:DE_footer id="DE_footercomp" isPro="{!isPro}" portal="{!portal}" />
 		</apex:insert>
 	</div>
 	<!-- END wrapper -->
-		<c:DE_footercopy id="DE_footercopycomp" isPro="{!isPro}" />
+		<c:DE_footercopy id="DE_footercopycomp" isPro="{!isPro}" portal="{!portal}" />
 	
 	
 	<site:previewAsAdmin />
