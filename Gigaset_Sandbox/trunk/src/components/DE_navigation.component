@@ -1,7 +1,10 @@
 <apex:component controller="DEnavigationController" id="denavigation" >
-<apex:attribute name="isPro" description="This informs us about the user login." 
+<apex:attribute name="isPro" description="pro or not pro" 
 
         type="Boolean" required="false" assignTo="{!isProAttribute}"/>
+<apex:attribute name="portal" description="portal if can't get it from the controller" 
+
+        type="String" required="false" assignTo="{!portal}"/>
 <!-- to clarify if the portals will have different consumer portals -->
 	<apex:outputPanel id="topNavi">
 		<ul id="Navigation">

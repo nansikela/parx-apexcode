@@ -1,11 +1,11 @@
 public class DETemplateController {
 
 	public Boolean isAuthenticated { get; set; }
-	 
 	
 	public Boolean showTraining { get; set; }
 	public Boolean isDone {get; set; }
 	public Boolean isPro { get; set; }
+	public String portal { get; set; }
     public String currentNavigationPoint { get; set; }
     public String homeurl { get; set; }
 	pageReference CMSpage = Page.page;
@@ -62,6 +62,7 @@ public class DETemplateController {
 	// constructor
 	public DETemplateController() {	
 		if (isPro==null) isPro=SystemSettings.isPro;
+		if (portal==null) portal=SystemSettings.portal;
 		styleSelector=isPro?'pro':'normal';
 		isDone = ApexPages.currentPage().getParameters().containsKey('isDone');
 		callback_imgurl=SystemSettings.getLabel('callback_imgurl');
@@ -83,9 +84,9 @@ public class DETemplateController {
 	      ProAuthorisiert = false;
 	      ProAuthorizationSwitch = false;
 	      for (GlobalSettings__c l:GlobalSettings__c.getAll().values()) {
-			if (l.Portal__c==SystemSettings.portal 
-				&& l.isPro__c == SystemSettings.isPro 
-				&& SystemSettings.isPro 
+			if (l.Portal__c==portal 
+				&& l.isPro__c == isPro 
+				&& isPro 
 				&& l.Pro_Authorization_Switch__c) {
 				ProAuthorizationSwitch = true;	
 				if( u0.Contact.Account.Pro_Authorisiert__c == true) {
@@ -112,7 +113,7 @@ public class DETemplateController {
 			currentNavigationPoint=getCurrentNavigationPointLabel(ApexPages.currentPage().getParameters().get('pageid'));
 			
 			for (pages__c l:pages__c.getAll().values()) {
-				if (l.Portal__c==SystemSettings.portal && l.Label__c=='training_firstPage') {
+				if (l.Portal__c==portal && l.Label__c=='training_firstPage') {
 					if(ApexPages.currentPage().getParameters().get('pageid') == l.PageId__c)
 						showTraining = true;
 					else
@@ -122,7 +123,7 @@ public class DETemplateController {
 		}
 		homeurl=SystemSettings.goHome().getUrl();
 			
-		//System.debug('******* Zustand: showprivacy: ' + showprivacy + ' / showpresetcomp: '+ showpresetcomp + ' / showclearingcomp: ' +showclearingcomp + ' / showothercomp: ' + showothercomp + ' / shownexttopshop: ' + showNextTopShop + ' / isAuthenticated: ' + isAuthenticated + ' / isPro: ' + isPro +  ' / Portal: ' + SystemSettings.portal + ' / UserId: ' + UserInfo.getUserId() );
+		//System.debug('******* Zustand: showprivacy: ' + showprivacy + ' / showpresetcomp: '+ showpresetcomp + ' / showclearingcomp: ' +showclearingcomp + ' / showothercomp: ' + showothercomp + ' / shownexttopshop: ' + showNextTopShop + ' / isAuthenticated: ' + isAuthenticated + ' / isPro: ' + isPro +  ' / Portal: ' + portal + ' / UserId: ' + UserInfo.getUserId() );
 	}
 	
 	public String getCurrentNavigationPointLabel(String pid) {
@@ -165,8 +166,8 @@ public class DETemplateController {
 		PageReference basispage=Page.page;
 		PageReference login=new PageReference( basispage.getUrl() + '?pageid=' + loginpageid + addParam);
 		System.debug('Login PageId: ' + loginpageid);
-		System.debug('Portal: ' + SystemSettings.portal);
-		System.debug('IsPro: ' + SystemSettings.isPro);
+		System.debug('Portal: ' + portal);
+		System.debug('IsPro: ' + isPro);
 		System.debug('SystemSettings loginpageid: ' + SystemSettings.loginpageid);
 		login.setRedirect(true);
 		Boolean isAlreadyLoginPage=false;
@@ -196,7 +197,7 @@ public class DETemplateController {
 	public String getCopyright() {
 		String copyright='';
 		for (CustomLabel__c l:CustomLabel__c.getAll().values()) {
-			if (l.Portal__c==SystemSettings.portal && l.LanguageCode__c==defaultlanguage && l.CommonCode__c=='copyright') copyright=l.Label__c;
+			if (l.Portal__c==portal && l.LanguageCode__c==defaultlanguage && l.CommonCode__c=='copyright') copyright=l.Label__c;
 		}
 		return copyright;
 	}
@@ -331,7 +332,7 @@ public class DETemplateController {
 	}
 	 
 	public list<Booken> getBooks(){
-		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c,New_Modules__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: SystemSettings.isPro AND Portal__c =:SystemSettings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c,New_Modules__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:Portal AND Aktiv__c = true ORDER by Sortierung__c]);
 		Integer i = 0;
 		Books = new list<Booken>(); 
 		Booken book;
@@ -422,7 +423,7 @@ public class DETemplateController {
 			Modules_SingleModule.Bild_URL__c = '/servlet/servlet.FileDownload?file='+Bild_Attachment.Id;
 			update Modules_SingleModule;
 		}
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: SystemSettings.isPro AND Training_Book__r.Portal__c =:SystemSettings.Portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:Portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
 
 		
 		list<String> TMIds = new list<String>();
@@ -486,7 +487,7 @@ public class DETemplateController {
 		String param = ApexPages.currentPage().getParameters().get('param');
 		Modules_showFirstpage = false;
 		Modules_showThirdpage = false;
-		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Titel__c, Subtitel__c, Beschreibung__c from Training_Book__c where Gigaset_Pro__c =: SystemSettings.isPro AND Portal__c =:SystemSettings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Titel__c, Subtitel__c, Beschreibung__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:Portal AND Aktiv__c = true ORDER by Sortierung__c]);
 		
 		for(Training_Book__c b:TB) {
 			if(b.Titel__c == param) {
@@ -495,7 +496,7 @@ public class DETemplateController {
 			}
 
 		}
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: SystemSettings.isPro AND Training_Book__r.Portal__c =:SystemSettings.Portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:Portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
 
 		
 		list<String> TMIds = new list<String>();
@@ -558,7 +559,7 @@ public class DETemplateController {
 			Modules_SingleModule.Bild_URL__c = '/servlet/servlet.FileDownload?file='+Bild_Attachment.Id;
 			update Modules_SingleModule;
 		}
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: SystemSettings.isPro AND Training_Book__r.Portal__c =:SystemSettings.Portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:Portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
 
 		
 		list<String> TMIds = new list<String>();
@@ -624,9 +625,9 @@ public class DETemplateController {
 		User u = [select id, Contact.Erfolgreiche_Ergebnisse__c, Contact.Gesamt_Ergebnis__c from User where Id=:UserInfo.getUserId()];
 		Modules_currentSuccess = u.Contact.Erfolgreiche_Ergebnisse__c.intValue();
 		Modules_currentpoint = u.Contact.Gesamt_Ergebnis__c.intValue();
-		list<Training_Book__c> TBlist= new list<Training_Book__c>([select id, Titel__c from Training_Book__c where Gigaset_Pro__c =: SystemSettings.isPro AND Portal__c =:SystemSettings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c from Training_Module__c where neues_modul__c = true AND Training_Book__r.Gigaset_Pro__c =: SystemSettings.isPro AND Training_Book__r.Portal__c =:SystemSettings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
-		list<Training_Module__c> TMlist_full= new list<Training_Module__c>([select id from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: SystemSettings.isPro AND Training_Book__r.Portal__c =:SystemSettings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Book__c> TBlist= new list<Training_Book__c>([select id, Titel__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c from Training_Module__c where neues_modul__c = true AND Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist_full= new list<Training_Module__c>([select id from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:Portal AND Aktiv__c = true ORDER by Sortierung__c]);
 		Modules_total = TMlist_full.size();
 		if(Modules_total != 0)
 			Modules_currentbar = u.Contact.Erfolgreiche_Ergebnisse__c * 100 / Modules_total  ;
@@ -726,7 +727,7 @@ public class DETemplateController {
 			if(NTS == null && u != null) {
 				Campaign camp;
 		    		try{
-		    			camp = [select id, EndDate, StartDate, isActive from Campaign where RecordType.Name = 'Top Shop' AND Portal__c =: systemSettings.Portal AND isPro__c =: SystemSettings.isPro AND EndDate >= TODAY AND StartDate <= TODAY AND isActive = True limit 1]; 
+		    			camp = [select id, EndDate, StartDate, isActive from Campaign where RecordType.Name = 'Top Shop' AND Portal__c =: Portal AND isPro__c =: isPro AND EndDate >= TODAY AND StartDate <= TODAY AND isActive = True limit 1]; 
 		    		}
 		    		catch(exception e){}
 		    		if(camp != null)
