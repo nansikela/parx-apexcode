@@ -19,8 +19,9 @@ public class DEnavigationController {
 	public String labelwerbemittel { get; set; }
 	public Boolean isAuthenticated { get; set; }
 	public Boolean isPro { get; set; }
-	public String portal { get; set; }
 	public Boolean isProAttribute { get; set; }
+	public String portal { get; set; }
+	public String portalAttribute { get; set; }
 	public Boolean showpmlink { get; set; }
 	private List<CustomLabel__c> menuItems = new List<CustomLabel__c>();
 	private List<Pages__c> menuLinks;
@@ -37,7 +38,10 @@ public class DEnavigationController {
 			isPro=isProAttribute;
 		else 
 			isPro=SystemSettings.isPro;
-		if (portal==null) portal=SystemSettings.portal; 
+		if (portalAttribute!=null)
+			portal=portalAttribute;
+		else 
+			portal=SystemSettings.portal;
 		kontaktpageid=SystemSettings.kontaktpageid;
 		homepageid=SystemSettings.homepageid;
 		showpmlink=SystemSettings.showpmlink();
@@ -66,7 +70,7 @@ public class DEnavigationController {
 	      for (GlobalSettings__c l:GlobalSettings__c.getAll().values()) {
 			if (l.Portal__c==portal 
 				&& l.isPro__c == isPro 
-				&& SystemSettings.isPro 
+				&& isPro 
 				&& l.Pro_Authorization_Switch__c) {
 				ProAuthorizationSwitch = true;	
 				if( u0.Contact.Account.Pro_Authorisiert__c == true) {
@@ -98,6 +102,10 @@ public class DEnavigationController {
 			isPro=isProAttribute;
 		else 
 			isPro=SystemSettings.isPro;
+		if (portalAttribute!=null)
+			portal=portalAttribute;
+		else 
+			portal=SystemSettings.portal;
 		if(isPro)
 			return SystemSettings.baseurl+'pro/'+portal.substring(0,2)+'/'+SystemSettings.setLanguage()+'/';
 		else
@@ -109,6 +117,10 @@ public class DEnavigationController {
 			isPro=isProAttribute;
 		else 
 			isPro=SystemSettings.isPro;
+		if (portalAttribute!=null)
+			portal=portalAttribute;
+		else 
+			portal=SystemSettings.portal;
 		String searchTag = isPro ? 'ProTopNavi%' : 'ExtranetTopNavi%';
 		menuitems=[SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :portal AND LanguageCode__c = :SystemSettings.setLanguage() AND CommonCode__c LIKE :searchTag ORDER BY CommonCode__c];
 		return menuItems;

@@ -4,14 +4,14 @@
         type="Boolean" required="false" assignTo="{!isProAttribute}"/>
 <apex:attribute name="portal" description="portal if can't get it from the controller" 
 
-        type="String" required="false" assignTo="{!portal}"/>
+        type="String" required="false" assignTo="{!portalAttribute}"/>
 <!-- to clarify if the portals will have different consumer portals -->
 	<apex:outputPanel id="topNavi">
 		<ul id="Navigation">
 			<apex:repeat value="{!menuItems}" var="item" id="proMenu">
 				<li class="">
 					<apex:outputPanel rendered="{!item.ExternalUrl__c == ''}">
-						<a href="{!$Site.CustomWebAddress}">{!item.Label__c}</a>
+						<a class="activate" href="{!$Site.CustomWebAddress}">{!item.Label__c}</a>
 					</apex:outputPanel>
 					<apex:outputPanel rendered="{!NOT(item.ExternalUrl__c == '')}">
 						<a href="{!BaseTopNaviUrl}{!item.ExternalUrl__c}">{!item.Label__c}</a>
