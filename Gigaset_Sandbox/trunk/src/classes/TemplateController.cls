@@ -125,13 +125,17 @@ public class TemplateController {
 	// actions
 	public PageReference init() {
 		CRD_Landing_Controller.init();
+		PageReference basispage=Page.page;
+		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + System_Settings.homepageid);
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) System_Settings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	if (ApexPages.currentPage().getParameters().containsKey('newsid')) System_Settings.addParam=System_Settings.addParam+'&newsid='+ApexPages.currentPage().getParameters().get('newsid');
-	 	if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin(); 
+	 	if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
+	 	if (System_Settings.isPortalUser() && System_Settings.portal!=System_Settings.getPortalByPageId()) return homepage; 
 	 	return null;
 	}
 	
 	public PageReference initHome(){
+		if (System_Settings.isPortalUser() && System_Settings.portal!=System_Settings.getPortalByPageId()) return System_Settings.goHome();
 		TrainingController.initHome();
 		if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
 	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return System_Settings.goHome();

@@ -441,6 +441,7 @@ global class TrainingController {
 	 	
 	 	if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
 	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return System_Settings.goHome();
+	 	if (System_Settings.isPortalUser() && System_Settings.portal!=System_Settings.getPortalByPageId()) return System_Settings.goHome();
 	 	return null; 
 	 }
 	 

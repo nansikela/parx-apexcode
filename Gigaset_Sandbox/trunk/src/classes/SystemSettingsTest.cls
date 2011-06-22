@@ -34,7 +34,7 @@ private class SystemSettingsTest {
        SystemSettings.getExternalURL('clcode1');
        SystemSettings.getLabel('clcode0');
        SystemSettings.goHome();
-       SystemSettings.init();
+       //SystemSettings.init();
        SystemSettings.isPortalUser();
        SystemSettings.logError('123', '!23', '1233');
        SystemSettings.logError('1234', '23454', '234', '234', 'DEBUG');
@@ -76,7 +76,7 @@ private class SystemSettingsTest {
        SystemSettings.getExternalURL('clcode1');
        SystemSettings.getLabel('clcode0');
        SystemSettings.goHome();
-       SystemSettings.init();
+       //SystemSettings.init();
        SystemSettings.isPortalUser();
        SystemSettings.logError('123', '!23', '1233');
        SystemSettings.logError('1234', '23454', '234', '234', 'DEBUG');

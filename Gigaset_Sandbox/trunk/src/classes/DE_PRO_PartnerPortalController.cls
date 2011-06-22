@@ -13,7 +13,18 @@ public class DE_PRO_PartnerPortalController {
 		isPro=true;
 		isAuthenticated=false;
 		portal='de';
-        if (Apexpages.currentPage().getParameters().containsKey('portal')) portal=Apexpages.currentPage().getParameters().get('portal');
+        //if (Apexpages.currentPage().getParameters().containsKey('portal')) portal=Apexpages.currentPage().getParameters().get('portal');
+		// get portal from parameter
+		if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('portal')) {
+			// prevent sql injection, only values configured in globalSettings are allowed
+			//sign=System.currentPageReference().getParameters().get('portal');
+			for (GlobalSettings__c gs: GlobalSettings__c.getAll().values()) {
+				if (gs.Portal__c==System.currentPageReference().getParameters().get('portal')) {
+					portal=System.currentPageReference().getParameters().get('portal');
+					break;
+				}
+			}
+		}
 		homeurl=Apexpages.currentPage().getUrl();
 		styleSelector='pro';
 		defaultlanguage=[select LanguageLocaleKey from User where Id =: UserInfo.getUserId()].LanguageLocaleKey;

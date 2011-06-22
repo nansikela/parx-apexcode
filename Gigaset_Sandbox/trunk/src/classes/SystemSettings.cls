@@ -52,8 +52,32 @@ global class SystemSettings {
 		return pid;
 	}
 	
+	public static Id getPageid(String name, String localportal, Boolean localisPro) {
+		Id pid;
+		for (Pages__c p: Pages__c.getAll().values()) {
+			if (p.IsActive__c && p.Portal__c==localportal && p.Label__c==name && p.isPro__c==localisPro) pid=Id.valueOf(p.PageId__c);
+		}
+		
+		return pid;
+	}
+	
+	public static String getPortalByPageId() {
+    	if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid')) {
+			for (Pages__c p: Pages__c.getAll().values()) {
+				if (Id.ValueOf(p.PageId__c)==Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))) return p.Portal__c;
+			}
+			return '';
+		} else return '';
+    }
+	
 	private static String getPortalSign() {
 		String sign='00';
+		
+		// get portal from authenticated user
+        if (SystemSettings.isPortalUser()) {
+        	Contact c=[SELECT Id, Portal__c FROM Contact WHERE Id=:currentuser.ContactId];
+        	if (c!=null && c.Portal__c!=null) sign=c.Portal__c;
+        }
 		
 		// get portal from page
 		if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid')) {
@@ -62,6 +86,18 @@ global class SystemSettings {
 			}
 		}
 		System.debug('Found Portal 1: ' + sign);
+		
+		// get portal from parameter
+		if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('portal') && sign=='00') {
+			// prevent sql injection, only values configured in globalSettings are allowed
+			//sign=System.currentPageReference().getParameters().get('portal');
+			for (GlobalSettings__c gs: GlobalSettings__c.getAll().values()) {
+				if (gs.Portal__c==System.currentPageReference().getParameters().get('portal')) {
+					sign=System.currentPageReference().getParameters().get('portal');
+					break;
+				}
+			}
+		}
 		
 		// get portal form custom webaddress
 		if (Site.getCustomWebAddress()!=null) System.debug('####### CustomWebAddress: ' + Site.getCustomWebAddress() + ' / substring: ' + Site.getCustomWebAddress().substring(7,9));
@@ -252,12 +288,15 @@ global class SystemSettings {
 		else return login;
 	}
 
+	/* not needed anymore */
+	/*
 	public static PageReference init() {
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	System.debug(addParam);
 	 	if (!isPortalUser()) return redirectToLogin();
 	 	return null;
 	}
+	*/
 	// not used, if you want to acivate this again please take care of isPro!
 	//global static String getLabelByName(String name) {
 	//	setLanguage();

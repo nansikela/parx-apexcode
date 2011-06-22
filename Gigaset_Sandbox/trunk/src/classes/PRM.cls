@@ -6,8 +6,7 @@ public class PRM {
 	public PRM() {
 		defaultlanguage= [select LanguageLocaleKey from User where Id =: UserInfo.getUserId()].LanguageLocaleKey ;
 		// default portal is de
-		portal='de';
-        if (Apexpages.currentPage().getParameters().containsKey('portal')) portal=Apexpages.currentPage().getParameters().get('portal');
+		portal=SystemSettings.portal;
         
 		for (GlobalSettings__c l:GlobalSettings__c.getAll().values()) {
 			if (l.Portal__c==portal && l.isPro__c == true) {

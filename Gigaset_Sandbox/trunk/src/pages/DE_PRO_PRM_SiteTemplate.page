@@ -5,7 +5,7 @@
 			<div id="header">
 				<apex:insert name="metanavi">
 					<!--  Portalabh. - portal sets "lang=fr" and translations are necessary -->
-					<c:DE_metanavi id="metanavicomp" isPro="{!isPro}" portal="{!portal}" />
+					<c:DE_metanavi id="metanavicomp" isPro="{!isPro}" portal="{!portal}"  />
 				</apex:insert>
 				<div id="logo">
 					<apex:insert name="logo">
