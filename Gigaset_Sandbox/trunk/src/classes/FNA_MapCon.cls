@@ -52,7 +52,7 @@ public class FNA_MapCon {
    //     	city = '';
 		}
 	
-    	public void init(){
+    	public FNA_MapCon(){
     		getParams();
         //If there is no error, let's populate the map. 
         	if(!error){Search();}

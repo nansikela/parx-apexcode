@@ -1,0 +1,4 @@
+<apex:page controller="SpecialPage" language="{!Param_Lang}" showHeader="false"  sidebar="false">
+	<c:KontaktFormular rendered="{!ShowKontaktFormular}"/>
+	<c:PartnerFinder rendered="{!ShowPartnerFinder}"/>
+</apex:page>

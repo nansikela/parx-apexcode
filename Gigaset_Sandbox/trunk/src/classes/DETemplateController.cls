@@ -6,6 +6,7 @@ public class DETemplateController {
 	public Boolean isDone {get; set; }
 	public Boolean isPro { get; set; }
 	public String portal { get; set; }
+	public String portalAttribute { get;set; }
     public String currentNavigationPoint { get; set; }
     public String homeurl { get; set; }
 	pageReference CMSpage = Page.page;
@@ -62,7 +63,8 @@ public class DETemplateController {
 	// constructor
 	public DETemplateController() {	
 		if (isPro==null) isPro=SystemSettings.isPro;
-		if (portal==null) portal=SystemSettings.portal;
+		portal=SystemSettings.portal;
+			
 		styleSelector=isPro?'pro':'normal';
 		isDone = ApexPages.currentPage().getParameters().containsKey('isDone');
 		callback_imgurl=SystemSettings.getLabel('callback_imgurl');
@@ -74,7 +76,7 @@ public class DETemplateController {
 		if (showclearingcomp) showpresetcomp=false;
 		showothercomp=showpresetcomp || showclearingcomp || showprivacy;
 		defaultlanguage=SystemSettings.setLanguage();
-		label_menu_home=SystemSettings.getCurrentNavigationPointLabel(SystemSettings.homepageid);
+		label_menu_home=getCurrentNavigationPointLabel(SystemSettings.getPageId('Home',portal,isPro));
 		kontaktpageid=SystemSettings.kontaktpageid;
 		loginpageid=SystemSettings.loginpageid;
 		isAuthenticated=SystemSettings.isPortalUser();
@@ -128,7 +130,7 @@ public class DETemplateController {
 	
 	public String getCurrentNavigationPointLabel(String pid) {
 		Id pageid=pid;
-		Id homepageid=SystemSettings.homepageid;
+		Id homepageid=SystemSettings.getPageId('Home',portal,isPro);
 		Id link01pageid=SystemSettings.link01pageid;
 		Id link02pageid=SystemSettings.link02pageid;
 		Id link03pageid=SystemSettings.link03pageid;
@@ -172,7 +174,7 @@ public class DETemplateController {
 		login.setRedirect(true);
 		Boolean isAlreadyLoginPage=false;
 		if (ApexPages.currentPage()==login) isAlreadyLoginPage=true;
-		if (ApexPages.currentPage().getParameters().containsKey('pageid') && ApexPages.currentPage().getParameters().get('pageid').startsWith(loginpageid)) isAlreadyLoginPage=true;
+		if (ApexPages.currentPage().getParameters().containsKey('pageid') && id.valueOf(ApexPages.currentPage().getParameters().get('pageid'))==loginpageid) isAlreadyLoginPage=true;
 		
 		if (isAlreadyLoginPage) return null;
 		else return login;
@@ -184,7 +186,7 @@ public class DETemplateController {
 	}
 	
 	public String getImprintUrl() {
-		return CMSpage.getUrl() + '?pageid=' + SystemSettings.imprintpageid;
+		return CMSpage.getUrl() + '?pageid=' + SystemSettings.getPageId('Imprint',portal,isPro);
 	}
 	
 	public String getRueckrufserviceUrl() {
@@ -289,9 +291,13 @@ public class DETemplateController {
 	
 	// actions
 	 public PageReference init() {
+	 	PageReference basispage=Page.page;
+		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + SystemSettings.homepageid);
+		if (SystemSettings.isPortalUser() && SystemSettings.portal!=SystemSettings.getPortalByPageId()) return homepage;
 	 	system.debug('Session id ... ' + UserInfo.getSessionId());
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) SystemSettings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	if (!SystemSettings.isPortalUser()) return redirectToLogin();
+	 	if (SystemSettings.isPortalUser() && SystemSettings.portal!=SystemSettings.getPortalByPageId()) return homepage;
 	 	return null;
 	 }
 	
@@ -754,7 +760,11 @@ public class DETemplateController {
 	    		//}*/
 	
 	 	}
-	 	
+	 	PageReference basispage=Page.page;
+		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + SystemSettings.homepageid);
+		if (SystemSettings.isPortalUser() && SystemSettings.portal!=SystemSettings.getPortalByPageId()) return homepage;
+	 	system.debug('Session id ... ' + UserInfo.getSessionId());
+	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) SystemSettings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	if (!SystemSettings.isPortalUser()) return redirectToLogin();
 	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return SystemSettings.goHome();
 	 	return null;

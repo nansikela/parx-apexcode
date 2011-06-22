@@ -32,16 +32,15 @@ public class DEnavigationController {
 	public Integer LinkHomeNumber {get;set;}
 	
 	public DEnavigationController() {
-		isAuthenticated=isPortalUser();
-		linktootherportal=getLinkToOtherPortal();
 		if (isProAttribute!=null)
 			isPro=isProAttribute;
 		else 
 			isPro=SystemSettings.isPro;
-		if (portalAttribute!=null)
-			portal=portalAttribute;
-		else 
-			portal=SystemSettings.portal;
+
+		portal=SystemSettings.portal;
+		
+		isAuthenticated=isPortalUser();
+		linktootherportal=getLinkToOtherPortal();
 		kontaktpageid=SystemSettings.kontaktpageid;
 		homepageid=SystemSettings.homepageid;
 		showpmlink=SystemSettings.showpmlink();
@@ -98,14 +97,6 @@ public class DEnavigationController {
 	
 	// getter
 	public String getBaseTopNaviUrl() {
-		if (isProAttribute!=null)
-			isPro=isProAttribute;
-		else 
-			isPro=SystemSettings.isPro;
-		if (portalAttribute!=null)
-			portal=portalAttribute;
-		else 
-			portal=SystemSettings.portal;
 		if(isPro)
 			return SystemSettings.baseurl+'pro/'+portal.substring(0,2)+'/'+SystemSettings.setLanguage()+'/';
 		else
@@ -113,16 +104,12 @@ public class DEnavigationController {
 	}
 	
 	public list<CustomLabel__c> getMenuItems() {
-		if (isProAttribute!=null)
-			isPro=isProAttribute;
-		else 
-			isPro=SystemSettings.isPro;
-		if (portalAttribute!=null)
-			portal=portalAttribute;
-		else 
-			portal=SystemSettings.portal;
+		String language=SystemSettings.setLanguage();
+		for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
+			if (gs!=null && gs.Portal__c==portal && gs.isPro__c==isPro && gs.Sprache__c!=null) language=gs.Sprache__c;
+		}
 		String searchTag = isPro ? 'ProTopNavi%' : 'ExtranetTopNavi%';
-		menuitems=[SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :portal AND LanguageCode__c = :SystemSettings.setLanguage() AND CommonCode__c LIKE :searchTag ORDER BY CommonCode__c];
+		menuitems=[SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :SystemSettings.portal AND LanguageCode__c = :language AND CommonCode__c LIKE :searchTag ORDER BY CommonCode__c];
 		return menuItems;
 	}
 	
