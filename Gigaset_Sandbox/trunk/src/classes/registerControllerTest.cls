@@ -26,7 +26,7 @@ private class registerControllerTest {
     	testData.initData mytestData = new testData.initData('de',false);
     	
 	 	test.setCurrentPage(Page.DE_Register);
-	 	ApexPages.currentPage().getParameters().put('pageid',SystemSettings.registrationpageid);
+	 	//ApexPages.currentPage().getParameters().put('pageid',SystemSettings.registrationpageid);
         registerController ctrl = new registerController();
         ctrl.portal='de';
         ctrl.l.Lastname='Test';

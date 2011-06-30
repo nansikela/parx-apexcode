@@ -7,11 +7,13 @@ public class DE_ClearingController {
 	public Set<String> gfks = new Set<String>();
 	public Boolean showDistribution { get; set; }
 	public Boolean showDistributionErr { get; set; }
+	public Boolean showProDistributionErr { get; set; }
 	public String errorText { get; set; }
 	public String errorBase='<strong>' + System.Label.site.Error2 + ':</strong> ';
 	public String stdErrorText='';
 	public String selectedGfk { get; set; }
 	public String[] selectedDistribution { get; set; }
+	public String[] selectedProDistributions { get; set; }
 	public Set<String> distributionValues { get; set; }
 	public Set<String> distributionLabels { get; set; }
 	public Map<String, String> distributionMap = new Map<String, String>();
@@ -36,8 +38,10 @@ public class DE_ClearingController {
 		stdErrorText=errorText;
 		showDistributionErr=false;
 		showDistribution=false;
+		showProDistributionErr=false;
 		selectedGfk='';
 		selectedDistribution=new String[]{};
+		selectedProDistributions=new String[]{};
 		fillGfks();
 		fillDistributions();
 		getCurrentUser();
@@ -89,10 +93,28 @@ public class DE_ClearingController {
 		return multi;
 	}
 	
+	private String putProDistributions() {
+		String multi='';
+		if (!selectedProDistributions.isEmpty()) {
+			for (String s: selectedProDistributions) {
+				multi=multi + ';' + s;
+			}
+		}
+		return multi;
+	}
+	
 	public List<SelectOption> getItems() {
 		List<SelectOption> options = new List<SelectOption>();
 		for (String label: distributionMap.keySet()) {
 			options.add(new SelectOption(distributionMap.get(label),label));
+		}
+		return options;
+	}
+	
+	public List<SelectOption> getProDistributionPicklistItems() {
+		List<SelectOption> options = new List<SelectOption>();
+		for (String label: SystemSettings.getPicklistItems('account_lead_pro_distribution')) {
+			options.add(new SelectOption(label,label));
 		}
 		return options;
 	}
@@ -205,7 +227,13 @@ public class DE_ClearingController {
 	 			hasErr=true;
 	 		} else {
 	 			showDistributionErr=false;
-	 			hasErr=false;
+	 		}
+	 		if (!selectedProDistributions.isEmpty() && selectedProDistributions!=null) u.Pro_Distribution__c=putProDistributions();
+	 		else if (showProfields) {
+	 			showProDistributionErr=true;
+	 			hasErr=true;
+	 		} else {
+	 			showProDistributionErr=false;
 	 		}
 	 		if (!hasErr) {
 				u.In_Freischaltung__c=true;
@@ -238,8 +266,14 @@ public class DE_ClearingController {
 	 
 	 
 	 static testmethod void clearingtest() {
-	 	User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
+	 	testData.initData mytestData = new testData.initData('de',true);
+    	
+	 	test.setCurrentPage(Page.DE_Home);
+	 	ApexPages.currentPage().getParameters().put('pageid',SystemSettings.homepageid);
+	 	mytestData.contacts.get(0).Gigaset_Pro__c=false;
+	 	update mytestData.contacts.get(0);
+	 	//User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
+	 	System.runAs(mytestData.testuser) {
 	 	DE_ClearingController ctrl = new DE_ClearingController();
 	 	
 	 	//ctrl.u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' limit 1];
@@ -253,6 +287,7 @@ public class DE_ClearingController {
 	 	ctrl.step = 1;
 	 	ctrl.saveData();
 	 	ctrl.getItems();
+	 	ctrl.getProDistributionPicklistItems();
 	 	ctrl.updateUser();
 	 	ctrl.relationshipSelectionAction();
 	 	}

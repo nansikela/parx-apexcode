@@ -15,6 +15,7 @@ public class DEregisterController {
   public Boolean showMobileErr { get; set; }
   public Boolean showHotlineErr { get; set; }
   public Boolean showDistributionErr { get; set; }
+  public Boolean showProDistributionErr { get; set; }
   public String labelPhone { get; set; }
   public String labelMobile { get; set; }
   public String labelHotline { get; set; }
@@ -26,6 +27,8 @@ public class DEregisterController {
   public Boolean showDistribution { get; set; }
   public String selectedGfk { get; set; }
   public String[] selectedDistribution { get; set; }
+  public String[] selectedProDistributions { get; set; }
+  
   public Set<String> distributionValues { get; set; }
   public Set<String> distributionLabels { get; set; }
   public Map<String, String> distributionMap = new Map<String, String>();
@@ -67,6 +70,7 @@ public class DEregisterController {
     showMobileErr=false;
     showHotlineErr=false;
     showDistributionErr=false;
+    showProDistributionErr=false;
     errorText=errorBase + System.label.registration_errormsg;
     stdErrorText=errorText;
     Schema.DescribeFieldResult f = Schema.sObjectType.User.fields.Telefon_Kontakt__c;
@@ -80,6 +84,7 @@ public class DEregisterController {
     showDistribution=false;
     selectedGfk='';
     selectedDistribution=new String[]{};
+    selectedProDistributions=new String[]{};
     fillGfks();
     fillDistributions();
     //privacypageurl=Page.page.getUrl() + '?pageid=' + SystemSettings.privacyprotectionid;
@@ -141,6 +146,16 @@ public class DEregisterController {
     return multi;
   }
   
+  private String putProDistributions() {
+		String multi='';
+		if (!selectedProDistributions.isEmpty()) {
+			for (String s: selectedProDistributions) {
+				multi=multi + ';' + s;
+			}
+		}
+		return multi;
+	}
+  
   private String returnErrorMsg(String error) {
     String errmsg=error;
     String validationerr='FIELD_CUSTOM_VALIDATION_EXCEPTION';
@@ -191,6 +206,14 @@ public class DEregisterController {
     return options;
   }
   
+  public List<SelectOption> getProDistributionPicklistItems() {
+		List<SelectOption> options = new List<SelectOption>();
+		for (String label: SystemSettings.getPicklistItems('account_lead_pro_distribution')) {
+			options.add(new SelectOption(label,label));
+		}
+		return options;
+	}
+  
   // actions
   public PageReference saveLead() {
      step=insertLead();
@@ -224,7 +247,13 @@ public class DEregisterController {
          hasErr=true;
        } else {
          showDistributionErr=false;
-         hasErr=false;
+       }
+       if (!selectedProDistributions.isEmpty() && selectedProDistributions!=null) l.Pro_Distribution__c=putProDistributions();
+       else if (isPro) {
+         showProDistributionErr=true;
+         hasErr=true;
+       } else {
+         showProDistributionErr=false;
        }
      }
      if (step==2 && ((l.Anmeldung_Hotlinetelefon__c && (l.Sonstige_Telefonnummer__c==null || l.Sonstige_Telefonnummer__c==''))||(l.Anmeldung_Telefon__c && (l.Telefon_Kontakt__c==null || l.Telefon_Kontakt__c=='')) || (l.Anmeldung_Mobiltelefon__c && (l.MobilePhone==null || l.MobilePhone=='')))) {

@@ -2,7 +2,9 @@
 private class CRD_MarketingTest {
 
     static testMethod void myUnitTest() {
-    	ApexPages.currentPage().getParameters().put('pageid', 'test');
+    	testData.initData mytestData = new testData.initData('de',false);
+    	
+    	ApexPages.currentPage().getParameters().put('pageid', mytestData.PagesSet.get(0).id);
 		CRD_MarketingController ctrl = new CRD_MarketingController();
     }
 }

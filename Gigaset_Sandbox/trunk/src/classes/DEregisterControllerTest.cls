@@ -72,4 +72,58 @@ private class DEregisterControllerTest {
         ctrl.l.Sonstige_Telefonnummer__c='+49 123454';
         ctrl.nextStep();
     }
+    
+    static testMethod void testDEregisterControllerPro() {
+    	testData.initData mytestData = new testData.initData('de',true);
+    	
+	 	test.setCurrentPage(Page.DE_Register);
+	 	ApexPages.currentPage().getParameters().put('pageid',SystemSettings.registrationpageid);
+        DEregisterController ctrl = new DEregisterController();
+        ctrl.portal='de';
+        ctrl.isPro=true;
+        ctrl.l.Lastname='Test';
+        ctrl.l.Company='Test';
+        ctrl.l.Datenschutzerkl_rung_zugestimmt__c=true;
+        ctrl.selectedDistribution.add('Warenhaus');
+        ctrl.selectedProDistributions.add('Test');
+        ctrl.getActive0();
+        ctrl.getActive1();
+        ctrl.getActive2();
+        ctrl.getActive3();
+        ctrl.getServiceHotlineUrl();
+        ctrl.goToStep();
+        ctrl.init();
+        ctrl.nextStep();
+        ctrl.previousStep();
+        ctrl.relationshipSelectionAction();
+        ctrl.saveLead();
+        ctrl.showShippingAddressAction();
+        ctrl.getItems();
+        ctrl.getProDistributionPicklistItems();
+        ctrl.step=1;
+        ctrl.nextStep();
+        ctrl.step=2;
+        ctrl.nextStep();
+        ctrl.step=3;
+        ctrl.nextStep();
+        ctrl.getActive1();
+        
+        ctrl.step=2;
+        ctrl.l.Anmeldung_Telefon__c=true;
+        ctrl.nextStep();
+        ctrl.l.Anmeldung_Telefon__c=false;
+        ctrl.l.Anmeldung_Mobiltelefon__c=true;
+        ctrl.nextStep();
+        ctrl.l.Anmeldung_Mobiltelefon__c=false;
+        ctrl.l.Anmeldung_Hotlinetelefon__c=true;
+        ctrl.nextStep();
+        ctrl.l.Anmeldung_Hotlinetelefon__c=false;
+        ctrl.l.Fax='+49 123454';
+        ctrl.l.Phone='+49 123454';
+        ctrl.l.Telefon_Kontakt__c='+49 123454';
+        ctrl.l.Fax_Kontakt__c='+49 123454';
+        ctrl.l.MobilePhone='+49 123454';
+        ctrl.l.Sonstige_Telefonnummer__c='+49 123454';
+        ctrl.nextStep();
+    }
 }
