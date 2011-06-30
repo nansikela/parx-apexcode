@@ -21,7 +21,7 @@
 	            <apex:outputPanel id="pmurl" rendered="{!AND(showpmlink,OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">
 	            <li><apex:outputLink value="#" onclick="window.open('{!PicturemanagemantUrl}');" id="linkpicturemanagement" >{!$Label.menu_de_pm}</apex:outputLink></li>
 	           	</apex:outputPanel>
-	            <apex:outputPanel id="werbemittelspan" rendered="{!AND(WerbemittelUrl!='',NOT(isPro))}">
+	            <apex:outputPanel id="werbemittelspan" rendered="{!AND(WerbemittelUrl!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">
 	            <li><apex:outputLink value="{!WerbemittelUrl}" id="werbemittel" styleClass="{!IF($CurrentPage.parameters.pageid=werbemittelpageid,'active','')}" >{!labelwerbemittel}</apex:outputLink></li>
 	            </apex:outputPanel>
 				<apex:outputPanel id="linktootherportal" rendered="{!AND(linktootherportal!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">

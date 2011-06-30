@@ -101,25 +101,24 @@ public class LeadConvertController {
   */
   public LeadConvertController(ApexPages.StandardController controller){
     System.debug('Constructor!');
-    //selectedLead = (Lead) controller.getRecord();
-    	
+    if(ApexPages.currentPage().getParameters().get('id') == null)
+    	if(controller.getRecord() != null)
+    		leadId = controller.getRecord().Id;
+    	else
+    		throw new ConvertException();
+    else
+    	leadId = ApexPages.currentPage().getParameters().get('id');
+    				
     missing_opp_name = false;
     leadNotFocused = false;
     contactMergeNeeded = false;
     notifyEmail = true;
     
     	try{
-    		if(ApexPages.currentPage().getParameters().get('id') == null)
-    			throw new ConvertException();
-    			
     		selectedLead = [SELECT Id, Name, FirstName, LastName, Status, Company, OwnerId, RecordType.Name FROM Lead WHERE Id = :ApexPages.currentPage().getParameters().get('id') AND isConverted = false];
     		
     		if(selectedLead != null){
-      			selectedLead = [SELECT Id, Name, FirstName, LastName, Status, Company, OwnerId, RecordType.Name FROM Lead WHERE Id = :ApexPages.currentPage().getParameters().get('id') AND isConverted = false];
-    	
     			convertStatus = [Select Id, MasterLabel from LeadStatus where IsConverted = true limit 1];
-      
-      			leadId = selectedLead.Id;
       	
       			String searchTag = '%' + selectedLead.Company + '%';
           
@@ -146,7 +145,7 @@ public class LeadConvertController {
 
     		}else{
       			leadNotFocused = true;  
-      			System.debug('Lead not in focus. Please check parameter passing: Lead Id');
+      			System.debug('Lead not focused or already converted. Please check parameter passing: Lead Id');
     		}	
     	} catch(Exception e) {
     		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'No Lead found or Lead is already converted! Please contact PARX!'));
@@ -431,6 +430,16 @@ public class LeadConvertController {
     
     
     public PageReference cancel(){
+    	
+    	if(selectedLead == null) {
+    		List<Lead> results = [SELECT Id, Name, FirstName, LastName, Status, Company, OwnerId, RecordType.Name FROM Lead WHERE Id = :leadId];
+    		if(results.size() > 0)
+    			return new ApexPages.Standardcontroller(results.get(0)).view();
+    		else {
+    			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Lead already converted or lead not focused! Please contact PARX!'));
+    			return null;
+    		}
+    	}
     	return new ApexPages.Standardcontroller(selectedLead).view();
     }
     

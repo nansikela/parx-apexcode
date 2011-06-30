@@ -10,7 +10,7 @@ public with sharing class cloneWerbemittelBestellung {
 		WB_temp = (Werbemittel_Bestellung__c)controller.getSubject();
 		oldId = WB_temp.Id;
 		//WB = WB_temp;
-		WB_temp = [select id, Besteller__c, Firmenname__c, Kontakt__c, Strasse__c, Postleitzahl__c, Stadt__c, Land__c, Posten__c from Werbemittel_Bestellung__c where Id = :WB_temp.Id limit 1];
+		WB_temp = [select id, Besteller__c, Firmenname__c, Kontakt__c, Strasse__c, Postleitzahl__c, Stadt__c, Land__c, Posten__c, PortalHidden__c, IsPro__c from Werbemittel_Bestellung__c where Id = :WB_temp.Id limit 1];
 	//	WB.Besteller__c = WB_temp.Besteller__c;
 	//	WB.Firmenname__c = WB_temp.Firmenname__c;
 	//	WB.Kontakt__c = WB_temp.Kontakt__c;

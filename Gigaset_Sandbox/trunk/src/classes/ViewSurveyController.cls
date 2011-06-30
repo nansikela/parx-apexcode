@@ -201,7 +201,7 @@ global virtual with sharing class ViewSurveyController {
     }*/
      
     try{
-      stList = [Select id, contact__c, Taken__c from SurveyTaker__c where Contact__c=:userId AND Survey__c= :surveyId AND Case__c= :caseId];
+      stList = [Select id, contact__c, Taken__c from SurveyTaker__c where Contact__c=:userId AND Survey__c= :surveyId AND Case__c= :caseId Order by CreatedDate DESC];
     }catch(Exception e){
       return 'problem';
     }
