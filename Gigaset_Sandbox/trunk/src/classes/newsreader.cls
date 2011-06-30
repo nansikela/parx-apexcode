@@ -39,7 +39,7 @@ public class newsreader {
 	
 	public pageReference openNews() {
 	 	PageReference newsreaderpage = null;
-    	if (ci.NewsURL__c!=null && ci.NewsURL__c!='') {
+    	if (ci!=null && ci.NewsURL__c!=null && ci.NewsURL__c!='') {
     		newsreaderpage = new PageReference(ci.NewsURL__c);
     	}
         else

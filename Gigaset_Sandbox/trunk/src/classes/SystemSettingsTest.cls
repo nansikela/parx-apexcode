@@ -44,6 +44,7 @@ private class SystemSettingsTest {
        System.assert(SystemSettings.showPmLink());
        SystemSettings.showPreset();
        SystemSettings.showPrivacy();
+       SystemSettings.getPicklistItems('testitems');
        SystemSettings.showPrivacyAnonymous();
        test.stopTest();
     }
@@ -86,6 +87,7 @@ private class SystemSettingsTest {
        //System.assert(SystemSettings.showPmLink());
        SystemSettings.showPreset();
        SystemSettings.showPrivacy();
+       SystemSettings.getPicklistItems('testitems');
        SystemSettings.showPrivacyAnonymous();
        test.stopTest();
     		}

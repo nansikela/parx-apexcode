@@ -24,6 +24,7 @@ public class testData {
 	public class initData {
 		public list<CustomLabel__c> CustomLabels {get; set;}
 		public list<GlobalSettings__c> GlobalSettings { get; set; }
+		public list<PicklistConfiguration__c> PicklistConfiguration { get; set; }
 		public list<pages__c> PagesSet { get; set; }
 		public list<Page__c> Pages { get; set; }
 		public list<PageTemplate__c> PageTemplates { get; set; }
@@ -42,10 +43,12 @@ public class testData {
 			CustomLabels=new list<CustomLabel__c>();
 			GlobalSettings=new list<GlobalSettings__c>();
 			PagesSet=new list<pages__c>();
+			PicklistConfiguration=new list<PicklistConfiguration__c>();
 			Pages=new list<Page__c>();
 			PageTemplates=new list<PageTemplate__c>();
 			CustomLabels=createCustomLabels();
 			GlobalSettings=createGlobalSettings();
+			PicklistConfiguration=createPicklistConfiguration();
 			PageTemplates=createPageTemplates();
 			Pages=createPages();
 			PagesSet=createPageSettings();
@@ -171,6 +174,15 @@ public class testData {
 	       					showAbsolutlyGigasetLogo__c,
 	       					Sprache__c
 	       					FROM GlobalSettings__c WHERE ImportId__c='test'];
+       }
+       
+       /* create some picklist entries */
+       public list<PicklistConfiguration__c> createPicklistConfiguration() {
+       		list<PicklistConfiguration__c> lpicklistconfiguration = new list<PicklistConfiguration__c>();
+       		PicklistConfiguration__c pc=new PicklistConfiguration__c(Name='testitem_'+portal+String.valueOf(isPro),Picklistname__c='testitems',Portal__c=portal,IsPro__c=isPro,value__c='Test');
+       		lpicklistconfiguration.add(pc);
+       		insert lpicklistconfiguration;
+       		return lpicklistconfiguration;
        }
        
        public list<PageTemplate__c> createPageTemplates() {

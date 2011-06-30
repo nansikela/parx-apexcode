@@ -524,4 +524,16 @@ global class SystemSettings {
 			currentuser.Pro_Distribution__c = a.Pro_Distribution__c;
 		}
 	}
+	
+	public static set<String> getPicklistItems(String picklistname) {
+		set<String> retset=new set<String>();
+		if (picklistname!=null) {
+			for (PicklistConfiguration__c pc: PicklistConfiguration__c.getAll().values()) {
+				if (pc.Portal__c==portal && pc.isPro__c==isPro && pc.Picklistname__c==picklistname && !retset.contains(pc.value__c) && (pc.LanguageCode__c==setLanguage() || pc.LanguageCode__c==null || pc.LanguageCode__c=='')) {
+					retset.add(pc.value__c);
+				}
+			}
+		}
+		return retset;
+	}
 }

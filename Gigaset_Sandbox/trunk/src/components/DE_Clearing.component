@@ -61,8 +61,19 @@
 								<apex:outputLabel value="{!$ObjectType.Lead.fields.Handelskanal__c.label}*" for="handelskanal" />
 								<apex:inputField id="handelskanal" value="{!u.Handelskanal__c}" styleClass="FieldRequiredSelect" required="true" />
 								
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Pro_Distribution__c.label}*" for="proDistribution" />
-								<apex:inputField id="proDistribution" value="{!u.Pro_Distribution__c}" required="true" styleClass="pick" />
+								<apex:outputLabel value="{!$ObjectType.Lead.fields.Pro_Distribution__c.label}*" for="prodistributionselectlist" />
+								<!-- <apex:inputField id="prodistributionselectlist" value="{!u.Pro_Distribution__c}" required="true" styleClass="pick" /> -->
+								<apex:selectList value="{!selectedProDistributions}" multiselect="true" styleClass="FieldRequiredSelect" id="prodistributionselectlist" size="4">
+									<apex:selectOptions value="{!prodistributionPicklistItems}"/>
+								</apex:selectList>
+								<apex:panelGrid columns="2" rendered="{!showProDistributionErr}">
+									<apex:outputText value=" " style="width:209px;" />
+									<apex:panelGroup >
+										<div class="errorMsg" style="margin-left: 209px;">
+											<apex:outputText escape="false" value="{!errorText}" />
+										</div>
+									</apex:panelGroup>
+								</apex:panelGrid>
 						
 								<div class="requiredInput spacer5">
 								<apex:commandButton action="{!saveData}" value="{!$Label.next}" styleClass="spacer9" style="margin-left: 450px !important;" rerender="clearingpanel" id="nextstep1_btn"  />
