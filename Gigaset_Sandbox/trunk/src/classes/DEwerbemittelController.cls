@@ -5,6 +5,8 @@ public class DEwerbemittelController{
 	public Boolean showthirdpage {get; set;}
 	public String goHomeUrl { get; set; }
 	public Boolean alert {get; set;}
+	public String portal { get; set; }
+	public Boolean isPro { get; set; }
 	
 	
 	List<myterm> Terms = new List<myterm>();
@@ -24,7 +26,8 @@ public class DEwerbemittelController{
   		setbestellungTemp();
   		goHomeUrl=SystemSettings.goHome().getUrl();
   		Wbestellung = new List<Werbemittel_Bestellung__c>();
-  		
+  		portal=SystemSettings.portal;
+  		isPro=SystemSettings.isPro;
   	}
   	
   	public PageReference firstPage() {   //will show the first page
@@ -93,6 +96,8 @@ public class DEwerbemittelController{
   				if(ctrl.u.Lastname != '' && ctrl.u.Lastname != null)	 
   				 	bestellungTemp.Kontakt__c += ' ' + ctrl.u.Lastname;
   			}
+  			bestellungTemp.PortalHidden__c=portal;
+  			bestellungTemp.isPro__c=isPro;
   		}
   		if(SystemSettings.contactid != '')
   			help_id = SystemSettings.contactid;
@@ -116,6 +121,8 @@ public class DEwerbemittelController{
  			bestellungTemp.besteller__c=help_id;
  	//	bestellungTemp.Portal__c = systemsettings.portal;
  		bestellungTemp.Status__c = 'Bestellt';
+ 		bestellungTemp.PortalHidden__c=portal;
+  		bestellungTemp.isPro__c=isPro;
  		Wbestellung.add(bestellungTemp);
 
 		insert Wbestellung;
@@ -156,7 +163,7 @@ public class DEwerbemittelController{
       public List<myterm> getTerms() {    //we retrieve the datas from salesforce which have to be displayed in the webshop
       	//List<myterm> Terms = new List<myterm>();
 		if (Terms.isEmpty()) {
-	      	for (Werbemittel__c wm: [Select Id, Bild__c, Titel__c, Beschreibung__c, Artikelnummer__c, Verpackungseinheit__c, Name From Werbemittel__c where Aktiv__c = true and Portal__c =: systemsettings.portal order by Titel__c desc]) {
+	      	for (Werbemittel__c wm: [Select Id, Bild__c, Titel__c, Beschreibung__c, Artikelnummer__c, Verpackungseinheit__c, Name From Werbemittel__c where Aktiv__c = true and IsPro__c=:isPro and Portal__c =: portal order by Titel__c desc]) {
 	        		myterm t=new myterm();
 	        		t.term=wm;
 	        		terms.add(t); 

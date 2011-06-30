@@ -5,6 +5,8 @@ public class werbemittelController extends ComponentControllerBase {
 	public Boolean showthirdpage {get; set;}
 	public String goHomeUrl { get; set; }
 	public Boolean alert {get; set;}
+	public String portal { get; set; }
+	public Boolean isPro { get; set; }
 	
 	
 	List<myterm> Terms = new List<myterm>();
@@ -27,6 +29,8 @@ public class werbemittelController extends ComponentControllerBase {
   		Terms2.clear();
   		Wbestellung = new List<Werbemittel_Bestellung__c>();
   		bestellungTemp= new Werbemittel_Bestellung__c();
+  		portal=System_Settings.portal;
+  		isPro=System_Settings.isPro;
   	}
   	
   	public PageReference firstPage() {   //will show the first page
@@ -118,6 +122,8 @@ public class werbemittelController extends ComponentControllerBase {
  			bestellungTemp.besteller__c=help_id;
  	//	bestellungTemp.Portal__c = System_Settings.portal;
  		bestellungTemp.Status__c = 'Bestellt';
+ 		bestellungTemp.PortalHidden__c=portal;
+  		bestellungTemp.isPro__c=isPro;
  		Wbestellung.add(bestellungTemp);
 
 		insert bestellungTemp;
@@ -167,7 +173,7 @@ public class werbemittelController extends ComponentControllerBase {
     public List<myterm> getTerms() {    //we retrieve the datas from salesforce which have to be displayed in the webshop
       	//List<myterm> Terms = new List<myterm>();
 		if (Terms.isEmpty()) {
-	      	for (Werbemittel__c wm: [Select Id, Bild__c, Titel__c, Beschreibung__c, Artikelnummer__c, Verpackungseinheit__c, Name From Werbemittel__c where Aktiv__c = true and Portal__c =: System_Settings.portal order by Titel__c desc]) {
+	      	for (Werbemittel__c wm: [Select Id, Bild__c, Titel__c, Beschreibung__c, Artikelnummer__c, Verpackungseinheit__c, Name From Werbemittel__c where Aktiv__c = true and isPro__c=:isPro and Portal__c =: portal order by Titel__c desc]) {
 	        		myterm t=new myterm();
 	        		t.term=wm;
 	        		terms.add(t); 

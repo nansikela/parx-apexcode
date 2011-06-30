@@ -2,12 +2,13 @@
 private class LeadConvertTest {
 
     static testMethod void myUnitTest() {
-    	
-    	List<RecordType> r = [SELECT Id FROM RecordType WHERE SObjectType = 'Lead'];
-      		
-    	Account a = new Account(Name = 'TestComp');
+    	List<Recordtype> r = [Select r.SobjectType, r.Name, r.Id From RecordType r where SobjectType = 'Lead'];
+     	List<Recordtype> ra = [Select r.SobjectType, r.Name, r.Id From RecordType r where SobjectType = 'Account'];
+     		
+    	Account a = new Account(Name = 'TestComp', RecordTypeId = ra.get(0).Id);
     	insert a;
-    	Account a1 = new Account(Name = 'Blarb');
+    	
+    	Account a1 = new Account(Name = 'Blarb', RecordTypeId = ra.get(0).Id);
     	insert a1;
     	
     	Contact c = new Contact(Lastname = 'Rofl', Firstname = 'Test', AccountId = a.Id);
@@ -20,8 +21,10 @@ private class LeadConvertTest {
       		insert l2;
       		
     		User u = [SELECT Id FROM User WHERE Id = :Userinfo.getUserId() and isactive=true];
-    	
-    		System.runAs(u) {
+    		
+			System.runAs(u) {
+    			System.debug('Lead no. 1');
+    			ApexPages.currentPage().getParameters().put('id',l1.ID);
    				LeadConvertController ctrl = new LeadConvertController(new ApexPages.StandardController(l1));
   			
   				ApexPages.currentPage().getParameters().put('accountName', a1.Name);
@@ -36,14 +39,23 @@ private class LeadConvertTest {
   				ctrl.getContacts();
     			ctrl.contactMergeNeeded = true;
     			ctrl.convertStatusRes = convertStatus.MasterLabel;
+    			System.debug('Convert lead no. 1');
     			ctrl.convert();
+    			System.debug('Converted lead no. 1');
     			ctrl.resetForcing();
     			ctrl.removeWarning();
     			ctrl.changeLeadFocus();
     			
     			//Neuer Versuch um Company-Merge zu erzwingen!
+    			System.debug('Lead no. 2');
     			ctrl = new LeadConvertController(new ApexPages.StandardController(l2));
   			
+  				ApexPages.currentPage().getParameters().put('accountName', a.Name);
+    			ApexPages.currentPage().getParameters().put('accountId', a.Id);
+  				ctrl.addAccount();
+  			
+  				ApexPages.currentPage().getParameters().put('selectedAccId', a.Id);
+  				
     			ctrl.getAccounts();
   				ctrl.getContacts();
   				ctrl.selCon = c.Id;
