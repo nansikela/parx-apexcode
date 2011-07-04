@@ -10,6 +10,7 @@ global class SystemSettings {
 	static String language='de';
 	global static String baseurl='http://gigaset.com/';
 	global static User currentuser;
+	global static Contact currentusercontact;
 	
 	// pageids
 	global static final Id userdatapageid=getPageId('Benutzerdaten');
@@ -75,8 +76,9 @@ global class SystemSettings {
 		
 		// get portal from authenticated user
         if (SystemSettings.isPortalUser()) {
-        	Contact c=[SELECT Id, Portal__c FROM Contact WHERE Id=:currentuser.ContactId];
-        	if (c!=null && c.Portal__c!=null) sign=c.Portal__c;
+        	if (currentusercontact==null)
+        		currentusercontact=[SELECT Id, Portal__c FROM Contact WHERE Id=:currentuser.ContactId];
+        	if (currentusercontact!=null && currentusercontact.Portal__c!=null) sign=currentusercontact.Portal__c;
         }
 		
 		// get portal from page
