@@ -178,7 +178,7 @@
 	<apex:outputPanel id="userdelete" rendered="{!step='userdelete'}">
 		<h1>{!$Label.userdata_userdelete}</h1>
 		<br />
-		<p>{!$Label.userdata_ud_pleasedelete} {!$User.Username}.</p>
+		<p>{!$Label.userdata_ud_pleasedelete} {!$User.Username}{!IF($Label.userdata_ud_pleasedelete2 == '.',$Label.userdata_ud_pleasedelete2, ' '+$Label.userdata_ud_pleasedelete2)}</p>
 		<apex:form id="userdeleteform" >
 			<!-- 
 			<apex:selectRadio value="{!rq.Loeschung_Gruende__c}" >
