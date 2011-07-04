@@ -237,7 +237,7 @@
         <h1>{!$Label.userdata_userdelete}</h1>
         </apex:outputPanel>
         <apex:outputPanel id="formText4" styleClass="formText" layout="block">
-        	<p>{!$Label.userdata_ud_pleasedelete} {!$User.Username}.</p>
+        	<p>{!$Label.userdata_ud_pleasedelete} {!$User.Username}{!IF($Label.userdata_ud_pleasedelete2 == '.',$Label.userdata_ud_pleasedelete2, ' '+$Label.userdata_ud_pleasedelete2)}</p>
         </apex:outputPanel>
         <apex:form id="userdeleteform" >
             <!-- 
