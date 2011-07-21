@@ -97,7 +97,7 @@ private class TemplateTest {
         ctrl.firstPage();
 	 ctrl.getCurrentNavigationPointLabel(System_Settings.loginpageid);
        System.assert(ctrl.isAuthenticated!=null);
-       SystemSettings.logError('test', 'test', 'test', '', 'error');
+       System_Settings.logError('test', 'test', 'test', '', 'error');
        ctrl.redirectTologin();
        	ctrl.getBooks();
        	ApexPages.currentPage().getParameters().put('moduleId',tms.get(0).id);

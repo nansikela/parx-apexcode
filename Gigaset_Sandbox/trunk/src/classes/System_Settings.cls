@@ -11,6 +11,8 @@ global class System_Settings {
     static String language='de';
     global static String baseurl='http://gigaset.com/';
     global static User currentuser;
+    global static Contact currentusercontact;
+    global static Account currentuseraccount;
     global static GlobalSettings__c landing_config;
 	global static Cookie cookie = null;
 	global static String remindPageId;
@@ -66,7 +68,12 @@ global class System_Settings {
 			for (Pages__c p: Pages__c.getAll().values()) {
 				if (Id.ValueOf(p.PageId__c)==Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))) return p.Portal__c;
 			}
-			return '';
+			try {
+				String pagename=[Select Id, Name FROM Page__c WHERE Id = :Id.valueOf(System.currentPageReference().getParameters().get('pageid'))].Name;
+				return pagename.split('_').get(0);
+			} catch (System.QueryException e) {
+				return '';
+			}
 		} else return '';
     }
     
@@ -74,10 +81,11 @@ global class System_Settings {
         String sign='00';
         
         // get portal from authenticated user
-        if (System_Settings.isPortalUser()) {
-        	Contact c=[SELECT Id, Portal__c FROM Contact WHERE Id=:currentuser.ContactId];
-        	if (c!=null && c.Portal__c!=null) sign=c.Portal__c;
+        if (currentusercontact==null && System_Settings.isPortalUser()) {
+        	currentusercontact=getContact(ContactId);
         }
+        if (currentusercontact!=null && currentusercontact.Portal__c!=null) sign=currentusercontact.Portal__c;
+       
         
 		// get portal from page
 		if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid') && sign=='00') {
@@ -98,6 +106,7 @@ global class System_Settings {
 				}
 			}
 		}
+		System.debug('Found Portal 2: ' + sign);
 		
 		// get portal form custom webaddress
 		if (Site.getCustomWebAddress()!=null) System.debug('####### CustomWebAddress: ' + Site.getCustomWebAddress() + ' / substring: ' + Site.getCustomWebAddress().substring(7,9));
@@ -105,7 +114,7 @@ global class System_Settings {
 			return Site.getCustomWebAddress().substring(7,9);
 		else if (Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().substring(11,12)=='.' && sign=='00')
 			return Site.getCustomWebAddress().substring(7,11);
-		System.debug('Found Portal 2: ' + sign);
+		System.debug('Found Portal 3: ' + sign);
 		
 		// get portal form site name
 		if (Site.getName()!=null && sign=='00')
@@ -113,11 +122,11 @@ global class System_Settings {
 				return Site.getName().substring(0,Site.getName().toLowerCase().indexOf('pro')).toLowerCase();
 			else
 				return Site.getName().toLowerCase();
-		System.debug('Found Portal 3: ' + sign);
+		System.debug('Found Portal 4: ' + sign);
 		
 		// get portal form existing url
 		if ((sign==null || sign=='00') && ApexPages.currentPage()!=null && ApexPages.currentPage().getUrl()!=null) sign=ApexPages.currentPage().getUrl().substring(ApexPages.currentPage().getUrl().length()-2);
-		System.debug('Found Portal: ' + sign);
+		System.debug('Found Portal 5: ' + sign);
 		return sign;
     }
     
@@ -197,11 +206,12 @@ global class System_Settings {
     global static Boolean showPreset() {
     	// if (System_Settings.contactid!=null && System_Settings.contactid!='' && System_Settings.portal=='de' && !System_Settings.isPro) {
         if (System_Settings.contactid!=null && System_Settings.contactid!='' && !System_Settings.isPro) {
-            Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:contactid];
-            if (c!=null && c.AccountId!=null ) {
-                Account a=[SELECT Id, Handelskanal__c, Distribution__c, Pro_Distribution__c FROM Account WHERE Id=:c.AccountId];
-                if (a!=null && 
-					(a.Handelskanal__c==null || a.Handelskanal__c=='')
+        	if (currentusercontact==null) currentusercontact=getContact(contactid);
+        if (currentusercontact!=null && System_Settings.contactid!=null && System_Settings.contactid!='' && !System_Settings.isPro)
+            if (currentusercontact!=null && currentusercontact.AccountId!=null ) {
+                if (currentuseraccount==null) currentuseraccount=getAccount(currentusercontact.AccountId);
+                if (currentuseraccount!=null && 
+					(currentuseraccount.Handelskanal__c==null || currentuseraccount.Handelskanal__c=='')
 					) return true;
             }
         }
@@ -233,10 +243,10 @@ global class System_Settings {
     
     global static Boolean showClearing() {
         if (System_Settings.contactid!=null && System_Settings.contactid!='') {
-            Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:System_Settings.contactid];
-            if (c!=null && c.AccountId!=null) {
-                if (System_Settings.isPro && !c.Gigaset_Pro__c && c.Gigaset_Extranet__c) return true;
-                if (!System_Settings.isPro && !c.Gigaset_Extranet__c && c.Gigaset_Pro__c) return true;
+            if (currentusercontact==null) currentusercontact=getContact(contactid);
+            if (currentusercontact!=null && currentusercontact.AccountId!=null) {
+                if (System_Settings.isPro && !currentusercontact.Gigaset_Pro__c && currentusercontact.Gigaset_Extranet__c) return true;
+                if (!System_Settings.isPro && !currentusercontact.Gigaset_Extranet__c && currentusercontact.Gigaset_Pro__c) return true;
             }
         }
         return false;
@@ -453,6 +463,7 @@ global class System_Settings {
                     Phone, 
                     MobilePhone, 
                     AccountId,
+                    Portal__c,
                     Title, 
                     Salutation, 
                     Anmeldung_Telefon__c, 
@@ -507,6 +518,7 @@ global class System_Settings {
                 PRO_VAR_SYSTEMPARTNER_WEITERE__c,
                 Pro_Distribution__c,
                 Handelskanal__c,
+                Portal__c,
                 Distribution__c,
                 Pro_Partner_Typ__c, 
                 Description

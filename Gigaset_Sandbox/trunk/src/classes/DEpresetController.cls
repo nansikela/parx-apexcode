@@ -15,6 +15,8 @@ public class DEpresetController {
 	public String stdErrorText='';
 	public String selectedGfk { get; set; }
 	public String[] selectedDistribution { get; set; }
+	public String[] selectedProDistributions { get; set; }
+	public Boolean showProDistributionErr { get; set; }
 	public Set<String> distributionValues { get; set; }
 	public Set<String> distributionLabels { get; set; }
 	public Map<String, String> distributionMap = new Map<String, String>();
@@ -30,9 +32,11 @@ public class DEpresetController {
 		errorText=errorBase + System.label.registration_errormsg;
 		stdErrorText=errorText;
 		showDistributionErr=false;
+		showProDistributionErr=false;
 		showDistribution=false;
 		selectedGfk='';
 		selectedDistribution=new String[]{};
+		selectedProDistributions=new String[]{};
 		fillGfks();
 		fillDistributions();
 		getCurrentUser();
@@ -74,10 +78,28 @@ public class DEpresetController {
 		return multi;
 	}
 	
+	private String putProDistributions() {
+		String multi='';
+		if (!selectedProDistributions.isEmpty()) {
+			for (String s: selectedProDistributions) {
+				multi=multi + ';' + s;
+			}
+		}
+		return multi;
+	}
+	
 	public List<SelectOption> getItems() {
 		List<SelectOption> options = new List<SelectOption>();
 		for (String label: distributionMap.keySet()) {
 			options.add(new SelectOption(distributionMap.get(label),label));
+		}
+		return options;
+	}
+	
+	public List<SelectOption> getProDistributionPicklistItems() {
+		List<SelectOption> options = new List<SelectOption>();
+		for (String label: SystemSettings.getPicklistItems('account_lead_pro_distribution')) {
+			options.add(new SelectOption(label,label));
 		}
 		return options;
 	}
@@ -120,13 +142,19 @@ public class DEpresetController {
 		showDistributionErr=false;
 		if (step==1) {
 	 		if (!selectedDistribution.isEmpty() && selectedDistribution!=null) u.Distribution__c=putDistributions();
-	 		else if (showDistribution) {
-	 			showDistributionErr=true;
-	 			hasErr=true;
-	 		} else {
-	 			showDistributionErr=false;
-	 			hasErr=false;
-	 		}
+	       else if (showDistribution) {
+	         showDistributionErr=true;
+	         hasErr=true;
+	       } else {
+	         showDistributionErr=false;
+	       }
+	       if (!selectedProDistributions.isEmpty() && selectedProDistributions!=null) u.Pro_Distribution__c=putProDistributions();
+	       else if (isPro) {
+	         showProDistributionErr=true;
+	         hasErr=true;
+	       } else {
+	         showProDistributionErr=false;
+	       }
 	 	}
 	 	if (!hasErr) {
 	 		step++;

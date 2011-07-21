@@ -22,6 +22,7 @@ public class DEnavigationController {
 	public Boolean isProAttribute { get; set; }
 	public String portal { get; set; }
 	public String portalAttribute { get; set; }
+	public String homeurl { get; set; }
 	public Boolean showpmlink { get; set; }
 	private List<CustomLabel__c> menuItems = new List<CustomLabel__c>();
 	private List<Pages__c> menuLinks;
@@ -32,12 +33,10 @@ public class DEnavigationController {
 	public Integer LinkHomeNumber {get;set;}
 	
 	public DEnavigationController() {
-		if (isProAttribute!=null)
-			isPro=isProAttribute;
-		else 
-			isPro=SystemSettings.isPro;
+		if (isPro==null) isPro=SystemSettings.isPro;
 
 		portal=SystemSettings.portal;
+		homeurl=SystemSettings.goHome().getUrl();
 		
 		isAuthenticated=isPortalUser();
 		linktootherportal=getLinkToOtherPortal();
@@ -160,7 +159,8 @@ public class DEnavigationController {
 		Contact c;
 		if (isAuthenticated && u!=null && u.ContactId!=null) {
 			try {
-				c=[SELECT Id, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:u.ContactId];
+				c=SystemSettings.currentusercontact;
+				if (c==null) c=[SELECT Id, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:u.ContactId];
 			} catch (System.QueryException e) {
 				// nothing to do here
 			}
@@ -179,6 +179,7 @@ public class DEnavigationController {
 				if (SystemSettings.isdebug) throw e;
 			}
 		}
+		if (link!='') link=link + '/' + SystemSettings.portal;
 		// for the moment ...
 		link='';
 		return link;

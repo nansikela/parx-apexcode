@@ -30,6 +30,7 @@ public class TemplateController {
 	
 	// constructor
 	public TemplateController() {
+		defaultlanguage=System_Settings.setLanguage();
 		Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=8');
 		System_Settings.cookie = ApexPages.currentPage().getCookies().get('guest');
 		
@@ -50,7 +51,6 @@ public class TemplateController {
 		showclearingcomp=System_Settings.showClearing() & !showprivacy;
 		if (showclearingcomp) showpresetcomp=false;
 		showothercomp=showpresetcomp || showclearingcomp || showprivacy;
-		defaultlanguage=System_Settings.setLanguage();
 		label_menu_home=System_Settings.getCurrentNavigationPointLabel(System_Settings.homepageid);
 		loginBackgroundImageId=System_Settings.getLabel('loginBackgroundImageId');
 		kontaktpageid=System_Settings.kontaktpageid;
@@ -75,6 +75,7 @@ public class TemplateController {
 	 
 	public String getCurrentNavigationPointLabel(String pid) {
 		Id pageid;
+		defaultlanguage=System_Settings.setLanguage();
 		if (pid!=null) {
 			try {
 				pageid=Id.valueOf(pid);
@@ -124,18 +125,23 @@ public class TemplateController {
 
 	// actions
 	public PageReference init() {
+		defaultlanguage=System_Settings.setLanguage();
 		CRD_Landing_Controller.init();
-		PageReference basispage=Page.page;
-		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + System_Settings.homepageid);
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) System_Settings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	if (ApexPages.currentPage().getParameters().containsKey('newsid')) System_Settings.addParam=System_Settings.addParam+'&newsid='+ApexPages.currentPage().getParameters().get('newsid');
 	 	if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
-	 	if (System_Settings.isPortalUser() && System_Settings.portal!=System_Settings.getPortalByPageId()) return homepage; 
 	 	return null;
 	}
 	
+	public PageReference initSiteTemplate() {
+		PageReference basispage=Page.page;
+		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + System_Settings.homepageid);
+		homepage.setRedirect(true);
+		if (System_Settings.isPortalUser() && !Site.isPasswordExpired() && System_Settings.portal!=System_Settings.getPortalByPageId()) return homepage;
+		else return null;
+	}
+	
 	public PageReference initHome(){
-		if (System_Settings.isPortalUser() && System_Settings.portal!=System_Settings.getPortalByPageId()) return System_Settings.goHome();
 		TrainingController.initHome();
 		if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
 	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return System_Settings.goHome();

@@ -1,7 +1,7 @@
 <apex:component id="metanavi" controller="TemplateController">
 <ul id="metanavi">
     <li>
-        <apex:outputLink value="{!$Site.CustomWebAddress}">{!label_menu_home}</apex:outputLink>
+        <apex:outputLink value="{!homeurl}">{!label_menu_home}</apex:outputLink>
     </li>
     <li>
         <apex:outputLink value="{!ImprintUrl}">{!$Label.tplt_label_imprint}</apex:outputLink>

@@ -1,7 +1,11 @@
 global class DE_LoginMenuComponentController {
 
+	public String portal { get; set; }
+	public String homeurl { get; set; }
+
 	global DE_LoginMenuComponentController () {
-		
+		portal=SystemSettings.portal;
+		homeurl=SystemSettings.goHome().getUrl();
 	}
 
 	global String getForgotPasswordPageId() {

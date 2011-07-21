@@ -2,7 +2,7 @@
 	<ul id="menu">
 		<li>      
 			<div class="link_arrow">
-				<apex:outputLink value="{!$Page.DE_Login}" id="login_btn" styleClass="link_arrow">
+				<apex:outputLink value="{!homeurl}" id="login_btn" styleClass="link_arrow">
                         <!-- {!$Label.site.go_to_login_page} -->
                         {!$Label.gohome}
                     	</apex:outputLink>

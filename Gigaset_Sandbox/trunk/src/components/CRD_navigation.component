@@ -5,7 +5,7 @@
             <apex:repeat value="{!menuItems}" var="item" id="proMenu">
                 <li class="">
                     <apex:outputPanel rendered="{!item.ExternalUrl__c == ''}">
-                        <a class="activate MainNavigation" href="{!$Site.CustomWebAddress}">{!item.Label__c}</a>
+                        <a class="activate MainNavigation" href="{!homeurl}">{!item.Label__c}</a>
                     </apex:outputPanel>
                     <apex:outputPanel rendered="{!NOT(item.ExternalUrl__c == '')}">
                         <a class="MainNavigation" href="{!BaseTopNaviUrl}{!item.ExternalUrl__c}">{!item.Label__c}</a>

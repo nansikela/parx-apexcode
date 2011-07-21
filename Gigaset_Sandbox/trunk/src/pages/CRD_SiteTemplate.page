@@ -1,4 +1,4 @@
-<apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false" action="{!initHome}">
+<apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false" action="{!initSiteTemplate}">
     <!-- seems not to work ... -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /> -->
     <c:CRD_headerStylesTop id="styles_top" loginBackgroundImageId="{!loginBackgroundImageId}" />

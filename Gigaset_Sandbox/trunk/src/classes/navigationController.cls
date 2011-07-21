@@ -17,9 +17,11 @@ public class navigationController {
 	public String labellink05 { get; set; }
 	public String labellink06 { get; set; }
 	public String labelhome { get; set; }
+	public String homeurl { get; set; }
 	public String linktootherportal { get; set; }
 	public Boolean isAuthenticated { get; set; }
 	public Boolean isPro { get; set; }
+	public String portal { get; set; }
 	public List<CustomLabel__c> menuItems {get;set;}
 	private List<Pages__c> menuLinks;
 	public User u;
@@ -27,7 +29,9 @@ public class navigationController {
 	public navigationController() {
 		isAuthenticated=isPortalUser();
 		linktootherportal=getLinkToOtherPortal();
+		homeurl=System_Settings.goHome().getUrl();
 		isPro=System_Settings.isPro;
+		portal=System_Settings.portal;
 		kontaktpageid=System_Settings.kontaktpageid;
 		homepageid=System_Settings.homepageid;
 		link01pageid=System_Settings.link01pageid;
@@ -46,16 +50,16 @@ public class navigationController {
 		labelhome=System_Settings.getCurrentNavigationPointLabel(homepageid);
 
 		String searchTag = isPro ? 'ProTopNavi%' : 'ExtranetTopNavi%';
-		menuItems = [SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :System_Settings.portal AND LanguageCode__c = :System_Settings.setLanguage() AND CommonCode__c LIKE :searchTag ORDER BY CommonCode__c];
+		menuItems = [SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :portal AND LanguageCode__c = :System_Settings.setLanguage() AND CommonCode__c LIKE :searchTag ORDER BY CommonCode__c];
 	}
 	
 	
 	// getter
 	public String getBaseTopNaviUrl() {
 		if(isPro)
-			return System_Settings.baseurl+'pro/'+System_Settings.portal.substring(0,2)+'/'+System_Settings.setLanguage()+'/';
+			return System_Settings.baseurl+'pro/'+portal.substring(0,2)+'/'+System_Settings.setLanguage()+'/';
 		else
-			return System_Settings.baseurl+System_Settings.portal.substring(0,2)+'/'+System_Settings.setLanguage()+'/';
+			return System_Settings.baseurl+portal.substring(0,2)+'/'+System_Settings.setLanguage()+'/';
 	}
 	
 	public String getHomeUrl() {
@@ -91,8 +95,8 @@ public class navigationController {
 	}
 	
 	private Boolean isPortalUser() {
-		if (UserInfo.getUserId()!=null) u=[SELECT Id, UserType, ContactId, IsPortalEnabled, Handelskanal__c FROM User WHERE Id =:UserInfo.getUserId()];
-		
+		if (UserInfo.getUserId()!=null && System_Settings.currentuser==null) u=[SELECT Id, UserType, ContactId, IsPortalEnabled, Handelskanal__c FROM User WHERE Id =:UserInfo.getUserId()];
+		else u=System_Settings.currentuser;
 		if (u!=null) {
 			return u.IsPortalEnabled;
 		}
@@ -100,11 +104,12 @@ public class navigationController {
 	}
 	
 	private String getLinkToOtherPortal() {
-		String tld=System_Settings.portal + '.%';
+		String tld=portal + '.%';
 		String link='';
 		Contact c;
 		if (isAuthenticated && u!=null && u.ContactId!=null) {
 			try {
+				c=System_Settings.currentusercontact;
 				c=[SELECT Id, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:u.ContactId];
 			} catch (System.QueryException e) {
 				// nothing to do here
@@ -124,6 +129,7 @@ public class navigationController {
 				if (System_Settings.isdebug) throw e;
 			}
 		}
+		if (link!='') link=link + '/' + System_Settings.portal;
 		// for the moment ...
 		link='';
 		return link;

@@ -7,7 +7,7 @@
         type="String" required="false" assignTo="{!portalAttribute}"/>
 <ul id="metanavi">
 	<li>
-		<apex:outputLink value="{!$Site.CustomWebAddress}{!IF(portal!='','?portal='&portal,'')}">{!label_menu_home}</apex:outputLink>
+		<apex:outputLink value="{!homeurl}{!IF(portal!='','&portal='&portal,'')}">{!label_menu_home}</apex:outputLink>
 	</li>
 	<li>
 		<apex:outputLink value="{!ImprintUrl}{!IF(portal!='','&portal='&portal,'')}">{!$Label.tplt_label_imprint}</apex:outputLink>
