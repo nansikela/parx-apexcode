@@ -27,7 +27,8 @@ public class DEkontaktController {
 		rq.Gigaset_Pro__c=SystemSettings.isPro;
 		if (isAuthenticated) {
 			Id contactid;
-			if (UserInfo.getUserId()!=null) {
+			contactid=Id.ValueOf(SystemSettings.contactid);
+			if (UserInfo.getUserId()!=null && SystemSettings.contactid==null) {
 				try {
 					contactid=[SELECT ContactId FROM User WHERE Id= :UserInfo.getUserId()].ContactId;
 				} catch (Exception e) {
@@ -39,6 +40,8 @@ public class DEkontaktController {
 					rq.Kontakt__c=contactid;
 					Contact c;
 					try {
+						c=SystemSettings.currentusercontact;
+						if (c==null)
 						c=[SELECT Id, Salutation, Lastname, Firstname, Email, Briefanrede__c, MailingCountry FROM Contact WHERE Id =: contactid];
 					} catch (Exception e) {
 						System.debug('PARX something went wrong, perhaps contact does not exist?');

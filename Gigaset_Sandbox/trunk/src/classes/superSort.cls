@@ -14,7 +14,9 @@ public class superSort {
         reference we will want sort by the name of the related object, not the 
         ID itself*/
 
-        if(items[0].getSObjectType().getDescribe().fields.getMap().get(sortField).getDescribe().getType().Name() == 'REFERENCE'){
+        if(!items.isEmpty() 
+        		&& items[0].getSObjectType().getDescribe().fields.getMap().containsKey(sortField) 
+        		&& items[0].getSObjectType().getDescribe().fields.getMap().get(sortField).getDescribe().getType().Name() == 'REFERENCE'){
             isSortFieldReference = true;
             referenceName = new Map<Id,String>();
             

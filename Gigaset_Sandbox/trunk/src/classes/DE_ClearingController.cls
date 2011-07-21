@@ -137,6 +137,7 @@ public class DE_ClearingController {
 	}
 	
 	private void getContact() {
+		if (u!=null) c=SystemSettings.currentusercontact;
 		if (u!=null && c==null && u.ContactId!=null) {
 			try {
 				c=[SELECT Id, In_Freischaltung__c, Gigaset_Extranet__c, Gigaset_Pro__c, AccountId FROM Contact WHERE Id=:u.ContactId];
@@ -146,15 +147,15 @@ public class DE_ClearingController {
 	 			ApexPages.addMessage(apm);
 				//if (SystemSettings.isDebug) throw e;
 			}
-			if (c!=null && c.AccountId!=null) {
-				//u.In_Freischaltung__c=c.In_Freischaltung__c;
-				if (!c.In_Freischaltung__c && SystemSettings.isPro && !c.Gigaset_Pro__c) {
-					showProfields=true;
-				}
-				if (c.In_Freischaltung__c) {
-					showProfields=false;
-					showInClearing=true;
-				}
+		}
+		if (c!=null && c.AccountId!=null) {
+			//u.In_Freischaltung__c=c.In_Freischaltung__c;
+			if (!c.In_Freischaltung__c && SystemSettings.isPro && !c.Gigaset_Pro__c) {
+				showProfields=true;
+			}
+			if (c.In_Freischaltung__c) {
+				showProfields=false;
+				showInClearing=true;
 			}
 		}
 	}

@@ -1,9 +1,10 @@
 <apex:component controller="SiteLoginController" id="loginComponent"
-    rendered="{!$Site.LoginEnabled}" language="{!defaultlanguage}">
+    rendered="{!$Site.LoginEnabled}" >
+    <!--  language="{!defaultlanguage}" -->
     
     <apex:form id="loginForm" forceSSL="true">
-        <apex:pageMessages id="error" />
-        <!--  <apex:outputText value="{!$Site.ErrorMessage}" /> -->
+        <apex:pageMessages id="error" rendered="{!NOT(handleLoginErrorMessage)}" />
+		<apex:pageMessage summary="{!loginErrorSummary}" escape="false" title="{!loginErrorTitle}" severity="error" strength="2" rendered="{!handleLoginErrorMessage}" />
         <apex:outputPanel layout="block">
             <apex:outputLabel value="{!$Label.site.username}" style="width:95px;"
                  for="username" />

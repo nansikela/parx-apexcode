@@ -291,14 +291,19 @@ public class DETemplateController {
 	
 	// actions
 	 public PageReference init() {
-	 	PageReference basispage=Page.page;
-		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + SystemSettings.homepageid);
-		if (SystemSettings.isPortalUser() && SystemSettings.portal!=SystemSettings.getPortalByPageId()) return homepage;
 	 	system.debug('Session id ... ' + UserInfo.getSessionId());
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) SystemSettings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	if (!SystemSettings.isPortalUser()) return redirectToLogin();
-	 	if (SystemSettings.isPortalUser() && SystemSettings.portal!=SystemSettings.getPortalByPageId()) return homepage;
 	 	return null;
+	 }
+	 
+	 // actions
+	 public PageReference initSiteTemplate() {
+	 	PageReference basispage=Page.page;
+		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + SystemSettings.homepageid);
+		homepage.setRedirect(true);
+		if (SystemSettings.isPortalUser() && !Site.isPasswordExpired() && SystemSettings.portal!=SystemSettings.getPortalByPageId()) return homepage;
+		return null;
 	 }
 	
 	public class Modulen {
@@ -760,9 +765,6 @@ public class DETemplateController {
 	    		//}*/
 	
 	 	}
-	 	PageReference basispage=Page.page;
-		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + SystemSettings.homepageid);
-		if (SystemSettings.isPortalUser() && SystemSettings.portal!=SystemSettings.getPortalByPageId()) return homepage;
 	 	system.debug('Session id ... ' + UserInfo.getSessionId());
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) SystemSettings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	if (!SystemSettings.isPortalUser()) return redirectToLogin();

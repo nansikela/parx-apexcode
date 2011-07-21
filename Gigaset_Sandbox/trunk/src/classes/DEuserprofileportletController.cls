@@ -9,7 +9,8 @@ public class DEuserprofileportletController {
 		userid=UserInfo.getUserId();
 		if (userid!=null) {
 			try {
-				contactid=[SELECT Id, contactId FROM User WHERE Id =:userid AND isActive=true].contactid;
+				contactid=SystemSettings.contactid;
+				if (contactid==null) contactid=[SELECT Id, contactId FROM User WHERE Id =:userid AND isActive=true].contactid;
 			} catch (System.QueryException e) {
 				System.debug('PARX User Query Error: ' + e.getMessage());
 				SystemSettings.logError('PARX  User Query Error: ' + e.getMessage(),'DEuserprofileportletController','getContacts','','ERROR');
@@ -17,7 +18,8 @@ public class DEuserprofileportletController {
 		}
 		if (contactid!=null) {
 			try {
-				contact=[SELECT Id, Lastname, Firstname, Email FROM Contact WHERE Id =:contactid ];
+				contact=SystemSettings.currentusercontact;
+				if (contact==null) contact=[SELECT Id, Lastname, Firstname, Email FROM Contact WHERE Id =:contactid ];
 			} catch (System.QueryException e) {
 				System.debug('PARX Contact Query Error: ' + e.getMessage());
 				SystemSettings.logError('PARX  Contact Query Error: ' + e.getMessage(),'DEuserprofileportletController','getContacts','','ERROR');

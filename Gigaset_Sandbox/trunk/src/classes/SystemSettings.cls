@@ -11,6 +11,7 @@ global class SystemSettings {
 	global static String baseurl='http://gigaset.com/';
 	global static User currentuser;
 	global static Contact currentusercontact;
+	global static Account currentuseraccount;
 	
 	// pageids
 	global static final Id userdatapageid=getPageId('Benutzerdaten');
@@ -65,9 +66,14 @@ global class SystemSettings {
 	public static String getPortalByPageId() {
     	if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid')) {
 			for (Pages__c p: Pages__c.getAll().values()) {
-				if (Id.ValueOf(p.PageId__c)==Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))) return p.Portal__c;
+				if (Id.ValueOf(p.PageId__c)==Id.valueOf(System.currentPageReference().getParameters().get('pageid'))) return p.Portal__c;
 			}
-			return '';
+			try {
+				String pagename=[Select Id, Name FROM Page__c WHERE Id = :Id.valueOf(System.currentPageReference().getParameters().get('pageid'))].Name;
+				return pagename.split('_').get(0);
+			} catch (System.QueryException e) {
+				return '';
+			}
 		} else return '';
     }
 	
@@ -77,14 +83,14 @@ global class SystemSettings {
 		// get portal from authenticated user
         if (SystemSettings.isPortalUser()) {
         	if (currentusercontact==null)
-        		currentusercontact=[SELECT Id, Portal__c FROM Contact WHERE Id=:currentuser.ContactId];
+        		currentusercontact=getContact(currentuser.ContactId);
         	if (currentusercontact!=null && currentusercontact.Portal__c!=null) sign=currentusercontact.Portal__c;
         }
 		
 		// get portal from page
 		if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid')) {
 			for (Pages__c p: Pages__c.getAll().values()) {
-				if (p.PageId__c==ApexPages.currentPage().getParameters().get('pageid')) sign=p.Portal__c;
+				if (Id.valueOf(p.PageId__c)==Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))) sign=p.Portal__c;
 			}
 		}
 		System.debug('Found Portal 1: ' + sign);
@@ -209,17 +215,19 @@ global class SystemSettings {
 	// with Pro:
 	// Handelskanal__c or Pro_Distribution__c has no content
 	global static Boolean showPreset() {
-		if (SystemSettings.contactid!=null && SystemSettings.contactid!='') {
-			Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:contactid];
-			if (c!=null && c.AccountId!=null ) {
-				Account a=[SELECT Id, Handelskanal__c, Distribution__c, Pro_Distribution__c FROM Account WHERE Id=:c.AccountId];
-				if (a!=null && 
-					(
-					(!SystemSettings.isPro && (a.Handelskanal__c==null || a.Handelskanal__c=='')) 
-					||
-					(SystemSettings.isPro && (a.Handelskanal__c==null || a.Handelskanal__c=='' || a.Pro_Distribution__c==null || a.Pro_Distribution__c==''))
-					)) return true;
+		if (currentusercontact==null && SystemSettings.contactid!=null && SystemSettings.contactid!='') {
+			currentusercontact=getContact(contactid);
+		}	
+		if (currentusercontact!=null) {	
+			if (currentusercontact!=null && currentusercontact.AccountId!=null && currentuseraccount==null) {
+				currentuseraccount=getAccount(currentusercontact.AccountId);
 			}
+			if (currentuseraccount!=null && 
+				(
+				(!SystemSettings.isPro && (currentuseraccount.Handelskanal__c==null || currentuseraccount.Handelskanal__c=='')) 
+				||
+				(SystemSettings.isPro && (currentuseraccount.Handelskanal__c==null || currentuseraccount.Handelskanal__c=='' || currentuseraccount.Pro_Distribution__c==null || currentuseraccount.Pro_Distribution__c==''))
+				)) return true;
 		}
 		return false;
 	}
@@ -230,9 +238,11 @@ global class SystemSettings {
 		for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
 			if (gs.Portal__c==portal && gs.isPro__c==isPro ) privacyEnabled=gs.Datenschutzabfrage__c;
 		}
-		if (SystemSettings.contactid!=null && SystemSettings.contactid!='' && privacyEnabled) {
-			Contact c=[SELECT Id, AccountId, Datenschutzerkl_rung_zugestimmt__c FROM Contact WHERE Id=:SystemSettings.contactid];
-			if (c!=null && (c.Datenschutzerkl_rung_zugestimmt__c==null || !c.Datenschutzerkl_rung_zugestimmt__c)) {
+		if (currentusercontact==null && SystemSettings.contactid!=null && SystemSettings.contactid!='' && privacyEnabled) {
+			currentusercontact=getContact(contactid);
+		}	
+		if (privacyEnabled) {	
+			if (currentusercontact!=null && (currentusercontact.Datenschutzerkl_rung_zugestimmt__c==null || !currentusercontact.Datenschutzerkl_rung_zugestimmt__c)) {
 				return true;
 			}
 		}
@@ -248,11 +258,13 @@ global class SystemSettings {
 	}
 	
 	global static Boolean showClearing() {
-		if (SystemSettings.contactid!=null && SystemSettings.contactid!='') {
-			Contact c=[SELECT Id, AccountId, Gigaset_Extranet__c, Gigaset_Pro__c FROM Contact WHERE Id=:SystemSettings.contactid];
-			if (c!=null && c.AccountId!=null) {
-				if (SystemSettings.isPro && !c.Gigaset_Pro__c && c.Gigaset_Extranet__c) return true;
-				if (!SystemSettings.isPro && !c.Gigaset_Extranet__c && c.Gigaset_Pro__c) return true;
+		if (currentusercontact==null && SystemSettings.contactid!=null && SystemSettings.contactid!='') {
+			currentusercontact=getContact(contactid);
+		}
+		if (currentusercontact!=null) {
+			if (currentusercontact!=null && currentusercontact.AccountId!=null) {
+				if (SystemSettings.isPro && !currentusercontact.Gigaset_Pro__c && currentusercontact.Gigaset_Extranet__c) return true;
+				if (!SystemSettings.isPro && !currentusercontact.Gigaset_Extranet__c && currentusercontact.Gigaset_Pro__c) return true;
 			}
 		}
 		return false;
@@ -418,7 +430,8 @@ global class SystemSettings {
 					Phone, 
 					MobilePhone, 
 					AccountId,
-					Title, 
+					Title,
+					Portal__c, 
 					Salutation, 
 					Anmeldung_Telefon__c, 
 					Anmeldung_Hotlinetelefon__c, 
@@ -473,7 +486,8 @@ global class SystemSettings {
 				Pro_Distribution__c,
 				Handelskanal__c,
 				Distribution__c,
-				Pro_Partner_Typ__c, 
+				Pro_Partner_Typ__c,
+				Portal__c, 
 				Description
 				FROM Account WHERE Id=:aid];
 		} catch (System.QueryException e) {

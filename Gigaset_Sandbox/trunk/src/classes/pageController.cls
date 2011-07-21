@@ -20,8 +20,11 @@ public class pageController {
 	public String pagetemplatename {get;set;}
 	public String defaultlanguage {get;set;}
 
-	public pageController() {	
-		defaultlanguage=SystemSettings.setLanguage();
+	public pageController() {
+		if (SystemSettings.isPro)
+			defaultlanguage=SystemSettings.setLanguage();
+		else	
+			defaultlanguage=System_Settings.setLanguage();
 		String pageid = System.currentPageReference().getParameters().get('pageid');
 		try {
 			page = [Select  p.PageTemplate__r.VisualForce_Page_Name__c, p.PageTemplate__c, p.PageTemplate__r.Name, p.Name, p.Cache_expires__c, p.Id

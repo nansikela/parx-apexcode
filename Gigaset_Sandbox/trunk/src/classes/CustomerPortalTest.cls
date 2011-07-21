@@ -8,7 +8,7 @@ private class CustomerPortalTest{
         ctrl.SortProducts();
         ctrl.SortProducts();
         
-        ctrl.sortField2 = 'Name';
+        ctrl.sortField2 = 'Subject';
         ctrl.SortCases();
         ctrl.SortCases();
      
@@ -16,7 +16,7 @@ private class CustomerPortalTest{
         ctrl.SortSolutions();
         ctrl.SortSolutions();
         
-        ctrl.sortField4 = 'Name';
+        ctrl.sortField4 = 'Title';
         ctrl.SortIdeas();
         ctrl.SortIdeas();
     }

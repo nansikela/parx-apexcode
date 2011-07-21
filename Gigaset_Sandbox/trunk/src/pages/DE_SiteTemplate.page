@@ -1,4 +1,4 @@
-<apex:page showHeader="false" id="DE_SiteTemplate" controller="DETemplateController" language="{!defaultlanguage}" >
+<apex:page showHeader="false" id="DE_SiteTemplate" controller="DETemplateController" language="{!defaultlanguage}" action="{!initSiteTemplate}">
 	<c:DE_header_style id="stylesheets" styleSelector="{!styleSelector}" />
 	<div id="wrapper">
 		<div id="content_area">
@@ -18,7 +18,7 @@
 					</apex:insert>
 				</div>
 				<!--  Portalabh. -->
-				<c:DE_navigation id="DE_navigationcomp"  />
+				<c:DE_navigation id="DE_navigationcomp" portal="{!portal}" isPro="{!isPro}" />
 				<!-- 
 				<div id="search"> 
 				</div>
@@ -51,7 +51,7 @@
 		</apex:insert>
 	</div>
 	<!-- END wrapper -->
-		<c:DE_footercopy id="DE_footercopycomp" isPro="{!isPro}" />
+		<c:DE_footercopy id="DE_footercopycomp" isPro="{!isPro}" portal="{!portal}" />
 	
 	
 	<site:previewAsAdmin />

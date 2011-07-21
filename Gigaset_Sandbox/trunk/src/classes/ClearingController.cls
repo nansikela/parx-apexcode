@@ -107,6 +107,7 @@ public class ClearingController {
 	}
 	
 	private void getContact() {
+		if (u!=null) c=System_Settings.currentusercontact;
 		if (u!=null && c==null && u.ContactId!=null) {
 			try {
 				c=[SELECT Id, In_Freischaltung__c, Gigaset_Extranet__c, Gigaset_Pro__c, AccountId FROM Contact WHERE Id=:u.ContactId];

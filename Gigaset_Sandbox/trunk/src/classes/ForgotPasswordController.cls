@@ -5,7 +5,7 @@ public class ForgotPasswordController {
 	public String defaultlanguage { get; set; }
 	          
 	public ForgotPasswordController() {
-		defaultlanguage=SystemSettings.setLanguage();
+		defaultlanguage=System_Settings.setLanguage();
 		success=false;
 	}
 	
@@ -21,7 +21,7 @@ public class ForgotPasswordController {
 	}
 	
 	public PageReference goHome() {
-  		return SystemSettings.goHome();
+  		return System_Settings.goHome();
   	}         
 	
 	public static testMethod void testForgotPasswordController() {      

@@ -397,7 +397,7 @@ global class TrainingController {
 	 	Modules_showThirdpage = false;
 		Modules_showFirstpage = true;
 		if(UserInfo.getOrganizationId() == '00D20000000M2NzEAK') //liveId
-			Modules_URLPage = CMSpage.getUrl() + '?pageid=' + SystemSettings.TrainingId;
+			Modules_URLPage = CMSpage.getUrl() + '?pageid=' + System_Settings.TrainingId;
 		else
 			Modules_URLPage = '/np/' + CMSpage.getUrl() + '?pageid=' + System_Settings.TrainingId;
 		Cookie TopShop;

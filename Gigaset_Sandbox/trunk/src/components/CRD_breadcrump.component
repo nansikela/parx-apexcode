@@ -6,7 +6,7 @@
 	            <apex:outputText value="{!$Label.breadcrump_you_are_here}" rendered="{!currentNavigationPoint!=''}" />
 	        </span>
 	            <span>
-	            <apex:outputLink value="{!IF(isAuthenticated,homeurl,$Site.CustomWebAddress)}" rendered="{!currentNavigationPoint!=''}" >{!$Label.breadcrump_dealer}</apex:outputLink>
+	            <apex:outputLink value="{!homeurl}" rendered="{!currentNavigationPoint!=''}" >{!$Label.breadcrump_dealer}</apex:outputLink>
 	            </span>
 	            <apex:outputPanel id="arrow" rendered="{!currentNavigationPoint!=''}" >></apex:outputPanel>
 	            <span><apex:outputLink value="#">{!currentNavigationPoint}</apex:outputLink>
@@ -17,4 +17,5 @@
 		 </apex:outputPanel>
      </apex:panelGrid>
 </div>
+<!-- {!IF(isAuthenticated,homeurl,$Site.CustomWebAddress & portal)} -->
 </apex:component>
