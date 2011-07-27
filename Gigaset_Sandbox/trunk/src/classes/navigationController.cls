@@ -57,9 +57,9 @@ public class navigationController {
 	// getter
 	public String getBaseTopNaviUrl() {
 		if(isPro)
-			return System_Settings.baseurl+'pro/'+portal.substring(0,2)+'/'+System_Settings.setLanguage()+'/';
+			return System_Settings.baseurl+'pro/'+portal.substring(0,2)+'/'+String.valueOf(System_Settings.setLanguage()).substring(0,2)+'/';
 		else
-			return System_Settings.baseurl+portal.substring(0,2)+'/'+System_Settings.setLanguage()+'/';
+			return System_Settings.baseurl+portal.substring(0,2)+'/'+String.valueOf(System_Settings.setLanguage()).substring(0,2)+'/';
 	}
 	
 	public String getHomeUrl() {
