@@ -97,9 +97,9 @@ public class DEnavigationController {
 	// getter
 	public String getBaseTopNaviUrl() {
 		if(isPro)
-			return SystemSettings.baseurl+'pro/'+portal.substring(0,2)+'/'+SystemSettings.setLanguage()+'/';
+			return SystemSettings.baseurl+'pro/'+portal.substring(0,2)+'/'+String.valueOf(SystemSettings.setLanguage()).substring(0,2)+'/';
 		else
-			return SystemSettings.baseurl+portal.substring(0,2)+'/'+SystemSettings.setLanguage()+'/';
+			return SystemSettings.baseurl+portal.substring(0,2)+'/'+String.valueOf(SystemSettings.setLanguage()).substring(0,2)+'/';
 	}
 	
 	public list<CustomLabel__c> getMenuItems() {
