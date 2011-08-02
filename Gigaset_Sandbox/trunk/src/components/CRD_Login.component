@@ -6,15 +6,15 @@
         <apex:pageMessages id="error" rendered="{!NOT(handleLoginErrorMessage)}" />
 		<apex:pageMessage summary="{!loginErrorSummary}" escape="false" title="{!loginErrorTitle}" severity="error" strength="2" rendered="{!handleLoginErrorMessage}" />
         <apex:outputPanel layout="block">
-            <apex:outputLabel value="{!$Label.site.username}" style="width:95px;"
+            <apex:outputLabel value="{!$Label.site.username}" styleClass="LoginLabel"
                  for="username" />
             <apex:inputText id="username" value="{!username}" styleClass="LoginField" />
             <br />
-            <apex:outputLabel value="{!$Label.site.password}" style="width:95px;"
+            <apex:outputLabel value="{!$Label.site.password}" styleClass="LoginLabel"
                  for="password" />
             <apex:inputSecret id="password" value="{!password}" styleClass="LoginField" />
             <br />
-            <div id="btnarea" class="newBTN_area isLeft" style="padding-left: 95px; width: 540px;">
+            <div id="btnarea" class="newBTN_area isLeft" style="padding-left: 120px; width: 540px;">
 	                <div class="newBTN_arrow"></div>
 	                <div class="newBTN">
                 	<apex:commandButton action="{!login}" value="{!$Label.site.login_button}" id="loginButton" styleClass="newBTN" />

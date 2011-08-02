@@ -345,6 +345,12 @@
             font-size:11px;
         }
         
+        .LoginLabel {
+       		min-width: 110px;
+       		max-width: 115px;
+       		margin-right: 5px;
+        }
+        
         .transparent_login {
             /* background-color:transparent; */
             background-color: white; 
@@ -945,7 +951,7 @@
     
     /* ---------------- LINK PFEILE------------------------------*/
     .lft_login {
-        padding-left: 95px;
+        padding-left: 120px;
         float: left;
         padding-top: 15px;
     }
