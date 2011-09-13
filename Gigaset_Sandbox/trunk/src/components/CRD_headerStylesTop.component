@@ -1026,13 +1026,22 @@
     }
     
     /* ---------- RECHTE SPALTE  ------------- */
+    #content #prodOver .oneCol {
+    	width: 100%;
+    	margin: 5px 0px 0px 0px;
+    }
+    
+    #content #prodOver .oneColInfo {
+		padding: 0px 0px 0px 0px;
+		width: 300px;
+	}
     
     #content #colRgt { 
          margin: 0px;
          padding-left: 0px;
          padding-bottom: 0px;
          padding-right: 0px;
-         padding-top: 5px;
+         padding-top: 15px;
          float: right;
          /* min-width: 216px; */
          width: 300px;
