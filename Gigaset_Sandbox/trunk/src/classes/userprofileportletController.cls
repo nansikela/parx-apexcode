@@ -1,5 +1,5 @@
 public class userprofileportletController {
-	
+	/*
 	public String userid { get; set; }
 	public String contactid { get; set; }
 	public Contact contact { get; set; }
@@ -36,5 +36,5 @@ public class userprofileportletController {
 	 public PageReference init() {
 	 	return null;
 	 }
-	 
+	 */
 }

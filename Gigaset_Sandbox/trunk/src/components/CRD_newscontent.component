@@ -6,14 +6,17 @@
 				<p><apex:outputText escape="false" value="{!ci.Abstract__c}" /></p>
 				  
 				<apex:outputPanel id="openNewsdiv" layout="block" rendered="{!newsid!=''}">
-					<apex:form id="theSubmitForm">
+					<!-- <apex:form id="theSubmitForm"> -->
 					<div id="btnarea" class="newBTN_area isLeft">
 	                	<div class="newBTN_arrow"></div>
 	                	<div class="newBTN">
+						<!-- 
 						<apex:commandButton id="openNewsBtn" value="{!moreInformationLabel}" action="{!openNews}" styleClass="newBTN isLeft" />
+						-->
+						<apex:outputLink id="openNewsBtn" value="{!NewsreaderUrl}" styleClass="newBTN isLeft">{!moreInformationLabel}</apex:outputLink>
 						</div>
 					</div>
-					</apex:form>
+					<!-- </apex:form> -->
 				</apex:outputPanel>
 			</apex:outputPanel>
 		</apex:outputPanel>

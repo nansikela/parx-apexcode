@@ -20,24 +20,15 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-private class userprofileportletControllerTest {
-/*
-    static testMethod void testuserprofileportletController() {
-	 	testData.initData mytestData = new testData.initData('de',false);
-	 	System.runAs(mytestData.testuser) {
-		 	userprofileportletController ctrl = new userprofileportletController();
-		 	ctrl.init();
-		 	ctrl.getBenutzerdatenUrl();
-		 	
-	 	}
-	 }
-	static testMethod void testuserprofileportletControllerNoAuth() {
-	 	testData.initData mytestData = new testData.initData('de',false);
+private class loginpageControllerTest {
 
-	 	userprofileportletController ctrl = new userprofileportletController();
-	 	ctrl.init();
-	 	ctrl.getBenutzerdatenUrl();
-	 	
-	 }
-	*/
+    static testMethod void loginpageControllerTest() {
+    	testData.initData mytestData = new testData.initData('de',false);
+    	
+    	ApexPages.currentPage().getParameters().put('pageid', mytestData.PagesSet.get(0).id);
+        loginpageController ctrl = new loginpageController();
+        ctrl.init();
+        ctrl.getRegistrationID();
+        //ctrl.redirectToLogin();
+    }
 }

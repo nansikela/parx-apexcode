@@ -1,4 +1,6 @@
-<apex:page showheader="false" id="crd_rueckrufservice" sidebar="false" controller="TemplateController"  title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!init}" >
+<apex:page showheader="false" id="crd_rueckrufservice" sidebar="false" controller="CRD_pageTemplatesController"  
+	cache="true" expires="2592000"
+title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!init}" >
 
 <apex:composition template="{!$Site.Template}">
 

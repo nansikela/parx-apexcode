@@ -1,14 +1,16 @@
 public class newsreader {
 
 	public ContentItem__c ci { get; set; }
-	private String portal=System_Settings.portal;
-	private Boolean isPro=System_Settings.isPro;
+	private Transient String portal=System_Settings.portal;
+	private Transient Boolean isPro=System_Settings.isPro;
 	public String newsbackgroundurl { get; private set; }
-	public String moreInformationLabel { get; private set; }
-	public String homeLabel {get; private set; }
+	public Transient String moreInformationLabel { get; private set; }
+	public Transient String homeLabel {get; private set; }
 	public String newsid { get; set; }
+	public transient String homeurl { get; private set; }
 
 	public newsreader() {
+		homeurl=System_Settings.goHome().getUrl();
 		newsid='';
 		if (ApexPages.currentPage().getParameters().containsKey('newsid')) {
 			newsid=ApexPages.currentPage().getParameters().get('newsid');
@@ -20,7 +22,7 @@ public class newsreader {
 		if (newsid!='' && (newsid.length()==15 || newsid.length()==18)) {
 			try {
 				ci=[SELECT Id, Title__c, Abstract__c, Text__c, ImageURL__c, NewsURL__c FROM ContentItem__c 
-						WHERE isActive__c=true AND Portal__c = :System_Settings.portal AND Id=:newsid];
+						WHERE isActive__c=true AND Portal__c = :portal AND Id=:newsid];
 			} catch (System.QueryException e) { if (System_Settings.isDebug) throw e; }
 			
 		} else {
@@ -38,15 +40,23 @@ public class newsreader {
 	}
 	
 	public pageReference openNews() {
-	 	PageReference newsreaderpage = null;
-    	if (ci!=null && ci.NewsURL__c!=null && ci.NewsURL__c!='') {
-    		newsreaderpage = new PageReference(ci.NewsURL__c);
-    	}
-        else
-        	newsreaderpage = new PageReference(Page.page.getUrl() + '?pageid=' + System_Settings.newsreaderpageid + '&newsid=' + newsid);
-		
-        newsreaderpage.setRedirect(true);
-		return newsreaderpage;
+	// 	PageReference newsreaderpage = null;
+    //	if (ci!=null && ci.NewsURL__c!=null && ci.NewsURL__c!='') {
+    //		newsreaderpage = new PageReference(ci.NewsURL__c);
+    //	}
+    //   else
+    //    	newsreaderpage = new PageReference(Page.page.getUrl() + '?pageid=' + System_Settings.newsreaderpageid + '&newsid=' + newsid);
+	//	
+    //    newsreaderpage.setRedirect(true);
+	//	return newsreaderpage;
+		return null;
+	}
+	
+	public String getNewsreaderUrl() {
+		if (ci!=null && ci.NewsURL__c!=null && ci.NewsURL__c!='') {
+			return ci.NewsUrl__c;
+		}
+		return Page.page.getUrl() + '?pageid=' + System_Settings.newsreaderpageid + '&newsid=' + newsid;
 	}
 	 
 	public pageReference goHome() {

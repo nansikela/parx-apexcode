@@ -1,22 +1,23 @@
 public class privacyController {
 	public Boolean isAuthenticated { get; set; }
 	
-	public User u { get; set; }
+	public Transient User u { get; set; }
 	
-	public String labelPrivacy { get; set; }
+	public Transient String labelPrivacy { get; set; }
 	public Integer step { get; set; }
-	public String goHomeUrl { get; set; }
-	public String privacypageurl { get; set; }
-	public String portal { get; set; }
+	public Transient String goHomeUrl { get; set; }
+	public Transient PageReference goHome=System_Settings.goHome();
+	public Transient String privacypageurl { get; set; }
+	public Transient String portal { get; set; }
 	
 	public privacyController() {
 		portal=System_Settings.portal;
-		goHomeUrl=SystemSettings.goHome().getUrl();
-		isAuthenticated=SystemSettings.isPortalUser();
+		goHomeUrl=goHome.getUrl();
+		isAuthenticated=System_Settings.isPortalUser();
 		step=1;
 		Schema.DescribeFieldResult f = Schema.sObjectType.User.fields.Datenschutzerkl_rung_zugestimmt__c;
 		labelPrivacy=f.getLabel();
-		privacypageurl=Site.getCurrentSiteUrl()+'page' + '?pageid=' + SystemSettings.privacyprotectionid;
+		privacypageurl=Site.getCurrentSiteUrl()+'page' + '?pageid=' + System_Settings.privacyprotectionid;
 		getCurrentUser();
 	}
 	
@@ -56,7 +57,7 @@ public class privacyController {
 	 		step++;
 	 		u.Zustimmung_Datenschutzerkl_rung_am__c=System.today();
 	 		updateUser();
-	 		if (!ApexPages.hasMessages()) return SystemSettings.goHome();
+	 		if (!ApexPages.hasMessages()) return goHome;
 	 	} else
 	 		step=99;
 	 	return null;	 	

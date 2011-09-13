@@ -2,14 +2,14 @@ public class navigationController {
 
 	pageReference CMSpage = Page.page;
 	
-	public String kontaktpageid { get; set; }
-	public String homepageid { get; set; }
-	public String link01pageid { get; set; }
-	public String link02pageid { get; set; }
-	public String link03pageid { get; set; }
-	public String link04pageid { get; set; }
-	public String link05pageid { get; set; }
-	public String link06pageid { get; set; }  
+	public Id kontaktpageid { get; set; }
+	public Id homepageid { get; set; }
+	public Id link01pageid { get; set; }
+	public Id link02pageid { get; set; }
+	public Id link03pageid { get; set; }
+	public Id link04pageid { get; set; }
+	public Id link05pageid { get; set; }
+	public Id link06pageid { get; set; }  
 	public String labellink01 { get; set; }
 	public String labellink02 { get; set; }
 	public String labellink03 { get; set; }
@@ -20,8 +20,8 @@ public class navigationController {
 	public String homeurl { get; set; }
 	public String linktootherportal { get; set; }
 	public Boolean isAuthenticated { get; set; }
-	public Boolean isPro { get; set; }
-	public String portal { get; set; }
+	public Boolean isPro { get; private set; }
+	public String portal { get; private set; }
 	public List<CustomLabel__c> menuItems {get;set;}
 	private List<Pages__c> menuLinks;
 	public User u;
@@ -67,36 +67,36 @@ public class navigationController {
 	}
 	
 	public String getKontaktformularUrl() {
-		return System_Settings.kontaktpageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.kontaktpageid:'';
+		return kontaktpageid!=null ? CMSpage.getUrl() + '?pageid=' + kontaktpageid:'';
 	}
 	
 	public String getLink01Url() {
-		return System_Settings.link01pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link01pageid : System_Settings.getExternalURL('link01');		
+		return link01pageid!=null ? CMSpage.getUrl() + '?pageid=' + link01pageid : System_Settings.getExternalURL('link01');		
 	}
 	
 	public String getLink02Url() {
-		return System_Settings.link02pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link02pageid : System_Settings.getExternalURL('link02');
+		return link02pageid!=null ? CMSpage.getUrl() + '?pageid=' + link02pageid : System_Settings.getExternalURL('link02');
 	}
 	
 	public String getLink03Url() {
-		return System_Settings.link03pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link03pageid : System_Settings.getExternalURL('link03');
+		return link03pageid!=null ? CMSpage.getUrl() + '?pageid=' + link03pageid : System_Settings.getExternalURL('link03');
 	}
 	
 	public String getLink04Url() {
-		return System_Settings.link04pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link04pageid : System_Settings.getExternalURL('link04');
+		return link04pageid!=null ? CMSpage.getUrl() + '?pageid=' + link04pageid : System_Settings.getExternalURL('link04');
 	}
 	
 	public String getLink05Url() {
-		return System_Settings.link05pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link05pageid : System_Settings.getExternalURL('link05');
+		return link05pageid!=null ? CMSpage.getUrl() + '?pageid=' + link05pageid : System_Settings.getExternalURL('link05');
 	}
 	
 	public String getLink06Url() {
-		return System_Settings.link06pageid!=null ? CMSpage.getUrl() + '?pageid=' + System_Settings.link06pageid : System_Settings.getExternalURL('link06');
+		return link06pageid!=null ? CMSpage.getUrl() + '?pageid=' + link06pageid : System_Settings.getExternalURL('link06');
 	}
 	
 	private Boolean isPortalUser() {
-		if (UserInfo.getUserId()!=null && System_Settings.currentuser==null) u=[SELECT Id, UserType, ContactId, IsPortalEnabled, Handelskanal__c FROM User WHERE Id =:UserInfo.getUserId()];
-		else u=System_Settings.currentuser;
+		u=System_Settings.currentuser;
+		if (UserInfo.getUserId()!=null && u==null) u=[SELECT Id, UserType, ContactId, IsPortalEnabled, Handelskanal__c FROM User WHERE Id =:UserInfo.getUserId()];
 		if (u!=null) {
 			return u.IsPortalEnabled;
 		}
@@ -129,7 +129,7 @@ public class navigationController {
 				if (System_Settings.isdebug) throw e;
 			}
 		}
-		if (link!='') link=link + '/' + System_Settings.portal;
+		if (link!='') link=link + '/' + portal;
 		// for the moment ...
 		link='';
 		return link;

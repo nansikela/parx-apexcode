@@ -6,7 +6,9 @@ global class System_Settings {
     global static final String portal=getPortalSign();
     //global static final String portal='se';
     global static final String PortalCountry=getPortalCountry();
-    global static final Boolean isPro=isPro();
+    //global static final Boolean isPro=isPro();
+    // beeing only in Cordless area this defaults to false
+    global static final Boolean isPro=false;
     global static String contactid='';
     static String language='de';
     global static String baseurl='http://gigaset.com/';
@@ -205,9 +207,9 @@ global class System_Settings {
     // the condition is restricted to Cordless, so it does not work for isPro=true!
     global static Boolean showPreset() {
     	// if (System_Settings.contactid!=null && System_Settings.contactid!='' && System_Settings.portal=='de' && !System_Settings.isPro) {
-        if (System_Settings.contactid!=null && System_Settings.contactid!='' && !System_Settings.isPro) {
+        if (contactid!=null && contactid!='' && isPro) {
         	if (currentusercontact==null) currentusercontact=getContact(contactid);
-        if (currentusercontact!=null && System_Settings.contactid!=null && System_Settings.contactid!='' && !System_Settings.isPro)
+        if (currentusercontact!=null && System_Settings.contactid!=null && System_Settings.contactid!='' && !isPro)
             if (currentusercontact!=null && currentusercontact.AccountId!=null ) {
                 if (currentuseraccount==null) currentuseraccount=getAccount(currentusercontact.AccountId);
                 if (currentuseraccount!=null && 
@@ -245,8 +247,8 @@ global class System_Settings {
         if (System_Settings.contactid!=null && System_Settings.contactid!='') {
             if (currentusercontact==null) currentusercontact=getContact(contactid);
             if (currentusercontact!=null && currentusercontact.AccountId!=null) {
-                if (System_Settings.isPro && !currentusercontact.Gigaset_Pro__c && currentusercontact.Gigaset_Extranet__c) return true;
-                if (!System_Settings.isPro && !currentusercontact.Gigaset_Extranet__c && currentusercontact.Gigaset_Pro__c) return true;
+                if (isPro && !currentusercontact.Gigaset_Pro__c && currentusercontact.Gigaset_Extranet__c) return true;
+                if (!isPro && !currentusercontact.Gigaset_Extranet__c && currentusercontact.Gigaset_Pro__c) return true;
             }
         }
         return false;
@@ -262,7 +264,7 @@ global class System_Settings {
     global static PageReference goHome() {
         PageReference homepage = null;
         
-        homepage = new PageReference(Page.page.getUrl() + '?pageid=' + System_Settings.homepageid);
+        homepage = new PageReference(Page.page.getUrl() + '?pageid=' + homepageid);
 		
         homepage.setRedirect(true);
         return homepage;
@@ -343,7 +345,7 @@ global class System_Settings {
     global static String getLabel(String ccode) {
         String label='';
         for (CustomLabel__c cl:CustomLabel__c.getAll().values()) {
-            if (cl.CommonCode__c==ccode && cl.Portal__c==portal && cl.LanguageCode__c==setLanguage() && cl.isPro__c==System_Settings.isPro) label=cl.Label__c;
+            if (cl.CommonCode__c==ccode && cl.Portal__c==portal && cl.LanguageCode__c==setLanguage() && cl.isPro__c==isPro) label=cl.Label__c;
         }
         
         return label;
@@ -392,7 +394,7 @@ global class System_Settings {
     global static String getExternalURL(String ccode){
         String label='';
         for (CustomLabel__c cl:CustomLabel__c.getAll().values()) {
-            if (cl.CommonCode__c==ccode && cl.Portal__c==portal && cl.LanguageCode__c==setLanguage() && cl.isPro__c==System_Settings.isPro) label=cl.ExternalUrl__c;
+            if (cl.CommonCode__c==ccode && cl.Portal__c==portal && cl.LanguageCode__c==setLanguage() && cl.isPro__c==isPro) label=cl.ExternalUrl__c;
         }
         
         return label;

@@ -4,24 +4,25 @@ public class TemplateController {
 	
 	public Boolean showTraining { get; set; }
 	public Boolean isDone {get; set; }
-	public Boolean isPro { get; set; }
-	public String portal { get; private set; }
+	public Transient Boolean isPro { get; private set; }
+	public  String portal { get; private set; }
     public String currentNavigationPoint { get; set; }
-    public String homeurl { get; set; }
+    public  String homeurl { get; set; }
 	pageReference CMSpage = Page.page;
-	public Id kontaktpageid { get; set; }
-	public Id registrationpageid { get; set; }
-	public String label_menu_home { get; set; }
-	public String defaultlanguage { get; set; }
-	public Boolean showpresetcomp { get; set; }
-	public Boolean showclearingcomp { get; set; }
-	public Boolean showcontactportlet { get; set; }
-	public Boolean showothercomp { get; set; }
-	public Boolean showprivacy { get; set; }
-	public String callback_imgurl { get; set; }
-	public String styleSelector { get; set; }
+	public  Id kontaktpageid { get; private set; }
+	public  Id registrationpageid { get; private set; }
+	public  Id userdatapageid { get; private set; }
+	public  String label_menu_home { get; set; }
+	public  String defaultlanguage { get; set; }
+	public Transient Boolean showpresetcomp { get; set; }
+	public Transient Boolean showclearingcomp { get; set; }
+	public Transient Boolean showcontactportlet { get; set; }
+	public Transient Boolean showothercomp { get; set; }
+	public Transient Boolean showprivacy { get; set; }
+	public  String callback_imgurl { get; set; }
+	public Transient String styleSelector { get; set; }
 	public String test {get;set;}
-	public String loginBackgroundImageId { get; private set; }
+	public Transient String loginBackgroundImageId { get; private set; }
 	
 	public User u0{get;set;}
 	public Contact c0 {get;set;}
@@ -38,10 +39,12 @@ public class TemplateController {
 			System_Settings.cookie = new Cookie('guest','1',null,100000000,false);
       		ApexPages.currentPage().setCookies(new Cookie[]{System_Settings.cookie, new Cookie('lastURL',Apexpages.currentPage().getUrl(),null,10000000,false)});
 		}
-		test=Label.loginpage;
-		isPro=System_Settings.isPro;
+		//test=Label.loginpage;
+		//isPro=System_Settings.isPro;
+		isPro=false;
 		portal=System_Settings.portal;
-		styleSelector=isPro?'pro':'normal';
+		//styleSelector=isPro?'pro':'normal';
+		styleSelector='normal';
 		isDone = ApexPages.currentPage().getParameters().containsKey('isDone');
 		callback_imgurl=System_Settings.getLabel('callback_imgurl');
 		if (callback_imgurl=='') showcontactportlet=false;
@@ -54,13 +57,14 @@ public class TemplateController {
 		label_menu_home=System_Settings.getCurrentNavigationPointLabel(System_Settings.homepageid);
 		loginBackgroundImageId=System_Settings.getLabel('loginBackgroundImageId');
 		kontaktpageid=System_Settings.kontaktpageid;
+		userdatapageid=System_Settings.userdatapageid;
 		isAuthenticated=System_Settings.isPortalUser();
 		currentNavigationPoint='';
 		if (ApexPages.currentPage().getParameters().containsKey('pageid')) {
 			currentNavigationPoint=getCurrentNavigationPointLabel(ApexPages.currentPage().getParameters().get('pageid'));
 			
 			for (pages__c l:pages__c.getAll().values()) {
-				if (l.Portal__c==System_Settings.portal && l.Label__c=='training_firstPage') {
+				if (l.Portal__c==portal && l.Label__c=='training_firstPage') {
 					if(ApexPages.currentPage().getParameters().get('pageid') == l.PageId__c)
 						showTraining = true;
 					else
@@ -69,20 +73,21 @@ public class TemplateController {
 			}	
 		}
 		homeurl=System_Settings.goHome().getUrl();
-			
+		u0=System_Settings.currentuser;
+		c0=System_Settings.currentusercontact;
 		//System.debug('******* Zustand: showprivacy: ' + showprivacy + ' / showpresetcomp: '+ showpresetcomp + ' / showclearingcomp: ' +showclearingcomp + ' / showothercomp: ' + showothercomp + ' / shownexttopshop: ' + showNextTopShop + ' / isAuthenticated: ' + isAuthenticated + ' / isPro: ' + isPro +  ' / Portal: ' + System_Settings.portal + ' / UserId: ' + UserInfo.getUserId() );
 	}
 	 
 	public String getCurrentNavigationPointLabel(String pid) {
 		Id pageid;
-		defaultlanguage=System_Settings.setLanguage();
+		if (defaultlanguage=='' || defaultlanguage==null) defaultlanguage=System_Settings.setLanguage();
 		if (pid!=null) {
 			try {
 				pageid=Id.valueOf(pid);
 			} catch (System.Exception e) {}
 		}
 		if (pageid!=null) {
-			Id landingpageid=System_Settings.landing_page;
+			Id landingpageid=System_Settings.landing_page; 
 			Id homepageid=System_Settings.homepageid;
 			Id link01pageid=System_Settings.link01pageid;
 			Id link02pageid=System_Settings.link02pageid;
@@ -93,8 +98,8 @@ public class TemplateController {
 			Id newsreaderpageid=System_Settings.newsreaderpageid;
 			//String werbemittelpageid=System_Settings.werbemittelpageid;
 			Id imprintpageid=System_Settings.imprintpageid;
-			Id kontaktpageid=System_Settings.kontaktpageid;
-			Id registrationpageid=System_Settings.registrationpageid;
+			Id kontaktpageid=kontaktpageid;
+			Id registrationpageid=registrationpageid;
 			Id userdatapageid=System_Settings.userdatapageid;
 			Id loginpageid=System_Settings.loginpageid;
 			Id rueckrufservicepageid=System_Settings.rueckrufservicepageid;
@@ -125,7 +130,7 @@ public class TemplateController {
 
 	// actions
 	public PageReference init() {
-		defaultlanguage=System_Settings.setLanguage();
+		if (defaultlanguage=='' || defaultlanguage==null) defaultlanguage=System_Settings.setLanguage();
 		CRD_Landing_Controller.init();
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) System_Settings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
 	 	if (ApexPages.currentPage().getParameters().containsKey('newsid')) System_Settings.addParam=System_Settings.addParam+'&newsid='+ApexPages.currentPage().getParameters().get('newsid');
@@ -137,12 +142,12 @@ public class TemplateController {
 		PageReference basispage=Page.page;
 		PageReference homepage=new PageReference( basispage.getUrl() + '?pageid=' + System_Settings.homepageid);
 		homepage.setRedirect(true);
-		if (System_Settings.isPortalUser() && !Site.isPasswordExpired() && System_Settings.portal!=System_Settings.getPortalByPageId()) return homepage;
+		if (System_Settings.isPortalUser() && !Site.isPasswordExpired() && portal!=System_Settings.getPortalByPageId()) return homepage;
 		else return null;
 	}
 	
-	public PageReference initHome(){
-		TrainingController.initHome();
+	public PageReference initHome(){ 
+		//TrainingController.initHome(); 
 		if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
 	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return System_Settings.goHome();
 	 	return null; 
@@ -155,7 +160,7 @@ public class TemplateController {
 	
 	// getter
 	public String getKontaktformularUrl() {
-		return CMSpage.getUrl() + '?pageid=' + System_Settings.kontaktpageid;
+		return CMSpage.getUrl() + '?pageid=' + kontaktpageid;
 	}
 	
 	public String getImprintUrl() {
@@ -172,7 +177,7 @@ public class TemplateController {
 	public String getCopyright() {
 		String copyright='';
 		for (CustomLabel__c l:CustomLabel__c.getAll().values()) {
-			if (l.Portal__c==System_Settings.portal && l.LanguageCode__c==defaultlanguage && l.CommonCode__c=='copyright') copyright=l.Label__c;
+			if (l.Portal__c==portal && l.LanguageCode__c==defaultlanguage && l.CommonCode__c=='copyright') copyright=l.Label__c;
 		}
 		return copyright;
 	}
@@ -249,10 +254,10 @@ public class TemplateController {
 		return TrainingController.Modules;
 	}
 	
-	public PageReference Poller(){
+	public PageReference Poller(){ 
 		return TrainingController.Poller();
 	}
-	
+
 	public PageReference firstPage(){
 		return TrainingController.firstPage();
 	}
@@ -374,15 +379,7 @@ public class TemplateController {
 		return 'pdf_logo.pdf';
 	}
 	
-	public String getPopupurl() {  
-		if(System_Settings.popupIsFlash)
-			return Site.getCurrentSiteUrl()+'page';
-		
-		if(System_Settings.popupIsNative)
-			return Site.getCurrentSiteUrl()+'page' + '?pageid=' + System_Settings.popupPageId;
 	
-		return null;
-	}
 	
 	public Boolean getIsPDF(){
 		return System_Settings.popupIsPDF;
@@ -394,5 +391,23 @@ public class TemplateController {
 	
 	public Boolean getIsNative(){
 		return System_Settings.popupIsPDF;
+	}
+	
+	public Boolean isPro() {
+		return isPro;
+	}
+	
+	public String getPortal() {
+		return portal;
+	}
+	
+	public String getPopupurl() {  
+		if(System_Settings.popupIsFlash)
+			return Site.getCurrentSiteUrl()+'page';
+		
+		if(System_Settings.popupIsNative)
+			return Site.getCurrentSiteUrl()+'page' + '?pageid=' + System_Settings.popupPageId;
+	
+		return null;
 	}
 }

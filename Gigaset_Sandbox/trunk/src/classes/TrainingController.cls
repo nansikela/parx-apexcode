@@ -24,7 +24,7 @@ global class TrainingController {
 	global static String salutation {get;set;}
 	
 	global static NextTopShop__c NTS;
-	global static PageReference CMSpage = Page.page;
+	global static transient PageReference CMSpage = Page.page;
 	 
 	
 	global class Modulen {
@@ -47,6 +47,15 @@ global class TrainingController {
 		public Double Helfer7 {get;set;}
 		public Double Helfer8 {get;set;}
 		public Double Helfer9 {get;set;}
+		public Double x1 {get;set;}
+		public Double y1 {get;set;}
+		public Double x2 {get;set;}
+		public Double y2 {get;set;}
+		public Double x3 {get;set;}
+		public Double y3 {get;set;}
+		public Double x4 {get;set;}
+		public Double y4 {get;set;}
+		public String function {get;set;}
 		public Double Helfer_BH {get;set;}
 		public Double Helfer_BH_Vertical {get;set;}
 		public Booken() {
@@ -60,8 +69,12 @@ global class TrainingController {
 		c0 = templateCtrl.c0;
 	}
 	
+	public TrainingController(CRD_pageTemplatesController templateCtrl){
+
+	}
+	
 	global static list<Booken> getBooks(){
-		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c,New_Modules__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: System_Settings.isPro AND Portal__c =:System_Settings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c,New_Modules__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: SystemSettings.isPro AND Portal__c =:SystemSettings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
 		Integer i = 0;
 		Books = new list<Booken>(); 
 		Booken book;
@@ -71,7 +84,7 @@ global class TrainingController {
 			Books.add(book);
 		}
 		
-		for(Booken b : TrainingController.Books) {
+		for(Booken b:Books) {
 		//	if(b.Buchhaenger__c) {
 				b.Helfer = 70 * i + 58;
 				b.Helfer_BH = 72.5 * i + 15;
@@ -82,22 +95,48 @@ global class TrainingController {
 					//b.Helfer3__c -= 15;
 				if(i == 4) {
 					b.Helfer7 = 5;
-					b.Helfer4 = 50;
-					b.Helfer_BH_Vertical = 60;
+					b.Helfer4 = 55; //old value: 50
+					b.Helfer_BH_Vertical = 56; //old value: 60
 					b.Helfer5 = '0.34202014, 0.93969262, -0.93969262, 0.34202014';
 					b.Helfer6 = 'M11=0.34202014, M12=-0.93969262, M21=0.93969262, M22=0.34202014';
-					b.Helfer3 = 335;
+					b.Helfer3 = 335; //old value: 335
 					b.Helfer8 = -45; 
 					b.Helfer9 = 100;
-				}
-				else {
+					
+					b.x1 = b.Helfer3 - 40;
+					b.y1 = b.Helfer4;
+					
+					b.x2 = b.Helfer3 - 40 + 65;
+					b.y2 = b.Helfer4;
+					
+					b.x3 = b.Helfer3 + 100;
+					b.y3 = b.Helfer4 + 250;
+					
+					b.x4 = b.Helfer3 + 35;
+					b.y4 = b.Helfer4 + 250;
+				
+				} else {
 					b.Helfer8 = -70;
 					b.Helfer2 = 65;
-					b.Helfer4 = 48;
-					b.Helfer_BH_Vertical = 48;
+					b.Helfer4 = 55; //old value: 48
+					b.Helfer_BH_Vertical = 44; // old value: 48
 					b.Helfer5 = '0.00000000, 1.00000000, -1.00000000, 0.00000000';
 					b.Helfer6 = 'M11=0.00000000, M12=-1.00000000, M21=1.00000000, M22=0.00000000';
+					
+					b.x1 = b.Helfer3 - 35;
+					b.y1 = b.Helfer4;
+				
+					b.x2 = b.Helfer3 - 35 + 65;
+					b.y2 = b.Helfer4;
+				
+					b.x3 = b.Helfer3 - 35 + 65;
+					b.y3 = b.Helfer4 + 250;
+				
+					b.x4 = b.Helfer3 - 35 ;
+					b.y4 = b.Helfer4 + 250;
 				}
+				
+				b.function = 'buchrand'+i; 
 			i++;
 		}
 
@@ -126,8 +165,7 @@ global class TrainingController {
 			Modules_SingleModule.Bild_URL__c = '/servlet/servlet.FileDownload?file='+Bild_Attachment.Id;
 			update Modules_SingleModule;
 		}
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: System_Settings.isPro AND Training_Book__r.Portal__c =:System_Settings.Portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
-
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: SystemSettings.isPro AND Training_Book__r.Portal__c =:SystemSettings.Portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
 		
 		list<String> TMIds = new list<String>();
 		for(Training_Module__c TM:TMlist) {
@@ -397,7 +435,7 @@ global class TrainingController {
 	 	Modules_showThirdpage = false;
 		Modules_showFirstpage = true;
 		if(UserInfo.getOrganizationId() == '00D20000000M2NzEAK') //liveId
-			Modules_URLPage = CMSpage.getUrl() + '?pageid=' + System_Settings.TrainingId;
+			Modules_URLPage = CMSpage.getUrl() + '?pageid=' + SystemSettings.TrainingId;
 		else
 			Modules_URLPage = '/np/' + CMSpage.getUrl() + '?pageid=' + System_Settings.TrainingId;
 		Cookie TopShop;

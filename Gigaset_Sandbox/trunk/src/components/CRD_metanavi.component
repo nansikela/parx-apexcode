@@ -1,4 +1,13 @@
-<apex:component id="metanavi" controller="TemplateController">
+<apex:component id="metanavi" >
+<!-- controller="TemplateController" -->
+
+<apex:attribute name="homeurl" description="back to home url" type="String" required="true"/>
+<apex:attribute name="ImprintUrl" description="url for imprint" type="String" required="true"/>
+<apex:attribute name="isAuthenticated" description="important: is the user really authenticated?" type="Boolean" required="true"/>
+<apex:attribute name="KontaktformularUrl" description="url for contactform" type="String" required="true"/>
+<apex:attribute name="kontaktpageid" description="kontaktform pageid" type="String" required="true"/>
+<apex:attribute name="label_menu_home" description="label for home" type="String" required="true"/>
+
 <ul id="metanavi">
     <li>
         <apex:outputLink value="{!homeurl}">{!label_menu_home}</apex:outputLink>

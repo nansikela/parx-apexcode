@@ -1,4 +1,5 @@
-<apex:component id="footercopy" controller="TemplateController">
+<apex:component id="footercopy">
+	<apex:attribute name="Copyright" description="Copyright text" type="String" required="true"/>
     <div id="footer_copy">
         <p>
         {!Copyright}

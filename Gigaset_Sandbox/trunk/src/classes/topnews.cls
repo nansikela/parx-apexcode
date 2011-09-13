@@ -2,8 +2,8 @@ public class topnews {
 
 	private final Integer MAXNEWSNUMBER=3;
 
-	private String portal=System_Settings.portal;
-	private Boolean isPro=System_Settings.isPro;
+	private Transient String portal=System_Settings.portal;
+	private Transient Boolean isPro=false;
 	private list<ContentItem__c> cilist=new list<ContentItem__c>();
 	public String lastnewsid { get; private set; }
 	public String selectedNewsId { get; set; }

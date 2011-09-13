@@ -1,4 +1,6 @@
-<apex:page showheader="false" id="CRD_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
+<apex:page showheader="false" id="CRD_home" sidebar="false" controller="CRD_pageTemplatesController" 
+	extensions="TrainingController"
+	cache="true" expires="2592000"
 	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" standardStylesheets="false">
 
 <apex:composition template="{!$Site.Template}">
@@ -24,7 +26,6 @@
 					
 					<!-- News Reader component for new CR -->
 					<c:CRD_newscontent id="newsreadercomp" />
-					
 				</div>
 			</div>
 			

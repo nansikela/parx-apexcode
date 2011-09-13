@@ -1,17 +1,27 @@
-<apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" language="{!defaultlanguage}" standardStylesheets="false" action="{!initSiteTemplate}">
+<apex:page showHeader="false" id="CRD_SiteTemplate" controller="TemplateController" 
+	cache="true" expires="2592000"
+	language="{!defaultlanguage}" standardStylesheets="false" action="{!initSiteTemplate}">
     <!-- seems not to work ... -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" /> -->
+    <!-- <meta http-equiv="expires" content="1209600" /> -->
     <c:CRD_headerStylesTop id="styles_top" loginBackgroundImageId="{!loginBackgroundImageId}" />
     <div id="wrapper">
         <div id="content_area">
             <div id="header">
                 <apex:insert name="metanavi">
                     <!--  Portalabh. - portal sets "lang=fr" and translations are necessary -->
-                    <c:CRD_metanavi id="metanavicomp" />
+                    <c:CRD_metanavi id="metanavicomp" 
+                    	homeurl="{!homeurl}" 
+                    	ImprintUrl="{!ImprintUrl}" 
+                    	isAuthenticated="{!isAuthenticated}" 
+                    	KontaktformularUrl="{!KontaktformularUrl}"
+                    	kontaktpageid="{!kontaktpageid}"
+                    	label_menu_home="{!label_menu_home}" 
+                    	/>
                 </apex:insert>
                 <div id="logo">
                     <apex:insert name="logo">
-                        <c:CRD_Logo id="CRD_Logocomp" />
+                        <c:CRD_Logo homeurl="{!homeurl}" id="CRD_Logocomp" />
                     </apex:insert>
                 </div>
                 <!--  Portalabh. -->
@@ -33,7 +43,17 @@
 			<!-- shadow at the end of the page, only if logged in -->
             <div id="content" style="{!IF(isAuthenticated,'background-image: url(','')}{!URLFOR($Resource.GCRedesign,'GCRedesign/greyShadowBottom.png')}{!IF(isAuthenticated,');background-color: white;background-position: bottom left;background-repeat: repeat-x;','')}">
                 <apex:insert name="breadcrump">
-                    <c:CRD_breadcrump id="CRD_breadcrumpcomp" />
+                    <c:CRD_breadcrump id="CRD_breadcrumpcomp" 
+                    	BenutzerdatenUrl="{!$Page.page}?pageid={!userdatapageid}" 
+                    	contactfirstname="{!c0.Firstname}" 
+                    	contactlastname="{!c0.Lastname}"
+                    	homeurl="{!homeurl}" 
+                    	currentNavigationPoint="{!currentNavigationPoint}" 
+                    	isAuthenticated="{!isAuthenticated}" 
+                    	showpresetcomp="{!showpresetcomp}"
+                    	showclearingcomp="{!showclearingcomp}"
+                    	defaultlanguage="{!defaultlanguage}"  
+                    	/>
                 </apex:insert>
                 <apex:insert name="extranetnavigation">
                     <!--  Portalabh. -->
@@ -53,7 +73,7 @@
     	</apex:insert>
 	</div>
     <!-- END wrapper -->
-    <c:CRD_footercopy id="CRD_footercopycomp" />
+    <c:CRD_footercopy Copyright="{!Copyright}" id="CRD_footercopycomp" />
     
     
     <script type="text/javascript">

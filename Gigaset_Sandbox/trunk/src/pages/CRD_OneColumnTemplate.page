@@ -1,4 +1,5 @@
-<apex:page showheader="false" id="CRD_home" sidebar="false" controller="TemplateController" extensions="TrainingController"
+<apex:page showheader="false" id="CRD_home" sidebar="false" controller="CRD_pageTemplatesController" extensions="TrainingController"
+	cache="true" expires="2592000"
 	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" >
 
 <apex:composition template="{!$Site.Template}">
@@ -20,8 +21,9 @@
 	 			<div id="contact">
 	 				<c:CRD_Training id="training" rendered="{!showTraining}" />
 	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
+	 				<!--
 	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
-					
+					-->
 				</div>
 			</div>
 			

@@ -7,6 +7,11 @@
 
         type="String" required="true"/>
 	
+	<script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/mainnav.js')}"></script>
+
+    <!-- <script type="text/javascript" src="http://www.gigaset.com/lib/mainnav.js"></script> -->
+    <script type="text/javascript" src="{!URLFOR($Resource.gigasetextranetZIP, 'lib/changepic.js')}"></script> 
+    <!-- <script src="http://www.gigaset.com/lib/changepic.js" type="text/javascript"></script> -->
 
 <!-- Stuff we need at the end of nearly every page -->
 

@@ -1,8 +1,10 @@
 public with sharing class CRD_LogoPortletController {
 
-	public Boolean showLogo {get; private set;}
-	public String alternateAbsolutlyGigasetLogoText { get; private set; }
-	public String alternateAbsolutlyGigasetLogoUrl { get; private set; }
+	public Transient Boolean showLogo {get; private set;}
+	public Transient String alternateAbsolutlyGigasetLogoText { get; private set; }
+	public Transient String alternateAbsolutlyGigasetLogoUrl { get; private set; }
+	private Transient String portal = System_Settings.portal;
+	private Transient Boolean isPro = System_Settings.isPro;
 	
 	public CRD_LogoPortletController() {
 		showLogo=getLogoFlag();
@@ -11,8 +13,6 @@ public with sharing class CRD_LogoPortletController {
 	
 	private Boolean getLogoFlag() {
 		Boolean retval=false;
-		String portal = System_Settings.portal;
-		Boolean isPro=System_Settings.isPro;
 		if (portal!='') {
 			for (GlobalSettings__c gs: GlobalSettings__c.getAll().values()) {
 				if (gs.isPro__c==isPro && gs.Portal__c==portal)
