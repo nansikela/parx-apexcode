@@ -16,9 +16,9 @@
 public class pageController {
 
 	public Page__c page {get;set;}
-	public Integer expires {get;set;}
+	public Transient Integer expires {get;set;}
 	public String pagetemplatename {get;set;}
-	public String defaultlanguage {get;set;}
+	public Transient String defaultlanguage {get;set;}
 
 	public pageController() {
 		if (SystemSettings.isPro)

@@ -3,10 +3,10 @@ public class werbemittelController extends ComponentControllerBase {
 	public Boolean showfirstpage {get; set;}
 	public Boolean showsecondpage {get; set;}
 	public Boolean showthirdpage {get; set;}
-	public String goHomeUrl { get; set; }
+	public Transient String goHomeUrl { get; set; }
 	public Boolean alert {get; set;}
-	public String portal { get; set; }
-	public Boolean isPro { get; set; }
+	public Transient String portal { get; set; }
+	public Transient Boolean isPro { get; set; }
 	
 	
 	List<myterm> Terms = new List<myterm>();

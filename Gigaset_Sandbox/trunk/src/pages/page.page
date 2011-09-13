@@ -16,7 +16,8 @@
     EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<apex:page controller="pageController" showheader="false" cache="true" expires="{!expires}" id="base" language="{!defaultlanguage}" >
+<apex:page controller="pageController" showheader="false" cache="true" expires="2592000" id="base" language="{!defaultlanguage}" >
+<!-- expires="{!expires}" -->
     <apex:include pageName="{!pagetemplatename}" id="inc_page" />
 
 </apex:page>

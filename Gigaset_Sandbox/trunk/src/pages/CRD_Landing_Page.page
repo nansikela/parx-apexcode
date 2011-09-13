@@ -1,15 +1,16 @@
 <apex:page showheader="false" id="CRD_landing_page" sidebar="false" title="{!$Label.de_title}" 
-		controller="TemplateController"
+		cache="true" expires="2592000"
+		controller="loginPageController"
 		standardStylesheets="false" 
 		language="{!defaultlanguage}" action="{!init}" >
 
-<apex:composition template="{!$Site.Template}">  
+<apex:composition template="{!$Site.Template}">
 
         <apex:define name="body">
         	<div id="insidecontent" class="loginbackground" >
 		         <apex:outputPanel id="landingpagecontent" styleClass="landingpagecontent" layout="block">
 		            <c:contentblock name="maincontent" />
-		            <apex:form id="landingform" style="margin-top: 10px;"> 
+		            <apex:form id="landingform" style="margin-top: 10px;">
 		            	<div id="btnarea" class="newBTN_area isLeft">
 			                    <div class="newBTN_arrow"></div>
 			                    <div class="newBTN">

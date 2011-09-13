@@ -1,6 +1,6 @@
 public class MetanaviController {
 
-	pageReference CMSpage = Page.page;
+	Transient pageReference CMSpage = Page.page;
 
 	public MetanaviController() {
 		CMSpage = Page.page;

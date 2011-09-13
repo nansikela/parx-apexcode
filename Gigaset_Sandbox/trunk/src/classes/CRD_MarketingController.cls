@@ -16,15 +16,15 @@ public class CRD_MarketingController extends PageControllerBase {
 	  //  return null;
 	  //} 
 
-	public String tabLabelSalesActions { get; private set; }
-	public String tabLabelSalesSupport { get; private set; }
-	public String tabLabelCampaignMaterial { get; private set; }
-	public String tabLabelEventCalendar { get; private set; }
+	public Transient String tabLabelSalesActions { get; private set; }
+	public Transient String tabLabelSalesSupport { get; private set; }
+	public Transient String tabLabelCampaignMaterial { get; private set; }
+	public Transient String tabLabelEventCalendar { get; private set; }
 	
-	public Boolean showTabSalesActions { get; private set; }
-	public Boolean showTabSalesSupport { get; private set; }
-	public Boolean showTabCampaignMaterial { get; private set; }
-	public Boolean showTabEventCalendar { get; private set; }
+	public Transient Boolean showTabSalesActions { get; private set; }
+	public Transient Boolean showTabSalesSupport { get; private set; }
+	public Transient Boolean showTabCampaignMaterial { get; private set; }
+	public Transient Boolean showTabEventCalendar { get; private set; }
 	public Boolean onOrder { get; set; }
 
 	public CRD_MarketingController() {

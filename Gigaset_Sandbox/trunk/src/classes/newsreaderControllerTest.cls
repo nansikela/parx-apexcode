@@ -30,8 +30,6 @@ private class newsreaderControllerTest {
     	ApexPages.currentPage().getParameters().put('pageid',System_Settings.newsreaderpageid);
     	ApexPages.currentPage().getParameters().put('newsid',mytestData.contentItems.get(0).id);
 	 	newsreader ctrl = new newsreader();
-		ctrl.openNews();
-		ctrl.goHome();
 	 	}
 	 }
 	 
@@ -52,8 +50,6 @@ private class newsreaderControllerTest {
 	 	
 	 	System.runAs(mytestData.testuser) {
 	 	newsreader ctrl = new newsreader();
-		ctrl.openNews();
-		ctrl.goHome();
 	 	}
 	 }
 	 
@@ -73,8 +69,6 @@ private class newsreaderControllerTest {
 	 	ApexPages.currentPage().getParameters().put('newsid',ci.id);
 	 	System.runAs(mytestData.testuser) {
 	 	newsreader ctrl = new newsreader();
-		ctrl.openNews();
-		ctrl.goHome();
 	 	}
 	 }
 }

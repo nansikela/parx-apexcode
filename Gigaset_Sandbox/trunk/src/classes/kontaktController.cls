@@ -4,8 +4,8 @@ public class kontaktController {
 	public Boolean showform { get; set; }
 	public Request__c rq { get; set; }
 	public Boolean success { get; set; }
-	public String kontakttyp { get; set; }
-	public String goHomeUrl { get; set; }
+	public Transient String kontakttyp { get; set; }
+	public Transient String goHomeUrl { get; set; }
 	
 	// constructor
 	public kontaktController() {

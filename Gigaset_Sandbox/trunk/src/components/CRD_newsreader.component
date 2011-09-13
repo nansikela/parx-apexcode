@@ -3,17 +3,19 @@
 		<apex:outputPanel id="viewoftop" layout="block" >
 			<apex:outputPanel id="newscontent" layout="block" >
 				<h1>{!ci.Title__c}</h1>
+				<!-- Abstract should not be visible 
 				<p><apex:outputText escape="false" value="{!ci.Abstract__c}" /></p>
+				-->
 				<p><apex:outputText escape="false" value="{!ci.Text__c}" /></p>
 				<apex:outputPanel id="goHomediv" layout="block" styleClass="newsbutton">
-					<apex:form id="theSubmitForm">
+					<!-- <apex:form id="theSubmitForm"> -->
 					<div id="btnarea" class="newBTN_area isLeft">
 	                	<div class="newBTN_arrowBack"></div>
 	                	<div class="newBTN">
-						<apex:commandButton id="goHomeBtn" value="{!homeLabel}" action="{!goHome}" styleClass="newBTN isLeft" />
+						<apex:outputLink id="goHomeBtn" value="{!homeurl}" styleClass="newBTN isLeft" >{!homeLabel}</apex:outputLink>
 						</div>
 					</div>
-					</apex:form>
+					<!-- </apex:form> -->
 				</apex:outputPanel>
 			</apex:outputPanel>
 		</apex:outputPanel>

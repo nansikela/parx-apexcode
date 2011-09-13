@@ -1,4 +1,7 @@
-<apex:page controller="DETemplateController" language="{!defaultlanguage}" id="training" action="{!firstPage}">
+<apex:page controller="TemplateController" extensions="TrainingController" language="{!defaultlanguage}" 
+cache="true" expires="2592000"
+id="training" action="{!firstPage}">
+<!-- controller="DETemplateController" controller="TemplateController" extensions="TrainingController"  -->
 <!--die 4 Button von der Startseite. Content eingebunden-->
     <div style="display:none;color:{!IF(isPro,"white","black")};">
         <div id='AboutLektora' style='padding:10px;'>
@@ -13,16 +16,16 @@
         <div id='news' style='padding:10px;'>
             <c:contentblock name="4-News" rendered="true" />
         </div>
-    </div>
+    </div> 
     
 <apex:form id="training_form"> 
         
 <!--        hier sind die script/css in der Seite hinzugefügt-->
         <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
+        <apex:stylesheet value="{!URLFOR($Resource.scrollerTest, 'scrollerTest/slider.css')}"/>
         <apex:includeScript value="{!$Resource.jquery142}"/>
         <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>
         <apex:includeScript value="{!$Resource.jqueryui171customminjs}" />
-        <apex:stylesheet value="{!URLFOR($Resource.scrollerTest, 'scrollerTest/slider.css')}"/>
         <apex:includeScript value="{!URLFOR($Resource.scrollerTest, 'scrollerTest/slider.js')}"/>
         <apex:includeScript value="{!$Resource.virtualpaginatejs}"/> 
         

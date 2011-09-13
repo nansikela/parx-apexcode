@@ -1,6 +1,7 @@
 public class ClearingController {
 	
 	public Boolean isAuthenticated { get; set; }
+	public transient Boolean isPro { get; set; }
 	public String portal {get; set; }
 	public Boolean showProfields { get; set; }
 	public Boolean showInClearing { get; set; }
@@ -27,6 +28,7 @@ public class ClearingController {
 	
 	public ClearingController() {
 		portal=System_Settings.portal;
+		isPro=System_Settings.isPro;
 		showProfields=false;
 		showInClearing=false;
 		goHomeUrl=System_Settings.goHome().getUrl();
@@ -119,7 +121,7 @@ public class ClearingController {
 			}
 			if (c!=null && c.AccountId!=null) {
 				u.In_Freischaltung__c=c.In_Freischaltung__c;
-				if (!c.In_Freischaltung__c && System_Settings.isPro && !c.Gigaset_Pro__c) {
+				if (!c.In_Freischaltung__c && isPro && !c.Gigaset_Pro__c) {
 					showProfields=true;
 				}
 				if (c.In_Freischaltung__c) {
@@ -174,7 +176,7 @@ public class ClearingController {
 		Boolean retval=true;
 		if (rq!=null) {
 			try {
-				rq.Portal__c=System_Settings.portal;
+				rq.Portal__c=portal;
 				insert rq;
 				retval=false;
 			} catch (Exception e) {
@@ -217,7 +219,7 @@ public class ClearingController {
 	 	showDistribution=false;
 	 	if (u!=null) {
 		 	u.Handelskanal__c=selectedGfk;
-		 	if (!gfks.contains(selectedGfk) && System_Settings.portal=='de') {
+		 	if (!gfks.contains(selectedGfk) && portal=='de') {
 		 		showDistribution=true;
 		 	}
 	 	}

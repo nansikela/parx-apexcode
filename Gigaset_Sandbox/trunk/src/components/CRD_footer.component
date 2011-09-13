@@ -1,4 +1,4 @@
-<apex:component id="footer" controller="TemplateController" >
+<apex:component id="footer" >
     <div id="footer">
         <div id="footerlogos">
             <apex:image value="{!URLFOR($Resource.gigasetextranetZIP, 'img/made_in_germany_logo.png')}" alt="Made in Germany" styleClass="lft" />

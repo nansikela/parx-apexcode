@@ -1,5 +1,5 @@
-<apex:page showheader="false" sidebar="false" id="crd_register" cache="false" expires="600"
-    controller="TemplateController" title="{!$Label.de_title}" language="{!defaultlanguage}" standardStylesheets="false" >
+<apex:page showheader="false" sidebar="false" id="crd_register" cache="true" expires="600"
+    controller="CRD_pageTemplatesController" title="{!$Label.de_title}" language="{!defaultlanguage}" standardStylesheets="false" >
 
 
 	<apex:composition template="{!$Site.Template}">

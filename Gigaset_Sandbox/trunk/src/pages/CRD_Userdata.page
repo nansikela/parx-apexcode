@@ -1,5 +1,6 @@
 <apex:page showheader="false" sidebar="false" id="crd_userdata"
-    controller="TemplateController" title="{!$Label.de_title}"
+    cache="true" expires="2592000"
+    controller="CRD_pageTemplatesController" title="{!$Label.de_title}"
     language="{!defaultlanguage}" action="{!init}">
 
 <apex:composition template="{!$Site.Template}">

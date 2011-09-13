@@ -1,4 +1,18 @@
-<apex:component id="breadcrump" controller="TemplateController" language="{!defaultlanguage}">
+<apex:component id="breadcrump" >
+<!--
+controller="TemplateController" language="{!defaultlanguage}" 
+ -->
+
+<apex:attribute name="homeurl" description="back to home url" type="String" required="true"/>
+<apex:attribute name="currentNavigationPoint" description="currentNavigationPoint" type="String" required="true"/>
+<apex:attribute name="contactfirstname" description="firstname of contact" type="String" required="true"/>
+<apex:attribute name="contactlastname" description="lastname of contact" type="String" required="true"/>
+<apex:attribute name="BenutzerdatenUrl" description="url for userdata form" type="String" required="true"/>
+<apex:attribute name="showpresetcomp" description="flag for show preset" type="Boolean" required="true"/>
+<apex:attribute name="isAuthenticated" description="important: is the user really authenticated?" type="Boolean" required="true"/>
+<apex:attribute name="showclearingcomp" description="flag for show clearing" type="Boolean" required="true"/>
+<apex:attribute name="defaultlanguage" description="defaultlanguage" type="String" required="true" />
+
 <div id="breadcrumbs">
 	<apex:panelGrid columns="2" style="width: 924px;" id="breadcrumbprofilegrid">
 		<apex:outputPanel layout="block" id="breadcrumbtext" styleClass="breadcrumbtext">
@@ -13,7 +27,7 @@
 	            </span>
 	     </apex:outputPanel>
 	     <apex:outputPanel layout="block" id="profiletext" styleClass="profiletext">
-		 	<c:CRD_userprofileportlet rendered="{!AND(isAuthenticated,NOT(showpresetcomp),NOT(showclearingcomp))}" id="userprofileportletcomp" />
+		 	<c:CRD_userprofileportlet BenutzerdatenUrl="{!BenutzerdatenUrl}" contactfirstname="{!contactfirstname}" contactlastname="{!contactlastname}" rendered="{!AND(isAuthenticated,NOT(showpresetcomp),NOT(showclearingcomp))}" id="userprofileportletcomp" />
 		 </apex:outputPanel>
      </apex:panelGrid>
 </div>
