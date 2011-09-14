@@ -2,12 +2,12 @@ public class CRD_pageTemplatesController {
 
 
 	public Boolean isAuthenticated { get; private set; }
-	public Transient String defaultlanguage { get; private set; }
-	public Transient Boolean showpresetcomp { get; private set; }
-	public Transient Boolean showclearingcomp { get; private set; }
-	public Transient Boolean showcontactportlet { get; private set; }
-	public Transient Boolean showothercomp { get; private set; }
-	public Transient Boolean showprivacy { get; private set; }
+	public  String defaultlanguage { get; private set; }
+	public  Boolean showpresetcomp { get; private set; }
+	public  Boolean showclearingcomp { get; private set; }
+	public  Boolean showcontactportlet { get; private set; }
+	public  Boolean showothercomp { get; private set; }
+	public Boolean showprivacy { get; private set; }
 	public Transient Boolean showTraining { get; private set; }
 
 	public CRD_pageTemplatesController() {

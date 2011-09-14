@@ -23,13 +23,22 @@
 private class privacyControllerTest {
 
     static testmethod void privacyControllertest() {
-	 	User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
-	 	privacyController ctrl = new privacyController();
-	 	ctrl.init(); 
-	 	ctrl.previousStep();
-	 	ctrl.saveData();
-	 	ctrl.getCurrentUser();
+    	testData.initData mytestData= new testData.initData('zy',false);
+    	// be sure that preset will be shown
+        for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
+            if (gs.Portal__c=='zy' && gs.isPro__c==false ) gs.Datenschutzabfrage__c=true;
+            update gs;
+        }
+        
+        
+	 	System.runAs(mytestData.testuser) {
+	 		System_Settings.privacyprotectionid=mytestData.Pages.get(0).id;
+	 		System_Settings.isTest=true;
+		 	privacyController ctrl = new privacyController();
+		 	ctrl.init(); 
+		 	ctrl.previousStep();
+		 	ctrl.saveData();
+		 	ctrl.getCurrentUser();
 	 	}
 	 }
 }

@@ -1,9 +1,10 @@
 global class System_Settings {
     // General Debug Mode
     global static final Boolean isDebug=false;
+    global static Boolean isTest=false;
     //global static final String portal=Site.getCustomWebAddress()==null?'':Site.getCustomWebAddress().substring(7,9);
     //global static final String portal=Site.getCustomWebAddress()==null?'':Site.getCustomWebAddress().substring(9,10)=='.'?Site.getCustomWebAddress().substring(7,9):'';
-    global static final String portal=getPortalSign();
+    global static String portal=getPortalSign();
     //global static final String portal='se';
     global static final String PortalCountry=getPortalCountry();
     //global static final Boolean isPro=isPro();
@@ -32,7 +33,7 @@ global class System_Settings {
     global static final Id registrationpageid=getPageid('Registrierung');
     global static final Id homepageid=getPageid('Home');
     global static final Id imprintpageid=getPageid('Imprint');
-    global static final Id privacyprotectionid=getPageId('PrivacyProtection');
+    global static Id privacyprotectionid=getPageId('PrivacyProtection');
     global static final Id landing_page = getPageId('Landing'); 
     global static final Id newsreaderpageid=getPageId('NewsReader');
     
@@ -207,7 +208,10 @@ global class System_Settings {
     // the condition is restricted to Cordless, so it does not work for isPro=true!
     global static Boolean showPreset() {
     	// if (System_Settings.contactid!=null && System_Settings.contactid!='' && System_Settings.portal=='de' && !System_Settings.isPro) {
-        if (contactid!=null && contactid!='' && isPro) {
+    	if (System_Settings.contactid==null || System_Settings.contactid=='')
+    		System_Settings.contactid=System_Settings.getCurrentUser().ContactId;
+    	System.debug('showPreset: contactid ' + System_Settings.contactid);
+        if (contactid!=null && contactid!='' && !isPro) {
         	if (currentusercontact==null) currentusercontact=getContact(contactid);
         if (currentusercontact!=null && System_Settings.contactid!=null && System_Settings.contactid!='' && !isPro)
             if (currentusercontact!=null && currentusercontact.AccountId!=null ) {
@@ -221,14 +225,20 @@ global class System_Settings {
     }
     
     global static Boolean showPrivacy() {
+    	System.debug('showprivacy privacyprotectionid: ' + privacyprotectionid);
         if (privacyprotectionid==null) return false;
         Boolean privacyEnabled=false;
+        System.debug('showprivacy portal: ' + portal);
         for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
             if (gs.Portal__c==portal && gs.isPro__c==isPro ) privacyEnabled=gs.Datenschutzabfrage__c;
         }
+        System.debug('showprivacy privacyEnabled: ' + privacyEnabled);
+        if (privacyEnabled && System_Settings.contactid==null || System_Settings.contactid=='')
+    		System_Settings.contactid=System_Settings.getCurrentUser().ContactId;
+    	System.debug('showPrivacy: contactid ' + System_Settings.contactid);
         if (System_Settings.contactid!=null && System_Settings.contactid!='' && privacyEnabled) {
-            Contact c=[SELECT Id, AccountId, Datenschutzerkl_rung_zugestimmt__c FROM Contact WHERE Id=:System_Settings.contactid];
-            if (c!=null && (c.Datenschutzerkl_rung_zugestimmt__c==null || !c.Datenschutzerkl_rung_zugestimmt__c)) {
+        	if (currentusercontact==null) currentusercontact=getContact(contactid);
+            if (currentusercontact!=null && (currentusercontact.Datenschutzerkl_rung_zugestimmt__c==null || !currentusercontact.Datenschutzerkl_rung_zugestimmt__c)) {
                 return true;
             }
         }
@@ -244,9 +254,12 @@ global class System_Settings {
     }
     
     global static Boolean showClearing() {
+    	if (System_Settings.contactid==null || System_Settings.contactid=='')
+    		System_Settings.contactid=System_Settings.getCurrentUser().ContactId;
+    	System.debug('showClearing: contactid ' + System_Settings.contactid);
         if (System_Settings.contactid!=null && System_Settings.contactid!='') {
             if (currentusercontact==null) currentusercontact=getContact(contactid);
-            if (currentusercontact!=null && currentusercontact.AccountId!=null) {
+            if (currentusercontact!=null /*&& currentusercontact.AccountId!=null*/) {
                 if (isPro && !currentusercontact.Gigaset_Pro__c && currentusercontact.Gigaset_Extranet__c) return true;
                 if (!isPro && !currentusercontact.Gigaset_Extranet__c && currentusercontact.Gigaset_Pro__c) return true;
             }
@@ -353,8 +366,9 @@ global class System_Settings {
     
     private static String getPortalCountry() {
 		String ctry='Germany';
+		if (portal==null || portal=='') portal=getPortalSign();
 		for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
-			if (gs.Portal__c==getPortalSign() && gs.isPro__c==(Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().contains('pro')) ) 
+			if (gs.Portal__c==portal && gs.isPro__c==(Site.getCustomWebAddress()!=null && Site.getCustomWebAddress().contains('pro')) ) 
 				ctry=gs.CountryForRegistration__c;
 		}
 		return ctry;

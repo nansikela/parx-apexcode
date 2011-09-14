@@ -23,16 +23,20 @@
 private class presetControllerTest {
 
     static testMethod void testPresetController() {
-    	User u=[SELECT Id, Pro_Partner_Typ__c, In_Freischaltung__c, ContactId FROM User WHERE ContactId!='' and isactive=true limit 1];
-	 	System.runAs(u) {
-        presetController ctrl = new presetController();
-        ctrl.init();
-        ctrl.getCurrentUser();
-        ctrl.goToStep();
-        ctrl.previousStep();
-        ctrl.relationshipSelectionAction();
-        ctrl.getItems();
-        ctrl.saveData();
+    	testData.initData mytestData= new testData.initData('zy',false);
+    	// be sure that preset will be shown
+    	mytestData.accounts.get(0).Handelskanal__c='';
+    	update mytestData.accounts.get(0);
+	 	System.runAs(mytestData.testuser) {
+	 		System_Settings.isTest=true;
+	        presetController ctrl = new presetController();
+	        ctrl.init();
+	        ctrl.getCurrentUser();
+	        ctrl.goToStep();
+	        ctrl.previousStep();
+	        ctrl.relationshipSelectionAction();
+	        ctrl.getItems();
+	        ctrl.saveData();
 	 	}
     }
 }
