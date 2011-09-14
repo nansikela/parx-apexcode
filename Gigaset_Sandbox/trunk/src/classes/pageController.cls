@@ -21,11 +21,30 @@ public class pageController {
 	public Transient String defaultlanguage {get;set;}
 
 	public pageController() {
-		if (SystemSettings.isPro)
-			defaultlanguage=SystemSettings.setLanguage();
-		else	
-			defaultlanguage=System_Settings.setLanguage();
+		//if (SystemSettings.isPro)
+		//	defaultlanguage=SystemSettings.setLanguage();
+		//else	
+		//	defaultlanguage=System_Settings.setLanguage();
+		
 		String pageid = System.currentPageReference().getParameters().get('pageid');
+		
+		String portal='de';
+		defaultlanguage='de';
+		Boolean isPro=false;
+		
+		if (pageid!=null) {
+			for (Pages__c p: Pages__c.getAll().values()) {
+					if (p.PageId__c!=null && Id.ValueOf(p.PageId__c)==Id.ValueOf(pageid)) {
+						portal=p.Portal__c;
+						isPro=p.isPro__c;
+					}
+			}
+				
+			for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
+				if (gs!=null && gs.Portal__c==portal && gs.isPro__c==isPro && gs.Sprache__c!=null) defaultlanguage=gs.Sprache__c;
+			}
+		}
+		
 		try {
 			page = [Select  p.PageTemplate__r.VisualForce_Page_Name__c, p.PageTemplate__c, p.PageTemplate__r.Name, p.Name, p.Cache_expires__c, p.Id
 				From Page__c p where id =:pageid];

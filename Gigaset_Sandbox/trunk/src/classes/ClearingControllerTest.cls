@@ -24,22 +24,27 @@ private class ClearingControllerTest {
 
     static testmethod void clearingtest() {
     	testData.initData mytestData= new testData.initData('de',false);
+    	// be sure that clearing will be shown
+    	mytestData.contacts.get(0).Gigaset_Extranet__c=false;
+    	mytestData.contacts.get(0).Gigaset_Pro__c=true;
+    	update mytestData.contacts.get(0);
 	 	System.runAs(mytestData.testuser) {
-	 	ClearingController ctrl = new ClearingController();
-	 	ctrl.isAuthenticated=true;
-	 	ctrl.getCurrentUser();
-	 	
-	 	ctrl.getItems();
-	 	ctrl.relationshipSelectionAction();
-	 	ctrl.saveData();
-	 	ctrl.previousStep();
-	 	
-	 	ctrl.selectedDistribution.add('Warenhaus');
-	 	ctrl.showDistribution=true;
-	 	ctrl.getCurrentUser();
-	 	ctrl.getItems();
-	 	ctrl.relationshipSelectionAction();
-	 	ctrl.saveData();
+		 	System.debug('Will clearing be shown? ' + System_Settings.showClearing());
+		 	ClearingController ctrl = new ClearingController();
+		 	ctrl.isAuthenticated=true;
+		 	ctrl.getCurrentUser();
+		 	
+		 	ctrl.getItems();
+		 	ctrl.relationshipSelectionAction();
+		 	ctrl.saveData();
+		 	ctrl.previousStep();
+		 	
+		 	ctrl.selectedDistribution.add('Warenhaus');
+		 	ctrl.showDistribution=true;
+		 	ctrl.getCurrentUser();
+		 	ctrl.getItems();
+		 	ctrl.relationshipSelectionAction();
+		 	ctrl.saveData();
 	 	}
 	 	mytestData.testuser.In_Freischaltung__c=true;
 	 	update mytestData.testuser;

@@ -21,19 +21,21 @@ public class presetController {
 	public String goHomeUrl { get; set; }
 	
 	public presetController() {
-		goHomeUrl=System_Settings.goHome().getUrl();
-		isAuthenticated=System_Settings.isPortalUser();
-		portal=System_Settings.portal;
-		step=1;
-		errorText=errorBase + System.label.registration_errormsg;
-		stdErrorText=errorText;
-		showDistributionErr=false;
-		showDistribution=false;
-		selectedGfk='';
-		selectedDistribution=new String[]{};
-		fillGfks();
-		fillDistributions();
-		getCurrentUser();
+		if (System_Settings.showPreset() || System_Settings.isTest) {
+			goHomeUrl=System_Settings.goHome().getUrl();
+			isAuthenticated=System_Settings.isPortalUser();
+			portal=System_Settings.portal;
+			step=1;
+			errorText=errorBase + System.label.registration_errormsg;
+			stdErrorText=errorText;
+			showDistributionErr=false;
+			showDistribution=false;
+			selectedGfk='';
+			selectedDistribution=new String[]{};
+			fillGfks();
+			fillDistributions();
+			getCurrentUser();
+		}
 	}
 	
 	private void fillGfks() {

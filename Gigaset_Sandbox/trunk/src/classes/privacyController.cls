@@ -11,14 +11,16 @@ public class privacyController {
 	public Transient String portal { get; set; }
 	
 	public privacyController() {
-		portal=System_Settings.portal;
-		goHomeUrl=goHome.getUrl();
-		isAuthenticated=System_Settings.isPortalUser();
-		step=1;
-		Schema.DescribeFieldResult f = Schema.sObjectType.User.fields.Datenschutzerkl_rung_zugestimmt__c;
-		labelPrivacy=f.getLabel();
-		privacypageurl=Site.getCurrentSiteUrl()+'page' + '?pageid=' + System_Settings.privacyprotectionid;
-		getCurrentUser();
+		if (System_Settings.showPrivacy() || System_Settings.isTest) {
+			portal=System_Settings.portal;
+			goHomeUrl=goHome.getUrl();
+			isAuthenticated=System_Settings.isPortalUser();
+			step=1;
+			Schema.DescribeFieldResult f = Schema.sObjectType.User.fields.Datenschutzerkl_rung_zugestimmt__c;
+			labelPrivacy=f.getLabel();
+			privacypageurl=Site.getCurrentSiteUrl()+'page' + '?pageid=' + System_Settings.privacyprotectionid;
+			getCurrentUser();
+		}
 	}
 	
 	public void getCurrentUser() {

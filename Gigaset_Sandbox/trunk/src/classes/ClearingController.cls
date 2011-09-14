@@ -27,32 +27,34 @@ public class ClearingController {
 	public String goHomeUrl { get; set; }
 	
 	public ClearingController() {
-		portal=System_Settings.portal;
-		isPro=System_Settings.isPro;
-		showProfields=false;
-		showInClearing=false;
-		goHomeUrl=System_Settings.goHome().getUrl();
-		step=1;
-		isAuthenticated=System_Settings.isPortalUser();
-		errorText=errorBase + System.label.registration_errormsg;
-		stdErrorText=errorText;
-		showDistributionErr=false;
-		showDistribution=false;
-		selectedGfk='';
-		selectedDistribution=new String[]{};
-		fillGfks();
-		fillDistributions();
-		getCurrentUser();
-		if (u!=null){ 
-			getContact(); 
-			//getAccount(); 
-			}
-		rq=new Request__c();
-		rq.Typ__c='Freischaltung';
-		rq.Gigaset_Extranet__c=!System_Settings.isPro;
-		rq.Gigaset_Pro__c=System_Settings.isPro;
-		rq.Datum__c=System.today();
-		if (u!=null && u.ContactId!=null) rq.Kontakt__c=u.contactid;
+		if (System_Settings.showClearing()) {
+			portal=System_Settings.portal;
+			isPro=System_Settings.isPro;
+			showProfields=false;
+			showInClearing=false;
+			goHomeUrl=System_Settings.goHome().getUrl();
+			step=1;
+			isAuthenticated=System_Settings.isPortalUser();
+			errorText=errorBase + System.label.registration_errormsg;
+			stdErrorText=errorText;
+			showDistributionErr=false;
+			showDistribution=false;
+			selectedGfk='';
+			selectedDistribution=new String[]{};
+			fillGfks();
+			fillDistributions();
+			getCurrentUser();
+			if (u!=null){ 
+				getContact(); 
+				//getAccount(); 
+				}
+			rq=new Request__c();
+			rq.Typ__c='Freischaltung';
+			rq.Gigaset_Extranet__c=!System_Settings.isPro;
+			rq.Gigaset_Pro__c=System_Settings.isPro;
+			rq.Datum__c=System.today();
+			if (u!=null && u.ContactId!=null) rq.Kontakt__c=u.contactid;
+		}
 	}
 	
 	private void fillGfks() {
