@@ -1,0 +1,29 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+    
+
+    
+        <c:webmainheader11 breadCrubShow="true">
+             <div class="content_wrapper ">
+                    <div class="content_column article">
+            <div class="content_headline">
+                <div class="textline">
+                    <h1>Seminare auf Englisch</h1>
+                </div>
+            </div>
+            Working internationally demands patience, understanding and skill. It is a road paved with misunderstanding and insecurities. Each culture has different expectations on leadership, the communication and feedback culture. The Academy for Leadership offers you seminars that are for both German managers who wish to develop their understanding and skill as well as managers working internationally and have personal development needs.
+            <c:WebSearchResult ></c:WebSearchResult>
+            <c:WebArticleFooter ></c:WebArticleFooter>
+        </div><!-- content_column  -->
+                 <div class="right_column">
+                    <c:contentblock name="Ansprechpartner"></c:contentblock>
+            <c:WebChatBoxRight ></c:WebChatBoxRight>
+            <c:WebNextSeminarsRight show="6"></c:WebNextSeminarsRight>
+                 </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+
+</apex:page>

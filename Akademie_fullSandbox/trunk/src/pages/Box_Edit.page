@@ -1,0 +1,40 @@
+<apex:page StandardController="Right_Box__c">
+     <apex:form id="contentform">
+
+    <script type="text/javascript" src="{!URLFOR($Resource.FCKEditor, '/fckeditor.js')}"/>
+    <script type="text/javascript">
+        window.onload = function()
+        { 
+            var sBasePath = "{!URLFOR($Resource.FCKEditor, '/')}" ;
+        
+            var oFCKeditor = new FCKeditor( '{!$Component.contentblock.contentsection.content}' ) ;
+            oFCKeditor.BasePath = sBasePath ;
+            oFCKeditor.Config["CustomConfigurationsPath"] = sBasePath + "cmsforcefckconfig.js"  ;
+            oFCKeditor.Config['SkinPath'] = sBasePath + 'editor/skins/silver/' ;
+            oFCKeditor.Config['ImageBrowserURL'] = '/apex/DocumentManager' ;
+            oFCKeditor.Config['LinkBrowserURL'] = '/apex/PageBrowser' ;
+            oFCKeditor.Config['FlashBrowser'] = false;
+            oFCKeditor.Config['FlashUpload'] = false;
+            oFCKeditor.Config['ImageUpload'] = false;
+            oFCKeditor.Config['LinkUpload'] = false;
+            oFCKeditor.Config['ImageLink'] = false;
+            oFCKeditor.Config['Style'] = false;
+            oFCKeditor.Config['FontFormat'] = false;
+            oFCKeditor.Height = '350' ;
+            oFCKeditor.ReplaceTextarea();
+        }
+    </script>
+    
+    
+    <apex:pageBlock title="Navigation" id="contentblock">
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Save" action="{!save}"/>
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection title="Seiteninhalt" columns="1" id="contentsection">
+            <apex:inputTextArea id="content" value="{!Right_Box__c.Content__c}" />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+
+    </apex:form>
+</apex:page>

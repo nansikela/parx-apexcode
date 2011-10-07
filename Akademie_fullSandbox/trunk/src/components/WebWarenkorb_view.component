@@ -1,0 +1,36 @@
+<apex:component controller="WarenkorbFacade" allowDML="true">
+  <h1>Warenkorb</h1>
+  <apex:form >
+ 
+  
+  <apex:PageBlock rendered="{!isWarenkorbElement}">
+      <apex:dataTable value="{!WarenkorbInhalt}" var="inhalt">
+         
+          <apex:column headerValue="{!'Titel'}">
+              {!inhalt.titel}
+          </apex:column>
+          <apex:column headerValue="{!'Ort'}">
+              <apex:outputText value="{!inhalt.ort}" escape="false" />
+              <apex:outputText rendered="{!inhalt.isHotelReservierung}">
+                  <br />
+                  
+                  {!IF(inhalt.ezReservierung, 'Sie reservieren ein EZ.','')} {!IF(inhalt.dzReservierung, 'Sie reservieren ein DZ.','')}
+              </apex:outputText>
+          </apex:column>
+          <apex:column value="{!inhalt.preis}" headerValue="{!'Preis'}"/>
+          <apex:column headerValue="{!'Aktion'}">
+              <a href="/WarenkorbDeleteElement?id={!inhalt.id}">löschen</a>
+          </apex:column>
+      </apex:dataTable>
+      <p>Alle Preise in EUR zzgl. MwSt. (19%).</p>
+      <div class="buttons">
+          <a href="/registrierung" class="r"><img src="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" /></a>
+      </div>
+  </apex:PageBlock>
+  
+  
+  <apex:outputText rendered="{!IF(isWarenkorbElement == false, true, false)}">
+      <p>Sie haben bisher keine Seminare in Ihrem Warenkorb.</p>
+  </apex:outputText>
+  </apex:form>
+</apex:component>

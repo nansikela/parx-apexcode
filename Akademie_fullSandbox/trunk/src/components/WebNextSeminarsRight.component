@@ -1,0 +1,32 @@
+<apex:component controller="WebNextSeminarController" >
+      <apex:attribute name="show" description="The number of repeats" type="Integer" required="true" assignTo="{!show}"/>
+      <apex:attribute name="isFirst" description="is first Component" required="false" type="String"/>
+       <!-- Nächste Seminare Box -->
+      <div class="right_column_box element {!IF(isFirst=='true', 'first', '')}">
+        <h3>NÄCHSTE SEMINARE</h3>
+          <ul>
+            <apex:repeat var="seminar" value="{!NextSeminars}"> 
+                <li>
+                    <span class="date">
+                        <apex:outputText value="{0,date,dd'.'MM'.'yy}">
+                            <apex:param value="{!seminar.Seminarbeginn__c}" /> 
+                        </apex:outputText>
+                    </span>
+                        <br />
+                    <span class="seminar">
+                        <a href="{!seminar.portfolio__r.sprechende_url__c }" title="{!seminar.Name}">
+                            {!seminar.Name}
+                        </a>
+                    </span>
+                </li>
+
+            
+          </apex:repeat>
+          </ul>
+          <div class="separator">&nbsp;</div>
+        <span class="seminar_all"><a href="/seminare/kalender" title="Seminarkalender anzeigen">Seminarkalender anzeigen</a></span>
+
+      </div>
+
+
+</apex:component>

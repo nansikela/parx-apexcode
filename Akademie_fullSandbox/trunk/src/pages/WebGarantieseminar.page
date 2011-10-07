@@ -1,0 +1,23 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+
+    
+        <c:webmainheader11 breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column">
+                    <c:WebGarantieseminar ></c:WebGarantieseminar>
+                    <c:WebArticleFooter ></c:WebArticleFooter>
+                 
+                 </div>
+                 <div class="right_column">
+                    <c:WebKontaktDieAkademie ></c:WebKontaktDieAkademie>
+                    <c:WebChatBoxRight ></c:WebChatBoxRight>
+                    <c:WebNextSeminarsRight show="6"></c:WebNextSeminarsRight>
+                 </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+
+</apex:page>

@@ -1,0 +1,8 @@
+<apex:component controller="FATrainerDetailController" >
+  <h1>{!name}</h1>
+  <i>{!titel}</i>
+  <img class="trainer_detail" alt="{!name}" src="{!URLFOR($RESOURCE.ContactImages, bild)}" />
+  <apex:outputText value="{!schwerpunkt}" escape="false" />
+  <apex:outputText value="{!profil}" escape="false" />
+  <c:FATrainerSeminarList rendered="{!IsTrainerSeminars}" />
+</apex:component>

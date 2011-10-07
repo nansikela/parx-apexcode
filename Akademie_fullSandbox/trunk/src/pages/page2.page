@@ -1,0 +1,45 @@
+<apex:page controller="pageController" showheader="false" cache="true"  standardStylesheets="false"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    
+    <html>
+    <head>
+    
+        <apex:stylesheet value="{!URLFOR($Resource.web_style2, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.web_style2, 'screenplus.css')}"/>
+        <link href="{!URLFor($Resource.FA_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        <apex:includeScript value="{!'/WarenkorbJson'}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/jquery-1.4.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/headerplus.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/main.js')}"/>
+        <meta content="Kh7Sp2vXLeBJGb3LkT5U9Z6oiy554qygPokJ5izV5PI" name="google-site-verification" />
+        <meta content="Die Akademie f&uuml;r F&uuml;hrungskr&auml;fte ist eines der gr&ouml;ssten und renommiertesten Management Institute im deutschsprachigen Raum. Seit &uuml;ber 55 Jahren werden Fach- und F&uuml;hrungskr&auml;fte aller Branchen auf Ihrem beruflichen und pers&ouml;nlichen Entwicklungsweg begleitet." name="description" />
+        <meta content="Seminare, Weiterbildung, Ausbildungen, F&uuml;hrung, Systemische F&uuml;hrung, Pers&ouml;nlichkeitsentwicklung, Projektmanagement, Controlling, Marketing, Produktmanagement, Vertrieb, Office Management, General Management, Coaching, Personalentwicklung, Management" name="keywords" />
+
+        <title>Akademie f&uuml;r F&uuml;hrungskr&auml;fte der Wirtschaft GmbH</title>   
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-4873624-5']);
+          _gaq.push(['_trackPageview']);
+        
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        
+        </script>
+    </head>
+    <body>
+        
+        
+    
+            <apex:include pageName="{!pagetemplatename}"/>
+            
+       
+        <c:FAfooter />
+    </body>
+    </html>
+        
+</apex:page>

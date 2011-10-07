@@ -1,0 +1,37 @@
+<apex:component controller="FAVorgesetzerAendernController" allowDML="true">
+  <h1>{!$Label.VorgesetzterAendern}</h1>
+  <p>{!$Label.VorgesetzterAendernText}</p>
+  <apex:messages />
+  <apex:form >
+  <apex:pageBlock rendered="{!IF($CurrentPage.parameters.mode=='edit', 'true','false')}">
+      <apex:pageBlockSection columns="1">
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel for="vorgesetzterMail" value="{!$Label.VorgesetztereMailAdresse}" />
+              <apex:inputField value="{!currentPerson.eMail_Adresse_Vorgesetzter__c}" id="vorgesetzterMail" required="true" />
+          </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      <div class="buttons">
+          <apex:commandLink value="{!$Label.Abbrechen}" action="{!cancel}"/>
+          <apex:commandButton value="{!$Label.Speichern}" styleClass="ui-button-text ui-state-highlight ui-corner-all r" action="{!save}"/>
+      </div>
+  </apex:pageBlock>
+  
+  
+  
+  <apex:pageBlock rendered="{!IF($CurrentPage.parameters.mode=='edit', 'false','true')}">
+      <apex:pageBlockSection columns="1">
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel for="vorgesetztereMail" value="{!$Label.VorgesetztereMailAdresse}" />
+              <apex:outputtext id="vorgesetztereMail" value="{!currentPerson.eMail_Adresse_Vorgesetzter__c}"/>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem rendered="{!IF(currentVorgesetzterName!='',true,false)}">
+              <apex:outputLabel for="vorgesetztereName" value="{!$Label.Name}" />
+              <apex:outputtext id="vorgesetztereName" value="{!currentVorgesetzterName}"/>
+          </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      <div class="buttons">
+          <apex:commandButton value="{!$Label.Bearbeiten}" styleClass="ui-button-text ui-state-highlight ui-corner-all r" action="{!edit}"/>
+      </div>
+  </apex:pageBlock>
+  </apex:form>
+</apex:component>

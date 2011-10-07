@@ -1,0 +1,132 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false"  cache="false" renderAs="pdf" controller="WebSeminarDetailEnhancedController">
+  <head>
+  <style>
+@page {
+ size: 21cm 29.7cm;  /* A4 width and height */
+                                          /* Landscape orientation*/
+                                                                       /* Put page numbers in the bottom left corner of each page in the pdf document.*/
+    @bottom-left 
+    {
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 12px; 
+        content: "Seite " counter(page) " {!instance.sdetailContent.seminarTitel}";
+
+    }
+    @bottom-right
+    {
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 12px; 
+        content: "Ein Angebot der Akademie für Führungskräfte";
+        // This content shown in each page in PDF document
+    }
+    
+
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 12px;    
+}
+h1 {
+    font-size: 26px;
+    line-height: 1.20em;
+    display:block;
+    padding-top:-20px;
+}
+
+#left {
+    width: 13cm;
+}
+.header {
+    border-top: 1px solid #DEDEDA;
+    border-bottom: 1px solid #DEDEDA;
+}
+b {
+    padding-top:10px;
+    display:block;
+    color: #747B9D;
+    font-weight: bold;
+}
+a{
+    color:black;
+    font-weight: bold;
+    text-decoration: none;
+}
+#termine table {
+width: 13cm;
+border-top: 1px solid #DEDEDA;
+font-size: 13px;
+text-align: left;
+float: left;
+display: inline-block;
+}
+
+td, th{
+
+border-bottom: 1px solid #DEDEDA;
+}
+
+.rightboxes{
+float:right;
+}
+.shortSeminarInfo{
+padding-top:20px;
+}
+.shortSeminarInfo div strong {
+padding-top: 5px;
+float: left;
+font-weight: bold;
+width: 65px;
+}
+.shortSeminarInfo div {
+display: inline-block;
+
+padding-bottom: 5px;
+width: 100%;
+}
+.shortSeminarInfo div span {
+float: left;
+width: 120px;
+
+}
+
+#buttonSeminarBuchen{
+display:none;
+}
+.right_column_box{
+    width: 120px;
+}
+
+h3.c{
+margin-bottom: 5px;
+ font-size: 12px;
+}
+
+.right_column_box p{
+    margin-top: 0px;
+}
+.mail a
+{
+   font-weight: normal; 
+}
+</style>
+  </head>
+  <body>
+  <div class="rightboxes">
+      <img src="{!URLFOR($Resource.WebAkademieLogoForPDF)}" width="120" height="119" />
+      <div class="box">
+          <c:webrightseminarshortinfo dauer="{!instance.seminarShortInfo.dauer}" teilnehmer="{!instance.seminarShortInfo.teilnehmer}" beginn="{!instance.seminarShortInfo.beginn}" ende="{!instance.seminarShortInfo.ende}" buchungslink="{!instance.seminarShortInfo.buchungslink}" />
+          <c:WebRightPriceBox />
+      </div>
+  </div>
+  <div id="left">
+    <div class="header"> <b>{!instance.sdetailContent.code}</b>
+      <h1>{!instance.sdetailContent.seminarTitel}</h1>
+    </div>
+    <apex:outputText escape="false" value="{!instance.sdetailContent.seminarText}" />
+    
+    <c:webseminarnextveranstaltungen />
+  </div>
+  
+  </body>
+</apex:page>

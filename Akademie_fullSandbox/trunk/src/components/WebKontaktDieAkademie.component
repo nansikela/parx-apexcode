@@ -1,0 +1,11 @@
+<apex:component >
+    <div class="right_column_box element bright first">
+            <h3>KONTAKT</h3>
+            <p>Akademie für Führungskräfte<br/>
+            der Wirtschaft GmbH <br/>
+            Seepromenade 19 <br/>
+            D-88662 Überlingen</p>
+            <p class="tel">+49.7551.9368-0</p>
+            <p class="mail"><a href="mailto:info@die-akademie.de">info@die-akademie.de</a></p>
+        </div>
+</apex:component>

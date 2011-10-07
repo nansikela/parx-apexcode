@@ -1,0 +1,52 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+    
+
+    
+        <c:webmainheader11 breadCrubShow="false">
+             <div class="content_wrapper " id="micro_wrapper">
+                                                                     <div class="content_column article" id="content_column_micro">
+                                                                     <div class="content_headline">
+                                                                    <div class="textline">
+                                                                        <c:contentblock name="Ueberschrift"></c:contentblock>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="spacer">&nbsp;</div> 
+                                                                <div class = "">
+                                                                <c:contentblock name="Inhalt"></c:contentblock>
+                                                                <a title="CO Seminar" href="/seminare/intensivprogramm/co-qualifizierung-zum-coach-im-business" id="beratung_info">Beratung und weitere Informationen</a>
+                                                                
+                                                            </div>
+                                                            <c:WebArticleFooter ></c:WebArticleFooter>  
+                 
+                 </div>
+                 <div class="right_column"> 
+                 
+                                                                 <div class="right_column_box element bright first">
+
+        
+                                                                    <h3 class="c">ANSPRECHPARTNERIN</h3>
+                                                            
+                                                                    <strong>Silvia Ufer</strong>
+                                                                    <p class="tel">+49.7551.9368-180</p>
+                                                                    <p class="mail">
+                                                                      <a href="mailto:sufer@die-akademie.de" title="Mail an ">sufer@die-akademie.de</a>
+                                                                    </p>
+                                                                    <div class="c"></div>
+                                                                  </div>   
+                                                                 <c:contentblock name="RightBoxes"></c:contentblock>
+                                                                 
+                                                                 <apex:outputText rendered="{!IF($CurrentPage.parameters.seminarCode!='ATA', true, false)}">
+  <div class="management_guide">
+        <a href="{!URLFOR($Resource.IntensivseminarPDF, 'CO.pdf')}" target="_blank">Qualifizierung zum Coach<span><br/>Hier downloaden</span></a>
+      </div>
+      </apex:outputText>
+                                                                 
+                                                                 
+                 </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+</apex:page>

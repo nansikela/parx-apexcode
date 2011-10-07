@@ -1,0 +1,40 @@
+<apex:component controller="SeminarDetailviewController">
+<div class="right_column_box element bright">
+
+        <!-- Teilnahmegebuehr -->
+        
+            <h3 class="c">{!IF(PriceInformation.isPruefungegebuehr,'PRÜFUNGSGEBÜHR', 'PREIS')}</h3>
+            <p>
+            <apex:outputText rendered="{!IF(PriceInformation.price!='0,-', true, false)}">
+                <strong>{!PriceInformation.price} EUR</strong> zzgl. MwSt.
+            </apex:outputText>
+            {!PriceInformation.priceHinweis}
+            </p>
+        
+        <!--<apex:outputText rendered="{!PriceInformation.isIntensivSeminar}">
+        <div class="spacer"></div>
+        <p>
+        Haben Sie bereits ein Modul aus dem Intensivprogramm
+        absolviert, reduziert sich der Gesamtpreis der Qualifizierung
+        um den bereits gezahlten Betrag.
+        </p>
+        </apex:outputText>-->
+        <div class="separator">&nbsp;</div>
+
+        <!-- Sonderpreis -->
+        <apex:outputText rendered="{!PriceInformation.isSonderpreis}">
+        <h3 class="c">SONDERPREIS</h3>
+        <p><apex:outputText escape="false" value="{!PriceInformation.sonderpreis}" /></p>
+        <div class="separator">&nbsp;</div>
+        </apex:outputText>
+        <!-- Ansprechpartner -->
+        <h3 class="c">{!PriceInformation.aTitel}</h3>
+
+        <strong>{!PriceInformation.aName}</strong>
+        <p class="tel">{!PriceInformation.aTelefon}</p>
+        <p class="mail">
+          <a href="mailto:{!PriceInformation.aEMail}" title="Mail an {!PriceInformation.aName}">{!PriceInformation.aEMail}</a>
+        </p>
+        <div class="c"></div>
+      </div>
+</apex:component>

@@ -1,0 +1,12 @@
+<apex:component controller="FARightBoxesController" >
+  <apex:outputText rendered="{!isWeiterfuehrendeSeminare}">
+      <div class="rightbox dark">
+          <h3>WEITERFÜHRENDE SEMINARE</h3>
+          <ul class="link_list">
+          <apex:repeat value="{!WeiterfuehrendeSeminare}" var="seminar">
+              <li><a href="{!seminar.End_URL__c}">{!seminar.End_Text__c}</a></li>
+          </apex:repeat>
+          </ul>
+      </div>
+  </apex:outputText>
+</apex:component>

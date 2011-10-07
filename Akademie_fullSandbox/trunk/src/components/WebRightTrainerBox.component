@@ -1,0 +1,20 @@
+<apex:component controller="SeminarDetailviewController">
+    <div class="right_column_box element bright first trainerBox">
+        <h3>IHRE TRAINER</h3>
+        <apex:variable var="left" value="true"/>
+        <apex:variable var="isFirst" value="true"/>
+        <div style="height: 150px;">
+        <apex:repeat value="{!Trainer}" var="item">
+            <apex:outputText escape="false" value="{!IF(AND(left=='true', isFirst == 'false'), '</div><div style=\"height: 150px;\">', '')}"></apex:outputText>
+                <div class="{!IF(left == 'true', 'l', 'r')} trainer">
+                    <img alt="{!item.name}" height="104px" width="85px" src="{!URLFOR($resource.ContactImages, IF(item.bildURL=='','blank.jpg', item.bildURL))}" />
+                    <br/>
+                    <a title="{!item.name}" href="{!item.sprechendeURL}">{!item.name}</a>
+                </div>
+                 <apex:variable var="isFirst" value="false"/>
+                <apex:variable var="left" value="{!IF(left=='true', 'false', 'true')}"/>
+                
+        </apex:repeat>
+        </div>
+    </div>
+</apex:component>

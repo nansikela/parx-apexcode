@@ -1,0 +1,27 @@
+<apex:component controller="WebSearchingFacade">
+    
+    
+    <div class="c"></div>
+        <apex:repeat var="seminarMonth" value="{!Result}">
+    <h4>{!seminarMonth.month}</h4>
+    <table>
+        <tbody>
+        
+        <apex:repeat var="item" value="{!seminarMonth.seminare}">
+        <tr class="first" >
+          <td class="category_default" width="55px"><a title="{!item.code}" href="{!item.url}">{!item.code}</a></td>
+          <td width="350px"><apex:outputText escape="false" value="{!IF(item.isEnglish,'<img alt=\"englisch\" src=\"'& URLFOR($Resource.web_style,'/i/flag_en.gif')&'\" class=\"flag\">','')}"></apex:outputText>
+{!item.titel}<span class="new">{!IF(item.isNew,' NEU','')}</span><br/>
+            {!item.datePlace}</td>
+          <td width="55px"><a title="Details" href="{!item.url}">Details</a></td>
+        </tr>
+        
+        </apex:repeat>
+      </tbody></table>
+</apex:repeat>
+
+   
+    
+  
+
+</apex:component>

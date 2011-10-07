@@ -1,0 +1,46 @@
+<apex:component controller="WebSearchingFacade">
+<apex:form >
+<fieldset class="line_space">
+        <div><label>Stichwort</label><apex:inputText value="{!textsearch}"  onclick="this.value='';"/>
+</div>
+        <div>
+          <label>Region</label>
+          <apex:selectList size="1" styleClass="dropdown" value="{!region}">
+                <apex:selectOptions value="{!locationOptions}"></apex:selectOptions>
+             </apex:selectList> 
+        </div>
+        <div>
+
+          <label>Ort</label>
+          <apex:selectList size="1" styleClass="dropdown" value="{!place}">
+                <apex:selectOptions value="{!placeOptions}"></apex:selectOptions>
+             </apex:selectList>   
+
+        </div>
+        <div>
+          <label>Startdatum</label>
+          <div class="form_date">
+           <apex:selectList size="1" styleClass="day" value="{!day}">
+                <apex:selectOptions value="{!dayOptions}"></apex:selectOptions>
+          </apex:selectList> 
+
+
+            <apex:selectList size="1" styleClass="day" value="{!month}">
+              <apex:selectOptions value="{!monthOptions}"></apex:selectOptions>
+          </apex:selectList> 
+
+            <apex:selectList size="1" styleClass="year"  value="{!year}">
+              <apex:selectOptions value="{!yearOptions}"></apex:selectOptions>
+          </apex:selectList> 
+
+          </div><!-- form_date -->
+
+        </div>
+      </fieldset>
+      <div class="form_bottom">
+        <!--<input type="checkbox" checked="checked" name="input[garantie]" /> mit Durchf&uuml;hrungsgarantie-->
+        <apex:commandButton value="Anzeigen" action="{!searchStartpage}" image="{!URLFOR($Resource.web_style, '/i/btn_show.gif')}" styleClass="r" />
+
+      </div>
+      </apex:form>
+</apex:component>

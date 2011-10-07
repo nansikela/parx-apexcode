@@ -1,0 +1,2 @@
+<apex:page standardController="Inhouse_Produkt__c" extensions="InhouseProduct_Prefill" action="{!doEdit}">
+</apex:page>

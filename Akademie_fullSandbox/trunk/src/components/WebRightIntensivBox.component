@@ -1,0 +1,6 @@
+<apex:component controller="SeminarDetailviewController" rendered="{!PriceInformation.isIntensivSeminar}">
+    <div class="right_column_box element">
+        <h3>INTENSIVPROGRAMM</h3>
+        <p class="c"><apex:outputText escape="false" value="{!PriceInformation.intensivSeminar}"></apex:outputText></p>
+    </div>
+</apex:component>

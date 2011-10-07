@@ -1,0 +1,102 @@
+<apex:component allowDML="true" controller="FABestellungViewController">
+  <script>
+  $(document).ready(function() {
+      $(".stornoButton").hide();
+        $("select").change(function(e){
+        if($("select").val()=='no') { $(".stornoButton").hide();
+        $(".stornoGrund").parent().parent().hide();
+        $(".andereGruende").parent().parent().hide();
+        }else{
+        $(".stornoButton").show();
+        $(".andereGruende").parent().parent().show();
+        $(".stornoGrund").parent().parent().show();
+        }
+        });
+        
+        
+  });
+  </script>
+  <style>
+      .labelCol{
+          vertical-align: top;
+      }
+      
+  </style>
+  <h1>Seminare stornieren</h1>
+  <apex:form >
+  <apex:pageBlock rendered="{!IsStornoPossible}" >
+               <p>Bitte beachten Sie, dass Ihnen ggf. Stornokosten berechnet werden, sofern Sie im Inhouse Bereich die kostenfreie Stornofrist von 2 Wochen bzw. im Offenen Bereiche die Frist von 4 Wochen überschritten haben.</p>
+               <strong>Inhouse</strong>
+               <p>Sofern Ihre Stornierung die kostenfreie Frist von 2 Wochen überschritten hat, werden Ihnen die Kosten in Rechnung gestellt, die auch bei Ihrer Teilnahme entstanden wären. Diese berechnen sich anteilsmäßig aus den tatsächlichen Gesamtkosten.</p>
+               <strong>Offen</strong>
+               <p>Im Offenen Bereich fallen bei Stornierungen und Umbuchung bis 4 Wochen vor Seminarbeginn 125 € Bearbeitungsgebühr an. Wird das Seminar innerhalb von vier Wochen storniert, wird die volle Seminargebühr fällig. Bitte kontaktieren Sie Frau Renate Vochezer, wenn Sie umbuchen wollen oder einen Ersatzteilnehmer nennen können, da die Kosten so reduziert werden können. </p>
+               
+  
+      <apex:pageBlockSection columns="1">
+      
+      
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!'Seminar'}"></apex:outputLabel>
+              <apex:selectList size="1" value="{!elementForStorno}">
+                  <apex:selectOption itemLabel="- Seminar auswählen -" itemValue="{!'no'}" ></apex:selectOption>
+                  <apex:selectOptions value="{!SelectOptions}"></apex:selectOptions>
+                  <apex:actionSupport action="{!stornoMessage}" event="onchange" reRender="stornoMessages"/>
+              </apex:selectList>
+          </apex:pageBlockSectionItem>
+         
+      </apex:pageBlockSection>
+      <div >
+       <apex:PageBlockSection columns="1" id="stornoMessages">
+           
+       	<apex:outputText rendered="{!IF(stornoMessage!='', true, false)}"><p>Bitte geben Sie einen Stornogrund an.</p></apex:outputText>
+           <apex:pageBlockSectionItem rendered="{!IF(stornoMessage!='', true, false)}">
+           		
+               <apex:outputLabel >Stornogrund: *</apex:outputLabel>
+               <apex:selectList size="1" value="{!stornoElement.Stornogrund__c}" styleClass="stornoGrund">
+                   <apex:selectOption itemLabel="- keine -" itemValue="{!'keine Gründe'}" ></apex:selectOption>
+                   <apex:selectOption itemLabel="Kurzfristige dienstliche Belange" itemvalue="{!'Kurzfristige dienstliche Belange'}"></apex:selectOption>
+                   <apex:selectOption itemLabel="Gesundheitliche Gründe/ Krankheit" itemvalue="{!'Gesundheitliche Gründe/ Krankheit'}"></apex:selectOption>
+                   <apex:selectOption itemLabel="Andere Gründe" itemvalue="{!'Andere Gründe'}"></apex:selectOption>
+                  
+               </apex:selectList>
+           </apex:pageBlockSectionItem>
+           <apex:pageBlockSectionItem id="andereGruende"  >
+               <apex:outputLabel style="vertical-align: top;"></apex:outputLabel>
+               <apex:inputField value="{!stornoElement.Anderer_Stornogrund__c}" style="height: 200px; width: 300px; display:none;" styleClass="andereGruende" />
+           </apex:pageBlockSectionItem>
+           
+           
+               
+              <apex:outputText rendered="{!IF(stornoMessage=='4weeks', false, false)}">Da die Stornierung mehr als 4 Wochen vor Seminarbeginn erfolgt ist, fallen keine Stornokosten an. Wir hoffen, Sie bei einem der kommenden Seminare als Teilnehmer begrüßen zu dürfen.</apex:outputText>
+              <apex:outputText rendered="{!IF(stornoMessage=='2weeks', false, false)}">Da die Stornierung innerhalb einer Frist von 2-4 Wochen vor Seminarbeginn erfolgt ist, werden Ihnen anteilig 20% der Seminarkosten in Rechnung gestellt. Wir hoffen, Sie bei einem der kommenden Seminare als Teilnehmer begrüßen zu dürfen.</apex:outputText>
+              <apex:outputText rendered="{!IF(stornoMessage=='1weeks', false, false)}">Da die Stornierung innerhalb einer Frist von 2-1 Wochen vor Seminarbeginn erfolgt ist, werden Ihnen anteilig 50% der Seminarkosten in Rechnung gestellt. Wir hoffen, Sie bei einem der kommenden Seminare als Teilnehmer begrüßen zu dürfen.</apex:outputText>
+              <apex:outputText rendered="{!IF(stornoMessage=='0weeks', false, false)}">Da die Stornierung innerhalb von 7 Tagen vor Seminarbeginn erfolgt ist, werden Ihnen anteilig 100% der Seminarkosten in Rechnung gestellt. Wir hoffen, Sie bei einem der kommenden Seminare als Teilnehmer begrüßen zu dürfen.</apex:outputText>
+              <script>
+                $(document).ready(function() {
+                $(".andereGruende").parent().parent().hide();
+               $(".stornoGrund").change(function(e){
+        
+                    if($(".stornoGrund").val()=='Andere Gründe')
+                    {
+                    $(".andereGruende").parent().parent().show();
+                        $(".andereGruende").show();
+                    }
+                    else
+                    {
+                        $(".andereGruende").parent().parent().hide();
+                        $(".andereGruende").hide();
+                    }
+                });
+               });
+           </script>
+              
+          </apex:PageBlockSection>
+      </div>
+      <div class="buttons">
+          <apex:commandButton value="{!'Stornieren'}" action="{!sornieren}" styleClass="stornoButton ui-button-text ui-state-highlight ui-corner-all r" />
+      </div>
+  </apex:pageBlock>
+  <apex:outputText rendered="{!NOT(IsStornoPossible)}">Sie können gerade keine Seminare stornieren.</apex:outputText>
+  
+  </apex:form>
+</apex:component>

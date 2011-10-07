@@ -1,0 +1,14 @@
+<apex:component controller="WebHotelDetailController">
+<div class="rightbox bright">
+        <h3>ANSCHRIFT</h3>
+        <p>
+          {!HotelInformation.name}<br/>
+          {!HotelInformation.account__r.BillingStreet}<br/>
+          {!HotelInformation.account__r.BillingPostalCode} {!HotelInformation.account__r.BillingCity}<br/>
+        </p>
+        <p class="tel">{!HotelInformation.account__r.Phone}</p>
+        <p class="fax">{!HotelInformation.account__r.Fax}</p>
+
+        <span class="seminar_all"><a title="{!HotelInformation.name}" target="_blank" href="http://{!HotelInformation.account__r.Website}">{!SUBSTITUTE(HotelInformation.account__r.Website, 'www.', '')}</a></span>
+</div>
+</apex:component>

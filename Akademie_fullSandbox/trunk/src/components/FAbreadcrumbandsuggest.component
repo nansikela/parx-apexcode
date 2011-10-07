@@ -1,0 +1,19 @@
+<apex:component controller="FaNavigationFacade">
+  
+  <style>
+      .breadcrumbSeperator{
+          font-size: 0.75em;
+      }
+  </style>
+  
+  <div class="l" id="breadcrubSuggestionBar">
+      <div class="breadcrumb">
+          <a href="/startseite" >Startseite</a>
+          <apex:repeat value="{!breadCrumb}" var="bitem">
+              <span class="breadcrumbSeperator">{!'>'}</span> <a href="{!bitem.url}">{!bitem.name}</a>
+          </apex:repeat>
+      </div>
+      <c:WebSuggestion rendered="false" />
+      <c:FAWarenkorb />
+  </div>
+</apex:component>

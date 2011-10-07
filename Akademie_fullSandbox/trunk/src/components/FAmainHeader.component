@@ -1,0 +1,30 @@
+<apex:component controller="FAHelper">
+    <apex:attribute name="breadcrubShow" type="boolean" description="TODO: Describe me" required="true"/>
+
+
+    <div class="site_wrapper">
+        <div class="header">
+            <a href="http://www.vossloh.die-akademie.de/startseite" id="logo" title="Zur Startseite">
+                Die Akademie für Führungskräfte
+            </a>
+            <div class="servicenavi">
+              
+              <ul>
+                
+                
+                <li><a href="/impressum">Impressum</a></li>
+                <li><a href="/service/agb" target="_blank">AGB</a></li>
+                <li><a href="http://www.vossloh.die-akademie.de/profil/kontaktdaten">{!CurrentPerson.vorname__c} {!CurrentPerson.name}, {!CurrentPerson.Firma__r.name}</a></li>
+                <li><a class="login" href="/secur/logout.jsp?returnUrl=http://vossloh.die-akademie.de" >Logout</a></li>
+              </ul>
+              
+            </div>
+            <div class="searchfield"></div>
+            <c:FATopNav />
+            <c:FAbreadcrumbandsuggest rendered="{!breadcrubShow}" />
+            <c:fasubnavi rendered="{!breadcrubShow}" />
+            <apex:componentBody />
+        </div>
+    </div>
+    
+</apex:component>

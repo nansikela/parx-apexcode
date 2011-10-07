@@ -1,0 +1,88 @@
+<apex:page standardStylesheets="false" 
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true" controller="FASiteFULLFacade">
+    <c:WebmainHeader2 breadCrubShow="false">
+                 <div id="ie7Fix" style="width:940px; display:block;"> </div>
+                 <c:webcontent_navi />
+                 <c:webnavi_extension_box />
+                 <c:webdirectsearch />
+                 <div id="ie7Fix" style="width:940px; display:block;"> </div>
+                 <div class="column">
+                     <p>
+                        <img src="{!URLFOR($Resource.web_style, 'i/teaser_academy_profil.jpg')}" />
+                     </p>
+                     <c:contentblock name="LeftBox"/>
+                 </div>
+                 <div class="column">
+                    <c:contentblock name="MiddleBox" />
+                 </div>
+                 <div class="column">
+                    <p>
+                        <img src="{!URLFOR($Resource.web_style, 'i/teaser_academy_blog.png')}" />
+                    </p>
+                    <h2>Akademie-Blog</h2>
+                    <br />
+                    <p></p>
+                    <ul class="academy_blog">
+                    <apex:variable var="isFirst" value="{!'first'}"/>
+                        <apex:repeat value="{!BlogArticle}" var="article">
+                            <li class="{!isFirst}">
+                                <a href="{!article.link__c}" >{!article.title__c}</a> {!article.pubDate__c}
+                                <apex:variable var="isFirst" value="{!''}"/>
+                            </li>
+                        </apex:repeat>
+                    </ul>
+                    <a href="http://blog.die-akademie.de" class="link">Alle Blogeinträge</a>
+                    <div class="spacer"></div>
+                    <c:contentblock name="RightBox" />
+                </div>
+                <div class = "column last right_column">
+                    <c:WebManagementGuide2012 ></c:WebManagementGuide2012>
+                    <c:WebNaechsteSeminare2 show="4"></c:WebNaechsteSeminare2>
+                </div>
+                <style>
+                    .management_guide
+                    {
+                        margin-top: 0 !important;
+                    }
+                    .rightbox 
+                    {
+                        margin-top: 60px !important;
+                    }
+                    .rightbox h3
+                    {
+                        padding: 0 !important;
+                        margin-top: 10px;
+                    }
+                    .rightbox p
+                    {
+                        font-size: 13px !important;
+                        padding-bottom: 2px;
+                    }
+                    .optionfield
+                    {
+                        width: 90%;
+                    }
+                    .direct_search p
+                    {
+                        padding-top: 10px !important;
+                        padding-bottom: 3px !important;
+                        font-size: 13px !important;
+                    }
+                    #from_day, #from_month
+                    {
+                        width:25%;
+                    }
+                    formpart_year
+                    {
+                        width: 35%;
+                    }
+                    .direct_search .submitbtn
+                    {
+                        padding-left: 85px;
+                        padding-top: 20px;
+                    }
+                </style>
+        </c:WebmainHeader2>
+</apex:page>

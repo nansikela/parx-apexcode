@@ -1,0 +1,11 @@
+<apex:component controller="WebNavigationFacadeEnhanced11">
+  <div class="l" id="breadcrubSuggestionBar">
+      <div class="breadcrumb">
+          <a href="/">Startseite</a>
+          <apex:repeat value="{!breadCrumb}" var="bitem">
+             > <a href="{!bitem.url}">{!bitem.name}</a>
+          </apex:repeat>
+      </div>
+      <c:WebSuggestion />
+  </div>
+</apex:component>

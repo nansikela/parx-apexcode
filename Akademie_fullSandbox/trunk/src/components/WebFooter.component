@@ -1,0 +1,60 @@
+<apex:component controller="WebNavigationFacade">
+<apex:variable var="mainItemBefore" value=""></apex:variable>
+<div class="footer_wrapper">
+
+   
+
+  <div class="footer">
+    
+    <apex:repeat var="item" value="{!topNavigationWithItems}">
+    
+    
+    <apex:outputText escape="false" value="{!IF(AND(item.isCategory,!item.isFirstCategory), '</ul></div>','')}"></apex:outputText>
+    <apex:outputText escape="false"  value="{!IF(item.isCategory, '<div class=\"footerlist\">','')}"></apex:outputText>
+    
+    <apex:outputText escape="false" value="{!IF(item.isCategory, '<h3>','')}"></apex:outputText>
+    {!IF(item.isCategory, item.name,'')}
+    <apex:outputText escape="false" value="{!IF(item.isCategory, '</h3><ul>','')}"></apex:outputText>
+    <apex:outputText escape="false" value="{!IF(!item.isCategory, '<li>','')}"></apex:outputText>
+    <a href="/page?pageid={!IF(!item.isCategory,item.id,'')}">
+        <apex:outputText escape="false" value="{!IF(!item.isCategory, item.name,'')}"></apex:outputText>
+    </a>
+    <apex:outputText escape="false" value="{!IF(!item.isCategory, '</li>','')}"></apex:outputText>
+    </apex:repeat>
+    
+    <div class="separator">&nbsp;</div>
+      <ul class="service_navi">
+
+        <li><a href="/service/kontakt">Kontakt</a></li>
+        <li><a href="/service/impressum">Impressum</a></li>
+        <li><a href="/service/agb">AGB</a></li>
+      </ul>
+   <apex:outputText escape="false" value="{!'</div>'}"></apex:outputText>
+    
+    
+    
+    
+    
+      
+    <div class="c"></div>
+  </div><!-- footer -->
+</div><!-- footer_wrapper -->
+<script type="text/javascript">
+
+$(document).ready(function(){
+    $(function(){
+       // $('.autocomplete').focus();
+    
+        $('.autocomplete').keydown(function(e){
+            if (e.keyCode == 13) {
+                
+                $(".searchfield form .submitbtn").click();
+                
+                return false;
+            }
+        });
+    });
+});
+</script>
+
+</apex:component>

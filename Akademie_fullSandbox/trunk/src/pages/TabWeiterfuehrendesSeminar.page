@@ -1,0 +1,17 @@
+<apex:page controller="TabWeiterfuehrendesSeminarController" tabStyle="Portfolio2__c">
+  <apex:sectionHeader title="Weiterführendes Seminar hinzufügen"/>
+  <apex:form >
+  <apex:PageBlock >
+      <apex:PageBlockTable value="{!portfolioContainer}" var="container">
+          <apex:column headerValue="Hinzufügen">
+              <apex:inputCheckbox value="{!container.forInsert}"/>
+          </apex:column>
+          <apex:column value="{!container.portfolio.name}" headerValue="Code"/>
+          <apex:column value="{!container.portfolio.Seminartitel__c}" headerValue="Titel"/>
+      </apex:PageBlockTable>
+      <apex:pageBlockButtons >
+          <apex:commandButton value="{!'Als Weiterführendes Seminar hinzufügen'}" action="{!save}"/>
+      </apex:pageBlockButtons>
+  </apex:PageBlock>
+  </apex:form>
+</apex:page>

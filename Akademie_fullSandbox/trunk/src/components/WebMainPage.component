@@ -1,0 +1,72 @@
+<apex:component controller="WebHeadTitle">
+<head>
+<title>{!title} - Die Akademie für Führungskräfte</title>
+ <link rel="shortcut icon" href="{!URLFOR($Resource.web_style, 'favicon.ico')}" />
+  <apex:stylesheet value="{!URLFOR($Resource.web_style, IF($CurrentPage.parameters.pdf=='true','pdf.css','screen.css'))}"></apex:stylesheet>
+  <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.web_style, 'pdf.css')}" media="print" />
+  <!--[if IE]>
+  <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.web_style, 'screen_ie.css')}" media="screen, projection" />
+  <![endif]-->
+
+  <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery-1.4.2.min.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery.validate.min.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/main.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/header.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery.ba-replacetext.min.js')}"/>
+  <meta name="google-site-verification" content="Kh7Sp2vXLeBJGb3LkT5U9Z6oiy554qygPokJ5izV5PI" />
+<script>
+    jQuery.validator.messages.required = "";
+    jQuery.validator.messages.email= "";
+    jQuery.validator.messages.number= "";
+  $(document).ready(function(){
+    $("form").last().validate({
+     invalidHandler: function(form, validator) {
+        var errors = validator.numberOfInvalids();
+        if(errors>0){
+            $("div.errorMessage").show();
+        }else{
+            $("div.errorMessage").hide();
+        }
+    }});
+  });
+  </script>
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4873624-5']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+    <a name="top"></a>
+    <div class="site_wrapper">
+        <c:WebMainHeader />
+    <div class="l">
+
+    <c:WebBreadCrumb />
+    <c:WebSuggestion />
+    </div>
+    
+    <c:WebLeftNavigation /> 
+    
+    <!-- site_wrapper -->
+    
+
+        <apex:componentBody />
+    <!-- content_wrapper -->
+</div><!-- site_wrapper -->
+
+    <c:WebFooter />
+
+</body>
+
+</apex:component>

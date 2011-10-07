@@ -1,0 +1,22 @@
+<apex:component controller="FAPortfolioController">
+    <apex:outputText rendered="{!controller.isTrainer}">
+    <div class="rightbox bright">
+       <h3>IHRE TRAINER</h3>
+        <apex:variable var="left" value="true"/>
+        <apex:variable var="isFirst" value="true"/>
+        <div style="height: 150px;">
+            <apex:repeat value="{!controller.trainerList}" var="item">
+                <apex:outputText escape="false" value="{!IF(AND(left=='true', isFirst == 'false'), '</div><div style=\"height: 150px;\">', '')}" />
+                    <div class="{!IF(left == 'true', 'l', 'r')} trainer">
+                        <img alt="{!item.Trainer_Name__c}" height="104px" width="85px" src="{!URLFOR($resource.ContactImages, item.Trainer_Foto__c)}" />
+                        <br/>
+                        <a title="{!item.Trainer_Name__c}" href="{!item.Trainer_URL__c}">{!item.Trainer_Name__c}</a>
+                    </div>
+                     <apex:variable var="isFirst" value="false"/>
+                    <apex:variable var="left" value="{!IF(left=='true', 'false', 'true')}"/>
+                    
+            </apex:repeat>
+        </div>
+    </div>
+    </apex:outputText>
+</apex:component>

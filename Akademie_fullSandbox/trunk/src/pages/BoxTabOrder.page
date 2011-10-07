@@ -1,0 +1,41 @@
+<apex:page tabStyle="Navigation__c" controller="BoxOrderController">
+    <apex:includeScript value="{!'https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js'}"/>
+    <apex:includeScript value="{!'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js'}"/>
+    <style>
+        ul { list-style-type: none; }
+        li { background-color:white; 
+            padding-bottom: 5px;
+            padding-top: 5px;
+            border-top: solid 1px lightGrey;
+            border-bottom: solid 1px lightGrey;
+            margin-bottom: 2px;
+            padding-left: 10px;
+        }
+        input{
+        display:none;
+        }
+    </style>
+    
+    <script>
+        $(document).ready(function() {
+            $("ul").each(function(){ $(this).sortable(); });
+            $("ul").bind( "sortupdate", function(event, ui) {
+                var i = 0; $("li").children("input").each(function(){ $(this).val(i++); });
+            });
+        });
+    </script>
+    <apex:form >
+    <apex:pageBlock >
+    
+                    <ul>
+                        <apex:repeat value="{!boxList}" var="box">
+                            <li>{!box.box__r.name}<apex:inputField value="{!box.Anordnung__c}"/></li>
+                        </apex:repeat>
+                    </ul>
+        <apex:PageBlockButtons >
+            <apex:commandButton value="{!'Speichern'}" action="{!save}"/>
+            <apex:commandButton value="{!'Abbrechen'}" action="{!cancel}"/>
+        </apex:PageBlockButtons>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

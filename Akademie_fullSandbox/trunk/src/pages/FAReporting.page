@@ -1,0 +1,52 @@
+<apex:page standardStylesheets="false" title="test"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="false"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"   />
+    
+    <html>
+    <head>
+    
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screenplus.css')}"/>
+        <link href="{!URLFor($Resource.FA_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery-1.4.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/headerplus.js')}"/>   
+        <apex:includeScript value="{!URLFOR($Resource.Highcharts, 'js/highcharts.js')}"/>   
+        <apex:includeScript value="{!'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js'}"/>
+    </head>
+    <body>
+    
+        <c:FAmainHeader breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column article full">
+                    <c:FAReportingRegisteredPerson rendered="{!IF($CurrentPage.parameters.show='registeredUser','true','false')}" />
+                    <c:fareportingfinishedcart rendered="{!IF($CurrentPage.parameters.show='order','true','false')}" />
+                 </div>
+                 <div class="right_column">
+                     
+                 </div>
+             </div>
+        </c:FAmainHeader>
+        <c:FAfooter />
+    </body>
+    <style>
+        .content_column.article.full
+        {
+        width: 680px;
+        }
+        
+        
+        .personList{
+            width: 680px;
+            
+        }
+       .personList * td{
+            padding: 5px;
+        }
+    
+    
+    </style>
+    </html>
+</apex:page>

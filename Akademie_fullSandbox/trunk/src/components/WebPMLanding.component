@@ -1,0 +1,32 @@
+<apex:component controller="WebCoachingLandingPage">
+  <apex:dataTable value="{!nextPMTermine}" var="termin">
+      <apex:column headerValue="Datum" styleClass="date">
+          <apex:outputText value="       {0,date,dd.MM.yyyy}">       <apex:param value="{!termin.seminar__r.Seminarbeginn__c}" />   </apex:outputText> -
+          <apex:outputText value="       {0,date,dd.MM.yyyy}">       <apex:param value="{!termin.seminar__r.Seminarende__c}" />   </apex:outputText>
+      </apex:column>
+      <apex:column headerValue="Titel" value="{!termin.Portfolio__r.Seminartitel__c}" styleClass="title"/>
+      
+      <apex:column headerValue="Ort" value="{!termin.Ort__c}" />
+      <apex:column headerValue="Trainer">
+          <a href="{!termin.seminar__r.trainer__r.Sprechende_URL__c}">{!IF(termin.seminar__r.trainer__r.Titel_Anrede__c <>null, termin.seminar__r.trainer__r.Titel_Anrede__c&' ', '')}{!termin.seminar__r.trainer__r.Firstname& ' ' & termin.seminar__r.trainer__r.Lastname}</a>
+          <apex:outputText rendered="{!IF(termin.seminar__r.Co_Trainer__c<> null, true, false)}"> und <a href="{!termin.seminar__r.Co_trainer__r.Sprechende_URL__c}">{!IF(termin.seminar__r.Co_trainer__r.Titel_Anrede__c <>null, termin.seminar__r.Co_trainer__r.Titel_Anrede__c&' ', '')}{!termin.seminar__r.Co_trainer__r.Firstname& ' ' & termin.seminar__r.Co_trainer__r.Lastname}</a></apex:outputText>
+      </apex:column>
+  </apex:dataTable>
+ 
+  <br/>
+  <a href="/seminare/methodenkompetenz-im-projektmanagement" id="seminare_weitere_Info" title="Projektmanagement – Grundseminar">Weitere Seminare und Termine</a>
+  <style>
+      td.code
+      {
+          width: 50px !important;
+      }
+      td.date
+      {
+          width: 180px !important;
+      }
+      td.title
+      {
+          width: 260px !important;
+      }
+  </style>
+</apex:component>

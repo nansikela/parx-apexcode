@@ -1,0 +1,35 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+
+    
+        <c:webmainheader11 breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column">
+                    <div class="content_headline">
+                        <div class="textline">
+                            <c:contentblock name="Ueberschrift"/>
+                        </div>
+                    </div>
+                    <c:contentblock name="Inhalt"/>
+                 </div>
+                    <div class="right_column">
+                        <div class="right_column_box element bright first">
+                        <h3>KONTAKT</h3>
+                        <p>Akademie für Führungskräfte<br/>
+                        der Wirtschaft GmbH <br/>
+                        Seepromenade 19 <br/>
+                        D-88662 Überlingen</p>
+                        <p class="tel">+49.7551.9368-0</p>
+                        <p class="mail"><a href="mailto:info@die-akademie.de">info@die-akademie.de</a></p>
+                    </div>
+                        
+                        <c:WebChatBoxRight ></c:WebChatBoxRight>
+                        <c:WebNextSeminarsRight show="6"></c:WebNextSeminarsRight>
+                    </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+
+</apex:page>

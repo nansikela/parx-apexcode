@@ -1,0 +1,18 @@
+<apex:component controller="WebMicroNext3SeminarsController" >
+    <apex:attribute name="get" type="String" description="TODO: Describe me"/>
+  <h2>Die nächsten Termine</h2>
+  <apex:dataTable value="{!IF(get='persoenlichkeit', Persoenlichkeit, IF(get='projekt',Projektmanagement, if(get='fuehrung', Fuehrung, Fuehrung)))}" var="seminar" styleClass="termineTableMicro" id="termineTableMicro">
+      <apex:column headerValue="Datum" >
+          <apex:outputText value="{!seminar.datum}"></apex:outputText>
+      </apex:column>
+      <apex:column headerValue="Seminartitel" >
+          <apex:outputText value="{!seminar.titel}"></apex:outputText>
+      </apex:column>
+      <apex:column headerValue="Ort" >
+          <apex:outputText escape="false" value="{!seminar.ort}"></apex:outputText>
+      </apex:column>
+      <apex:column headerValue="Trainer">
+          <apex:outputText escape="false" value="{!seminar.trainer}"></apex:outputText>
+      </apex:column>
+  </apex:dataTable>
+</apex:component>

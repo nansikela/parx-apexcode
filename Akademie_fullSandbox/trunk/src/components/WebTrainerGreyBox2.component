@@ -1,0 +1,216 @@
+<apex:component controller="WebTrainerFacade">
+<ul class="abc_greybox">
+            <apex:outputText escape="false" 
+            value="{!IF(OR($CurrentPage.parameters.trainerChar=='A',$CurrentPage.parameters.trainerChar==null), 
+            '<li class=\"active\"><a href=\"/seminare/trainer#A\">A</a></li>',
+            (IF(ExistA==true, '<li><a href=\"/seminare/trainer#A\">A</a></li>', 
+            '<li class=\"unavailable\">A</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='B', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#B\">B</a></li>',
+            (IF(ExistB==true, '<li><a href=\"/seminare/trainer#B\">B</a></li>', 
+            '<li class=\"unavailable\">B</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='C', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#C\">C</a></li>',
+            (IF(ExistC==true, '<li><a href=\"/seminare/trainer#C\">C</a></li>', 
+            '<li class=\"unavailable\">C</li>')))}">
+            </apex:outputText>
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='D', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#D\">D</a></li>',
+            (IF(ExistD==true, '<li><a href=\"/seminare/trainer#D\">D</a></li>', 
+            '<li class=\"unavailable\">D</li>')))}">
+            </apex:outputText>
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='E', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#E\">E</a></li>',
+            (IF(ExistE==true, '<li><a href=\"/seminare/trainer#E\">E</a></li>', 
+            '<li class=\"unavailable\">E</li>')))}">
+            </apex:outputText>
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='F', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#F\">F</a></li>',
+            (IF(ExistF==true, '<li><a href=\"/seminare/trainer#F\">F</a></li>', 
+            '<li class=\"unavailable\">F</li>')))}">
+            </apex:outputText>
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='G', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#G\">G</a></li>',
+            (IF(ExistG==true, '<li><a href=\"/seminare/trainer#G\">G</a></li>', 
+            '<li class=\"unavailable\">G</li>')))}">
+            </apex:outputText>
+            
+        
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='H', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#H\">H</a></li>',
+            (IF(ExistH==true, '<li><a href=\"/seminare/trainer#H\">H</a></li>', 
+            '<li class=\"unavailable\">H</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='I', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#I\">I</a></li>',
+            (IF(ExistI==true, '<li><a href=\"/seminare/trainer#I\">I</a></li>', 
+            '<li class=\"unavailable\">I</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='J', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#J\">J</a></li>',
+            (IF(ExistJ==true, '<li><a href=\"/seminare/trainer#J\">J</a></li>', 
+            '<li class=\"unavailable\">J</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='K', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#K\">K</a></li>',
+            (IF(ExistK==true, '<li><a href=\"/seminare/trainer#K\">K</a></li>', 
+            '<li class=\"unavailable\">K</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='L', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#L\">L</a></li>',
+            (IF(ExistL==true, '<li><a href=\"/seminare/trainer#L\">L</a></li>', 
+            '<li class=\"unavailable\">L</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='M', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#M\">M</a></li>',
+            (IF(ExistM==true, '<li><a href=\"/seminare/trainer#M\">M</a></li>', 
+            '<li class=\"unavailable\">M</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='N', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#N\">N</a></li>',
+            (IF(ExistN==true, '<li><a href=\"/seminare/trainer#N\">N</a></li>', 
+            '<li class=\"unavailable\">N</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='O', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#O\">O</a></li>',
+            (IF(ExistO==true, '<li><a href=\"/seminare/trainer#O\">O</a></li>', 
+            '<li class=\"unavailable\">O</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='P', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#P\">P</a></li>',
+            (IF(ExistP==true, '<li><a href=\"/seminare/trainer#P\">P</a></li>', 
+            '<li class=\"unavailable\">P</li>')))}">
+            </apex:outputText>
+        
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='Q', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#Q\">Q</a></li>',
+            (IF(ExistQ==true, '<li><a href=\"/seminare/trainer#Q\">Q</a></li>', 
+            '<li class=\"unavailable\">Q</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='R', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#R\">R</a></li>',
+            (IF(ExistR==true, '<li><a href=\"/seminare/trainer#R\">R</a></li>', 
+            '<li class=\"unavailable\">R</li>')))}">
+            </apex:outputText>
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='S', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#S\">S</a></li>',
+            (IF(ExistS==true, '<li><a href=\"/seminare/trainer#S\">S</a></li>', 
+            '<li class=\"unavailable\">S</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='T', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#T\">T</a></li>',
+            (IF(ExistT==true, '<li><a href=\"/seminare/trainer#T\">T</a></li>', 
+            '<li class=\"unavailable\">T</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='U', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#U\">U</a></li>',
+            (IF(ExistU==true, '<li><a href=\"/seminare/trainer#U\">U</a></li>', 
+            '<li class=\"unavailable\">U</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='V', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#V\">V</a></li>',
+            (IF(ExistV==true, '<li><a href=\"/seminare/trainer#V\">V</a></li>', 
+            '<li class=\"unavailable\">V</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='W', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#W\">W</a></li>',
+            (IF(ExistW==true, '<li><a href=\"/seminare/trainer#W\">W</a></li>', 
+            '<li class=\"unavailable\">W</li>')))}">
+            </apex:outputText>
+            
+            
+            
+            <apex:outputText escape="false" 
+            value="{!IF($CurrentPage.parameters.trainerChar=='XYZ', 
+            '<li class=\"active\"><a href=\"/seminare/trainer#XYZ\">XYZ</a></li>',
+            (IF(ExistXYZ==true, '<li><a href=\"/seminare/trainer#XYZ\">XYZ</a></li>', 
+            '<li class=\"unavailable\">XYZ</li>')))}">
+            </apex:outputText>
+        </ul>    
+</apex:component>

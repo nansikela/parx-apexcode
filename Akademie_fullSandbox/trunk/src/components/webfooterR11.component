@@ -1,0 +1,37 @@
+<apex:component controller="WebNavigationFacadeEnhanced11">
+    <div class ="footer_wrapper">
+        <div class="footer">
+            <apex:repeat value="{!topNaviItem}" var="top">
+               <div class="footerlist">
+                   <h3>{!top.name}</h3>
+                   <ul>
+                       <apex:repeat value="{!top.subItemList}" var="sub">
+                         <li><a href="{!sub.url}">{!sub.name}</a></li>
+                       </apex:repeat>
+                   </ul>
+               </div> 
+            </apex:repeat>
+            <div class="separator">&nbsp;</div>
+              <ul class="service_navi">
+                <li><a href="/service/kontakt">Kontakt</a></li>
+                <li><a href="/service/impressum">Impressum</a></li>
+                <li><a href="/service/agb">AGB</a></li>
+              </ul>
+        </div>
+    </div>
+    <script type="text/javascript"> 
+ 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4873624-5']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+ 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+ 
+</script> 
+</apex:component>

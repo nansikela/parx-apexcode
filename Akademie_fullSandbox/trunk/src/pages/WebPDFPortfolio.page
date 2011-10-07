@@ -1,0 +1,184 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false"  cache="false" renderAs="{!$CurrentPage.Parameters.mode}"  controller="FAPortfolioController">
+  <head>
+  <style>
+@page {
+ size: 21cm 29.7cm;  /* A4 width and height */
+                                          /* Landscape orientation*/
+                                                                       /* Put page numbers in the bottom left corner of each page in the pdf document.*/
+    @bottom-left 
+    {
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 12px; 
+        content: "Seite " counter(page) " {!controller.currentPortfolio.Seminartitel__c}";
+
+    }
+    @bottom-right
+    {
+        font-family:Arial, Helvetica, sans-serif;
+        font-size: 12px; 
+        content: "Ein Angebot der Akademie für Führungskräfte";
+        // This content shown in each page in PDF document
+    }
+    
+
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 12px;    
+    {!IF($CurrentPage.Parameters.mode='pdf', '','width: 21cm;')}
+}
+h1 {
+    font-size: 26px;
+    line-height: 1.20em;
+    display:block;
+    padding-top:-20px;
+}
+
+h2
+{
+    margin-bottom: 0;
+}
+
+ul
+{
+    margin-top: 0px;
+}
+
+#left {
+    
+    {!IF($CurrentPage.Parameters.mode='pdf', 'width: 13cm;','width: 12cm;')}
+}
+.header {
+    border-top: 1px solid #DEDEDA;
+    border-bottom: 1px solid #DEDEDA;
+}
+b {
+    padding-top:10px;
+    display:block;
+    color: #747B9D;
+    font-weight: bold;
+}
+a{
+    color:black;
+    font-weight: bold;
+    text-decoration: none;
+}
+label
+{
+    font-weight: bold;
+}
+.data2Col
+{
+    width: 90px;
+}
+#termine table {
+width: 13cm;
+border-top: 1px solid #DEDEDA;
+font-size: 13px;
+text-align: left;
+float: left;
+display: inline-block;
+}
+
+td, th{
+
+border-bottom: 1px solid #DEDEDA;
+}
+
+.box * th, .box * td
+{
+border-bottom: 0;
+padding-bottom: 10px;
+}
+.rightboxes{
+float:right;
+}
+.shortSeminarInfo{
+padding-top:20px;
+}
+.shortSeminarInfo div strong {
+padding-top: 5px;
+float: left;
+font-weight: bold;
+width: 65px;
+}
+.shortSeminarInfo div {
+display: inline-block;
+
+padding-bottom: 5px;
+width: 100%;
+}
+.shortSeminarInfo div span {
+float: left;
+width: 120px;
+
+}
+
+#buttonSeminarBuchen{
+display:none;
+}
+.right_column_box{
+    width: 120px;
+}
+
+h3.c{
+margin-bottom: 5px;
+ font-size: 12px;
+}
+
+.right_column_box p{
+    margin-top: 0px;
+}
+.mail a
+{
+   font-weight: normal; 
+}
+.box
+{
+    width:160px;
+    margin-top: 40px;
+}
+
+h3
+{
+    padding-bottom:0px;
+    margin-bottom:0px;
+}
+table
+{
+    width: 100%;
+}
+</style>
+  </head>
+  <body onload="javascript: window.print();">
+  <div class="rightboxes">
+      <img src="{!URLFOR($Resource.WebAkademieLogoForPDF)}" width="120" height="119" />
+      <div class="box">
+          <c:FAPortfolioShortInfo ></c:FAPortfolioShortInfo>
+          <c:FAPreisInformation ></c:FAPreisInformation>
+      </div>
+  </div>
+  <div id="left">
+    <div class="header"> <b>{!controller.currentPortfolio.name}</b>
+      <h1>{!controller.currentPortfolio.Seminartitel__c}</h1>
+    </div>
+    <apex:outputText escape="false" value="{!SUBSTITUTE(controller.currentPortfolio.Beschreibung__c, 'strong>', 'h2>')}" />
+    <br />
+    <h2>Termine</h2>
+    <br/>
+    <br/>
+    <apex:dataTable rendered="{!IsSeminar}" value="{!SeminarList}" var="seminar">
+        <apex:column value="{!seminar.datum}" headerValue="{!'Datum'}"/>
+        <apex:column value="{!seminar.ort}" headerValue="{!'Ort'}"/>
+        <apex:column headerValue="{!'Trainer'}">
+            <apex:outputText value="{!seminar.trainer}" escape="false"></apex:outputText>
+        </apex:column>
+        <apex:column headerValue="{!'Buchen'}">
+            <apex:outputText value="{!seminar.buchen}" escape="false"></apex:outputText>
+        </apex:column>
+    </apex:dataTable>   
+  </div>
+  
+  </body>
+</apex:page>

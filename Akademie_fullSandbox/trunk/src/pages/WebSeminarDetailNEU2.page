@@ -1,0 +1,25 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater" controller="WebSeminarDetailEnhancedController"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+    
+
+        <c:webmainheader11 breadCrubShow="true">
+             <div class="content_wrapper ">
+                    <div class="content_column full_width">
+                        <c:webseminardetailcontent />
+                    </div><!-- content_column  -->
+                 <div class="right_column">
+                    <c:webrightseminarshortinfo dauer="{!instance.seminarShortInfo.dauer}" teilnehmer="{!instance.seminarShortInfo.teilnehmer}" beginn="{!instance.seminarShortInfo.beginn}" ende="{!instance.seminarShortInfo.ende}" buchungslink="{!instance.seminarShortInfo.buchungslink}" />
+                    <c:WebRightTrainerBox />
+                    <c:WebChatBoxRight />
+                    <c:WebRightPriceBox />
+                    <c:WebRightIntensivBox />
+                    <c:webrightfolgeseminare />
+                    <c:WebVeroeffentlichung />
+                 </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+
+</apex:page>

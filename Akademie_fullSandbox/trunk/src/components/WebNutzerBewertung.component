@@ -1,0 +1,12 @@
+<apex:component >
+    <apex:attribute name="bewertunglist" type="Nutzerbewertung__c[]" description="TODO: Describe me"/>
+    <apex:repeat value="{!bewertunglist}" var="bewertung">
+        <div class="rating_article">
+            <img alt="5 Sterne" src="{!URLFOR($Resource.web_style, 'i/stars_'+bewertung.sterne__c+'.gif')}" class="l stars" />
+            <strong>{!bewertung.Fazit__c}</strong><br />
+            <p><apex:outputText escape="false" value="{!bewertung.Bewertungstext__c}" /></p>
+            <p class="author">{!bewertung.Teilnehmer__r.name}</p>
+        </div>
+    </apex:repeat>
+    <div class="separator_line"></div>
+</apex:component>

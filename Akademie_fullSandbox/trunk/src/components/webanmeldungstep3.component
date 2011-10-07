@@ -1,0 +1,95 @@
+<apex:component controller="WebAnmeldungController" allowDML="true">
+
+     <div class="content_headline">
+        <div class="textline">
+          <h1>Anmeldung</h1>
+          <p class="headline_submenu">
+            1. Seminar
+            <span class="pipe">|</span>
+            2. Teilnehmer
+            <span class="pipe">|</span>
+            3. Hotel
+            <span class="pipe">|</span>
+            <span class="active">4.Rechnung</span>
+            <span class="pipe">|</span>
+            5. Bestätigung
+          </p>
+
+        </div>
+      </div>
+     <div class="errorMessage" style="display:none;"><c:webanmeldungerror ></c:webanmeldungerror></div>
+      Bitte geben Sie Ihre Rechnungsdaten an.
+      <apex:form >
+                <div class="separator_head">
+                <!--<a class="participant_delete r" title="Teilnehmer entfernen" href="#">Teilnehmer entfernen</a>-->
+                <h4 class="l">Rechnungsdaten</h4>
+                <div class="c"></div>
+              </div>
+              <fieldset>
+                  <div>
+                      <label>Firma</label>
+                      <apex:inputField value="{!bestellung.Firma__c}"/>
+                  </div>
+                  <div>
+                      <label>Ansprechpartner</label>
+                      <apex:inputField value="{!bestellung.Ansprechpartner__c}"/>
+                  </div>
+                  <div>
+                      <label>Abteilung</label>
+                      <apex:inputField value="{!bestellung.Abteilung__c}"/>
+                  </div>
+                  <div>
+                      <label>Strasse*</label>
+                      <apex:inputField value="{!bestellung.Strasse__c}" styleClass="required"/>
+                  </div>
+                  <div>
+                      <label>PLZ*</label>
+                      <apex:inputField value="{!bestellung.PLZ__c}" styleClass="title" styleClass="required number"/>
+                  </div>
+                  <div>
+                      <label>Ort*</label>
+                      <apex:inputField value="{!bestellung.Ort__c}" styleClass="required"/>
+                  </div>
+                  <div>
+                      <label>Telefon*</label>
+                      <apex:inputField value="{!bestellung.Telefon__c}" styleClass="required"/>
+                  </div>
+                  <div>
+                      <label>Telefax</label>
+                      <apex:inputField value="{!bestellung.Telefax__c}"/>
+                  </div>
+                  <div>
+                      <label>eMail*</label>
+                      <apex:inputField value="{!bestellung.eMail__c}" styleClass="required email"/>
+                  </div>
+                  <div>
+                      <label>Zahlungsart</label>
+                      <apex:selectList size="1" value="{!bestellung.Zahlungsart__c}" styleClass="title">
+                          <apex:SelectOptions value="{!zahlungsArtList}"></apex:SelectOptions>
+                      </apex:selectList>
+                     
+                      
+                  </div>
+                  <div class="area">
+                      <label>Ihre Nachricht</label>
+                      <apex:inputField value="{!bestellung.Nachricht__c}"/>
+                  </div>
+                 <div>
+                      <label>Ihr Weg zu uns</label>
+                      <apex:inputField value="{!bestellung.Marketing_Kanal__c}" styleClass="dropdown"/>
+                  </div>
+                
+         </fieldset>
+            <div class = "c"></div>
+              
+              
+          <div class="separator_line"></div>
+          <div class = "r">
+              <apex:commandButton value="Weiter" action="{!save3}" image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+          </div>
+          <div class="c"></div>
+      </apex:form>
+
+     
+
+</apex:component>

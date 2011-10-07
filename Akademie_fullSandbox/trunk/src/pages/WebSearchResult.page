@@ -1,0 +1,35 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" title="Seminarkategorienübersicht">
+
+    <c:WebMainPage >
+    <apex:messages />
+        <div class = "content_wrapper">
+            <div class="content_column">
+                <div class="content_headline">
+                    <div class="textline">
+                        <h1>Suchresultate</h1>
+                    </div>
+                </div>
+                <br/>
+                Resultate für:
+                <br/>
+                
+                <apex:outputText escape="false" value="{!IF($CurrentPage.parameters.q =='','',$CurrentPage.parameters.q+'<br/>')}" />
+                <apex:outputText escape="false" value="{!IF($CurrentPage.parameters.r =='','',$CurrentPage.parameters.r+'<br/>')}" />
+                <apex:outputText escape="false" value="{!IF($CurrentPage.parameters.o =='','',$CurrentPage.parameters.o+'<br/>')}" />
+                 <apex:outputText escape="false" value="{!IF($CurrentPage.parameters.d =='','','Seminare ab dem '+TEXT(DAY(DATEVALUE($CurrentPage.parameters.d)))+'.'+TEXT(Month(DATEVALUE($CurrentPage.parameters.d)))+'.'+TEXT(Year(DATEVALUE($CurrentPage.parameters.d))))}" />
+                
+                <c:WebSearchResult ></c:WebSearchResult>
+                <c:WebArticleFooter ></c:WebArticleFooter>
+            </div><!-- content_column  -->
+            
+            
+            <div class="right_column">
+                <c:WebRightBoxSearch ></c:WebRightBoxSearch>
+                <c:WebChatBoxRight ></c:WebChatBoxRight>
+                <c:WebNextSeminarsRight show="6"></c:WebNextSeminarsRight>
+                <c:WebRightTeaser ></c:WebRightTeaser>
+                
+            </div>
+        </div>
+    </c:WebMainPage>
+</apex:page>

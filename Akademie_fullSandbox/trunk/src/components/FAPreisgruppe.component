@@ -1,0 +1,16 @@
+<apex:component controller="FAPreisgruppe">
+    <b>{!currentProductgruppe.name}</b>
+    <h1>{!currentProductgruppe.Name__c}</h1>
+    <apex:outputText value="{!substitute(substitute(currentProductgruppe.Beschreibung__c, '<strong>','<h2>'),'</strong>','</h2>')}" escape="false" />
+    <apex:dataTable value="{!currentProductgruppe.Produktgruppenmitglieder__r}" var="member">
+        <apex:column >
+            <a href="{!member.Portfolio2__r.URL__c}">{!member.Portfolio2__r.name}</a>
+        </apex:column>
+        <apex:column value="{!member.Portfolio2__r.Seminartitel__c}"/>
+        <apex:column >
+            <a href="{!member.Portfolio2__r.URL__c}">Details</a>
+        </apex:column>
+    </apex:dataTable>
+    
+    <apex:outputText value="{!substitute(substitute(currentProductgruppe.Beschreibung_2__c, '<strong>','<h2>'),'</strong>','</h2>')}" escape="false" />
+</apex:component>

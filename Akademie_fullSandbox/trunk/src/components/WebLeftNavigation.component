@@ -1,0 +1,14 @@
+<apex:component controller="WebNavigationFacade">
+  <!-- vertikale Navigation -->
+  <div class="subnavi"> 
+    <span class="subnavi_head">{!LeftNavigationHeadline}</span>
+
+    <ul>
+       <apex:repeat var="item" value="{!LeftNavigatonItems}">
+            <li>
+                <a href="{!item.url}" class="{!IF(item.isActive,'active','')}">{!item.name}</a>
+            </li>
+        </apex:repeat>
+     </ul>
+  </div>
+</apex:component>

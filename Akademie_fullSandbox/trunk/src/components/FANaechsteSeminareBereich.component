@@ -1,0 +1,9 @@
+<apex:component controller="FARightBoxesController" >
+   <div class="rightbox dark">
+       <h3>KOMMENDE SEMINARE</h3>
+       <apex:repeat value="{!NextSeminarsFromBereich}" var="seminar">
+           <p>{!seminar.datum}</p>
+           <a href="{!seminar.url}">{!seminar.titel}</a>
+       </apex:repeat>
+   </div>
+</apex:component>

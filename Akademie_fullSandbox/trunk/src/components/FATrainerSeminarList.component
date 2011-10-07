@@ -1,0 +1,14 @@
+<apex:component controller="FATrainerDetailController">
+<h2>Seminare</h2>
+   <apex:dataTable value="{!TrainerSeminars}" var="seminar">
+              <apex:column >
+                  <a href="{!seminar.URL__c}">{!seminar.name}</a>
+              </apex:column>
+              <apex:column >
+                  {!seminar.Seminartitel__c}
+              </apex:column>
+              <apex:column >
+                  <a href="{!seminar.URL__c}">Details</a>
+              </apex:column>
+          </apex:dataTable>
+</apex:component>

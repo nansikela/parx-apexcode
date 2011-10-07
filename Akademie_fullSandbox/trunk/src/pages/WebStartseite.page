@@ -1,0 +1,62 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater" controller="WebStartseiteFacade"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+
+        <script src="{!URLFOR($Resource.web_style, 'js/main.js')}" type="text/javascript"></script>   
+  
+
+    
+        <c:webmainheader11 breadCrubShow="false">
+            <div id="ie7Fix" style="width:100%;">
+            </div>        
+                        <!-- Teasermenu -->
+                <c:WebStartTeaserMenu />
+                <!-- Teaserbox -->
+                <c:WebStartTeaserbox />
+                <!-- Direct Search -->
+                <c:WebstartDirectSearch />
+                
+                <div class="c"></div>
+                
+                <!-- column1 -->
+                <div class="column">
+                    <p>
+                        <img src="{!URLFOR($Resource.web_style, 'i/teaser_academy_profil.jpg')}" />
+                    </p>
+                    <c:contentblock name="LeftBox"/>
+                </div>
+                <div class="column">
+                    <c:contentblock name="MiddleBox" />
+                </div>
+                <div class="column">
+                    <p>
+                        <img src="{!URLFOR($Resource.web_style, 'i/teaser_academy_blog.png')}" />
+                    </p>
+                    <h2>Akademie-Blog</h2>
+                    <br />
+                    
+                    <ul class="academy_blog">
+                    <apex:variable var="isFirst" value="{!'first'}"/>
+                        <apex:repeat value="{!BlogArticle}" var="article">
+                            <li class="{!isFirst}">
+                                <a href="{!article.link__c}" >{!article.title__c}</a> {!article.pubDate__c}
+                                <apex:variable var="isFirst" value="{!''}"/>
+                            </li>
+                        </apex:repeat>
+                    </ul>
+                    <a href="http://blog.die-akademie.de" class="link">Alle Blogeinträge</a>
+                    <div class="spacer"></div>
+                    <c:contentblock name="RightBox" />
+                </div>
+                <div class = "column last">
+                    <c:WebManagementGuide isFirst="true" ></c:WebManagementGuide>
+                    <c:WebNextSeminarsRight show="4"></c:WebNextSeminarsRight>
+                </div>
+
+                
+                 
+             
+        </c:webmainheader11>
+        <c:webfooterR11 />
+</apex:page>

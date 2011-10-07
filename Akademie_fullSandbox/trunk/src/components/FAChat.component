@@ -1,0 +1,5 @@
+<apex:component >
+  <div class="rightbox pink chatWindow">
+      <a href="javascript:void(0)" onclick="javascript:window.open('http://www.arccade.de/yalst/index.php?yinit=true&site=1-1','','height=550,width=530')">BERATUNGS-CHAT</a>
+  </div>
+</apex:component>

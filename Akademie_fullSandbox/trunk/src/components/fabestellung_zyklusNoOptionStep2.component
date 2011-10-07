@@ -1,0 +1,42 @@
+<apex:component controller="FABestellungZyklus" allowDML="true">
+  <h1>Ihre Bestellung</h1>
+  <h2>{!currentTerminBlock.Produktgruppe__r.Name__c}</h2>
+  <apex:form >
+  <apex:PageBlock >
+      <apex:pageblockSection >
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel >Buchungstyp *</apex:outputLabel>
+              <apex:inputField value="{!standardWElement.Buchungstyp__c}" required="true"/>
+          </apex:pageBlockSectionItem>
+      </apex:pageblockSection>
+  
+      <apex:repeat value="{!warenkorbElementSeminar}" var="seminar">
+          <apex:pageBlockSection columns="1" title="{!seminar.s.Portfolio__r.Seminartitel__c}">
+              <apex:pageBlockSectionItem >
+                  <apex:outputLabel >Beginn</apex:outputLabel>
+                  <apex:outputText value="{0,date, dd.MM.yyyy}"><apex:param value="{!seminar.s.seminar__r.Seminarbeginn__c}" /></apex:outputText>
+              </apex:pageBlockSectionItem>
+              <apex:pageBlockSectionItem >
+                  <apex:outputLabel >Ende</apex:outputLabel>
+                  <apex:outputText value="{0,date, dd.MM.yyyy}"><apex:param value="{!seminar.s.seminar__r.Seminarende__c}" /></apex:outputText>
+              </apex:pageBlockSectionItem>
+              <apex:pageBlockSectionItem >
+                  <apex:outputLabel >Hotel Reservierung</apex:outputLabel>
+                  <apex:inputField value="{!seminar.we.Hotelreservierung__c}"/>
+              </apex:pageBlockSectionItem>
+              <apex:pageBlockSectionItem >
+                  <apex:outputLabel >EZ ({!TEXT(seminar.s.seminar__r.seminarOrt__r.EZ_Preis_dieses_Jahr__c)&',- EUR p. N.'})</apex:outputLabel>
+                  <apex:inputField value="{!seminar.we.Einzelzimmer__c}"/>
+              </apex:pageBlockSectionItem>
+              <apex:pageBlockSectionItem >
+                  <apex:outputLabel >DZ ({!TEXT(seminar.s.seminar__r.seminarOrt__r.DZ_Preis_dieses_Jahr__c)&',- EUR p. N.'})</apex:outputLabel>
+                  <apex:inputField value="{!seminar.we.Doppelzimmer__c}"/>
+              </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+      </apex:repeat>
+  </apex:PageBlock>
+  <div>
+      <apex:commandButton value="{!'weiter'}" action="{!goToWarenkorb}"/>
+  </div>
+  </apex:form>
+</apex:component>

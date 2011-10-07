@@ -1,0 +1,14 @@
+<apex:component controller="WebNavigationFacade">
+    <!-- Breadcrumb und Artikelnavigation -->
+    
+     
+    <div class="breadcrumb">
+        <apex:repeat var="item" value="{!BreadcrumbNav}">
+            <apex:outputText escape="false" value="{!IF(!item.isLastCategory,'<a class=\"'+IF(item.isFirstCategory,'home','')+'\" href=\"','<span>')}{!IF(!item.isLastCategory,item.url,'')}{!IF(!item.isLastCategory,'\">','')}{!item.name}{!IF(!item.isLastCategory,'</a>','</span>')}"></apex:outputText>
+                
+        </apex:repeat>
+    </div>
+     
+    
+    
+</apex:component>

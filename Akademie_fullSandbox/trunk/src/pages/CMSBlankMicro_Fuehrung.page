@@ -1,0 +1,61 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+
+    
+        <c:webmainheader11 breadCrubShow="false">
+             <div class="content_wrapper " id="micro_wrapper">
+                                                                     <div class="content_column article" id="content_column_micro">
+                                                                     <div class="content_headline">
+                                                                    <div class="textline">
+                                                                        <c:contentblock name="Ueberschrift"></c:contentblock>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="spacer">&nbsp;</div> 
+                                                                <div class = "">
+                                                                <c:contentblock name="Inhalt"></c:contentblock>
+                                                                <a title="Führung Seminare" href="/seminare/fuehrung" id="seminare_zum_Thema">Unsere Seminare zum Thema</a>
+                                                                <c:contentblock name="Inhalt2"></c:contentblock>
+                                                                <c:WebMicroNext3Seminars get="fuehrung"  />
+                                                                
+                                                                <a title="Persoenlichkeit und Führungsverhalten" href="/seminare/fuehrung/pe101-persoenlichkeit-und-fuehrungsverhalten" id="seminare_weitere_Info">Weitere Seminare und Termine</a>
+                                                            </div>
+                                                            <c:WebArticleFooter ></c:WebArticleFooter>  
+                 
+                 </div>
+                 <div class="right_column"> 
+                 
+                                                                 <div class="right_column_box element bright first">
+
+        
+                                                                    <h3 class="c">KUNDENBERATUNG</h3>
+                                                            
+                                                                    <strong></strong>
+                                                                    <p class="tel">+49.7551.9368-185</p>
+                                                                    <p class="mail">
+                                                                      <a href="mailto:info@die-akademie.de" title="Mail an ">info@die-akademie.de</a>
+                                                                    </p>
+                                                                    <div class="c"></div>
+                                                                  </div>   
+                                                                 <c:contentblock name="RightBoxes"></c:contentblock>
+                                                                 
+                                                                 <div class="right_column_box element bright">
+
+        
+                                                                    <h3 class="c">WEITERFÜHRENDE INHALTE</h3>
+                                                            
+                                                                    <strong></strong>
+                                                                    <p>Akademie Lexikon: <br/><a href="/service/lexikon/f/fuehrung">Führung</a></p><br/>
+                                                                    <p>Akademie Studie: <br/><a href="/fuehrungswissen/akademie-studien/akademie-studie-2009">Führungsrollen - Beruf und Berufung deutscher Manager</a></p><br/>
+                                                                    <p>Seminar: <br/><a href="/seminare/fuehrung/pe117-systemisch-fuehren-im-komplexen-unternehmensalltag">Systemisch Führen</a></p><br/>
+                                                                    <p>Veröffentlichung: <br/><a href="/fuehrungswissen/veroeffentlichungen/china-value-interview">Systemic Leadership - What really Matters</a></p><br/>
+                                                                    <div class="c"></div>
+                                                                  </div>
+                                                                 
+                                                                 
+                 </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+</apex:page>

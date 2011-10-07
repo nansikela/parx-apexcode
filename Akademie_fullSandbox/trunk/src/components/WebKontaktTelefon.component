@@ -1,0 +1,62 @@
+<apex:component controller="WebKontaktController" allowDML="true">
+
+     <div class="content_headline">
+        <div class="textline">
+          <h1>Rückruf</h1>
+        </div>
+      </div>
+   
+      <apex:form >
+          
+          <fieldset>
+          
+              <div>
+                  <label>Anrede*</label>
+                  <apex:selectList styleClass="title" size="1" value="{!websiteLead.Salutation}">
+                      <apex:selectOption itemLabel="Frau" itemValue="{!'Frau'}"></apex:selectOption>
+                      <apex:selectOption itemLabel="Herr" itemValue="{!'Herr'}"></apex:selectOption>
+                  </apex:selectList>
+              </div>
+              <div>
+                  <label>Vorname*</label>
+                  <apex:inputField value="{!websiteLead.firstname}" styleClass="required" required="false"/>
+              </div>
+              <div>
+                  <label>Nachname*</label>
+                  <apex:inputField value="{!websiteLead.lastname}" styleClass="required" required="false"/>
+              </div>
+             
+              <div>
+                  <label>Firma</label>
+                  <apex:inputField value="{!websiteLead.company}" styleClass="" required="false"/>
+              </div>
+              <div>
+                  <label>Telefon*</label>
+                  <apex:inputField value="{!websiteLead.phone}" styleClass="required" required="false"/>
+              </div>
+              <div>
+                  <label>eMail</label>
+                  <apex:inputField value="{!websiteLead.email}" styleClass="email" required="false"/>
+              </div>
+              <div class="area">
+                  <label>Ihre Nachricht</label>
+                  <apex:inputField value="{!websiteLead.Nachricht_durch_Website__c}" required="false"/>
+              </div>
+             
+              
+          </fieldset>
+             <div class = "c"></div>
+             
+              
+              
+          <div class="separator_line"></div>
+          <small>*Pflichtfelder</small>
+          <div class = "r">
+              <apex:commandButton value="Weiter" styleClass="submit" action="{!saveRuf}"  image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+          </div>
+
+      </apex:form>
+
+     
+
+</apex:component>

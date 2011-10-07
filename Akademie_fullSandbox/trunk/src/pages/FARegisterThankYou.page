@@ -1,0 +1,4 @@
+<apex:page controller="FARegisterController" action="{!insertperson}" >
+  <h1>thank you</h1>
+  <apex:messages />
+</apex:page>

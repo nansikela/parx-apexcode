@@ -1,0 +1,96 @@
+<apex:component controller="FAPortfolioController" >
+    <style>
+      th{
+          border-bottom: 1px solid #DEDEDA;
+      }
+  </style>
+    
+    <b>{!currentPortfolio.name} {!IF(currentPortfolio.neu__c,' NEU', '')}</b>
+    <h1 itemprop="name">{!currentPortfolio.Seminartitel__c}</h1>
+    <i><a href="#bewertung" class="stars"><img src="/resource/1311154850000/web_style/i/stars_{!Stars}.gif" alt="{!Stars} von 5" /> (<span itemprop="reviewCount">{!BewertungCount}</span> {!IF(Bewertungcount = '1', 'Bewertung', 'Bewertungen')})</a></i>
+    <span itemprop="description">
+    <apex:outputText value="{!substitute(substitute(currentPortfolio.Beschreibung__c, '<strong>','<h2>'),'</strong>','</h2>')}" escape="false" />
+    </span>
+    <br />
+    <h2 class="termine">Termine</h2>
+    <apex:dataTable rendered="{!IsSeminar}" value="{!SeminarList}" var="seminar">
+        <apex:column value="{!seminar.datum}" headerValue="{!'Datum'}"/>
+        <apex:column headerValue="{!'Ort'}">
+            <a href="{!seminar.ortUrl}">{!seminar.ort}</a>
+        </apex:column>
+        <apex:column headerValue="{!'Trainer'}" styleClass="trainerRow">
+            <apex:outputText value="{!seminar.trainer}" escape="false"></apex:outputText>
+        </apex:column>
+        <apex:column headerValue="{!IF(currentPortfolio.Buchen_deaktivieren__c,'', 'Buchen')}">
+            <apex:outputText value="{!seminar.buchen}" rendered="{!IF(currentPortfolio.Buchen_deaktivieren__c,'false', 'true')}" escape="false"></apex:outputText>
+        </apex:column>
+    </apex:dataTable>    
+    <br />
+    
+    <apex:outputText rendered="{!IF(BewertungCount= '0', false, true)}">
+      <span itemprop="reviews" itemscope="" itemtype="http://schema.org/Review">  
+        <div id="ratinghead">
+        <h2 class="rating">Bewertungen</h2>
+        
+        <a name="bewertung" class="stars r"><img src="/resource/1311154850000/web_style/i/stars_{!Stars}.gif" alt="{!Stars} von 5" /> (<span itemprop="reviewCount">{!BewertungCount}</span> {!IF(Bewertungcount = '1', 'Bewertung', 'Bewertungen')})</a>
+        
+        </div>
+        
+            <apex:repeat value="{!bewertungen}" var="bewertung">
+                <div class="ratingText">
+                <img src="/resource/1311154850000/web_style/i/stars_{!bewertung.Stars}.gif" />
+                <span itemprop="name"><strong >{!bewertung.headline}</strong></span>
+                <p><apex:outputText value="{!bewertung.text}" escape="false"/></p>
+                <p class="author" itemprop="author">{!bewertung.name}</p>
+                </div>
+            </apex:repeat>
+        </span>
+        
+    </apex:outputText>
+    
+    <style>
+            .ratingText img
+            {
+                margin-bottom: 0px;
+                padding-top: 2px;
+                padding-right: 5px;
+            }
+            #ratinghead
+            {
+                height: 60px;
+            }
+            
+            .rating
+            {
+                float: left;
+            }
+            .stars img
+            {
+                margin-top: 2px;
+                margin-right: 5px;
+            }
+            .stars
+            {
+                margin-top: 20px;
+                
+            }
+            .author
+            {
+                font-size: 0.8750em;
+                color: #666;
+            }
+            .ratingText
+            {
+                padding-bottom: 20px;
+            }
+            h2.termine
+            {
+                font-size: 1.5em !important;
+                margin-top: 40px !important;
+            }
+            .trainerRow
+            {
+                padding-left: 5px;
+            }
+        </style>
+</apex:component>

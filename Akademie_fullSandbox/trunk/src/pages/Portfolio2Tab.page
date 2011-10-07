@@ -1,0 +1,74 @@
+<apex:page tabStyle="Portfolio2__c"  controller="Portfolio2TabController" >
+    <apex:includeScript value="{!'https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js'}"/>
+    <apex:includeScript value="{!'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js'}"/>
+    <style>
+        ul { list-style-type: none; }
+        li { background-color:white; 
+            padding-bottom: 5px;
+            padding-top: 5px;
+            border-top: solid 1px lightGrey;
+            border-bottom: solid 1px lightGrey;
+            margin-bottom: 2px;
+            padding-left: 10px;
+        }
+        input{
+        display:none;
+        }
+    </style>
+    
+    <script>
+        $(document).ready(function() {
+            $("ul").each(function(){ $(this).sortable(); });
+            $("ul").bind( "sortupdate", function(event, ui) {
+                var i = 0; $("li").children("input").each(function(){ $(this).val(i++); });
+            });
+        });
+    </script>
+    <apex:sectionHeader title="Portfolio"/>
+    <apex:form >
+    <apex:pageBlock title="Hauptbereiche" rendered="{!IF($CurrentPage.parameters.mode='', true, false)}">
+        <apex:pageBlockTable value="{!bereichList}" var="bereich" >
+                <apex:column headerValue="{!'Aktion'}">
+                    <strong><a href="/{!bereich.id}/e">bearbeiten</a></strong>
+                </apex:column>
+                <apex:column headerValue="{!'Bereich'}">
+                    <apex:outputLink value="{!'/apex/Portfolio2Tab?mode=subbereich&bereichId='&bereich.id}" >{!bereich.name}</apex:outputLink>
+                    
+                </apex:column>
+                <apex:column headerValue="{!'Firma'}">
+                    <apex:outputLink value="{!bereich.Firma__c}">{!bereich.firma__r.name}</apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="{!'Verantwortlicher'}">
+                    <apex:outputLink value="{!bereich.Verantwortlicher__c}">{!bereich.Verantwortlicher__r.name}</apex:outputLink>
+                </apex:column>
+        </apex:pageBlockTable>
+        <apex:pageblockButtons >
+            <apex:commandButton value="{!'Neuen Hauptbereich erstellen'}" action="{!URLFOR($Action.Bereich__c.NEW)}"/>
+            
+        </apex:pageblockButtons>
+    </apex:pageBlock>
+    </apex:form>
+    
+    <apex:form >
+    <apex:pageBlock rendered="{!IF($CurrentPage.parameters.mode='subbereich', true, false)}">
+        
+            <apex:repeat value="{!subbereichList}" var="subbereich">
+                
+                    <h1><a href="/{!subbereich.id}/e">{!subbereich.name}</a> <apex:commandButton value="{!'Neues Portfolio für Bereich erstellen'}" action="{!URLFOR($Action.Portfolio2__c.NEW)&'&lkid_CF00N20000003IqwS='&subbereich.id&'&CF00N20000003IqwS='&subbereich.name}"/></h1>
+                    <ul>
+                        <apex:repeat value="{!subbereich.Firmenakademie_Portfolios__r}" var="portfolio">
+                            <li><a href="/{!portfolio.id}">{!portfolio.name}</a> - {!portfolio.Seminartitel__c}<apex:inputField value="{!portfolio.Anordnung__c}"/></li>
+                        </apex:repeat>
+                    </ul>
+                
+            </apex:repeat>
+        <apex:pageblockButtons >
+            
+            <apex:commandButton value="{!'Sortierung speichern'}" action="{!saveSubBereich}"/>
+            
+        </apex:pageblockButtons>
+        
+    </apex:pageBlock>
+    
+    </apex:form>
+</apex:page>

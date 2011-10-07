@@ -1,0 +1,47 @@
+<apex:component controller="FARegisterController" allowDML="true" >
+  <h1>Bitte registrieren Sie sich</h1>
+  <apex:messages />
+  <apex:form forceSSL="true" >
+  <apex:PageBlock >
+      <apex:PageBlockSection columns="1" >
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel for="anrede" value="{!$Label.Anrede&'*'}" />
+              <apex:inputField value="{!person.Anrede__c}" id="anrede" required="true" /> 
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel for="titel" value="{!$Label.Titel}" />
+              <apex:inputField value="{!person.Titel__c}" id="titel"  /> 
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel for="vorname" value="{!$Label.Vorname&'*'}" />
+              <apex:inputField value="{!person.Vorname__c}" id="vorname"  required="true" />  
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel for="nachname" value="{!$Label.Nachname&'*'}" />
+              <apex:inputField value="{!person.name}" id="nachname"  required="true" /> 
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel for="gesellschaft" value="{!$Label.Gesellschaft&'*'}" />
+              <apex:selectList value="{!person.Nachgeordnete_Firma__c}" id="gesellschaft" size="1"  required="true" >
+                  <apex:selectOptions value="{!nachgeordneteFirmaOptions}"></apex:selectOptions>
+              </apex:selectList>
+          </apex:PageBlockSectionItem>
+           <apex:PageBlockSectionItem >
+              <apex:outputLabel for="Abteilung" value="{!$Label.Abteilung}" />
+              <apex:inputField value="{!person.Abteilung__c}" id="Abteilung" /> 
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel for="Telefon" value="{!$Label.Telefon&'*'}"   />
+              <apex:inputField value="{!person.Telefon__c}" id="Telefon" required="true" /> 
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel for="eMail" value="{!$Label.EmailAdresse&'*'}"   />
+              <apex:inputField value="{!person.Email__c}" id="eMail" required="true" /> 
+          </apex:PageBlockSectionItem>
+      </apex:PageBlockSection>
+      <div class="buttons">
+          <apex:commandButton value="{!'Weiter'}" action="{!toStep2}" image="{!URLFOR($Resource.FA_style, 'i/btn_next.png')}"/>
+      </div>
+  </apex:PageBlock>
+  </apex:form>
+</apex:component>

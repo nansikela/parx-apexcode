@@ -1,0 +1,21 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+    
+
+        <c:webmainheader11 breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column ">
+            <c:WebLexikonUebersicht ></c:WebLexikonUebersicht>
+              </div>
+                 <div class="right_column">
+            
+            <c:WebNextSeminarsRight show="6" isFirst="true"></c:WebNextSeminarsRight>
+            <c:WebManagementGuide ></c:WebManagementGuide>
+        </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+        
+</apex:page>

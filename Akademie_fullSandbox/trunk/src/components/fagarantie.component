@@ -1,0 +1,24 @@
+<apex:component controller="FAKalender">
+  <h1>Für garantierten Lernerfolg<apex:outputText rendered="{!IsCity}">: {!headLineCity}</apex:outputText></h1>
+  <p>Jetzt planen und erfolgreich weiterbilden. Garantiert. Denn für diese Seminare aus unserem offenen Seminarprogramm können wir Ihnen schon heute die Durchführung gewährleisten (bereits ausgebuchte Termine werden nicht angezeigt). 100% Planungssicherheit für 100% Lernerfolg. Sichern Sie sich deshalb schnellstmöglich die verbleibenden Plätze. Nachfolgend unsere Seminartermine mit Durchführungsgarantie:</p>
+  
+          
+  <apex:repeat value="{!seminarKalender}" var="monat">
+      <h2>{!monat.month}</h2>
+      
+      
+          <apex:dataTable value="{!monat.seminarList}" var="seminar">
+              <apex:column >
+                  {!seminar.datum}
+              </apex:column>
+              <apex:column >
+                  {!seminar.titel} <br/> <i>Veranstaltungsort: <a href="/seminare/kalender/{!fromDateString}/{!LOWER(SUBSTITUTE(seminar.ort,' ', '-'))}">{!seminar.ort}</a></i>
+              </apex:column>
+              <apex:column >
+                  <a href="{!seminar.url}">Details</a><br />
+                  <apex:outputText value="{!'<i>'&seminar.buchen&'</i>'}" escape="false" />
+              </apex:column>
+          </apex:dataTable>
+  </apex:repeat>
+  
+</apex:component>

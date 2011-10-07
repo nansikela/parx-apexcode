@@ -1,0 +1,11 @@
+<apex:component Controller="WebStartseiteFacade">
+                
+                <ul id="content_navi">
+                      <li id="front_stage_1" class="front_stage active"><a href="/seminare/fuehrung">Führung</a></li>
+                      <li id="front_stage_2" class="front_stage"><a href="/seminare/strategie-und-organisationsentwicklung">Strategie und Organistationsentwicklung</a></li>
+                      <li id="front_stage_3" class="front_stage"><a href="/seminare/persoenlichkeitsentwicklung">Persönlichkeitsentwicklung</a></li>
+                      <li id="front_stage_4" class="front_stage"><a href="/seminare/fachkompetenz">Fachkompetenz</a></li>
+                      <li id="front_stage_5" class="front_stage"><a href="/seminare/ausbildungen">{!AUSBILDUNGEN}</a></li>
+                </ul>
+                
+</apex:component>

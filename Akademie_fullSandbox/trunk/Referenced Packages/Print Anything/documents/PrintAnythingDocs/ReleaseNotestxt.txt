@@ -1,0 +1,48 @@
+v1.0 : Initial Release 09/19/06
+
+-------------------------------------
+
+v1.1 : Bug fixes & One New Feature 10/27/06
+
+
+Bugs
+
+B010000 : Entity Sequence Numbering not consistent
+	  When queries returned zero rows, subsequent queries from the same entity had different numbers appended 
+	  compared with when results were present. Now all queries have the sequence number appended.
+
+B010002 : multi-record queries with no results terminate processing
+	  When a query is defined to return multiple records and zero exist, processing stops.
+
+
+B010004 : date formatting on null dates terminates processing
+	  When using {DATE:entity.field} syntax, the template never renders if a value is not present.	  
+
+
+Features
+
+B010006 : support templates >32k using documents
+	  It is now possible to use a document for the template source instead of the long text field. This allows
+	  any size of template i.e. > 32k which is the long text field limit.
+
+Upgrade Steps
+
+Bug# B010000 changes the behaviour of the driver so that the merge fields all have the query sequence appended to
+the entity name. This means that any queries that reference these values need to be changed. Also templates need to
+be updated. If you run your package in debug mode, you can see the changes easily.
+
+
+-------------------------------------
+
+v8.1 New Ajax infrastructure & features 4/2/07
+
+Now using the latest ajax infrastructure from SFDC so initialisation is much faster. Support SOQL-R which greatly reduces the query count.
+
+Fixed IE7 bugs.
+
+Added following features at the request of the user community: 
+
+- Date formatting with format mask
+- Automatic template selection
+- Pre-merge javascript hook
+

@@ -1,0 +1,29 @@
+<apex:page controller="Portfolio2BeziehungController" tabStyle="Portfolio2__c">
+  <apex:sectionHeader title="Portfolio Beziehungen hinzufügen"/>
+  <apex:form >
+  <apex:pageBlock >
+      <apex:PageBlockTable value="{!seminarToPortfolioList}" var="seminar" >
+          <apex:column headerValue="Hinzufügen">
+              <apex:inputCheckbox value="{!seminar.toInsert}" />
+          </apex:column>
+          <apex:column headerValue="Beginn">
+          <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                <apex:param value="{!seminar.product.Seminarbeginn__c}" /> 
+            </apex:outputText>
+          </apex:column>
+          <apex:column headerValue="Ende">
+          <apex:outputText value="{0,date,dd'.'MM'.'yyyy}">
+                <apex:param value="{!seminar.product.Seminarende__c}" /> 
+            </apex:outputText>
+              
+          </apex:column>
+          <apex:column headerValue="Veranstaltungsort">
+              <apex:outputText value="{!seminar.product.Veranstaltungsort2__r.account__r.BillingCity}"/>
+          </apex:column>
+      </apex:PageBlockTable>
+      <apex:pageBlockButtons >
+          <apex:commandButton value="{!'Zu Portfolio hinzufügen'}" action="{!save}"/>
+      </apex:pageBlockButtons>
+  </apex:pageBlock>
+  </apex:form>
+</apex:page>

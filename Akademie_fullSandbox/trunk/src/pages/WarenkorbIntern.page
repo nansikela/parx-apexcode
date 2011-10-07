@@ -1,0 +1,29 @@
+<apex:page tabStyle="Warenkorb__c" controller="WarenkorbInternView">
+  <apex:pageBlock >
+      <apex:pageBlockSection title="Teilnehmer" columns="1">
+          <apex:outputField value="{!warenkorb.Person__r.Anrede__c}"/>
+          <apex:outputField value="{!warenkorb.Person__r.Vorname__c}"/>
+          <apex:outputField value="{!warenkorb.Person__r.name}"/>
+          <apex:outputField value="{!warenkorb.Person__r.Strasse__c}"/>
+          <apex:outputField value="{!warenkorb.Person__r.PLZ__c}"/>
+          <apex:outputField value="{!warenkorb.Person__r.Ort__c}"/>
+          <apex:outputField value="{!warenkorb.Person__r.Land__c}"/>
+          <apex:outputField value="{!warenkorb.Person__r.Telefon__c}"/>
+          <apex:outputField value="{!warenkorb.Person__r.Email__c}"/>
+      </apex:pageBlockSection>
+  </apex:pageBlock>
+  <apex:repeat value="{!warenkorb.Anschriften__r}" var="a">
+      <apex:pageBlock title="Anschrift">
+          <apex:pageBlockSection columns="1">
+              <apex:outputField value="{!a.Firma__c}"/>
+              <apex:outputField value="{!a.Ansprechpartner__c}"/>
+              <apex:outputField value="{!a.Strasse__c}"/>
+              <apex:outputField value="{!a.PLZ__c}"/>
+              <apex:outputField value="{!a.Ort__c}"/>
+              <apex:outputField value="{!a.Land__c}"/>
+              <apex:outputField value="{!a.Ihr_Weg_zu_uns__c}"/>
+              <apex:outputField value="{!a.Nachricht__c}"/>
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:repeat>
+</apex:page>

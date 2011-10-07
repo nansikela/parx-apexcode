@@ -1,0 +1,22 @@
+<apex:component >
+<div class="content_headline">
+        <div class="textline"><h1>Trainer und Berater</h1></div>
+
+      </div> 
+      <p>
+        Über 100 erfahrene und spezialisierte Trainer und Berater der Akademie für Führungskräfte vermitteln
+        Ihnen nicht nur Theorie- und Fachwissen, sondern unterstützen methodisch das nachhaltige Lernen für
+        Ihre berufliche Praxis. Für Informationen zu den einzelnen Trainern klicken Sie bitte auf den
+        entsprechenden Namen in der alphabetischen Übersicht.
+      </p>
+      
+            <c:WebTrainerGreyBox ></c:WebTrainerGreyBox>
+      
+      <br class="c" />
+    
+      <c:WebTrainerProfileSmall ></c:WebTrainerProfileSmall>
+      <br class="c" />
+
+    
+
+</apex:component>

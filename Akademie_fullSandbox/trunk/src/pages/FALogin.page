@@ -1,0 +1,53 @@
+<apex:page standardStylesheets="false" title="test"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    
+    <html>
+    <head>
+    
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screenplus.css')}"/>
+        <link href="{!URLFor($Resource.FA_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery-1.4.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/headerplus.js')}"/>   
+    </head>
+    <body>
+    <div class="site_wrapper">
+        <div class="header">
+            <a href="http://www.die-akademie.de" id="logo" title="Zur Startseite">
+                Die Akademie für Führungskräfte
+            </a>
+            <div class="servicenavi">
+              
+              <ul>
+                <li><a href="http://www.cognos-ag.de/" title="Zur Cognos  AG" id="cognosLogo" target="_blank">COGNOS COMPETENCE GROUP</a></li>
+                <li><a href="http://www.die-akademie.de/service/rueckruf">Rückruf</a></li>
+                <li><a href="http://www.die-akademie.de/service/kontakt">Kontakt</a></li>
+                <li><a href="http://www.die-akademie.de/service/impressum">Impressum</a></li>
+                <li><a href="http://www.die-akademie.de/service/agb">AGB</a></li>
+               
+                <li><a class="login" href="http://akademie.parx.ch/FALogin" >Login</a></li>
+              </ul>
+              
+            </div>
+            <div class="searchfield"></div>
+             <div class="headnavi"></div>
+            <div class="content_wrapper ">
+                 <div class="content_column article">
+                     <c:FALogin ></c:FALogin>
+                 </div>
+                 <div class="right_column">
+                     
+                 </div>
+             </div>
+            
+        </div>
+    </div>
+       
+       
+    </body>
+    </html>
+</apex:page>

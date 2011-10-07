@@ -1,0 +1,38 @@
+<apex:component controller="FABereichUebersicht">
+  <h1>{!currentBereich.name}</h1>
+  <p><apex:outputText escape="false" value="{!currentBereich.Beschreibung__c}"/></p>
+  <apex:outputText rendered="{!IsCurrentBereichPortfolioList}">
+      <apex:dataTable value="{!currentBereichPortfolioList}" var="seminar">
+              <apex:column >
+                  
+                  <a href="{!seminar.URL__c}">{!seminar.name}</a>
+              </apex:column>
+              <apex:column >
+                  {!seminar.Seminartitel__c}
+                  <apex:outpuTText rendered="{!seminar.Neu__c}"><span class=" new"> NEU</span></apex:outpuTText>
+              </apex:column>
+              <apex:column >
+                  <a href="{!seminar.URL__c}">Details</a>
+              </apex:column>
+          </apex:dataTable>
+  </apex:outputText>
+  <apex:repeat value="{!currentSubBereich}" var="b">
+      <h2>{!b.name}</h2>
+      <p><apex:outputText escape="false" value="{!b.bereich.Beschreibung__c}"/></p>
+      
+          <apex:dataTable value="{!b.portfolioList}" var="seminar">
+              <apex:column >
+                  <a href="{!seminar.URL__c}">{!seminar.name}</a>
+              </apex:column>
+              <apex:column >
+                   <apex:outputText rendered="{!seminar.Englisch__c}"><img alt="englisch" src="{!URLFOR($Resource.web_style,'/i/flag_en.gif')}" class="flag" /></apex:outputText>
+                  {!seminar.Seminartitel__c}
+                  <apex:outputText rendered="{!seminar.Neu__c}"><span class=" new"> NEU</span></apex:outputText>
+              </apex:column>
+              <apex:column >
+                  <a href="{!seminar.URL__c}">Details</a>
+              </apex:column>
+          </apex:dataTable>
+  </apex:repeat>
+  
+</apex:component>

@@ -1,0 +1,148 @@
+<apex:component controller="FAReporting" >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Bestellungen Status</h1>
+ <script type="text/javascript"> 
+        
+            var chart;
+            $(document).ready(function() {
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'container',
+                        defaultSeriesType: 'column',
+                        margin: [ 50, 50, 100, 80]
+                    },
+                    title: {
+                        text: 'Bestellungen in den letzten 30 Tagen'
+                    },
+                    xAxis: {
+                        categories: [
+                            <apex:variable var="isNotFirst" value="false"/>
+                            <apex:repeat value="{!SeminarBereichCounter}" var="seminar"><apex:outputText rendered="{!isNotFirst}">,</apex:outputText><apex:variable var="isNotFirst" value="true"/>'{!seminar.text}'</apex:repeat>
+                        ],
+                        labels: {
+                            rotation: -45,
+                            align: 'right',
+                            style: {
+                                 font: 'normal 13px Verdana, sans-serif'
+                            }
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Anzahl Bestellungen'
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            return '<b>'+ this.x +'</b><br/>'+
+                                 'Bestellungen in diesem Monat: '+ Highcharts.numberFormat(this.y, 1) +
+                                 '';
+                        }
+                    },
+                        series: [{
+                        name: 'Bestellungen',
+                        data: [<apex:variable var="isNotFirst" value="false"/>
+                            <apex:repeat value="{!SeminarBereichCounter}" var="seminar"><apex:outputText rendered="{!isNotFirst}">,</apex:outputText><apex:variable var="isNotFirst" value="true"/>{!seminar.counter}</apex:repeat>
+                        ],
+                        dataLabels: {
+                            enabled: true,
+                            rotation: 0,
+                            color: '#FFFFFF',
+                            align: 'center',
+                            x: -3,
+                            y: 20,
+                            formatter: function() {
+                                return this.y;
+                            },
+                            style: {
+                                font: 'normal 13px Verdana, sans-serif'
+                            }
+                        }           
+                    }]
+                });
+                /**Table Hide **/
+                $(".hideTable").hide();
+                var hidden= true;
+                $("#showTable").click(function(e){
+                if(hidden){
+                $(".hideTable").slideDown("slow");
+                hidden= false;
+                }else{
+                $(".hideTable").slideUp("slow");
+                hidden = true;
+                }
+                });
+                
+            });
+                
+        </script> 
+        
+        <div id="container" style="width: 680px; height: 400px; margin: 0 auto"></div> 
+        <br /><br />
+    <p>Alle angemeldeten Nutzer <a href="#" id="showTable"> anzeigen</a> / <a href="/FAReportingExcel?show=order">als Excel downloaden</a></p>
+    <div class="hideTable">
+    
+    
+        <apex:DataTable value="{!WarenkorbElemente}" var="w" styleClass="personList" >
+            <apex:column headerValue="Bestelld.">
+                <apex:outputText value="{0,date,dd.MM.yyyy}">       
+                    <apex:param value="{!w.CreatedDate}" />   
+                </apex:outputText> 
+            </apex:column>
+            
+            <apex:column headerValue="Termin">
+                <apex:outputText value="{0,date,dd.MM.yyyy}">       
+                    <apex:param value="{!w.Seminarbeginn__c}" />   
+                </apex:outputText> - 
+                <apex:outputText value="{0,date,dd.MM.yyyy}">       
+                    <apex:param value="{!w.Seminarende__c}" />   
+                </apex:outputText>
+            </apex:column>
+            
+            <apex:column headerValue="Teiln.">
+                    {!w.warenkorb__r.Person__r.Vorname__c} {!w.warenkorb__r.Person__r.name}
+            </apex:column>
+            <apex:column headerValue="Seminar">
+                    <a href="{!w.portfolio__r.URL__c}">{!w.portfolio__r.name} - {!w.portfolio__r.Seminartitel__c}</a>
+            </apex:column>
+            <apex:column headerValue="Preis">
+                    {!w.portfolio__r.Web_Preis__c}
+            </apex:column>
+            <apex:column headerValue="Hotel">
+                    <apex:outputText value="{0,date,dd.MM.yyyy}">       
+                    <apex:param value="{!w.Anreise__c}" />   
+                </apex:outputText> - <apex:outputText value="{0,date,dd.MM.yyyy}">       
+                    <apex:param value="{!w.Abreise__c}" />   
+                </apex:outputText> {!IF(w.Einzelzimmer__c, 'EZ','')} {!IF(w.Doppelzimmer__c, 'DZ','')}
+            </apex:column>
+           <apex:column headerValue="Status">
+           
+                    {!IF(w.Status__c=='Warten auf Approval durch Vorgesetzten', 'Vorgesetzter steht aus', '')}
+                    {!IF(w.Status__c=='Warten auf Approval von Vorgesetztem', 'Vorgesetzter steht aus', '')}
+                    {!IF(w.Status__c=='Warten auf Apporval durch Akademie', 'Approval abgeschlossen', '')}
+                    {!IF(w.Status__c=='Erfolgreich angemeldet', 'Approval abgeschlossen', '')}
+                    {!IF(w.Status__c=='Storno durch Teilnehmer', 'Teilnehmer Storno', '')}
+                    {!IF(w.Status__c=='Storno durch Vorgesetzter', 'Vorgesetzter Storno', '')}
+                    {!IF(w.Status__c=='Storno durch Akademie', 'Akademie Storno', '')}
+                    {!IF(w.Status__c=='Seminar abgeschlossen', 'Seminar abgeschlossen', '')}
+                    {!w.Stornogrund__c} {!w.Anderer_Stornogrund__c}
+            </apex:column>
+        </apex:DataTable>
+    
+    </div>
+    <style>
+        
+        .personList{
+            width: 680px;
+            
+        }
+       .personList * td{
+            padding: 5px;
+        }
+    
+    </style>
+</apex:component>

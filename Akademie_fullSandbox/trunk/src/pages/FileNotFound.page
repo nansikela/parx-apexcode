@@ -1,0 +1,14 @@
+<apex:page showHeader="false" title="" cache="false" controller="WebArccadeRedirect"  expires="1">
+<html>  
+  <head>
+      <meta http-equiv="REFRESH" content="0;url={!IF(newUrl!='','http://die-akademie.de', newUrl)}"/>
+  </head>
+  <body>
+       
+       <apex:outputText rendered="{!isArccade}">
+           <H1>Arccade ist umgezogen</H1>
+           <p>Bitte nutzen Sie diesen Link <a href="{!newUrl}">{!newUrl}</a></p>
+       </apex:outputText>
+  </body>     
+</html>
+</apex:page>

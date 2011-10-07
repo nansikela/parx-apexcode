@@ -1,0 +1,19 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+    
+
+    
+        <c:webmainheader11 breadCrubShow="false">
+             <div class="content_wrapper ">
+                 
+                <script type="text/javascript" src="http://flip.straitflip.de/index.cfm?cmsfkt=src&amp;src=swfobject.js&amp;type=js"></script>
+                <div id="inline_v2_39933152_e081_515d_74c60f193ce2a211">Bitte aktivieren Sie Javascript in Ihrem Browser</div>
+                <script type="text/javascript" src="http://flip.straitflip.de/js_straitflip_v2.cfm?katid=39933152_e081_515d_74c60f193ce2a211"></script>
+
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+
+</apex:page>

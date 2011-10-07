@@ -1,0 +1,67 @@
+<apex:page standardStylesheets="false" 
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true" controller="FASiteFULLFacade"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    
+    <html>
+    <head>
+    
+        <apex:stylesheet value="{!URLFOR($Resource.web_style2, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.web_style2, 'screenplus.css')}"/>
+        <link href="{!URLFor($Resource.FA_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        <apex:includeScript value="{!'/WarenkorbJson'}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/jquery-1.4.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/headerplus.js')}"/>
+        <meta content="Kh7Sp2vXLeBJGb3LkT5U9Z6oiy554qygPokJ5izV5PI" name="google-site-verification" />
+        <meta content="{!MetaDescription}" name="description" />
+        <meta content="{!MetaKeywords}" name="keywords" />
+
+        <title>{!title}</title>   
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-4873624-5']);
+          _gaq.push(['_trackPageview']);
+        
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        
+        </script>
+    </head>
+    <body>
+    
+    
+        <c:WebmainHeader2 breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column article">
+                     <c:FAPreisgruppe />
+                 </div>
+                 <div class="right_column">
+                     <c:WebPreisgrupperightinfo />
+                     <c:FAChat />
+                     <c:FAWeiterfuehrendeSeminare ></c:FAWeiterfuehrendeSeminare>
+                     <c:faveroeffentlichung />
+                 </div>
+             </div>
+        </c:WebmainHeader2>
+        <c:FAfooter />
+    <style>
+        .right_column * table{
+            margin-top: 0;
+            margin-bottom: 0;
+            width: 220px;
+            font-size: 0.75em;
+        }
+        .right_column * .labelCol{
+            width: 80px;
+        }
+    </style>
+    </body>
+    
+    </html>
+</apex:page>

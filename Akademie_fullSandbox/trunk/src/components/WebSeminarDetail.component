@@ -1,0 +1,80 @@
+<apex:component controller="SeminarDetailviewController"  >
+    <div id = "head_wrapper">
+            <div class = "content_head">
+                <p class = "seminar_id category_strategy"> {!portfolio.Name} <span class="new">{!portfolio.NEU__c}</span>
+                </p>
+                <div class = "c"></div>
+            </div>
+            <!--Right box-->
+            <div class = "right_column">
+                <div class="seminar_infobox">
+                    <ul>
+                        <li>
+                            <div class="caption">Dauer</div>
+                            <div class="l">{!IF(portfolio.Dauer_in_Tagen__c = 1, '1 Tag', SUBSTITUTE(TEXT(portfolio.Dauer_in_Tagen__c) & ' Tage', '.0', ''))}</div>
+                            <div class="c"></div>
+                        </li>
+                        <li>
+                            <div class="caption">Teilnehmer</div>
+                            <div class="l">max. {!SUBSTITUTE(TEXT(portfolio.Max_Teilnehmer__c), '.0', '')}</div>
+                            <div class="c"></div>                           
+                        </li>
+                    </ul>
+                    <!--<div class="modul_spacer"></div>-->
+                    <a href="/page?pageid=a0M20000003XjFrEAK&seminarCode={!portfolio.name}"><img type="image" src="{!URLFOR($Resource.web_style, 'i/btn_seminar_booking.gif')}" /></a>
+                </div>
+            </div>
+            <!--End Right box-->
+            <!--StartHeadline-->
+            <div class = "textline">
+                <h1>{!portfolio.Seminartitel__c}</h1>
+                <p class="headline_submenu"><img alt="{!bewertungsDurchschnittString} Sterne" src="{!URLFOR($Resource.web_style, 'i/stars_'+bewertungsDurchschnittString+'.gif')}"/>
+                      <a title="Zu den Bewertungen" href="#Bewertung">({!IF(bewertungsAnzahlString== '1', bewertungsAnzahlString+' Bewertung', bewertungsAnzahlString+' Bewertungen')})</a>
+                    </p>
+            </div>
+            <!--EndHeadline-->
+            <div class = "c"></div>
+            
+          
+        </div>
+        <!--StartContent-->
+        <div class = "content_column">
+            <br/>
+            <h3>{!portfolio.untertitel__c}</h3>
+           <p><apex:outputText escape="false" value="{!portfolio.Intro__c}"></apex:outputText></p>
+            <h3>{!IF(portfolio.Englisch__c == 'true','Content','Inhalt')}</h3>
+                <ul class="list">
+                    <!-- Substitute list metachars with li's -->
+                    <apex:outputText escape="false" value="{!SUBSTITUTE(SUBSTITUTE(SUBSTITUTE('<!-- XX -->' & SUBSTITUTE(portfolio.Inhalte__c, '<pt>', '</li><li>'),'<!-- XX --></li>', '') & '</li>','<b>','<h3>'),'</b>','</h3>')}"></apex:outputText>
+                </ul>
+           
+            
+           <h3>{!IF(portfolio.Englisch__c == 'true','Method','Methode')}</h3>
+              <p><apex:outputText escape="false" value="{!portfolio.Methode__c}"></apex:outputText></p>
+        
+        
+           <h3>{!IF(portfolio.Englisch__c == 'true','Target Group','Zielgruppe')}</h3>
+              <p><apex:outputText escape="false" value="{!portfolio.Zielgruppe__c}"></apex:outputText></p>
+              
+           
+              <p><apex:outputText escape="false" value="{!SUBSTITUTE(SUBSTITUTE(portfolio.Teilnehmerhinweis__c,'<b>','<h3>'),'</b>','</h3>')}"></apex:outputText></p>
+        
+              <!-- TODO: conditional component: only include when products.length() > 0 -->
+              <c:WebSeminarDetailNextSeminars />
+              <a name="Bewertung"></a>
+              <apex:outputText rendered="{!IF(bewertungsAnzahl>0, 'true','false')}">
+              <div class="separator_head ratingBottom">
+                <a title="Zu den Bewertungen" href="#Bewertung" class="r">({!IF(bewertungsAnzahlString== '1', bewertungsAnzahlString+' Bewertung', bewertungsAnzahlString+' Bewertungen')})</a>
+                <img alt="{!bewertungsDurchschnittString} Sterne" class="r stars" src="{!URLFOR($Resource.web_style, 'i/stars_'+bewertungsDurchschnittString+'.gif')}"/>
+                <h4 class="l">Bewertungen</h4>
+                <div class="c"></div>
+              </div>
+              </apex:outputText>
+              
+              <c:WebNutzerBewertung bewertungList="{!bewertungsList}" rendered="{!IF(bewertungsAnzahl>0, 'true','false')}" />
+
+            <apex:componentBody />
+        </div><!--EndContent-->
+
+
+</apex:component>

@@ -1,0 +1,90 @@
+<apex:component controller="WebAnmeldungController" allowDML="true">
+
+     <div class="content_headline">
+        <div class="textline">
+          <h1>Anmeldung</h1>
+          <p class="headline_submenu">
+            1. Seminar
+            <span class="pipe">|</span>
+            2. Teilnehmer
+            <span class="pipe">|</span>
+            3. Hotel
+            <span class="pipe">|</span>
+            4.Rechnung
+            <span class="pipe">|</span>
+            <span class="active">5. Bestätigung</span>
+          </p>
+        </div>
+      </div>
+     <c:webanmeldungerror rendered="{!IF($CurrentPage.parameters.error=='1','true', 'false')}"></c:webanmeldungerror>
+      Bitte prüfen sie Ihre Bestellung
+      <apex:form >
+                <div class="separator_head">
+                <!--<a class="participant_delete r" title="Teilnehmer entfernen" href="#">Teilnehmer entfernen</a>-->
+                <h4 class="l">Zusammenfassung</h4>
+                <div class="c"></div>
+              </div>
+              
+         <table>
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Produkt</th>
+            <th colspan="2" style="width: 120px">Anzahl</th>
+            <th class="col_price">Einzelpreis</th>
+          </tr>  
+        </thead>
+        <tbody>
+          <tr class="first">
+            <td class="category_default"><a title="{!bestellung.seminar__r.portfolio__r.name}" href="#">{!bestellung.seminar__r.portfolio__r.name}</a></td>
+            <td>
+              {!bestellung.seminar__r.portfolio__r.Seminartitel__c}<br/>
+              {!HotelDaten.beginn} - {!HotelDaten.ende}, {!bestellung.seminar__r.veranstaltungsort2__r.name}, {!bestellung.seminar__r.veranstaltungsort2__r.account__r.billingcity}<br/>
+              Teilnehmer: {!bestellung.teilnehmer1__r.name} <br/> 
+              {!bestellung.teilnehmer2__r.name}<br/>
+              <small>{!hotelBuchungsText}</small>
+            </td>
+            <td>{!IF(bestellung.teilnehmer2__r.name != '', '2','1')}</td>
+            <td></td>
+            <td class="col_price" width = "100px">{!IF(preise.einzelpreis!='0,-', preise.einzelpreis & ' EUR', 'kostenlose Platzreservierung für 10 Tage')} </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="basket_total">
+      <table>
+        <tbody><tr>
+          <td>
+            Summe<br/>
+            19% MwSt.
+          </td>
+          <td class="col_price">
+            {!preise.summe} EUR<br/>
+            {!preise.mwst} EUR
+          </td>
+        </tr>
+        <tr>
+          <td class="total">Gesamtpreis</td><td class="col_price total">{!preise.gesamtpreis} Euro</td>
+        </tr>
+      </tbody></table>
+      </div>    
+      
+              <apex:inputField value="{!bestellung.AGB_akzeptiert__c}"/> Ich bestelle/reserviere oben aufgeführte Produkte im Rahmen der <a href="/page?pageid=a0M20000003Xnu3" target="_blank">Allgemeinen Geschäftsbedingungen</a> der Akademie für Führungskräfte der Wirtschaft GmbH.
+          
+              <div class="separator_line"></div>
+              
+              <p><strong>Widerrufsrecht für Verbraucher</strong><br/>
+Als Verbraucher haben Sie das Recht, Ihre Vertragserklärung innerhalb von zwei Wochen nach Erhalt unserer Anmelde/Bestellbestellbestätigung ohne Angabe von Gründen in Textform (z. B. Brief, Telefax, E-Mail) zu widerrufen. Die Frist für Ihren Widerruf beginnt frühestens am Tag nach Erhalt Ihrer Anmeldebestätigung und dieser Belehrung in Textform. Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung des Widerrufs. Ihr Widerrufsrecht erlischt vorzeitig, wenn Ihr Vertragspartner mit der Ausführung der Dienstleistung mit Ihrer ausdrücklichen Zustimmung vor Ende der Widerrufsfrist begonnen hat oder Sie diese selbst veranlasst haben (z. B. den Besuch des gebuchten Seminars etc.).
+Der Widerruf ist zu richten an: Akademie für Führungskräfte der Wirtschaft GmbH, Seepromenade 19, 88662 Überlingen, Telefax: +49.7551.9368100, E-Mail: info@die-akademie.de. Im Falle eines wirksamen Widerrufs sind die beiderseits empfangenen Leistungen zurückzugewähren (und ggf. gezogene Nutzungen, z.B. Zinsen herauszugeben).</p>
+            <div class = "c"></div>
+              
+              
+          <div class="separator_line"></div>
+          <div class = "r">
+              <apex:commandButton value="Weiter" action="{!save4}" image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+          </div>
+          <div class="c"></div>
+      </apex:form>
+
+     
+
+</apex:component>

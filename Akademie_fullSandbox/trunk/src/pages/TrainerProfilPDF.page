@@ -1,0 +1,124 @@
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false"  renderAs="pdf" controller="TrainerProfilPDF" cache="false" >
+  <html>
+  <head>
+  <style>
+      @page
+      {
+          size:210mm 297mm;
+          margin: 13mm 12mm 12mm 12mm;
+          
+      }
+      body
+      {
+          font-family: Myriad Pro Light, arial, verdana, sans-serif;
+          
+      }
+      h1
+      {
+          font-style: italic;
+          font-size: 48px;
+          margin-top: 0px;
+          margin-bottom:4.7mm;
+          
+      }
+      em
+      {
+          font-size: 20px;
+          font-style: bold;
+      }
+      div.trainerImageQuote
+      {
+          margin-top: 7.37mm;
+          margin-left: 0.653mm;
+      }
+      div.quote
+      {
+          display:inline-block;
+          margin-left:15mm;
+          margin-right:15mm;
+          padding-top:12.5mm;
+          margin-top:auto;
+          
+          margin-bottom:auto;
+          font-size: 11px;
+          text-align:center;
+          width:110mm;
+          hight: 22.5mm;
+          display:inline-block;
+          font-size:14px;
+      }
+      div.logo
+      {
+          float:right;
+          width:30mm;
+          height:30mm;
+          background-color:#555;
+      }
+      div.headline
+      {
+          
+          margin-top:11mm;
+          height:24mm;
+          width:120mm;
+          float:left;
+      }
+      div.content
+      {
+          margin-left: 10mm;
+          display:inline-block;
+      }
+      
+      h2, ul li, table * strong
+      {
+          font-size: 12px;
+          margin:0;
+          padding:0;
+          margin-top:0.75em;
+      }
+      li
+      {
+          padding-left: 20px;
+          margin-left: 40px;
+      }
+      ul
+      {
+          margin: 0;
+          margin-left: 0.75em;
+          margin-bottom: 24px;
+          
+      }
+  </style>
+  </head>
+ <body>
+  <div style=" width:100%; height:45mm">
+      <div class="headline">
+          <h1>Trainerprofil</h1>
+          <em><strong>{!trainer.Titel_Anrede__c} {!trainer.firstname} {!trainer.Lastname} (*<apex:outputText value="{0,date,yyyy}">
+    <apex:param value="{!trainer.Birthdate}" /> 
+</apex:outputText>)</strong></em>
+      </div>
+      <div class="logo">
+          <img src="{!URLFOR($Resource.WebAkademieLogoForPDF)}" width="100%" height="100%" />
+      </div>
+  </div>
+  <div style="width:100%; height:50mm ">
+      <img src="{!URLFOR($RESOURCE.ContactImages, trainer.BildURL__c)}" style="width:3.15cm; height: 3.92cm; float:left;" />
+      <div class="quote">
+          <strong>"Du sollst der werden, der du bist." <br />
+          (Friedrich Nietzsche)</strong>
+      </div>
+  </div>
+  <table style="margin:0; border-spacing: 0; border: 0;">
+      <tr>
+          <td style="width:3.1cm; background-color: #d9d9d9;"></td>
+          <td style="padding-left:1cm;">
+              <apex:outputText value="{!trainer.Website_Trainingsschwerpunkte__c}" escape="false"></apex:outputText>
+              <apex:outputText value="{!trainer.Website_Profil__c }" escape="false"></apex:outputText>
+          </td>
+          
+      </tr>
+  </table>
+  
+  </body>
+    </html>
+</apex:page>
