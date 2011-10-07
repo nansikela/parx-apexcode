@@ -1,0 +1,26 @@
+<apex:page controller="FANavigationTabRegisterController" tabStyle="Navigation__c">
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <a href="https://spreadsheets.google.com/a/parx.com/ccc?key=0AoJ9HSrL4iqhdEtiY1RPX3Y5U3JTeEMxUTRfUFJyM0E&authkey=CNeoz98J&hl=en#gid=0">Doc</a>
+            <a href="/apex/FANewNavTest">Firmenportal</a>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+    <apex:variable value="{!1}" var="anzahl"/>
+    <apex:PageBlock >
+    <apex:repeat value="{!navigation}" var="nav">
+        
+            <apex:pageBlockSection title="{!nav.Firma__r.name}: {!nav.name}" columns="2">
+        
+        <apex:outputLink value="/{!nav.id}">{!nav.name}</apex:outputLink><br />
+            <apex:repeat value="{!nav.Untergeordnet__r}" var="n">
+                
+                
+                    Untergeordnet: <apex:outputLink value="/{!n.id}">{!n.name}</apex:outputLink><br />
+                
+            </apex:repeat>
+        </apex:pageBlockSection>
+    </apex:repeat>
+    
+    </apex:PageBlock>
+</apex:page>

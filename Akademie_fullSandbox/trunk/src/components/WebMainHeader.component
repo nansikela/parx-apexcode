@@ -1,0 +1,47 @@
+<apex:component controller="WebSiteSearchRequestSender">
+<div class="header">
+    <a id="logo" href="/" title="Zur Startseite"><img alt="Die Akademie" src="{!URLFOR($Resource.web_style, 'i/logo_die_akademie.png')}" /></a>
+
+    <!-- Service Navigation -->
+    <div class="servicenavi">
+      <a href="http://www.arccade.de/Arccade.htm" class="login" target="_blank">Login</a>
+        
+      <ul>
+        <!--<li><a href="#">English</a></li>-->
+        <li><a href="/service/rueckruf">Rückruf</a></li>
+        <li><a href="/service/kontakt">Kontakt</a></li>
+        <li><a href="/service/impressum">Impressum</a></li>
+        <li><a href="/service/agb">AGB</a></li>
+
+      </ul>
+      <a href="http://www.cognos-ag.de/" title="Zur Cognos  AG"><img width="145" height="17" src="{!URLFOR($Resource.web_style, 'i/logo_cognos_competence_group.png')}" alt="COGNOS COMPETENCE GROUP" title="COGNOS COMPETENCE GROUP" /></a>
+    </div>
+
+    
+    <div class="searchfield">
+     <apex:form id="myForm" >  
+         <apex:inputText id="autocomplete" styleClass="autocomplete" value="{!query}" />
+         <apex:commandButton action="{!sendToSiteSearch}" image="{!URLFOR($Resource.web_style, 'i/btn_submit_loupe.gif')}" styleClass="submitbtn"/>
+     </apex:form>
+      
+        
+        
+
+      
+      <!-- <div class="suggestion">
+        <ul>
+          <li>Teamentwicklung</li>
+          <li>Themenzentrierte Interaktion</li>
+          <li>Trance</li>
+          <li>Transaktionsanalyse</li>
+          <li>Typologie</li>
+        </ul>
+      </div> -->
+      
+    </div>
+   
+    <c:WevHorizontaleNav /> 
+    
+    
+  </div>
+</apex:component>

@@ -1,0 +1,8 @@
+<apex:component >
+    <div class="searchfield">
+     <form method="post" action="">
+         <input type="text"  class="autocomplete" />
+         <input type="image" src="{!URLFOR($Resource.web_style, 'i/btn_submit_loupe.gif')}"  class="submitbtn" />
+     </form>
+     </div>
+</apex:component>

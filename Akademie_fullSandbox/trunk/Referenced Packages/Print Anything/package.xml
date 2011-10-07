@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Print Anything</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <namespacePrefix>PRINTANY</namespacePrefix>
+    <types>
+        <members>PrintAnything</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Package__c.Name__c</members>
+        <members>Package__c.Pre_Merge_Javascript__c</members>
+        <members>Package__c.Template_Selection_Field__c</members>
+        <members>Query__c.Package__c</members>
+        <members>Query__c.Retrieve_Entity__c</members>
+        <members>Query__c.Retrieve_Field__c</members>
+        <members>Query__c.SOQL__c</members>
+        <members>Query__c.Sequence__c</members>
+        <members>Query__c.Singleton_Field_List__c</members>
+        <members>Template__c.Content_Document_Id__c</members>
+        <members>Template__c.Content__c</members>
+        <members>Template__c.Css_Javascript__c</members>
+        <members>Template__c.Default_Date_Format__c</members>
+        <members>Template__c.Document_Link__c</members>
+        <members>Template__c.Package__c</members>
+        <members>Template__c.Selection_Value__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Package__c</members>
+        <members>Query__c</members>
+        <members>Template__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>AboutPrintAnything</members>
+        <members>Package__c</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>PrintAnythingDocs</members>
+        <members>PrintAnythingDocs/DatasheetPrintAnythingpdf.pdf</members>
+        <members>PrintAnythingDocs/PackageEventInvitexls.xls</members>
+        <members>PrintAnythingDocs/PackageQuotexls.xls</members>
+        <members>PrintAnythingDocs/PrintAnything_Customization_and_Enhancement_Guidepdf.pdf</members>
+        <members>PrintAnythingDocs/QuoteScreenshotjpg.jpg</members>
+        <members>PrintAnythingDocs/ReleaseNotestxt.txt</members>
+        <members>PrintAnythingTemplates</members>
+        <members>PrintAnythingTemplates/EventInviteEnglishA4Template.txt</members>
+        <members>PrintAnythingTemplates/QuoteEnglishA4html.html</members>
+        <members>PrintAnythingTemplates/QuoteKoreanA4html.html</members>
+        <members>PrintAnythingTemplates/QuoteSimplifiedChineseA4html.html</members>
+        <name>Document</name>
+    </types>
+    <types>
+        <members>Package__c-Printer Package Layout</members>
+        <members>Query__c-Query Layout</members>
+        <members>Template__c-Template Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>PrintAnythingAboutTab</members>
+        <members>PrintAnythingDriver</members>
+        <name>Scontrol</name>
+    </types>
+    <types>
+        <members>Package__c.No_Whitespace_in_Name</members>
+        <members>Query__c.Must_specify_query</members>
+        <members>Query__c.Retrieve_or_SOQL</members>
+        <members>Template__c.Content_or_Document</members>
+        <name>ValidationRule</name>
+    </types>
+    <version>20.0</version>
+</Package>

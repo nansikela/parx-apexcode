@@ -1,0 +1,5 @@
+<apex:component >
+<br/>
+<p style="color: red;"><strong>Es ist ein Fehler aufgetreten. Bitte prüfen Sie Ihre Eingaben erneut.</strong></p>
+<br/>
+</apex:component>

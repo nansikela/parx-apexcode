@@ -1,0 +1,69 @@
+<apex:component controller="WebSeminarDiplom"  >
+    <div id = "head_wrapper">
+            <div class = "content_head">
+                <p class = "seminar_id category_strategy"> {!portfolio.Name} <span class="new">{!portfolio.NEU__c}</span>
+                </p>
+                <div class = "c"></div>
+            </div>
+            <!--Right box-->
+            <div class = "right_column">
+                <div class="seminar_infobox">
+                    <ul>
+                        <li>
+                            <div class="caption">Dauer</div>
+                            <div class="l">{!IF(portfolio.Dauer_in_Tagen__c ==null,IF(portfolio.Dauer_in_Tagen__c = 1, '1 Tag' , SUBSTITUTE(TEXT(portfolio.Dauer_in_Tagen__c) & '  Tage', '.0', '')),'')}{!portfolio.Dauer_der_Ausbildung__c}</div>
+                            <div class="c"></div>
+                        </li>
+                        <li>
+                            <div class="caption">Module</div>
+                            <div class="l">{!anzahlmodule}</div>
+                            <div class="c"></div>                           
+                        </li>
+                    </ul>
+                    <!--<div class="modul_spacer"></div>-->
+                    <apex:outputText rendered="{!portfolio.Auf_Website_buchbar__c}">
+                        <div class="comment">Zur Buchung der einzelnen Termine, siehe untenstehende Tabelle</div>
+                    </apex:outputText>
+                </div>
+            </div>
+            <!--End Right box-->
+            <!--StartHeadline-->
+            <div class = "textline">
+                <h1>{!portfolio.Seminartitel__c}</h1>
+                <p class="headline_submenu">
+                  <span class="active">Intensivprogramm</span>
+                </p>
+            </div>
+            <!--EndHeadline-->
+            <div class = "c"></div>
+        </div>
+        <!--StartContent-->
+        <div class = "content_column">
+            <h3>{!portfolio.untertitel__c}</h3>
+            <apex:outputText value="{!portfolio.Intro__c}" escape="false"></apex:outputText>
+            <apex:outputText rendered="{!IF(portfolio.Inhalte__c=='',false, true)}">   
+            <h3>Inhalte</h3>
+            </apex:outputText>
+                <ul class="list">
+                    <!-- Substitute list metachars with li's -->
+                    <apex:outputText escape="false" value="{!SUBSTITUTE('<!-- XX -->' & SUBSTITUTE(portfolio.Inhalte__c, '<pt>', '</li><li>'),'<!-- XX --></li>', '') & '</li>'}"></apex:outputText>
+                </ul>
+             <apex:outputText rendered="{!IF(portfolio.Methode__c=='',false, true)}">   
+             <h3>Methode</h3>
+             </apex:outputText>
+              <p><apex:outputText escape="false" value="{!portfolio.Methode__c}"></apex:outputText></p>
+         
+        
+        
+           <h3>Zielgruppe</h3>
+              <p><apex:outputText escape="false" value="{!portfolio.Zielgruppe__c}"></apex:outputText></p>
+              <p><apex:outputText escape="false" value="{!portfolio.Teilnehmerhinweis__c}"></apex:outputText></p>
+              <!-- TODO: conditional component: only include when products.length() > 0 -->
+              <c:webseminardiplomportfolios />
+     
+
+            <apex:componentBody />
+        </div><!--EndContent-->
+
+
+</apex:component>

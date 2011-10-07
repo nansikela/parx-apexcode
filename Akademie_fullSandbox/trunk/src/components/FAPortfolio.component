@@ -1,0 +1,21 @@
+<apex:component controller="FAPortfolioController" >
+    <style>
+      th{
+          border-bottom: 1px solid #DEDEDA;
+      }
+  </style>
+    
+    <b>{!currentPortfolio.name}</b>
+    <h1>{!currentPortfolio.Seminartitel__c}</h1>
+    <apex:outputText value="{!substitute(substitute(currentPortfolio.Beschreibung__c, '<strong>','<h2>'),'</strong>','</h2>')}" escape="false" />
+    <apex:dataTable rendered="{!IsSeminar}" value="{!SeminarList}" var="seminar">
+        <apex:column value="{!seminar.datum}" headerValue="{!'Datum'}"/>
+        <apex:column value="{!seminar.ort}" headerValue="{!'Ort'}"/>
+        <apex:column headerValue="{!'Trainer'}">
+            <apex:outputText value="{!seminar.trainer}" escape="false"></apex:outputText>
+        </apex:column>
+        <apex:column headerValue="{!'Buchen'}">
+            <apex:outputText value="{!seminar.buchen}" escape="false"></apex:outputText>
+        </apex:column>
+    </apex:dataTable>    
+</apex:component>

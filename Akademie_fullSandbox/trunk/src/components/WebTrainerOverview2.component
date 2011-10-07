@@ -1,0 +1,121 @@
+<apex:component controller="FATrainerOverview">
+  <h1>Trainer und Berater</h1>
+  <p>Über 100 erfahrene und spezialisierte Trainerinnen und Trainer der Akademie für Führungskräfte vermitteln Ihnen nicht nur Theorie- und Fachwissen, sondern unterstützen methodisch das nachhaltige Lernen für Ihre berufliche Praxis. Für Informationen zu den einzelnen Trainerinnen und Trainern klicken Sie bitte auf den entsprechenden Namen in der alphabetischen Übersicht.</p>
+  <ul class="abc_greybox">
+      <li><a href="javascript:;">A</a></li>
+      <li><a href="javascript:;">B</a></li>
+      <li><a href="javascript:;">C</a></li>
+      <li><a href="javascript:;">D</a></li>
+      <li><a href="javascript:;">E</a></li>
+      <li><a href="javascript:;">F</a></li>
+      <li><a href="javascript:;">G</a></li>
+      <li><a href="javascript:;">H</a></li>
+      <li><a href="javascript:;">I</a></li>
+      <li><a href="javascript:;">J</a></li>
+      <li><a href="javascript:;">K</a></li>
+      <li><a href="javascript:;">L</a></li>
+      <li><a href="javascript:;">M</a></li>
+      <li><a href="javascript:;">N</a></li>
+      <li><a href="javascript:;">O</a></li>
+      <li><a href="javascript:;">P</a></li>
+      <li><a href="javascript:;">Q</a></li>
+      <li><a href="javascript:;">R</a></li>
+      <li><a href="javascript:;">S</a></li>
+      <li><a href="javascript:;">T</a></li>
+      <li><a href="javascript:;">U</a></li>
+      <li><a href="javascript:;">V</a></li>
+      <li><a href="javascript:;">W</a></li>
+      <li><a href="javascript:;">XYZ</a></li>
+  </ul>
+  <ul class="profile_small">
+      <apex:repeat value="{!trainer}" var="t">
+         <li class="char {!t.firstCaracter}">
+           
+          <img src="{!URLFOR($resource.ContactImages, t.bild)}" height="50" width="40"  />
+          <strong>{!t.name}</strong><br/>
+          {!t.titel}<br/>
+          <a href="{!t.url}">Details anzeigen</a>
+       </li>   
+      </apex:repeat>
+ </ul>
+ 
+ <style>
+     .profile_small li.char a{
+         color: #8A1544;
+         font-weight: normal;
+     }
+     ul.profile_small li.left.char{
+         margin-left:0px;
+     }
+ </style>
+ <script>
+    $(document).ready(function() {
+    
+      var activeChar = 'A';
+      var url = document.location.toString();
+      if(url.match('#'))
+      {
+          activeChar  = document.location.toString().split("#")[1];
+          
+      }
+    
+    
+        
+        $(".char").hide();
+        $(".char."+activeChar).show();
+        
+        $(".abc_greybox li a").click(function(){
+            activeChar  = $(this).html();
+            $(".char").hide();
+            $(".char."+activeChar).show();
+            orderTrainer();
+            $(".abc_greybox li."+activeChar).addClass("active");
+        });
+        
+        
+        orderTrainer();
+        
+        
+        //Add Class to Chars in GreyBox
+        $(".abc_greybox").children().children().each(function(){
+            var currchar = $(this).html();
+            $(this).parent().addClass(currchar);
+            
+            if($("."+currchar).length<2)
+            {
+                $(this).parent().addClass("unavailable");
+                $(this).parent().html(currchar);
+            }
+            
+        });
+        
+        $(".abc_greybox li."+activeChar).addClass("active");
+        
+       
+    }); 
+    
+    function orderTrainer()
+    {
+        var left=true;
+        $("ul.profile_small li:visible").each(function(){
+            if(left){
+                $(this).addClass("left");
+                left=false;
+            }else{
+                $(this).addClass("right");
+                left=true;
+            }
+        });
+        $(".right:visible").first().addClass("top");
+        $(".left:visible").first().addClass("top");
+        $(".char:visible").css("display", "block");
+        $(".abc_greybox li").removeClass("active");
+        
+    }
+    
+   
+    
+    
+  
+ </script>
+</apex:component>

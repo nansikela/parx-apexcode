@@ -1,0 +1,13 @@
+<apex:component controller="WebGoogleSiteSearch" allowDML="true"   >
+  <h1>Suchergebnisse</h1>
+  <table>
+                               <apex:repeat value="{!googleResult}" var="result">
+                                    <tr><td>
+                                    
+                                    <h3><apex:outputText escape="false" value="{!result.titel}" /></h3>
+                                    <apex:outputText escape="false" value="{!result.content}" /> <br/>
+                                    <apex:outputLink value="{!result.url}">{!result.url} <br/></apex:outputLink>
+                                    </td></tr>
+                                </apex:repeat>
+                              </table>
+</apex:component>

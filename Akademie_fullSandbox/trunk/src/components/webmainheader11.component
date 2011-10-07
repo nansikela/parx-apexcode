@@ -1,0 +1,30 @@
+<apex:component >
+    <apex:attribute name="breadcrubShow" type="boolean" description="TODO: Describe me" required="true"/>
+
+
+    <div class="site_wrapper">
+        <div class="header">
+            <a href="/" id="logo" title="Zur Startseite">
+                Die Akademie für Führungskräfte
+            </a>
+            <div class="servicenavi">
+              
+              <ul>
+                <li><a href="http://www.cognos-ag.de/" title="Zur Cognos  AG" id="cognosLogo" target="_blank">COGNOS COMPETENCE GROUP</a></li>
+                <li><a href="/service/rueckruf">Rückruf</a></li>
+                <li><a href="/service/kontakt">Kontakt</a></li>
+                <li><a href="/service/impressum">Impressum</a></li>
+                <li><a href="/service/agb">AGB</a></li>
+                <li><a class="login" href="http://www.arccade.de/Arccade.htm" target="_blank">Login</a></li>
+              </ul>
+              
+            </div>
+            <c:WebSearchfield />
+            <c:WebTopNavR11 />
+            <c:WebBreadCrumbAndSuggest rendered="{!breadcrubShow}" />
+            <c:WebSubnaviR11 rendered="{!breadcrubShow}" />
+            <apex:componentBody />
+        </div>
+    </div>
+    
+</apex:component>

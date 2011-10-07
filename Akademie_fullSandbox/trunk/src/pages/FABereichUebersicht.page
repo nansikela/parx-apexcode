@@ -1,0 +1,33 @@
+<apex:page standardStylesheets="false" title="test"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    
+    <html>
+    <head>
+    
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screenplus.css')}"/>
+        <link href="{!URLFor($Resource.FA_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery-1.4.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/headerplus.js')}"/>   
+    </head>
+    <body>
+    
+        <c:FAmainHeader breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column article">
+                     <c:FABereichUebersicht />
+                 </div>
+                 <div class="right_column">
+                     <c:FAVerantwortlicherBereich />
+                     <c:FANaechsteSeminare />
+                 </div>
+             </div>
+        </c:FAmainHeader>
+        <c:FAfooter />
+    </body>
+    </html>
+</apex:page>

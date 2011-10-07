@@ -1,0 +1,101 @@
+<apex:component controller="WebKontaktController" allowDML="true">
+        <p class="check_headline">Ich habe Interesse an:</p>
+ 
+      <apex:form >
+          <apex:inputField value="{!websiteLead.Management_Guide_bestellen__c}" styleClass="checkbox" />
+          <label class="lbl_checkbox">Management Guide 2011</label>
+          
+          <apex:inputField value="{!websiteLead.Interesse_an_General_Management_Programm__c}" styleClass="checkbox" />
+          <label class="lbl_checkbox">General Management Programm</label>
+          
+          <apex:inputField value="{!websiteLead.Akademie_Inhouse_Brosch_re_bestellen__c}" styleClass="checkbox" />
+          <label class="lbl_checkbox">Akademie Inhouse Broschüre</label>
+          
+          <apex:inputField value="{!websiteLead.Akademie_Studie_bestellen__c}" styleClass="checkbox" />
+          <label class="lbl_checkbox">Akademie-Studie 2010</label>
+          
+          <apex:inputField value="{!websiteLead.Interesse_an_Seminars_in_Englisch__c}" styleClass="checkbox"/>
+          <label class="lbl_checkbox">Seminars in English</label>
+         
+          <apex:inputField value="{!websiteLead.Interesse_an_Trainerausbildung__c}" styleClass="checkbox"/>
+          <label class="lbl_checkbox">Ausbildung zum Trainer</label>
+
+          
+          <div class="spacer_big"></div>
+          <fieldset>
+          
+              <div>
+                  <label>Anrede*</label>
+                  <apex:selectList styleClass="title" size="1" value="{!websiteLead.Salutation}">
+                      <apex:selectOption itemLabel="Frau" itemValue="{!'Frau'}"></apex:selectOption>
+                      <apex:selectOption itemLabel="Herr" itemValue="{!'Herr'}"></apex:selectOption>
+                  </apex:selectList>
+              </div>
+              <div>
+                  <label>Vorname*</label>
+                  <apex:inputField value="{!websiteLead.firstname}" styleClass="required" required="false"/>
+              </div>
+              <div>
+                  <label>Nachname*</label>
+                  <apex:inputField value="{!websiteLead.lastname}" styleClass="required" required="false"/>
+              </div>
+             
+              <div>
+                  <label>Firma</label>
+                  <apex:inputField value="{!websiteLead.company}" styleClass="" required="false"/>
+              </div>
+              <div>
+                  <label>Funktion</label>
+                  <apex:inputField value="{!websiteLead.Position__c}" styleClass="" required="false"/>
+              </div>
+              <div>
+                  <label>Abteilung</label>
+                  <apex:inputField value="{!websiteLead.Abteilung__c}" styleClass="" required="false"/>
+              </div>
+              <div>
+                  <label>Strasse, Nr.*</label>
+                  <apex:inputText value="{!websiteLead.street}" styleClass="required" required="false"/>
+              </div>
+              <div>
+                  <label>PLZ*</label>
+                  <apex:inputField value="{!websiteLead.postalcode}" styleClass="required number" required="false"/>
+              </div>
+              <div>
+                  <label>Ort*</label>
+                  <apex:inputField value="{!websiteLead.city}" styleClass="required " required="false"/>
+              </div>
+              <div>
+                  <label>Telefon</label>
+                  <apex:inputField value="{!websiteLead.phone}" styleClass="" required="false"/>
+              </div>
+              <div>
+                  <label>eMail*</label>
+                  <apex:inputField value="{!websiteLead.email}" styleClass="required email" required="false"/>
+              </div>
+              
+              <div class="area">
+                  <label>Ihre Nachricht</label>
+                  <apex:inputField value="{!websiteLead.Nachricht_durch_Website__c}" required="false"/>
+              </div>
+             <div>
+                  <label>Wie sind Sie auf uns aufmerksam geworden?</label>
+                  <apex:inputField value="{!websiteLead.Marketing_Kanal__c}" required="false"/>
+              </div>
+             
+              
+          </fieldset>
+             <div class = "c"></div>
+             
+              
+              
+          <div class="separator_line"></div>
+          <small>*Pflichtfelder</small>
+          <div class = "r">
+              <apex:commandButton value="Weiter" styleClass="submit" action="{!saveInformationsmaterial}"  image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+          </div>
+
+      </apex:form>
+
+     
+
+</apex:component>

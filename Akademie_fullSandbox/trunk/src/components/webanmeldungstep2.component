@@ -1,0 +1,133 @@
+<apex:component controller="WebAnmeldungController" allowDML="true">
+
+     <div class="content_headline">
+        <div class="textline">
+          <h1>Anmeldung</h1>
+          <p class="headline_submenu">
+            1. Seminar
+            <span class="pipe">|</span>
+            2. Teilnehmer
+            <span class="pipe">|</span>
+            <span class="active">3. Hotel</span>
+            <span class="pipe">|</span>
+            4.Rechnung
+            <span class="pipe">|</span>
+            5. Bestätigung
+          </p>
+        </div>
+      </div>
+     <c:webanmeldungerror rendered="{!IF($CurrentPage.parameters.error=='1','true', 'false')}"></c:webanmeldungerror>
+      Reservieren Sie nun Ihr Hotel. Die Übernachtungskosten werden vor Ort beglichen und sind nicht im angegeben Preis für die Seminarteilnahme enthalten.
+      <apex:form >
+                <div class="separator_head">
+                <!--<a class="participant_delete r" title="Teilnehmer entfernen" href="#">Teilnehmer entfernen</a>-->
+                <h4 class="l">Das Hotel</h4>
+                <div class="c"></div>
+              </div>
+                  <div>
+                      <label>Name</label>
+                      <label class="dropdown">{!bestellung.seminar__r.veranstaltungsort2__r.name}, {!bestellung.seminar__r.veranstaltungsort2__r.account__r.billingcity}</label>
+                  </div>
+                  <div>
+                      <label>EZ p. Nacht</label>
+                      <label class="dropdown">{!hoteldaten.preisEZ}</label>
+                  </div>
+                  <div>
+                      <label>DZ p. Nacht</label>
+                      <label class="dropdown">{!hoteldaten.preisDZ}</label>
+                  </div>
+      
+      
+               
+                <div class="separator_head">
+                <!--<a class="participant_delete r" title="Teilnehmer entfernen" href="#">Teilnehmer entfernen</a>-->
+                <h4 class="l">Ihr Seminar</h4>
+                <div class="c"></div>
+              </div>
+                  <div>
+                      <label>Seminar</label>
+                      <label class="dropdown">{!bestellung.seminar__r.portfolio__r.seminarTitel__c}</label>
+                  </div>
+              
+                  <div class="c"></div>
+                 <br/>
+                  <div>
+                      <label>Beginn</label>
+                      <label class="dropdown">{!hoteldaten.beginn}</label>
+                  </div>
+                  
+                  <div>
+                      <label>Ende</label>
+                      <label class="dropdown">{!hoteldaten.ende}</label>
+                  </div>
+                  
+                  
+              <!--Teilnehmer 1-->
+              <div class="separator_head">
+                <!--<a class="participant_delete r" title="Teilnehmer entfernen" href="#">Teilnehmer entfernen</a>-->
+                <h4 class="l">Ihre Reservierung</h4>
+                <div class="c"></div>
+              </div>
+                <fieldset>
+                  <div>
+                  <label>Anreise</label>
+                      <div class = "form_date">
+                          <apex:selectList size="1" styleClass="day" value="{!ankunftday}">
+                              <apex:selectOptions value="{!dayList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          <apex:selectList size="1" styleClass="month" value="{!ankunftmonth}">
+                              <apex:selectOptions value="{!monthList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          <apex:selectList size="1" styleClass="year" value="{!ankunftyear}">
+                              <apex:selectOptions value="{!seminarYearList}" ></apex:selectOptions>
+                          </apex:selectList>
+                     </div>
+                </div>
+                <div>
+                    <label>Abreise</label>
+                  <div class = "form_date">
+                          <apex:selectList size="1" styleClass="day" value="{!abreiseday}">
+                              <apex:selectOptions value="{!dayList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          <apex:selectList size="1" styleClass="month" value="{!abreisemonth}">
+                              <apex:selectOptions value="{!monthList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          <apex:selectList size="1" styleClass="year" value="{!abreiseyear}">
+                              <apex:selectOptions value="{!seminarYearList}" ></apex:selectOptions>
+                          </apex:selectList>
+                  </div>
+                </div>
+         
+
+             
+              <div class="c"></div>
+              <div>
+                  <label>Anzahl EZ</label>
+                      <div class="form_date">
+                      <apex:selectList size="1" styleClass="day" value="{!bestellung.Anzahl_EZ__c}">
+                              <apex:selectOptions value="{!tenList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          </div>
+              </div>
+              <div>
+                  <label>Anzahl DZ</label>
+                  <div class="form_date">
+                  <apex:selectList size="1" styleClass="day" value="{!bestellung.Anzahl_DZ__c}">
+                              <apex:selectOptions value="{!tenList}" ></apex:selectOptions>
+                          </apex:selectList>
+                  </div>
+              </div>
+         </fieldset>
+
+              
+              
+          <div class="separator_line"></div>
+          <div class = "r">
+              <apex:commandButton value="Weiter" action="{!save2}" image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+          </div>
+          <div class="c"></div>
+      </apex:form>
+
+     
+
+</apex:component>

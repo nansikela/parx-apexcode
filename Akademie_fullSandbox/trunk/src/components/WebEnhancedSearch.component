@@ -1,0 +1,77 @@
+<apex:component controller="WebEnhancedSearch"  >
+   <div id="headlines">
+       
+       <h1>Ergebnisse Seminar-Suche</h1>
+   </div>
+   <div id="content">
+   
+   <div id="description">
+   <apex:outputText rendered="{!IF(AND(intensivSeminare.size>0, $CurrentPage.parameters.r=''), 'true','false')}" escape="false" >
+   <h2>Intensivseminare</h2>
+  <table class="intensiv">
+   
+   
+  
+      
+      <apex:repeat value="{!intensivSeminare}" var="seminar">
+          <tr>
+                  <td class="seminarCode"><a href="{!seminar.seminarURL}">{!seminar.code}</a></td>
+                  <td class="seminarTitel">{!seminar.seminarTitel}</td>
+                  <td class="detail"><a href="{!seminar.seminarURL}">Details</a></td>
+              </tr>
+      </apex:repeat>
+  </table>
+  </apex:outputText>
+  <apex:variable var="lastMonth" value="{!'TEXT'}"/>
+  <apex:repeat value="{!seminarList}" var="seminar">
+      <apex:outputText rendered="{!IF(AND(lastMonth!= seminar.monat, lastMonth!='TEXT'), 'true', 'false')}" escape="false" value="{!'</table>'}" ></apex:outputText>
+       <apex:outputText rendered="{!IF(lastMonth!= seminar.monat, 'true', 'false')}" escape="false" value="{!'
+          <h2>'+seminar.monat+'</h2>
+          <table>
+      '}"/>
+       
+             <tr>
+                  <td class="seminarCode"><a href="{!seminar.seminarURL}">{!seminar.code}</a></td>
+                  <td class="seminarTitel">
+                  
+                      <apex:outputText escape="false" value="{!'<img src=\"'&URLFOR($Resource.web_style, 'i/flag_en.gif')&'\" />'}" rendered = "{!seminar.english}"/>
+                      {!seminar.seminarTitel}
+                      <apex:outputText escape="false" value="{!'<span class=\"neu\"> NEU</span>'}" rendered = "{!seminar.neu}"/>
+                      
+                  <span class="en"></span><br/> {!seminar.seminarUntertitel}</td>
+                  <td class="detail"><a href="{!seminar.seminarURL}">Details</a></td>
+              </tr>
+      <apex:variable var="lastMonth" value="{!seminar.monat}"/>
+  </apex:repeat>
+  <apex:outputText escape="false" value="{!'</table>'}" ></apex:outputText>
+  <apex:outputText rendered="{!isResultEmpty}">
+  <h2>Keine Ergebnisse gefunden.</h2>
+   <table>
+        <tbody>
+            <tr class="first" >
+                
+                <td >Bitte passen Sie rechts Ihre Einstellungen an oder kontaktieren Sie uns direkt. <br /> <a href="/service/kontakt">http://www.die-akademie.de/service/kontakt</a></td>
+                
+             </tr>
+        </tbody>
+    </table>
+    </apex:outputText>   
+  <apex:outputText rendered="{!IF(AND(intensivSeminare.size>0, $CurrentPage.parameters.r<>''), 'true','false')}" escape="false">
+  <h2>Diese Intensivseminare könnten Sie interessieren:</h2>
+  <table class="intensiv">
+   
+   <apex:repeat value="{!intensivSeminare}" var="seminar">
+          <tr>
+                  <td class="seminarCode"><a href="{!seminar.seminarURL}">{!seminar.code}</a></td>
+                  <td class="seminarTitel">{!seminar.seminarTitel}</td>
+                  <td class="detail"><a href="{!seminar.seminarURL}">Details</a></td>
+              </tr>
+      </apex:repeat>
+  
+      
+      
+  </table>
+  </apex:outputText>
+  </div>
+  </div>
+</apex:component>

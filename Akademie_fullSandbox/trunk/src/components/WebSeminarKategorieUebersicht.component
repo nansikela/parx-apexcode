@@ -1,0 +1,59 @@
+<apex:component controller="WebSeminarKategorieController">
+    <apex:variable var="strategy" value="Strategie und Organisationsentwicklung"></apex:variable>
+    <apex:variable var="expertise" value="Fachkompetenz"></apex:variable>
+    <apex:variable var="personality" value="Persönlichkeitsentwicklung"></apex:variable>
+    <apex:variable var="leadership" value="Führung"></apex:variable>
+    <apex:variable var="ausbildungen" value="Ausbildungen"></apex:variable>
+    
+    <div class="content_headline">
+        <div class="textline">
+
+          <h1>Seminarübersicht</h1>
+        </div>
+      </div>
+
+      <p>
+      <c:contentblock name="MiddleContent"></c:contentblock>    
+      </p>
+
+      <!-- Teilnehmer hinzufuegen Formular -->
+      <h3>Seminar suchen</h3>
+
+      <c:WebSearchInterfaceUebersicht />
+
+      <br />
+      <br />
+
+        <apex:repeat var="data" value="{!AllRegister}">
+          <apex:outputText escape="false" value="{!IF(AND(data.register!=data.registerBefore, data.registerBefore==''), '</ul>','')}"></apex:outputText>
+          
+          
+          <apex:outputText escape="false" value="{!IF(data.register!=data.registerBefore, '<div class=\"separator_big\"></div>','')}"></apex:outputText>
+          
+          <apex:outputText escape="false" value="{!IF(AND(data.register!=data.registerBefore, data.register==strategy),'<h3 class=\"category_strategy\">','')}"></apex:outputText> 
+        <apex:outputText escape="false" value="{!IF(AND(data.register!=data.registerBefore, data.register==expertise),'<h3 class=\"category_expertise\">','')}"></apex:outputText> 
+        <apex:outputText escape="false" value="{!IF(AND(data.register!=data.registerBefore, data.register==personality),'<h3 class=\"category_personality\">','')}"></apex:outputText> 
+        <apex:outputText escape="false" value="{!IF(AND(data.register!=data.registerBefore, data.register==leadership),'<h3 class=\"category_leadership\">','')}"></apex:outputText>
+        <apex:outputText escape="false" value="{!IF(AND(data.register!=data.registerBefore, data.register==ausbildungen),'<h3 class=\"category_leadership\">','')}"></apex:outputText> 
+        
+        {!IF(data.register!=data.registerBefore, data.register,'')}
+                                                
+        <apex:outputText escape="false" value="{!IF(data.register!=data.registerBefore,'</h3>','')}"></apex:outputText> 
+      
+        
+        
+          <apex:outputText escape="false" value="{!IF(data.register!=data.registerBefore, '<ul class=\"link category\">','')}"></apex:outputText> 
+            <li>
+            <a href="/page?pageid={!data.registerurl}" title="{!data.unterregister}">{!data.unterregister}</a>
+            </li>
+        </apex:repeat>
+      <apex:outputText escape="false" value="{!IF(1==1, '</ul>','')}"></apex:outputText>
+
+ 
+
+
+    
+    
+
+
+</apex:component>

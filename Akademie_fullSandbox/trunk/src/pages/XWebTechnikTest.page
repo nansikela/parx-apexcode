@@ -1,0 +1,11 @@
+<apex:page controller="XWebTest">
+  <h1>Test</h1>
+  <apex:repeat var="contact" value="{!contacts}">
+      {!contact.Firstname}<br />
+  </apex:repeat>
+  <apex:form >
+  <apex:commandButton action="{!setInsertContact}" value="save"/>
+
+  </apex:form>
+  
+</apex:page>

@@ -1,0 +1,1 @@
+<apex:page controller="WebGoogleAutocomplete" action="{!sendRequest}" standardStylesheets="false" contentType="application/json">{!response}</apex:page>

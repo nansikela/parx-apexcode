@@ -1,0 +1,38 @@
+<apex:component controller="FAPreisgruppe">
+  <apex:outputText rendered="{!IsShortInfo}">
+      <table class="detailList" border="0" cellpadding="0" cellspacing="0"><tbody>
+          <apex:outputText value="{!ShortInfo}" escape="false"/>
+      </tbody></table>
+  </apex:outputText>
+  <apex:outputText rendered="{!currentProductgruppe.Buchbar__c}">
+      <div class="bookingButton">
+            <a href="{!currentProductgruppe.URL__c}/order" id="buttonSeminarBuchen">Hier Buchen</a>
+      </div>
+  </apex:outputText>
+  
+  <div class="rightbox bright">
+      <apex:repeat value="{!PriceInfo}" var="price">
+          <apex:outputText value="{!SUBSTITUTE(price, '<p><br>', '<p>')}" escape="false"/>
+          <div class="separator">&nbsp;</div>
+      </apex:repeat>
+  
+  
+      <!-- Ansprechpartner -->
+        <h2 class="c">BERATUNG</h2>
+        <apex:outputText rendered="{!IF(currentProductgruppe.Ansprechpartner__c != null, true, false)}">
+            <strong>{!currentProductgruppe.Ansprechpartner__r.Vorname__c} {!currentProductgruppe.Ansprechpartner__r.name}</strong>
+            <p class="tel">{!currentProductgruppe.Ansprechpartner__r.Telefon__c}</p>
+            <p class="mail">
+              <a href="mailto:{!currentProductgruppe.Ansprechpartner__r.Email__c}" title="Mail an {!currentProductgruppe.Ansprechpartner__r.Vorname__c} {!currentProductgruppe.Ansprechpartner__r.name}">{!currentProductgruppe.Ansprechpartner__r.Email__c}</a>
+            </p>
+        </apex:outputText>
+        <apex:outputText rendered="{!IF(currentProductgruppe.Ansprechpartner__c == null, true, false)}">
+            <p class="tel">+49.7551.9368-0</p>
+            <p class="mail">
+              <a href="mailto:info@die-akademie.de">info@die-akademie.de</a>
+            </p>
+        </apex:outputText>
+        <div class="c"></div>
+  </div>
+  
+</apex:component>

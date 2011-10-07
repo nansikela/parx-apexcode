@@ -1,0 +1,3 @@
+<apex:component controller="FAContentController" >
+  <apex:outputText value="{!content}" escape="false"></apex:outputText>
+</apex:component>

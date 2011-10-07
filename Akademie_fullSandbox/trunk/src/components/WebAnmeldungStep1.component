@@ -1,0 +1,192 @@
+<apex:component controller="WebAnmeldungController" allowDML="true">
+
+     <div class="content_headline">
+        <div class="textline">
+          <h1>Anmeldung</h1>
+          <p class="headline_submenu">
+            1. Seminar
+            <span class="pipe">|</span>
+            <span class="active">2. Teilnehmer</span>
+            <span class="pipe">|</span>
+            3. Hotel
+            <span class="pipe">|</span>
+            4.Rechnung
+            <span class="pipe">|</span>
+            5. Bestätigung
+          </p>
+        </div>
+      </div>
+     
+     <div class="errorMessage" style="display: none;"><c:webanmeldungerror ></c:webanmeldungerror></div>   
+      <apex:form id="commentForm" styleClass="form" >
+          <div>
+              <div class="label">
+                  <div>Seminar</div>
+                  <div>Datum/Ort*</div>
+              </div>
+              <div class="fields">
+                  <div>
+                      {!seminarTitel}
+                  </div>
+                  <div>
+                      <apex:selectList styleClass="dropdown_code" value="{!buchungsSeminar}" size="1">
+                          <apex:selectOption itemValue="{!'- Bitte Auswählen -'}"></apex:selectOption>
+                          <apex:selectOptions value="{!seminarList}"></apex:selectOptions>
+                      </apex:selectList>
+                  </div>
+              </div>
+          </div>
+          <div class = "c">&nbsp;</div>
+              
+              
+              <div class = "label">
+                  <div>Buchungstyp*</div>
+              </div>
+              
+              <div class = "fields">
+                  <div>
+                      <apex:selectList value="{!bestellung.Buchungstyp__c}" size="1" styleClass="dropdown_code">
+                          <apex:selectOptions value="{!buchungsTypList}"></apex:selectOptions>
+                      </apex:selectList>
+                      
+                  </div>
+              </div>
+              <div class="c"></div>
+              
+              <div>
+              <p class="fields">Sie können sich bei uns entscheiden. Buchen Sie das Seminar entweder verbindlich oder reservieren Sie Ihren Platz unverbindlich für 10 Tage.</p>
+              </div>
+              
+              
+              
+              <!--Teilnehmer 1-->
+              <div class="separator_head">
+                <!--<a class="participant_delete r" title="Teilnehmer entfernen" href="#">Teilnehmer entfernen</a>-->
+                <h4 class="l">Teilnehmer</h4>
+                <div class="c"></div>
+              </div>
+              
+              
+              
+              <fieldset>
+                  <div>
+                      <label>Anrede</label>
+                      <apex:selectList value="{!teilnehmer1.Salutation}" styleClass="title" size="1">
+                          <apex:selectOption itemLabel="Frau" itemValue="Frau"></apex:selectOption>
+                          <apex:selectOption itemLabel="Herr" itemValue="Herr"></apex:selectOption>
+                      </apex:selectList>
+                  </div>
+                  
+                  <div>
+                      <label>Vorname *</label>
+                      <apex:inputField value="{!teilnehmer1.FirstName}" styleClass="dropdown required"/>
+                  </div>
+                  <div>
+                      <label>Nachname *</label>
+                      <apex:inputText value="{!teilnehmer1.LastName}" styleClass="dropdown required"/>
+                  </div>
+                  <div>
+                      <label>Firma</label>
+                      <apex:inputText value="{!teilnehmer1.Company}" styleClass="dropdown"/>
+                  </div>
+                  <div>
+                      <label>Funktion</label>
+                      <apex:inputText value="{!teilnehmer1.Position__c}" styleClass="dropdown"/>
+                  </div>
+                  <div>
+                      <label>Abteilung</label>
+                      <apex:inputText value="{!teilnehmer1.Abteilung__c}" styleClass="dropdown"/>
+                  </div>
+                  <div>
+                      <label>eMail *</label>
+                      <apex:inputText value="{!teilnehmer1.eMail}" styleClass="dropdown required email"/>
+                  </div>
+                  <div>
+                      <label>Geburtsdatum</label>
+                      <div class = "form_date">
+                          <apex:selectList size="1" styleClass="day" value="{!t1bday}">
+                              <apex:selectOptions value="{!dayList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          <apex:selectList size="1" styleClass="month" value="{!t1bmonth}">
+                              <apex:selectOptions value="{!monthList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          <apex:selectList size="1" styleClass="year" value="{!t1byear}">
+                              <apex:selectOptions value="{!byearList}" ></apex:selectOptions>
+                          </apex:selectList>
+                      </div>
+                  </div>
+                  
+              </fieldset>
+              <!-- Teilnehmer2 -->
+              <div class="separator_head">
+                <!--<a class="participant_delete r" title="Teilnehmer entfernen" href="#">Teilnehmer entfernen</a>-->
+                <h4 class="l">Weiterer Teilnehmer</h4>
+                <div class="c"></div>
+              </div>
+              
+              
+              
+              <fieldset>
+                  <div>
+                      <label>Anrede</label>
+                      <apex:selectList value="{!teilnehmer2.Salutation}" styleClass="title" size="1">
+                          <apex:selectOption itemLabel="Frau" itemValue="Frau"></apex:selectOption>
+                          <apex:selectOption itemLabel="Herr" itemValue="Herr"></apex:selectOption>
+                      </apex:selectList>
+                  </div>
+                  
+                  <div>
+                      <label>Vorname *</label>
+                      <apex:inputField value="{!teilnehmer2.FirstName}" styleClass="dropdown "/>
+                  </div>
+                  <div>
+                      <label>Nachname *</label>
+                      <apex:inputText value="{!teilnehmer2.LastName}" styleClass="dropdown "/>
+                  </div>
+                  <div>
+                      <label>Firma</label>
+                      <apex:inputText value="{!teilnehmer2.Company}" styleClass="dropdown"/>
+                  </div>
+                  <div>
+                      <label>Funktion</label>
+                      <apex:inputText value="{!teilnehmer2.Position__c}" styleClass="dropdown"/>
+                  </div>
+                  <div>
+                      <label>Abteilung</label>
+                      <apex:inputText value="{!teilnehmer2.Abteilung__c}" styleClass="dropdown"/>
+                  </div>
+                  <div>
+                      <label>eMail *</label>
+                      <apex:inputText value="{!teilnehmer2.eMail}" styleClass="dropdown email"/>
+                  </div>
+                  <div>
+                      <label>Geburtsdatum</label>
+                      <div class = "form_date">
+                          <apex:selectList size="1" styleClass="day" value="{!t2bday}">
+                              <apex:selectOptions value="{!dayList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          <apex:selectList size="1" styleClass="month" value="{!t2bmonth}">
+                              <apex:selectOptions value="{!monthList}" ></apex:selectOptions>
+                          </apex:selectList>
+                          <apex:selectList size="1" styleClass="year" value="{!t2byear}">
+                              <apex:selectOptions value="{!byearList}" ></apex:selectOptions>
+                          </apex:selectList>
+                      </div>
+                  </div>
+                  
+              </fieldset>
+              <div class = "c"></div>
+             
+              
+              
+          <div class="separator_line"></div>
+          <small>*Pflichtfelder</small>
+          <div class = "r">
+              <apex:commandButton value="Weiter" styleClass="submit" action="{!save1}"  image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+          </div>
+          <div class="c"></div>
+      </apex:form>
+
+     
+
+</apex:component>

@@ -1,0 +1,114 @@
+<center>
+
+	<table border="0" width=90%>
+
+					<tr><td valign=top>
+						<table>
+						<tr><td class="QuoteHeaderLabel" nowrap><b>Date :</b></td><td class="QuoteHeaderValue">{DATE:Today}</td></tr>
+						<tr><td class="QuoteHeaderLabel" nowrap><b>Customer Phone:</b></td>
+						<td class="QuoteHeaderValue">{OpportunityContactRole3.0.Contact.Phone}</td></tr>
+						<tr><td class="QuoteHeaderLabel" nowrap><b>Customer Fax:</b></td>
+						<td class="QuoteHeaderValue" nowrap>{OpportunityContactRole3.0.Contact.Fax}</td></tr>
+						<tr><td class="QuoteHeaderLabel" nowrap><b>Customer Email:</b></td>
+						<td class="QuoteHeaderValue">{OpportunityContactRole3.0.Contact.Email}</td></tr>
+						<tr><td class="QuoteHeaderLabel" nowrap><b>Contact:</b></td>
+						<td class="QuoteHeaderValue">{UserInfo.FullName}</td></tr>
+						<tr><td class="QuoteHeaderLabel" nowrap><b>Contact Email:</b></td>
+						<td class="QuoteHeaderValue">{UserInfo.Email}</td></tr>
+						<tr><td class="QuoteHeaderLabel" nowrap><b>Payment Terms:</b></td>
+						<td class="QuoteHeaderValue">90 Days Net</td></tr>
+						</table>
+					</td>
+					<td valign=BOTTOM>
+						<table>
+							<tr><td class="QuoteHeaderLabel" nowrap>{OpportunityContactRole3.0.Contact.FirstName} {OpportunityContactRole3.0.Contact.LastName}</td></tr>
+							<tr><td class="QuoteHeaderLabel" nowrap>{OpportunityContactRole3.0.Contact.MailingStreet}</td></tr>
+							<tr><td class="QuoteHeaderLabel" nowrap>{OpportunityContactRole3.0.Contact.MailingCity}</td></tr>
+							<tr><td class="QuoteHeaderLabel" nowrap>{OpportunityContactRole3.0.Contact.MailingState} {OpportunityContactRole3.0.Contact.MailingPostalCode}</td></tr>
+							<tr><td class="QuoteHeaderLabel" nowrap>{OpportunityContactRole3.0.Contact.MailingCountry}</td></tr>
+						</table>
+					</td>
+					<td/>
+					<td align=RIGHT nowrap>
+						<table>
+						<tr><td nowrap>
+							<img src="/servlet/servlet.ImageServer?oid={UserInfo.OrganizationId}&id=01550000000JxfJ"/>
+						</td></tr>
+		
+						<tr><td height="10" bgcolor="#FFFFFF"/></tr>
+		
+						<tr><td class="QuoteHeaderLabel" nowrap>Quote Number : {SFDC_520_Quote__c1.Name}</td></tr>
+		
+						<tr><td height="4" bgcolor="#000000"/></tr>
+						<tr><td class="QuoteHeaderValue" nowrap>Universal Containers Limited</td></tr>
+						<tr><td class="QuoteHeaderValue" nowrap>Sales & Support Center</td></tr>
+						<tr><td class="QuoteHeaderValue" nowrap>PO Box 1111</td></tr>
+						<tr><td class="QuoteHeaderValue" nowrap>Los Angeles CA 90210</td></tr>
+						<tr><td class="QuoteHeaderValue" nowrap>Phone: +1 555 555 1212</td></tr>
+						<tr><td class="QuoteHeaderValue" nowrap>Email: sales@uc.com</td></tr>
+						<tr><td class="QuoteHeaderValue" nowrap>Web: www.genwatt.com</td></tr>
+						</table>
+					</td>
+		</tr>
+		
+		<tr><td height="20" bgcolor="#FFFFFF" colspan=4/></tr>
+
+		<tr><td colspan=4>
+			<p class="QuoteText">Dear {OpportunityContactRole3.0.Contact.FirstName},</p>
+			<p class="QuoteText">Thank you for your inquiry. Taxes are estimated and delivery is within 14 days. If you have any further questions please do not hesitate to contact us.</p>
+			<p class="QuoteText">This quote expires on {DATE[EE, MMM yyyy hh:mm a]:SFDC_520_Quote__c1.Valid_Until__c}</p>
+		</td></tr>
+
+		<tr><td colspan="4">
+		
+			<table border="0" width="100%">
+			
+				<tr><td height="20" bgcolor="#FFFFFF"/></tr>
+				
+				<tr><td height="1" bgcolor="#000000" colspan=7/></tr>
+				
+				<tr><td class="LineHeader">Product</td>
+				<td/>
+				<td class="LineHeader">Quantity</td>
+				<td class="LineHeader">Unit Price</td>
+				<td class="LineHeader">Discount</td>
+				<td class="LineHeader">Unit Net Price</td>
+				<td align="RIGHT" class="LineHeader">Ext Net Price</td></tr>
+				
+				<tr><td height="1" bgcolor="#000000" colspan=7/></tr>
+				
+				<prtany:repeat record="SFDC_520_Quote__c1.Quote__r"> 
+					<tr>
+						<td valign="TOP" class="LineItem">{Product22.Name.n}</td>
+						<td rowspan="2">
+							<prtany:notEmpty field="Product22.Image_Document_Id__c.n">
+								<img src="/servlet/servlet.FileDownload?file={Product22.Image_Document_Id__c.n}"/>
+							</prtany:notEmpty>
+						</td>
+						<td class="LineItem">{SFDC_520_Quote__c1.Quote__r.Qty_Ordered__c.n}</td>
+						<td class="LineItem">${CURRENCY:SFDC_520_Quote__c1.Quote__r.Unit_Price__c.n}</td>
+						<td class="LineItem">
+							<prtany:notEmpty field="SFDC_520_Quote__c1.Quote__r.Sales_Discount__c.n">
+								{SFDC_520_Quote__c1.Quote__r.Sales_Discount__c.n}%
+							</prtany:notEmpty>
+						</td>
+						<td class="LineItem">${CURRENCY:SFDC_520_Quote__c1.Quote__r.Unit_Net_Price__c.n}</td>
+						<td align="RIGHT" class="LineItem">${CURRENCY:SFDC_520_Quote__c1.Quote__r.Ext_Net_Price__c.n}</td>
+					</tr>
+					<tr><td valign="TOP" class="LineItemDescription">{Product22.Description.n}</td></tr>
+					<tr><td height="1" bgcolor="#888888" colspan=7/></tr>
+				</prtany:repeat>
+				
+				<tr>
+					<td colspan=5/>
+					<td class="LineHeader">Total</td>
+					<td align="RIGHT" class="LineHeader">${CURRENCY:SFDC_520_Quote__c1.Quote_Amount__c}</td>
+				</tr>
+		
+				<tr><td colspan=5/><td height="1" bgcolor="#000000" colspan=2/></tr>
+		
+			</table>
+		</td></tr>
+	</table>
+
+</center>

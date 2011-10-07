@@ -1,0 +1,5 @@
+<apex:component >
+  <h1>Vielen Dank für Ihre Registrierung</h1>
+  <br/>
+  Sie erhalten in Kürze eine Email, mit einem Link zur Bestätigung Ihrer Registrierung.
+</apex:component>

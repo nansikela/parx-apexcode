@@ -1,0 +1,10 @@
+<apex:component controller="WebNavigationFacadeEnhanced11" >
+  <div class="subnavi">
+      <span class="subnavi_head">{!leftNaviItem.name}</span>
+      <ul>
+          <apex:repeat value="{!leftNaviItem.subItemList}" var="item2">
+              <li><a href="{!item2.url}">{!item2.name}</a></li>
+          </apex:repeat>
+      </ul>
+  </div>
+</apex:component>

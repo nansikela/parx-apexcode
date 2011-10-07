@@ -1,0 +1,22 @@
+<apex:page controller="WebReadBlog">
+    <apex:form >
+    <apex:pageBlock title="Master Control Panel">
+        <apex:PageBlockSection title="Blog Einstellungen">
+            <apex:PageBlockSectionItem >
+                <apex:outPutLabel >Blog auf Startseite aktualisieren</apex:outPutLabel>
+                <apex:commandLink value="{!'Jetzt starten'}" action="{!readBlog}"/>
+            </apex:PageBlockSectionItem>
+        </apex:PageBlockSection>
+        <apex:PageBlockSection title="Site Überwachung">
+            <apex:PageBlockSectionItem >
+                <apex:outPutLabel >Site Usage Dashboard</apex:outPutLabel>
+                <a href="https://emea.salesforce.com/01Z20000000lPZ4">zum Dashboard</a>
+            </apex:PageBlockSectionItem>
+            <apex:PageBlockSectionItem >
+                <apex:outPutLabel >Vossloh </apex:outPutLabel>
+                <a href="/01Z20000000lQEg">Dashboard</a>
+            </apex:PageBlockSectionItem>
+        </apex:PageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

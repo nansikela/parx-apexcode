@@ -1,0 +1,19 @@
+<apex:component controller="SeminarhotelViewController">
+    <div class="content_headline">
+        <div class="textline"><h1>Seminarhotels</h1></div>
+      </div>
+    
+    <p>Unsere ausgewählten Tagungshotels kennen die Bedürfnisse und Wünsche von Seminarleitern, Trainern, Referenten und Seminarteilnehmern. Alle Häuser verfügen über eine professionelle technische Ausstattung in den Seminarräumen. Mit ihrem exzellenten Service und hohen Qualitätsanspruch, ihren individuellen Besonderheiten und einem angenehmen, störungsfreien Umfeld schaffen sie die Voraussetzungen für konzentriertes Arbeiten und einen entspannenden Ausgleich. In jedem Hotel haben wir für unsere Teilnehmer bereits Kontingente zu besonderen Konditionen reserviert. Bitte geben Sie bei Ihrer Seminaranmeldung an, ob wir eine Buchung für Sie vornehmen sollen. Den Hotelprospekt und eine Wegbeschreibung erhalten Sie mit Ihrer Anmeldebestätigung per Post.</p>
+    <h3>Übersicht</h3>
+    
+    <ul class="seminar_list">    
+    <apex:repeat value="{!hotels}" var="item">
+        <li>
+            <span class="hotel_town">{!item.Account__r.billingCity}</span>
+            <span class="hotel_title"><a titel="{!item.name}" href="{!item.Account__r.Sprechende_URL__c}">{!item.name}</a></span>
+            <div class="c"></div>
+            
+        </li>
+    </apex:repeat>
+</ul>
+</apex:component>

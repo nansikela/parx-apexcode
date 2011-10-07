@@ -1,0 +1,11 @@
+<apex:component controller="WebLexikonArticleController">
+    <div class="content_headline">
+        <div class="textline">
+          <h1>{!headLine}</h1>
+        </div>
+      </div>
+      <apex:outputText escape="false" value="{!articleString}"></apex:outputText>
+        
+
+          <div class="c"></div>
+</apex:component>

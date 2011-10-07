@@ -1,0 +1,10 @@
+<apex:component controller="FaRightBoxesForContentController">
+  <apex:repeat value="{!rightBoxesList}" var="box">
+      <div class="rightbox {!box.color}">
+          <apex:outputText rendered="{!box.isHeadline}"><h3>{!box.headline}</h3></apex:outputText>
+          <apex:outputText escape="false" value="{!'<p>'&box.content&'</p>'}" rendered="{!box.isContent}"></apex:outputText>
+          <apex:outputText rendered="{!box.iseMail}"><a href="mailto:{!box.email}" class="email">{!box.eMail}</a></apex:outputText>
+          <apex:outputText rendered="{!box.isPhone}"><br/><span class="phone">{!box.phone}</span></apex:outputText>
+      </div>
+  </apex:repeat>
+</apex:component>

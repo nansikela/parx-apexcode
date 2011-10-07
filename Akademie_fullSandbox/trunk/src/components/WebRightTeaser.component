@@ -1,0 +1,5 @@
+<apex:component >
+    <div class="right_column_box element">
+        <c:contentblock name="TeaserRight"></c:contentblock>
+      </div>  
+</apex:component>

@@ -1,0 +1,23 @@
+<apex:component controller="FABestellungZyklus" allowDML="true">
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Ihre Bestellung</h1>
+  <c:FAPreisgruppeZyklus />
+  <h2>Zyklusauswahl</h2>
+  <apex:form >
+      <apex:PageBlock >
+          <apex:PageBlockSection columns="1">
+              <apex:PageBlockSectionItem >
+                  <apex:outputLabel >Preis</apex:outputLabel>
+                  <apex:outputText >{!preis}</apex:outputText>
+              </apex:PageBlockSectionItem>
+              <apex:PageBlockSectionItem >
+                  <apex:outputLabel >Zyklus</apex:outputLabel>
+                  <apex:selectList size="1" value="{!zyklusId}">
+                      <apex:selectOptions value="{!zyklusSelect}"></apex:selectOptions>
+                  </apex:selectList>
+              </apex:PageBlockSectionItem>
+          </apex:PageBlockSection>
+      </apex:PageBlock>
+      <apex:commandButton value="{!'Weiter'}" action="{!goToTermin}" styleClass="r"/>
+  </apex:form>
+</apex:component>

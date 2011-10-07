@@ -1,0 +1,28 @@
+<apex:component controller="WebSeminarDetailNextSeminar">
+    <div class="separator_head">
+        <h4 class="l">Termine</h4>
+        <div class="c"></div>
+    </div>
+    
+    <table class="first">
+        <tbody><tr>
+          <th class="col_date">Datum</th>
+          <th class="col_town">Ort</th>
+          <th class="col_trainer">Trainer</th>
+          <th class="col_module">&nbsp;</th>
+          <th class="col_booking">Buchung</th>
+        </tr>
+        <apex:repeat var="item" value="{!SeminarList}">
+        <tr>
+          <td>{!item.datum}</td>
+          <td><a title="{!item.place}" href="/{!item.placeLink}">{!item.place}</a></td>
+          <td><a title="{!item.trainer}" href="{!IF(item.trainerAnzeigeWebsite==true,item.trainerLink,'#')}">{!item.trainer}</a> {!IF(item.cotrainer!='', ' und ','')}<apex:outputLink value="{!IF(item.CotrainerAnzeigeWebsite==true,item.cotrainerLink,'#')}">{!item.cotrainer }</apex:outputLink></td>
+          <td>&nbsp;</td>
+          <td><a title="Buchen" href="/{!item.bookingLink}&seminarId={!item.seminarId}">{!item.bookingLinkText}<apex:outputText rendered="{!item.istZusatztermin}"><br/>Zusatztermin</apex:outputText></a></td>
+        </tr>
+        </apex:repeat>
+      </tbody></table>
+    
+    
+    
+</apex:component>

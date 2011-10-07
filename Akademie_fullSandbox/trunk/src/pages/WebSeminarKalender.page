@@ -1,0 +1,61 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" title="Seminarkategorienübersicht" controller="WebSearchingFacade">
+    <c:WebMainPage >
+    <apex:messages />
+    <div class = "content_wrapper">
+        <div class="content_column">
+            <div class="content_headline">
+                <div class="textline">
+                    <h1>Seminarkalender</h1>
+                </div>
+                
+                
+            </div>
+            <p>
+                Hier sehen Sie die Seminare der nächsten 3 Monate. Wenn Sie die Termine 
+                für einen bestimmten Zeitraum angezeigt kommen wollen, wählen Sie bitte aus.
+            </p> 
+            
+            <apex:form styleClass="seminar_filter">
+                <div class = "form_date" >
+                    <apex:SelectList styleclass="day" size="1" value="{!day}" >
+                        <apex:SelectOptions value="{!dayOptions}"></apex:SelectOptions>
+                    </apex:SelectList>
+                    
+                    <apex:SelectList styleclass="month" size="1" value="{!month}">
+                        <apex:SelectOptions value="{!monthOptions}"></apex:SelectOptions>
+                    </apex:SelectList>
+                    
+                    <apex:SelectList styleclass="year" size="1" value="{!year}">
+                        <apex:SelectOptions value="{!yearOptions}" ></apex:SelectOptions>
+                    </apex:SelectList>
+                </div>
+                <apex:commandButton value="Anzeigen" action="{!searchStartpage}" image="{!URLFOR($Resource.web_style, '/i/btn_show.gif')}" styleClass="r"/>
+                <div class="c"></div>
+                <p class="check_headline">Bereich wählen:</p>
+                <div class="check_leadership">
+                    <apex:inputCheckbox value="{!leadership}"/><label>Führung</label>
+                </div>
+                <div class="check_strategy">
+                    <apex:inputCheckbox value="{!strategy}"/><label>Strategie und Organisationsentwicklung</label>
+                </div>
+                <div class="check_expertise">
+                    <apex:inputCheckbox value="{!expertise}"/><label>Fachkompetenz</label>
+                </div>
+                <div class="check_personality">
+                    <apex:inputCheckbox value="{!personality}"/><label>Persönlichkeitsentwicklung</label>
+                </div>
+            </apex:form>
+            <div class="c"></div>
+            <c:WebSearchResult ></c:WebSearchResult>
+            <c:WebArticleFooter ></c:WebArticleFooter>
+        </div><!-- content_column  -->
+        
+        
+        <div class="right_column">
+            <c:WebRightBoxSearch ></c:WebRightBoxSearch>
+            <c:WebManagementGuide ></c:WebManagementGuide>
+            
+        </div>
+    </div>
+    </c:WebMainPage>
+</apex:page>

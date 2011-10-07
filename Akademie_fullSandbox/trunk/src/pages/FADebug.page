@@ -1,0 +1,9 @@
+<apex:page controller="FAHelper">
+  <strong>UserID:</strong> {!UserId}<br />
+  <strong>User Lastname:</strong> {!CurrentPerson.name}<br />
+  <strong>User Firstname:</strong> {!CurrentPerson.Vorname__c}<br />
+  <strong>Firma ID:</strong> {!CurrentFirma.id}<br />
+  <strong>Firma Name:</strong> {!CurrentFirma.name}<br />
+  <strong>Bereiche: </strong> <apex:repeat value="{!BereichList}" var="bereich"><apex:outputLink value="/{!bereich.id}">{!bereich.name}</apex:outputLink>; </apex:repeat><br/>
+  <strong>Portfolios: </strong> <apex:repeat value="{!PortfolioList}" var="portfolio"><apex:outputLink value="/{!portfolio.id}">{!portfolio.name}</apex:outputLink>; </apex:repeat><br/>
+</apex:page>

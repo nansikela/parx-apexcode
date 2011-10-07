@@ -1,0 +1,39 @@
+<apex:page standardStylesheets="false" title="test"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="false"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    
+    <html>
+    <head>
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'custom-theme/jquery-ui-1.8.10.custom.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery-1.4.4.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery-ui-1.8.10.custom.min.js')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screenplus.css')}"/>
+        
+        
+        <link href="{!URLFor($Resource.web_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        
+        
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/headerplus.js')}"/>
+    </head>
+    <body>
+    
+        <c:FAmainHeader breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column article">
+                    <c:FABestellung />
+                 </div>
+                 <div class="right_column">
+                     <c:FAPreisInformation />
+                     <c:FAWeiterfuehrendeSeminare />
+                     <c:FANaechsteSeminare />
+                 </div>
+             </div>
+        </c:FAmainHeader>
+        <c:FAfooter />
+    </body>
+    </html>
+</apex:page>

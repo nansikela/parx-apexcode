@@ -1,0 +1,93 @@
+<apex:component controller="FAKalender">
+  <h1>Seminarkalender<apex:outputText rendered="{!IsCity}">: {!headLineCity}</apex:outputText></h1>
+  <p>Hier sehen Sie die kommenden Seminare. Wenn Sie die Termine für einen bestimmten Zeitraum angezeigt kommen wollen, wählen Sie bitte aus.</p>
+  <apex:outputText rendered="{!IsCity}"><p><ul><li><a href="/seminare/kalender/{!fromDateString}">Alle Seminarorte anzeigen</a></li></ul></p></apex:outputText>
+  <h2>Termine ab</h2>
+  <select class="formpart_date" id="from_day">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+          </select>
+          <select class="formpart_month" id="from_month">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+          </select>
+          <select class="formpart_year" id="formpart_year">
+              <option>2011</option>
+              <option>2012</option>
+          </select>
+          
+          <a class="ui-button-text ui-state-highlight ui-corner-all r" id="anzeigeButton"><img src="{!URLFOR($Resource.web_style2, '/i/btn_show.gif')}"/></a>
+          <h2>Bereich wählen:</h2>
+          <div style="height: 50px;">
+          <div class="check_leadership">
+              <input type="checkbox" id="fuehrung" /> <label for="fuehrung">Führung</label>
+          </div>
+          <div class="check_strategy">
+              <input type="checkbox" id="persoenlichkeitsentwicklung" /> <label for="persoenlichkeitsentwicklung">Persönlichkeitsentwicklung</label>
+          </div>
+          <div class="check_leadership">
+              <input type="checkbox" id="Managementkompetenz" /> <label for="Managementkompetenz">Managementkompetenz</label>
+          </div>
+          <div class="check_personality">
+              <input type="checkbox" id="ausbildungenbtn" /> <label for="ausbildungenbtn">Ausbildungen</label>
+          </div>
+          </div>
+          <br />
+  <apex:repeat value="{!seminarKalender}" var="monat">
+      <h2>{!monat.month}</h2>
+      
+      
+          <apex:dataTable value="{!monat.seminarList}" var="seminar">
+              <apex:column >
+                  {!seminar.datum}
+              </apex:column>
+              <apex:column >
+                  {!seminar.titel} <br/> <i>Veranstaltungsort: <a href="/seminare/kalender/{!fromDateString}/{!LOWER(SUBSTITUTE(seminar.ort,' ', '-'))}">{!seminar.ort}</a></i>
+              </apex:column>
+              <apex:column >
+                  <a href="{!seminar.url}">Details</a><br />
+                  <apex:outputText value="{!'<i>'&seminar.buchen&'</i>'}" escape="false" />
+              </apex:column>
+          </apex:dataTable>
+  </apex:repeat>
+  
+</apex:component>

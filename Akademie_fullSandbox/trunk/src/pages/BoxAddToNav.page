@@ -1,0 +1,17 @@
+<apex:page tabStyle="Navigation__c" controller="BoxOrderController">
+    <apex:form >
+    <apex:sectionHeader title="Box hinzufügen"/>
+    <apex:pageBlock >
+        <apex:PageBlockTable value="{!rightBoxForInsertList}" var="boxContainer">
+            <apex:column headerValue="{!'Hinzufügen'}">
+                <apex:inputCheckbox value="{!boxContainer.isForInsert}"/>
+            </apex:column>
+            <apex:column value="{!boxContainer.Box.name}" headerValue="{!'Titel'}"/>
+        </apex:pageBlockTable>
+        <apex:PageBlockButtons >
+            <apex:commandButton value="{!'Speichern'}" action="{!saveNewBoxes}"/>
+            <apex:commandButton value="{!'Abbrechen'}" action="{!cancel}"/>
+        </apex:PageBlockButtons>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

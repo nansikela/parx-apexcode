@@ -1,0 +1,39 @@
+<apex:component controller="FAHelper">
+    <apex:attribute name="breadcrubShow" type="boolean" description="TODO: Describe me" required="true"/>
+
+
+    <div class="site_wrapper">
+        <div class="header">
+            <a href="/" id="logo" title="Zur Startseite">
+                Die Akademie für Führungskräfte
+            </a>
+            
+            <c:webcookie />
+            
+            <div class="servicenavi">
+              
+               
+                <li><a href="http://www.cognos-ag.de/" id="cognosLogo" target="_blank" title="Zur Cognos  AG">COGNOS COMPETENCE GROUP</a></li>
+                <li><a href="/rueckruf">Rückruf</a></li>
+                <li><a href="/die-akademie/kontakt">Kontakt</a></li>
+                <li><a href="/service/impressum">Impressum</a></li>
+                <li><a href="/service/agb">AGB</a></li>
+                
+                <a class="login" style="" href="http://www.arccade.de/Arccade.htm" target="_blank">Login</a>
+              
+              
+            </div>
+            <div class="searchfield">
+             <form method="post">
+                 <input class="autocomplete ui-autocomplete-input" type="text" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" />
+                 <input class="submitbtn" src="/resource/1315250542000/web_style2/i/btn_submit_loupe.gif" type="image" />
+             </form>
+             </div>
+            <c:FATopNav />
+            <c:Webbreadcrumbandsuggest2 rendered="{!breadcrubShow}" />
+            <c:fasubnavi rendered="{!breadcrubShow}" />
+            <apex:componentBody />
+        </div>
+    </div>
+    
+</apex:component>

@@ -1,0 +1,25 @@
+<apex:component >
+<apex:variable var="pdfLink" value="{!IF(      AND($CurrentPage.parameters.seminarCode!='MBS200',
+                              AND($CurrentPage.parameters.seminarCode!='MAIK',
+                              AND($CurrentPage.parameters.seminarCode!='FO253',
+                              AND($CurrentPage.parameters.seminarCode!='FO125',
+                              AND($CurrentPage.parameters.seminarCode!='FO118',
+                              AND($CurrentPage.parameters.seminarCode!='FN253',
+                              AND($CurrentPage.parameters.seminarCode!='CM253',
+                              AND($CurrentPage.parameters.seminarCode!='CO',
+                              AND($CurrentPage.parameters.seminarCode!='ATA',
+                              AND($CurrentPage.parameters.seminarCode!='GMP',
+                              AND($CurrentPage.parameters.seminarCode!='MO253', 
+                                      $CurrentPage.parameters.seminarCode!='MV253')))))))))))
+                                      
+                                  , 'http://www.die-akademie.de/apex/WebPDFGenerator?seminarCode='&$CurrentPage.parameters.seminarCode,URLFOR($Resource.IntensivseminarPDF, $CurrentPage.parameters.seminarCode&'.pdf'))}" />
+    <ul class="artikelnavi">
+      <apex:outputText rendered="{!$CurrentPage.parameters.seminarCode<>''}"><li><a href="{!pdfLink}" class="pdf" target="_blank" rel="nofollow">PDF</a></li></apex:outputText>
+     <li>
+<script type="text/javascript">
+var url = window.location.href.replace(/\&/, '%26');
+var currentUrl = '<a href="mailto:?subject=Die Akademie - Meine Empfehlung&body=Guten Tag,%0A%0A ich habe gerade bei der Akademie für Führungskräfte dieses Angebot gefunden: '+ url+'%0A%0A %0A%0AViele Grüsse%0A" class="mail" rel="nofollow">Empfehlen</a>'; document.write(currentUrl);</script>
+</li>
+      <apex:outputText rendered="{!$CurrentPage.parameters.seminarCode<>''}"><li><a href="{!pdfLink}" target="_blank" class="print" rel="nofollow">Drucken</a></li></apex:outputText>
+    </ul>
+</apex:component>

@@ -1,0 +1,4 @@
+<apex:page contenttype="application/vnd.ms-excel">
+  <c:FAReportingRegisteredPerson rendered="{!IF($CurrentPage.parameters.show='registeredUser','true','false')}" />
+  <c:fareportingfinishedcart rendered="{!IF($CurrentPage.parameters.show='order','true','false')}" />
+</apex:page>

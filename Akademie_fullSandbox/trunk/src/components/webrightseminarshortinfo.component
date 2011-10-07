@@ -1,0 +1,23 @@
+<apex:component >
+    <apex:attribute name="buchungslink" type="String" description="TODO: Describe me"/>
+    <apex:attribute name="ende" type="String" description="ende des Seminars"/>
+    <apex:attribute name="beginn" type="String" description="Beginn des Seminars"/>
+    <apex:attribute name="teilnehmer" type="String" description="teilnehmer des Seminars Max"/>
+    <apex:attribute name="dauer" type="String" description="Dauer des Seminars"/>
+
+    <div class="shortSeminarInfo">
+        <apex:outputText rendered="{!IF(dauer=='', 'false', 'true')}">
+            <div><strong>Dauer</strong><span>{!dauer}</span></div>
+        </apex:outputText>
+        <apex:outputText rendered="{!IF(teilnehmer=='', 'false', 'true')}">
+            <div><strong>Teilnehmer</strong><span>{!teilnehmer}</span></div>
+        </apex:outputText>  
+        <apex:outputText rendered="{!IF(beginn=='', 'false', 'true')}">
+            <div><strong>Beginn</strong><span>{!beginn}</span></div>
+        </apex:outputText>    
+        <apex:outputText rendered="{!IF(ende=='', 'false', 'true')}">
+            <div><strong>Ende</strong><span><apex:outputText escape="false" value="{!Substitute(ende, ',','<br />')}" /></span></div>
+        </apex:outputText>
+    </div>
+    <a id="buttonSeminarBuchen" href="{!buchungslink}">Hier Buchen</a>
+</apex:component>

@@ -1,0 +1,22 @@
+<apex:component controller="WebNavigationFacadeEnhanced11">
+    
+   
+    <!-- Horizontale Navigation -->
+    <div class="headnavi">
+        <ul class="mnavi">
+             <apex:repeat value="{!topNaviItem}" var="top">
+                 <li class="sub"><a class="caption" href="{!top.url}">{!top.name}</a>
+                 <ul style="display:none;">
+                     <apex:repeat value="{!top.subItemList}" var="sub">
+                         <li><a href="{!sub.url}">{!sub.name}</a></li>
+                     </apex:repeat>
+                     
+                 </ul>
+                </li> 
+             </apex:repeat>
+        </ul>
+      <div class="c"></div>
+    </div>
+    
+
+</apex:component>

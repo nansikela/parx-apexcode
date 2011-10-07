@@ -1,0 +1,21 @@
+<apex:component controller="FARightBoxesController" >
+  <div class="seminarShortInfo">
+            <apex:pageBlock >
+                <apex:pageBlockSection columns="1">
+                    <apex:repeat value="{!ShortInfo}" var="element">
+                        <apex:pageBlockSectionItem rendered="{!element.isDisplayed}">
+                            <apex:outputLabel value="{!element.label}"></apex:outputLabel>
+                            <apex:outputText escape="false" value="{!element.content}"></apex:outputText>
+                        </apex:pageBlockSectionItem>
+                    </apex:repeat>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </div>
+        <apex:outputText rendered="{!IsBookingURL}">
+        <div class="bookingButton">
+            <a href="{!BookingURL}" id="buttonSeminarBuchen">Hier Buchen</a>
+        </div>
+        </apex:outputText>
+        
+        
+</apex:component>

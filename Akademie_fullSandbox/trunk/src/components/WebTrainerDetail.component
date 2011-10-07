@@ -1,0 +1,26 @@
+<apex:component controller="WebTrainerFacade">
+    <div class="content_headline">
+        <div class="textline"><h1>{!TrainerById.Name}</h1>
+        <h2>{!TrainerById.Title}</h2></div>
+      </div>
+      
+    
+    <div class="spacer">&nbsp;</div> 
+      <img class="trainer_detail" src="{!URLFOR($resource.ContactImages, IF(TrainerById.BildURL__c=='','blank.jpg', TrainerById.BildURL__c))}" alt="{!TrainerById.Name}" />
+      
+      
+      <apex:outputText escape="false" value="{!TrainerById.Website_Trainingsschwerpunkte__c}" ></apex:outputText>
+      <div class="c"></div>
+      
+      <apex:outputText escape="false" value="{!TrainerById.Website_Profil__c }"></apex:outputText>
+      
+      
+      <!-- Seminarliste -->
+      <c:webtrainerhotelseminar portfolioList="{!SeminarEvents}" rendered="{!isSeminar}"></c:webtrainerhotelseminar>
+      
+      
+           
+         
+        
+    
+</apex:component>

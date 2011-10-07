@@ -1,0 +1,19 @@
+<apex:component controller="WebTrainerFacade">
+<apex:variable var="isTop" value="true"></apex:variable>
+<apex:variable var="isLeft" value="true"></apex:variable>
+
+<ul class="profile_small">
+    <apex:repeat var="t" value="{!trainer}" >
+        <apex:outputText escape="false" value="{!'<li class=\"'+IF(isLeft=='true','left','')+' '+IF(isTop == 'true', 'top', '')+'\">'}"></apex:outputText>
+        
+        
+            <img src="{!URLFOR($Resource.ContactImages, IF(t.bildURL__c == '', 'blank.jpg', t.bildURL__c))}" alt="{!t.name}" width="40" height="50"/>
+            <h3>{!t.name}</h3>
+            <p>{!t.Title}<br />
+            <a href="{!t.sprechende_url__c}" title="Details anzeigen">Details anzeigen</a></p>
+        <apex:outputText escape="false" value="{!'</li>'}" ></apex:outputText>
+        <apex:variable var="isLeft" value="{!IF(isLeft == 'true', 'false', 'true')}"></apex:variable> 
+        <apex:variable var="isTop" value="{!IF(AND(isLeft == 'false',isTop=='true'), 'true', 'false')}"></apex:variable> 
+    </apex:repeat>
+      </ul>
+</apex:component>

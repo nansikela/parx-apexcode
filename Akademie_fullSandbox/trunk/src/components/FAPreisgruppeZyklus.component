@@ -1,0 +1,40 @@
+<apex:component controller="FAPreisgruppe">
+  <h2>Termine</h2>
+  <br/>
+  <apex:repeat value="{!TerminBlock}" var="block">
+      <h3 class="category_strategy">{!block.name}</h3>
+      <apex:dataTable value="{!block.Produkte__r}" var="produkt">
+          <apex:column >
+              <apex:outputText value="{0,date,dd.MM.yyyy}">
+                  <apex:param value="{!produkt.Seminarbeginn__c}" />
+              </apex:outputText>
+              <apex:outputText value="{0,date, - dd.MM.yyyy}" rendered="{!IF(produkt.Seminarende__c != produkt.Seminarbeginn__c, true, false)}">
+                  <apex:param value="{!produkt.Seminarende__c}" />
+              </apex:outputText>
+          </apex:column>
+          <apex:column >
+              <a href="{!produkt.Seminarort__r.Sprechende_URL__c}">{!produkt.Seminarort__r.BillingCity}</a>
+          </apex:column>
+          <apex:column styleClass="trainerColumn">
+              <a href="{!produkt.Trainer__r.Sprechende_URL__c}">{!produkt.Trainer__r.Titel_Anrede__c}  {!produkt.Trainer__r.Firstname} {!produkt.Trainer__r.Lastname}</a> <apex:outputText value="{!' und '}" rendered="{!IF(produkt.Co_Trainer__c != null, true, false)}"/><a href="{!produkt.CO_Trainer__r.Sprechende_URL__c}">{!produkt.Co_Trainer__r.Titel_Anrede__c}  {!produkt.CO_Trainer__r.Firstname} {!produkt.CO_Trainer__r.Lastname}</a>
+          </apex:column>
+          <apex:column >
+              <apex:outputText rendered="{!IF(produkt.Modul_Nummer__c!= null, true, false)}">
+                  <div class="box_default">{!produkt.Modul_Nummer__c}</div>
+              </apex:outputText>
+              
+          </apex:column>
+      </apex:dataTable>
+  </apex:repeat>
+  <style>
+     content_column * h3
+      {
+          font-size: 1.25em;
+      }
+      .trainerColumn
+      {
+          width: 200px;
+          padding-left: 5px;
+      }
+  </style>
+</apex:component>

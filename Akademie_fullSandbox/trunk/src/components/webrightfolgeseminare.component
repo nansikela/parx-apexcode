@@ -1,0 +1,17 @@
+<apex:component controller="SeminarDetailviewController" rendered="{!PriceInformation.isFolgeSeminar}">
+    <div class="right_column_box element">
+        
+        <h3>WEITERFÜHRENDE SEMINARE</h3>
+        <apex:variable var="isNFirst" value="false"/>
+        <apex:repeat var="item" value="{!PriceInformation.p}">
+        <apex:outputText rendered="{!isNFirst}"><div class="separator c">&nbsp;</div></apex:outputText>
+        <apex:variable var="isFirst" value="{!IF(isNFirst=='false', 'true', 'true')}"/>
+        <div class="link_icon l">
+          <div class="link_text">
+            <a title="{!item.name}" href="/{!item.Intensiv_Seminar_URL__c}">{!item.name}: {!item.Seminartitel__c}</a>
+          </div>
+        </div>
+        
+        </apex:repeat>
+    </div>
+</apex:component>

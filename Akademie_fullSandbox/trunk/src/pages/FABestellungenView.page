@@ -1,0 +1,45 @@
+<apex:page standardStylesheets="false" title="test"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    
+    <html>
+    <head>
+    
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.FA_style, 'screenplus.css')}"/>
+        <link href="{!URLFor($Resource.FA_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery-1.4.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/headerplus.js')}"/>   
+    </head>
+    <body>
+    
+        <c:FAmainHeader breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column article">
+                     <c:FABestellungenView />
+                 </div>
+                 <div class="right_column">
+                     
+                 </div>
+             </div>
+        </c:FAmainHeader>
+        <c:FAfooter />
+    <style>
+        .right_column * table{
+            margin-top: 0;
+            margin-bottom: 0;
+            width: 220px;
+            font-size: 0.75em;
+        }
+        .right_column * .labelCol{
+            width: 80px;
+        }
+    </style>
+    
+    </body>
+    
+    </html>
+</apex:page>

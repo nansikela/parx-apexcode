@@ -1,0 +1,38 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true">
+    
+
+    
+        <c:webmainheader11 breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column">
+                    <c:WebHotelOverview ></c:WebHotelOverview>
+                 </div>
+                 <div class="right_column">
+                    <c:WebRightBoxSearch ></c:WebRightBoxSearch>
+                    <c:WebChatBoxRight ></c:WebChatBoxRight>
+                    <c:WebNextSeminarsRight show="6"></c:WebNextSeminarsRight>
+                 </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+    <script type="text/javascript">
+        $(document).ready(function() {
+        var hidden = true;
+        $(".expand").click(function(){
+        $(this).parent().parent().children(".hotel_map").removeClass("hide");
+        if(hidden)
+        {
+        $(this).parent().parent().children(".hotel_map").slideDown();
+        hidden = false;
+        }else{
+        $(this).parent().parent().children(".hotel_map").slideUp();
+        hidden = true;
+        }
+        });
+        });
+    </script>
+
+</apex:page>

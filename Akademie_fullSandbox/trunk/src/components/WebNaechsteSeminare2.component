@@ -1,0 +1,12 @@
+<apex:component controller="FARightBoxesController" >
+<apex:attribute name="show" description="The number of repeats" type="Integer" required="false" assignTo="{!show}"/>
+   <div class="rightbox dark">
+       <h3>NÄCHSTE SEMINARE</h3>
+       <apex:repeat value="{!NextSeminars}" var="seminar">
+           <p>{!seminar.datum}</p>
+           <a href="{!seminar.url}">{!seminar.titel}</a>
+       </apex:repeat>
+       <div class="separator">&nbsp;</div>
+       <span class="seminar_all"><a href="/seminare/kalender" title="Seminarkalender anzeigen">Seminarkalender anzeigen</a></span>
+   </div>
+</apex:component>

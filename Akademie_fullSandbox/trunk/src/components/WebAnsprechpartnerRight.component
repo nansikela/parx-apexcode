@@ -1,0 +1,26 @@
+<apex:component controller="WebAnsprechpartner">
+<div class="right_column_box element bright first">
+        <!-- Ansprechpartner -->
+        
+        <h3 class="c">IHRE ANSPRECHPARTNER</h3>
+        <apex:variable var="first" value="true"/>
+        <apex:repeat value="{!Ansprechpartner}" var="item">
+        <apex:outputText escape="false" value="{!IF(first == 'false', '<div class=\"separator\">&nbsp;</div>','')}"></apex:outputText>
+        <div style = "width: 200px; display: block;" class = "c">
+        <img src = "{!URLFOR($Resource.Ansprechpartner, item.bildURL)}" />
+        </div>
+        <div style = "display: inline-block; ">
+        <strong>{!item.name}</strong>
+        <div style = "display: inline-block; ">
+        <p><apex:outputText escape="false" value="{!item.bereich}" /></p>
+        </div>
+        <p class="tel">{!item.telefon}</p>
+        <p class="mail">
+          <a href="mailto:{!item.eMail}" title="Mail an {!item.eMail}">{!item.eMail}</a>
+        </p>
+        </div>
+        <div class="c"></div>
+        <apex:variable var="first" value="false"/>
+        </apex:repeat>
+      </div>
+</apex:component>

@@ -1,0 +1,9 @@
+<apex:component >
+<apex:attribute required="false" type="String" name="isFirst" description="is First Component"/>
+
+
+      <div class="management_guide {!IF(isFirst=='true', 'first','')}">
+        <a href="/page?pageid=a0M20000003Y7rC">Management Guide 2011<span>Hier downloaden</span></a>
+      </div>
+      
+</apex:component>

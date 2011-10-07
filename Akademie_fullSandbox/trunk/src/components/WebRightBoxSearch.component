@@ -1,0 +1,91 @@
+<apex:component >
+
+
+<div class="direct_search">
+      <h3>SEMINAR SUCHEN</h3>
+      <form method="post">
+          
+        
+        <p>Seminarcode/Titel</p>
+             <input type="text"  class="searchTextField" onclick="this.value='';" value="" id="quickQuery" />
+
+        
+         <p>Region</p>
+            <select id="region" class="optionfield">
+                 <option>- alle anzeigen -</option>
+             </select>
+          
+
+        <p>Veranstaltungsort</p>
+        <select id="city" class="optionfield">
+            <option value="">- alle anzeigen -</option>
+        </select>
+        
+
+        <p>Startdatum</p>
+        
+
+        <div id="fromdate" class="formpart_date">
+          
+          
+          <select class="" id="from_day">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+          </select>
+          
+
+          <select id="from_month">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+          </select>
+
+          <select class="formpart_year" id="formpart_year">
+              <option>2011</option>
+              <option>2012</option>
+          </select>
+
+        </div>
+
+        <input type="image" src="{!URLFOR($Resource.web_style, '/i/btn_submit.gif')}" value="submit" name="submit"  class="submitbtn" id="quicksearchButton" />
+      </form>
+    </div>
+</apex:component>

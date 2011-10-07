@@ -1,0 +1,30 @@
+<apex:page controller="pageController" showheader="false" cache="true" expires="600" contentType="text/html"  standardStylesheets="false"  renderAs="{!IF($CurrentPage.parameters.pdf =='true','pdf','' )}">
+    <apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"/>
+    <html>
+        <head>
+        
+            <meta name="description" content="{!GeneralData.metadescription}" />
+            <meta name="keywords" content="{!GeneralData.metakeywords}" />
+            <meta name="google-site-verification" content="Kh7Sp2vXLeBJGb3LkT5U9Z6oiy554qygPokJ5izV5PI" />
+            
+            
+            <apex:stylesheet value="{!URLFor($Resource.web_style, 'screen.css')}"/>
+            <apex:stylesheet value="{!URLFor($Resource.web_style, 'screenplus.css')}"/>
+            <apex:stylesheet value="{!URLFor($Resource.web_style, 'jquery-ui-1.8.14.custom.css')}"/>
+            
+            <!--<link href="{!URLFor($Resource.web_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> -->
+            <apex:outputText rendered="{!IF($CurrentPage.parameters.pdf =='true','true','false' )}"><apex:stylesheet value="{!URLFor($Resource.web_style, 'pdf.css')}"  /></apex:outputText>
+            <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery-1.5.1.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery-ui-1.8.14.custom.min.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/header.js')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery.ba-replacetext.min.js')}"/>     
+            <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/headerplus.js')}"/> 
+            <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery.validate.min.js')}"/>
+            
+            <title>{!NavigationFacade.seitenTitel}</title>
+        </head>
+        <body>
+            <apex:include pageName="{!pagetemplatename}"/>
+        </body>
+    </html>
+</apex:page>

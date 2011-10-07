@@ -1,0 +1,30 @@
+<apex:page standardStylesheets="false" title="Trainer und Berater"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/plaintext" cache="true">
+
+    
+    
+        <c:webmainheader11 breadCrubShow="true">
+             <div class="content_wrapper ">
+                                                                     <div class="content_column article">
+                                                                     <div class="content_headline">
+                                                                    <div class="textline">
+                                                                        <c:contentblock name="Ueberschrift"></c:contentblock>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="spacer">&nbsp;</div> 
+                                                                <div class = "">
+                                                                <c:contentblock name="Inhalt"></c:contentblock>
+                                                                </div>
+                                                            <c:WebArticleFooter ></c:WebArticleFooter>  
+                 
+                 </div>
+                 <div class="right_column">
+                                                                 <c:contentblock name="RightBoxes"></c:contentblock>
+                 </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+    
+</apex:page>

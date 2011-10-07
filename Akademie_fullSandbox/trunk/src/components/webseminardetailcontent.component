@@ -1,0 +1,38 @@
+<apex:component controller="WebSeminarDetailEnhancedController" >
+   
+    
+    <div id="content">
+         <div id="headlines">
+            <h2>{!instance.sdetailContent.code}</h2>
+            <h1>{!instance.sdetailContent.seminarTitel}</h1>
+            <div id="bewertung">
+            <img src="{!URLFOR($Resource.web_style,'i/stars_'+ instance.sdetailContent.sterne +'.gif')}" />
+            <a href="#Bewertung">({!instance.sdetailContent.bewertungen})</a>
+            </div>
+        </div>
+        <div id="description">
+            <apex:outputText escape="false" value="{!instance.sdetailContent.seminarText}" />
+        </div>
+        <c:webseminarnextveranstaltungen />
+    <apex:outputText rendered="{!IF(instance.sdetailContent.bewertungen=='0 Bewertungen', 'false', 'true')}">
+        <div id="bewertungHeader">
+        <h3>Bewertungen</h3><a name="Bewertung"></a>
+        <div>
+        <img src="{!URLFOR($Resource.web_style,'i/stars_'+ instance.sdetailContent.sterne +'.gif')}" />
+        <a href="#Bewertung">({!instance.sdetailContent.bewertungen})</a>
+        </div>
+        </div>
+        <apex:repeat value="{!instance.bewertungslist}" var="bewertungContainer">
+            <div class="rating_Kurs">
+                <img alt="5 Sterne" src="{!URLFOR($Resource.web_style, 'i/stars_'+bewertungContainer.sterne__c+'.gif')}" class="l stars" />
+                <strong>{!bewertungContainer.Fazit__c}</strong><br />
+                <p><apex:outputText escape="false" value="{!bewertungContainer.Bewertungstext__c}" /></p>
+                <p class="author">{!bewertungContainer.Teilnehmer__r.name}</p>
+            </div>
+        </apex:repeat>
+    </apex:outputText>
+    
+    
+    
+    </div>
+</apex:component>

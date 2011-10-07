@@ -1,0 +1,43 @@
+<apex:component controller="WebAnmeldungController">
+
+     <div class="content_headline">
+        <div class="textline">
+          <h1>Anmeldung</h1>
+          <p class="headline_submenu">
+            <span class="active">1. Seminar</span>
+            <span class="pipe">|</span>
+            2. Teilnehmer
+            <span class="pipe">|</span>
+            3. Hotel
+            <span class="pipe">|</span>
+            4.Rechnung
+            <span class="pipe">|</span>
+            5. Bestätigung
+          </p>
+        </div>
+      </div>
+      <c:webanmeldungerror rendered="{!IF($CurrentPage.parameters.error=='1','true', 'false')}"></c:webanmeldungerror>
+      Bitte wählen Sie Ihr Seminar aus:
+      <apex:form >
+          <div class="label">
+              <div>Seminar*</div>
+          </div>
+          <div class="fields">
+              <div>
+                  <apex:selectList styleClass="dropdown_code" value="{!seminarCode}" size="1">
+                      <apex:selectOptions value="{!seminarCodeList}" ></apex:selectOptions>
+                  </apex:selectList>
+              </div>
+          </div>
+          <div class="c"></div>
+          <div class="separator_line"></div>
+          <small>*Pflichtfelder</small>
+          <div class = "r">
+              <apex:commandButton value="Weiter" action="{!save0}" image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+          </div>
+          <div class="c"></div>
+      </apex:form>
+
+     
+
+</apex:component>

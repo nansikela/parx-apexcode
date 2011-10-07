@@ -1,0 +1,22 @@
+<apex:component controller="FaNavigationFacade">
+    <div class ="footer_wrapper">
+        <div class="footer">
+            <apex:repeat value="{!topNaviItem}" var="top">
+               <div class="footerlist">
+                   <h3>{!top.name}</h3>
+                   <ul>
+                       <apex:repeat value="{!top.subItemList}" var="sub">
+                         <li><a href="{!sub.url}">{!sub.name}</a></li>
+                       </apex:repeat>
+                   </ul>
+               </div> 
+            </apex:repeat>
+            <div class="separator">&nbsp;</div>
+              <ul class="service_navi">
+                <li><a href="/service/kontakt">Kontakt</a></li>
+                <li><a href="/service/impressum">Impressum</a></li>
+                <li><a href="/service/agb">AGB</a></li>
+              </ul>
+        </div>
+    </div>
+</apex:component>

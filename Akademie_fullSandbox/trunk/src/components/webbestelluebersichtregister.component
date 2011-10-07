@@ -1,0 +1,189 @@
+<apex:component controller="WebRegisterTeilnehmer" allowDML="true">
+<h1>Anmeldung</h1>
+    <i class="headline_submenu"><span >1. Teilnehmer</span> <span class="pipe">|</span><span>2. Rechnungsanschrift</span><span class="pipe">|</span><span class="active">3. Bestellübersicht</span><span class="pipe">|</span><span>4. Bestätigung</span></i>
+    <h2>Teilnehmer</h2>
+    
+    <apex:pageBlock >
+            <apex:PageBlockSection columns="1">
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.Anrede__c} {!currentPerson.Vorname__c} {!currentPerson.Name}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                
+                <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Strasse__c<> null, true, false)}">
+                    <apex:outputLabel >Strasse</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.Strasse__c}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                
+                <apex:PageBlockSectionItem rendered="{!IF(currentPerson.PLZ__c<> null, true, false)}">
+                    <apex:outputLabel >PLZ</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.PLZ__c}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                
+                <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Ort__c<> null, true, false)}">
+                    <apex:outputLabel >Ort</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.Ort__c}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                
+                <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Company__c<> null, true, false)}">
+                    <apex:outputLabel >Firma</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.Company__c}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Funktion__c<> null, true, false)}">
+                    <apex:outputLabel >Funktion</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.Funktion__c}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Abteilung__c<> null, true, false)}">
+                    <apex:outputLabel >Abteilung</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.Abteilung__c}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Email__c<> null, true, false)}">
+                    <apex:outputLabel >eMail</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.Email__c}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Geburtsdatum__c<> null, true, false)}">
+                    <apex:outputLabel >Geburtsdatum</apex:outputLabel>
+                    <apex:outputText >
+                        {!currentPerson.Geburtsdatum__c}
+                    </apex:outputText>
+                </apex:PageBlockSectionItem>
+                
+            </apex:PageBlockSection>
+    </apex:pageBlock>
+    <h2>Rechungsanschrift</h2>
+    <apex:pageBlock >
+            <apex:PageBlockSection columns="1">
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Firma__c<> null, true, false)}">
+                    <apex:outputLabel for="firma">Firma</apex:outputLabel>
+                    <apex:outputField id="firma" value="{!anschrift.Firma__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Ansprechpartner__c<> null, true, false)}">
+                    <apex:outputLabel for="ansprechpartner">Ansprechpartner</apex:outputLabel>
+                    <apex:outputField id="ansprechpartner" value="{!anschrift.Ansprechpartner__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Abteilung__c<> null, true, false)}">
+                    <apex:outputLabel for="abteilung">Abteilung</apex:outputLabel>
+                    <apex:outputField id="abteilung" value="{!anschrift.Abteilung__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Strasse__c<> null, true, false)}">
+                    <apex:outputLabel for="strasse">Strasse*</apex:outputLabel>
+                    <apex:outputField id="strasse" value="{!anschrift.Strasse__c}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.PLZ__c<> null, true, false)}">
+                    <apex:outputLabel for="plz">PLZ*</apex:outputLabel>
+                    <apex:outputField id="plz" value="{!anschrift.PLZ__c}" />
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Ort__c<> null, true, false)}">
+                    <apex:outputLabel for="ort">Ort*</apex:outputLabel>
+                    <apex:outputField id="ort" value="{!anschrift.Ort__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Land__c<> null, true, false)}">
+                    <apex:outputLabel for="ort">Ort*</apex:outputLabel>
+                    <apex:outputField id="ort" value="{!anschrift.Land__c}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Nachricht__c<> null, true, false)}">
+                    <apex:outputLabel for="ort">Ihre Nachricht</apex:outputLabel>
+                    <apex:outputField id="ort" value="{!anschrift.Nachricht__c}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Telefon__c<> null, true, false)}">
+                    <apex:outputLabel for="telefon">Telefon*</apex:outputLabel>
+                    <apex:outputField id="telefon" value="{!anschrift.Telefon__c}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.Telefax__c<> null, true, false)}">
+                    <apex:outputLabel for="telefax">Telefax</apex:outputLabel>
+                    <apex:outputField id="telefax" value="{!anschrift.Telefax__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!IF(anschrift.eMail__c<> null, true, false)}">
+                    <apex:outputLabel for="email">eMail*</apex:outputLabel>
+                    <apex:outputField id="email" value="{!anschrift.eMail__c}"/>
+                </apex:pageBlockSectionItem>
+            </apex:PageBlockSection>
+            
+        </apex:pageBlock>
+    <h2>Seminare</h2>
+    
+    <apex:dataTable value="{!WarenkorbInhalt}" var="inhalt" styleClass="textright">
+          
+          <apex:column headerValue="{!'Datum'}">
+              {!inhalt.datum}
+          </apex:column>
+          <apex:column headerValue="{!'Ort'}">
+              {!inhalt.titel}<br />
+              {!inhalt.ort}<br />
+              
+              <apex:outputText rendered="{!inhalt.isHotelReservierung}">
+                  
+                  <br />
+                  {!IF(inhalt.ezReservierung, 'Sie reservieren ein EZ.','')} {!IF(inhalt.dzReservierung, 'Sie reservieren ein DZ.','')}
+              </apex:outputText>
+          </apex:column>
+          <apex:column value="{!inhalt.preis}" headerClass="rechts123" headerValue="{!'Preis'}"/>
+      </apex:dataTable>
+      <div class="textright">
+   <apex:pageBlock >
+       <apex:pageBlockSection >
+           <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+           <apex:pageblockSectionItem >
+               <apex:outputLabel >Summe</apex:outputLabel>
+               <apex:outputText >{!PreisString}</apex:outputText>
+           </apex:pageblockSectionItem>
+           <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+           <apex:pageblockSectionItem >
+               <apex:outputLabel >MwSt.</apex:outputLabel>
+               <apex:outputText >{!PreisMWST}</apex:outputText>
+           </apex:pageblockSectionItem>
+           <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+           <apex:pageblockSectionItem >
+               <apex:outputLabel >Gesamt</apex:outputLabel>
+               <apex:outputText >{!PreisGesamt}</apex:outputText>
+           </apex:pageblockSectionItem>
+       </apex:pageBlockSection>
+   </apex:pageBlock>
+   </div>
+    <apex:form >
+        <apex:PageBlock >
+            <apex:pageBlockSection columns="1">
+                <apex:pageblockSectionItem >
+                     <apex:inputField value="{!warenkorbObject.AGB__c}" required="true"/>
+                     <apex:outputLabel >Ich bestelle/reserviere oben aufgeführte Produkte im Rahmen der <a href="/page?pageid=a0M20000003Xnu3" target="_blank" id="link_70">Allgemeinen Geschäftsbedingungen</a> der Akademie für Führungskräfte der Wirtschaft GmbH.</apex:outputLabel>
+
+          
+              
+                </apex:pageblockSectionItem>
+            </apex:pageBlockSection>
+        </apex:PageBlock>
+        <p><strong>Widerrufsrecht für Verbraucher</strong><br />
+Als Verbraucher haben Sie das Recht, Ihre Vertragserklärung innerhalb von zwei Wochen nach Erhalt unserer Anmelde/Bestellbestellbestätigung ohne Angabe von Gründen in Textform (z. B. Brief, Telefax, E-Mail) zu widerrufen. Die Frist für Ihren Widerruf beginnt frühestens am Tag nach Erhalt Ihrer Anmeldebestätigung und dieser Belehrung in Textform. Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung des Widerrufs. Ihr Widerrufsrecht erlischt vorzeitig, wenn Ihr Vertragspartner mit der Ausführung der Dienstleistung mit Ihrer ausdrücklichen Zustimmung vor Ende der Widerrufsfrist begonnen hat oder Sie diese selbst veranlasst haben (z. B. den Besuch des gebuchten Seminars etc.).
+Der Widerruf ist zu richten an: Akademie für Führungskräfte der Wirtschaft GmbH, Seepromenade 19, 88662 Überlingen, Telefax: +49.7551.9368100, E-Mail: info@die-akademie.de. Im Falle eines wirksamen Widerrufs sind die beiderseits empfangenen Leistungen zurückzugewähren (und ggf. gezogene Nutzungen, z.B. Zinsen herauszugeben).</p>
+    <div>
+        <a href="/registrierung?step=rechnungsanschrift" class="l" ><img style="margin-bottom: 0px;" src="{!URLFOR($Resource.web_style2, '/i/btn_prev.gif')}" /></a>
+        <apex:commandButton value="{!'Bestellung abschliessen'}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r"  action="{!goToAbschluss}"/>
+    </div>
+    
+    </apex:form>
+    <style>
+        .textright .lastColumn, .rechts123
+        {
+            text-align: right;
+        }
+    </style>
+</apex:component>

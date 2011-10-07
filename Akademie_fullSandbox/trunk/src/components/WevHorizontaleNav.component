@@ -1,0 +1,25 @@
+<apex:component controller="WebNavigationFacade">
+    <!-- Horizontale Navigation -->
+    <div class="headnavi">
+        <ul class="mnavi">
+             <apex:repeat var="item" value="{!topNavigationWithItems}">
+                <apex:outputText escape="false" value="{!IF(AND(item.isCategory, !item.isFirstCategory), '</ul></li>','')}"></apex:outputText>
+                <apex:outputText escape="false" value="{!IF(AND(item.isCategory,item.isLastCategory), '<li class=\"sub last\">','')}"></apex:outputText>
+                <apex:outputText escape="false" value="{!IF(AND(item.isCategory,!item.isLastCategory), '<li class=\"sub\">','')}"></apex:outputText>
+                    
+                    
+                    <apex:outputText escape="false" value="{!IF(!item.isCategory, '<li>','')}"></apex:outputText>
+                    <a class="{!IF(item.isCategory, 'caption','')}" href="{!item.url}">{!item.name}</a>
+                    <apex:outputText escape="false" value="{!IF(!item.isCategory, '</li>','')}"></apex:outputText>
+                    
+                    <apex:outputText escape="false" value="{!IF(item.isCategory, '<ul style=\"display: none;\">','')}"></apex:outputText>
+                        
+                            
+                        
+            </apex:repeat>
+            <apex:outputText escape="false" value="{! '</ul></li>'}"></apex:outputText>
+        </ul>
+      <div class="c"></div>
+    </div>
+    
+</apex:component>

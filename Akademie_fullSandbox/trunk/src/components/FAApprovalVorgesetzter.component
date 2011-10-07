@@ -1,0 +1,57 @@
+<apex:component allowDML="true" controller="FAApprovalVorgesetzterController" >
+<apex:form rendered="{!IF($CurrentPage.parameters.step=='thankYou',false,true)}" >
+  <h1>Bestellungsinformation</h1>
+  <br />
+  <apex:variable value="true" var="renderError"/>
+  <apex:PageBlock >
+      <apex:PageBlockSection columns="1">
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel value="{!'Teilnehmer'}" for="teilnehmer"></apex:outputLabel>
+              <apex:outputText id="teilnehmer">{!thewarenkorb.person__r.Anrede__c} {!thewarenkorb.person__r.name}</apex:outputText>
+          </apex:PageBlockSectionItem>
+      </apex:PageBlockSection>
+  </apex:PageBlock>
+  <h2>Seminare</h2>
+  <apex:PageBlock >
+      <apex:repeat value="{!seminarList}" var="seminar">      
+      <apex:PageBlockSection columns="1" title="{!seminar.titel}">
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel value="{!'Termin:'}" for="termin"></apex:outputLabel>
+              <apex:outputText id="termin">{!seminar.datum}</apex:outputText>
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel value="{!'Ort:'}" for="ort"></apex:outputLabel>
+              <apex:outputText id="ort">{!seminar.ort}</apex:outputText>
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem >
+              <apex:outputLabel value="{!'Preis:'}" for="preis"></apex:outputLabel>
+              <apex:outputText id="preis">{!seminar.preis}</apex:outputText>
+          </apex:PageBlockSectionItem>
+          <apex:PageBlockSectionItem rendered="{!seminar.isHotelReservierung}">
+              <apex:outputLabel value="{!'Hotel-Reservierung:'}" for="hotel"></apex:outputLabel>
+              <apex:outputText id="hotel">{!IF(seminar.ezReservierung, 'Es wurde ein EZ zum Preis von '&seminar.ezPreis,'')} {!IF(seminar.dzReservierung, 'Es wurde ein DZ zum Preis von '&seminar.dzPreis,'')} p. Nacht reserviert.<br /> Anreise: {!seminar.anreise} Abreise: {!seminar.abreise}</apex:outputText>
+          </apex:PageBlockSectionItem>
+              
+          <apex:PageBlockSectionItem >
+              <apex:inputCheckbox value="{!seminar.vorgesetzterOK}" id="vorgesetzterOK"/>
+              <apex:outputLabel for="vorgesetzterOK"><strong>{!'Ich stimme der Teilnahme meines Mitarbeiters an diesem Seminar zu.'}</strong></apex:outputLabel>
+          </apex:PageBlockSectionItem>
+      </apex:PageBlockSection>
+          <apex:variable value="false" var="renderError"/>
+      </apex:repeat>
+      <apex:outputText rendered="{!IF(renderError== 'false', true, false)}">
+    Alle Preise in EUR zzgl. MwSt. (19%)
+    <div class="buttons">
+        <apex:commandButton value="{!'Speichern'}" action="{!save}"/>
+    </div>
+    </apex:outputText>
+    <apex:outputText rendered="{!IF(renderError== 'true', true, false)}">
+        Sie haben bereits alle Entscheidungen für diese Bestellung getroffen.
+    </apex:outputText>
+  </apex:PageBlock>
+</apex:form>
+<apex:outputText rendered="{!IF($CurrentPage.parameters.step=='thankYou',true,false)}" >
+    <h1>Vielen Dank für Ihre Entscheidung</h1>
+</apex:outputText>
+
+</apex:component>

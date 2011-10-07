@@ -1,0 +1,93 @@
+<apex:component controller="FAKontakdatenaendernController" allowDML="true">
+   
+    
+  <h1>{!$Label.Kontaktdaten_aendern}</h1>
+  <p>
+  {!$Label.Kontaktdaten_aendernBeschreibung}
+  </p>
+  <p><apex:messages styleClass="ui-state-error ui-corner-all"  layout="table" /></p>
+  <apex:form rendered="{!IF($CurrentPage.parameters.mode=='edit', 'true','false')}">
+  <apex:pageBlock >
+  
+      <apex:pageBlockSection columns="1">
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Anrede}" for="anrede"></apex:outputLabel>
+              <apex:inputField value="{!currentPerson.Anrede__c}" id="anrede" required="true" />
+          </apex:pageBlockSectionItem>
+          
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Titel}" for="titel"></apex:outputLabel>
+              <apex:inputField value="{!currentPerson.Titel__c}" id="titel" />
+          </apex:pageBlockSectionItem>
+          
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Vorname}" for="vorname"></apex:outputLabel>
+              <apex:inputField value="{!currentPerson.Vorname__c}" id="vorname" required="true" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Nachname}" for="nachname"></apex:outputLabel>
+              <apex:inputField value="{!currentPerson.name}" id="nachname" required="true" />
+          </apex:pageBlockSectionItem>
+          
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Abteilung}" for="abteilung"></apex:outputLabel>
+              <apex:inputField value="{!currentPerson.Abteilung__c}" id="abteilung" required="true" />
+          </apex:pageBlockSectionItem>
+          
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Telefon}" for="telefon"></apex:outputLabel>
+              <apex:inputField value="{!currentPerson.Telefon__c}" id="telefon" required="true" />
+          </apex:pageBlockSectionItem>
+          
+          </apex:pageBlockSection>
+        </apex:pageBlock>
+        <div class="buttons">
+            <apex:commandLink value="{!$Label.Abbrechen}" styleClass="" action="{!cancel}" />
+            <apex:commandButton value="{!$Label.Speichern}" styleClass="ui-button-text ui-state-highlight ui-corner-all r" action="{!save}"/>
+        </div>
+
+  </apex:form>
+ 
+ <apex:form rendered="{!IF($CurrentPage.parameters.mode=='', 'true','false')}">
+  <apex:pageBlock >
+       <apex:pageBlockSection columns="1">
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Anrede}" for="anrede"></apex:outputLabel>
+              <apex:outputField value="{!currentPerson.Anrede__c}" id="anrede" />
+          </apex:pageBlockSectionItem>
+          
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Titel}" for="titel"></apex:outputLabel>
+              <apex:outputField value="{!currentPerson.Titel__c}" id="titel" />
+          </apex:pageBlockSectionItem>
+          
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Vorname}" for="vorname"></apex:outputLabel>
+              <apex:outputField value="{!currentPerson.Vorname__c}" id="vorname" />
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Nachname}" for="nachname"></apex:outputLabel>
+              <apex:outputField value="{!currentPerson.name}" id="nachname" />
+          </apex:pageBlockSectionItem>
+          
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Abteilung}" for="abteilung"></apex:outputLabel>
+              <apex:outputField value="{!currentPerson.Abteilung__c}" id="abteilung" />
+          </apex:pageBlockSectionItem>
+          
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="{!$Label.Telefon}" for="telefon"></apex:outputLabel>
+              <apex:outputField value="{!currentPerson.Telefon__c}" id="telefon" />
+          </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+        </apex:pageBlock>
+        <div class="buttons">
+            
+            <apex:commandButton value="{!$Label.Bearbeiten}" styleClass="ui-button-text ui-state-highlight ui-corner-all r" action="{!edit}" />
+               
+        </div>
+
+  </apex:form>
+ 
+ 
+</apex:component>

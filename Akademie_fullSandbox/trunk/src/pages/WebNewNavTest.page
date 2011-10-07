@@ -1,0 +1,31 @@
+<apex:page standardStylesheets="false" title="test"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    
+    <html>
+    <head>
+    
+        <apex:stylesheet value="{!URLFor($Resource.web_style, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.web_style, 'screenplus.css')}"/>
+        <link href="{!URLFor($Resource.web_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery-1.4.2.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.web_style, 'js/headerplus.js')}"/>   
+    </head>
+    <body>
+    
+        <c:webmainheader11 breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column article">
+                 </div>
+                 <div class="right_column">
+                 
+                 </div>
+             </div>
+        </c:webmainheader11>
+        <c:webfooterR11 />
+    </body>
+    </html>
+</apex:page>

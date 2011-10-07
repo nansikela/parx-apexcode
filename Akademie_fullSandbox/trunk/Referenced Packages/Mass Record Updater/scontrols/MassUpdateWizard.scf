@@ -1,0 +1,755 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet"
+	media="handheld,print,projection,screen,tty,tv"
+	href="/sCSS/9.0/1173909788000/Theme2/default/common.css">
+<script src="/soap/ajax/9.0/connection.js" type="text/javascript"></script>
+
+<script>
+  
+  	// these are the initial objects to query on - I use a subset of objects to cut back on the
+  	// initial setup time taken up by the describe call
+	var types = ["Account", "Case", "Contact", "Lead", "Opportunity"];
+	// this holds the ids of the records we query for
+	var ids = [];
+	// for any describe we do, we store the result in this map so we don't have to re-run the
+	// describe a second time since the serialization of the respone takes a long time
+	var cachedDescribes = {};
+  
+  	// this gets called on page load and sets up the initial form data (object types, fields)
+	function setupPage() {
+		// get all the possible types in an organization
+		var describeGlobalResult = sforce.connection.describeGlobal();
+		// iterate through them
+		for(var i=0; i<describeGlobalResult.getArray("types").length; i++) {
+			// grab the name
+			var typeName = describeGlobalResult.getArray("types")[i];
+			// check if the object is a custom object
+			if(typeName.substr(typeName.length - 3, typeName.length - 1) === "__c") {
+				// if it is, include it in the initial setup
+				types.push(typeName);
+			}
+		}
+		// make sure the cachedDescribes map has all the describe results we need
+		runRequiredDescribes(types);
+		// iterate through the types we're setting up
+		for(var i=0; i<types.length; i++) {
+			// add a new option to the object type drop down
+			document.objects.object[i+1] = new Option(cachedDescribes[types[i]].label, cachedDescribes[types[i]].name);
+		}
+	}
+	
+	// this looks through the types (which can be either a string or string[]) and checks to see
+	// if the describe result for them is stored in the map - if it isn't, run the describe
+	function runRequiredDescribes(types) {
+		// variable to store which types need to be described
+		var requiredDescribes = [];
+		// is types an array?
+		if(types instanceof Array) {
+			// yes, iterate through them
+			for(var i=0; i<types.length; i++) {
+				// does the map contain the describe result for this type?
+				if(cachedDescribes[types[i]] == null) {
+					// if no, we need to describe it
+					requiredDescribes.push(types[i]);
+				}
+			}
+		}
+		// types is a string
+		else {
+			// does the map contain the describe result for this type?
+			if(cachedDescribes[types] == null) {
+				// if no, we need to describe it
+				requiredDescribes.push(types);
+			}
+		}
+		// we don't need to run a describe if there are no objects to describe
+		if(requiredDescribes.length > 0) {
+			// run the describe on all required types
+			var result = sforce.connection.describeSObjects(requiredDescribes);
+			// iterate through the results
+			for(var i=0; i<result.length; i++) {
+				// and add each describe result to the map (we map object name to describe
+				// result)
+				cachedDescribes[result[i].name] = result[i];
+			}
+		}
+	}
+
+	// this includes all possible object types
+	function includeAllObjects() {
+		// run the describe global
+		var describeGlobalResult = sforce.connection.describeGlobal();
+		// grab all the types
+		types = describeGlobalResult.types;
+		// make sure the cachedDescribes map has all the describe results we need
+		runRequiredDescribes(describeGlobalResult.types);
+		// an index for the object type dropdown - we start at 1 so as not to overwrite the
+		// --None-- option
+		var optionCount = 1;
+		// iterate through all the types
+		for(var i=0; i<types.length; i++) {
+			// check if the type is queryable
+			if(cachedDescribes[types[i]].getBoolean("queryable") === true) {
+				// if it is, add it to the list of objects usable
+				document.objects.object[optionCount] = new Option(cachedDescribes[types[i]].label, cachedDescribes[types[i]].name);
+				// increase the index by 1
+				optionCount++;
+			}
+		}
+	}
+
+	// this function sets up all the field information in the form
+	function setupFields() {
+		// grab the type the user has chosen
+		var type = document.objects.object.options[document.objects.object.selectedIndex].value;
+		// iterate through the field forms and removes all currently set information
+		for(var i=1; i<document.objects.field1.length; i++) {
+				document.objects.field1[i] = null;
+				document.objects.field2[i] = null;
+				document.objects.field3[i] = null;
+				document.objects.field4[i] = null;
+				document.objects.field5[i] = null;
+				document.objects.field6[i] = null;
+				document.objects.display1[i] = null;
+				document.objects.display2[i] = null;
+				document.objects.display3[i] = null;
+				document.objects.display4[i] = null;
+				document.objects.display5[i] = null;
+				document.objects.update1[i] = null;
+				document.objects.update2[i] = null;
+				document.objects.update3[i] = null;
+				document.objects.update4[i] = null;
+		}
+		// also reset the length of the fields
+		document.objects.field1.length = 1;
+		document.objects.field2.length = 1;
+		document.objects.field3.length = 1;
+		document.objects.field4.length = 1;
+		document.objects.field5.length = 1;
+		document.objects.field6.length = 1;
+		document.objects.display1.length = 1;
+		document.objects.display2.length = 1;
+		document.objects.display3.length = 1;
+		document.objects.display4.length = 1;
+		document.objects.display5.length = 1;
+		// only proceed if the user's selected a real object
+		if(type !== "--None--") {
+			// make sure the cachedDescribes map has all the required describe results
+			runRequiredDescribes(type);
+			// get the describe result we want to use
+			var describeResult = cachedDescribes[type];
+			// this is an index for the options in the fields to query dropdowns
+			var count1 = 1;
+			// this is an index for the options in the fields to update dropdowns
+			var count2 = 1;
+			// this is an index for the options in the fields to display dropdowns
+			var count3 = 1;
+			// iterate through the fields in the selected type
+			for(var i=0; i<describeResult.fields.length; i++) {
+				// if the field is filterable that means it can be used in a SOQl where clause, so
+				// we want to include it as an option to filter on				
+				if(describeResult.fields[i].getBoolean("filterable") === true) {
+					document.objects.field1[count1] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.field2[count1] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.field3[count1] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.field4[count1] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.field5[count1] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.field6[count1] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					// increase the index by 1
+					count1++;
+				}
+				if(describeResult.fields[i].name !== "Id") {
+					document.objects.display1[count3] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.display2[count3] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.display3[count3] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.display4[count3] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.display5[count3] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					count3++;
+				}
+				// if the field is updateable that means it can be, well, updated, so we want to
+				// include it as an option to update
+				if(describeResult.fields[i].getBoolean("updateable") === true) {
+					document.objects.update1[count2] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.update2[count2] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.update3[count2] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					document.objects.update4[count2] = new Option(describeResult.fields[i].label, describeResult.fields[i].name);
+					// increase the index by 1
+					count2++;
+				}
+			}
+			// do we want to include the parent objects of the user selected object?
+			if(document.objects.includerels.checked === true) {
+				// yes, does the describe result have fields?
+				if(describeResult.fields != null) {
+					// we need to save the relationshipNames because we have to use those in SOQL
+					var relationshipNames = [];
+					// we save the parent objects so we know what to describe later on
+					var parentObjects = [];
+					// iterate through the object's fields
+					for(var i=0; i<describeResult.fields.length; i++) {
+						// does the field reference another object?
+						if(describeResult.fields[i].referenceTo != null) {
+							// initialize this boolean to false first
+							var isPresent = false;
+							// iterate through the parent objects
+							for(var j=0; j<parentObjects.length; j++) {
+								// have we already encountered this field's parent when looking at
+								// a different field?
+								if(parentObjects[j] === describeResult.fields[i].referenceTo) {
+									// if so, set the boolean to true so we don't re-add it
+									isPresent = true;
+								}
+							}
+							// did we find the parent?
+							if(isPresent === false) {
+								// is the relationship a reference to more than one object?
+								if(describeResult.fields[i].referenceTo instanceof Array) {
+									// if yes, iterate through the object references
+									for(var j=0; j<describeResult.fields[i].referenceTo.length; j++) {
+										// and add the relationsihp names and object names to the local arrays
+										relationshipNames.push(describeResult.fields[i].relationshipName);
+										parentObjects.push(describeResult.fields[i].referenceTo[j]);
+									}
+								} else {
+									// if not, add the relationship name and object name to the local arrays
+									relationshipNames.push(describeResult.fields[i].relationshipName);
+									parentObjects.push(describeResult.fields[i].referenceTo);
+								}
+							}
+						}
+					}
+					// set up the cachedDescribes map with the required describe results
+					runRequiredDescribes(parentObjects);
+					// store the parent describe results in an array
+					var parentDescribeResults = [];
+					// iterate through the object names
+					for(var i=0; i<parentObjects.length; i++) {
+						// grab the describe results from the cachedDescribes map
+						parentDescribeResults.push(cachedDescribes[parentObjects[i]]);
+					}
+					// iterate through the describe results
+					for(var i=0; i<parentDescribeResults.length; i++) {
+						// iterate through the fields in a parent object
+						for(var j=0; j<parentDescribeResults[i].fields.length; j++) {
+							// can we filter on this field?
+							if(parentDescribeResults[i].fields[j].getBoolean("filterable") === true) {
+								// yes, so add the fields to the options in the filter on dropdowns
+								document.objects.field1[count1] = new Option("Parent " + relationshipNames[i] + ": " + parentDescribeResults[i].fields[j].label, relationshipNames[i] + "." + parentDescribeResults[i].fields[j].name);
+								document.objects.field2[count1] = new Option("Parent " + relationshipNames[i] + ": " + parentDescribeResults[i].fields[j].label, relationshipNames[i] + "." + parentDescribeResults[i].fields[j].name);
+								document.objects.field3[count1] = new Option("Parent " + relationshipNames[i] + ": " + parentDescribeResults[i].fields[j].label, relationshipNames[i] + "." + parentDescribeResults[i].fields[j].name);
+								document.objects.field4[count1] = new Option("Parent " + relationshipNames[i] + ": " + parentDescribeResults[i].fields[j].label, relationshipNames[i] + "." + parentDescribeResults[i].fields[j].name);
+								document.objects.field5[count1] = new Option("Parent " + relationshipNames[i] + ": " + parentDescribeResults[i].fields[j].label, relationshipNames[i] + "." + parentDescribeResults[i].fields[j].name);
+								document.objects.field6[count1] = new Option("Parent " + relationshipNames[i] + ": " + parentDescribeResults[i].fields[j].label, relationshipNames[i] + "." + parentDescribeResults[i].fields[j].name);
+								// increase the index by 1
+								count1++;
+							}
+						}
+					}
+				}
+			}
+		}
+  	}
+  	
+  	// this is called whenever you click update
+  	function submitMassUpdate() {
+  		// find the records that match the user selected criteria
+  		findRecords();
+  		// once the records have been found, update them with the user selected input
+  		massUpdateRecords();
+  	}
+  	
+  	// this returns the where clause for a specific field name, operator type, and value for
+  	// a SOQL string
+  	function generateWhereClause(fieldName, operatorType, fieldValue, describeResult) {
+  		// store the query string
+  		var queryString = "";
+  		// in SOQL, all values need to be enclosed in single quotes, except for booleans
+  		var valueEnclosure = "'";
+  		// iterate through the fields
+  		for(var i=0; i<describeResult.fields.length; i++) {
+  			// is the field in question a boolean?
+  			if(describeResult.fields[i].name === fieldName &&
+  			   describeResult.fields[i].type === "boolean" ) {
+  			   	// yes, so we don't need a single quote as the enclosure
+  				valueEnclosure = "";
+  			}
+  		}
+  		
+  		// only proceed if the user's actually set up a filter
+  		if(fieldName !== "--None--" && fieldName !== "" && operatorType !== "--None--" && operatorType !== "") {
+  			// these if/else statements set up the query string appropriately for the operator type and
+  			// the data type
+			if(operatorType !== "_%" && operatorType !== "in" && operatorType !== "not in") {
+				queryString += fieldName + " " + operatorType + " " + valueEnclosure + fieldValue + valueEnclosure;
+			} else if(operatorType === "in" || operatorType === "not in") {
+				queryString += fieldName + " " + operatorType + " (" + valueEnclosure + fieldValue + valueEnclosure + ")";
+			} else {
+				queryString += fieldName + " like " + valueEnclosure + fieldValue + "%" + valueEnclosure;
+			}
+			// need to append 'and' to support having more than one filter in the where clause
+			queryString += " and ";
+		}
+		
+		// return the generated query string
+		return queryString;
+  	}
+  	
+  	function findMatchingRecords() {
+  		// grab the initial data the user set up in the form
+  		var fieldName1 = document.objects.field1[document.objects.field1.selectedIndex].value;
+  		var fieldName2 = document.objects.field2[document.objects.field2.selectedIndex].value;
+  		var fieldName3 = document.objects.field3[document.objects.field3.selectedIndex].value;
+  		var fieldName4 = document.objects.field4[document.objects.field4.selectedIndex].value;
+  		var fieldName5 = document.objects.field5[document.objects.field5.selectedIndex].value;
+  		var fieldName6 = document.objects.field6[document.objects.field6.selectedIndex].value;
+  		
+  		var operatorType1 = document.objects.operator1[document.objects.operator1.selectedIndex].value;
+  		var operatorType2 = document.objects.operator2[document.objects.operator2.selectedIndex].value;
+  		var operatorType3 = document.objects.operator3[document.objects.operator3.selectedIndex].value;
+  		var operatorType4 = document.objects.operator4[document.objects.operator4.selectedIndex].value;
+  		var operatorType5 = document.objects.operator5[document.objects.operator5.selectedIndex].value;
+  		var operatorType6 = document.objects.operator6[document.objects.operator6.selectedIndex].value;
+  		
+  		var value1 = document.objects.value1.value;
+  		var value2 = document.objects.value2.value;
+  		var value3 = document.objects.value3.value;
+  		var value4 = document.objects.value4.value;
+  		var value5 = document.objects.value5.value;
+  		var value6 = document.objects.value6.value;
+  		
+  		var display1 = document.objects.display1[document.objects.display1.selectedIndex].value;
+  		var display2 = document.objects.display2[document.objects.display2.selectedIndex].value;
+  		var display3 = document.objects.display3[document.objects.display3.selectedIndex].value;
+  		var display4 = document.objects.display4[document.objects.display4.selectedIndex].value;
+  		var display5 = document.objects.display5[document.objects.display5.selectedIndex].value;
+  		var displayLabel1 = document.objects.display1[document.objects.display1.selectedIndex].text;
+  		var displayLabel2 = document.objects.display2[document.objects.display2.selectedIndex].text;
+  		var displayLabel3 = document.objects.display3[document.objects.display3.selectedIndex].text;
+  		var displayLabel4 = document.objects.display4[document.objects.display4.selectedIndex].text;
+  		var displayLabel5 = document.objects.display5[document.objects.display5.selectedIndex].text;
+  		
+  		// need to select for SOQL to work
+  		var queryString = "select id, ";
+  		// we don't want to select id twice, so if the user's filtering on id, don't include it automatically
+//  		if(fieldName1 !== "Id" && fieldName2 !== "Id" && fieldName3 !== "Id" && fieldName4 !== "Id"
+//  			&& fieldName5 !== "Id" && fieldName6 !== "Id") {
+  			// otherwise do include it automatically
+//  			queryString += "id, ";	
+//  		}
+  		
+  		// this stores the number of filters the user's set up
+  		var fieldCount = 1;
+  		// has filter 1 been set up?
+  		
+  		if(display1 !== "--None--" && display1 !== "" ) {
+  			queryString += display1 + ", ";
+  			fieldCount++;
+  		}
+  		if(display2 !== "--None--" && display2 !== "" ) {
+  			queryString += display2 + ", ";
+  			fieldCount++;
+  		}
+  		if(display3 !== "--None--" && display3 !== "" ) {
+  			queryString += display3 + ", ";
+  			fieldCount++;
+  		}
+  		if(display4 !== "--None--" && display4 !== "" ) {
+  			queryString += display4 + ", ";
+  			fieldCount++;
+  		}
+  		if(display5 !== "--None--" && display5 !== "" ) {
+  			queryString += display5 + ", ";
+  			fieldCount++;
+  		}
+  		
+  		// we have to check for the empty string because IE is very dumb
+/*		if(fieldName1 !== "--None--" && fieldName1 !== "" ) {
+			// yes, add the field name to the select
+			queryString += fieldName1 + ", ";
+			// increment the field count
+			fieldCount++;
+		}
+		// do the same for the rest of the filters
+		if(fieldName2 !== "--None--" && fieldName2 !== "" ) {
+			queryString += fieldName2 + ", ";
+			fieldCount++;
+		}
+		if(fieldName3 !== "--None--" && fieldName3 !== "" ) {
+			queryString += fieldName3 + ", ";
+			fieldCount++;
+		}
+		if(fieldName4 !== "--None--" && fieldName4 !== "" ) {
+			queryString += fieldName4 + ", ";
+			fieldCount++;
+		}
+		if(fieldName5 !== "--None--" && fieldName5 !== "" ) {
+			queryString += fieldName5 + ", ";
+			fieldCount++;
+		}
+		if(fieldName6 !== "--None--" && fieldName6 !== "" ) {
+			queryString += fieldName6 + ", ";
+			fieldCount++;
+		}
+*/		
+		// we have to chop off the last comma and space for the SOQL string to be well formed
+		queryString = queryString.substr(0, queryString.length - 2);
+				
+		// from the object type
+		queryString += " from " + document.objects.object[document.objects.object.selectedIndex].value;
+		// only add a where clause if we actually want to filter
+		if(fieldCount != 0) {
+			queryString += " where ";
+			// generate the where clause for each filter type
+			queryString += generateWhereClause(fieldName1, operatorType1, value1, cachedDescribes[document.objects.object[document.objects.object.selectedIndex].value]);
+			queryString += generateWhereClause(fieldName2, operatorType2, value2, cachedDescribes[document.objects.object[document.objects.object.selectedIndex].value]);
+			queryString += generateWhereClause(fieldName3, operatorType3, value3, cachedDescribes[document.objects.object[document.objects.object.selectedIndex].value]);
+			queryString += generateWhereClause(fieldName4, operatorType4, value4, cachedDescribes[document.objects.object[document.objects.object.selectedIndex].value]);
+			queryString += generateWhereClause(fieldName5, operatorType5, value5, cachedDescribes[document.objects.object[document.objects.object.selectedIndex].value]);
+			queryString += generateWhereClause(fieldName6, operatorType6, value6, cachedDescribes[document.objects.object[document.objects.object.selectedIndex].value]);
+		}
+		
+		// if we did filter, we need to chop off the last "and " in order for the SOQL string to be
+		// well formed
+		if(fieldCount != 0) {
+			queryString = queryString.substr(0, queryString.length - 4);
+		}
+		
+		// do we want to include debug information?
+		var debugInfo = document.objects.includedebug.checked;
+		if(debugInfo === true) {
+			// yes, so show the generated query string
+			sforce.debug.log("Query string: " + queryString);
+		}
+
+		// reset the ids of found records (if we've already run a query)
+		ids = [];
+		// run the query
+		var queryResult = null;
+		var outputHtml = null;
+		try {
+			queryResult = sforce.connection.query(queryString);
+			// let the user know how many records were found and give them the option to update them
+			outputHtml = "Found " + queryResult.size + " records.<table id='foundRecords' class='genericTable'><tr>";
+			outputHtml += "<td><input id='updateRecords' type='checkbox' checked='true' onclick='toggleCheckboxes();'></input></td>";
+			if(displayLabel1 !== "--None--" && displayLabel1 !== "") {
+				outputHtml += "<td>" + displayLabel1 + "</td>";
+			}
+			if(displayLabel2 !== "--None--" && displayLabel2 !== "") {
+				outputHtml += "<td>" + displayLabel2 + "</td>";
+			}
+			if(displayLabel3 !== "--None--" && displayLabel3 !== "") {
+				outputHtml += "<td>" + displayLabel3 + "</td>";
+			}
+			if(displayLabel4 !== "--None--" && displayLabel4 !== "") {
+				outputHtml += "<td>" + displayLabel4 + "</td>";
+			}
+			if(displayLabel5 !== "--None--" && displayLabel5 !== "") {
+				outputHtml += "<td>" + displayLabel5 + "</td>";
+			}
+			outputHtml += "</tr>";
+			// grab an iterator for the result set
+			var it = new sforce.QueryResultIterator(queryResult);
+			// iterate through the result set
+			var count = 0;
+			while(it.hasNext()) {
+				// store the record
+				var record = it.next();
+				// and push the record's id into the global set of ids
+				ids.push(record.Id);
+				outputHtml += "<tr><td><input id='updateRecord" + count + "' type='checkbox'></input></td>";
+				if(display1 !== "--None--" && display1 !== "" ) {
+					outputHtml += "<td >" + record[display1] + "</td>";
+		  		}
+		  		if(display2 !== "--None--" && display2 !== "" ) {
+					outputHtml += "<td>" + record[display2] + "</td>";
+		  		}
+		  		if(display3 !== "--None--" && display3 !== "" ) {
+					outputHtml += "<td>" + record[display3] + "</td>";
+		  		}
+		  		if(display4 !== "--None--" && display4 !== "" ) {
+					outputHtml += "<td>" + record[display4] + "</td>";
+		  		}
+		  		if(display5 !== "--None--" && display5 !== "" ) {
+					outputHtml += "<td>" + record[display5] + "</td>";
+		  		}
+				outputHtml += "</tr>";
+				count++;
+			}
+			outputHtml += "</table>";
+			outputHtml += "<br/>Update?<br/><input type='button' name='submitMassUpdate' onclick='massUpdateRecords()' value='Update'></input>";
+		} catch(e) {
+			if(debugInfo === true) {
+				sforce.debug.log(e);
+			}
+			outputHtml = "<p/>Error occurred while executing query.";
+		}
+		document.getElementById("output").innerHTML = outputHtml;
+  	}
+  	
+  	// this function looks at the ids of found records and updates the appropriate fields on all
+  	// of the found records
+ 	function massUpdateRecords() {
+ 		// do we want to include debug information when doing the upload?
+ 		var debugInfo = document.objects.includedebug.checked;
+ 		// grab the initial data the user set up in the form
+  		var update1 = document.objects.update1[document.objects.update1.selectedIndex].value;
+  		var update2 = document.objects.update2[document.objects.update2.selectedIndex].value;
+  		var update3 = document.objects.update3[document.objects.update3.selectedIndex].value; 
+  		var update4 = document.objects.update4[document.objects.update4.selectedIndex].value; 
+  		
+  		var updateTo1 = document.objects.updateTo1.value;
+  		var updateTo2 = document.objects.updateTo2.value;
+  		var updateTo3 = document.objects.updateTo3.value;
+  		var updateTo4 = document.objects.updateTo4.value;
+  		
+  		// we can only update up to 200 records at once, let's store them in this array
+  		var records = [];
+  		// we want to store the number of successful updates
+  		var successfulUpdates = 0;
+  		// and also the number of failed updates
+  		var failedUpdates = 0;
+  		// do we want to print the update results?
+  		var printUpdateResults = true;
+  		// iterate through the found ids
+  		for(var i=0; i<ids.length; i++) {
+  			// initialize an sobject of the appropriate type
+	  		var rec = new sforce.SObject(document.objects.object.options[document.objects.object.selectedIndex].value);
+	  		// count stores the number of fields to update
+	  		var count = 0;
+	  		// only count this if the user's set up the update
+	  		// we have to check for the empty string because IE is very dumb
+	  		if(update1 !== "--None--" && update1 !== "") {
+	  			rec[update1] = updateTo1;
+	  			count++;
+	   		}
+	   		// do the same for the rest
+	   		if(update2 !== "--None--" && update2 !== "") {
+	  			rec[update2] = updateTo2;
+	  			count++;
+	   		}
+	   		if(update3 !== "--None--" && update3 !== "") {
+	  			rec[update3] = updateTo3;
+	  			count++;
+	   		}
+	   		if(update4 !== "--None--" && update3 !== "") {
+	  			rec[update4] = updateTo4;
+	  			count++;
+	   		}
+	   		// do we have updates to do?
+	   		if(count != 0) {
+	   			// yes, set up the sobject record with the appropriate id
+	   			rec["Id"] = ids[i];
+	   		}
+	   		else {
+	   			return;
+	   		}
+	   		// is the checkbox selected?
+	   		var doUpdate = document.getElementById("updateRecord" + i).checked;
+	   		// push the record into the array so we can run the batch update
+	   		if(doUpdate === true) {
+	   			records.push(rec);
+	   		}
+	   		// if we have 200 records to update or we've run out of ids to process, we need to run
+	   		// an update
+	   		if(records.length === 200 || i === ids.length - 1) {
+	   			// we have a try/catch so we can tell the user if there was a problem with the generated query
+	   			try {
+	   				// update the records
+		   			var updateResult = sforce.connection.update(records);
+		   			// iterate through the update results
+		   			for(var j=0; j<updateResult.length; j++) {
+		   				// was it successful?
+		   				if(updateResult[j].getBoolean("success")) {
+		   					// yes, increment that
+		   					successfulUpdates++;
+		   				} else {
+		   					// no, increment this one
+		   					failedUpdates++;
+		   					// include debug information?
+		   					if(debugInfo === true) {
+		   						sforce.debug.log(j + ": " + updateResult[j].errors);
+		   					}
+		   				}
+		   			}
+		   			// reset the array of records
+		   			records = [];
+		   		// caught an exception?
+	   			} catch(e) {
+	   				// we found a problem, so we want to report that, not the number of successful/failed
+	   				// updates
+	   				printUpdateResults = false;
+	   				// let the user know what the soap fault string is
+	   				document.getElementById("output").innerHTML = "An error occurred while trying to do an update.  The error string is: " + e.faultstring;
+	   			}
+	   		}
+   		}
+   		
+   		// the update call worked
+   		if(printUpdateResults) {
+   			// let the user know how many updates were successful and how many failed
+   			document.getElementById("output").innerHTML = successfulUpdates + " record(s) updated successfully.<br/>" + failedUpdates + " record(s) updated unsuccessfully.";
+   		}
+  	}
+  	
+  	function toggleCheckboxes() {
+  		var count = 0;
+  		var isChecked = document.getElementById("updateRecords").checked;
+  		var updateRecordElement = document.getElementById("updateRecord" + count);
+  		while(updateRecordElement !== null) {
+  			updateRecordElement.checked = isChecked;
+  			count++;
+  			updateRecordElement = document.getElementById("updateRecord" + count);
+  		}
+  	}
+  	
+	</script>
+</head>
+
+<body onload="setupPage()">
+<form name="objects">Object to update: <select name="object"
+	onChange="setupFields()">
+	<option selected>--None--</option>
+</select> <a href="javascript:includeAllObjects()">Include all objects</a>
+<br/>Select the following checkbox if you want to include fields from parent relationships:
+<input name="includerels" type="checkbox" onChange="setupFields()"></input>
+<br/>Select the following checkbox if you want to view debugging information:
+<input name="includedebug" type="checkbox"></input>
+<p />Find records that match the following fields: <br />
+(Note that you'll need to use SOQL syntax for things like dates and
+date/times. Please see the API documentation for complete details.) <br />
+(Date syntax is: yyyy-mm-dd and DateTime syntax is
+yyyy-mm-ddThh:mm:ss.xxxZ where the capital letters are actually there.)
+<br>
+<select name="field1">
+	<option selected>--None--</option>
+</select> <select name="operator1">
+	<option selected>--None--</option>
+	<option value="=">equals</option>
+	<option value="!=">not equal to</option>
+	<option value="_%">starts with</option>
+	<option value="in">contains</option>
+	<option value="not in">does not contain</option>
+	<option value="<">less than</option>
+	<option value=">">greater than</option>
+	<option value="<=">less or equal</option>
+	<option value=">=">greater or equal</option>
+	<option value="includes">includes</option>
+	<option value="excludes">excludes</option>
+</select> <input name="value1"></input> AND <br/>
+<select name="field2">
+	<option selected>--None--</option>
+</select> <select name="operator2">
+	<option selected>--None--</option>
+	<option value="=">equals</option>
+	<option value="!=">not equal to</option>
+	<option value="_%">starts with</option>
+	<option value="in">contains</option>
+	<option value="not in">does not contain</option>
+	<option value="<">less than</option>
+	<option value=">">greater than</option>
+	<option value="<=">less or equal</option>
+	<option value=">=">greater or equal</option>
+	<option value="includes">includes</option>
+	<option value="excludes">excludes</option>
+</select> <input name="value2"></input> AND <br/>
+<select name="field3">
+	<option selected>--None--</option>
+</select> <select name="operator3">
+	<option selected>--None--</option>
+	<option value="=">equals</option>
+	<option value="!=">not equal to</option>
+	<option value="_%">starts with</option>
+	<option value="in">contains</option>
+	<option value="not in">does not contain</option>
+	<option value="<">less than</option>
+	<option value=">">greater than</option>
+	<option value="<=">less or equal</option>
+	<option value=">=">greater or equal</option>
+	<option value="includes">includes</option>
+	<option value="excludes">excludes</option>
+</select> <input name="value3"></input> AND <br/>
+<select name="field4">
+	<option selected>--None--</option>
+</select> <select name="operator4">
+	<option selected>--None--</option>
+	<option value="=">equals</option>
+	<option value="!=">not equal to</option>
+	<option value="_%">starts with</option>
+	<option value="in">contains</option>
+	<option value="not in">does not contain</option>
+	<option value="<">less than</option>
+	<option value=">">greater than</option>
+	<option value="<=">less or equal</option>
+	<option value=">=">greater or equal</option>
+	<option value="includes">includes</option>
+	<option value="excludes">excludes</option>
+</select> <input name="value4"></input> AND <br/>
+<select name="field5">
+	<option selected>--None--</option>
+</select> <select name="operator5">
+	<option selected>--None--</option>
+	<option value="=">equals</option>
+	<option value="!=">not equal to</option>
+	<option value="_%">starts with</option>
+	<option value="in">contains</option>
+	<option value="not in">does not contain</option>
+	<option value="<">less than</option>
+	<option value=">">greater than</option>
+	<option value="<=">less or equal</option>
+	<option value=">=">greater or equal</option>
+	<option value="includes">includes</option>
+	<option value="excludes">excludes</option>
+</select> <input name="value5"></input> AND <br/>
+<select name="field6">
+	<option selected>--None--</option>
+</select> <select name="operator6">
+	<option selected>--None--</option>
+	<option value="=">equals</option>
+	<option value="!=">not equal to</option>
+	<option value="_%">starts with</option>
+	<option value="in">contains</option>
+	<option value="not in">does not contain</option>
+	<option value="<">less than</option>
+	<option value=">">greater than</option>
+	<option value="<=">less or equal</option>
+	<option value=">=">greater or equal</option>
+	<option value="includes">includes</option>
+	<option value="excludes">excludes</option>
+</select> <input name="value6"></input>
+<p/>Display the following fields for the matching records: <br/>
+<select name="display1">
+	<option selected>--None--</option>
+</select><br/>
+<select name="display2">
+	<option selected>--None--</option>
+</select><br/>
+<select name="display3">
+	<option selected>--None--</option>
+</select><br/>
+<select name="display4">
+	<option selected>--None--</option>
+</select><br/>
+<select name="display5">
+	<option selected>--None--</option>
+</select><br/>
+<p/>On the matching records, update the following fields: <br/>
+Set <select name="update1">
+	<option selected>--None--</option>
+</select> to <input name="updateTo1"></input> <br/>
+Set <select name="update2">
+	<option selected>--None--</option>
+</select> to <input name="updateTo2"></input> <br/>
+Set <select name="update3">
+	<option selected>--None--</option>
+</select> to <input name="updateTo3"></input> <br/>
+Set <select name="update4">
+	<option selected>--None--</option>
+</select> to <input name="updateTo4"></input>
+</form>
+<p><input type="button" name="findRecords"
+	onclick="findMatchingRecords()" value="Find Records"></input>
+<p />
+<div id="output"></div>
+</body>
+</html>

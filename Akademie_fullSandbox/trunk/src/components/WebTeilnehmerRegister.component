@@ -1,0 +1,64 @@
+<apex:component allowDML="true" controller="WebRegisterTeilnehmer">
+    <h1>Anmeldung</h1>
+    <i class="headline_submenu"><span class="active">1. Teilnehmer</span> <span class="pipe">|</span><span>2. Rechnungsanschrift</span><span class="pipe">|</span><span>3. Bestellübersicht</span><span class="pipe">|</span><span>4. Bestätigung</span></i>
+    <h2>Teilnehmer</h2>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:PageBlockSection columns="1">
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Anrede*'}" for="anrede" />
+                    <apex:inputField value="{!currentPerson.Anrede__c}" id="anrede" required="true" />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Vorname*'}" for="firstname" />
+                    <apex:inputField value="{!currentPerson.Vorname__c}" id="firstname" required="true" />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Nachname*'}" for="lastname" />
+                    <apex:inputField value="{!currentPerson.name}" id="lastname" required="true" />
+                </apex:PageBlockSectionItem>
+                
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Strasse*'}" for="street" />
+                    <apex:inputField value="{!currentPerson.Strasse__c}" id="street" required="true"  />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'PLZ*'}" for="plz" />
+                    <apex:inputField value="{!currentPerson.PLZ__c}" id="plz" required="true" />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Ort*'}" for="city" />
+                    <apex:inputField value="{!currentPerson.Ort__c}" id="city"  required="true"  />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Land'}" for="land" />
+                    <apex:inputField value="{!currentPerson.Land__c}" id="land"  />
+                </apex:PageBlockSectionItem>
+                
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Firma'}" for="firma" />
+                    <apex:inputField value="{!currentPerson.Company__c}" id="firma"  />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Funktion'}" for="funktion" />
+                    <apex:inputField value="{!currentPerson.Funktion__c}" id="funktion"  />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Abteilung'}" for="abteilung" />
+                    <apex:inputField value="{!currentPerson.Abteilung__c}" id="abteilung"  />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'eMail*'}" for="email" />
+                    <apex:inputField value="{!currentPerson.Email__c}" id="email" required="true" />
+                </apex:PageBlockSectionItem>
+                <apex:PageBlockSectionItem >
+                    <apex:outputLabel value="{!'Geburtsdatum'}" for="geburtsdatum" />
+                    <apex:inputField value="{!currentPerson.Geburtsdatum__c}" id="geburtsdatum" />
+                </apex:PageBlockSectionItem>
+                
+            </apex:PageBlockSection>
+            <apex:commandButton value="{!'Weiter'}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}"  styleClass="r" action="{!goToRechnungsanschrift}"/>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:component>

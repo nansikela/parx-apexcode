@@ -1,0 +1,105 @@
+<apex:component controller="FAReporting" >
+  <h1>Angemeldete Nutzer</h1>
+  
+  <script type="text/javascript"> 
+        
+            var chart;
+            $(document).ready(function() {
+                chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: 'registeredUsers',
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    },
+                    title: {
+                        text: ''
+                    },
+                    tooltip: {
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.y +' Nutzer';
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                color: '#000000',
+                                connectorColor: '#000000',
+                                formatter: function() {
+                                    return '<b>'+ this.point.name +'</b>: '+ this.y;
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        type: 'pie',
+                        name: 'Browser share',
+                        data: [
+                            <apex:variable var="isNotFirst" value="false" />
+                            <apex:repeat value="{!UserPerBusinessUnit}" var="unit">
+                                <apex:outputText rendered="{!isNotFirst}">,</apex:outputText>
+                                ['{!unit.name}', {!unit.counter}.0]
+                                <apex:variable var="isNotFirst" value="true" />
+                            </apex:repeat>
+                           
+                        ]
+                    }]
+                });
+                
+                /**Table Hide **/
+                $(".hideTable").hide();
+                var hidden= true;
+                $("#showTable").click(function(e){
+                if(hidden){
+                $(".hideTable").slideDown("slow");
+                hidden= false;
+                }else{
+                $(".hideTable").slideUp("slow");
+                hidden = true;
+                }
+                });
+                
+                
+            });
+                
+        </script> 
+    
+    <div id="registeredUsers" style="width: 680px; height: 500px; "></div> 
+    <br /><br />
+    <p>Alle angemeldeten Nutzer <a href="#" id="showTable"> anzeigen</a> / <a href="/FAReportingExcel?show=registeredUser">als Excel downloaden</a></p>
+    <div class="hideTable">
+    <apex:repeat value="{!PersonalOfBusinessUnit}" var="unit">
+    <h2>{!unit.name}</h2>
+        <apex:DataTable value="{!unit.FA_Personen__r}" var="person" styleClass="personList" >
+            <apex:column headerValue="Erstellt">
+                <apex:outputText value="{0,date,dd.MM.yyyy}">       
+                    <apex:param value="{!person.createdDate}" />   
+                </apex:outputText>
+            </apex:column>
+            <apex:column headerValue="Name">
+                {!person.Anrede__c} {!person.Titel__c}  {!person.Vorname__c} {!person.name}
+            </apex:column>
+            <apex:column headerValue="eMail">
+                {!person.Email__c}
+            </apex:column>
+            <apex:column headerValue="Telefon">
+                {!person.Telefon__c}
+            </apex:column>
+            <apex:column headerValue="eMail des Vorgesetzten">
+                {!person.eMail_Adresse_Vorgesetzter__c}
+            </apex:column>
+            <apex:column headerValue="Abteilung">
+                {!person.Abteilung__c}
+            </apex:column>
+        </apex:DataTable>
+    </apex:repeat>
+    </div>
+    <style>
+        .personList{
+            width: 680px;
+        }
+    </style>
+</apex:component>

@@ -1,0 +1,14 @@
+<apex:component >
+      <div id="article_footer">
+        <div class="article_footer_cell">
+          <span class="navi_up"><a href="#top" title="Zum Seitenanfang">Zum Seitenanfang</a></span>
+          <ul>
+            <!-- <li><a href="#" class="save">Merken</a></li> -->
+            <li><a href="mailto:?subject=Die Akademie - Meine Empfehlung&body=Guten Tag,%0A%0A ich habe gerade bei der Akademie dieses Angebot gefunden: %0A%0A {!$CurrentPage.url}%0A%0AVieleGrüsse%0A" class="mail">Empfehlen</a></li>
+            <li><a href="javascript:window.print();" class="print">Drucken</a></li>
+
+          </ul>
+          <div class="c"></div>
+        </div>
+      </div>
+</apex:component>

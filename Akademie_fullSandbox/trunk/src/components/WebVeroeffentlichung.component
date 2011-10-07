@@ -1,0 +1,26 @@
+<apex:component controller="WebVeroeffentlichung" rendered="{!TrainerVeroeffentlichung}">
+<apex:variable var="itembefore" value=""/>
+    <apex:repeat var="item" value="{!Veroeffentlichungen}">
+    <apex:outputText escape="false" value="{!IF(itembefore == '', '<div class=\"right_column_box element bright\">','')}" />
+        <apex:outputText escape="false" value="{!IF(itembefore == '', '<h3>VERÖFFENTLICHUNGEN</h3>','')}" />
+        <apex:outputText escape="false" value="{!IF(itembefore == '', '<ul>','')}" />
+            
+                 <apex:outputText escape="false" value="{!IF(itembefore != '', '<div class=\"separator\">&nbsp;</div>','' )}" />
+                <li>
+                    <img height= "69px" weight= "50px" src="{!item.bild}" />
+                    <div class= "order_teaser">
+                        <span>
+                            <apex:outputText escape="false" value="{!item.text}"></apex:outputText> 
+                        </span>
+                        <div class="c"></div>
+                        <span class="seminar_all"><apex:outputText escape="false" value="{!item.kurztext}" /></span>
+                        
+                    </div>
+                </li>
+                <apex:variable var="itembefore" value="{!'text'}"/>
+            
+        
+    </apex:repeat>
+    <apex:outputText escape="false" value="{!IF(1==1, '</ul>','')}" />
+    <apex:outputText escape="false" value="{!IF(1==1, '</div>','')}" />
+</apex:component>

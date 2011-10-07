@@ -1,0 +1,69 @@
+<apex:component controller="WebSeminarKategorieDetailController">
+    <apex:variable var="registerBefore" value=""></apex:variable>
+    <apex:variable var="unterRegisterBefore" value=""></apex:variable>
+    <apex:variable var="first" value=""></apex:variable>
+    
+    <apex:variable var="strategy" value="Strategie und Organisationsentwicklung"></apex:variable>
+    <apex:variable var="expertise" value="Fachkompetenz"></apex:variable>
+    <apex:variable var="personality" value="Persönlichkeitsentwicklung"></apex:variable>
+    <apex:variable var="leadership" value="Führung"></apex:variable>
+    <apex:variable var="ausbildungen" value="Ausbildungen"></apex:variable>
+    
+   
+    <apex:variable value="{!0}" var="counter"/>
+      <div class="content_headline">
+        <div class="textline"><h1>{!RegisterTitel}</h1></div>
+      </div>
+        <apex:variable value="{!0}" var="counter"/>
+        <div class="c"></div>
+        <apex:repeat var="data" value="{!RegisterWithPortfolio}">
+        <apex:variable var="register" value="{!data.Register__c}"></apex:variable>
+        <apex:variable var="unterregister" value="{!data.Unterregister__c}"></apex:variable>
+        <apex:variable value="{!IF(unterregister!=registerBefore,counter+1,counter)}" var="counter"/>
+        
+        
+        <apex:outputText escape="false" value="{!IF(unterregister!=registerBefore, '</apex:outputText></table>','')}"></apex:outputText>
+        
+        <apex:outputText escape="false" value="{!IF(AND(unterregister!=registerBefore, register=strategy),'<h3 class=\"category_strategy\">'&'<a name = \"'&Text(counter)&'\" style=\"text-decoration: none;\">','')}"></apex:outputText> 
+        <apex:outputText escape="false" value="{!IF(AND(unterregister!=registerBefore, register=expertise),'<h3 class=\"category_expertise\">'&'<a name = \"'&Text(counter)&'\" style=\"text-decoration: none;\">','')}"></apex:outputText> 
+        <apex:outputText escape="false" value="{!IF(AND(unterregister!=registerBefore, register=personality),'<h3 class=\"category_personality\">'&'<a name = \"'&Text(counter)&'\" style=\"text-decoration: none;\">','')}"></apex:outputText> 
+        <apex:outputText escape="false" value="{!IF(AND(unterregister!=registerBefore, register=leadership),'<h3 class=\"category_leadership\">'&'<a name = \"'&Text(counter)&'\" style=\"text-decoration: none;\">','')}"></apex:outputText> 
+        <apex:outputText escape="false" value="{!IF(AND(unterregister!=registerBefore, register=ausbildungen),'<h3 class=\"category_leadership\">'&'<a name = \"'&Text(counter)&'\" style=\"text-decoration: none;\">','')}"></apex:outputText> 
+            
+                {!IF(unterregister!=registerBefore, unterregister,'')}
+                                  
+        <apex:outputText escape="false" value="{!IF(unterregister!=registerBefore,'</a></h3>','')}"></apex:outputText> 
+      
+      
+      
+      <apex:outputText escape="false" value="{!IF(OR(unterregister!=registerBefore, registerBefore==null), '<table>','')}"></apex:outputText> 
+          
+            <apex:outputText escape="false" value="{!IF(OR(unterregister!=registerBefore, registerBefore==null), '<tr class=\"first\">','<tr>')}"></apex:outputText>
+                
+                <td class="category_default" width = "55px">
+                    <a href="{!data.Sprechende_URL__c}">
+                    <apex:outputText escape="false" value="{!data.Name}"></apex:outputText>
+                    </a>
+                </td>
+                
+                <td width="350px">
+                    <apex:outputText escape="false" value="{!IF(data.Englisch__c=='true','<img alt=\"englisch\" src=\"'& URLFOR($Resource.web_style,'/i/flag_en.gif')&'\" class=\"flag\">','')}"></apex:outputText>
+                    <apex:outputText escape="false" value="{!data.Seminartitel__c}"></apex:outputText>
+                    <apex:outputText escape="false" value="{!IF(data.NEU__c != '', '<span class=\"new\"> NEU</span>','')}"></apex:outputText>
+                </td>
+                <td>
+                </td>
+                <td align="right" width="55px">
+                    <a href="{!data.Sprechende_URL__c}" title="Details">Details</a>
+                </td>
+            
+            <apex:outputText escape="false" value="{!'</tr>'}"></apex:outputText> 
+      
+      
+      
+      
+      <apex:variable var="registerBefore" value="{!unterregister}"></apex:variable>
+    </apex:repeat>
+     <apex:outputText escape="false" value="{!IF(1=1, '</table>','')}"></apex:outputText>
+ 
+</apex:component>

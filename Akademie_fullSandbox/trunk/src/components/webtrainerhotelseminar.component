@@ -1,0 +1,21 @@
+<apex:component >
+<apex:attribute name="portfolioList" type="Portfolio__c[]" description="List of Portfolio__c items" required="true" />
+
+<h4>Seminare</h4>
+<table>
+        <tbody>
+        <apex:variable var="itembefore" value=""></apex:variable>
+        <apex:repeat var="item" value="{!portfolioList}">
+        <tr class="{!IF(itembefore=='', 'first','')}">
+          <td class="category_default"><a href="{!item.Sprechende_URL__c}">{!item.name}</a></td>
+          <td>
+          <apex:outputText escape="false" value="{!IF(item.englisch__c=='true','<img alt=\"englisch\" src=\"'&URLFOR($Resource.web_style, '/i/flag_en.gif')&'\" class=\"flag\" />','')}"></apex:outputText>
+            {!item.Seminartitel__c}
+            <apex:outputText escape="false" value="{!IF(item.neu__c=='true', '<span class=\"new\"> NEU</span>','')}"></apex:outputText>
+          </td>
+          <td><a title="Details" href="{!item.sprechende_URL__c}">Details</a></td>
+        </tr>
+        <apex:variable var="itembefore" value="false"></apex:variable>
+        </apex:repeat>
+      </tbody></table>
+</apex:component>

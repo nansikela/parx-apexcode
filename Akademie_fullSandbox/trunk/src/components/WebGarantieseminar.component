@@ -1,0 +1,26 @@
+<apex:component >
+    
+    <apex:variable var="registerBefore" value=""></apex:variable>
+    <apex:variable var="unterRegisterBefore" value=""></apex:variable>
+    <apex:variable var="first" value=""></apex:variable>
+    
+    <apex:variable var="strategy" value="Strategie und Organisationsentwicklung"></apex:variable>
+    <apex:variable var="expertise" value="Fachkompetenz"></apex:variable>
+    <apex:variable var="personality" value="Persönlichkeitsentwicklung"></apex:variable>
+    <apex:variable var="leadership" value="Führung"></apex:variable>
+    
+    
+   
+
+      <div class="content_headline">
+        <div class="textline"><h1>Für garantierten Lernerfolg</h1></div>
+      </div>
+
+        <div class="c"></div>
+        
+        Jetzt planen und erfolgreich weiterbilden. Garantiert. Denn für diese Seminare aus unserem offenen Seminarprogramm können wir Ihnen schon heute die Durchführung gewährleisten (bereits ausgebuchte Termine werden nicht angezeigt). 100% Planungssicherheit für 100% Lernerfolg. Sichern Sie sich deshalb schnellstmöglich die verbleibenden Plätze. Nachfolgend unsere Seminartermine mit Durchführungsgarantie:
+        
+                
+        
+        <c:WebSeminarMonatList ></c:WebSeminarMonatList>
+</apex:component>

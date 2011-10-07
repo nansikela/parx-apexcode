@@ -1,0 +1,49 @@
+<apex:page standardStylesheets="false" title="test"
+    sidebar="false"
+    showHeader="false"
+    contentType="text/html" cache="true" controller="FASiteFULLFacade" action="{!identifyUser}"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    
+    <html>
+    <head>
+        <meta name="google-site-verification" content="hVxSuAQ-Pa7yIktCLihZJpFDZDgEp9DL5S4-dmetpaw" />
+            
+            <apex:stylesheet value="{!URLFor($Resource.web_style2, 'screen.css')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.web_style2, 'screenplus.css')}"/>
+        <apex:stylesheet value="{!URLFor($Resource.web_style2, 'custom-theme/jquery-ui-1.8.10.custom.css')}"/>
+        <link href="{!URLFor($Resource.web_style2, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
+        <apex:includeScript value="{!'/WarenkorbJson'}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/jquery-1.4.2.min.js')}"/>
+        <apex:includeScript value="{!URLFor($Resource.web_style2, 'js/jquery-ui-1.8.10.custom.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.lazyload, 'jquery.lazyload.min.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/header.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/jquery.ba-replacetext.min.js')}"/>     
+        <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/headerplus.js')}"/>  
+    </head>
+    <body>
+    
+        <c:FAmainHeader breadCrubShow="true">
+             <div class="content_wrapper ">
+                 <div class="content_column article">
+                     <c:WebLexikonArticle ></c:WebLexikonArticle>
+                 </div>
+                 <div class="right_column">
+                     
+                 </div>
+             </div>
+        </c:FAmainHeader>
+        <c:FAfooter />
+    <style>
+        .right_column * table{
+            margin-top: 0;
+            margin-bottom: 0;
+            width: 220px;
+            font-size: 0.75em;
+        }
+        .right_column * .labelCol{
+            width: 80px;
+        }
+    </style>
+    </body>
+    
+    </html>
+</apex:page>

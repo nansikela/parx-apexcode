@@ -1,0 +1,30 @@
+<apex:component controller="WebLexikonOverviewController">
+    <apex:attribute name="list" type="String" description="Display list of articles."/>
+<ul class="abc_greybox">
+            
+            
+    <apex:repeat value="{!allArticleList}" var="item">
+            <li class="{!IF(item.isSelected, 'active', '')}">
+                <a href="/service/lexikon/{!Lower(item.articleChar)}">{!item.articleChar}</a>
+            </li>
+    </apex:repeat>            
+</ul>    
+
+<apex:outputText rendered="{!IF(list == 'no', false, true)}">
+<div class="c"></div>
+
+    <table>
+        <apex:repeat value="{!ArticleURLMap}" var="article">
+        <tr class=" first">
+            <td>{!article.name}</td>
+            <td align="right">
+                    <a title="Details" href="{!article.url}">Details</a>
+            </td>
+        </tr>
+        </apex:repeat>
+    </table>
+
+</apex:outputText>
+
+
+</apex:component>

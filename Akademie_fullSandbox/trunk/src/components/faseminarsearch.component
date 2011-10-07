@@ -1,0 +1,72 @@
+<apex:component controller="FAKalender" >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Ergebnisse Seminar-Suche</h1>
+  
+  <apex:outputText rendered="{!IF(AND(isGroupResult, NOT(isRegion)), true, false)}">
+      <h2>Intensivseminare</h2>
+      <apex:dataTable value="{!groups}" var="seminar">
+           <apex:column >
+                   <a href="{!seminar.URL__c}">{!seminar.name}</a>
+              </apex:column>
+              <apex:column >
+                  {!seminar.Name__c}
+              </apex:column>
+              <apex:column >
+                  <a href="{!seminar.url__c}">Details</a><br />
+                  
+              </apex:column>
+      </apex:dataTable>
+  </apex:outputText>
+  
+  
+  <apex:outputText rendered="{!isSeminarResult}">
+  <apex:repeat value="{!seminarKalender}" var="monat">
+      <h2>{!monat.month}</h2>
+      
+      
+          <apex:dataTable value="{!monat.seminarList}" var="seminar">
+              <apex:column >
+                  {!seminar.datum}
+              </apex:column>
+              <apex:column >
+                  {!seminar.titel} <br/> <i>Veranstaltungsort: {!seminar.ort}</i>
+              </apex:column>
+              <apex:column >
+                  <a href="{!seminar.url}">Details</a><br />
+                  
+              </apex:column>
+          </apex:dataTable>
+  </apex:repeat>
+  </apex:outputText>
+  
+  
+  
+  <apex:outputText rendered="{!IF(AND(isGroupResult, isRegion), true, false)}">
+      <h2>Diese Intensivseminare könnten Sie interessieren:</h2>
+      <apex:dataTable value="{!groups}" var="seminar">
+           <apex:column >
+                   <a href="{!seminar.URL__c}">{!seminar.name}</a>
+              </apex:column>
+              <apex:column >
+                  {!seminar.Name__c}
+              </apex:column>
+              <apex:column >
+                  <a href="{!seminar.url__c}">Details</a><br />
+                  
+              </apex:column>
+      </apex:dataTable>
+  </apex:outputText>
+  
+  <apex:outputText rendered="{!IF(isResult== false, true, false)}">
+      <h2>Keine Ergebnisse gefunden.</h2>
+      <apex:pageBlock >
+          <apex:pageBlockSection columns="1">
+              <apex:pageBlockSectionItem >
+                  Bitte passen Sie rechts Ihre Einstellungen an oder kontaktieren Sie uns direkt. <br/>
+                  <a style="color: #8A1544;" href="/die-akademie/kontakt">http://www.die-akademie.de/die-akademie/kontakt</a>
+              </apex:pageBlockSectionItem>
+          </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:outputText>
+  
+</apex:component>

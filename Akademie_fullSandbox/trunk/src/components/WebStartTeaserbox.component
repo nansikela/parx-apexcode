@@ -1,0 +1,81 @@
+<apex:component controller="WebStartseiteFacade">
+    <!-- Teaserbox -->
+    <div id="navi_extension_box">
+      <div id="navi_extension_1" class="navi_extension ext_leadership active" style="display:block;">
+        <div class="extension_content">
+          <div>
+            <h1>Führung</h1>
+            <c:contentblock name="FuehrungsTeaser"></c:contentblock>
+
+          </div>
+          <div class="l">
+            <a href="/seminare/fuehrung#1"><span class="navi_extension_bg">Erfahrene Führungskräfte</span></a>
+            <a href="/seminare/fuehrung#2"><span class="navi_extension_bg">Führungskräfte aller Ebenen</span></a>
+            <a href="/seminare/fuehrung#3"><span class="navi_extension_bg">Neu in Führung</span></a>
+          </div>
+        </div>
+
+      </div>
+      <div id="navi_extension_2" class="navi_extension ext_strategy" style="display:none;">
+        <div class="extension_content">
+          <div>
+            <h1>Strategie und Organisationsentwicklung</h1>
+            <c:contentblock name="StrategieTeaser"></c:contentblock>
+          </div>
+          <div class="l">
+
+            <a href="/seminare/strategie-und-organisationsentwicklung#1"><span class="navi_extension_bg">Strategie</span></a>
+            <a href="/seminare/strategie-und-organisationsentwicklung#2"><span class="navi_extension_bg">Organisationsentwicklung</span></a>
+          </div>
+        </div>
+      </div>
+      <div id="navi_extension_3" class="navi_extension ext_personality" style="display:none;">
+        <div class="extension_content">
+          <div>
+
+            <h1>Persönlichkeits-entwicklung</h1>
+            <c:contentblock name="PersoenlichkeitsTeaser"></c:contentblock>
+          </div>
+          <div class="l">          
+            <a href="/seminare/persoenlichkeitsentwicklung#1"><span class="navi_extension_bg">Selbstmanagement</span></a>
+            <a href="/seminare/persoenlichkeitsentwicklung#2"><span class="navi_extension_bg">Kommunikation</span></a>
+            <a href="/seminare/persoenlichkeitsentwicklung#3"><span class="navi_extension_bg">Tools und Techniken</span></a>
+
+          </div>  
+        </div>
+      </div>
+      <div id="navi_extension_4" class="navi_extension ext_expertise" style="display:none;">
+        <div class="extension_content">
+          <div>
+            <h1>Fachkompetenz</h1>
+            <c:contentblock name="FachkompetenzTeaser"></c:contentblock>
+
+          </div>
+          <div class="l">
+            <a href="/seminare/fachkompetenz#1"><span class="navi_extension_bg">Projektmanagement</span></a>
+            <a href="/seminare/fachkompetenz#2"><span class="navi_extension_bg">Finanzen und Controlling</span></a>
+            <a href="/seminare/fachkompetenz#3"><span class="navi_extension_bg">Marketing und Produktmanagement</span></a>
+            <a href="/seminare/fachkompetenz#4"><span class="navi_extension_bg">Vertrieb</span></a>
+            <a href="/seminare/fachkompetenz#5"><span class="navi_extension_bg">Office Management</span></a>
+
+          </div>  
+        </div>
+      </div>
+      <div id="navi_extension_5" class="navi_extension ext_coaching" style="display:none;">
+        <div class="extension_content">
+          <div>
+            <h1>{!AUSBILDUNGEN}</h1>
+            <c:contentblock name="CoachingTeaser"></c:contentblock>
+
+
+          </div>
+          <div class="l">            
+            <a href="/seminare/intensivprogramm/general-management-programm"><span class="navi_extension_bg">General Management Programm</span></a>
+            <a href="/seminare/intensivprogramm/co-qualifizierung-zum-coach-im-business"><span class="navi_extension_bg">Qualifizierung zum Coach</span></a>
+            <a href="/seminare/intensivprogramm/trainerausbildung"><span class="navi_extension_bg">Trainerausbildung</span></a>
+          </div>  
+        </div>
+      </div>
+    </div><!-- navi_extension_box -->
+
+</apex:component>

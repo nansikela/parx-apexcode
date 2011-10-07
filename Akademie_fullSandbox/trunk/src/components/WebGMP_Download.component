@@ -1,0 +1,5 @@
+<apex:component >
+  <div class="management_guide">
+        <a href="{!URLFOR($Resource.IntensivseminarPDF, IF($CurrentPage.parameters.seminarCode== 'GMP','GMP.pdf',IF($CurrentPage.parameters.seminarCode!='ATA', 'CO.pdf', 'ATA.pdf')))}" target="_blank">{!IF($CurrentPage.parameters.seminarCode== 'GMP','General Management Programm',IF($CurrentPage.parameters.seminarCode!='ATA', 'Qualifizierung zum Coach', 'Trainerausbildung'))} <span><br/>Hier downloaden</span></a>
+      </div>
+</apex:component>

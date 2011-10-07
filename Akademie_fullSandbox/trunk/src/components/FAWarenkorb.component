@@ -1,0 +1,7 @@
+<apex:component controller="FAHelper" >
+  <ul class="artikelnavi">
+  <li>
+      <a class="basket" href="/warenkorb">Warenkorb ({!WarenkorbAnzahl})</a>
+  </li>
+  </ul>
+</apex:component>

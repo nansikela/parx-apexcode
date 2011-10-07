@@ -1,0 +1,24 @@
+<apex:component controller="FARightBoxesController" >
+  <div class="rightbox bright">
+  <h3>IHRE ANSPRECHPARTNER</h3>
+  <apex:variable value="{!'false'}" var="isNotFirst"/>
+  <apex:repeat value="{!Ansprechpartner}" var="ansprechp">
+      <apex:outputText rendered="{!isNotFirst}">
+          <div class=" separator">&nbsp;</div>
+      </apex:outputText>
+      <img src="{!URLFOR($resource.Ansprechpartner, ansprechp.foto)}"></img>
+      <strong>{!ansprechp.name}</strong>
+      <p>{!IF(ansprechp.anrede=='Herr','Ihr Ansprechpartner für', 'Ihre Ansprechpartnerin für')}</p>
+      <ul>
+          <apex:repeat value="{!ansprechp.verantwortlichBereich}" var="bereich">
+              <li>{!bereich}</li>
+          </apex:repeat>
+      </ul>
+      <a href="mailto:{!ansprechp.email}" class="email">{!ansprechp.email}</a>
+      <span class="phone">{!ansprechp.telefon}</span>
+      <apex:variable value="{!'true'}" var="isNotFirst"/>
+      </apex:repeat>
+      
+  </div>
+ 
+</apex:component>

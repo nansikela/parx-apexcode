@@ -1,0 +1,26 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" title="Trainer und Berater">
+    <c:WebMainPage >
+    <apex:messages />
+    <div class="content_wrapper">
+        <div class="content_column article">
+            <div class="content_headline">
+                <div class="textline">
+                    <c:contentblock name="Ueberschrift"></c:contentblock>
+                </div>
+            </div>
+            <div class="spacer">&nbsp;</div> 
+            <div class = "">
+            <c:WebKontaktInformationsmaterial />
+            <c:contentblock name="Inhalt"></c:contentblock>
+            </div>
+        <c:WebArticleFooter ></c:WebArticleFooter>    
+        </div><!-- content_column  -->
+        
+        
+        <div class="right_column">
+            <c:contentblock name="RightBoxes"></c:contentblock>
+        </div>
+    </div>
+    </c:WebMainPage>
+   
+</apex:page>
