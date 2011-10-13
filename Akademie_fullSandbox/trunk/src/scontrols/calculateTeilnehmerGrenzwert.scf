@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <script type="text/javascript" src="/js/functions.js"></script>
+    <script src="/soap/ajax/10.0/connection.js"></script>
+    <script type="text/javascript">
+			function calulateGrenzwert(){
+				//update seminar
+				
+				var product = sforce.connection.query("Select p.Grenzwert_Teilnehmer__c,p.Seminargebuehr__c, p.Honorar_Trainer_Betrag__c,p.Spesen_Betrag__c, p.TrainerZimmer_Betrag__c, p.Reisekosten_Cotrainer_Betrag__c,p.Honorar_Cotrainer_Betrag__c,p.Technik_Trainer__c,p.Tagungspauschale_gesamt__c, p.Raummiete_Betrag__c,p.Technik_Hotel_Betrag__c,p.Sonstige_Kosten__c, p.Indirekte_Kosten__c, p.Verwaltungskosten__c From Product2 p where p.Id = '{!Product2.Id}'").getArray('records')[0];
+			
+				var grenzwertDirekteKosten = parseFloat(product.Seminargebuehr__c) * parseFloat(product.Grenzwert_Teilnehmer__c) * 0.048;
+
+				if(!isNaN(product.Honorar_Trainer_Betrag__c) && product.Honorar_Trainer_Betrag__c!=null)
+					grenzwertDirekteKosten += parseFloat(product.Honorar_Trainer_Betrag__c);
+					
+				if(!isNaN(product.Honorar_Cotrainer_Betrag__c) && product.Honorar_Cotrainer_Betrag__c!=null)
+					grenzwertDirekteKosten += parseFloat(product.Honorar_Cotrainer_Betrag__c);
+				
+				if(!isNaN(product.Spesen_Betrag__c) && product.Spesen_Betrag__c!=null)
+					grenzwertDirekteKosten += parseFloat(product.Spesen_Betrag__c) ;
+				
+				if(!isNaN(product.TrainerZimmer_Betrag__c) && product.TrainerZimmer_Betrag__c!=null)	
+					grenzwertDirekteKosten += parseFloat(product.TrainerZimmer_Betrag__c);
+				
+				if(!isNaN(product.Reisekosten_Cotrainer_Betrag__c) && product.Reisekosten_Cotrainer_Betrag__c!=null)	
+					grenzwertDirekteKosten += parseFloat(product.Reisekosten_Cotrainer_Betrag__c);
+				
+				if(!isNaN(product.Technik_Trainer__c) && product.Technik_Trainer__c!=null)	
+					grenzwertDirekteKosten += parseFloat(product.Technik_Trainer__c);
+					
+				if(!isNaN(product.Tagungspauschale_gesamt__c) && product.Tagungspauschale_gesamt__c!=null)	
+					grenzwertDirekteKosten += parseFloat(product.Tagungspauschale_gesamt__c); 
+					
+				if(!isNaN(product.Raummiete_Betrag__c) && product.Raummiete_Betrag__c!=null)	
+					grenzwertDirekteKosten += parseFloat(product.Raummiete_Betrag__c);
+					
+				if(!isNaN(product.Technik_Hotel_Betrag__c) && product.Technik_Hotel_Betrag__c!=null)	
+					grenzwertDirekteKosten +=  parseFloat(product.Technik_Hotel_Betrag__c);
+					
+				if(!isNaN(product.Sonstige_Kosten__c) && product.Sonstige_Kosten__c!=null)	
+					grenzwertDirekteKosten += parseFloat(product.Sonstige_Kosten__c);
+				
+				var db1 = parseFloat(product.Seminargebuehr__c) * parseFloat(product.Grenzwert_Teilnehmer__c) - grenzwertDirekteKosten;
+				var db2 = db1 -  parseFloat(product.Indirekte_Kosten__c);
+				var db3 = db2 - parseFloat(product.Verwaltungskosten__c);
+			
+				
+				var seminar = new sforce.SObject("Product2");
+				seminar.Id = "{!Product2.Id}";
+				seminar.Grenzwert_direkte_Kosten__c = grenzwertDirekteKosten;
+				seminar.Grenzwert_Umsatz__c = parseFloat(product.Seminargebuehr__c) * parseFloat(product.Grenzwert_Teilnehmer__c);
+				seminar.Grenzwert_DB1__c = db1;
+				seminar.Grenzwert_DB2__c = db2;
+				seminar.Grenzwert_DB3__c = db3;
+				
+				try
+				{
+					// write to salesforce
+					var result = sforce.connection.update([seminar]);
+					
+					// handle result
+					if (result[0].getBoolean("success"))
+					{
+						window.parent.location.href = "{!URLFOR($Action.Product2.View, Product2.Id)}";
+					}
+					else{
+						alert("Failed to update seminar: " + result[0]);
+						window.history.go(-1);
+					}
+				}
+				catch (e)
+				{
+					alert("Failed to update seminar");
+					window.history.go(-1);
+				}
+			}
+   	</script>
+</head>
+
+<body onload="calulateGrenzwert();">
+</body>
+</html>

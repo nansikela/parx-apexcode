@@ -1,0 +1,56 @@
+<html>
+<head>
+<script type="text/javascript" src="/js/functions.js"></script>
+<script src="/soap/ajax/10.0/connection.js"></script>
+<script>
+	function getURLParam(strParamName){
+		var strReturn = "";
+		var strHref = window.location.href;
+		if ( strHref.indexOf("?") > -1 ){
+			var strQueryString = strHref.substr(strHref.indexOf("?")).toString();
+			var aQueryString = strQueryString.split("&");
+			for ( var iParam = 0; iParam < aQueryString.length; iParam++ ){
+				if ( aQueryString[iParam].indexOf(strParamName.toString() + "=") > -1 ){
+					var aParam = aQueryString[iParam].split("=");
+					strReturn = aParam[1];
+					break;
+				}
+			}
+		}
+		
+		return unescape(strReturn);
+	}
+	
+	var pid=getURLParam("CF00N20000000v1XJ_lkid");
+	var name=getURLParam("CF00N20000000v1XJ");
+	var rtype=getURLParam("RecordType");
+	var accountname="{!Account.Name}";
+	var accountid="{!Account.Id}";
+	var accountparam="";
+	var retUrl="%2F006%2Fo";
+	if (accountid!="") {
+		accountparam="&opp4_lkid=" + accountid + "&opp4=" + accountname + "&cancelUrl=%2F" + accountid; 
+		retUrl="%2F" + accountid;
+	}
+	
+	var RTYPE_INHOUSE = "012200000004ZEL";
+	//var RTYPE_FIRMENAKADEMIE = "012R00000000MG7"; //SANDBOX
+	var RTYPE_FIRMENAKADEMIE = "012200000005Gxd"; //LIVE
+
+	if (rtype == RTYPE_INHOUSE || rtype == RTYPE_FIRMENAKADEMIE) {
+		//window.parent.location.href = "{!URLFOR($Action.Opportunity.New,  Opportunity.Id, null, true)}&RecordType=" + rtype;
+		window.parent.location.href = "/006/e?retURL=" + retUrl + "&save_new_url=%2F006%2Fe%3FretURL%3D%252F006%252Fo&ent=Opportunity&nooverride=1" + "&RecordType=" + rtype + accountparam;
+	} else {
+		var baseurl="/006/e?retURL=" + retUrl + "&save_new_url=%2F006%2Fe%3FretURL%3D%252F006%252Fo&ent=Opportunity&nooverride=1"
+		if (pid.length>0 & rtype=="012200000004Y3H") {
+			window.parent.location.href = baseurl + "&opp3=[Name%20wird%20berechnet]&opp9={!Today}&opp11=Neu&CF00N20000000v1XJ=" + name + "&CF00N20000000v1XJ_lkid=" + pid + "&RecordType=" + rtype + accountparam;
+		} else {
+			window.parent.location.href = baseurl + "&opp3=[Name%20wird%20berechnet]&opp9={!Today}&opp11=Neu" + "&RecordType=" + rtype + accountparam;
+		}
+	}
+	
+	</script>
+</head>
+<body>
+</body>
+</html>
