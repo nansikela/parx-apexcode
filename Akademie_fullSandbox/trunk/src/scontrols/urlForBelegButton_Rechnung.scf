@@ -1,0 +1,8 @@
+<html>
+<head>
+<title></title>
+<script>
+this.window.location.href="/servlet/servlet.Integration?lid=00b20000000lZyK&eid={!Opportunity.Id}&ic=1&wrapMassAction=1&retURL=%2F006200000041e5S&scontrolCaching=1&type=Rechnung";
+</script>
+</head>
+<body></body></html>

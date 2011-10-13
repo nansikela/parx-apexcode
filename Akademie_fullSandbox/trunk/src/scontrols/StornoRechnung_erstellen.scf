@@ -1,0 +1,441 @@
+<html><head>
+<script type="text/javascript">
+  	var DEBUG = false;
+
+	if (DEBUG)
+	{
+		document.write('<script language="javascript" src="https://www.salesforce.com/services/lib/ajax/beta3.3/sforceclient.js?browser=true" type="text/javascript"><\/script>');
+	}
+	else
+	{
+		document.write('<script language="javascript" src="https://www.salesforce.com/services/lib/ajax/beta3.3/sforceclient.js" type="text/javascript"><\/script>');
+	}
+</script>
+<script src="/soap/ajax/10.0/connection.js"></script>
+
+<script type="text/javascript">
+
+// etliche Felder muessen in das Belegobjekt geschrieben werden
+// Felder der Opportunity
+// Abreisetag__c
+// Anreisetag__c
+// TODO Seminarende__c
+// Belegnummer__c ???
+// Betrag__c (Amount)
+// Kundennummer__c (Opportunity.FM_Kundennummer_Temp__c)
+// MwSt_Satz__c
+// Opportunity__c (Opportunity.Id)
+// Seminarbeginn__c (Opportunity.Beginndatum__c)
+// Opportunity_Nummer__c
+// Hotelreservierung__c
+// Hotelreserveriung_Bemerkungen__c
+
+
+// Felder aus der Beziehung Seminar
+// Seminarcode__c (Product2.Seminarcode__c)
+// SeminarDauerInTagen__c (Product2.Dauer_in_Tagen__c)
+// SeminarName__c (Product2.Name)
+// Uhrzeit_Beginn__c (Product2.Uhrzeit_Beginn__c)
+// Uhrzeit_Ende__c (Product2.Uhrzeit_Ende__c)
+// Seminardurchf_hrungsort__c ---> ODER
+
+// Felder aus der Beziehung Seminar -> Seminarort
+// SeminarortBillingCity__c (Account.BillingCity)
+// SeminarortBillingPostalCode__c (Account.BillingPostalCode)
+// SeminarortBillingStreet__c (Account.BillingStreet)
+// SeminarortBillingCountry__c (Account.BillingCountry)
+// SeminarortPhone__c (Account.Phone)
+// SeminarortFax__c (Account.Fax)
+// --> SeminarortAnschrift__c
+/// --> UND
+// SeminarortName__c (Account.Name)
+// DZPreis__c (Account.DZ_Preis_2007__c)
+// EZPreis__c (Account.EZ_Preis_2007__c)
+// Hotel_Inklusivleistung__c (Account.Enthaltene_Leistung_2007__c)
+
+// Felder aus der Beziehung Seminarteilnehmer
+// SeminarteilnehmerName__c (Contact.Name)
+// wenn kein Rechungsempfaenger
+// RechnungsemfaengerBillingCity__c (Contact.MailingCity)
+// RechnungsemfaengerBillingPostalCode__c (Contact.MailingPostalCode)
+// RechnungsemfaengerBillingCountry__c (Contact.MailingCountry)
+// RechnungsemfaengerBillinbStreet__c (Contact.MailingStreet)
+
+// Felder aus der Beziehung Rechnungsempf?nger
+// RechnungsempfaengerName__c (Account.Name)
+// RechnungsempfaengerKontaktName__c (Contact.Name)
+// RechnungsempfaengerBillingStreet__c (Contact.MailingAddress oder Account.BillingStreet)
+// RechnungsempfaengerBillingPostalCode__c (Contact.MailingPostalCode oder Account.BillingPostalCode)
+// RechnungsempfaengerBillingCity__c (Contact.MailingCity oder Account.BillingCity)
+// RechnungsempfaengerBillingCountry__c (Contact.MailingCountry oder Account.BillingCountry)
+
+// Felder aus der Beziehung Accountname
+// Hinweis_Rechnung__c (Account.Hinweis_Rechnung__c)
+// Account_Nr__c
+
+// Felder aus der Beziehung Rechnungsersteller
+// RechnungserstellerBillingCity__c (Account.BillingCity)
+// RechnungserstellerBillingPostalCode__c (Account.BillingPostalCode)
+// RechnungserstellerBillingStreet__c (Account.BillingStreet)
+// RechnungserstellerName__c (Account.Name)
+// RechnungserstellerPhone__c (Account.Phone)
+
+/////////////////////////////////////////////////////////
+//  NICHT BENOETIGT
+///////
+
+// Felder aus der Beziehung Accountname
+// FirmaBillingCity__c (Account.BillingCity)
+// FirmaBillingPostalCode__c (Account.BillingPostalCode)
+// FirmaBillingStreet__c (Account.BillingStreet)
+// FirmaBillingCountry__c (Account.BillingCountry)
+// FirmaName__c (Account.Name)
+
+function initPage()
+{
+	sforceClient.init("{!API.Session_ID}", "{!API.Partner_Server_URL_90}", false);
+	setTimeout("start()", 500);
+	var outputsave="Einen Moment bitte, Beleg wird generiert.";
+	var textNode = document.createTextNode(outputsave);
+	document.getElementById("outputsave").innerHTML = outputsave;
+}
+
+function getURLParam(strParamName){
+	var strReturn = "";
+	var strHref = window.location.href;
+	if ( strHref.indexOf("?") > -1 ){
+		var strQueryString = strHref.substr(strHref.indexOf("?")).toString();
+		var aQueryString = strQueryString.split("&");
+		for ( var iParam = 0; iParam < aQueryString.length; iParam++ ){
+			if ( aQueryString[iParam].indexOf(strParamName.toString() + "=") > -1 ){
+				var aParam = aQueryString[iParam].split("=");
+				strReturn = aParam[1];
+				break;
+			}
+		}
+	}
+	return unescape(strReturn);
+}
+
+function getRecordTypeId(name) {
+	var queryrt="Select r.Id, r.Name, r.SobjectType From RecordType r Where r.SobjectType='Beleg__c'";
+	var queryrtResult = sforceClient.query(queryrt);
+	var retval="";
+	if (queryrtResult.className == "Fault") {
+		alert("There was an error: " + queryrtResult.toString());
+	} else {
+		if (queryrtResult.size > 0) {
+			for (var i=0;i<queryrtResult.records.length;i++) {
+				var rtDynaBean = queryrtResult.records[i];
+				// jetzt noch den richtigen Namen finden und Id zurueckgeben
+				if (rtDynaBean.get("Name")==name) {
+					retval=rtDynaBean.get("Id");
+				}
+			}
+		}
+	}	
+	return retval;	
+}
+
+function start()
+{
+
+// Variante Stornorechnung
+var type="Stornorechnung";
+
+var outputsave="";
+
+// durch die Felder ergeben sich diese queries
+var queryopp="Select o.Id, o.Name, o.MwSt_Satz__c, o.Seminarteilnehmer__c, o.AccountId, o.Seminar__c, o.Amount, o.Abreisetag__c, o.Anreisetag__c, o.Beginndatum__c, o.Stornogeb_hr__c, o.FM_Kundennummer_Temp__c, o.Rechnungsempf_nger__c, o.Belegnummer__c, o.Opportunity_Nummer__c, o.Hotelreservierung__c, o.Hotelreservierung_Bemerkungen__c From Opportunity o Where o.Id='{!Opportunity.Id}'";
+var queryp="Select p.Id, p.Name, p.Seminarcode__c, p.Dauer_in_Tagen__c, p.Seminarort__c, p.Seminardurchf_hrungsort__c, p.Uhrzeit_Beginn__c, p.Uhrzeit_Ende__c From Product2 p Where p.Id='";
+var queryc="Select c.Id, c.Name, c.MailingCity, c.MailingStreet, c.MailingPostalCode, c.MailingCountry From Contact c Where c.Id='";
+// Kann mehrfach verwendet werden mit unterschiedlichen Ids
+var querya="Select a.Id, a.Name, a.BillingCity, a.BillingPostalCode, a.BillingStreet, a.EZ_Preis_dieses_Jahr__c, a.DZ_Preis_dieses_Jahr__c, a.Enthaltene_Leistung_dieses_Jahr__c, a.EZ_Preis_n_chstes_Jahr__c, a.DZ_Preis_n_chstes_Jahr__c, a.Enthaltene_Leistung_n_chstes_Jahr__c,  a.Phone, a.Fax, a.BillingCountry, a.Hinweis_Rechnung__c, a.Account_Nr__c From Account a Where a.Id='";
+//var querya="Select a.Id, a.Name, a.BillingCity, a.BillingPostalCode, a.BillingStreet, a.EZ_Preis_2007__c, a.DZ_Preis_2007__c, a.Enthaltene_Leistung_2007__c,  a.Phone, a.Fax, a.BillingCountry, a.Hinweis_Rechnung__c From Account a Where a.Id='";
+
+// wir erzeugen jedesmal einen neuen Beleg, egal, wieviele gleichartige es schon geben mag!
+var beleg = new sforce.SObject("Beleg__c");
+
+// welcher Datensatztyp soll verwendet werden?
+
+//type=getURLParam("type");
+beleg.RecordTypeId=getRecordTypeId(type);
+var jetzt= new Date();
+var monat= jetzt.getMonth()+1;
+beleg.Name=type + " " + jetzt.getFullYear() + "/" + monat + "/" + jetzt.getDate();
+
+// jetzt geht es richtig los
+// Opportunity
+var queryoppResult = sforceClient.query(queryopp);
+
+if (queryoppResult.className == "Fault") {
+
+	alert("There was an error: " + queryoppResult.toString());
+
+} else {
+	if (queryoppResult.size > 0) {
+		for (var i=0;i<queryoppResult.records.length;i++) {
+			var oppDynaBean = queryoppResult.records[i];
+			
+			// Felder aus der Opp
+			beleg.Abreisetag__c=oppDynaBean.get("Abreisetag__c");
+			beleg.Anreisetag__c=oppDynaBean.get("Anreisetag__c");
+			beleg.Belegnummer__c=oppDynaBean.get("Belegnummer__c");
+			beleg.Betrag__c=oppDynaBean.get("Amount");
+			beleg.MwSt_Satz__c=oppDynaBean.get("MwSt_Satz__c");
+			beleg.Opportunity__c=oppDynaBean.get("Id");
+			beleg.Seminarbeginn__c=oppDynaBean.get("Beginndatum__c");
+			beleg.Opportunity_Nummer__c=oppDynaBean.get("Opportunity_Nummer__c");
+			beleg.Hotelreservierung_Bemerkungen__c=oppDynaBean.get("Hotelreservierung_Bemerkungen__c");
+			// wenn die Hotelreservierung leer ist -> Default-Wert: "Kein Zimmer ?ber die Akadmie gebucht"
+			if (oppDynaBean.get("Hotelreservierung__c")!="" & oppDynaBean.get("Hotelreservierung__c")!=null) {
+				beleg.Hotelreservierung__c=oppDynaBean.get("Hotelreservierung__c");
+			} else {
+				beleg.Hotelreservierung__c="Kein Zimmer durch die Akadmie gebucht";
+			}
+			
+// Seminar
+			var querypResult = sforceClient.query(queryp + oppDynaBean.get("Seminar__c") + "'");
+			if (querypResult.className == "Fault") {
+				alert("There was an error: " + querypResult.toString());
+			} else {
+				if (querypResult.size > 0) {
+					for (var h=0;h<querypResult.records.length;h++) {
+						var pDynaBean = querypResult.records[h];
+
+						// Felder aus dem Seminar (Produkt)
+						beleg.Seminarcode__c=pDynaBean.get("Seminarcode__c");
+						beleg.SeminarDauerInTagen__c=pDynaBean.get("Dauer_in_Tagen__c");
+						beleg.SeminarName__c=pDynaBean.get("Name");
+						beleg.Uhrzeit_Beginn__c=pDynaBean.get("Uhrzeit_Beginn__c");
+						beleg.Uhrzeit_Ende__c=pDynaBean.get("Uhrzeit_Ende__c");
+						
+
+// Seminarort
+						if (pDynaBean.get("Seminardurchf_hrungsort__c")!= null && pDynaBean.get("Seminardurchf_hrungsort__c")!="") { // wenn Seminardurchf?hrungsort angegeben, sonst...
+							var querySODResult = sforceClient.query(querya + pDynaBean.get("Seminardurchf_hrungsort__c") + "'");	
+						} else {
+							var querySODResult = null;
+						}
+						// Seminarort ist mindestens die Unterkunft
+						var querySOResult = sforceClient.query(querya + pDynaBean.get("Seminarort__c") + "'");					
+						if (querySOResult.className == "Fault") {
+							alert("There was an error: " + querySOResult.toString());
+						} else {
+							if (querySOResult.size > 0) {
+								for (var j=0;j<querySOResult.records.length;j++) {
+									var SODynaBean = querySOResult.records[j];
+
+									// Felder des Seminarortes
+									//beleg.SeminarortBillingCity__c=SODynaBean.get("BillingCity");
+									//beleg.SeminarortBillingPostalCode__c=SODynaBean.get("BillingPostalCode");
+									//beleg.SeminarortBillingStreet__c=SODynaBean.get("BillingStreet");
+									beleg.SeminarortPhone__c=SODynaBean.get("Phone");
+									beleg.SeminarortFax__c=SODynaBean.get("Fax");
+									beleg.Hotel_Inklusivleistung__c=SODynaBean.get("Enthaltene_Leistung_dieses_Jahr__c");
+									beleg.EZPreis__c=SODynaBean.get("EZ_Preis_dieses_Jahr__c");
+									beleg.DZPreis__c=SODynaBean.get("DZ_Preis_dieses_Jahr__c");
+									beleg.SeminarortName__c=SODynaBean.get("Name");
+									beleg.SeminarortAnschrift__c ="";
+ 									if (SODynaBean.get("BillingStreet")!=null)	beleg.SeminarortAnschrift__c +=	SODynaBean.get("BillingStreet") + "\n";
+									if (SODynaBean.get("BillingCountry") != null) beleg.SeminarortAnschrift__c += SODynaBean.get("BillingCountry") + " ";
+									beleg.SeminarortAnschrift__c += SODynaBean.get("BillingPostalCode") + " " + SODynaBean.get("BillingCity");
+									if (querySODResult != null) {
+										if (querySODResult.className =="Fault") {
+											alert ("There was an error: " + querySODResult.toString());
+										} else {
+											if (querySODResult.size > 0) {
+												SODDynaBean = querySODResult.records[0];
+												beleg.Seminardurchf_hrungsortName__c=SODDynaBean.get("Name");		
+												beleg.Seminardurchf_hrungsortAnschrift__c ="";
+		 										if (SODDynaBean.get("BillingStreet")!=null)	beleg.Seminardurchf_hrungsortAnschrift__c +=	SODDynaBean.get("BillingStreet") + "\n";		
+												if (SODDynaBean.get("BillingCountry") != null) beleg.Seminardurchf_hrungsortAnschrift__c += SODDynaBean.get("BillingCountry") + " ";
+												beleg.Seminardurchf_hrungsortAnschrift__c += SODDynaBean.get("BillingPostalCode") + " " + SODDynaBean.get("BillingCity");									
+											}
+										}
+									}
+									else {
+										beleg.Seminardurchf_hrungsortName__c = beleg.SeminarortName__c;
+										beleg.Seminardurchf_hrungsortAnschrift__c = beleg.SeminarortAnschrift__c;
+									}
+									}
+								} else {
+									// Fehlermeldung Seminarort
+							}
+						}
+					}
+				} else {
+					// Fehlermeldung Seminar
+				}
+			}
+
+// Rechnungsempfaenger (Kontakt)
+// Wir versuchen es erst mal mit den Daten aus dem Kontakt:
+			if (oppDynaBean.get("Rechnungsempf_nger__c")!="") {
+				var queryEResult = sforceClient.query(queryc + oppDynaBean.get("Rechnungsempf_nger__c") + "'");
+				if (queryEResult.className == "Fault") {
+					alert("There was an error: " + queryEResult.toString());
+				} else {
+					if (queryEResult.size > 0) {
+						for (var j=0;j<queryEResult.records.length;j++) {
+							var EDynaBean = queryEResult.records[j];
+						
+							// Felder des Rechnungsempfaengers
+							beleg.RechnungsempfaengerBillingCity__c=EDynaBean.get("MailingCity");
+							beleg.RechnungsempfaengerBillingCountry__c=EDynaBean.get("MailingCountry");
+							beleg.RechnungsempfaengerBillingPostalCode__c=EDynaBean.get("MailingPostalCode");
+							beleg.RechnungsempfaengerBillingStreet__c=EDynaBean.get("MailingStreet");
+							beleg.RechnungsempfaengerKontaktName__c=EDynaBean.get("Name");
+						}
+					} else {
+						// Fehlermeldung Rechnungsempfaenger
+					}
+				}
+			}	
+
+				if (oppDynaBean.get("Rechnungsempf_nger__c")!="") {
+					var queryEResult = sforceClient.query(querya + oppDynaBean.get("AccountId") + "'");
+					if (queryEResult.className == "Fault") {
+						alert("There was an error: " + queryEResult.toString());
+					} else {
+						if (queryEResult.size > 0) {
+							for (var j=0;j<queryEResult.records.length;j++) {
+								var EDynaBean = queryEResult.records[j];
+								beleg.Kundennummer__c = EDynaBean.get("Account_Nr__c");
+								if (beleg.RechnungsempfaengerBillingCity__c == null && beleg.RechnungsempfaengerBillingPostalCode__c== null) {
+									// Wenn im Kontakt aber keine Adresse vorhanden ist, nehmen wir die aus dem Account:										
+									// Felder des Rechnungsempfaengers
+									beleg.RechnungsempfaengerBillingCity__c=EDynaBean.get("BillingCity");
+									beleg.RechnungsempfaengerBillingCountry__c=EDynaBean.get("BillingCountry");
+									beleg.RechnungsempfaengerBillingPostalCode__c=EDynaBean.get("BillingPostalCode");
+									beleg.RechnungsempfaengerBillingStreet__c=EDynaBean.get("BillingStreet");
+								}
+							}
+						} else {
+							// Fehlermeldung Rechnungsempfaenger
+						}
+					}
+				}
+					
+			
+// Hinweis Rechung (Accountname)
+			var queryFResult = sforceClient.query(querya + oppDynaBean.get("AccountId") + "'");
+			if (queryFResult.className == "Fault") {
+				alert("There was an error: " + queryFResult.toString());
+			} else {
+				if (queryFResult.size > 0) {
+					for (var j=0;j<queryFResult.records.length;j++) {
+						var FDynaBean = queryFResult.records[j];
+						
+						beleg.Hinweis_Rechnung__c=FDynaBean.get("Hinweis_Rechnung__c");
+						if (beleg.RechnungsempfaengerName__c == null) {
+							beleg.RechnungsempfaengerName__c=FDynaBean.get("Name");
+						}						
+					}
+				}
+			}
+						
+			
+// Seminarteilnehmer
+			var queryCResult = sforceClient.query(queryc + oppDynaBean.get("Seminarteilnehmer__c") + "'");
+			if (queryCResult.className == "Fault") {
+				alert("There was an error: " + queryCResult.toString());
+			} else {
+				if (queryCResult.size > 0) {
+					for (var j=0;j<queryCResult.records.length;j++) {
+						var CDynaBean = queryCResult.records[j];
+						
+						// Felder des Seminarteilnehmers 
+						beleg.SeminarteilnehmerName__c=CDynaBean.get("Name");
+						// wenn kein Rechungsempfaenger da ist ...
+						if (oppDynaBean.get("Rechnungsempf_nger__c")=="") {
+							beleg.RechnungsempfaengerBillingCity__c=CDynaBean.get("MailingCity");
+							beleg.RechnungsempfaengerBillingCountry__c=CDynaBean.get("MailingCountry");
+							beleg.RechnungsempfaengerBillingPostalCode__c=CDynaBean.get("MailingPostalCode");
+							beleg.RechnungsempfaengerBillingStreet__c=CDynaBean.get("MailingStreet");
+							beleg.RechungsempfaengerName__c="";
+					
+							if (beleg.RechnungsempfaengerKontaktName__c == null) beleg.RechnungsempfaengerKontaktName__c=CDynaBean.get("Name");
+						}
+					}					
+				} else {
+					// Fehlermeldung Seminarteilnehmer
+				}
+			}			
+			
+// Rechnungsersteller
+
+			beleg.RechnungserstellerName__c = "{!$User.Alias}";
+//			var queryRResult = sforceClient.query(querya + oppDynaBean.get("Rechnungsersteller__c") + "'");
+//			if (queryRResult.className == "Fault") {
+//				alert("There was an error: " + queryRResult.toString());
+//			} else {
+//				if (queryRResult.size > 0) {
+//					for (var j=0;j<queryRResult.records.length;j++) {
+//						var RDynaBean = queryRResult.records[j];
+//						
+//						// Felder des Rechnungserstellers
+//						beleg.RechnungserstellerBillingCity__c=RDynaBean.get("BillingCity");
+//						beleg.RechnungserstellerBillingPostalCode__c=RDynaBean.get("BillingPostalCode");
+//						beleg.RechnungserstellerBillingStreet__c=RDynaBean.get("BillingStreet");
+//						beleg.RechnungserstellerName__c=RDynaBean.get("Name");
+//						beleg.RechnungserstellerPhone__c=RDynaBean.get("Phone");
+//					}
+//				} else {
+//					// Fehlermeldung Rechnungsersteller
+//				}
+//			}
+		}
+	} else {
+		// Fehlermeldung Opportunity
+	}
+}
+// Schreiben des Beleg DS
+var result = sforce.connection.upsert("Id", [beleg]);
+if (result[0].id!=null) {
+	outputsave=outputsave + "Beleg erstellt!";
+	var textNode = document.createTextNode(outputsave);
+	document.getElementById("outputsave").innerHTML = outputsave;
+	// Reload auf Beleg
+	//this.location.href = "{!URLFOR($Action.Beleg__c.View, "+ result[0].id + ", [retUrl=URLFOR($Action.Opportunity.View,  Opportunity.Id)], false)}";
+	this.location.href = "/" + result[0].id;
+} else {
+	outputsave=outputsave + "Beleg konnte nicht erzeugt werden!";
+	var textNode = document.createTextNode(outputsave);
+	document.getElementById("outputsave").innerHTML = outputsave;
+	// Reload auf Opportunity
+	this.location.href = "{!URLFOR($Action.Opportunity.View,  Opportunity.Id, [retUrl=URLFOR($Action.Opportunity.View,  Opportunity.Id)], false)}";
+}
+}
+
+</script>
+
+<title>Beleg erstellen</title>
+<link href="/css/ie_global.css" rel="stylesheet" type="text/css">
+<link href="/css/ie_navigation.css" rel="stylesheet" type="text/css">
+
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1184184680000/Theme2/default/elements.css"/>
+
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1184184680000/Theme2/default/common.css"/>
+
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1184184680000/Theme2/default/rlHovers.css"/>
+<link type="text/css" rel="stylesheet" media="aural,braille,embossed" href="/css/assistive.css"/>
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1178748826000/Theme2/dStandard.css"/>
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1185871842000/Theme2/00D200000000CmN/00520000000hAXe/dCustom.css"/>
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1184184680000/Theme2/default/extended.css"/>
+
+</head>
+	<body style="background-color:#f3f3ec;" onload="javascript:initPage();" >
+    <center>
+      <br>
+      <table style="display: block" border="0" width="100%" id="progressDisplay">
+      <tr><td colspan="3" height="30"/></tr>
+      <tr><td/><td width="100%" align="CENTER" nowrap class="status" id="progressMsg"/>
+      <div id="outputsave"></div>
+      </td></tr>
+      <tr><td colspan="3" height="15"/></tr>
+      <tr><td/><td width="100%" align="CENTER"><img src="/img/waiting_dots.gif"/></td><td/></tr>
+      </table><br>
+    </center>
+	</body>
+</html>

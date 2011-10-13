@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<script type="text/javascript" src="/js/functions.js"></script>
+<script src="/soap/ajax/12.0/connection.js"></script>
+<script type="text/javascript">
+
+function createPerson()  {
+  var firm = sforce.connection.query("SELECT f.Id, f.Name, f.Dachfirma__c, f.Dachfirma__r.Name FROM Firma__c f WHERE f.name = '{!Firma__c.Name}'").getArray('records')[0]; 
+
+  var urlString = "/a0e/e?RecordType=01220000000Q2Ve"; // edit view for 'Kunde' 
+  urlString += "&cancelURL=" + firm.Id;                                     // cancel url
+  urlString += "&CF00N20000003Irxl_lktp=" + firm.Id;                          // gesellschaft
+  urlString += "&CF00N20000003Irxl=" + encodeURIComponent(firm.Name);  // gesellschaft
+  
+  if(firm.Dachfirma__c != null)  {
+    urlString += "&CF00N20000003Iqy9_lktp=" + firm.Dachfirma__c;         // firma
+    urlString += "&CF00N20000003Iqy9=" + encodeURIComponent(firm.Dachfirma__r.Name);         // firma
+  }
+  else  {
+    urlString += "&CF00N20000003Iqy9_lktp=" + firm.Id;                          // firma
+    urlString += "&CF00N20000003Iqy9=" + encodeURIComponent(firm.Name);  // firma
+  }
+
+  // redirect to new invoice
+  try {
+    window.parent.location.href = urlString;
+  }
+  catch (e)  {
+    alert('Could not create person.');
+    window.history.go(-1);
+  } 
+}
+
+</script>
+</head>
+<body onload="createPerson();"></body>
+</html>

@@ -1,0 +1,285 @@
+<html><head>
+<script type="text/javascript">
+  	var DEBUG = false;
+
+	if (DEBUG)
+	{
+		document.write('<script language="javascript" src="https://www.salesforce.com/services/lib/ajax/beta3.3/sforceclient.js?browser=true" type="text/javascript"><\/script>');
+	}
+	else
+	{
+		document.write('<script language="javascript" src="https://www.salesforce.com/services/lib/ajax/beta3.3/sforceclient.js" type="text/javascript"><\/script>');
+	}
+</script>
+<script src="/soap/ajax/8.0/connection.js"></script>
+
+<script type="text/javascript">
+
+	function initPage()
+	{
+		sforceClient.init("{!API.Session_ID}", "{!API.Partner_Server_URL_80}", false);
+		setTimeout("start()", 500);
+	}
+	
+	function fillStage(stage) {
+		var retval=true;
+		var queryopp="Select o.Id, o.StageName From Opportunity o Where o.Id='{!Opportunity.Id}'";
+		var ocResult=sforceClient.query(queryopp);
+		if (ocResult.className == "Fault") {
+			alert("There was an error: " + ocResult.toString());
+		} else {
+			if (ocResult.size > 0) {
+				for (var i=0;i<ocResult.records.length;i++) {
+					var ocDynaBean = ocResult.records[i];
+					ocDynaBean.set("Vorherige_Phase__c",stage);
+					
+					var ocSR=sforceClient.update(ocDynaBean);
+					if (ocSR[0].id==null) {
+						retval=false;
+						alert("Fehler beim Aktualisieren der vorherigen Phase");
+					}
+				}
+			}
+		}
+		return retval;	
+	}
+	
+	function updateProductExchange() {
+		var umsatz=0;
+		var qr="Select Id, Umsatz_Seminar__c, Stornokosten__c, Vorheriger_Betrag__c, Seminar__c From Opportunity Where Id='{!Opportunity.Id}'";
+		var qR=sforceClient.query(qr);
+		if (qR.className=="Fault") {
+			alert("There was an error: " + qR.toString());
+		} else {
+			if (qR.size > 0) {
+				var amount=qR.records[0].get("Umsatz_Seminar__c");
+				var pamount=qR.records[0].get("Vorheriger_Betrag__c");
+				var pid=qR.records[0].get("Seminar__c");
+			} else {
+				alert("There was an error with Opp->Umsatz_Seminar__c,pid: " + qR.toString());
+			}
+		}
+		qr="Select Id, Umsatz_netto__c From Product2 Where Id='" + pid + "'";
+		qR=sforceClient.query(qr);
+		if (qR.className=="Fault") {
+			alert("There was an error: " + qR.toString());
+		} else {
+			if (qR.size > 0) {
+				var p=qR.records[0];
+				umsatz=p.get("Umsatz_netto__c");
+				p.set("Umsatz_netto__c",umsatz+amount-pamount);
+				//alert("Umsatz: " + umsatz);
+				
+				var pSR=sforceClient.update(p);
+				if (pSR[0].id==null | pSR[0].id=="" ) {
+					alert("Fehler beim Aktualisieren des Umsatzes: " + pSR[0].toString());
+				}
+			} else {
+				alert("There was an error with Product->Umsatz: " + qR.toString());
+			}
+		}
+		return amount;
+	}
+	
+	function updateOppPUmsatz_Seminar__c(amount) {
+		var qr="Select Id, Vorheriger_Betrag__c, Stornokosten__c From Opportunity Where Id='{!Opportunity.Id}'";
+		var qR=sforceClient.query(qr);
+		if (qR.className=="Fault") {
+			alert("There was an error: " + qR.toString());
+		} else {
+			if (qR.size > 0) {
+				opp=qR.records[0];
+				opp.set("Vorheriger_Betrag__c",amount);
+				var oppSR=sforceClient.update(opp);
+				if (oppSR[0].id==null | oppSR[0].id=="" ) {
+					alert("Fehler beim Aktualisieren des Vorherigen Betrages: " + oppSR[0].message);
+				}
+			} else {
+				alert("There was an error with Betrag: " + qR.toString());
+			}
+		}
+	}	
+	
+	function start() {
+	
+		var jetzt=new Date();
+		var startt=jetzt.getTime();
+		
+		var queryopp="Select o.Id, o.Name, o.Stornokosten__c, o.StageName, o.Seminar__c, o.Vorherige_Phase__c, o.Vorheriger_Betrag__c, o.Umsatz_Seminar__c, o.Stornogeb_hr__c From Opportunity o Where o.Id='{!Opportunity.Id}'";
+		var queryp="Select p.Id, p.Anmeldungen__c, p.Warteliste__c, p.Reservierungen__c, p.Stornos__c, p.Gaeste__c, p.Umsatz_netto__c, p.Absagen__c, p.Stornoumsatz__c From Product2 p Where p.Id='";
+		
+		var stage="{!Opportunity.StageName}";
+		var stage_p='{!Opportunity.Vorherige_Phase__c}';
+		var pid="{!Opportunity.Seminar__c}";
+		var ppid="{!Opportunity.Vorheriges_ProduktName__c}";
+		var amount="{!Opportunity.Umsatz_Seminar__c}";
+		var pamount="{!Opportunity.Vorheriger_Betrag__c}";
+		
+		// bei manuellem Rabatt
+		if (amount!=pamount & (stage=="Anmeldung" | stage=="Rechnung" | (stage=="Storno" & stage_p!="Gast")) & pamount!="") {
+			//	alert("Stage: " + stage);
+				updateOppPUmsatz_Seminar__c(updateProductExchange());
+		}
+	
+		var anmeldung=0;
+		var reservierung=0;
+		var warteliste=0;
+		var gaeste=0;
+		var absagen=0;
+		var stornos=0;
+		var todo=false;
+		var umsatz=0;
+		
+		// pruefen wir, was es zu tun gibt
+		if ((stage!=stage_p)) {
+			if ((stage_p=="Neu" | stage_p=="Angebot" | stage_p=="Verhandlung" | stage_p=="") & (stage=="Anmeldung" | stage=="Reservierung" | stage=="Warteliste" | stage=="Gast")) {
+				if (stage=="Anmeldung") anmeldung++;
+				if (stage=="Reservierung") reservierung++;
+				if (stage=="Warteliste") warteliste++;
+				if (stage=="Gast") gaeste++;
+			}
+			else if ( (stage_p=="Reservierung" | stage_p=="Warteliste") & (stage=="Neu" | stage=="Verhandlung" | stage=="Angebot") ) {
+				if (stage_p=="Reservierung") reservierung--;
+				if (stage_p=="Warteliste") warteliste--;
+			}
+			else if ( (stage_p=="Warteliste" | stage_p=="Reservierung") & stage=="Anmeldung") {
+				if (stage_p=="Warteliste") warteliste--;
+				if (stage_p=="Reservierung") reservierung--;
+				anmeldung++;
+			}
+			else if ( (stage_p=="Warteliste" | stage_p=="Reservierung") & stage=="Gast") {
+				if (stage_p=="Warteliste") warteliste--;
+				if (stage_p=="Reservierung") reservierung--;
+				gaeste++;
+			}
+			else if (stage_p=="Reservierung" & stage=="Warteliste") {
+				reservierung--;
+				warteliste++;
+			}
+			else if (stage_p=="Reservierung" & stage=="Absage") {
+				reservierung--;
+				//absagen++;
+			}
+			else if (stage_p=="Warteliste" & stage=="Reservierung") {
+				warteliste--;
+				reservierung++;
+			}
+			else if ((stage_p=="Anmeldung" | stage_p=="Rechnung") & stage=="Storno") {
+				anmeldung--;
+				stornos++;
+			}
+			else if ( stage_p=="Gast" & stage=="Storno") {
+				gaeste--;
+				stornos++;
+			} 
+			todo=true;
+		}
+		
+	
+		if ((pid!=ppid) | (ppid=="")) {
+			alert('Bitte druecken Sie den Button "Daten aktualisieren".'); // (pid=' + pid + 'ppid=' + ppid +')');
+			todo=false;
+			//alert("PID: " + pid + " - PPID: " + ppid); 
+		}
+		
+		// wenn die Kontrollphase noch leer ist, muessen wir sie befuellen
+		// nur wenn wir wirklich frisch sind, und das Produkt nicht schon gewechselt wurder, sonst nur ueber den Button
+		/*
+		if ((stage_p==null | stage_p=="") & (ppid==null | ppid=="")) { 
+			if (fillStage(stage)) stage_p==stage;
+		}
+		*/
+		
+		// jetzt geht es richtig los
+		if (todo & (pid==ppid)) {
+			var queryoppResult = sforceClient.query(queryopp);
+		
+			if (queryoppResult.className == "Fault") {
+		
+				alert("There was an error: " + queryoppResult.toString());
+		
+			} else {
+				if (queryoppResult.size > 0) {
+					for (var i=0;i<queryoppResult.records.length;i++) {
+						var oppDynaBean = queryoppResult.records[i];
+						oppDynaBean.set("Vorherige_Phase__c",stage);
+						var oppSR=sforceClient.update(oppDynaBean);
+						if (oppSR[0].id==null | oppSR[0].id=="" ) {
+							alert("Fehler beim Aktualisieren der Vorherigen Phase: " + oppSR[0].message + " " + oppSR.toString());
+						} else {
+							// erst wenn die Phase erfolgreich gespeichert wurde ...
+		// Produkte
+							var querypResult = sforceClient.query(queryp + oppDynaBean.get("Seminar__c") + "'");
+							if (querypResult.className == "Fault") {
+								alert("There was an error: " + querypResult.toString());
+							} else {
+								if (querypResult.size > 0) {
+									for (var h=0;h<querypResult.records.length;h++) {
+										var pDynaBean = querypResult.records[h];
+		// Da sind sie nun unsere Produkte
+										pDynaBean.set("Anmeldungen__c",pDynaBean.get("Anmeldungen__c") + anmeldung);
+										pDynaBean.set("Warteliste__c",pDynaBean.get("Warteliste__c") + warteliste);
+										pDynaBean.set("Reservierungen__c",pDynaBean.get("Reservierungen__c") + reservierung);
+										pDynaBean.set("Gaeste__c",pDynaBean.get("Gaeste__c") + gaeste);
+										pDynaBean.set("Stornos__c",pDynaBean.get("Stornos__c") + stornos);
+										//pDynaBean.set("Absagen__c",pDynaBean.get("Absagen__c") + absagen);
+										
+		// jetzt noch schnell den Umsatz berechnet
+										umsatz=pDynaBean.get("Umsatz_netto__c");
+										//alert("Stage: " + stage + " Anmeldung: " + anmeldung);
+										if ((anmeldung==1 | anmeldung==-1) & (stage!="Storno")) pDynaBean.set("Umsatz_netto__c",umsatz+oppDynaBean.get("Umsatz_Seminar__c")*anmeldung);
+		
+										var pSR = sforceClient.update(pDynaBean);
+										if (pSR[0].id==null) {
+											alert("Fehler beim Aktualisieren des Produktes " + pDynaBean.get("Name"));
+										}
+									}
+								} else {
+									alert("Fehler bei der Produktabfrage");
+								}
+							}
+						}
+					}
+				} else {
+					alert("Fehler bei der Opportunityabfrage");
+				}
+			}
+		}
+		
+		
+		jetzt= new Date();
+		var difft=jetzt.getTime()-startt;
+		//alert("Scriptlaufzeit: " + difft);
+	
+	}											
+
+
+</script>
+
+<title>updateProductCounter</title>
+<link href="/css/ie_global.css" rel="stylesheet" type="text/css">
+<link href="/css/ie_navigation.css" rel="stylesheet" type="text/css">
+<!--
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1184184680000/Theme2/default/elements.css"/>
+
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1184184680000/Theme2/default/common.css"/>
+
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1184184680000/Theme2/default/rlHovers.css"/>
+<link type="text/css" rel="stylesheet" media="aural,braille,embossed" href="/css/assistive.css"/>
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1178748826000/Theme2/dStandard.css"/>
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1185871842000/Theme2/00D200000000CmN/00520000000hAXe/dCustom.css"/>
+<link type="text/css" rel="stylesheet" media="handheld,print,projection,screen,tty,tv" href="/sCSS/9.0/1184184680000/Theme2/default/extended.css"/>
+-->
+</head>
+	<body style="background-color:#f3f3ec;" onload="javascript:initPage();" >
+		<!--
+		<center>
+			<br>
+			<img src="/img/waiting_dots.gif" border="0" width=156 height=25><br>
+			<table cellspacing=0 cellpadding=0 border=0 class='detailList' align="center" width="350"><tbody><tr></tr><td><br></td><tr><td class='labelCol'>
+				<div id="outputsave"></div>
+			</td></tr></tbody></table>
+		</center>
+	-->
+	</body>
+</html>

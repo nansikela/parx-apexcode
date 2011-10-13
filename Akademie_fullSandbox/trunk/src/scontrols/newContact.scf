@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <!-- ############################# Code By Michèle Walker  ############################# -->
+    
+    <script type="text/javascript" src="/js/functions.js"></script>
+    <script src="/soap/ajax/14.0/connection.js"></script>
+    <script type="text/javascript">
+    
+    function init() {
+    	try{
+       var aname='';
+    	var astadt='';
+    	var aland='';
+    	var astrasse='';
+    	var aid='{!Account.Id}';
+    	if (aid==null || aid=='') {
+    		window.parent.location.href="{!URLFOR($Action.Contact.NewContact, Contact.Id, null, true)}"
+    	} else {
+    		var result = sforce.connection.query("Select Id, Name, BillingCity, BillingStreet, BillingCountry from Account where Id='" + aid + "'");
+    		if (result.className == "Fault") {
+    			alert("There was an error: " + result.toString());
+			} else {
+				for (var i=0;i<result.getArray('records').length;i++) {
+					var account = result.getArray('records')[i];
+					aname=account.Name;
+					if (account.BillingCity !=null) astadt=encodeURIComponent(account.BillingCity);
+					if (account.BillingCountry!=null) aland=encodeURIComponent(account.BillingCountry);
+					if (account.BillingStreet!=null) astrasse=encodeURIComponent(account.BillingStreet);
+				}
+				
+			}
+    		var url='/003/e?retURL=%2F' + aid + '&accid=' + aid +
+    		 '&cancelURL=%2F' + aid + '&con4_lkid=' + aid +
+    		 '&con4=' + encodeURIComponent(aname) + '&con10='+ encodeURIComponent("{!Account.Phone}") + '&con11=' + encodeURIComponent("{!Account.Fax}") + 
+    		 '&con19street=' + astrasse + '&con19zip={!Account.BillingPostalCode}' +
+    		 '&con19city=' + astadt + '&con19country=' + aland +
+    		 '&00N20000001EJax={!Account.Postfach_PLZ_Rechnungsanschrift__c}' + 
+    		 '&00N20000001EJas={!Account.Postfach_Rechnungsanschrift__c}&nooverride=1' ;
+    		window.parent.location.href=url;
+    	}
+        }catch(e){
+              alert('Can not create contact: ' +e);
+	       window.history.go(-1);
+        }
+    }
+    </script>
+    <title>Prefill Contact</title>
+</head>
+
+<body onload="javascript:init();">
+</body>
+</html>
