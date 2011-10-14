@@ -139,8 +139,11 @@ public class FAMailSender {
 	    			}
 	    		}
 	        }
+	        bestellbestaetigungBodyVorgesetzter+= 'Bitte klicken Sie auf den nachfolgenden Link, um das Seminar zu bestätigen oder abzulehnen:\n';
+			bestellbestaetigungBodyVorgesetzter+= 'http://www.vossloh.die-akademie.de/FAApproval?token='+Warenkorb.getInstance().warenkorb.id;
+	        bestellbestaetigungBodyVorgesetzter+= '\n\n\n';
 	        bestellbestaetigungBodyVorgesetzter+= 'Wir empfehlen Ihnen, im Anschluss das Gespräch mit Ihrem Mitarbeiter zu suchen, um Ihre Entscheidungsfindung transparent zu gestalten und die Akzeptanz dafür zu erhöhen.\n\n';
-	        bestellbestaetigungBodyVorgesetzter+= 'http://www.vossloh.die-akademie.de/FAApproval?token='+Warenkorb.getInstance().warenkorb.id;
+	        bestellbestaetigungBodyVorgesetzter+= 'Bitte beachten Sie, dass Sie Ihre Entscheidung über diesen Link rückwirkend nicht ändern können. Wenden Sie sich in diesem Fall direkt an r.vochezer@die-akademie.de';
 	        bestellbestaetigungBodyVorgesetzter+= '\n\n';
 	        bestellbestaetigungBodyVorgesetzter+= 'Wir danken für Ihre Unterstützung.\n\n';
 	        bestellbestaetigungBodyVorgesetzter+= getFooter();
