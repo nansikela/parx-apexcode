@@ -64,11 +64,13 @@
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!'Anreise:'}" for="anreiseDatum"></apex:outputLabel>
-                        <apex:inputText value="{!currentWarenKorbElement.Anreise__c}" id="anreiseDatum" styleClass="datepicker" required="{!currentWarenKorbElement.Hotelreservierung__c}" />
+                        <apex:inputText value="{!currentWarenKorbElement.Anreise__c}" id="anreiseDatum" styleClass="datepicker" required="true" />
+                        <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!'Abreise:'}" for="abreiseDatum"></apex:outputLabel>
-                        <apex:inputText value="{!currentWarenKorbElement.Abreise__c}" id="abreiseDatum" styleClass="datepicker" required="{!currentWarenKorbElement.Hotelreservierung__c}" />
+                        <apex:inputText value="{!currentWarenKorbElement.Abreise__c}" id="abreiseDatum" styleClass="datepicker" required="true" />
+                        <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         
@@ -78,7 +80,7 @@
                     <apex:pageBlockSectionItem >
                         
                         <apex:inputCheckbox value="{!currentWarenKorbElement.Doppelzimmer__c}" id="dz" />
-                        <apex:outputLabel value="{!'Doppelzimmer '&SeminarInformation.dzPreis&' pro Nacht'}" for="dz"></apex:outputLabel>
+                        <apex:outputLabel value="{!'Doppelzimmer '&IF(NOT(BEGINS(SeminarInformation.dzPreis,'0')),SeminarInformation.dzPreis&' pro Nacht','Preis auf Anfrage')}" for="dz"></apex:outputLabel>
                     </apex:pageBlockSectionItem>
                 </apex:PageBlockSection>
                  </div>   
