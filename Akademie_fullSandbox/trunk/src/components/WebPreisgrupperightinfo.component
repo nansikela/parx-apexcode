@@ -18,19 +18,19 @@
   
   
       <!-- Ansprechpartner -->
-        <h2 class="c">BERATUNG</h2>
+        <h2 class="c">KUNDENBERATUNG</h2>
         <apex:outputText rendered="{!IF(currentProductgruppe.Ansprechpartner__c != null, true, false)}">
             <strong>{!currentProductgruppe.Ansprechpartner__r.Vorname__c} {!currentProductgruppe.Ansprechpartner__r.name}</strong>
-            <p class="tel">{!currentProductgruppe.Ansprechpartner__r.Telefon__c}</p>
             <p class="mail">
               <a href="mailto:{!currentProductgruppe.Ansprechpartner__r.Email__c}" title="Mail an {!currentProductgruppe.Ansprechpartner__r.Vorname__c} {!currentProductgruppe.Ansprechpartner__r.name}">{!currentProductgruppe.Ansprechpartner__r.Email__c}</a>
             </p>
+            <p class="tel">{!currentProductgruppe.Ansprechpartner__r.Telefon__c}</p>
         </apex:outputText>
         <apex:outputText rendered="{!IF(currentProductgruppe.Ansprechpartner__c == null, true, false)}">
-            <p class="tel">+49.7551.9368-0</p>
             <p class="mail">
-              <a href="mailto:info@die-akademie.de">info@die-akademie.de</a>
+              <a href="mailto:beratung@die-akademie.de">beratung@die-akademie.de</a>
             </p>
+            <p class="tel">+49.7551.9368-185</p>
         </apex:outputText>
         <div class="c"></div>
   </div>

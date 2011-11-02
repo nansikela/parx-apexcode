@@ -34,7 +34,7 @@
                   </div>
                   <div>
                       <label>DZ p. Nacht</label>
-                      <label class="dropdown">{!hoteldaten.preisDZ}</label>
+                      <label class="dropdown">{!IF(Begins(hoteldaten.preisDZ,'0'),'-,--',hoteldaten.preisDZ)}</label>
                   </div>
       
       

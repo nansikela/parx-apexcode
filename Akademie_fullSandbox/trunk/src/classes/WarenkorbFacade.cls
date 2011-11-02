@@ -5,7 +5,12 @@ public class WarenkorbFacade
 	private Warenkorb_Element__c currentWarenKorbElement {get; set;}
 	private static List<FASeminar>faSeminare;
 	public String terminString {get; set;}
+	public Boolean showReservationOptions { get; private set; }
 	
+	
+	public WarenkorbFacade() {
+		showReservationOptions=false;
+	}
 
 	
 	/***ORDER STEP 1 ***/
@@ -38,6 +43,13 @@ public class WarenkorbFacade
 	/***ORDER STEP 1 END ***/
 	/***ORDER STEP 2 ***/
 	
+	public PageReference showReservationOptions() {
+     showReservationOptions=!showReservationOptions;
+     currentWarenKorbElement.Hotelreservierung__c=showReservationOptions;
+     //setCurrentWarenkorbElement(currentWarenKorbElement);
+     return null;
+   }
+	
 	public FASeminar getSeminarInformation()
 	{
 		if(currentSeminar == null)
@@ -56,15 +68,26 @@ public class WarenkorbFacade
 		return currentSeminar;
 	}
 	
-	public Warenkorb_Element__c getcurrentWarenkorbElement()
+	public Warenkorb_Element__c getCurrentWarenkorbElement()
 	{
 		if(currentWarenKorbElement == null)
 		{
 			currentWarenKorbElement = Warenkorb.generateNewWarenkorbElementForSeminar(getSeminarInformation(), FAPortfolioController.getController().currentPortfolio);
 		}
-		System.debug('*****currentWarenKorbElement:'+currentWarenKorbElement);
+		System.debug('*****currentWarenKorbElement from getter:'+currentWarenKorbElement);
 		return currentWarenKorbElement;
 		
+	}
+	
+	public void setCurrentWarenkorbElement(Warenkorb_Element__c we) {
+		if(we != null)
+		{
+			Warenkorb.getInstance().deleteElement(we.seminar__c);
+			Warenkorb.getInstance().add(we);
+			Warenkorb.getInstance().save();
+			currentWarenkorbElement=we;
+		}
+		System.debug('*****currentWarenKorbElement from setter:'+currentWarenKorbElement);
 	}
 	
 	public PageReference putItemToWarenkorb()
