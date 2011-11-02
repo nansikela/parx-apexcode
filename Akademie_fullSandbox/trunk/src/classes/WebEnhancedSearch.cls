@@ -271,7 +271,7 @@ public class WebEnhancedSearch {
         message += 'Query:'+WebURLEncoder.decodeParam('q')+'\n';
         message += 'Ort:'+WebURLEncoder.decodeParam('o')+'\n';
         message += 'Region:'+WebURLEncoder.decodeParam('r')+'\n';
-        String[] toAddresses = new String[] {'christian.deckert@parx.com'}; 
+        String[] toAddresses = new String[] {'support.customer+AnmeldungenDieAkademie@parx.com'}; 
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         mail.setToAddresses(toAddresses);
         mail.setSubject('Es wurde eine Suche ausgefuehrt');

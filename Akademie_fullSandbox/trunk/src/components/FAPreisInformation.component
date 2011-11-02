@@ -7,7 +7,7 @@
               <div class="separator">&nbsp;</div>
           </apex:outputText>
       </apex:repeat>
-      <h3>BERATUNG</h3>
+      <h3>KUNDENBERATUNG</h3>
       
       <a class="email" href="mailto:{!KundenberatungeMail}">{!KundenberatungeMail}</a>
       <p class="tel">{!KundenberatungePhone}</p>

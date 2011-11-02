@@ -87,14 +87,21 @@ public class FABestellungZyklus
 		
 	}
 	static testMethod void testMain2() {
-		Gruppe__c g = [SELECT ID FROM Gruppe__c WHERE Buchungstyp__c = 'Zyklus' LIMIT 1];
-		ApexPages.currentPage().getParameters().put('groupId', g.id);
-		FABestellungZyklus controller = new FABestellungZyklus();
-		ApexPages.currentPage().getParameters().put('zyklusId', controller.zyklusSelect.get(0).getValue());
-		controller = new FABestellungZyklus();
-		controller.goToTermin();
-		
-		
+		Warenkorb_Element__c w = [SELECT Id, warenkorb__r.person__r.Benutzer__c,warenkorb__r.person__r.Benutzer__r.id FROM Warenkorb_Element__c WHERE warenkorb__r.person__r.Benutzer__c != null LIMIT 1];
+		User u = w.warenkorb__r.person__r.Benutzer__r;
+		System.runAs(u){
+			Gruppe__c g = [SELECT ID FROM Gruppe__c WHERE Buchungstyp__c = 'Zyklus' LIMIT 1];
+			ApexPages.currentPage().getParameters().put('groupId', g.id);
+			FABestellungZyklus controller = new FABestellungZyklus();
+			ApexPages.currentPage().getParameters().put('zyklusId', controller.zyklusSelect.get(0).getValue());
+			controller = new FABestellungZyklus();
+			controller.seminare=[SELECT Id FROM Seminar_To_Portfolio__c limit 10];
+			controller.warenkorbElement=[SELECT Id, warenkorb__r.person__r.Benutzer__c,warenkorb__r.person__r.Benutzer__r.id FROM Warenkorb_Element__c WHERE warenkorb__r.person__r.Benutzer__c != null LIMIT 10];
+			controller.goToTermin();
+			FABestellungZyklus.SeminarWarenkorb sw = new FABestellungZyklus.SeminarWarenkorb(controller.warenkorbElement.get(0), controller.seminare.get(0));
+			Warenkorb.getInstance().warenkorbElementList.clear();
+			controller.goToWarenkorb();
+		}
 	}
 	
 }

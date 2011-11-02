@@ -182,6 +182,11 @@ public class FABestellungViewController
 				FABestellungViewController.getInstance().getIsStornoPossible();
 				FABestellungViewController.getInstance().getSelectOptions();
 				FABestellungViewController.getInstance().stornoMessage();
+				FABestellungViewController ctrl = new FABestellungViewController();
+				ctrl.getSelectOptions();
+				//ctrl.getIsStornoPossible();
+				ctrl.stornoMessage();
+				//ctrl.sornieren();
 		}
 	}
 }

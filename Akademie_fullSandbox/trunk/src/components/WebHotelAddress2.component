@@ -9,6 +9,6 @@
         <p class="tel">{!HotelInformation.account__r.Phone}</p>
         <p class="fax">{!HotelInformation.account__r.Fax}</p>
 
-        <span class="seminar_all"><a title="{!HotelInformation.name}" target="_blank" href="http://{!HotelInformation.account__r.Website}">{!SUBSTITUTE(HotelInformation.account__r.Website, 'www.', '')}</a></span>
+        <span class="seminar_all"><a title="{!HotelInformation.name}" target="_blank" href="http://{!HotelInformation.account__r.Website}">zur Hotel-Website</a></span>
 </div>
 </apex:component>

@@ -143,7 +143,7 @@ public class FAMailSender {
 			bestellbestaetigungBodyVorgesetzter+= 'http://www.vossloh.die-akademie.de/FAApproval?token='+Warenkorb.getInstance().warenkorb.id;
 	        bestellbestaetigungBodyVorgesetzter+= '\n\n\n';
 	        bestellbestaetigungBodyVorgesetzter+= 'Wir empfehlen Ihnen, im Anschluss das Gespräch mit Ihrem Mitarbeiter zu suchen, um Ihre Entscheidungsfindung transparent zu gestalten und die Akzeptanz dafür zu erhöhen.\n\n';
-	        bestellbestaetigungBodyVorgesetzter+= 'Bitte beachten Sie, dass Sie Ihre Entscheidung über diesen Link rückwirkend nicht ändern können. Wenden Sie sich in diesem Fall direkt an r.vochezer@die-akademie.de';
+	        bestellbestaetigungBodyVorgesetzter+= 'Bitte beachten Sie, dass Sie Ihre Entscheidung über diesen Link rückwirkend nicht ändern können. Wenden Sie sich in diesem Fall direkt an rvochezer@die-akademie.de';
 	        bestellbestaetigungBodyVorgesetzter+= '\n\n';
 	        bestellbestaetigungBodyVorgesetzter+= 'Wir danken für Ihre Unterstützung.\n\n';
 	        bestellbestaetigungBodyVorgesetzter+= getFooter();
@@ -349,8 +349,24 @@ public class FAMailSender {
 	
 	
 	static testMethod void testMain() {
-		User u = [SELECT ID, Firstname, Lastname, anrede__c, eMail, token__c FROM User LIMIT 1];
-		sendRegistrationMail(u);
-		
+		Warenkorb_Element__c w = [SELECT Id, warenkorb__r.person__r.Benutzer__c,warenkorb__r.person__r.Benutzer__r.id FROM Warenkorb_Element__c WHERE warenkorb__r.person__r.Benutzer__c != null LIMIT 1];
+		Warenkorb__c warenkorb = [SELECT Id, person__r.eMail__c FROM Warenkorb__c WHERE Id=:w.Warenkorb__c];
+		User u = [SELECT Id, Anrede__c, Email, LastName, Firstname FROM USER WHERE ID=:w.warenkorb__r.person__r.Benutzer__c];
+		System.runAs(u){
+			w = [SELECT Id, warenkorb__r.person__r.Benutzer__c,warenkorb__r.person__r.Benutzer__r.id, SeminarBeginn__c, Seminarende__c, 
+				Portfolio__r.Inhouse_Seminar__c, Anderer_Stornogrund__c,
+				portfolio__r.Seminartitel__c, portfolio__r.web_Preis__c,
+				stornogrund__c
+				FROM Warenkorb_Element__c WHERE warenkorb__r.person__r.Benutzer__c != null LIMIT 1];
+			warenkorb = [SELECT Id, person__r.eMail__c, person__r.anrede__c, person__r.name FROM Warenkorb__c WHERE Id=:w.Warenkorb__c];
+			FASeminar fas=new FASeminar();
+			list<FASeminar> faslist = new list<FASeminar>();
+			faslist.add(fas);
+			sendRegistrationMail(u);
+			sendWarenkorbBestaetigung();
+			sendApprovalFromVorgesetzter(faslist,warenkorb);
+			sendStorno();
+			sendStorno(w);
+		}
 	}
 }
