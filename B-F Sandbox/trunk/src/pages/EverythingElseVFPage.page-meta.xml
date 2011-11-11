@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>21.0</apiVersion>
+    <description>Page to house links (both external and internal) as an alternative to tabs.</description>
+    <label>EverythingElseVFPage</label>
+</ApexPage>

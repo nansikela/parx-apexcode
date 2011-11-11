@@ -1,0 +1,107 @@
+<apex:page standardController="Allocations__c"
+    extensions="NPA_AllocationScreenController" tabStyle="Allocations__tab"
+    title="NPA Allocations" id="thePage">
+    <apex:form id="theForm">
+        <apex:pageBlock title="Instructions" id="instPageBlock">
+            <!-- Table for instructions -->
+            <table id="instTable">
+                <tr>
+                    <td colspan="2"><b>Steps For Allocation</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td />
+                    <td>1. Select up to 5 ship-tos you want to allocate for.</td>
+                </tr>
+                <tr>
+                    <td />
+                    <td>2. Click on the Next button.</td>
+                </tr>
+                <tr>
+                    <td />
+                    <td>3. Select some filter criteria and search for the
+                        promotions.</td>
+                </tr>
+                <tr>
+                    <td />
+                    <td>4. After allocations have been entered, click on Save to
+                        save the allocations.</td>
+                </tr>
+            </table>
+        </apex:pageBlock>
+        <apex:pageBlock title="Available List" id="selectionBlock"> 
+            <apex:pagemessages >
+                <!-- <apex:pagemessage summary="You are currenly not assigned to any accounts." strength="3" severity="info" rendered="{!unselectedOptions.size==0}"/>
+             -->
+            </apex:pagemessages>
+            <apex:actionStatus id="status" startText="Loading...">
+                <apex:facet name="start">
+                    <center>
+                        <img src="/img/waiting_dots.gif" border="0" id="waiting" />
+                    </center>
+                </apex:facet>
+            </apex:actionStatus>
+            <div id="ext-gen178" class="ext-el-mask"
+                style="position: absolute; background-color: #000000; opacity: 0.6; display: none; width: 990px; height: 435px; z-index: 9000;">
+                <center>
+                    <img src="/img/loading.gif" border="0" height="20" width="20"
+                        id="interWaitImg" />
+                </center>
+            </div> 
+            <table width="90%">
+                <tr>
+                    <td><b><apex:outputText >Market</apex:outputtext>&nbsp;
+                    <!-- <div style="position: relative; display: inline; left: 200px;" />  -->
+                    </b>
+                        <div
+                            style="background-color: #CC0000; width: 3px; display: inline;">&nbsp;</div>
+                        <apex:selectList value="{!selectedMarket}" size="1">
+                            <apex:selectOptions value="{!Markets}"></apex:selectOptions>
+                            <apex:actionSupport event="onchange" status="status"
+                                action="{!getShiptos}" rerender="selectionBlock,availableBlock" />
+                        </apex:selectList> <apex:inputCheckbox value="{!displayAll}">
+                            <apex:actionSupport event="onclick" action="{!showAllShiptos}"
+                                rerender="selectionBlock,availableBlock" status="searchStatus" />
+                        </apex:inputCheckbox> <apex:outputText value="Display all">
+                        </apex:outputText></td>
+                </tr>
+            </table>
+            <!--<div style="align:right">
+                <font size="2" face="Arial"><b><apex:outputText value="Available List"/></b></font>
+            </div>-->
+            <apex:actionStatus id="searchStatus" startText="Searching...">
+                <apex:facet name="start">
+                    <center>
+                        <img src="/img/loading.gif" border="0" height="20" width="20"
+                            id="interWaitImg" />
+                    </center>
+                </apex:facet>
+            </apex:actionStatus>
+            <apex:selectList id="unselectedShipTos" required="false"
+                value="{!selectedValues}" multiselect="true" size="12"
+                style="width:90%">
+                <apex:selectOptions value="{!unselectedOptions}" />
+            </apex:selectList>
+             </apex:pageBlock>
+            <div style="width: 90%" align="center">
+                <font size="2" color="Black"><b> <apex:commandButton value="▼" action="{!DoSelect}" rerender="selectionBlock,availableBlock"
+                            status="status" id="addButton" /> </b> </font> <font size="2" color="Black"><b>
+                        <apex:commandButton value="▲" action="{!DoUnselect}"
+                            rerender="selectionBlock,availableBlock" status="status" id="removeButton" /> </b>
+                </font>
+            </div>
+            <br/>
+            <apex:pageBlock title="Selected List" id="availableBlock">
+            <!--<div style="align:right">
+                <font size="2" face="Arial"><b><apex:outputText value="Selected List"/></b></font>
+            </div> -->
+            <apex:selectList id="selectedShipTos" required="false"
+                value="{!unselectedValues}" multiselect="true" size="5"
+                style="width:90%">
+                <apex:selectOptions value="{!selectedOptions}" />
+            </apex:selectList>
+            <div style="width: 3px; display: inline;">&nbsp;</div>
+            <apex:commandButton value="Next" action="{!next}" id="nextButton" style="display:inline"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

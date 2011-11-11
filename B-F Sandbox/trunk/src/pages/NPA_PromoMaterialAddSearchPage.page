@@ -1,0 +1,264 @@
+<apex:page controller="NPA_PromoMaterialAddSearchController"
+    tabstyle="Promotion__c" title="Promotion - Add Products">
+    <style>
+        .activeTab {
+            background-color: #B0D3EA;
+            color: white;
+            background-image: none
+        }
+        
+        .inactiveTab {
+            background-color: #E1F0F5;
+            color: black;
+            background-image: none
+        }
+    </style>
+    <script type='text/javascript'>
+    function noenter(ev,framename){
+        if ((window.event && window.event.keyCode == 13) || ev.which == 13){
+            if(framename=="searchquery"){
+                doSearchAF();
+            }else{
+                var answer = confirm("Do you want to Save the Products?");
+                if (answer == true){
+                    doQuickAddAF();
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+            return false;
+        }else {
+            return true;
+        }
+    }
+    </script>
+    <apex:form id="searchform">
+        <apex:actionFunction name="doSearchAF" action="{!Search}" />
+        <apex:actionFunction name="doQuickAddAF" action="{!close}" />
+        <apex:pageMessages id="errormsgs" />
+        <apex:actionStatus id="waitingstatus" layout="block">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv waitingSearchDivOpacity"
+                    style="width: 100%; height: 100%; display: block;" />
+                <div id="123" class="waitingSearchDiv"
+                    style="width: 100%; height: 100%; top: 0; right: 0 display :   block;">
+                    <div class="waitingHolder"
+                        style="align: center; top: 50%; width: 100px;">
+                        <img class="waitingImage" src="/img/loading.gif" width="27px"
+                            height="27px" /> <span class="waitingDescription"><font
+                            size="3">Loading...</font>
+                        </span>
+                    </div>
+                </div>
+            </apex:facet>
+            <apex:facet name="stop"></apex:facet>
+        </apex:actionStatus>
+        <apex:actionStatus id="searchstatus" layout="block">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv waitingSearchDivOpacity"
+                    style="width: 100%; height: 100%; display: block;" />
+                <div id="123" class="waitingSearchDiv"
+                    style="width: 100%; height: 100%; top: 0; right: 0 display :   block;">
+                    <div class="waitingHolder"
+                        style="align: center; top: 50%; width: 100px;">
+                        <img class="waitingImage" src="/img/loading.gif" width="27px"
+                            height="27px" /> <span class="waitingDescription"><font
+                            size="3">Searching...</font>
+                        </span>
+                    </div>
+                </div>
+            </apex:facet>
+            <apex:facet name="stop"></apex:facet>
+        </apex:actionStatus>
+        <apex:tabPanel switchType="client" id="theTabPanel"
+            tabClass="activeTab" inactiveTabClass="inactiveTab">
+            <apex:tab label="Search" name="name1" id="tabOne"
+                focus="prodsearch.searchbuttons.descriptionsearch">
+                <apex:actionsupport id="searchsupport" event="ontableave"
+                    action="{!hideavailablelist}" reRender="availableform,frm"
+                    status="waitingstatus">
+                    <apex:param name="tableft" assignTo="{!tableft}" value="Search" />
+                </apex:actionsupport>
+                <apex:pageblock title="Product Search" id="prodsearch">
+                    <apex:pageBlockButtons location="bottom" id="searchbuttons">
+                        <apex:commandButton id="Search" value="Search" action="{!search}"
+                            rerender="availableform,frm,errormsgs" status="searchstatus" />
+                        <apex:commandButton id="Cancel" value="Back" action="{!cancel}" />
+                    </apex:pageBlockButtons>
+                    <apex:pageBlockSection columns="2">
+                        <apex:pageblockSection >
+                            <apex:outputLabel id="idsearchlabel" value="Product Code"
+                                title="This label refers to the Product Code"
+                                styleClass="labelCol" style="font-size:8pt"></apex:outputLabel>
+                            <apex:inputText id="idsearch" value="{!Id_Category}"
+                                title="Enter Product Code to be searched for"
+                                onkeypress="return noenter(event,'searchquery');" />
+                        </apex:pageblockSection>
+                        <apex:pageblockSection >
+                            <apex:outputLabel id="brandsearchlabel" value="Brand"
+                                styleClass="labelCol" style="font-size:8pt" />
+                            <apex:outputText id="brandnamesearch"
+                                value="{!promotion.Brand_NPA__r.Name}" />
+                        </apex:pageblockSection>
+                        <apex:pageblockSection >
+                            <apex:outputLabel id="descriptionsearchlabel"
+                                value="Product Name"
+                                title="This label refers to the Product Name"
+                                styleClass="labelCol" style="font-size:8pt" />
+                            <apex:inputText id="descriptionsearch" value="{!desc_category}"
+                                title="Enter the value here to search based on the Product Name"
+                                onkeypress="return noenter(event,'searchquery');" />
+                        </apex:pageblockSection>
+                        <apex:pageblockSection >
+                            <apex:outputLabel id="limit_to_brand"
+                                value="Limit to brand above" styleClass="labelCol"
+                                style="font-size:8pt" />
+                            <apex:inputCheckbox id="limittobrand" value="{!limit_to_brand}"
+                                title="Limits product search based on Promotion Brand"
+                                onkeypress="return noenter(event,'searchquery');"/ >
+                        </apex:pageblockSection>
+                        <apex:pageBlockSection columns="2">
+                            <apex:outputLabel id="salesorgsearchlabel" value="Sales Org"
+                                styleClass="labelCol" style="font-size:8pt"></apex:outputLabel>
+                            <apex:outputText id="salesorgsearch"
+                                value="{!promotion.Sales_Org__c}" />
+                        </apex:pageBlockSection>
+                    </apex:pageBlockSection>
+                </apex:pageblock>
+            </apex:tab>
+            <apex:tab label="Quick Add" name="name2" id="tabTwo" focus="Idadd">
+                <apex:actionsupport id="quickaddsupport" event="ontableave"
+                    action="{!showavailablelist}" reRender="availableform,frm"
+                    status="waitingstatus">
+                    <apex:param name="tableft" assignTo="{!tableft}" value="Quick Add" />
+                </apex:actionsupport>
+                <apex:pageblock id="directadd">
+                    <apex:pageBlockButtons location="bottom">
+                        <apex:commandButton action="{!close}" value="Save" />
+                        <apex:commandButton id="Clear" value="Add More"
+                            action="{!clear_directaddrows}" reRender="directadd" />
+                        <apex:commandButton id="Cancel" value="Back" action="{!cancel}" />
+                    </apex:pageBlockButtons>
+                    <apex:pageblockTable value="{!datagrid}" var="additem">
+                        <apex:column headerValue="#" width="15px">
+                            <apex:outputText id="Idadd3" value="{!additem.rownum}"
+                                style="align:center" />
+                        </apex:column>
+                        <apex:column headerValue="Product Code" width="150px">
+                            <apex:inputText id="Idadd" value="{!additem.Id_category }"
+                                title="Enter the value here to search based on the Product Code"
+                                onkeypress="return noenter(event,'quickadd');">
+                                <apex:actionSupport event="onchange" action="{!checkid}"
+                                    reRender="descout,statusout,frm" status="fetchStatus">
+                                    <apex:param name="productNumber" assignTo="{!productNumber}"
+                                        value="{!additem.rownum}" />
+                                </apex:actionSupport>
+                            </apex:inputText>
+                        </apex:column>
+
+                        <apex:column headerValue="Product Name" width="150px" id="descout" value="{!additem.desc_category }">
+                        </apex:column>
+                        <apex:column headerValue="Status" width="150px" id="statusout" 
+                            value="{!additem.duplicate_msg}" 
+                            style="{!if(AND(NOT(ISNULL(additem)),additem.duplicate_msg!='Product Code is Valid'),'color:red', 'color:black')}">
+                        </apex:column>
+                    </apex:pageblockTable>
+                </apex:pageblock>
+            </apex:tab>
+        </apex:tabPanel>
+    </apex:form>
+    <apex:form id="availableform">
+        <!--   <apex:pageblock title="Available List" id="availablelist" rendered="{!AND(  NOT(ISNULL(ListofProducts)),(availablelistsize)>0   )}"> -->
+        <apex:pageblock title="Available List" id="availablelist"
+            rendered="{!availablelist_render}">
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!previous}" value="Previous"
+                    rendered="{!hasprev}" reRender="availableform,frm" />
+                <apex:commandButton action="{!next}" value="Next"
+                    rendered="{!hasnext}" reRender="availableform,frm" />
+            </apex:pageBlockButtons>
+            <apex:actionStatus id="counterStatus" layout="block">
+                <apex:facet name="start">
+                    <div class="waitingSearchDiv waitingSearchDivOpacity"
+                        style="width: 100%; height: 100%; display: block;" />
+                    <div id="123" class="waitingSearchDiv"
+                        style="width: 100%; height: 100%; top: 0; right: 0 display :   block;">
+                        <div class="waitingHolder"
+                            style="align: center; top: 50%; width: 100px;">
+                            <img class="waitingImage" src="/img/loading.gif" width="27px"
+                                height="27px" /> <span class="waitingDescription"><font
+                                size="3">Updating selected list...</font>
+                            </span>
+                        </div>
+                    </div>
+                </apex:facet>
+                <apex:facet name="stop"></apex:facet>
+            </apex:actionStatus>
+            <apex:pageblockTable value="{!ListofProducts}" var="productitem"
+                rows="20">
+                <apex:column style="{!if(productitem.grayout=true,'background-color:#B1B0B5', 'color:black')}">
+                    <apex:inputCheckbox id="availablelistcheckbox"
+                        value="{!productitem.isselected}"
+                        disabled="{!productitem.grayout}">
+                        <apex:actionSupport event="onclick" action="{!deselectaddedlist}"
+                            reRender="frm,errormsgs" status="counterStatus">
+                            <apex:param name="prodid" assignTo="{!prodid}"
+                                value="{!productitem.product.Id}" />
+                            <apex:param name="checkboxstatus" assignTo="{!checkboxstatus}"
+                                value="{!productitem.isselected}" />
+                        </apex:actionSupport>
+                    </apex:inputCheckbox>
+                </apex:column>
+                <apex:column style="{!if(productitem.grayout=true,'background-color:#B1B0B5', 'color:black')}">
+                    <apex:facet name="header">Product Code</apex:facet>
+            {!productitem.product.ProductCode__c}
+            </apex:column>
+                <apex:column style="{!if(productitem.grayout=true,'background-color:#B1B0B5', 'color:black')}">
+                    <apex:facet name="header">Product Name</apex:facet>
+             {!productitem.product.Name}
+            </apex:column>
+                <apex:column style="{!if(productitem.grayout=true,'background-color:#B1B0B5', 'color:black')}">
+                    <apex:facet name="header">UOM</apex:facet>
+            {!productitem.product.UOM__c}
+            </apex:column>
+                <apex:column style="{!if(productitem.grayout=true,'background-color:#B1B0B5', 'color:black')}">
+                    <apex:facet name="header">Planned Cost</apex:facet>
+                     <apex:outputText value="USD {0,number,###,##0.00}">
+                       <apex:param value="{!productitem.product.Planned_Cost__c}" />
+                    </apex:outputText>
+            </apex:column>
+            </apex:pageblockTable>
+        </apex:pageblock>
+    </apex:form>
+    <apex:form id="frm">
+        <apex:pageblock title="Selected List" id="outputtable"
+            rendered="{!AND(NOT(ISNULL(addedList)),(listsize)>0)}">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!close}" value="Save" />
+                <apex:commandButton action="{!cancel}" value="Back" />
+            </apex:pageBlockButtons>
+            <apex:pageMessage rendered="{!costError}"
+                    summary="Planned Cost should be greater than zero."
+                    strength="3" severity="error" />
+            <apex:pageblockTable value="{!addedList}" var="productitem"
+                rows="150">
+                <apex:column >
+                    <apex:inputCheckbox value="{!productitem.isselected}" />
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Product Code</apex:facet>{!productitem.product.ProductCode__c}</apex:column>
+                <apex:column >
+                    <apex:facet name="header">Product Name</apex:facet>{!productitem.product.Name}</apex:column>
+                <apex:column >
+                    <apex:facet name="header">UOM</apex:facet>{!productitem.product.UOM__c}</apex:column>
+                <apex:column >
+                    <apex:facet name="header">Planned Cost</apex:facet>
+                    <apex:outputText value="USD "></apex:outputText>
+                    <apex:inputText value="{!productitem.Planned_Cost}" />
+                </apex:column>
+                <!--  <apex:column ><apex:facet name="header">Status</apex:facet>{!productitem.product.Status__c}</apex:column> -->
+            </apex:pageblockTable>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

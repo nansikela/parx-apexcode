@@ -1,0 +1,19 @@
+<apex:page standardController="Vendor__c" sidebar="false" showHeader="false" >
+  <style type="text/css">       
+    .copyTo {
+      color: #4A4A56;
+      font-weight: bold;     
+    }  
+    #w9_form_2, #bankInfo {
+      border: 0px solid #333333;      
+      color: #4A4A56; 
+      margin: 5px; 
+      font-weight: bold; 
+      font-size: 105%; 
+      text-align: center;"
+    }            
+  </style>
+  <div id="bankInfo">
+    It is required that the banking information provided be faxed (or Emailed) on the company's letterhead to the Accounts Payable Department of Brown-Forman for verification at 502-774-7183.
+  </div>
+</apex:page>

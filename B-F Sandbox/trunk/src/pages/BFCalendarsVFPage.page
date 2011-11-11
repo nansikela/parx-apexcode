@@ -1,0 +1,72 @@
+<apex:page showHeader="true" sidebar="false">
+    <style type="text/css">
+        #calendarLinks{
+            list-style-image:url("http://bfextweb1.b-f.com/googleGadgets/salesforce/images/gcal.png");
+        }
+        #bbu{
+            list-style-image:url("http://bfextweb1.b-f.com/googleGadgets/salesforce/images/pdf.png");
+        }
+        #closing{
+            list-style-image:url("http://bfextweb1.b-f.com/googleGadgets/salesforce/images/excel.png");
+        }
+        #holidays{
+            float:left;            
+            position:relative;
+        }
+    </style>
+    <script src="http://www.google.com/jsapi"></script>
+    <script> google.load("jquery", "1.4.2");</script>
+<script> 
+    $(document).ready(function()  
+    {  $('a.corporate').click(function(){                  
+            $("#community").hide();
+            $("#finance").hide();
+            $("#blackout").hide();
+            $("#corporate").slideDown("slow");
+       });
+       $('a.community').click(function(){                  
+            $("#corporate").hide();
+            $("#finance").hide();
+            $("#blackout").hide();
+            $("#community").slideDown("slow");
+       });
+       $('a.finance').click(function(){                  
+            $("#corporate").hide();
+            $("#community").hide();
+            $("#blackout").hide();
+            $("#finance").slideDown("slow");
+       });
+       $('a.blackout').click(function(){                  
+            $("#corporate").hide();
+            $("#community").hide();
+            $("#finance").hide();
+            $("#blackout").slideDown("slow");
+       });
+    });                    
+</script>
+  <div id="sidebar" style="width:25%;float:left;">
+      <ul id="calendarLinks">
+          <a href="#" class="corporate"><li>Corporate</li></a>
+          <a href="#" class="community"><li>Community</li></a>
+          <a href="#" class="finance"><li>Finance Rolling</li></a>
+          <a href="#" class="blackout"><li>Blackout</li></a>
+          <a href="https://docs.google.com/a/b-f.com/viewer?a=v&pid=explorer&chrome=true&srcid=0B_VnTeTDSQDcYTBhZTExMTYtYjliOS00NmQwLWI1N2MtMDZkOWY0NzljMGFh&hl=en" target="_blank"><li id="bbu">BBU</li></a>
+          <a href="https://spreadsheets0.google.com/a/b-f.com/spreadsheet/ccc?authkey=CPu5kpwC&hl=en_US&key=tneE7_X0s8yqQoOks79oL-w&hl=en_US&authkey=CPu5kpwC#gid=0" target="_blank"><li id="closing">Finance Closing</li></a>
+      </ul>
+      
+      <br/>
+      
+  </div>
+  <div id="corporate" style="width:75%;float:left;">
+  <iframe src="http://www.google.com/calendar/embed?src=b-f.com_mlhqbdc3h8kq4fb5snk98psnok%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+  <div id="community" style="width:75%;float:left;display:none;">
+  <iframe src="http://www.google.com/calendar/embed?src=b-f.com_1t2vgleb2tqlau7ogovunj6luc%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+  <div id="finance" style="width:75%;float:left;display:none;">
+  <iframe src="http://www.google.com/calendar/embed?src=b-f.com_qig61su910nf36ocd6jsamk254%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+  <div id="blackout" style="width:75%;float:left;display:none;">
+  <iframe src="http://www.google.com/calendar/embed?src=b-f.com_3ed4npqo06kdi8lc6pp3mkpi18%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+  </div>
+</apex:page>
