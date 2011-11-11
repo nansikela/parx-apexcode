@@ -1,0 +1,30 @@
+<apex:page sidebar="false">
+<style>
+    
+#outerdiv
+{
+width:100%;
+height:3000px;
+overflow:hidden;
+position:absolute;
+top:3px;
+left:20px;
+margin:1px;
+}
+
+#inneriframe
+{
+position:absolute;
+top:-30px;
+left:-40px;
+width:100%;
+height:3000px;
+margin:1px;
+}
+</style>
+<div id='outerdiv'>
+    <iframe src="https://sites.google.com/a/b-f.com/discounts-and-services/" id='inneriframe' scrolling="no" FRAMEBORDER="0" MARGINWIDTH="1" MARGINHEIGHT="1"></iframe>
+</div>
+<div id='background' style="width:100%; height:3000px; background:#fff"></div>
+<iframe src="http://docs.google.com/a/b-f.com" style="display:none; height:2100px"></iframe>
+</apex:page>

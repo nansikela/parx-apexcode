@@ -1,0 +1,17 @@
+<apex:page standardController="Promotion_Material_Item__c" extensions="NPA_CustomPromotionMaterial_Edit">
+    <apex:pagemessages />
+    <apex:form >
+        <apex:pageBlock mode="edit">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!save}" value="Save"/>
+                <apex:commandButton action="{!cancel}" value="Back"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Promotion Material Item Edit" columns="2">
+                <apex:outputField value="{!Promotion_Material_Item__c.Name}"/>
+                <apex:outputField value="{!Promotion_Material_Item__c.Product_Custom__c}"/>
+                <apex:inputField value="{!Promotion_Material_Item__c.Planned_Cost__c}"/>
+                <apex:inputField value="{!Promotion_Material_Item__c.Status__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

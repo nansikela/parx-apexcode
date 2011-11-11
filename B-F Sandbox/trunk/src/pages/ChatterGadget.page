@@ -1,0 +1,5 @@
+<apex:page controller="chatterGadgetController" showHeader="false" title="Chatter Gadget"> 
+    <div style="width:90%;margin:auto;">    
+        <chatter:feed entityId="{!id}" />
+    </div>
+</apex:page>

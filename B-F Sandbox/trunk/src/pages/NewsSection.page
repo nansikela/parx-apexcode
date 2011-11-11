@@ -1,0 +1,20 @@
+<apex:page controller="displayNewsController" sidebar="false" tabstyle="News__tab">
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.NewsFiles, '/styles/news.css')}"/>
+	<div style="padding-bottom:30px">
+		<h2><apex:outputText value="{!NewsCategory}" /></h2>
+		<apex:image width="75" height="75" style="float:left; margin-right:5px;" url="{!URLFOR($Resource.NewsFiles, '/images/company.jpg')}" rendered="{!NewsCategory = 'Company'}"/>
+		<apex:image width="75" height="75" style="float:left; margin-right:5px;" url="{!URLFOR($Resource.NewsFiles, '/images/brands.jpg')}" rendered="{!NewsCategory = 'Brands'}"/>
+		<apex:image width="75" height="75" style="float:left; margin-right:5px;" url="{!URLFOR($Resource.NewsFiles, '/images/industry.jpg')}" rendered="{!NewsCategory = 'Industry'}"/>		
+		<apex:image width="75" height="75" style="float:left; margin-right:5px;" url="{!URLFOR($Resource.NewsFiles, '/images/employee.gif')}" rendered="{!NewsCategory = 'Employee'}"/>				
+		<blockquote>
+			<ul>
+				<apex:repeat id="cR" value="{!AllSectionNews}" var="c">
+					<li>                        
+						<apex:outputLink value="/apex/NewsContent?id={!c.id}" target="_blank" rendered="{!c.External_URL__c = null}">{!c.Name__c} - <apex:outputField value="{!c.LastModifiedDate}"/></apex:outputLink>						                          
+						<apex:outputLink value="{!c.External_URL__c}" target="_blank" rendered="{!c.External_URL__c != null}">{!c.Name__c} - <apex:outputField value="{!c.LastModifiedDate}"/></apex:outputLink>                            
+					</li>                   
+				</apex:repeat>          
+			</ul>
+		</blockquote>
+	</div>  
+</apex:page>
