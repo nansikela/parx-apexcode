@@ -64,7 +64,7 @@ public class FAReporting {
 	
 	public List<Warenkorb_Element__c> getWarenkorbElemente()
 	{
-		return [Select w.CreatedDate,  w.Warenkorb__r.Status__c, w.Warenkorb__r.Person__c, w.Warenkorb__r.Person__r.name, w.Warenkorb__r.Person__r.vorname__c, w.Warenkorb__r.Person__r.Nachgeordnete_Firma__c, w.Warenkorb__r.Person__r.Nachgeordnete_Firma__r.name, w.Warenkorb__c, w.Status__c, w.Seminarende__c, w.Seminarbeginn__c, w.Portfolio__r.URL__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__r.Name, w.Portfolio__c, w.Entscheidung_Vorgesetzter__c, w.EZ_Preis__c, w.Doppelzimmer__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c, w.Einzelzimmer__c, w.Stornogrund__c, w.Anderer_Stornogrund__c From Warenkorb_Element__c w WHERE w.Warenkorb__r.Person__r.Nachgeordnete_Firma__c IN :FAReportingHelper.getPossibleCompanyIds() ORDER BY w.CreatedDate DESC LIMIT 1000 ];
+		return [Select w.CreatedDate,  w.Warenkorb__r.Status__c, w.Warenkorb__r.Person__c, w.Warenkorb__r.Person__r.name, w.Warenkorb__r.Person__r.vorname__c, w.Warenkorb__r.Person__r.Nachgeordnete_Firma__c, w.Warenkorb__r.Person__r.Nachgeordnete_Firma__r.name, w.Warenkorb__c, w.Status_Text__c, w.Status_Code__c, w.Seminarende__c, w.Seminarbeginn__c, w.Portfolio__r.URL__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__r.Name, w.Portfolio__c, w.Entscheidung_Vorgesetzter__c, w.EZ_Preis__c, w.Doppelzimmer__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c, w.Einzelzimmer__c, w.Stornogrund__c, w.Anderer_Stornogrund__c From Warenkorb_Element__c w WHERE w.Warenkorb__r.Person__r.Nachgeordnete_Firma__c IN :FAReportingHelper.getPossibleCompanyIds() ORDER BY w.CreatedDate DESC LIMIT 1000 ];
 	}
 	
 	static testMethod void test() 

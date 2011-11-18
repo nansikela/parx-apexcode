@@ -33,7 +33,7 @@
            {!(Text(seminar.portfolio__r.Web_Preis__c))}{!IF((Text(seminar.portfolio__r.Web_Preis__c))=='','Nicht verfügbar',',-')}
        </apex:column>
        <apex:column headerValue="Status">
-          {!seminar.Status__c}
+          {!seminar.Status_Text__c}
        </apex:column>
    </apex:dataTable>
 </apex:component>

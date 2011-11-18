@@ -11,4 +11,6 @@
     <tab>standard-Opportunity</tab>
     <tab>standard-report</tab>
     <tab>Portfolio__c</tab>
+    <tab>Trainervertrag__c</tab>
+    <tab>Trainervertragsdetail__c</tab>
 </CustomApplication>

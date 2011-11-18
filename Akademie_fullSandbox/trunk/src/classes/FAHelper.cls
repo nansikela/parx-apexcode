@@ -155,14 +155,13 @@ public class FAHelper
      */
 	public static Messaging.SingleEmailMessage getNewMailFromAkademie(String toEMailAddress)
 	{
-		/*WORKAROUND*/
-			toEMailAddress = 'mquirmbach@die-akademie.de';
-		/*WORKAROUND*/
+		
 		Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
 		String[] toAddresses = new String[]{toEMailAddress};
 		mail.setToAddresses(toAddresses);
+		mail.setOrgWideEmailAddressId('0D220000000Kz6y');
         mail.setReplyTo('christina.karschti@ag.vossloh.com');
-        mail.setSenderDisplayName('Christina Karschti');
+        //mail.setSenderDisplayName('Christina Karschti');
         
         String[] bccAddresses = new String[]{'support.customer+AnmeldungenDieAkademie@parx.com'};
 		mail.setBccAddresses(bccAddresses);

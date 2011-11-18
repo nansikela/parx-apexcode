@@ -1,9 +1,11 @@
-<apex:component >
+<apex:component id="WebManagementGuide2012Cmp">
 <apex:attribute required="false" type="String" name="isFirst" description="is First Component"/>
-
-
-      <div class="management_guide {!IF(isFirst=='true', 'first','')}">
-        <a href="/resource/1315549087000/ManagementGuide2012">Management Guide 2012<span>Hier downloaden</span></a>
-      </div>
-      
+	<!-- TODO add background image and postion and format text -->
+	<apex:outputPanel layout="block" id="mgmguide" styleClass="management_guide management_guideDiv {!IF(isFirst=='true', 'first','')}">
+		<apex:outputLink id="mgmtguide_link" value="/resource/1315549087000/ManagementGuide2012">
+	      <apex:outputPanel layout="block" id="mgmtguidetext" styleClass="management_guide {!IF(isFirst=='true', 'first','')}">
+	        Management Guide 2012
+	      </apex:outputPanel>
+	    </apex:outputLink>
+    </apex:outputPanel>
 </apex:component>

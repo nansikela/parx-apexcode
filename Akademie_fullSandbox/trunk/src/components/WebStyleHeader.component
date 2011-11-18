@@ -1,0 +1,197 @@
+<apex:component id="WebStyleHeaderCmp">
+<!-- additional styles for easy handling not in static resources -->
+<style>
+/* naechste seminare */
+.iconcalender {
+	float: left;
+	margin-top: -3px;
+	margin-right: 5px;
+}
+
+.iconcalendersmall {
+	float: left;
+	padding-right: 5px!important;
+	margin-top: 5px;
+}
+
+.seminaritem {
+	margin-left: 11px;
+}
+
+.rightbox_leftborder {
+	border-left: 1px solid #CCC;
+}
+
+/* header */
+.cognosLogoNew {
+	margin-top: 1px;
+}
+
+.searchfieldbackground {
+	background: white url("{!URLFOR($Resource.web_style2, 'i/search_loupe.png')}") 170px 4px no-repeat;
+	border-top: 1px solid #b7b2a9 !important;
+	border-left: 1px solid #b7b2a9 !important;
+}
+
+.loginNew {
+  /*
+  float: left;
+  margin-left: 20px;
+  */
+  font-size: 11px!important;
+  padding: 0px 0 0 0px;
+  text-decoration: none;
+  color: #8A1544!important;
+}
+
+.loginBackground {
+	width: 70px;
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}") 0 -2px no-repeat;
+	height: 22px;
+	margin-top: 0px;
+}
+
+.loginBackground:hover {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie_hover.png')}") 0 -2px no-repeat;
+}
+
+.header .searchfield {
+	clear: right;
+	float: right;
+	height: 21px;
+	margin-top: -2px;
+	padding-top: 0px;
+	position: relative;
+	width: 180px;
+	font-size: 17px;
+}
+
+.header .searchfield .autocomplete {
+	margin: 0px 0px 0px 0px;
+}
+
+.headnavi {
+	margin-top: 27px ! important;
+}
+
+/* topcontent */
+.topcontent {
+	padding-top: 95px;
+	height: 480px;
+}
+
+/* right column - topcontent */
+.direct_search h3 {
+	padding-top: 18px ! important;
+	font-size: 13px;
+}
+
+.iconcalenderDirectSearch {
+	float: right;
+	margin-left: 12px;
+	background-color: white;
+	border-right: 1px solid #ACADB0;
+	border-bottom: 1px solid #ACADB0;
+}
+
+.direct_search {
+	font-size: 12px;
+}
+
+.right_column .direct_search {
+	padding: 0px 20px 16px 20px!important;
+	border-top: none;
+	border-right: 1px solid #ACADB0;
+	height: 250px;
+}
+
+.column.last {
+	margin-top: 16px!important;
+}
+
+.dateDiv {
+	font-size: 12px; 
+	width: 178px !important;
+}
+
+.dateText {
+	position: relative;
+	top: 20px;
+}
+
+.optionfieldTitle {
+	height: 22px;
+	width: 178px !important;
+	font-size: 12px;
+	border-top: 1px solid #B7B2A9 !important;
+	border-left: 1px solid #B7B2A9 !important;
+}
+
+.optionfieldDay {
+	height: 20px;
+	width: 22px!important;
+	font-size: 11px;
+	border-top: 1px solid #B7B2A9 !important;
+	border-left: 1px solid #B7B2A9 !important;
+	position: relative;
+	right: -50px;
+	
+}
+
+.optionfieldMonth {
+	height: 20px;
+	width: 22px!important;
+	font-size: 11px;
+	border-top: 1px solid #B7B2A9 !important;
+	border-left: 1px solid #B7B2A9 !important;
+	position: relative;
+	right: -50px;
+}
+
+.optionfieldYear {
+	height: 20px;
+	width: 40px!important;
+	font-size: 11px;
+	border-top: 1px solid #B7B2A9 !important;
+	border-left: 1px solid #B7B2A9 !important;
+	position: relative;
+	right: -50px;
+}
+
+.optionfieldDropdown {
+	height: 23px;
+	width: 179px !important;
+	font-size: 12px;
+	color: #666666;
+}
+
+.management_guideDiv {
+	height: 156px;
+}
+
+.newsletterAbo {
+	height: 0px; /* div is somewhere else and would overlap other elements */
+	top: 10px;
+	position: relative;
+}
+
+/* bottomcontent */
+.bottomcontent {
+	width: 960px;
+}
+
+.columnStartseite {
+	/* width: 215px!important; */
+}
+
+.columnStartseite h2 {
+	font-size: 17px;
+}
+
+/* footer */
+.footer_wrapper {	
+	margin-top: 385px;
+}
+
+</style>
+</apex:component>

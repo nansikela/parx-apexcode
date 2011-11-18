@@ -10,4 +10,6 @@
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
     <tab>Portfolio__c</tab>
+    <tab>Trainervertrag__c</tab>
+    <tab>Trainervertragsdetail__c</tab>
 </CustomApplication>

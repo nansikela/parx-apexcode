@@ -47,13 +47,11 @@ public class FAMailSender {
 	/*WORKAROUND OK*/
 	public static void sendWarenkorbBestaetigung()
 	{
-		
+		System.debug('*****sendWarenkorbBestaetigung:Start');
 		//eMail to Teilnehmer
 		Messaging.SingleEmailMessage bestellbestaetigungTeilnehmer = FAHelper.getNewMailFromAkademie(FAHelper.getCurrentPerson().eMail__c);
 		String bestellbestaetigungBody = '';
-		/*WORKAROUND 02.08.2011*/
-		bestellbestaetigungBody+=FAHelper.getCurrentPerson().eMail__c+'\n';
-		/*WORKAROUND END 02.08.2011*/
+		
 		
 		if(FAHelper.getCurrentPerson().anrede__c =='Herr')
         {
@@ -105,9 +103,7 @@ public class FAMailSender {
 		{
 			Messaging.SingleEmailMessage bestellbestaetigungVorgesetzter = FAHelper.getNewMailFromAkademie(FAHelper.getCurrentPerson().eMail_Adresse_Vorgesetzter__c);
 			String bestellbestaetigungBodyVorgesetzter ='';
-			/*WORKAROUND*/
-			bestellbestaetigungBodyVorgesetzter+=FAHelper.getCurrentPerson().eMail_Adresse_Vorgesetzter__c+'\n';
-			/*WORKAROUND END */
+			
 			bestellbestaetigungBodyVorgesetzter += 'Guten Tag,\n\n';
 			if(FAHelper.getCurrentPerson().anrede__c =='Herr')
 	        {
@@ -150,6 +146,9 @@ public class FAMailSender {
 	        
 	        bestellbestaetigungVorgesetzter.setSubject('Bestellung Ihres Mitarbeiters in der Vossloh Akademie');
 			bestellbestaetigungVorgesetzter.setPlainTextBody(bestellbestaetigungBodyVorgesetzter);
+			
+			
+			System.debug('****EMailVersand TEILNEHMER:'+bestellbestaetigungTeilnehmer);
 			Messaging.sendEmail(new Messaging.SingleEmailMessage[] { bestellbestaetigungTeilnehmer, bestellbestaetigungVorgesetzter });
 		}
 		else

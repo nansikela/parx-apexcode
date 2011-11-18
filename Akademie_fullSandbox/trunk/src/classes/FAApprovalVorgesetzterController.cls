@@ -21,12 +21,14 @@ public class FAApprovalVorgesetzterController
 		{
 		thewarenkorb = [Select w.Person__r.Titel__c, w.Person__r.Anrede__c, w.Person__r.Vorname__c, w.Person__r.Name, w.Person__c, w.Person__r.eMail__c From Warenkorb__c w WHERE ID = :warenkorbId AND Status__c = 'Abgeschlossen'];
 		list<FASeminar> seminarListTemp = Warenkorb.getInstance(warenkorbId).getWarenkorbElement();
+		System.debug('******seminarListTemp:'+seminarListTemp);
+		seminarList = new List<FASeminar>();
 		for (FASeminar seminar: seminarListTemp) {
-			if (Warenkorb.getInstance(warenkorbId).getWarenkorbElement(seminar.id).status__c != 'Warten auf Apporval durch Akademie' && 
+			/*if (Warenkorb.getInstance(warenkorbId).getWarenkorbElement(seminar.id).status__c != 'Warten auf Apporval durch Akademie' && 
 				Warenkorb.getInstance(warenkorbId).getWarenkorbElement(seminar.id).status__c != 'Storno durch Vorgesetzten' &&
 				(Warenkorb.getInstance(warenkorbId).getWarenkorbElement(seminar.id).status__c=='Warten auf Approval von Vorgesetztem' ||
 				Warenkorb.getInstance(warenkorbId).getWarenkorbElement(seminar.id).status__c=='Warten auf Approval durch Vorgesetzten')
-				) 
+				) */
 				seminarList.add(seminar);
 		}
 		}
