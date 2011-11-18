@@ -8,7 +8,8 @@ public class WarenkorbFacade
 	public Boolean showReservationOptions { get; private set; }
 	
 	
-	public WarenkorbFacade() {
+	public WarenkorbFacade() 
+	{
 		showReservationOptions=false;
 	}
 

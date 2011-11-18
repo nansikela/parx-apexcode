@@ -1,7 +1,8 @@
 <apex:component controller="FAHelper">
     <apex:attribute name="breadcrubShow" type="boolean" description="TODO: Describe me" required="true"/>
 
-
+	<!-- TODO replace images, repostion search box and replace Login link with images and hover -->
+	<!-- TODO add social media links -->
     <div class="site_wrapper">
         <div class="header">
             <a href="/" id="logo" title="Zur Startseite">
@@ -12,22 +13,32 @@
             
             <div class="servicenavi">
               
-               
-                <li><a href="http://www.cognos-ag.de/" id="cognosLogo" target="_blank" title="Zur Cognos  AG">COGNOS COMPETENCE GROUP</a></li>
+               <ul>
+                <li><a href="http://www.cognos-ag.de/" id="cognosLogoNew" target="_blank" title="Zur Cognos  AG"><apex:image styleClass="cognosLogoNew" value="{!URLFOR($Resource.web_style2,'/i/logo_cognos_competence_group.png')}" /></a></li>
                 <li><a href="/rueckruf">Rückruf</a></li>
                 <li><a href="/die-akademie/kontakt">Kontakt</a></li>
-                <li><a href="/service/impressum">Impressum</a></li>
-                <li><a href="/service/agb">AGB</a></li>
-                
-                <a class="login" style="" href="http://www.arccade.de/Arccade.htm" target="_blank">Login</a>
+                                
+                <li>
+                	<apex:outputLink styleClass="loginNew">
+                		<div class="loginBackground"></div>
+                		<!-- <apex:image id="loginBtnImg" styleClass="loginImage" value="{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}" /> -->
+                	</apex:outputLink>
+                	<!-- <a class="login" style="" href="http://www.arccade.de/Arccade.htm" target="_blank">Login</a> -->
+              	</li>
               
-              
-            </div>
-            <div class="searchfield">
-             <form method="post">
-                 <input class="autocomplete ui-autocomplete-input" type="text" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" />
+            
+            	<li>
+            	<div class="searchfield">
+             <form method="post"> 
+                 <input class="autocomplete ui-autocomplete-input searchfieldbackground" type="text" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" />
+                 <!-- 
                  <input class="submitbtn" src="/resource/1315250542000/web_style2/i/btn_submit_loupe.gif" type="image" />
+				 -->
              </form>
+             </div>
+             	</li>
+            	</ul>
+            	
              </div>
             <c:FATopNav />
             <c:Webbreadcrumbandsuggest2 rendered="{!breadcrubShow}" />

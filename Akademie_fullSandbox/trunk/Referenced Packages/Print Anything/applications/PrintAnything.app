@@ -8,4 +8,6 @@
     <tab>Query__c</tab>
     <tab>Beleg__c</tab>
     <tab>Portfolio__c</tab>
+    <tab>Trainervertrag__c</tab>
+    <tab>Trainervertragsdetail__c</tab>
 </CustomApplication>

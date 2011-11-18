@@ -1,0 +1,9 @@
+<apex:component id="webcontentnaviteaser">
+	<!-- TODO css for right postion -->
+	<apex:outputPanel id="contentteaser" layout="block" >
+		<c:contentblock name="Fuehrung" />
+		<c:contentblock name="Persoenlichkeitsentwicklung" />
+		<c:contentblock name="Ausbildungen" />
+		<c:contentblock name="Seminare_auf_Englisch" />
+	</apex:outputPanel>
+</apex:component>

@@ -1,12 +1,21 @@
-<apex:component controller="FARightBoxesController" >
+<apex:component controller="FARightBoxesController" id="WebNaechsteSeminare2Cmp">
 <apex:attribute name="show" description="The number of repeats" type="Integer" required="false" assignTo="{!show}"/>
-   <div class="rightbox dark">
-       <h3>NÄCHSTE SEMINARE</h3>
-       <apex:repeat value="{!NextSeminars}" var="seminar">
-           <p>{!seminar.datum}</p>
-           <a href="{!seminar.url}">{!seminar.titel}</a>
-       </apex:repeat>
-       <div class="separator">&nbsp;</div>
-       <span class="seminar_all"><a href="/seminare/kalender" title="Seminarkalender anzeigen">Seminarkalender anzeigen</a></span>
+<apex:outputPanel styleClass="column columnStartseite" layout="block">
+   <div class="rightbox">
+       <apex:image id="iconcalender" value="{!URLFOR($Resource.web_style2,'/i/icon_calendar.png')}" styleClass="iconcalender" /><h2>Nächste Seminare</h2>
+       <div class="rightbox_leftborder">
+	       <apex:repeat value="{!NextSeminars}" var="seminar">
+	           <apex:outputPanel id="seminaritem" layout="block" styleClass="seminaritem">
+		           <apex:image value="{!URLFOR($Resource.web_style2,'/i/icon_calendar_small.png')}" id="iconcalendersmall" styleClass="iconcalendersmall" /> 
+		           <p>{!seminar.datum}</p>
+		           <a href="{!seminar.url}">{!seminar.titel}</a>
+	           </apex:outputPanel>
+	       </apex:repeat>
+	       <!-- 
+	       <div class="separator">&nbsp;</div>
+	        -->
+	       <span class="seminar_all"><a href="/seminare/kalender" title="Seminarkalender anzeigen">Seminarkalender anzeigen</a></span>
+       </div>
    </div>
+</apex:outputPanel>
 </apex:component>

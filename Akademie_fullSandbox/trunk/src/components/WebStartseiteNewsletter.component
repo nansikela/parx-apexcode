@@ -1,0 +1,9 @@
+<apex:component id="sidebar_newsletter">
+	<!-- TODO format Text and postition div -->
+	<apex:outputPanel layout="block" id="newsletterabo" styleClass="newsletterAbo">
+		<apex:image id="NewsletterText" value="{!URLFOR($Resource.web_style2,'/i/newsletter.png')}" alt="{!$Label.Newsletter}" style="padding-bottom: 3px; padding-right: 10px;" />
+		<apex:outputLink id="NewsletterBtn" value="/service/akademie-news/newsletter" >
+			<apex:image id="NewsletterBtnImg" value="{!URLFOR($Resource.web_style2,'/i/btn_newsletter_abonnieren.png')}" alt="{!$Label.NewsletterBtn}" />
+		</apex:outputLink>
+	</apex:outputPanel>
+</apex:component>

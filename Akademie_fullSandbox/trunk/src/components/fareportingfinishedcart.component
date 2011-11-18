@@ -120,15 +120,7 @@
                 </apex:outputText> {!IF(w.Einzelzimmer__c, 'EZ','')} {!IF(w.Doppelzimmer__c, 'DZ','')}
             </apex:column>
            <apex:column headerValue="Status">
-           
-                    {!IF(w.Status__c=='Warten auf Approval durch Vorgesetzten', 'Vorgesetzter steht aus', '')}
-                    {!IF(w.Status__c=='Warten auf Approval von Vorgesetztem', 'Vorgesetzter steht aus', '')}
-                    {!IF(w.Status__c=='Warten auf Apporval durch Akademie', 'Approval abgeschlossen', '')}
-                    {!IF(w.Status__c=='Erfolgreich angemeldet', 'Approval abgeschlossen', '')}
-                    {!IF(w.Status__c=='Storno durch Teilnehmer', 'Teilnehmer Storno', '')}
-                    {!IF(w.Status__c=='Storno durch Vorgesetzter', 'Vorgesetzter Storno', '')}
-                    {!IF(w.Status__c=='Storno durch Akademie', 'Akademie Storno', '')}
-                    {!IF(w.Status__c=='Seminar abgeschlossen', 'Seminar abgeschlossen', '')}
+           			{!IF(w.Status_Code__c <410, w.Status_Text__c, '')}
                     {!w.Stornogrund__c} {!w.Anderer_Stornogrund__c}
             </apex:column>
         </apex:DataTable>

@@ -10,7 +10,7 @@ public class Warenkorb{
 			if(singelton == null)
 			{
 				Person__c currentPerson = FAHelper.getCurrentPerson();
-				List<Warenkorb__c> warenkorbTemp = [Select w.Status__c, w.Person__c, (Select Id, Warenkorb__c,  Buchungstyp__c, Terminblock__c, Terminblock__r.name, Terminblock__r.Produktgruppe__c, Terminblock__r.Produktgruppe__r.Web_Preis__c, Terminblock__r.Produktgruppe__r.Name__c, Terminblock__r.Produktgruppe__r.Name,  ez_Preis__c, hotel__c, dz_Preis__c, ist_Reservierung__c, Status__c, Bestelltermin__c, Entscheidung_Vorgesetzter__c, Portfolio__c, Portfolio__r.name, Portfolio__r.web_preis__c, Portfolio__r.seminartitel__c, Seminar__c, Inhouse_Seminar__c, Hotelreservierung__c, Einzelzimmer__c, Doppelzimmer__c  From Warenkorb_Elemente__r) From Warenkorb__c w WHERE Person__c = :CurrentPerson.id AND Status__c = 'Gestartet'];
+				List<Warenkorb__c> warenkorbTemp = [Select w.Status__c, w.Person__c, (Select Id, Warenkorb__c,  Status_code__c,  Buchungstyp__c, Terminblock__c, Terminblock__r.name, Terminblock__r.Produktgruppe__c, Terminblock__r.Produktgruppe__r.Web_Preis__c, Terminblock__r.Produktgruppe__r.Name__c, Terminblock__r.Produktgruppe__r.Name,  ez_Preis__c, hotel__c, dz_Preis__c, ist_Reservierung__c, Status__c, Bestelltermin__c, Entscheidung_Vorgesetzter__c, Portfolio__c, Portfolio__r.name, Portfolio__r.web_preis__c, Portfolio__r.seminartitel__c, Seminar__c, Inhouse_Seminar__c, Hotelreservierung__c, Einzelzimmer__c, Doppelzimmer__c  From Warenkorb_Elemente__r) From Warenkorb__c w WHERE Person__c = :CurrentPerson.id AND Status__c = 'Gestartet'];
 				if(warenkorbTemp.size()>0)
 				{
 					singelton = new Warenkorb(warenkorbTemp.get(0));
@@ -27,8 +27,8 @@ public class Warenkorb{
 		{
 			if(singelton == null)
 			{
-				List<Warenkorb__c> warenkorbTemp = [Select w.Status__c, w.Person__c, (Select Id, Warenkorb__c,  Buchungstyp__c,  ez_Preis__c, hotel__c, dz_Preis__c, ist_Reservierung__c, Status__c, Bestelltermin__c, Entscheidung_Vorgesetzter__c, Portfolio__c, Portfolio__r.name, Portfolio__r.web_preis__c, Portfolio__r.seminartitel__c, Seminar__c, Inhouse_Seminar__c, Hotelreservierung__c, Einzelzimmer__c, Doppelzimmer__c  From Warenkorb_Elemente__r WHERE Status__c = 'Warten auf Approval von Vorgesetztem') From Warenkorb__c w WHERE ID =:warenkorbId AND Status__c = 'Abgeschlossen'];
-			
+				List<Warenkorb__c> warenkorbTemp = [Select w.Status__c, w.Person__c, (Select Id, Warenkorb__c,  Status_code__c,  Buchungstyp__c,  ez_Preis__c, hotel__c, dz_Preis__c, ist_Reservierung__c, Status__c, Bestelltermin__c, Entscheidung_Vorgesetzter__c, Portfolio__c, Portfolio__r.name, Portfolio__r.web_preis__c, Portfolio__r.seminartitel__c, Seminar__c, Inhouse_Seminar__c, Hotelreservierung__c, Einzelzimmer__c, Doppelzimmer__c  From Warenkorb_Elemente__r WHERE Status_Code__c = 200) From Warenkorb__c w WHERE ID =:warenkorbId AND Status__c = 'Abgeschlossen'];
+				System.debug('****warenkorbTemp:'+warenkorbTemp);
 			if(warenkorbTemp.size()>0)
 				{
 					singelton = new Warenkorb(warenkorbTemp.get(0));
@@ -101,6 +101,7 @@ public class Warenkorb{
 			Warenkorb_Element__c we = new Warenkorb_Element__c();
 			we.warenkorb__c = this.warenkorb.id;
 			we.Seminar__c = p.id;
+			we.Status_Code__c = 100; // code für neu im Warenkorb
 			
 			warenkorbElementList.add(we);
 		}
@@ -129,6 +130,7 @@ public class Warenkorb{
 					 product2IDSet.add(we.id);
 				
 			}
+			System.debug('****product2IDSet:'+product2IDSet);
 			if(product2IDSet.size()>0)
 			{
 				elementeList.addAll(FASeminar.getInformationByWaForProduct2(product2IDSet));
@@ -165,6 +167,7 @@ public class Warenkorb{
 		public static Warenkorb_Element__c generateNewWarenkorbElementForSeminar(FASeminar seminar, Portfolio2__c portfolio)
 		{
 			Warenkorb_Element__c warenkorbelement = new Warenkorb_Element__c();
+			warenkorbelement.Status_Code__c = 100; // Status Code für neu im Warenkorb
 			warenkorbelement.Warenkorb__c = getInstance().warenkorb.id;
 			if(seminar.isInhouse)
 			{
@@ -189,11 +192,11 @@ public class Warenkorb{
 				//IF User is not part of the Genehmigungsverfahren Approve Request
 				if(FAhelper.getCurrentPerson().Genehmigungsverfahren_ausgeschlossen__c != null && FAhelper.getCurrentPerson().Genehmigungsverfahren_ausgeschlossen__c)
 				{
-					we.status__c = 'Warten auf Apporval durch Akademie';
+					we.Status_code__c = 300; //Bestellung vollständig abgeschlossen, da keine Genehmigung notwenig war
 				}
 				else
 				{
-					we.status__c = 'Warten auf Approval von Vorgesetztem';
+					we.Status_code__c = 200; //Approval Prozess gestartet
 				}
 				
 				we.bestelltermin__c = DateTime.now();

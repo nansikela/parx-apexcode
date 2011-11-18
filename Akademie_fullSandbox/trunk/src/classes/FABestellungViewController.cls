@@ -13,6 +13,9 @@ public class FABestellungViewController
 	
 	public String elementForStorno {get; set;}
 	
+	
+	
+	
 	public static FABestellungViewController getInstance()
 	{
 		if(sigelton == null)
@@ -32,20 +35,20 @@ public class FABestellungViewController
 		Person__c currentPerson = FAHelper.getCurrentPerson();
 		if(WebURLEncoder.decodeParam('mode')== null || WebURLEncoder.decodeParam('mode')=='')
 		{
-		warenkorbElementList = [Select w.Seminarende__c, w.status__c, w.Seminarbeginn__c, w.Portfolio__r.url__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.Ort__c, w.Hotelreservierung__c, w.Hotel__c, w.EZ_Preis__c, w.DZ_Preis__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c From Warenkorb_Element__c w WHERE Warenkorb__r.Person__c = :currentPerson.id AND w.status__c!= null AND w.warenkorb__r.status__c = 'Abgeschlossen' ORDER BY Seminarbeginn__c desc];
+		warenkorbElementList = [Select w.Seminarende__c, w.status_Text__c, w.Seminarbeginn__c, w.Portfolio__r.url__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.Ort__c, w.Hotelreservierung__c, w.Hotel__c, w.EZ_Preis__c, w.DZ_Preis__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c From Warenkorb_Element__c w WHERE Warenkorb__r.Person__c = :currentPerson.id AND w.status__c!= null AND w.warenkorb__r.status__c = 'Abgeschlossen' ORDER BY Seminarbeginn__c desc];
 		}
 		
 		if(WebURLEncoder.decodeParam('mode')== 'abgeschlossen')
 		{
-		warenkorbElementList = [Select w.Seminarende__c, w.status__c, w.Seminarbeginn__c, w.Portfolio__r.url__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.Ort__c, w.Hotelreservierung__c, w.Hotel__c, w.EZ_Preis__c, w.DZ_Preis__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c From Warenkorb_Element__c w WHERE Warenkorb__r.Person__c = :currentPerson.id AND w.status__c!= null AND w.warenkorb__r.status__c = 'Abgeschlossen' AND Seminarbeginn__c<today ORDER BY Seminarbeginn__c desc];
+		warenkorbElementList = [Select w.Seminarende__c, w.status_Text__c, w.Seminarbeginn__c, w.Portfolio__r.url__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.Ort__c, w.Hotelreservierung__c, w.Hotel__c, w.EZ_Preis__c, w.DZ_Preis__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c From Warenkorb_Element__c w WHERE Warenkorb__r.Person__c = :currentPerson.id AND w.status_Code__c= 300 AND w.warenkorb__r.status__c = 'Abgeschlossen' AND Seminarbeginn__c<today ORDER BY Seminarbeginn__c desc];
 		}
 		if(WebURLEncoder.decodeParam('mode')== 'zukuenftig')
 		{
-		warenkorbElementList = [Select id, w.Seminarende__c, w.status__c, w.Seminarbeginn__c, w.Portfolio__r.url__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.Ort__c, w.Hotelreservierung__c, w.Hotel__c, w.EZ_Preis__c, w.DZ_Preis__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c From Warenkorb_Element__c w WHERE Warenkorb__r.Person__c = :currentPerson.id AND w.status__c!= null AND w.warenkorb__r.status__c = 'Abgeschlossen'  AND Seminarbeginn__c>=today AND (NOT w.status__c  Like '%Storno%') ORDER BY Seminarbeginn__c desc];
+		warenkorbElementList = [Select id, w.Seminarende__c, w.status_Text__c, w.Seminarbeginn__c, w.Portfolio__r.url__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.Ort__c, w.Hotelreservierung__c, w.Hotel__c, w.EZ_Preis__c, w.DZ_Preis__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c From Warenkorb_Element__c w WHERE Warenkorb__r.Person__c = :currentPerson.id AND w.warenkorb__r.status__c = 'Abgeschlossen'  AND Seminarbeginn__c>=today AND w.status_Code__c < 400 ORDER BY Seminarbeginn__c desc];
 		}
 		if(WebURLEncoder.decodeParam('mode')== 'storno')
 		{
-		warenkorbElementList = [Select id, w.Seminarende__c, w.status__c, w.Portfolio__r.Inhouse_seminar__c, w.Seminarbeginn__c, w.Portfolio__r.url__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.Ort__c, w.Hotelreservierung__c, w.Hotel__c, w.EZ_Preis__c, w.DZ_Preis__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c, w.Stornogrund__c, w.Anderer_Stornogrund__c From Warenkorb_Element__c w WHERE Warenkorb__r.Person__c = :currentPerson.id AND w.status__c!= null AND w.warenkorb__r.status__c = 'Abgeschlossen' AND (NOT w.status__c LIKE '%Storno%') AND w.status__c = 'Warten auf Apporval durch Akademie' AND Seminarbeginn__c>=today ORDER BY Seminarbeginn__c desc];
+		warenkorbElementList = [Select id, w.Seminarende__c, w.status_Text__c, w.Portfolio__r.Inhouse_seminar__c, w.Seminarbeginn__c, w.Portfolio__r.url__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.Ort__c, w.Hotelreservierung__c, w.Hotel__c, w.EZ_Preis__c, w.DZ_Preis__c, w.Bestelltermin__c, w.Anreise__c, w.Abreise__c, w.Stornogrund__c, w.Anderer_Stornogrund__c From Warenkorb_Element__c w WHERE Warenkorb__r.Person__c = :currentPerson.id AND  w.warenkorb__r.status__c = 'Abgeschlossen'  AND w.status_Code__c = 300 AND Seminarbeginn__c>=today ORDER BY Seminarbeginn__c desc];
 		}
 		
 		for(Warenkorb_Element__c w : warenkorbElementList)
@@ -60,12 +63,14 @@ public class FABestellungViewController
 			}
 		}
 		
-		//Init Storno Element
-		stornoElement = new Warenkorb_Element__c();
+		
+		
 		}catch(Exception e)
 		{
 			System.debug('*****************************EX'+e);
 		}
+		//Init Storno Element
+		stornoElement = new Warenkorb_Element__c();
 	}
 	/**
 	* @author Christian Deckert
@@ -157,10 +162,11 @@ public class FABestellungViewController
 				w = we;
 			}
 		}
+		System.debug('******stornoElement:'+stornoElement);
 		w.Stornogrund__c = stornoElement.Stornogrund__c;
 		w.Anderer_Stornogrund__c = stornoElement.Anderer_Stornogrund__c;
 		
-		w.status__c = 'Storno durch Teilnehmer';
+		w.status_Code__c = 410;
 		FAMailSender.sendStorno(w);
 		update w;
 		return new PageReference('/meinebestellung');
