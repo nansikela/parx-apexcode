@@ -1,6 +1,6 @@
 <apex:component >
     <div class="right_column_box element bright first">
-            <h3>KONTAKT</h3>
+            <h3>{!UPPER($Label.akademie_contact_heading)}</h3>
             <p>Akademie für Führungskräfte<br/>
             der Wirtschaft GmbH <br/>
             Seepromenade 19 <br/>

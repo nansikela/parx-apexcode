@@ -1,9 +1,17 @@
 <apex:component id="webcontentnaviteaser">
-	<!-- TODO css for right postion -->
-	<apex:outputPanel id="contentteaser" layout="block" >
-		<c:contentblock name="Fuehrung" />
-		<c:contentblock name="Persoenlichkeitsentwicklung" />
-		<c:contentblock name="Ausbildungen" />
-		<c:contentblock name="Seminare_auf_Englisch" />
-	</apex:outputPanel>
+	<div id="block1" class="contentteaserImageBlock contentteaserImage1 CTactive">
+		<c:contentblock name="Fuehrung" id="cb1" />
+	</div>
+	<div id="block2" class="contentteaserImageBlock contentteaserImage2">
+		<c:contentblock name="Persoenlichkeitsentwicklung" id="cb2" />
+	</div>
+	<div id="block3" class="contentteaserImageBlock contentteaserImage3">
+		<c:contentblock name="Ausbildungen" id="cb3" />
+	</div>
+	<div id="block4" class="contentteaserImageBlock contentteaserImage4">
+		<c:contentblock name="Managementkompetenz" id="cb4" />
+	</div>
+	<div id="block5" class="contentteaserImageBlock contentteaserImage5">
+		<c:contentblock name="Seminare_auf_Englisch" id="cb5" />
+	</div>
 </apex:component>

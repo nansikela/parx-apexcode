@@ -41,7 +41,7 @@
              <div class="content_wrapper ">
                  <div class="content_column article">
                      <span>
-                     <h1>Informationsmaterial bestellen</h1>
+                     <h1>{!$Label.akademie_information_material} {!$Label.bestellen}</h1>
                      </span>
                      <c:WebKontaktInformationsmaterial />
                  </div>

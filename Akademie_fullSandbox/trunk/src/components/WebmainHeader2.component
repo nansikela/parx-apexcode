@@ -1,11 +1,10 @@
 <apex:component controller="FAHelper">
     <apex:attribute name="breadcrubShow" type="boolean" description="TODO: Describe me" required="true"/>
 
-	<!-- TODO replace images, repostion search box and replace Login link with images and hover -->
-	<!-- TODO add social media links -->
+	<c:WebStyleGlobalHeader />
     <div class="site_wrapper">
         <div class="header">
-            <a href="/" id="logo" title="Zur Startseite">
+            <a href="/" id="logo" title="{!$Label.go_to_start_page}">
                 Die Akademie für Führungskräfte
             </a>
             
@@ -14,11 +13,32 @@
             <div class="servicenavi">
               
                <ul>
-                <li><a href="http://www.cognos-ag.de/" id="cognosLogoNew" target="_blank" title="Zur Cognos  AG"><apex:image styleClass="cognosLogoNew" value="{!URLFOR($Resource.web_style2,'/i/logo_cognos_competence_group.png')}" /></a></li>
-                <li><a href="/rueckruf">Rückruf</a></li>
-                <li><a href="/die-akademie/kontakt">Kontakt</a></li>
-                                
-                <li>
+                <li><a href="http://www.cognos-ag.de/" id="cognosLogoNew" target="_blank" title="{!$Label.go_to} Cognos  AG"><apex:image styleClass="cognosLogoNew" value="{!URLFOR($Resource.web_style2,'/i/logo_cognos_competence_group.png')}" /></a></li>
+                <li><a href="/rueckruf">{!$Label.akademie_contact_phone_call_back}</a></li>
+                <li style="padding-right: 5px;"><a href="/die-akademie/kontakt">{!$Label.akademie_contact_heading}</a></li>
+                <!--
+				<li style="padding-left: 7px; padding-top: 0px;">
+				<apex:outputLink id="facebooklink" value="">
+					<div class="facebooklinkBackground"></div>
+				</apex:outputLink>
+				</li>
+				-->
+				<li style="padding-left: 7px; padding-top: 0px;">
+				<apex:outputLink id="twitterlink" value="https://twitter.com/#!/Die_Akademie_de">
+					<div class="twitterlinkBackground"></div>
+				</apex:outputLink>
+				</li>
+				<li style="padding-left: 7px; padding-top: 0px;">
+				<apex:outputLink id="googlepluslink" value="https://plus.google.com/u/0/b/112231296677007019889/">
+					<div class="googlepluslinkBackground"></div>
+				</apex:outputLink>
+				</li>
+				<li style="padding-left: 7px; padding-top: 0px;">
+				<apex:outputLink id="xinglink" value="https://www.xing.com/companies/akademief%252525C3%2525259Crf%252525C3%2525259Chrungskr%252525C3%25252584ftederwirtschaftgmbh">
+					<div class="xinglinkBackground"></div>
+				</apex:outputLink>
+				</li>
+				<li>
                 	<apex:outputLink styleClass="loginNew">
                 		<div class="loginBackground"></div>
                 		<!-- <apex:image id="loginBtnImg" styleClass="loginImage" value="{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}" /> -->
@@ -28,14 +48,14 @@
               
             
             	<li>
-            	<div class="searchfield">
-             <form method="post"> 
-                 <input class="autocomplete ui-autocomplete-input searchfieldbackground" type="text" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" />
-                 <!-- 
-                 <input class="submitbtn" src="/resource/1315250542000/web_style2/i/btn_submit_loupe.gif" type="image" />
-				 -->
-             </form>
-             </div>
+	            	<div class="searchfield">
+			            <form method="post"> 
+			            <input class="autocomplete ui-autocomplete-input searchfieldbackground" type="text" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" />
+			             
+			            <input class="submitbtn" src="/resource/1315250542000/web_style2/i/btn_submit_loupe.gif" style="display:none;" type="image" />
+							 
+			            </form>
+		            </div>
              	</li>
             	</ul>
             	

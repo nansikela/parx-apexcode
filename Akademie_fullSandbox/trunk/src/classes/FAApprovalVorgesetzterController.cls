@@ -29,7 +29,10 @@ public class FAApprovalVorgesetzterController
 				(Warenkorb.getInstance(warenkorbId).getWarenkorbElement(seminar.id).status__c=='Warten auf Approval von Vorgesetztem' ||
 				Warenkorb.getInstance(warenkorbId).getWarenkorbElement(seminar.id).status__c=='Warten auf Approval durch Vorgesetzten')
 				) */
-				seminarList.add(seminar);
+				if(seminar.statusCode == 200)
+				{
+					seminarList.add(seminar);
+				}
 		}
 		}
 	}
@@ -46,11 +49,11 @@ public class FAApprovalVorgesetzterController
 		{
 			if(s.vorgesetzterOK!= null && s.vorgesetzterOK)
 			{
-				Warenkorb.getInstance(warenkorbId).getWarenkorbElement(s.id).status__c = 'Warten auf Apporval durch Akademie';
+				Warenkorb.getInstance(warenkorbId).getWarenkorbElement(s.id).Status_Code__c = 300;
 			}
 			else
 			{
-				Warenkorb.getInstance(warenkorbId).getWarenkorbElement(s.id).status__c = 'Storno durch Vorgesetzten';
+				Warenkorb.getInstance(warenkorbId).getWarenkorbElement(s.id).Status_Code__c = 400;
 			}
 			Warenkorb.getInstance(warenkorbId).getWarenkorbElement(s.id).Entscheidung_Vorgesetzter__c = DateTime.now();
 		}

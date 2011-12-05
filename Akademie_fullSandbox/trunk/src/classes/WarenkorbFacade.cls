@@ -6,11 +6,21 @@ public class WarenkorbFacade
 	private static List<FASeminar>faSeminare;
 	public String terminString {get; set;}
 	public Boolean showReservationOptions { get; private set; }
+	public String selectedRoom{get;set;}
 	
+	public List<SelectOption> getKindOfRooms() {
+       	List<SelectOption> options = new List<SelectOption>(); 
+       	FASeminar FA = getSeminarInformation();
+        	options.add(new SelectOption('Einzel', 'Einzelzimmer ' + FA.ezPreis  + ' pro Nacht')); 
+        	options.add(new SelectOption('Doppel', 'Doppelzimmer ' + ((FA.dzPreis!=null&&FA.dzPreis.substring(0,1) =='0')?'Preis auf Anfrage':FA.dzPreis) + ' pro Nacht')); 
+
+        	return options; 
+      }
 	
 	public WarenkorbFacade() 
 	{
 		showReservationOptions=false;
+		selectedRoom = 'Einzel';
 	}
 
 	
@@ -45,7 +55,12 @@ public class WarenkorbFacade
 	/***ORDER STEP 2 ***/
 	
 	public PageReference showReservationOptions() {
-     showReservationOptions=!showReservationOptions;
+		String CurrentValue =  ApexPages.currentPage().getParameters().get('ValueCheckbox');
+		if(CurrentValue == 'true')
+			showReservationOptions = true;
+		else
+			showReservationOptions = false;
+    // showReservationOptions=!showReservationOptions;
      currentWarenKorbElement.Hotelreservierung__c=showReservationOptions;
      //setCurrentWarenkorbElement(currentWarenKorbElement);
      return null;
@@ -71,10 +86,13 @@ public class WarenkorbFacade
 	
 	public Warenkorb_Element__c getCurrentWarenkorbElement()
 	{
+		
+		
 		if(currentWarenKorbElement == null)
 		{
 			currentWarenKorbElement = Warenkorb.generateNewWarenkorbElementForSeminar(getSeminarInformation(), FAPortfolioController.getController().currentPortfolio);
 		}
+
 		System.debug('*****currentWarenKorbElement from getter:'+currentWarenKorbElement);
 		return currentWarenKorbElement;
 		
@@ -97,7 +115,14 @@ public class WarenkorbFacade
 		{
 			getcurrentWarenkorbElement();
 		}
-		
+			if(selectedRoom == 'Doppel')
+				currentWarenKorbElement.Doppelzimmer__c = true;
+			else
+				currentWarenKorbElement.Doppelzimmer__c = false;
+			if(selectedRoom == 'Einzel')
+				currentWarenKorbElement.Einzelzimmer__c = true;
+			else
+				currentWarenKorbElement.Einzelzimmer__c = false; 
 		
 			for(Integer i = 0; i<Warenkorb.getInstance().warenkorbElementList.size(); i++)
 			{
