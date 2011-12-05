@@ -2,45 +2,41 @@
 
      <div class="content_headline">
         <div class="textline">
-          <h1>Rückruf</h1>
+          <h1>{!$Label.akademie_contact_phone_call_back}</h1>
         </div>
       </div>
    
       <apex:form >
           
           <fieldset>
-          
               <div>
-                  <label>Anrede*</label>
-                  <apex:selectList styleClass="title" size="1" value="{!websiteLead.Salutation}">
-                      <apex:selectOption itemLabel="Frau" itemValue="{!'Frau'}"></apex:selectOption>
-                      <apex:selectOption itemLabel="Herr" itemValue="{!'Herr'}"></apex:selectOption>
-                  </apex:selectList>
+              	<apex:outputLabel value="{!$ObjectType.Lead.Fields.Salutation.label}*" for="salutation"/>
+              	<apex:inputField id="salutation" value="{!websiteLead.Salutation}" styleClass="title required" required="false"></apex:inputField>
               </div>
               <div>
-                  <label>Vorname*</label>
-                  <apex:inputField value="{!websiteLead.firstname}" styleClass="required" required="false"/>
+              	<apex:outputLabel value="{!$ObjectType.Lead.Fields.firstname.label}*" for="firstname"/>
+                  <apex:inputField id="firstname" value="{!websiteLead.firstname}" styleClass="required" required="false"/>
               </div>
               <div>
-                  <label>Nachname*</label>
-                  <apex:inputField value="{!websiteLead.lastname}" styleClass="required" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.lastname.label}*" for="lastname"/>
+                  <apex:inputField id="lastname" value="{!websiteLead.lastname}" styleClass="required" required="false"/>
               </div>
              
               <div>
-                  <label>Firma</label>
-                  <apex:inputField value="{!websiteLead.company}" styleClass="" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.company.label}" for="company"/>
+                  <apex:inputField id="company" value="{!websiteLead.company}" styleClass="" required="false"/>
               </div>
               <div>
-                  <label>Telefon*</label>
-                  <apex:inputField value="{!websiteLead.phone}" styleClass="required" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.phone.label}*" for="phone"/>
+                  <apex:inputField id="phone" value="{!websiteLead.phone}" styleClass="required" required="false"/>
               </div>
               <div>
-                  <label>eMail</label>
-                  <apex:inputField value="{!websiteLead.email}" styleClass="email" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.email.label}*" for="email"/> <!-- eMail -->
+                  <apex:inputField id="email" value="{!websiteLead.email}" styleClass="email" required="false"/>
               </div>
               <div class="area">
-                  <label>Ihre Nachricht</label>
-                  <apex:inputField value="{!websiteLead.Nachricht_durch_Website__c}" required="false"/>
+                  <apex:outputLabel value="{!$Label.akademie_contact_your_message_input}" for="your_message"/> <!-- Ihre Nachricht -->
+                  <apex:inputField id="your_message" value="{!websiteLead.Nachricht_durch_Website__c}" required="false"/>
               </div>
              
               
@@ -50,9 +46,9 @@
               
               
           <div class="separator_line"></div>
-          <small>*Pflichtfelder</small>
+          <small>*{!$Label.form_mandatory_fields}</small>
           <div class = "r">
-              <apex:commandButton value="Weiter" styleClass="submit" action="{!saveRuf}"  image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+              <apex:commandButton value="{!$Label.weiter}" styleClass="submit" action="{!saveRuf}"  image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
           </div>
 
       </apex:form>

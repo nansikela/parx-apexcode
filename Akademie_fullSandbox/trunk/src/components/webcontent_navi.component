@@ -1,9 +1,11 @@
-<apex:component >
-  <ul id="content_navi">
+<apex:component id="teasermenu" >
+			<div id="teasermenuBlock" class="teasermenuBlock">
+  				<ul id="content_navi">
                       <li class="front_stage active" id="front_stage_1"><a href="/seminare/fuehrung">F&uuml;hrung</a></li>
                       <li class="front_stage" id="front_stage_2"><a href="/seminare/persoenlichkeitsentwicklung">Persönlichkeitsentwicklung </a></li>
                       <li class="front_stage" id="front_stage_3"><a href="/seminare/managementkompetenz">Managementkompetenz</a></li>
                       <li class="front_stage" id="front_stage_4"><a href="/seminare/ausbildungen">Ausbildungen</a></li>
                       <li class="front_stage" id="front_stage_5"><a href="/seminare/seminare-auf-englisch">Seminare auf Englisch</a></li>
                 </ul>
+            </div>
 </apex:component>

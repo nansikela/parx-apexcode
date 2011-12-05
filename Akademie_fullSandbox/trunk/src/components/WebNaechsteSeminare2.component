@@ -1,7 +1,51 @@
 <apex:component controller="FARightBoxesController" id="WebNaechsteSeminare2Cmp">
 <apex:attribute name="show" description="The number of repeats" type="Integer" required="false" assignTo="{!show}"/>
-<apex:outputPanel styleClass="column columnStartseite" layout="block">
-   <div class="rightbox">
+<style>
+/* naechste seminare */
+.rightbox img {
+	padding-right: 0;
+}
+
+.iconcalender {
+	float: left;
+	margin-top: -3px;
+	margin-right: 5px;
+}
+
+.iconcalendersmall {
+	float: left;
+	padding-right: 5px!important;
+	margin-top: 5px;
+}
+
+.seminaritem {
+	margin-left: 11px;
+	padding-right: 11px;
+}
+
+.rightbox_leftborder {
+	border-left: 1px solid #CCC;
+}
+
+.rightbox_nextsem {
+	border-top: none!important;
+	border-right: 1px solid #CCC;
+	padding: 0px!important;
+	color: black;
+}
+
+.rightbox p {
+	font-size: 13px !important;
+	padding-bottom: 2px;
+}
+/*
+.columnStartseite h2 {
+	font-size: 17px;
+}
+*/
+</style>
+<apex:outputPanel styleClass="column columnStartseite" style="padding-right: 0;" layout="block">
+   <div class="rightbox rightbox_nextsem">
        <apex:image id="iconcalender" value="{!URLFOR($Resource.web_style2,'/i/icon_calendar.png')}" styleClass="iconcalender" /><h2>Nächste Seminare</h2>
        <div class="rightbox_leftborder">
 	       <apex:repeat value="{!NextSeminars}" var="seminar">

@@ -6,18 +6,22 @@
     <c:WebmainHeader2 breadCrubShow="false">
                  <div id="ie7Fix" style="width:940px; display:block;"> </div>
                  <apex:outputPanel layout="block" id="topcontent" styleClass="topcontent">
-                 <apex:outputPanel layout="block" id="contentnaviandteaserimg">
-                 	<c:WebContentNaviTeaser />
-	                 <c:webcontent_navi />
-	                 <c:webnavi_extension_box />
-                 </apex:outputPanel>
-                 <!-- TODO add bar at the end of this above panel -->
-                 
-                 <apex:outputPanel layout="block" styleClass="column last right_column" id="toprightcolumn">
-                 	<c:webdirectsearch />
-                    <c:WebManagementGuide2012 />
-                    <c:WebStartseiteNewsletter id="WebStartseiteNewsletter" />    
-                </apex:outputPanel>
+                 	<apex:outputPanel layout="block" id="leftcontent" styleClass="leftcontent">
+	                 	<apex:outputPanel layout="block" id="teaserimage" styleClass="teaserImage" >
+	                 	<!-- <img src="{!URLFOR($Resource.web_style2, 'i/Teaser1.png')}" /> -->
+	                 	 <c:WebContentNaviTeaser />
+	                 	</apex:outputPanel>
+	                	 <apex:outputPanel layout="block" id="contentnaviandteaserimg" styleClass="teasercontent">
+		                 	<c:webcontent_navi />
+		                 	<c:webnavi_extension_box />
+	                	 </apex:outputPanel>
+                	</apex:outputPanel>
+                	                  
+                 	<apex:outputPanel layout="block" styleClass="column last right_column homepagerightcolumn" id="toprightcolumn">
+                 		<c:webdirectsearch />
+                    	<c:WebManagementGuide2012 />
+                    	<c:WebStartseiteNewsletter id="WebStartseiteNewsletter" />    
+                	</apex:outputPanel>
                 </apex:outputPanel>
                  <div id="ie7Fix" style="width:940px; display:block;"> </div>
                 <apex:outputPanel layout="block" id="bottomcontent" styleClass="bottomcontent">
@@ -52,12 +56,12 @@
                             </li>
                         </apex:repeat>
                     </ul>
-                    <a href="http://blog.die-akademie.de" class="link">Alle Blogeinträge</a>
+                    <a href="http://blog.die-akademie.de" class="link">{!$Label.akademie_blog_all_entries}</a>
                     <div class="spacer"></div>
                     <c:contentblock name="RightBox" />
                 </div>
                 
-                <c:WebNaechsteSeminare2 show="4" id="outerrightBox" />
+                <c:WebNaechsteSeminare2 show="3" id="outerrightBox" />
 
                 </apex:outputPanel>
                 
@@ -77,8 +81,8 @@
                     	margin-bottom:10px;
                     	*/
                     	padding-top: 1px;
-                    	font-size: 17px;
-                    	font-weight: bold;
+                    	font-size: 22px;
+                    	font-weight: normal;
                     }
                     .rightbox img {
                     	padding-right: 0px;

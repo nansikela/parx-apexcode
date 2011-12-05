@@ -168,9 +168,7 @@ public class FAMailSender {
 		{
 			Messaging.SingleEmailMessage approvaleMail = FAHelper.getNewMailFromAkademie(warenkorb.person__r.eMail__c);
 			String approvaleMailBody = '';
-			/*WORKAROUND*/
-				approvaleMailBody += warenkorb.person__r.eMail__c+'\n';
-			/*WORKAROUND*/
+			
 			if(warenkorb.person__r.anrede__c =='Herr')
 	        {
 	        	approvaleMailBody+='Sehr geehrter Herr '+warenkorb.person__r.name+',\n\n';
@@ -197,7 +195,7 @@ public class FAMailSender {
     			}
     		}
     		approvaleMailBody+= '\n\n';
-			if(seminar.status == 'Seminar wurde durch den Vorgesetzten freigegeben.')
+			if(seminar.statusCode == 300)
 			{
         		approvaleMailBody+= 'Ihr Vorgesetzter hat dieser Anmeldung zugestimmt und damit Ihre Teilnahme bestätigt.\n Sie erhalten rechtzeitig vor Seminarbeginn noch eine Einladung mit weiteren Informationen, wie z.B. Seminarzeiten und Anreise. Für weitere Fragen zum Seminar stehen wir Ihnen auch vorab gerne zur Verfügung.\n\n';
 				approvaleMail.setSubject('Approval-Bestätigung - Vossloh Akademie');
@@ -231,9 +229,7 @@ public class FAMailSender {
 		//EMail an Teilnehmer
 		Messaging.SingleEmailMessage approvaleMail = FAHelper.getNewMailFromAkademie(FAHelper.getCurrentPerson().eMail__c);
 		String approvaleMailBody = '';
-		/*WORKAROUND*/
-			approvaleMailBody +=FAHelper.getCurrentPerson().eMail__c+'\n'; 
-		/*WORKAROUND*/
+		
 		
 		if(FAHelper.getCurrentPerson().anrede__c =='Herr')
         {
@@ -288,9 +284,7 @@ public class FAMailSender {
 		//EMail an Vorgesetzen
 		Messaging.SingleEmailMessage approvaleMailVorgesetzter = FAHelper.getNewMailFromAkademie(FAHelper.getCurrentPerson().eMail_Adresse_Vorgesetzter__c);
 		approvaleMailBody = '';
-		/*FIX*/
-		approvaleMailBody +=FAHelper.getCurrentPerson().eMail_Adresse_Vorgesetzter__c+'\n';
-		/*FIX*/
+		
 		
 		approvaleMailBody += 'Guten Tag,\n\n';
 		if(FAHelper.getCurrentPerson().anrede__c =='Herr')

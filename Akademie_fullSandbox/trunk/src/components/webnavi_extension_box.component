@@ -1,40 +1,37 @@
 <apex:component >
 
-<div id="navi_extension_box">
+<div id="navi_extension_box" style="padding-top: 10px;">
+		
       <div class="navi_extension ext_leadership active" id="navi_extension_1" style="display:block;">
           <div class="extension_content">
-              <div>
-                  <h1>F&uuml;hrung</h1>
-                  <p>Fachliches Know-how und Erfahrung bedeuten nicht zwingend soziale Kompetenz. Unsere Seminare unterstützen Sie dabei, Ihre individuellen Führungsstärken zu entwickeln.</p>
-              </div>
               <div class="l">
                   <a href="/seminare/fuehrung/erfahrene-fuehrungskraefte"><span class="navi_extension_bg">Erfahrene Führungskräfte</span></a>
                   <a href="/seminare/fuehrung/fuehrungskraefte-aller-ebenen"><span class="navi_extension_bg">Führungskräfte aller Ebenen</span></a>
                   <a href="/seminare/fuehrung/neu-in-fuehrung"><span class="navi_extension_bg">Neu in Führung</span></a>
+              </div>
+              <div class="extension_content_text">
+                  <!-- <h1>F&uuml;hrung</h1> -->
+                  <p>Fachliches Know-how und Erfahrung bedeuten nicht zwingend soziale Kompetenz. Unsere Seminare unterstützen Sie dabei, Ihre individuellen Führungsstärken zu entwickeln.</p>
               </div>
           </div>
       </div>
       
       <div class="navi_extension ext_personality" id="navi_extension_2" style="display:none;">
           <div class="extension_content">
-              <div>
-                  <h1>Persönlichkeits-entwicklung</h1>
-                  <p>Persönlichkeit lässt sich entwickeln. Mit unseren Seminaren finden Sie Zugang zu persönlichen Ressourcen und individueller Stärke.</p>
-              </div>
               <div class="l">
                   <a href="/seminare/persoenlichkeitsentwicklung/selbstmanagement"><span class="navi_extension_bg">Selbstmanagement</span></a>
                   <a href="/seminare/persoenlichkeitsentwicklung/kommunikation"><span class="navi_extension_bg">Kommunikation</span></a>
                   <a href="/seminare/persoenlichkeitsentwicklung/tools-und-techniken"><span class="navi_extension_bg">Tools und Techniken</span></a>
+              </div>
+               <div class="extension_content_text">
+                  <!-- <h1>Persönlichkeits-entwicklung</h1> -->
+                  <p>Persönlichkeit lässt sich entwickeln. Mit unseren Seminaren finden Sie Zugang zu persönlichen Ressourcen und individueller Stärke.</p>
               </div>
           </div>
       </div>
       
       <div class="navi_extension ext_strategy" id="navi_extension_3" style="display:none;">
           <div class="extension_content">
-              <div>
-                  <h1>Managementkompetenz</h1>
-                  <p>Theoretische Grundlagen für die Unternehmenspraxis. Unsere Fachseminare für alle, die mehr wissen wollen.</p>
-              </div>
               <div class="l">
                   <a href="/seminare/managementkompetenz/personalmanagement"><span class="navi_extension_bg">Personalmanagement</span></a>
                   <a href="/seminare/managementkompetenz/projektmanagement"><span class="navi_extension_bg">Projektmanagement</span></a>
@@ -43,33 +40,37 @@
                   <a href="/seminare/managementkompetenz/vertriebsmanagement"><span class="navi_extension_bg">Vertriebsmanagement</span></a>
                   <a href="/seminare/managementkompetenz/office-management"><span class="navi_extension_bg">Office Management</span></a>
               </div>
+              <div class="extension_content_text">
+                  <!-- <h1>Managementkompetenz</h1> -->
+                  <p>Theoretische Grundlagen für die Unternehmenspraxis. Unsere Fachseminare für alle, die mehr wissen wollen.</p>
+              </div>
           </div>
       </div>
       
       <div class="navi_extension ext_coaching " id="navi_extension_4" style="display:none;">
           <div class="extension_content">
-              <div>
-                  <h1>Ausbildungen</h1>
-                  <p>Unsere Ausbildungsprogramme mit anerkannten Abschlusszertifikaten sind modulartig aufgebaut und damit ideal in den beruflichen Alltag integrierbar.</p>
-              </div>
               <div class="l">
                   <a href="/seminare/general-management-programm"><span class="navi_extension_bg">General Management Programm</span></a>
                   <a href="/seminare/qualifizierung-zum-coach-im-business"><span class="navi_extension_bg">Qualifizierung zum Coach</span></a>
                   <a href="/seminare/trainerausbildung"><span class="navi_extension_bg">Trainerausbildung</span></a>
+              </div>
+              <div class="extension_content_text">
+                  <!-- <h1>Ausbildungen</h1> -->
+                  <p>Unsere Ausbildungsprogramme mit anerkannten Abschlusszertifikaten sind modulartig aufgebaut und damit ideal in den beruflichen Alltag integrierbar.</p>
               </div>
           </div>
       </div>
       
       <div class="navi_extension ext_strategy" id="navi_extension_5" style="display:none;">
           <div class="extension_content">
-              <div>
-                  <h1>Seminare auf Englisch</h1>
-                  <p>Mehr als nur Verbesserung Ihrer Sprachkenntnisse: Die ideale Vorbereitung für mehr Sicherheit auf internationalem Geschäftsparkett.</p>
-              </div>
               <div class="l">
                   <a href="/seminare/seminare-auf-englisch/leadership"><span class="navi_extension_bg">Leadership</span></a>
                   <a href="/seminare/seminare-auf-englisch/personality-development"><span class="navi_extension_bg">Personality Development</span></a>
                   <a href="/seminare/seminare-auf-englisch/project-management"><span class="navi_extension_bg">Project Management</span></a>
+              </div>
+              <div class="extension_content_text">
+                  <!-- <h1>Seminare auf Englisch</h1> -->
+                  <p>Mehr als nur Verbesserung Ihrer Sprachkenntnisse: Die ideale Vorbereitung für mehr Sicherheit auf internationalem Geschäftsparkett.</p>
               </div>
           </div>
       </div>

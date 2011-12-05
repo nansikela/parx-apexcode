@@ -8,7 +8,7 @@
         </apex:column>
         <apex:column value="{!member.Portfolio2__r.Seminartitel__c}"/>
         <apex:column >
-            <a href="{!member.Portfolio2__r.URL__c}">Details</a>
+            <a href="{!member.Portfolio2__r.URL__c}">{!$Label.akademie_workshops_details}</a>
         </apex:column>
     </apex:dataTable>
     

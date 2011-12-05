@@ -161,8 +161,9 @@ trigger Inhouse_Produkt_BeforeInsertUpdate on Inhouse_Produkt__c (before insert,
 		}else if(ip.Seminartitel__c != null)
 		{
 			// JS: ChangeRequest 4 - Seminartitel soll nur noch 15 Zeichen lang sein
-			if (ip.Seminartitel__c.length()>15)
-				ip.name += ip.Seminartitel__c.subString(0,15);
+			// JS: ChangeRequest 19 - Seminartitel soll doch 25 Zeichen lang sein
+			if (ip.Seminartitel__c.length()>25)
+				ip.name += ip.Seminartitel__c.subString(0,25);
 			else
 				ip.name += ip.Seminartitel__c;
 			

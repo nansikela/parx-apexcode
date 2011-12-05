@@ -12,7 +12,7 @@ global class FANotifierHR implements Schedulable{
 		Map<Id, FirmaNewWarenkorbElement> existingWarenkorbElementMap = new Map<Id, FirmaNewWarenkorbElement>();
 		
 		List<Warenkorb_Element__c> warenkorbElementsForUpdate = new List<Warenkorb_Element__c>();
-		for(Warenkorb_Element__c w: [Select w.Warenkorb__r.Person__c, w.ort__c, w.Warenkorb__r.Person__r.name, w.Warenkorb__r.Person__r.vorname__c, w.Warenkorb__r.Person__r.Nachgeordnete_Firma__c, w.Warenkorb__c, w.Status__c, w.Seminarende__c, w.Seminarbeginn__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.LastModifiedDate, w.Information_an_HR__c, w.Hotelreservierung__c, w.Einzelzimmer__c, w.EZ_Preis__c, w.Doppelzimmer__c, w.DZ_Preis__c, w.CreatedDate, w.Anreise__c, w.Abreise__c From Warenkorb_Element__c w WHERE Status__c != null AND (Information_an_HR__c = null OR (w.LastModifiedDate>:Date.today().addDays(-5))) LIMIT 1000])
+		for(Warenkorb_Element__c w: [Select w.Warenkorb__r.Person__c, w.ort__c, w.Warenkorb__r.Person__r.name, w.Warenkorb__r.Person__r.vorname__c, w.Warenkorb__r.Person__r.Nachgeordnete_Firma__c, w.Warenkorb__c, w.Status_Text__c, w.Seminarende__c, w.Seminarbeginn__c, w.Portfolio__r.Web_Preis__c, w.Portfolio__r.Seminartitel__c, w.Portfolio__c, w.LastModifiedDate, w.Information_an_HR__c, w.Hotelreservierung__c, w.Einzelzimmer__c, w.EZ_Preis__c, w.Doppelzimmer__c, w.DZ_Preis__c, w.CreatedDate, w.Anreise__c, w.Abreise__c From Warenkorb_Element__c w WHERE Status_Code__c >100 AND (Information_an_HR__c = null OR (w.LastModifiedDate>:Date.today().addDays(-5))) LIMIT 1000])
 		{
 			//IF Warenkorb Element is valid
 			if(w.Warenkorb__c!= null && w.Warenkorb__r.Person__c!= null && w.Warenkorb__r.Person__r.Nachgeordnete_Firma__c!= null && (w.Information_an_HR__c == null || w.LastModifiedDate>w.Information_an_HR__c))
@@ -129,17 +129,8 @@ global class FANotifierHR implements Schedulable{
 				}
 				message+= '\n';
 			}
-			if(w.status__c == 'Warten auf Apporval durch Akademie')
-			{
-				w.status__c = 'Erfolgreich angemeldet';
-			}else if(w.status__c == 'Warten auf Approval von Vorgesetztem')
-			{
-				w.status__c = 'Warten auf Approval durch Vorgesetzten';
-			}else if(w.status__c.contains('Vorgesetzten'))
-			{
-				w.status__c = w.status__c.replace('Vorgesetztem', 'Vorgesetzten');
-			}
-			message+= 'Status: '+w.status__c;
+			
+			message+= 'Status: '+w.status_Text__c;
 			
 			add(message);
 		}

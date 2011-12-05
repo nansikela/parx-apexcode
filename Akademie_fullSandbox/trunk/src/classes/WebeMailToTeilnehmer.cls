@@ -243,7 +243,7 @@ public class WebeMailToTeilnehmer
                 
                 if(anschrift.geburtsdatum__c != null)
                 {
-                	eMailText = eMailText.replace('XXXANSPRECHGEBURTSDATUMXXX', anschrift.geburtsdatum__c.format());
+                    eMailText = eMailText.replace('XXXANSPRECHGEBURTSDATUMXXX', anschrift.geburtsdatum__c);
                 }
                 else
                 {

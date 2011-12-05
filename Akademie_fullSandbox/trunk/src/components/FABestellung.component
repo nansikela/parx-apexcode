@@ -1,7 +1,4 @@
 <apex:component controller="WarenkorbFacade" allowDML="true">
-	<apex:form id="actionFunctions">
-		<apex:actionFunction name="showReservationOptions" action="{!showReservationOptions}" rerender="hotelReservierungOption" status="hotelReservierungOptionStatus" /> 
-	</apex:form>
     <h1>Ihre Bestellung</h1>
     <apex:outputText rendered="{!IF($CurrentPage.parameters.step!=null, false,true)}">
         <apex:form >
@@ -29,7 +26,8 @@
         </apex:form>
     </apex:outputText>
     <apex:outputText rendered="{!IF($CurrentPage.parameters.step=='1', true,false)}">
-    <apex:form >
+    <apex:form id="SeminarBuchung">
+    	
         <p>Sie buchen nun dieses Seminar:</p>
         <apex:PageBlock >
                 <apex:PageBlockSection columns="1">
@@ -56,13 +54,17 @@
                     <apex:pageBlockSectionItem rendered="{!SeminarInformation.isHotelReservierungPossible}">
                         <apex:outputLabel value="{!'Hotel reservieren'}" for="hotelCheckbox"></apex:outputLabel>
                         <apex:actionRegion >
-                        	<apex:inputCheckbox id="hotelCheckbox" styleClass="hotelCheckbox" value="{!currentWarenKorbElement.Hotelreservierung__c}" onclick="showReservationOptions();"/>
+                        	<apex:inputCheckbox id="hotelCheckbox" styleClass="hotelCheckbox" value="{!currentWarenKorbElement.Hotelreservierung__c}" onclick="showReservationOptions(this.checked);" />
                         </apex:actionRegion>
                     </apex:pageBlockSectionItem>
                 </apex:PageBlockSection>
                 <apex:outputText value=" " /><apex:actionStatus startText=" verarbeite Hotelinformationen ..." id="hotelReservierungOptionStatus" startStyle="vertical-align: baseline;"/>
-                <!-- hotelReservierungOption -->
-                <apex:outputPanel id="hotelReservierungOption" layout="block" styleClass="" rendered="{!showReservationOptions}">
+                <!-- hotelReservierungOption  -->
+                <apex:outputPanel id="hotelReservierungOptionRerenderPanel">
+                <apex:actionFunction name="showReservationOptions" action="{!showReservationOptions}" rerender="hotelReservierungOptionRerenderPanel" status="hotelReservierungOptionStatus" immediate="true"> 
+	    		   <apex:param name="ValueCheckbox" value=""/>
+	    	    </apex:actionFunction>
+                <apex:outputPanel id="hotelReservierungOption" layout="block" styleClass=""  rendered="{!showReservationOptions}">
                 <p>Sie können nun ein Hotelzimmer für Ihr Seminar reservieren. Bitte bezahlen Sie Ihr Hotelzimmer beim Auschecken selbst.</p>
                 <apex:PageBlockSection rendered="{!SeminarInformation.isHotelReservierungPossible}" columns="1" >
                     <apex:pageBlockSectionItem >
@@ -71,26 +73,31 @@
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!'Anreise:'}" for="anreiseDatum"></apex:outputLabel>
-                        <apex:inputText value="{!currentWarenKorbElement.Anreise__c}" id="anreiseDatum" styleClass="datepicker" />
+                        <apex:inputField styleClass="datepicker" value="{!currentWarenKorbElement.Anreise__c}" required="true" id="anreiseDatum"  />
                         <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!'Abreise:'}" for="abreiseDatum"></apex:outputLabel>
-                        <apex:inputText value="{!currentWarenKorbElement.Abreise__c}" id="abreiseDatum" styleClass="datepicker" />
+<!--                        styleClass="datepicker"-->
+                        <apex:inputField value="{!currentWarenKorbElement.Abreise__c}" styleClass="datepicker" required="true" id="abreiseDatum"  />
                         <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
+
                     </apex:pageBlockSectionItem>
-                    <apex:pageBlockSectionItem >
-                        
-                        <apex:inputCheckbox value="{!currentWarenKorbElement.Einzelzimmer__c}" id="ez" />
-                        <apex:outputLabel value="{!'Einzelzimmer '&SeminarInformation.ezPreis&' pro Nacht'}" for="ez"></apex:outputLabel>
-                    </apex:pageBlockSectionItem>
-                    <apex:pageBlockSectionItem >
-                        
-                        <apex:inputCheckbox value="{!currentWarenKorbElement.Doppelzimmer__c}" id="dz" />
-                        <apex:outputLabel value="{!'Doppelzimmer '&IF(NOT(BEGINS(SeminarInformation.dzPreis,'0')),SeminarInformation.dzPreis&' pro Nacht','Preis auf Anfrage')}" for="dz"></apex:outputLabel>
-                    </apex:pageBlockSectionItem>
+<!--                    <apex:pageBlockSectionItem >-->
+                        <apex:selectRadio value="{!selectedRoom}" required="true" layout="pageDirection">
+		            	<apex:selectOptions value="{!KindOfRooms}"/>
+		            </apex:selectRadio>
+<!--                        <apex:inputCheckbox value="{!currentWarenKorbElement.Einzelzimmer__c}" id="ez" />-->
+<!--                        <apex:outputLabel value="{!'Einzelzimmer '&SeminarInformation.ezPreis&' pro Nacht'}" for="ez"></apex:outputLabel>-->
+<!--                    </apex:pageBlockSectionItem>-->
+<!--                    <apex:pageBlockSectionItem >-->
+<!--                        -->
+<!--                        <apex:inputCheckbox value="{!currentWarenKorbElement.Doppelzimmer__c}" id="dz" />-->
+<!--                        <apex:outputLabel value="{!'Doppelzimmer '&IF(NOT(BEGINS(SeminarInformation.dzPreis,'0')),SeminarInformation.dzPreis&' pro Nacht','Preis auf Anfrage')}" for="dz"></apex:outputLabel>-->
+<!--                    </apex:pageBlockSectionItem>-->
                 </apex:PageBlockSection>
-                 </apex:outputPanel>  
+                 </apex:outputPanel> 
+                 </apex:outputPanel> 
             </apex:PageBlock>
             
             
@@ -101,7 +108,7 @@
     </apex:outputText>
     
     <script type="text/javascript"> 
-      $(document).ready(function() {
+      /*$(document).ready(function() {
           $(".hotelReservierungOption").hide();
           $(".hotelCheckbox").change(function(e){ 
             if($('.hotelCheckbox').attr('checked')){
@@ -113,7 +120,7 @@
          
          $(".datepicker").datepicker( $.datepicker.regional[ "de" ]  );
       });
-      
+     */ 
   
   </script>
   <style>

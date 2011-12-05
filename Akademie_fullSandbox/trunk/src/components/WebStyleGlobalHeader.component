@@ -1,0 +1,80 @@
+<apex:component id="WebStyleGlobalHeaderCmp">
+<!-- additional styles for easy handling not in static resources -->
+<!--  mainly because of the images -->
+<style>
+/* header */
+.facebooklinkBackground {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/facebook.png')}") 0 0px no-repeat;
+}
+
+.facebooklinkBackground:hover {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/facebook_hover.png')}") 0 0px no-repeat;
+}
+
+.twitterlinkBackground {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/twitter.png')}") 0 0px no-repeat;
+}
+
+.twitterlinkBackground:hover {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/twitter_hover.png')}") 0 0px no-repeat;
+}
+
+.googlepluslinkBackground {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/googleplus.png')}") 0 0px no-repeat;
+}
+
+.googlepluslinkBackground:hover {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/googleplus_hover.png')}") 0 0px no-repeat;
+}
+
+.xinglinkBackground {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/xing.png')}") 0 0px no-repeat;
+}
+
+.xinglinkBackground:hover {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/xing_hover.png')}") 0 0px no-repeat;
+}
+
+.loginBackground {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}") 0 -2px no-repeat;
+}
+
+.loginBackground:hover {
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie_hover.png')}") 0 -2px no-repeat;
+}
+
+.searchfieldbackground {
+	background: white url("{!URLFOR($Resource.web_style2, 'i/search_loupe.png')}") 170px 9px no-repeat;
+	/*
+	border-top: 1px solid #b7b2a9 !important;
+	border-left: 1px solid #b7b2a9 !important;
+	*/
+}
+
+.header .searchfield {
+	/* clear: right;
+	float: right;
+	margin-top: -7px;
+	padding-top: 0px;
+	position: relative;
+	width: 180px; */
+}
+
+.header .searchfield .autocomplete {
+/*	margin: 0px 0px 0px 0px;
+	font-size: 11px;
+	float: right;
+	height: 24px;
+	*/
+}
+
+.headnavi {
+	/* margin-top: 42px ! important; */
+}
+
+.headnavi .mnavi {
+	/* z-index: 200; */
+}
+
+</style>
+</apex:component>

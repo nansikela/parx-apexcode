@@ -16,74 +16,154 @@
 
 .seminaritem {
 	margin-left: 11px;
+	padding-right: 11px;
 }
 
 .rightbox_leftborder {
 	border-left: 1px solid #CCC;
 }
 
-/* header */
-.cognosLogoNew {
-	margin-top: 1px;
-}
-
-.searchfieldbackground {
-	background: white url("{!URLFOR($Resource.web_style2, 'i/search_loupe.png')}") 170px 4px no-repeat;
-	border-top: 1px solid #b7b2a9 !important;
-	border-left: 1px solid #b7b2a9 !important;
-}
-
-.loginNew {
-  /*
-  float: left;
-  margin-left: 20px;
-  */
-  font-size: 11px!important;
-  padding: 0px 0 0 0px;
-  text-decoration: none;
-  color: #8A1544!important;
-}
-
-.loginBackground {
-	width: 70px;
-	background: transparent url("{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}") 0 -2px no-repeat;
-	height: 22px;
-	margin-top: 0px;
-}
-
-.loginBackground:hover {
-	background: transparent url("{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie_hover.png')}") 0 -2px no-repeat;
-}
-
-.header .searchfield {
-	clear: right;
-	float: right;
-	height: 21px;
-	margin-top: -2px;
-	padding-top: 0px;
-	position: relative;
-	width: 180px;
-	font-size: 17px;
-}
-
-.header .searchfield .autocomplete {
-	margin: 0px 0px 0px 0px;
-}
-
-.headnavi {
-	margin-top: 27px ! important;
-}
-
 /* topcontent */
 .topcontent {
-	padding-top: 95px;
+	padding-top: 99px;
 	height: 480px;
+	border-bottom: 1px solid #ACADB0;
+	z-index: -100;
+}
+
+.leftcontent {
+	float: left; 
+	height: 447px; 
+	width: 720px;
+}
+
+.teaserImage {
+	/* width: 700px; */
+	height: 310px;
+	/* padding-right: 240px; */
+	/* position: absolute; */
+	padding-top: 16px;
+	/* background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser1.png')}') no-repeat; */
+}
+
+.teasermenuBlock {
+	height: 154px;
+	width: 220px;
+	float: left;
+	border-right: 1px solid #CCC;
+}
+
+.CTactive {
+	display: block!important;
+}
+
+.contentteaserImageBlock {
+	height: 320px;
+	position: absolute;
+	width: 720px;
+	display: none;
+	/* padding-top: 16px; */
+}
+
+.contentteaserImage1 {
+	background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser1.png')}') no-repeat;
+}
+
+.contentteaserImage2 {
+	background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser2.png')}') no-repeat;
+}
+
+.contentteaserImage3 {
+	background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser3.png')}') no-repeat;
+}
+
+.contentteaserImage4 {
+	background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser4.png')}') no-repeat;
+}
+.contentteaserImage5 {
+	background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser4.png')}') no-repeat;
+}
+
+.teasercontent {
+	/* position: relative;
+	top: 310px; */
+}
+
+#content_navi {
+	float: left;
+	font-size: 14px!important;
+	font-weight: bold;
+	/* margin-top: 0px; */
+	width: 220px;
+	padding-top: 10px;
+}
+
+#content_navi li {
+	border-bottom: none;
+	height: 16px;
+	margin-right: 0px;
+	position: relative;
+	padding-bottom: 8px;
+}
+
+#content_navi li a {
+	margin-bottom: 8px;
+}
+
+.navi_extension {
+
+}
+
+.navi_extension p {
+	padding: 0 0 0 0;
+	font-size: 13px!important;
+	/* font-weight: bold; */
+}
+
+/* IE 7 fix with floats */
+.servicenavi img.cognosLogoNew { float: none; }
+
+.extension_content_text {
+	float: right;
+	width: 240px;
+	/* margin-left: 20px; */
+}
+
+.navi_extension .extension_content {
+	width: 100%;
+	bottom: 0px;
+	position: relative;
+}
+
+.l {
+	width: 220px!important;
+	margin-left: 0px;
+}
+
+.navi_extension a {
+	font-size: 13px!important;
+	background: none;
+	color: #8A1544;
+	margin-top: 0px;
+	padding: 0px 0 0 0px;
+}
+
+.navi_extension_bg {
+	background: none;
+	display: block;
+	height: none;
+	margin-top: 0px;
+	padding: 0 0 0 0;
 }
 
 /* right column - topcontent */
 .direct_search h3 {
 	padding-top: 18px ! important;
 	font-size: 13px;
+}
+
+.homepagerightcolumn {
+	float: right!important;
 }
 
 .iconcalenderDirectSearch {
@@ -120,7 +200,7 @@
 }
 
 .optionfieldTitle {
-	height: 22px;
+	height: 21px;
 	width: 178px !important;
 	font-size: 12px;
 	border-top: 1px solid #B7B2A9 !important;
@@ -130,7 +210,7 @@
 .optionfieldDay {
 	height: 20px;
 	width: 22px!important;
-	font-size: 11px;
+	font-size: 12px;
 	border-top: 1px solid #B7B2A9 !important;
 	border-left: 1px solid #B7B2A9 !important;
 	position: relative;
@@ -141,32 +221,42 @@
 .optionfieldMonth {
 	height: 20px;
 	width: 22px!important;
-	font-size: 11px;
+	font-size: 12px;
 	border-top: 1px solid #B7B2A9 !important;
 	border-left: 1px solid #B7B2A9 !important;
 	position: relative;
-	right: -50px;
+	right: -55px;
 }
 
 .optionfieldYear {
 	height: 20px;
 	width: 40px!important;
-	font-size: 11px;
+	font-size: 12px;
 	border-top: 1px solid #B7B2A9 !important;
 	border-left: 1px solid #B7B2A9 !important;
 	position: relative;
-	right: -50px;
+	right: -60px;
 }
 
 .optionfieldDropdown {
+	font-size: 12px;
+	/*
 	height: 23px;
 	width: 179px !important;
 	font-size: 12px;
 	color: #666666;
+	background: transparent url('{!URLFOR($Resource.web_style2, 'i/directsearch_dropdown.png')}');
+	*/
 }
 
 .management_guideDiv {
 	height: 156px;
+}
+
+.management_guideImage {
+	position: relative;
+	top: 30px;
+	left: 117px;
 }
 
 .newsletterAbo {
@@ -177,7 +267,8 @@
 
 /* bottomcontent */
 .bottomcontent {
-	width: 960px;
+	width: 940px;
+	clear: both;
 }
 
 .columnStartseite {
@@ -185,12 +276,28 @@
 }
 
 .columnStartseite h2 {
-	font-size: 17px;
+	font-size: 22px;
+	font-weight: normal;
+	padding-bottom: 5px;
+}
+
+.column li {
+	position: relative;
+	left: -4px;
+}
+
+.column ul p {
+	padding-left: 20px;
+}
+
+.column ul {
+	padding-bottom: 0;
 }
 
 /* footer */
 .footer_wrapper {	
-	margin-top: 385px;
+	margin-top: 25px;
+	clear: both;
 }
 
 </style>

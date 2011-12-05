@@ -1,11 +1,11 @@
 <apex:component controller="WebKontaktController" allowDML="true">
-        <p class="check_headline">Ich habe Interesse an:</p>
+        <p class="check_headline">{!$Label.akademie_contact_interested_in}:</p> <!-- Ich habe Interesse an: -->
  
       <apex:form >
           <apex:inputField value="{!websiteLead.Management_Guide_bestellen__c}" styleClass="checkbox" />
           <label class="lbl_checkbox">Management Guide 2011</label>
           
-          <apex:inputField value="{!websiteLead.Interesse_an_General_Management_Programm__c}" styleClass="checkbox" />
+          <apex:inputField id="management" value="{!websiteLead.Interesse_an_General_Management_Programm__c}" styleClass="checkbox"  />
           <label class="lbl_checkbox">General Management Programm</label>
           
           <apex:inputField value="{!websiteLead.Akademie_Inhouse_Brosch_re_bestellen__c}" styleClass="checkbox" />
@@ -25,61 +25,58 @@
           <fieldset>
           
               <div>
-                  <label>Anrede*</label>
-                  <apex:selectList styleClass="title" size="1" value="{!websiteLead.Salutation}">
-                      <apex:selectOption itemLabel="Frau" itemValue="{!'Frau'}"></apex:selectOption>
-                      <apex:selectOption itemLabel="Herr" itemValue="{!'Herr'}"></apex:selectOption>
-                  </apex:selectList>
+              	<apex:outputLabel value="{!$ObjectType.Lead.Fields.Salutation.label}*" for="salutation"/>
+              	<apex:inputField id="salutation" value="{!websiteLead.Salutation}" styleClass="title required" required="false"></apex:inputField>
               </div>
               <div>
-                  <label>Vorname*</label>
-                  <apex:inputField value="{!websiteLead.firstname}" styleClass="required" required="false"/>
+              	<apex:outputLabel value="{!$ObjectType.Lead.Fields.firstname.label}*" for="firstname"/>
+                  <apex:inputField id="firstname" value="{!websiteLead.firstname}" styleClass="required" required="false"/>
               </div>
               <div>
-                  <label>Nachname*</label>
-                  <apex:inputField value="{!websiteLead.lastname}" styleClass="required" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.lastname.label}*" for="lastname"/>
+                  <apex:inputField id="lastname" value="{!websiteLead.lastname}" styleClass="required" required="false"/>
               </div>
              
               <div>
-                  <label>Firma</label>
-                  <apex:inputField value="{!websiteLead.company}" styleClass="" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.company.label}" for="company"/>
+                  <apex:inputField id="company" value="{!websiteLead.company}" styleClass="" required="false"/>
               </div>
               <div>
-                  <label>Funktion</label>
-                  <apex:inputField value="{!websiteLead.Position__c}" styleClass="" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.Position__c.label}" for="position"/> <!-- Funktion -->
+                  <apex:inputField id="position" value="{!websiteLead.Position__c}" styleClass="" required="false"/>
               </div>
               <div>
-                  <label>Abteilung</label>
-                  <apex:inputField value="{!websiteLead.Abteilung__c}" styleClass="" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.Abteilung__c.label}" for="abteilung"/>
+                  <apex:inputField id="abteilung" value="{!websiteLead.Abteilung__c}" styleClass="" required="false"/>
               </div>
               <div>
-                  <label>Strasse, Nr.*</label>
-                  <apex:inputText value="{!websiteLead.street}" styleClass="required" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.street.label}*" for="street"/> <!-- Strasse, Nr.* -->
+                  <apex:inputText id="street" value="{!websiteLead.street}" styleClass="required" required="false"/>
               </div>
               <div>
-                  <label>PLZ*</label>
-                  <apex:inputField value="{!websiteLead.postalcode}" styleClass="required number" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.postalcode.label}*" for="postalcode"/> <!-- PLZ* -->
+                  <apex:inputField id="postalcode" value="{!websiteLead.postalcode}" styleClass="required number" required="false"/>
               </div>
               <div>
-                  <label>Ort*</label>
-                  <apex:inputField value="{!websiteLead.city}" styleClass="required " required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.city.label}*" for="city"/> <!-- Ort -->
+                  <apex:inputField id="city" value="{!websiteLead.city}" styleClass="required " required="false"/>
               </div>
               <div>
-                  <label>Telefon</label>
-                  <apex:inputField value="{!websiteLead.phone}" styleClass="" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.phone.label}" for="phone"/>
+                  <apex:inputField id="phone" value="{!websiteLead.phone}" styleClass="" required="false"/>
               </div>
               <div>
-                  <label>eMail*</label>
-                  <apex:inputField value="{!websiteLead.email}" styleClass="required email" required="false"/>
+                  <apex:outputLabel value="{!$ObjectType.Lead.Fields.email.label}*" for="email"/> <!-- eMail* -->
+                  <apex:inputField id="email" value="{!websiteLead.email}" styleClass="required email" required="false"/>
               </div>
               
               <div class="area">
-                  <label>Ihre Nachricht</label>
-                  <apex:inputField value="{!websiteLead.Nachricht_durch_Website__c}" required="false"/>
+                  <apex:outputLabel value="{!$Label.akademie_contact_your_message_input}" for="your_message"/> <!-- Ihre Nachricht -->
+                  <apex:inputField id="your_message" value="{!websiteLead.Nachricht_durch_Website__c}" required="false"/>
               </div>
              <div>
-                  <label>Wie sind Sie auf uns aufmerksam geworden?</label>
-                  <apex:inputField value="{!websiteLead.Marketing_Kanal__c}" required="false"/>
+             	<apex:outputLabel value="{!$Label.akademie_contact_marketing_channel_question}" for="channel_question"/> <!-- Wie sind Sie auf uns aufmerksam geworden? -->
+                  <apex:inputField id="channel_question" value="{!websiteLead.Marketing_Kanal__c}" required="false"/>
               </div>
              
               
@@ -89,9 +86,9 @@
               
               
           <div class="separator_line"></div>
-          <small>*Pflichtfelder</small>
+          <small>*{!$Label.form_mandatory_fields}</small>
           <div class = "r">
-              <apex:commandButton value="Weiter" styleClass="submit" action="{!saveInformationsmaterial}"  image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
+              <apex:commandButton value="{!$Label.weiter}" styleClass="submit" action="{!saveInformationsmaterial}"  image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
           </div>
 
       </apex:form>

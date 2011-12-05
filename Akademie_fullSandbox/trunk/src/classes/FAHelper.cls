@@ -163,7 +163,7 @@ public class FAHelper
         mail.setReplyTo('christina.karschti@ag.vossloh.com');
         //mail.setSenderDisplayName('Christina Karschti');
         
-        String[] bccAddresses = new String[]{'support.customer+AnmeldungenDieAkademie@parx.com'};
+        String[] bccAddresses = new String[]{'support.customer+AnmeldungenDieAkademie@parx.com', 'cbrede@die-akademie.de', 'rvochezer@die-akademie.de'};
 		mail.setBccAddresses(bccAddresses);
         return mail;
 	}

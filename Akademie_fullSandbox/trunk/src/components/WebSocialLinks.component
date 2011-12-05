@@ -1,0 +1,24 @@
+<apex:component >
+	<!--
+	<li>
+	<apex:outputLink id="facebooklink" value="">
+		<apex:image id="facebookimage" value="{!URLFOR($Resource.web_style2, 'i/facebook.png')}" alt="f" styleClass="facebookLink socialimg" />
+	</apex:outputLink>
+	</li>
+	-->
+	<li>
+	<apex:outputLink id="twitterlink" value="https://twitter.com/#!/Die_Akademie_de">
+		<apex:image id="twitterimage" value="{!URLFOR($Resource.web_style2, 'i/twitter.png')}" alt="t" styleClass="twitterLink socialimg" />
+	</apex:outputLink>
+	</li>
+	<li>
+	<apex:outputLink id="googlepluslink" value="https://plus.google.com/u/0/b/112231296677007019889/">
+		<apex:image id="googleplusimage" value="{!URLFOR($Resource.web_style2, 'i/googleplus.png')}" alt="g+" styleClass="googleplusLink socialimg" />
+	</apex:outputLink>
+	</li>
+	<li>
+	<apex:outputLink id="xinglink" value="https://www.xing.com/companies/akademief%252525C3%2525259Crf%252525C3%2525259Chrungskr%252525C3%25252584ftederwirtschaftgmbh">
+		<apex:image id="xingimage" value="{!URLFOR($Resource.web_style2, 'i/xing.png')}" alt="x"  styleClass="xingLink socialimg" />
+	</apex:outputLink>
+	</li>
+</apex:component>

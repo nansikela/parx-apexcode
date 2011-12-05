@@ -1,4 +1,4 @@
-<apex:page standardStylesheets="false" title="test"
+<apex:page standardStylesheets="false"
     sidebar="false"
     showHeader="false"
     contentType="text/html" cache="true" controller="FASiteFULLFacade"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
@@ -42,7 +42,7 @@
              <div class="content_wrapper ">
                  <div class="content_column article">
                  <span>
-                     <h1>Kontaktformular</h1>
+                     <h1>{!$Label.akademie_contact_form}</h1>
                  </span>
                      <c:webkontaktinteresse />
                      <c:FAContent />
