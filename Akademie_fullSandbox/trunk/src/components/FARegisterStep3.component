@@ -1,5 +1,5 @@
 <apex:component >
-  <h1>Vielen Dank für Ihre Registrierung</h1>
+  <h1>{!$Label.Vielen_Dank_f_r_Ihre_Registrierung}</h1>
   <br/>
-  Sie erhalten in Kürze eine Email, mit einem Link zur Bestätigung Ihrer Registrierung.
+  {!$Label.vossloh_thank_you_for_registering2}
 </apex:component>

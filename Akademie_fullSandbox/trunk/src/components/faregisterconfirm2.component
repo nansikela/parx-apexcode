@@ -1,6 +1,6 @@
 <apex:component >
-  <h1>Registrierung ist Abgeschlossen</h1>
+  <h1>{!$Label.Registrierung_ist_Abgeschlossen}</h1>
   <br />
   <br />
-  Sie können sich hier anmelden: <a href="http://www.vossloh.die-akademie.de">vossloh.die-akademie.de</a>
+  {!$Label.vossloh_login_here}: <a href="http://www.vossloh.die-akademie.de">vossloh.die-akademie.de</a>
 </apex:component>

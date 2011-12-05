@@ -1,64 +1,62 @@
 <apex:component controller="WebRegisterTeilnehmer" allowDML="true">
-<h1>Anmeldung</h1>
-    <i class="headline_submenu"><span >1. Teilnehmer</span> <span class="pipe">|</span><span>2. Rechnungsanschrift</span><span class="pipe">|</span><span class="active">3. Bestellübersicht</span><span class="pipe">|</span><span>4. Bestätigung</span></i>
-    <h2>Teilnehmer</h2>
+<h1>{!$Label.Anmeldung}</h1>
+    <i class="headline_submenu"><span >1. {!$Label.Teilnehmer}</span> <span class="pipe">|</span><span>2. {!$Label.akademie_booking_invoice_address}</span><span class="pipe">|</span><span class="active">3. {!$Label.akademie_booking_overview}</span><span class="pipe">|</span><span>4. {!$Label.confirmation}</span></i>
+    <h2>{!$Label.Teilnehmer}</h2>
     
     <apex:pageBlock >
             <apex:PageBlockSection columns="1">
                 <apex:PageBlockSectionItem >
-                    <apex:outputLabel >Name</apex:outputLabel>
+                    <apex:outputLabel value="{!$Label.Name}" />
                     <apex:outputText >
                         {!currentPerson.Anrede__c} {!currentPerson.Vorname__c} {!currentPerson.Name}
                     </apex:outputText>
                 </apex:PageBlockSectionItem>
                 
                 <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Strasse__c<> null, true, false)}">
-                    <apex:outputLabel >Strasse</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Person__c.Fields.Strasse__c.label}" />
                     <apex:outputText >
                         {!currentPerson.Strasse__c}
                     </apex:outputText>
                 </apex:PageBlockSectionItem>
                 
                 <apex:PageBlockSectionItem rendered="{!IF(currentPerson.PLZ__c<> null, true, false)}">
-                    <apex:outputLabel >PLZ</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Person__c.Fields.PLZ__c.label}" />
                     <apex:outputText >
                         {!currentPerson.PLZ__c}
                     </apex:outputText>
                 </apex:PageBlockSectionItem>
                 
                 <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Ort__c<> null, true, false)}">
-                    <apex:outputLabel >Ort</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Person__c.Fields.Ort__c.label}" />
                     <apex:outputText >
                         {!currentPerson.Ort__c}
                     </apex:outputText>
                 </apex:PageBlockSectionItem>
                 
                 <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Company__c<> null, true, false)}">
-                    <apex:outputLabel >Firma</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Person__c.Fields.Firma__c.label}" />
                     <apex:outputText >
                         {!currentPerson.Company__c}
                     </apex:outputText>
                 </apex:PageBlockSectionItem>
                 <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Funktion__c<> null, true, false)}">
-                    <apex:outputLabel >Funktion</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Person__c.Fields.Funktion__c.label}" />
                     <apex:outputText >
                         {!currentPerson.Funktion__c}
                     </apex:outputText>
                 </apex:PageBlockSectionItem>
                 <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Abteilung__c<> null, true, false)}">
-                    <apex:outputLabel >Abteilung</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Person__c.Fields.Abteilung__c.label}" />
                     <apex:outputText >
                         {!currentPerson.Abteilung__c}
                     </apex:outputText>
                 </apex:PageBlockSectionItem>
                 <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Email__c<> null, true, false)}">
-                    <apex:outputLabel >eMail</apex:outputLabel>
-                    <apex:outputText >
-                        {!currentPerson.Email__c}
-                    </apex:outputText>
+                    <apex:outputLabel value="{!$ObjectType.Person__c.Fields.Email__c.label}" />
+                    <apex:outputField value="{!currentPerson.Email__c}" />
                 </apex:PageBlockSectionItem>
                 <apex:PageBlockSectionItem rendered="{!IF(currentPerson.Geburtsdatum__c<> null, true, false)}">
-                    <apex:outputLabel >Geburtsdatum</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Person__c.Fields.Geburtsdatum__c.label}" />
                     <apex:outputText >
                         {!currentPerson.Geburtsdatum__c}
                     </apex:outputText>
@@ -66,94 +64,95 @@
                 
             </apex:PageBlockSection>
     </apex:pageBlock>
-    <h2>Rechungsanschrift</h2>
+    <h2>{!$Label.akademie_booking_invoice_address}</h2>
     <apex:pageBlock >
             <apex:PageBlockSection columns="1">
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Firma__c<> null, true, false)}">
-                    <apex:outputLabel for="firma">Firma</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Firma__c.label}" for="firma" />
                     <apex:outputField id="firma" value="{!anschrift.Firma__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Ansprechpartner__c<> null, true, false)}">
-                    <apex:outputLabel for="ansprechpartner">Ansprechpartner</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Ansprechpartner__c.label}" for="ansprechpartner" />
                     <apex:outputField id="ansprechpartner" value="{!anschrift.Ansprechpartner__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Abteilung__c<> null, true, false)}">
-                    <apex:outputLabel for="abteilung">Abteilung</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Abteilung__c.label}" for="abteilung" />
                     <apex:outputField id="abteilung" value="{!anschrift.Abteilung__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Strasse__c<> null, true, false)}">
-                    <apex:outputLabel for="strasse">Strasse*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Strasse__c.label}" for="strasse" />
                     <apex:outputField id="strasse" value="{!anschrift.Strasse__c}" />
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.PLZ__c<> null, true, false)}">
-                    <apex:outputLabel for="plz">PLZ*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.PLZ__c.label}" for="plz" />
                     <apex:outputField id="plz" value="{!anschrift.PLZ__c}" />
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Ort__c<> null, true, false)}">
-                    <apex:outputLabel for="ort">Ort*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Ort__c.label}" for="ort" />
                     <apex:outputField id="ort" value="{!anschrift.Ort__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Land__c<> null, true, false)}">
-                    <apex:outputLabel for="ort">Ort*</apex:outputLabel>
-                    <apex:outputField id="ort" value="{!anschrift.Land__c}"/>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Land__c.label}" for="land" />
+                    <apex:outputField id="land" value="{!anschrift.Land__c}"/>
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Nachricht__c<> null, true, false)}">
-                    <apex:outputLabel for="ort">Ihre Nachricht</apex:outputLabel>
-                    <apex:outputField id="ort" value="{!anschrift.Nachricht__c}"/>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Nachricht__c.label}" for="weg" />
+                    <apex:outputField id="weg" value="{!anschrift.Nachricht__c}"/>
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Telefon__c<> null, true, false)}">
-                    <apex:outputLabel for="telefon">Telefon*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Telefon__c.label}" for="telefon" />
                     <apex:outputField id="telefon" value="{!anschrift.Telefon__c}"/>
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.Telefax__c<> null, true, false)}">
-                    <apex:outputLabel for="telefax">Telefax</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Telefax__c.label}" for="telefax" />
                     <apex:outputField id="telefax" value="{!anschrift.Telefax__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem rendered="{!IF(anschrift.eMail__c<> null, true, false)}">
-                    <apex:outputLabel for="email">eMail*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.eMail__c.label}" for="email" />
                     <apex:outputField id="email" value="{!anschrift.eMail__c}"/>
                 </apex:pageBlockSectionItem>
             </apex:PageBlockSection>
             
         </apex:pageBlock>
-    <h2>Seminare</h2>
+    <h2>{!$Label.akademie_workshops}</h2>
     
     <apex:dataTable value="{!WarenkorbInhalt}" var="inhalt" styleClass="textright">
           
-          <apex:column headerValue="{!'Datum'}">
+          <apex:column headerValue="{!$Label.date}">
               {!inhalt.datum}
           </apex:column>
-          <apex:column headerValue="{!'Ort'}">
+          <apex:column headerValue="{!$Label.place}">
               {!inhalt.titel}<br />
               {!inhalt.ort}<br />
               
               <apex:outputText rendered="{!inhalt.isHotelReservierung}">
                   
                   <br />
-                  {!IF(inhalt.ezReservierung, 'Sie reservieren ein EZ.','')} {!IF(inhalt.dzReservierung, 'Sie reservieren ein DZ.','')}
+                  {!IF(inhalt.ezReservierung, $Label.akademie_shopping_cart_hotel_you_reserved_a + ' ' + $Label.akademie_shopping_cart_single_room_abbrev + '.','')} {!IF(inhalt.dzReservierung, $Label.akademie_shopping_cart_hotel_you_reserved_a + ' ' + $Label.akademie_shopping_cart_single_room_abbrev + '.','')}
+                  
               </apex:outputText>
           </apex:column>
-          <apex:column value="{!inhalt.preis}" headerClass="rechts123" headerValue="{!'Preis'}"/>
+          <apex:column value="{!inhalt.preis}" headerClass="rechts123" headerValue="{!$Label.Preis}"/>
       </apex:dataTable>
       <div class="textright">
    <apex:pageBlock >
        <apex:pageBlockSection >
            <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
            <apex:pageblockSectionItem >
-               <apex:outputLabel >Summe</apex:outputLabel>
+               <apex:outputLabel >{!$Label.sum}</apex:outputLabel>
                <apex:outputText >{!PreisString}</apex:outputText>
            </apex:pageblockSectionItem>
            <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
            <apex:pageblockSectionItem >
-               <apex:outputLabel >MwSt.</apex:outputLabel>
+               <apex:outputLabel >{!$Label.VAT}</apex:outputLabel>
                <apex:outputText >{!PreisMWST}</apex:outputText>
            </apex:pageblockSectionItem>
            <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
            <apex:pageblockSectionItem >
-               <apex:outputLabel >Gesamt</apex:outputLabel>
+               <apex:outputLabel >{!$Label.total}</apex:outputLabel>
                <apex:outputText >{!PreisGesamt}</apex:outputText>
            </apex:pageblockSectionItem>
        </apex:pageBlockSection>
@@ -164,19 +163,20 @@
             <apex:pageBlockSection columns="1">
                 <apex:pageblockSectionItem >
                      <apex:inputField value="{!warenkorbObject.AGB__c}" required="true"/>
-                     <apex:outputLabel >Ich bestelle/reserviere oben aufgeführte Produkte im Rahmen der <a href="/page?pageid=a0M20000003Xnu3" target="_blank" id="link_70">Allgemeinen Geschäftsbedingungen</a> der Akademie für Führungskräfte der Wirtschaft GmbH.</apex:outputLabel>
+                     <apex:outputLabel >{!$Label.akademie_booking_confirm_terms1} <a href="/page?pageid=a0M20000003Xnu3" target="_blank" id="link_70">{!$Label.akademie_booking_confirm_terms2}</a> {!$Label.akademie_booking_confirm_terms3}</apex:outputLabel>
 
           
               
                 </apex:pageblockSectionItem>
             </apex:pageBlockSection>
         </apex:PageBlock>
-        <p><strong>Widerrufsrecht für Verbraucher</strong><br />
-Als Verbraucher haben Sie das Recht, Ihre Vertragserklärung innerhalb von zwei Wochen nach Erhalt unserer Anmelde/Bestellbestellbestätigung ohne Angabe von Gründen in Textform (z. B. Brief, Telefax, E-Mail) zu widerrufen. Die Frist für Ihren Widerruf beginnt frühestens am Tag nach Erhalt Ihrer Anmeldebestätigung und dieser Belehrung in Textform. Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung des Widerrufs. Ihr Widerrufsrecht erlischt vorzeitig, wenn Ihr Vertragspartner mit der Ausführung der Dienstleistung mit Ihrer ausdrücklichen Zustimmung vor Ende der Widerrufsfrist begonnen hat oder Sie diese selbst veranlasst haben (z. B. den Besuch des gebuchten Seminars etc.).
-Der Widerruf ist zu richten an: Akademie für Führungskräfte der Wirtschaft GmbH, Seepromenade 19, 88662 Überlingen, Telefax: +49.7551.9368100, E-Mail: info@die-akademie.de. Im Falle eines wirksamen Widerrufs sind die beiderseits empfangenen Leistungen zurückzugewähren (und ggf. gezogene Nutzungen, z.B. Zinsen herauszugeben).</p>
+        <p><strong>{!$Label.akademie_booking_right_of_withdrawal}</strong><br />
+	  {!$Label.akademie_booking_right_of_withdrawal_text}
+	  {!$Label.akademie_booking_right_of_withdrawal_text2}
+	  </p>
     <div>
         <a href="/registrierung?step=rechnungsanschrift" class="l" ><img style="margin-bottom: 0px;" src="{!URLFOR($Resource.web_style2, '/i/btn_prev.gif')}" /></a>
-        <apex:commandButton value="{!'Bestellung abschliessen'}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r"  action="{!goToAbschluss}"/>
+        <apex:commandButton value="{!$Label.akademie_booking_place_order}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r"  action="{!goToAbschluss}"/>
     </div>
     
     </apex:form>

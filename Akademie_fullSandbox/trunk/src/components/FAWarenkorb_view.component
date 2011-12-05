@@ -1,33 +1,33 @@
 <apex:component controller="WarenkorbFacade" allowDML="true">
-  <h1>Warenkorb</h1>
+  <h1>{!$Label.Warenkorb}</h1>
   <apex:form >
   <apex:PageBlock rendered="{!isWarenkorbElement}">
       <apex:dataTable value="{!WarenkorbInhalt}" var="inhalt">
          
-          <apex:column headerValue="{!'Titel'}">
+          <apex:column headerValue="{!$Label.Titel}">
               {!inhalt.titel}
           </apex:column>
-          <apex:column headerValue="{!'Ort'}">
+          <apex:column headerValue="{!$Label.place}">
               {!inhalt.ort}
               <apex:outputText rendered="{!inhalt.isHotelReservierung}">
                   <br />
-                  {!IF(inhalt.ezReservierung, 'Sie reservieren ein EZ.','')} {!IF(inhalt.dzReservierung, 'Sie reservieren ein DZ.','')}
+                  {!IF(inhalt.ezReservierung, $Label.akademie_shopping_cart_hotel_you_reserved_a + ' ' + $Label.akademie_shopping_cart_single_room_abbrev + '.','')} {!IF(inhalt.dzReservierung, $Label.akademie_shopping_cart_hotel_you_reserved_a + ' ' + $Label.akademie_shopping_cart_single_room_abbrev + '.','')}
               </apex:outputText>
           </apex:column>
-          <apex:column value="{!inhalt.preis}" headerValue="{!'Preis'}"/>
-          <apex:column headerValue="{!'Aktion'}">
-              <a href="/WarenkorbDeleteElement?id={!inhalt.id}">löschen</a>
+          <apex:column value="{!inhalt.preis}" headerValue="{!$Label.Preis}"/>
+          <apex:column headerValue="{!$Label.akademie_shopping_cart_action}">
+              <a href="/WarenkorbDeleteElement?id={!inhalt.id}">{!$Label.delete}</a>
           </apex:column>
       </apex:dataTable>
-      <p>Alle Preise in EUR zzgl. MwSt. (19%).</p>
+      <p>{!$Label.akademie_all_prices_in_currency}</p>
       <div class="buttons">
-          <apex:commandButton value="{!'Bestellung abschicken'}" styleClass="ui-button-text ui-state-highlight ui-corner-all r" action="{!finishWarenkorb}"/>
+          <apex:commandButton value="{!$Label.akademie_booking_place_order}" styleClass="ui-button-text ui-state-highlight ui-corner-all r" action="{!finishWarenkorb}"/>
       </div>
   </apex:PageBlock>
   
   
   <apex:outputText rendered="{!IF(isWarenkorbElement == false, true, false)}">
-      <p>Sie haben bisher keine Seminare in Ihrem Warenkorb.</p>
+      <p>{!$Label.akademie_shopping_cart_empty}</p>
   </apex:outputText>
   </apex:form>
 </apex:component>

@@ -12,7 +12,7 @@ public class FARegisterController
 		
 		
 		nachgeordneteFirmaOptions = new List<SelectOption>();
-		nachgeordneteFirmaOptions.add(new SelectOption('', '– Keine –'));
+		nachgeordneteFirmaOptions.add(new SelectOption('', '– ' + Label.none + ' –'));
 		for(Firma__c f :[SELECT ID, Name FROM Firma__c WHERE (Dachfirma__c = : person.Firma__c OR ID = :person.Firma__c) AND Live__c = true ORDER BY name])
 		{
 			nachgeordneteFirmaOptions.add(new SelectOption(String.valueOf(f.id), f.name));
@@ -42,7 +42,7 @@ public class FARegisterController
 		System.debug('person:'+person);
 		if(!(person.email__c.endsWith(eMailEndung) || (eMailEndung2!= null && person.email__c.endsWith(eMailEndung2))))
 		{
-			ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Bitte korrigieren Sie Ihre eMail Adresse.');
+			ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.akademie_booking_please_correct_email);
 	        ApexPages.addMessage(msg);
 			return null;
 		}

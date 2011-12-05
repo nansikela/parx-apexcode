@@ -6,7 +6,7 @@ public class FASeminarSchnellBuchung
 	public FASeminarSchnellBuchung()
 	{
 		portfolioList = new List<SelectOption>();
-		portfolioList.add(new SelectOption('', '- bitte Seminar wählen -'));
+		portfolioList.add(new SelectOption('', '- ' + Label.akademie_booking_please_choose_workshop_short + ' -'));
 		for(Portfolio2__c p : [Select p.URL__c, p.Seminartitel__c, p.Name From Portfolio2__c p WHERE p.Buchbar__c = true AND Bereich__r.Hauptbereich__r.Firma__c = :FAHelper.getCurrentFirma().id AND Buchen_Deaktivieren__c = false ORDER BY Name])
 		{
 			portfolioList.add(new SelectOption(p.URL__c+'/order', p.Name+' '+p.Seminartitel__c));

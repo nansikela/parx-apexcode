@@ -31,7 +31,7 @@
           </div>
           <div class="c"></div>
           <div class="separator_line"></div>
-          <small>*Pflichtfelder</small>
+          <small>*{!$Label.form_mandatory_fields}</small>
           <div class = "r">
               <apex:commandButton value="Weiter" action="{!save0}" image="{!URLFOR($Resource.web_style, '/i/btn_next.gif')}" />
           </div>

@@ -1,18 +1,18 @@
 <apex:component controller="WarenkorbFacade" allowDML="true">
-    <h1>Ihre Bestellung</h1>
+    <h1>{!$Label.akademie_booking_your_order}</h1>
     <apex:outputText rendered="{!IF($CurrentPage.parameters.step!=null, false,true)}">
         <apex:form >
             
-            <p>Bitte wählen Sie einen Termin aus.</p>
+            <p>{!$Label.akademie_booking_please_choose_date}</p>
             <p><apex:messages styleClass="ui-state-error ui-corner-all"   layout="table" /></p>
             <apex:PageBlock >
                 <apex:PageBlockSection columns="1">
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!'Ihr Seminar:'}" for="portfolioName"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.Ihr_Seminar}:" for="portfolioName"></apex:outputLabel>
                         <apex:outputText escape="false" value="{!PortfolioInformation.Seminartitel__c}" id="portfolioName"></apex:outputText>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!'Termin:'}" for="portfolioName"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.Termin}:" for="portfolioName"></apex:outputLabel>
                         <apex:selectList size="1" value="{!terminString}">
                             <apex:selectOptions value="{!TerminOptionList}"></apex:selectOptions>
                         </apex:selectList>
@@ -28,56 +28,56 @@
     <apex:outputText rendered="{!IF($CurrentPage.parameters.step=='1', true,false)}">
     <apex:form id="SeminarBuchung">
     	
-        <p>Sie buchen nun dieses Seminar:</p>
+        <p>{!$Label.akademie_booking_workshop_notice}:</p>
         <apex:PageBlock >
                 <apex:PageBlockSection columns="1">
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!'Ihr Seminar:'}" for="portfolioName"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.Ihr_Seminar}:" for="portfolioName"></apex:outputLabel>
                         <apex:outputText escape="false" value="{!PortfolioInformation.Seminartitel__c}" id="portfolioName"></apex:outputText>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!'Termin:'}" for="portfolioName"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.Termin}:" for="portfolioName"></apex:outputLabel>
                         <apex:outputText value="{!SeminarInformation.datum&' - '&SeminarInformation.ort}"></apex:outputText>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!'Preis:'}" for="preis"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.Preis}:" for="preis"></apex:outputLabel>
                         <apex:outputText escape="false" value="{!SeminarInformation.preis}" id="preis"></apex:outputText>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem rendered="{!PortfolioInformation.Reservierungsoption__c}">
-                        <apex:outputLabel value="{!'Buchungstyp:*'}" for="reservierung"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.akademie_booking_type}*:" for="reservierung"></apex:outputLabel>
                         <apex:inputField required="true" value="{!currentWarenKorbElement.Buchungstyp__c}"  id="reservierung"  />
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem rendered="{!PortfolioInformation.Reservierungsoption__c}">
-                        <apex:outputLabel value="{!'Hinweis:'}"></apex:outputLabel>
-                        <apex:outputText >Sie können sich bei uns entscheiden. Buchen Sie das Seminar entweder verbindlich oder reservieren Sie Ihren Platz unverbindlich für 10 Tage.</apex:outputText>
+                        <apex:outputLabel value="{!$Label.notice}:"></apex:outputLabel>
+                        <apex:outputText >{!$Label.akademie_booking_type_text}</apex:outputText>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem rendered="{!SeminarInformation.isHotelReservierungPossible}">
-                        <apex:outputLabel value="{!'Hotel reservieren'}" for="hotelCheckbox"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.Hotel_reservieren}" for="hotelCheckbox"></apex:outputLabel>
                         <apex:actionRegion >
                         	<apex:inputCheckbox id="hotelCheckbox" styleClass="hotelCheckbox" value="{!currentWarenKorbElement.Hotelreservierung__c}" onclick="showReservationOptions(this.checked);" />
                         </apex:actionRegion>
                     </apex:pageBlockSectionItem>
                 </apex:PageBlockSection>
-                <apex:outputText value=" " /><apex:actionStatus startText=" verarbeite Hotelinformationen ..." id="hotelReservierungOptionStatus" startStyle="vertical-align: baseline;"/>
+                <apex:outputText value=" " /><apex:actionStatus startText="{!$Label.akademie_booking_progress_retrieve_hotels}" id="hotelReservierungOptionStatus" startStyle="vertical-align: baseline;"/>
                 <!-- hotelReservierungOption  -->
                 <apex:outputPanel id="hotelReservierungOptionRerenderPanel">
                 <apex:actionFunction name="showReservationOptions" action="{!showReservationOptions}" rerender="hotelReservierungOptionRerenderPanel" status="hotelReservierungOptionStatus" immediate="true"> 
 	    		   <apex:param name="ValueCheckbox" value=""/>
 	    	    </apex:actionFunction>
                 <apex:outputPanel id="hotelReservierungOption" layout="block" styleClass=""  rendered="{!showReservationOptions}">
-                <p>Sie können nun ein Hotelzimmer für Ihr Seminar reservieren. Bitte bezahlen Sie Ihr Hotelzimmer beim Auschecken selbst.</p>
+                <p>{!$Label.akademie_booking_hotel_notice}</p>
                 <apex:PageBlockSection rendered="{!SeminarInformation.isHotelReservierungPossible}" columns="1" >
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!'Hotel:'}" for="HotelName"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.akademie_booking_hotel}:" for="HotelName"></apex:outputLabel>
                         <apex:outputText value="{!SeminarInformation.hotelName}" id="HotelName"></apex:outputText>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!'Anreise:'}" for="anreiseDatum"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.akademie_booking_arrival}:" for="anreiseDatum"></apex:outputLabel>
                         <apex:inputField styleClass="datepicker" value="{!currentWarenKorbElement.Anreise__c}" required="true" id="anreiseDatum"  />
                         <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
-                        <apex:outputLabel value="{!'Abreise:'}" for="abreiseDatum"></apex:outputLabel>
+                        <apex:outputLabel value="{!$Label.akademie_booking_departure}:" for="abreiseDatum"></apex:outputLabel>
 <!--                        styleClass="datepicker"-->
                         <apex:inputField value="{!currentWarenKorbElement.Abreise__c}" styleClass="datepicker" required="true" id="abreiseDatum"  />
                         <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
@@ -88,21 +88,21 @@
 		            	<apex:selectOptions value="{!KindOfRooms}"/>
 		            </apex:selectRadio>
 <!--                        <apex:inputCheckbox value="{!currentWarenKorbElement.Einzelzimmer__c}" id="ez" />-->
-<!--                        <apex:outputLabel value="{!'Einzelzimmer '&SeminarInformation.ezPreis&' pro Nacht'}" for="ez"></apex:outputLabel>-->
+<!--                        <apex:outputLabel value="{!$Label.akademie_booking_hotel_single_room + SeminarInformation.ezPreis + $Label.akademie_booking_hotel_per_night}" for="ez"></apex:outputLabel>-->
 <!--                    </apex:pageBlockSectionItem>-->
 <!--                    <apex:pageBlockSectionItem >-->
 <!--                        -->
 <!--                        <apex:inputCheckbox value="{!currentWarenKorbElement.Doppelzimmer__c}" id="dz" />-->
-<!--                        <apex:outputLabel value="{!'Doppelzimmer '&IF(NOT(BEGINS(SeminarInformation.dzPreis,'0')),SeminarInformation.dzPreis&' pro Nacht','Preis auf Anfrage')}" for="dz"></apex:outputLabel>-->
+<!--                        <apex:outputLabel value="{!$Label.akademie_booking_hotel_double_room &IF(NOT(BEGINS(SeminarInformation.dzPreis,'0')),SeminarInformation.dzPreis& $Label.akademie_booking_hotel_per_night, $Label.price_on_application)}" for="dz"></apex:outputLabel>-->
 <!--                    </apex:pageBlockSectionItem>-->
                 </apex:PageBlockSection>
                  </apex:outputPanel> 
                  </apex:outputPanel> 
             </apex:PageBlock>
-            
+            <small>*{!$Label.form_mandatory_fields}</small>
             
                     <div class="buttons">
-                        <apex:commandButton value="{!'Seminar in den Warenkorb'}" styleClass="r" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}"  action="{!putItemToWarenkorb}"/>
+                        <apex:commandButton value="{!$Label.Seminar_in_den_Warenkorb}" styleClass="r" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}"  action="{!putItemToWarenkorb}"/>
                     </div>
     </apex:form>
     </apex:outputText>

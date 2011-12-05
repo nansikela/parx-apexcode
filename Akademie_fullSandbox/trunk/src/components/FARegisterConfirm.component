@@ -1,23 +1,23 @@
 <apex:component controller="FARegisterConfirmController" allowDML="true">
-   <h1>Registrierungsbestätigung</h1>
+   <h1>{!$Label.Registrierungsbest_tigung}</h1>
     <apex:messages />
     <apex:form >
     <br />
-    Zur Steuerung der Genehmigungsprozesse bei Ihrer Seminarbuchung benötigen wir noch die Angabe, ob Sie direkt an die Geschäftsführung oder den Vorstand berichten. Wenn dies nicht der Fall ist, tragen Sie bitte die Email-Adresse Ihres Vorgesetzten ein. 
+    {!$Label.Steuerung_der_Genehmigungsprozesse} 
   <apex:PageBlock >
       <apex:PageBlockSection columns="1" > 
           <apex:PageBlockSectionItem >
               <apex:inputCheckbox value="{!currentPerson.Genehmigungsverfahren_ausgeschlossen__c}" id="ausgeschlossen" styleClass="checkboxShowVorgesetzter"/>
-              <apex:outputLabel for="ausgeschlossen" value="{!'Ich berichte NICHT direkt an die Geschäftsführung/Vorstand'}" />
+              <apex:outputLabel for="ausgeschlossen" value="{!$Label.Keine_Berichte_des_Vorgesetzten}" />
           </apex:PageBlockSectionItem>
           <apex:PageBlockSectionItem >
-              <apex:outputLabel for="email" value="{!'Email-Adresse des Vorgesetzten'}" styleClass="eMailDesVorgesetztenhide" />
+              <apex:outputLabel for="email" value="{!$Label.Email_Adresse_des_Vorgesetzten}" styleClass="eMailDesVorgesetztenhide" />
               <apex:inputField value="{!currentPerson.eMail_Adresse_Vorgesetzter__c}" id="email"/>
           </apex:PageBlockSectionItem>
           
       </apex:PageBlockSection>
       <div class="buttons">
-          <apex:commandButton value="{!'Weiter'}" action="{!save}" image="{!URLFOR($Resource.FA_style, 'i/btn_next.png')}" />
+          <apex:commandButton value="{!$Label.weiter}" action="{!save}" image="{!URLFOR($Resource.FA_style, 'i/btn_next.png')}" />
       </div>
   </apex:PageBlock>
   </apex:form>

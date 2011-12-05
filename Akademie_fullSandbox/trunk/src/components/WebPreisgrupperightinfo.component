@@ -6,7 +6,7 @@
   </apex:outputText>
   <apex:outputText rendered="{!currentProductgruppe.Buchbar__c}">
       <div class="bookingButton">
-            <a href="{!currentProductgruppe.URL__c}/order" id="buttonSeminarBuchen">Hier Buchen</a>
+            <a href="{!currentProductgruppe.URL__c}/order" id="buttonSeminarBuchen">{!$Label.akademie_workshops_book_here}</a>
       </div>
   </apex:outputText>
   
@@ -18,7 +18,7 @@
   
   
       <!-- Ansprechpartner -->
-        <h2 class="c">KUNDENBERATUNG</h2>
+        <h2 class="c">{!$Label.akademie_customer_service}</h2>
         <apex:outputText rendered="{!IF(currentProductgruppe.Ansprechpartner__c != null, true, false)}">
             <strong>{!currentProductgruppe.Ansprechpartner__r.Vorname__c} {!currentProductgruppe.Ansprechpartner__r.name}</strong>
             <p class="mail">

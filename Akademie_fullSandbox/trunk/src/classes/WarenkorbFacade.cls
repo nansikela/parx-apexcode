@@ -192,7 +192,7 @@ public class WarenkorbFacade
 				temp.ort = '';
 				if(we.Buchungstyp__c == 'Seminar 10 Tage reservieren')
 				{
-					temp.preis = '0,- Reservierung';
+					temp.preis = '0,- ' + Label.reservation;
 				}
 				else
 				{
@@ -207,11 +207,11 @@ public class WarenkorbFacade
 			{
 				if(we.Einzelzimmer__c!= null && we.Einzelzimmer__c)
 				{
-					temp.ort += '<br/>EZ Reservierung ';
+					temp.ort += '<br/>' + Label.akademie_shopping_cart_single_room_abbrev + ' ' + Label.reservation;
 				}
 				if(we.Doppelzimmer__c!= null && we.Doppelzimmer__c)
 				{
-					temp.ort += '</br>DZ Reservierung ';
+					temp.ort += '</br>' + Label.akademie_shopping_cart_double_room_abbrev + ' ' + Label.reservation;
 				}
 			}
 			temp.titel = we.Terminblock__r.Produktgruppe__r.name__c;
@@ -234,7 +234,7 @@ public class WarenkorbFacade
 					{
 						if(String.valueOf(we.Seminar__c).subString(0,15) == seminar.id.subString(0, 15))
 						{
-							seminar.preis = '0,- Reservierung';
+							seminar.preis = '0,- ' + Label.reservation;
 						}
 					}
 				}
