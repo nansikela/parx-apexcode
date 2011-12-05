@@ -10,7 +10,7 @@
                 <div class="seminar_infobox">
                     <ul>
                         <li>
-                            <div class="caption">Dauer</div>
+                            <div class="caption">{!$Label.Dauer}</div>
                             <div class="l">
                                 <apex:outputText rendered="{!IF(portfolio.Dauer_der_Ausbildung__c!= '', false, true)}">
                                     {!IF(portfolio.Dauer_in_Tagen__c = 1, '1 Tag' , SUBSTITUTE(TEXT(portfolio.Dauer_in_Tagen__c) & '  Tage', '.0', ''))}
@@ -19,19 +19,19 @@
                             <div class="c"></div>
                         </li>
                         <li>
-                            <div class="caption">Module</div>
+                            <div class="caption">{!$Label.akademie_workshops_module}</div>
                             <div class="l">{!anzahlmodule}</div>
                             <div class="c"></div>                           
                         </li>
                         <li>
-                            <div class="caption">Teilnehmer</div>
+                            <div class="caption">{!$Label.Teilnehmer}</div>
                             <div class="l">max. {!SUBSTITUTE(TEXT(portfolio.Max_Teilnehmer__c), '.0', '')}</div>
                             <div class="c"></div>                           
                         </li>
                     </ul>
                     <!--<div class="modul_spacer"></div>-->
                     <apex:outputText rendered="{!portfolio.Auf_Website_buchbar__c}">
-                        <div class="comment">Zur Buchung der einzelnen Termine, siehe untenstehende Tabelle</div>
+                        <div class="comment">{!$Label.akademie_workshops_comment_text}</div>
                     </apex:outputText>
                 </div>
             </div>
@@ -40,7 +40,7 @@
             <div class = "textline">
                 <h1>{!portfolio.Seminartitel__c}</h1>
                 <p class="headline_submenu">
-                  <span class="active">Intensivprogramm</span>
+                  <span class="active">{!$Label.akademie_workshops_intensive_programs}</span>
                 </p>
             </div>
             <!--EndHeadline-->
@@ -51,7 +51,7 @@
             <h3>{!portfolio.untertitel__c}</h3>
              <apex:outputText escape="false" value="{!portfolio.Intro__c}" />
             <apex:outputText rendered="{!IF(portfolio.Inhalte__c=='', false, true)}">
-            <h3>Inhalte</h3>
+            <h3>{!$Label.akademie_workshops_content}</h3>
             </apex:outputText>
                 <ul class="list">
                     <!-- Substitute list metachars with li's -->
@@ -60,12 +60,12 @@
              <apex:outputText rendered="{!IF(portfolio.Methode__c=='', false, true)}">  
             
             
-             <h3>Methode</h3>
+             <h3>{!$Label.akademie_workshops_method}</h3>
              </apex:outputText>
              <p><apex:outputText escape="false" value="{!portfolio.Methode__c}"></apex:outputText></p>
         
         
-           <h3>Zielgruppe</h3>
+           <h3>{!$Label.akademie_workshops_target_group}</h3>
               <p><apex:outputText escape="false" value="{!portfolio.Zielgruppe__c}"></apex:outputText></p>
               <p><apex:outputText escape="false" value="{!portfolio.Teilnehmerhinweis__c}"></apex:outputText></p>
               <!-- TODO: conditional component: only include when products.length() > 0 -->

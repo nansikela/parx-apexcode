@@ -7,7 +7,7 @@
       <apex:pageBlock >
           <apex:pageBlockSection columns="1">
               <apex:pageBlockSectionItem >
-                  <apex:outputLabel value="{!'eMail'}" for="username"/>
+                  <apex:outputLabel value="{!$Label.akademie_email}" for="username"/>
                   <apex:inputText id="username" value="{!username}"/>
               </apex:pageBlockSectionItem>
               <apex:pageBlockSectionItem >
@@ -18,10 +18,10 @@
           <div class="buttons">
               
               <apex:commandButton action="{!login}" value="{!$Label.site.login_button}" id="loginButton" image="{!URLFOR($Resource.FA_style, 'i/btn_login.png')}"/><br/><br/>
-              <a href="http://www.vossloh.die-akademie.de/FARegister" id="registrierungLink">Registrierung</a>
-              <a href="http://www.vossloh.die-akademie.de/FAForgotPassword" id="passwordrecoveryButton">Passwort vergessen</a> 
+              <a href="http://www.vossloh.die-akademie.de/FARegister" id="registrierungLink">{!$Label.Registrieren}</a>
+              <a href="http://www.vossloh.die-akademie.de/FAForgotPassword" id="passwordrecoveryButton">{!$Label.Kennwort_vergessen}</a> 
               <br /> <br /><br /> <br /><br /> <br />
-              <h2>Sie besitzen keine Zugangsdaten? <a href ="http://www.vossloh.die-akademie.de/FARegister">Registrieren Sie sich hier.</a></h2>
+              <h2>{!$Label.Keine_Zugangsdaten} <a href ="http://www.vossloh.die-akademie.de/FARegister">{!$Label.vossloh_register_here}</a></h2>
               
               
           </div>

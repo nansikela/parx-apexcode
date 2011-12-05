@@ -1,18 +1,19 @@
 <apex:component controller="FASeminarSchnellBuchung">
-    <h1>Anmeldung</h1>
-    <p>Bitte wählen Sie Ihr Seminar aus:</p>
+    <h1>{!$Label.Anmeldung}</h1>
+    <p>{!$Label.akademie_booking_please_choose_workshop}:</p>
     <apex:form >
         <apex:pageBlock >
             <apex:PageBlockSection columns="1">
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="SeminarDropDown" styleClass="seminarDropDown">Seminar*</apex:outputLabel>
+                    <apex:outputLabel for="SeminarDropDown" styleClass="seminarDropDown">{!$Label.akademie_workshop}*</apex:outputLabel>
                     <apex:selectList id="SeminarDropDown" size="1" value="{!url}">
                         <apex:selectOptions value="{!portfolioList}"></apex:selectOptions>
                     </apex:selectList>
                 </apex:pageBlockSectionItem>
             </apex:PageBlockSection>
         </apex:pageBlock>
-    <apex:commandButton value="Weiter" action="{!goToBuchung}" styleClass="ui-button-text ui-state-highlight ui-corner-all r"/>
+    <small>*{!$Label.form_mandatory_fields}</small>
+    <apex:commandButton value="{!$Label.weiter}" action="{!goToBuchung}" styleClass="ui-button-text ui-state-highlight ui-corner-all r"/>
     </apex:form>
     <style>
         select

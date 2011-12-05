@@ -1,60 +1,60 @@
 <apex:component allowDML="true" controller="WebRegisterTeilnehmer">
-    <h1>Anmeldung</h1>
-    <i class="headline_submenu"><span >1. Teilnehmer</span> <span class="pipe">|</span><span class="active">2. Rechnungsanschrift</span><span class="pipe">|</span><span>3. Bestellübersicht</span><span class="pipe">|</span><span>4. Bestätigung</span></i>
-    <h2>Rechnungsdaten</h2>
+    <h1>{!$Label.Anmeldung}</h1>
+    <i class="headline_submenu"><span >1. {!$Label.Teilnehmer}</span> <span class="pipe">|</span><span class="active">2. {!$Label.akademie_booking_invoice_address}</span><span class="pipe">|</span><span>3. {!$Label.akademie_booking_overview}</span><span class="pipe">|</span><span>4. {!$Label.confirmation}</span></i>
+    <h2>{!$Label.akademie_booking_invoice_address}</h2>
     <apex:form >
         <apex:pageBlock >
             <apex:PageBlockSection columns="1">
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="firma">Firma*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Firma__c.label}*" for="firma" />
                     <apex:inputField id="firma" value="{!anschrift.Firma__c}" required="true"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="ansprechpartner">Ansprechpartner</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Ansprechpartner__c.label}" for="ansprechpartner"/>
                     <apex:inputField id="ansprechpartner" value="{!anschrift.Ansprechpartner__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="abteilung">Abteilung</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Abteilung__c.label}" for="abteilung"/>
                     <apex:inputField id="abteilung" value="{!anschrift.Abteilung__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="strasse">Strasse*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Strasse__c.label}*" for="strasse"/>
                     <apex:inputField id="strasse" value="{!anschrift.Strasse__c}" required="true"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="plz">PLZ*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.PLZ__c.label}*" for="plz"/>
                     <apex:inputField id="plz" value="{!anschrift.PLZ__c}" required="true"/>
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="ort">Ort*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Ort__c.label}*" for="ort"/>
                     <apex:inputField id="ort" value="{!anschrift.Ort__c}" required="true"/>
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="land">Land</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Land__c.label}" for="land"/>
                     <apex:inputField id="land" value="{!anschrift.Land__c}"/>
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="telefon">Telefon*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Telefon__c.label}*" for="telefon"/>
                     <apex:inputField id="telefon" value="{!anschrift.Telefon__c}" required="true"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="telefax">Telefax</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Telefax__c.label}" for="telefax"/>
                     <apex:inputField id="telefax" value="{!anschrift.Telefax__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="email">eMail*</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.eMail__c.label}*" for="email"/>
                     <apex:inputField id="email" value="{!anschrift.eMail__c}"/>
                 </apex:pageBlockSectionItem>
                 
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="weg">Ihr Weg zu uns</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Ihr_Weg_zu_uns__c.label}" for="weg"/>
                     <apex:inputField id="weg" value="{!anschrift.Ihr_Weg_zu_uns__c}"/>
                 </apex:pageBlockSectionItem>
                 <apex:pageBlockSectionItem >
-                    <apex:outputLabel for="weg">Ihre Nachricht</apex:outputLabel>
+                    <apex:outputLabel value="{!$ObjectType.Anschrift__c.Fields.Nachricht__c.label}" for="weg"/>
                     <apex:inputField id="weg" value="{!anschrift.Nachricht__c}"/>
                 </apex:pageBlockSectionItem>
                 
@@ -65,7 +65,7 @@
         </apex:pageBlock>
         <div class="separator"></div>
         <a href="/registrierung" class="l" ><img style="margin-bottom: 0px;" src="{!URLFOR($Resource.web_style2, '/i/btn_prev.gif')}" /></a>
-        <apex:commandButton action="{!goToUebersicht}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r"  value="{!'Weiter'}" />
+        <apex:commandButton action="{!goToUebersicht}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r"  value="{!$Label.weiter}" />
     </apex:form>
     
     <style>

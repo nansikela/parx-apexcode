@@ -1,5 +1,5 @@
 <apex:component controller="FARegisterController" allowDML="true" >
-  <h1>Bitte registrieren Sie sich</h1>
+  <h1>{!$Label.Bitte_registrieren_Sie_sich}</h1>
   <apex:messages />
   <apex:form forceSSL="true" >
   <apex:PageBlock >
@@ -40,7 +40,7 @@
           </apex:PageBlockSectionItem>
       </apex:PageBlockSection>
       <div class="buttons">
-          <apex:commandButton value="{!'Weiter'}" action="{!toStep2}" image="{!URLFOR($Resource.FA_style, 'i/btn_next.png')}"/>
+          <apex:commandButton value="{!$Label.weiter}" action="{!toStep2}" image="{!URLFOR($Resource.FA_style, 'i/btn_next.png')}"/>
       </div>
   </apex:PageBlock>
   </apex:form>

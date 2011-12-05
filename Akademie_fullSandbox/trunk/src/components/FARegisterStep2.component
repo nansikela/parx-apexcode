@@ -1,20 +1,20 @@
 <apex:component controller="FARegisterControllerStep2" allowDML="true" >
-    <h1>Bitte tragen Sie ihr Kennwort ein.</h1>
+    <h1>{!$Label.Kennwort_eintragen}.</h1>
     <apex:messages />
     <apex:form forceSSL="true" >
   <apex:PageBlock >
       <apex:PageBlockSection columns="1" > 
           <apex:PageBlockSectionItem >
-              <apex:outputLabel for="Kennwort1" value="{!'Kennwort*'}"   />
+              <apex:outputLabel for="Kennwort1" value="{!$Label.Kennwort}*"   />
               <apex:inputSecret value="{!password}" id="Kennwort1" required="true" /> 
           </apex:PageBlockSectionItem>
           <apex:PageBlockSectionItem >
-              <apex:outputLabel for="Kennwort2" value="{!'Kennwort erneut*'}"   />
+              <apex:outputLabel for="Kennwort2" value="{!$Label.Kennwort_erneut}*"   />
               <apex:inputSecret value="{!passwordConfirm}" id="Kennwort2" required="true" /> 
           </apex:PageBlockSectionItem>
       </apex:PageBlockSection>
       <div class="buttons">
-          <apex:commandButton value="{!'Weiter'}" action="{!toStep3}" image="{!URLFOR($Resource.FA_style, 'i/btn_next.png')}" />
+          <apex:commandButton value="{!$Label.weiter}" action="{!toStep3}" image="{!URLFOR($Resource.FA_style, 'i/btn_next.png')}" />
       </div>
   </apex:PageBlock>
   </apex:form>

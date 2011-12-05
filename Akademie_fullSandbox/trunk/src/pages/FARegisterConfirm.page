@@ -18,12 +18,12 @@
   <body>
   <span id="j_id0:j_id2:j_id3:j_id9">
   <div class="site_wrapper">
-    <div class="header"> <a href="/" id="logo" title="Zur Startseite"> Die Akademie f&uuml;r F&uuml;hrungskr&auml;fte </a>
+    <div class="header"> <a href="/" id="logo" title="{!$Label.go_to_start_page}"> Die Akademie f&uuml;r F&uuml;hrungskr&auml;fte </a>
       <div class="servicenavi">
         <ul>
    
-          <li><a href="http://www.die-akademie.de/service/impressum">Impressum</a></li>
-          <li><a href="http://www.die-akademie.de/service/agb">AGB</a></li>
+          <li><a href="http://www.die-akademie.de/service/impressum">{!$Label.imprint}</a></li>
+          <li><a href="http://www.die-akademie.de/service/agb">{!$Label.terms}</a></li>
           
         </ul>
       </div>

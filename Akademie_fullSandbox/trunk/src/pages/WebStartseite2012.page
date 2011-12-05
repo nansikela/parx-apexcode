@@ -44,7 +44,7 @@
                         <img src="{!URLFOR($Resource.web_style, 'i/teaser_academy_blog.png')}" />
                     </p>
                     -->
-                    <h2>Akademie-Blog</h2>
+                    <h2>{!$Label.akademie_blog}</h2>
                     <br />
                     <p></p>
                     <ul class="academy_blog">

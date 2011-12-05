@@ -31,7 +31,7 @@ public class FARegisterConfirmController
 		
 		if(!currentPerson.Genehmigungsverfahren_ausgeschlossen__c && currentPerson.eMail_Adresse_Vorgesetzter__c == null)
 		{
-			ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, 'Bitte geben Sie die eMail Adresse Ihres Vorgesetzten an.');
+			ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.ERROR, Label.akademie_booking_please_enter_email_of_supervisor);
         	ApexPages.addMessage(msg);
             return null;
 		}
