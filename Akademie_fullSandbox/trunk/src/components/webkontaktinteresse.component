@@ -3,16 +3,16 @@
  
       <apex:form >
           <apex:inputField value="{!websiteLead.Interesse_an_Akademie_Seminare__c}" styleClass="checkbox" />
-          <label class="lbl_checkbox">Offenen Seminarprogramm (Einzelseminare, englischen Seminare, Intensivprogramme)</label>
+          <label class="lbl_checkbox">{!$Label.akademie_contact_interested_in_Akademie_Seminare}</label>
           
           <apex:inputField value="{!websiteLead.Interesse_an_firmeninternen_Seminaren__c}" styleClass="checkbox" />
-          <label class="lbl_checkbox">Leistungsangebot der Akademie Inhouse (Inhouse Trainings, Entwicklungsberatung, Firmenakademien…)</label>
+          <label class="lbl_checkbox">{!$Label.akademie_contact_interested_in_firmeninternen_Seminaren}</label>
           
           <apex:inputField value="{!websiteLead.Interesse_an_General_Management_Programm__c}" styleClass="checkbox" />
-          <label class="lbl_checkbox">General Management Programm</label>
+          <label class="lbl_checkbox">{!$Label.akademie_contact_interested_in_General_Management_Programm}</label>
           
           <apex:inputField value="{!websiteLead.Interesse_an_firmeninternen_Coaching__c}" styleClass="checkbox" />
-          <label class="lbl_checkbox">Coaching (Individualcoaching, Teamcoaching…)</label>
+          <label class="lbl_checkbox">{!$Label.akademie_contact_interested_in_firmeninternen_Coaching}</label>
           <fieldset>
           
 		  <div>

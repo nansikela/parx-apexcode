@@ -1,23 +1,23 @@
 <apex:component controller="WebCoachingLandingPage">
   <apex:dataTable value="{!nextCOTermine}" var="termin">
-      <apex:column headerValue="Code" styleClass="code" >
+      <apex:column headerValue="{!$Label.akademie_workshops_code}" styleClass="code" >
           <a href="{!termin.portfolio__r.URL__c}">{!termin.Portfolio__r.name}</a>
       </apex:column>
-      <apex:column headerValue="Titel" value="{!termin.Portfolio__r.Seminartitel__c}" styleClass="title"/>
-      <apex:column headerValue="Datum" styleClass="date">
+      <apex:column headerValue="{!$Label.Titel}" value="{!termin.Portfolio__r.Seminartitel__c}" styleClass="title"/>
+      <apex:column headerValue="{!$Label.date}" styleClass="date">
           <apex:outputText value="       {0,date,dd.MM.yyyy}">       <apex:param value="{!termin.seminar__r.Seminarbeginn__c}" />   </apex:outputText> -
           <apex:outputText value="       {0,date,dd.MM.yyyy}">       <apex:param value="{!termin.seminar__r.Seminarende__c}" />   </apex:outputText>
       </apex:column>
-      <apex:column headerValue="Ort" value="{!termin.Ort__c}" />
-      <apex:column headerValue="Trainer">
+      <apex:column headerValue="{!$Label.place}" value="{!termin.Ort__c}" />
+      <apex:column headerValue="{!$Label.akademie_trainer}">
           <a href="{!termin.seminar__r.trainer__r.Sprechende_URL__c}">{!IF(termin.seminar__r.trainer__r.Titel_Anrede__c <>null, termin.seminar__r.trainer__r.Titel_Anrede__c&' ', '')}{!termin.seminar__r.trainer__r.Firstname& ' ' & termin.seminar__r.trainer__r.Lastname}</a>
-          <apex:outputText rendered="{!IF(termin.seminar__r.Co_Trainer__c<> null, true, false)}"> und <a href="{!termin.seminar__r.Co_trainer__r.Sprechende_URL__c}">{!IF(termin.seminar__r.Co_trainer__r.Titel_Anrede__c <>null, termin.seminar__r.Co_trainer__r.Titel_Anrede__c&' ', '')}{!termin.seminar__r.Co_trainer__r.Firstname& ' ' & termin.seminar__r.Co_trainer__r.Lastname}</a></apex:outputText>
+          <apex:outputText rendered="{!IF(termin.seminar__r.Co_Trainer__c<> null, true, false)}"> {!$Label.and} <a href="{!termin.seminar__r.Co_trainer__r.Sprechende_URL__c}">{!IF(termin.seminar__r.Co_trainer__r.Titel_Anrede__c <>null, termin.seminar__r.Co_trainer__r.Titel_Anrede__c&' ', '')}{!termin.seminar__r.Co_trainer__r.Firstname& ' ' & termin.seminar__r.Co_trainer__r.Lastname}</a></apex:outputText>
       </apex:column>
   </apex:dataTable>
-  <h2>Buchung</h2>
-  <p>Für weitere Informationen&nbsp;oder um die Ausbildung zu buchen, wenden Sie sich bitte an Ihre Ansprechpartnerin Frau Silvia Ufer.</p>
+  <h2>{!$Label.akademie_booking}</h2>
+  <p>{!$Label.akademie_booking_next_coaching_text}</p>
   <br/>
-  <a href="/seminare/qualifizierung-zum-coach-im-business" id="beratung_info" title="CO Seminar">Beratung und weitere Informationen</a>
+  <a href="/seminare/qualifizierung-zum-coach-im-business" id="beratung_info">{!$Label.akademie_consulting_and_more_information}</a>
   <style>
       td.code
       {

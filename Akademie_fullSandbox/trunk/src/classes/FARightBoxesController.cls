@@ -234,12 +234,12 @@ public class FARightBoxesController
         if(dauer!=null)dauer = dauer.replace('.0','');
         if(dauer=='1')
         {
-            dauer+= ' Tag';
+            dauer+= ' ' + Label.day;
         }else
         {
-            dauer+=' Tage';
+            dauer+=' ' + Label.days;
         }
-        result.add(new ShortInfoElemet('Dauer', dauer));
+        result.add(new ShortInfoElemet(Label.Dauer, dauer));
         
         
         //Teilnehmer
@@ -248,7 +248,7 @@ public class FARightBoxesController
         {
             if(portfolio.Min_Teilnehmer__c != null)
             {
-                teilnehmer = 'min. ';
+                teilnehmer = Label.at_least_short + ' ';
                 teilnehmer += String.valueOf(portfolio.Min_Teilnehmer__c);
                 
                 teilnehmer+='</br>';
@@ -256,16 +256,16 @@ public class FARightBoxesController
         }
         if(portfolio.Max_Teilnehmer__c != null)
         {
-            teilnehmer+= 'max. '+String.valueOf(portfolio.Max_Teilnehmer__c);
+            teilnehmer+= Label.at_most_short + ' '+String.valueOf(portfolio.Max_Teilnehmer__c);
             teilnehmer = teilnehmer.replace('.0','');
         }
         
-        result.add(new ShortInfoElemet('Teilnehmer', teilnehmer));
+        result.add(new ShortInfoElemet(Label.Teilnehmer, teilnehmer));
         
         //beginn
-        result.add(new ShortInfoElemet('Beginn', portfolio.beginn__c));
+        result.add(new ShortInfoElemet(Label.Beginn, portfolio.beginn__c));
         //ende
-        result.add(new ShortInfoElemet('Ende', portfolio.ende__c));
+        result.add(new ShortInfoElemet(Label.Ende, portfolio.ende__c));
         return result;
     }
     
@@ -341,11 +341,11 @@ public class FARightBoxesController
             
             if(portfolio.Web_Preis__c != null && portfolio.Web_Preis__c!= 0)
             {
-                preis= '<strong>'+String.valueOf(portfolio.Web_Preis__c).replace('.',',').replace(',00',',-')+' EUR</strong> zzgl. MwSt.';
+                preis= '<strong>'+String.valueOf(portfolio.Web_Preis__c).replace('.',',').replace(',00',',-')+' ' + Label.euro + '</strong> ' + Label.exclusive_of_VAT;
             }
             
             
-            priceInfoList.add(new ShortInfoElemet('PREIS', preis));
+            priceInfoList.add(new ShortInfoElemet(Label.Preis.toUpperCase(), preis));
             priceIntensivInfoList = new List<ShortInfoElemet>();
             for(Produktgruppenmitglied__c pgm: [SELECT ID, Ueberschrift__c, Text__c, Box__c FROM Produktgruppenmitglied__c WHERE Portfolio2__c = :getCurrentPortfolio().id])
                 {

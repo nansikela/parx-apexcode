@@ -2,27 +2,27 @@
 
 
 <div class="rightbox dark searchBox2">
-      <h3 style="font-size: 15px;">SEMINAR SUCHEN</h3>
+      <h3 style="font-size: 15px; text-transform: uppercase;">{!$Label.akademie_workshops_search_workshop}</h3>
       <form method="post">
           
         
-        <p>Seminarcode/Titel</p>
+        <p>{!$Label.akademie_workshops_code_long}/{!$Label.Titel}</p>
              <input type="text"  class="searchTextField" style="font-size:12px;" onclick="this.value='';" value="" id="quickQuery" />
 
         
-         <p>Region</p>
+         <p>{!$Label.region}</p>
             <select id="region" class="optionfield">
-                 <option>- alle anzeigen -</option>
+                 <option>- {!$Label.show_all} -</option>
              </select>
           
 
-        <p>Veranstaltungsort</p>
+        <p>{!$Label.akademie_workshop_venue}</p>
         <select id="city" class="optionfield">
-            <option value="">- alle anzeigen -</option>
+            <option value="">- {!$Label.show_all} -</option>
         </select>
         
 
-        <p>Startdatum</p>
+        <p>{!$Label.start_date}</p>
         
 
         <div id="fromdate" class="formpart_date">

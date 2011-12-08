@@ -10,12 +10,12 @@
                 <div class="seminar_infobox">
                     <ul>
                         <li>
-                            <div class="caption">Dauer</div>
+                            <div class="caption">{!$Label.Dauer}</div>
                             <div class="l">{!IF(portfolio.Dauer_in_Tagen__c = 1, '1 Tag', SUBSTITUTE(TEXT(portfolio.Dauer_in_Tagen__c) & ' Tage', '.0', ''))}</div>
                             <div class="c"></div>
                         </li>
                         <li>
-                            <div class="caption">Teilnehmer</div>
+                            <div class="caption">{!$Label.Teilnehmer}</div>
                             <div class="l">max. {!SUBSTITUTE(TEXT(portfolio.Max_Teilnehmer__c), '.0', '')}</div>
                             <div class="c"></div>                           
                         </li>
@@ -66,7 +66,7 @@
               <div class="separator_head ratingBottom">
                 <a title="Zu den Bewertungen" href="#Bewertung" class="r">({!IF(bewertungsAnzahlString== '1', bewertungsAnzahlString+' Bewertung', bewertungsAnzahlString+' Bewertungen')})</a>
                 <img alt="{!bewertungsDurchschnittString} Sterne" class="r stars" src="{!URLFOR($Resource.web_style, 'i/stars_'+bewertungsDurchschnittString+'.gif')}"/>
-                <h4 class="l">Bewertungen</h4>
+                <h4 class="l">{!$Label.akademie_workshops_ratings}</h4>
                 <div class="c"></div>
               </div>
               </apex:outputText>

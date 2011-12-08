@@ -39,7 +39,7 @@
                  <div class="content_column article">
                      <span>
                      
-                         <h1>Suchergebnisse</h1>
+                         <h1>{!$Label.search_results}</h1>
   <table>
                                <apex:repeat value="{!googleResult}" var="result">
                                     <tr><td>

@@ -1,7 +1,7 @@
 <apex:component controller="FAPortfolioController">
     <apex:outputText rendered="{!controller.isTrainer}">
     <div class="rightbox bright">
-       <h3>IHRE TRAINER</h3>
+       <h3 style="text-transform: uppercase;">{!$Label.akademie_trainer_your_trainers}</h3>
         <apex:variable var="left" value="true"/>
         <apex:variable var="isFirst" value="true"/>
         <div style="height: 150px;">

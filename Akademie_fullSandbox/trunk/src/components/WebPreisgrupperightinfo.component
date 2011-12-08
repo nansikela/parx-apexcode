@@ -18,7 +18,7 @@
   
   
       <!-- Ansprechpartner -->
-        <h2 class="c">{!$Label.akademie_customer_service}</h2>
+        <h2 class="c" style="text-transform: uppercase;">{!$Label.akademie_customer_service}</h2>
         <apex:outputText rendered="{!IF(currentProductgruppe.Ansprechpartner__c != null, true, false)}">
             <strong>{!currentProductgruppe.Ansprechpartner__r.Vorname__c} {!currentProductgruppe.Ansprechpartner__r.name}</strong>
             <p class="mail">

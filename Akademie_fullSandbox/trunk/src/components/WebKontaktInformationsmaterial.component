@@ -3,22 +3,22 @@
  
       <apex:form >
           <apex:inputField value="{!websiteLead.Management_Guide_bestellen__c}" styleClass="checkbox" />
-          <label class="lbl_checkbox">Management Guide 2011</label>
+          <label class="lbl_checkbox">{!$Label.akademie_management_guide_2012} {!$Label.akademie_management_guide_2012_line2}</label>
           
           <apex:inputField id="management" value="{!websiteLead.Interesse_an_General_Management_Programm__c}" styleClass="checkbox"  />
-          <label class="lbl_checkbox">General Management Programm</label>
+          <label class="lbl_checkbox">{!$Label.akademie_contact_interested_in_General_Management_Programm}</label>
           
           <apex:inputField value="{!websiteLead.Akademie_Inhouse_Brosch_re_bestellen__c}" styleClass="checkbox" />
-          <label class="lbl_checkbox">Akademie Inhouse Broschüre</label>
+          <label class="lbl_checkbox">{!$Label.akademie_contact_interested_in_inhouse_material}</label>
           
           <apex:inputField value="{!websiteLead.Akademie_Studie_bestellen__c}" styleClass="checkbox" />
-          <label class="lbl_checkbox">Akademie-Studie 2010</label>
+          <label class="lbl_checkbox">{!$Label.akademie_survey_2010}</label>
           
           <apex:inputField value="{!websiteLead.Interesse_an_Seminars_in_Englisch__c}" styleClass="checkbox"/>
-          <label class="lbl_checkbox">Seminars in English</label>
+          <label class="lbl_checkbox">{!$Label.akademie_contact_interested_in_Seminars_in_English}</label>
          
           <apex:inputField value="{!websiteLead.Interesse_an_Trainerausbildung__c}" styleClass="checkbox"/>
-          <label class="lbl_checkbox">Ausbildung zum Trainer</label>
+          <label class="lbl_checkbox">{!$Label.akademie_contact_interested_in_Trainerausbildung}</label>
 
           
           <div class="spacer_big"></div>

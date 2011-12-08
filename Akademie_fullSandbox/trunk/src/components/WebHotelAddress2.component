@@ -1,6 +1,6 @@
 <apex:component controller="WebHotelDetailController">
 <div class="rightbox bright">
-        <h3>ANSCHRIFT</h3>
+        <h3 style="text-transform: uppercase;">{!$Label.address}</h3>
         <p>
           {!HotelInformation.name}<br/>
           {!HotelInformation.account__r.BillingStreet}<br/>
@@ -9,6 +9,6 @@
         <p class="tel">{!HotelInformation.account__r.Phone}</p>
         <p class="fax">{!HotelInformation.account__r.Fax}</p>
 
-        <span class="seminar_all"><a title="{!HotelInformation.name}" target="_blank" href="http://{!HotelInformation.account__r.Website}">zur Hotel-Website</a></span>
+        <span class="seminar_all"><a title="{!HotelInformation.name}" target="_blank" href="http://{!HotelInformation.account__r.Website}">{!$Label.akademie_workshop_hotels_go_to_hotel_website}</a></span>
 </div>
 </apex:component>

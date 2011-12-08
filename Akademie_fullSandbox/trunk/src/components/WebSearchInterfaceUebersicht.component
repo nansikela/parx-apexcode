@@ -1,7 +1,7 @@
 <apex:component controller="WebSearchingFacade">
 <apex:form >
 <fieldset class="line_space">
-        <div><label>Stichwort</label><apex:inputText value="{!textsearch}"  onclick="this.value='';"/>
+        <div><label>Stichwort2</label><apex:inputText value="{!textsearch}"  onclick="this.value='';"/>
 </div>
         <div>
           <label>Region</label>

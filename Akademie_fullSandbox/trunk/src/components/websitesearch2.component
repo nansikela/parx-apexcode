@@ -1,5 +1,5 @@
 <apex:component controller="WebGoogleSiteSearch" allowDML="true"   >
-  <h1>Suchergebnisse</h1>
+  <h1>{!$Label.search_results}</h1>
   <table>
                                <apex:repeat value="{!googleResult}" var="result">
                                     <tr><td>

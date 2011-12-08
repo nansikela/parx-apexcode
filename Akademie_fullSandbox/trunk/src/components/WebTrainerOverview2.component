@@ -1,6 +1,6 @@
 <apex:component controller="FATrainerOverview">
-  <h1>Trainer und Berater</h1>
-  <p>Über 100 erfahrene und spezialisierte Trainerinnen und Trainer der Akademie für Führungskräfte vermitteln Ihnen nicht nur Theorie- und Fachwissen, sondern unterstützen methodisch das nachhaltige Lernen für Ihre berufliche Praxis. Für Informationen zu den einzelnen Trainerinnen und Trainern klicken Sie bitte auf den entsprechenden Namen in der alphabetischen Übersicht.</p>
+  <h1>{!$Label.akademie_trainer_and_consultants}</h1>
+  <p>{!$Label.akademie_trainer_and_consultants_text}</p>
   <ul class="abc_greybox">
       <li><a href="javascript:;">A</a></li>
       <li><a href="javascript:;">B</a></li>
@@ -34,7 +34,7 @@
           <img src="{!URLFOR($resource.ContactImages, t.bild)}" height="50" width="40"  />
           <strong>{!t.name}</strong><br/>
           {!t.titel}<br/>
-          <a href="{!t.url}">Details anzeigen</a>
+          <a href="{!t.url}">{!$Label.akademie_workshops_details} {!$Label.show}</a>
        </li>   
       </apex:repeat>
  </ul>

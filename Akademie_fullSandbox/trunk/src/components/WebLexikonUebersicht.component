@@ -1,10 +1,10 @@
 <apex:component >
 <div class="content_headline">
-        <div class="textline"><h1>Akademie Lexikon</h1></div>
+        <div class="textline"><h1>{!$Label.akademie_dictionary}</h1></div>
 
       </div> 
       <p>
-        Mit diesem Lexikon wollen wir Ihnen den Weg durch den Dschungel der Fachbegriffe ein wenig erleichtern. Wenn Sie bei uns einem Begriff begegnen, den Sie im hier vermissen, schreiben Sie uns! Wir werden ihn gern aufnehmen.
+        {!$Label.akademie_dictionary_text}
       </p>
       
             <c:WebLexikonGreyBox ></c:WebLexikonGreyBox>

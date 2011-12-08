@@ -5,7 +5,7 @@
     <div class="site_wrapper">
         <div class="header">
             <a href="/" id="logo" title="{!$Label.go_to_start_page}">
-                Die Akademie für Führungskräfte
+                {!$Label.akademie_fuehrungskraefte}
             </a>
             
             <c:webcookie />

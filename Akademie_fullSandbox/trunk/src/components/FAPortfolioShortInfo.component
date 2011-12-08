@@ -13,7 +13,7 @@
         </div>
         <apex:outputText rendered="{!IsBookingURL}">
         <div class="bookingButton">
-            <a href="{!BookingURL}" id="buttonSeminarBuchen">Hier Buchen</a>
+            <a href="{!BookingURL}" id="buttonSeminarBuchen">{!$Label.book_here}</a>
         </div>
         </apex:outputText>
         

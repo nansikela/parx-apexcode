@@ -1,9 +1,9 @@
 <apex:component controller="FAKalender" >
   <!-- Begin Default Content REMOVE THIS -->
-  <h1>Ergebnisse Seminar-Suche</h1>
+  <h1>{!$Label.akademie_workshop_search_results}</h1>
   
   <apex:outputText rendered="{!IF(AND(isGroupResult, NOT(isRegion)), true, false)}">
-      <h2>Intensivseminare</h2>
+      <h2>{!$Label.akademie_workshop_type_intensive}</h2>
       <apex:dataTable value="{!groups}" var="seminar">
            <apex:column >
                    <a href="{!seminar.URL__c}">{!seminar.name}</a>
@@ -12,7 +12,7 @@
                   {!seminar.Name__c}
               </apex:column>
               <apex:column >
-                  <a href="{!seminar.url__c}">Details</a><br />
+                  <a href="{!seminar.url__c}">{!$Label.akademie_workshops_details}</a><br />
                   
               </apex:column>
       </apex:dataTable>
@@ -29,10 +29,10 @@
                   {!seminar.datum}
               </apex:column>
               <apex:column >
-                  {!seminar.titel} <br/> <i>Veranstaltungsort: {!seminar.ort}</i>
+                  {!seminar.titel} <br/> <i>{!$Label.akademie_workshop_venue}: {!seminar.ort}</i>
               </apex:column>
               <apex:column >
-                  <a href="{!seminar.url}">Details</a><br />
+                  <a href="{!seminar.url}">{!$Label.akademie_workshops_details}</a><br />
                   
               </apex:column>
           </apex:dataTable>
@@ -42,7 +42,7 @@
   
   
   <apex:outputText rendered="{!IF(AND(isGroupResult, isRegion), true, false)}">
-      <h2>Diese Intensivseminare könnten Sie interessieren:</h2>
+      <h2>{!$Label.akademie_workshops_search_suggestion}:</h2>
       <apex:dataTable value="{!groups}" var="seminar">
            <apex:column >
                    <a href="{!seminar.URL__c}">{!seminar.name}</a>
@@ -51,18 +51,18 @@
                   {!seminar.Name__c}
               </apex:column>
               <apex:column >
-                  <a href="{!seminar.url__c}">Details</a><br />
+                  <a href="{!seminar.url__c}">{!$Label.akademie_workshops_details}</a><br />
                   
               </apex:column>
       </apex:dataTable>
   </apex:outputText>
   
   <apex:outputText rendered="{!IF(isResult== false, true, false)}">
-      <h2>Keine Ergebnisse gefunden.</h2>
+      <h2>{!$Label.search_no_results_found}</h2>
       <apex:pageBlock >
           <apex:pageBlockSection columns="1">
               <apex:pageBlockSectionItem >
-                  Bitte passen Sie rechts Ihre Einstellungen an oder kontaktieren Sie uns direkt. <br/>
+                  {!$Label.akademie_workshops_search_no_results_found_text} <br/>
                   <a style="color: #8A1544;" href="/die-akademie/kontakt">http://www.die-akademie.de/die-akademie/kontakt</a>
               </apex:pageBlockSectionItem>
           </apex:pageBlockSection>

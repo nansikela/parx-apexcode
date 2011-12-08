@@ -2,147 +2,147 @@
     <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" charset="UTF-8"></script>
     <style type="text/css">
-		/* adopt Datepicker */
-		.ui-widget { font-family: Arial, Verdana, Tahoma, Sans-Serif; font-size: 0.9em; } /* IE7, IE8, Firefox fix*/
-		.ui-datepicker { width: 170px; padding: .1em .1em 0; } // 170=178 (fieldlength) - 8 (padding-left + padding-right)
-		.ui-datepicker .ui-datepicker-header { position:relative; padding:.1em 0; }
-		.ui-datepicker .ui-datepicker-title { margin: 0 1.5em; line-height: 1.8em; text-align: center; font-weight:normal }
-		/* disable weekdays */
-		.ui-datepicker th { display: none;}
-		/* bring dialog to front */
-		#ui-datepicker-div { z-index: 1!important; padding-left: 4px; padding-right: 4px;}
-		.ui-datepicker-header {background-color: white!important; background-image:none; border-width: 0px; }
-		.ui-datepicker tbody {background-color:#EDECE9;}
-		.ui-datepicker td a { text-align: center; }
-		a.ui-state-default {background-image:none!important; background-color:white!important;}
-		/* todays date */
-		a.ui-state-highlight, .ui-datepicker-today  {color: #8A1544!important; background-color:white!important; font-weight:bold!important; border-color: lightGray!important; }
-		/* selected date */
-		a.ui-state-active, .ui-datepicker-current-day {color: white!important; background-color: #8A1544!important; font-weight:bold!important; border-color: #8A1544!important;}
-		/* Disable Corner radius */
-		.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { -moz-border-radius-topleft: 0px/*{cornerRadius}*/; -webkit-border-top-left-radius: 0px/*{cornerRadius}*/; -khtml-border-top-left-radius: 0px/*{cornerRadius}*/; border-top-left-radius: 0px/*{cornerRadius}*/; }
-		.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { -moz-border-radius-topright: 0px/*{cornerRadius}*/; -webkit-border-top-right-radius: 0px/*{cornerRadius}*/; -khtml-border-top-right-radius: 0px/*{cornerRadius}*/; border-top-right-radius: 0px/*{cornerRadius}*/; }
-		.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { -moz-border-radius-bottomleft: 0px/*{cornerRadius}*/; -webkit-border-bottom-left-radius: 0px/*{cornerRadius}*/; -khtml-border-bottom-left-radius: 0px/*{cornerRadius}*/; border-bottom-left-radius: 0px/*{cornerRadius}*/; }
-		.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { -moz-border-radius-bottomright: 0px/*{cornerRadius}*/; -webkit-border-bottom-right-radius: 0px/*{cornerRadius}*/; -khtml-border-bottom-right-radius: 0px/*{cornerRadius}*/; border-bottom-right-radius: 0px/*{cornerRadius}*/; }
-		.ui-widget-content { border: 0px; }
-		/* change the icons for previous and next month in datepicker */
-		.ui-icon-circle-triangle-e { background-position: -32px -16px; }
-		.ui-icon-circle-triangle-w { background-position: -96px -16px; }
-		
-		/* style for option fields */
-		/* all form DIVs have position property set to relative so we can easily position newly created SPAN */
-		form div{position:relative;} 
-		
-		/* setting the width and height of the SELECT element to match the replacing graphics */
-		select.optionfield{
-		    position:relative;
-		    z-index:10;
-		    width:180px !important;
-		    height:22px !important;
-		    line-height:22px;
-		}
-		
-		/* dynamically created SPAN, placed below the SELECT */
-		span.optionfield{
-		    position:absolute;
-		    bottom:0;
-		    float:left;
-		    left:0;
-		    width:180px;
-		    height:22px;
-		    line-height:22px;
-		    text-indent:10px;
-		    font-size: 12px;
-		    cursor:default;
-		    z-index:1;
-			}
-		span.optionfieldDropdownRegion{
-			background: url('{!URLFOR($Resource.web_style2, 'i/directsearch_dropdown.png')}') no-repeat 0 0;
-		}
-		span.optionfieldDropdownCity{
-			background: url('{!URLFOR($Resource.web_style2, 'i/directsearch_dropdown_inactive.png')}') no-repeat 0 0;
-		}
-		.activeDropdown {
-			background: url('{!URLFOR($Resource.web_style2, 'i/directsearch_dropdown.png')}') no-repeat 0 0!important;
-		}
-		
-		
-		/* IE 7 fix with floats */
-		div#fromdate input {
-			float: left;
-		}
-		
-		/* IE 7 fix font-size in input elements */
-		input.optionfield { font-size: 12px; }
-	</style>
-	<script type="text/javascript">
-	
-	/* datepicker */	
-	function showDatePicker(){
-		var pos=$("#iconcalender").offset();
-		var posLeft=pos["left"] - 157; // $(".ui-datepicker").css("width") + $("#iconcalender").css("width") - padding-right;
-		var posTop=pos["top"] + 30;
-		var monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
-		var opts={"showAnim": "slideDown", "dateFormat": 'dd,mm,yy', "showButtonPanel": false, monthNames: monthNames};
-		$('.date-picker').datepicker("dialog" , getDateFromInput(), setDate, opts, [posLeft,posTop]);
-	};
+        /* adopt Datepicker */
+        .ui-widget { font-family: Arial, Verdana, Tahoma, Sans-Serif; font-size: 0.9em; } /* IE7, IE8, Firefox fix*/
+        .ui-datepicker { width: 170px; padding: .1em .1em 0; } // 170=178 (fieldlength) - 8 (padding-left + padding-right)
+        .ui-datepicker .ui-datepicker-header { position:relative; padding:.1em 0; }
+        .ui-datepicker .ui-datepicker-title { margin: 0 1.5em; line-height: 1.8em; text-align: center; font-weight:normal }
+        /* disable weekdays */
+        .ui-datepicker th { display: none;}
+        /* bring dialog to front */
+        #ui-datepicker-div { z-index: 1!important; padding-left: 4px; padding-right: 4px;}
+        .ui-datepicker-header {background-color: white!important; background-image:none; border-width: 0px; }
+        .ui-datepicker tbody {background-color:#EDECE9;}
+        .ui-datepicker td a { text-align: center; }
+        a.ui-state-default {background-image:none!important; background-color:white!important;}
+        /* todays date */
+        a.ui-state-highlight, .ui-datepicker-today  {color: #8A1544!important; background-color:white!important; font-weight:bold!important; border-color: lightGray!important; }
+        /* selected date */
+        a.ui-state-active, .ui-datepicker-current-day {color: white!important; background-color: #8A1544!important; font-weight:bold!important; border-color: #8A1544!important;}
+        /* Disable Corner radius */
+        .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { -moz-border-radius-topleft: 0px/*{cornerRadius}*/; -webkit-border-top-left-radius: 0px/*{cornerRadius}*/; -khtml-border-top-left-radius: 0px/*{cornerRadius}*/; border-top-left-radius: 0px/*{cornerRadius}*/; }
+        .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { -moz-border-radius-topright: 0px/*{cornerRadius}*/; -webkit-border-top-right-radius: 0px/*{cornerRadius}*/; -khtml-border-top-right-radius: 0px/*{cornerRadius}*/; border-top-right-radius: 0px/*{cornerRadius}*/; }
+        .ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { -moz-border-radius-bottomleft: 0px/*{cornerRadius}*/; -webkit-border-bottom-left-radius: 0px/*{cornerRadius}*/; -khtml-border-bottom-left-radius: 0px/*{cornerRadius}*/; border-bottom-left-radius: 0px/*{cornerRadius}*/; }
+        .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { -moz-border-radius-bottomright: 0px/*{cornerRadius}*/; -webkit-border-bottom-right-radius: 0px/*{cornerRadius}*/; -khtml-border-bottom-right-radius: 0px/*{cornerRadius}*/; border-bottom-right-radius: 0px/*{cornerRadius}*/; }
+        .ui-widget-content { border: 0px; }
+        /* change the icons for previous and next month in datepicker */
+        .ui-icon-circle-triangle-e { background-position: -32px -16px; }
+        .ui-icon-circle-triangle-w { background-position: -96px -16px; }
+        
+        /* style for option fields */
+        /* all form DIVs have position property set to relative so we can easily position newly created SPAN */
+        form div{position:relative;} 
+        
+        /* setting the width and height of the SELECT element to match the replacing graphics */
+        select.optionfield{
+            position:relative;
+            z-index:10;
+            width:180px !important;
+            height:22px !important;
+            line-height:22px;
+        }
+        
+        /* dynamically created SPAN, placed below the SELECT */
+        span.optionfield{
+            position:absolute;
+            bottom:0;
+            float:left;
+            left:0;
+            width:180px;
+            height:22px;
+            line-height:22px;
+            text-indent:10px;
+            font-size: 12px;
+            cursor:default;
+            z-index:1;
+            }
+        span.optionfieldDropdownRegion{
+            background: url('{!URLFOR($Resource.web_style2, 'i/directsearch_dropdown.png')}') no-repeat 0 0;
+        }
+        span.optionfieldDropdownCity{
+            background: url('{!URLFOR($Resource.web_style2, 'i/directsearch_dropdown_inactive.png')}') no-repeat 0 0;
+        }
+        .activeDropdown {
+            background: url('{!URLFOR($Resource.web_style2, 'i/directsearch_dropdown.png')}') no-repeat 0 0!important;
+        }
+        
+        
+        /* IE 7 fix with floats */
+        div#fromdate input {
+            float: left;
+        }
+        
+        /* IE 7 fix font-size in input elements */
+        input.optionfield { font-size: 12px; }
+    </style>
+    <script type="text/javascript">
+    
+    /* datepicker */    
+    function showDatePicker(){
+        var pos=$("#iconcalender").offset();
+        var posLeft=pos["left"] - 157; // $(".ui-datepicker").css("width") + $("#iconcalender").css("width") - padding-right;
+        var posTop=pos["top"] + 30;
+        var monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+        var opts={"showAnim": "slideDown", "dateFormat": 'dd,mm,yy', "showButtonPanel": false, monthNames: monthNames};
+        $('.date-picker').datepicker("dialog" , getDateFromInput(), setDate, opts, [posLeft,posTop]);
+    };
 
-	function getDateFromInput(){
-		var day = $("#from_day").val();
-      	var month = $("#from_month").val() - 1;
-      	var year = $("#formpart_year").val();
-      	return new Date(year, month, day);
-	};
+    function getDateFromInput(){
+        var day = $("#from_day").val();
+        var month = $("#from_month").val() - 1;
+        var year = $("#formpart_year").val();
+        return new Date(year, month, day);
+    };
 
-	function setDate(myDate){
-		var strFilled;
-      	strFilled=myDate.split(',');
-      	$("#from_day").val(strFilled[0]);
-      	$("#from_month").val(strFilled[1]);
-      	$("#formpart_year").val(strFilled[2]);
-	};
-	
-	function initDate(){
-		var today = new Date();
-		var month = today.getMonth() + 1; // starts width 0
-		setDate(today.getDate() + "," + month + "," + today.getFullYear());
-	};
-	
-	$(document).ready(function(){
-		initDate();
-		
-	    if (!$.browser.opera) {
-	
-	        $('select.optionfieldDropdownRegion').each(function(){
-	            var title = $(this).attr('title');
-	            if( $('option:selected', this).val() != ''  ) title = $('option:selected',this).text();
-	            $(this)
-	                .css({'z-index':10,'opacity':0,'-khtml-appearance':'none'})
-	                .after('<span class="optionfield optionfieldDropdownRegion">' + title + '</span>')
-	                .change(function(){
-	                    val = $('option:selected',this).text();
-	                    $(this).next().text(val);
-	                    })
-	        });
-	        
-	       	$('select.optionfieldDropdownCity').each(function(){
-	            var title = $(this).attr('title');
-	            if( $('option:selected', this).val() != ''  ) title = $('option:selected',this).text();
-	            $(this)
-	                .css({'z-index':10,'opacity':0,'-khtml-appearance':'none'})
-	                .after('<span class="optionfield optionfieldDropdownCity">' + title + '</span>')
-	                .change(function(){
-	                    val = $('option:selected',this).text();
-	                    $(this).next().text(val);
-	                    })
-	        });
-	
-	    };
-			
-	});
- 	</script>
- 	
-	<div class="direct_search">
+    function setDate(myDate){
+        var strFilled;
+        strFilled=myDate.split(',');
+        $("#from_day").val(strFilled[0]);
+        $("#from_month").val(strFilled[1]);
+        $("#formpart_year").val(strFilled[2]);
+    };
+    
+    function initDate(){
+        var today = new Date();
+        var month = today.getMonth() + 1; // starts width 0
+        setDate(today.getDate() + "," + month + "," + today.getFullYear());
+    };
+    
+    $(document).ready(function(){
+        initDate();
+        
+        if (!$.browser.opera) {
+    
+            $('select.optionfieldDropdownRegion').each(function(){
+                var title = $(this).attr('title');
+                if( $('option:selected', this).val() != ''  ) title = $('option:selected',this).text();
+                $(this)
+                    .css({'z-index':10,'opacity':0,'-khtml-appearance':'none'})
+                    .after('<span class="optionfield optionfieldDropdownRegion">' + title + '</span>')
+                    .change(function(){
+                        val = $('option:selected',this).text();
+                        $(this).next().text(val);
+                        })
+            });
+            
+            $('select.optionfieldDropdownCity').each(function(){
+                var title = $(this).attr('title');
+                if( $('option:selected', this).val() != ''  ) title = $('option:selected',this).text();
+                $(this)
+                    .css({'z-index':10,'opacity':0,'-khtml-appearance':'none'})
+                    .after('<span class="optionfield optionfieldDropdownCity">' + title + '</span>')
+                    .change(function(){
+                        val = $('option:selected',this).text();
+                        $(this).next().text(val);
+                        })
+            });
+    
+        };
+            
+    });
+    </script>
+    
+    <div class="direct_search">
       <h3>DIREKTEINSTIEG</h3>
       <form method="post" style="padding-top:0px;">
       <apex:outputText id="seminartitle" value="Seminarcode / Titel" style="text-style: bold;"/>
@@ -170,8 +170,8 @@
           <input type="text" class="optionfield optionfieldYear" id="formpart_year" onfocus="this.select()" />
           <img id="iconcalender" src="{!URLFOR($Resource.web_style2,'/i/icon_calendar.png')}" alt="Kalender" class="iconcalenderDirectSearch" onclick="showDatePicker()" />
           <input type="hidden" class="date-picker" id="startDate" />
-          	<!-- <apex:outputLink value="showDatePicker" id="datepicking" onclick="showDatePicker()"> -->
-		<!-- </apex:outputLink> -->
+            <!-- <apex:outputLink value="showDatePicker" id="datepicking" onclick="showDatePicker()"> -->
+        <!-- </apex:outputLink> -->
         </div>
         </div>
             <input class="submitbtn" style="padding-left: 39px;" id="quicksearchButton" name="submit" src="{!URLFOR($Resource.web_style2,'/i/btn_directsearch_send.png')}" type="image" value="submit" />

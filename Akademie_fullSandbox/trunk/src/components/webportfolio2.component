@@ -5,23 +5,23 @@
       }
   </style>
     
-    <b>{!currentPortfolio.name} {!IF(currentPortfolio.neu__c,' NEU', '')}</b>
+    <b>{!currentPortfolio.name} {!IF(currentPortfolio.neu__c, ' ' + $Label.NEW, '')}</b>
     <h1 itemprop="name">{!currentPortfolio.Seminartitel__c}</h1>
-    <i><a href="#bewertung" class="stars"><img src="/resource/1311154850000/web_style/i/stars_{!Stars}.gif" alt="{!Stars} von 5" /> (<span itemprop="reviewCount">{!BewertungCount}</span> {!IF(Bewertungcount = '1', 'Bewertung', 'Bewertungen')})</a></i>
+    <i><a href="#bewertung" class="stars"><img src="/resource/1311154850000/web_style/i/stars_{!Stars}.gif" alt="{!Stars} {!$Label.of} 5" /> (<span itemprop="reviewCount">{!BewertungCount}</span> {!IF(Bewertungcount = '1', $Label.akademie_workshops_rating, $Label.akademie_workshops_ratings)})</a></i>
     <span itemprop="description">
     <apex:outputText value="{!substitute(substitute(currentPortfolio.Beschreibung__c, '<strong>','<h2>'),'</strong>','</h2>')}" escape="false" />
     </span>
     <br />
-    <h2 class="termine">Termine</h2>
+    <h2 class="termine">{!$Label.Termine}</h2>
     <apex:dataTable rendered="{!IsSeminar}" value="{!SeminarList}" var="seminar">
-        <apex:column value="{!seminar.datum}" headerValue="{!'Datum'}"/>
-        <apex:column headerValue="{!'Ort'}">
+        <apex:column value="{!seminar.datum}" headerValue="{!$Label.date}"/>
+        <apex:column headerValue="{!$Label.place}">
             <a href="{!seminar.ortUrl}">{!seminar.ort}</a>
         </apex:column>
-        <apex:column headerValue="{!'Trainer'}" styleClass="trainerRow">
+        <apex:column headerValue="{!$Label.akademie_trainer}" styleClass="trainerRow">
             <apex:outputText value="{!seminar.trainer}" escape="false"></apex:outputText>
         </apex:column>
-        <apex:column headerValue="{!IF(currentPortfolio.Buchen_deaktivieren__c,'', 'Buchen')}">
+        <apex:column headerValue="{!IF(currentPortfolio.Buchen_deaktivieren__c,'', $Label.akademie_workshops_book_here_short)}">
             <apex:outputText value="{!seminar.buchen}" rendered="{!IF(currentPortfolio.Buchen_deaktivieren__c,'false', 'true')}" escape="false"></apex:outputText>
         </apex:column>
     </apex:dataTable>    
@@ -30,9 +30,9 @@
     <apex:outputText rendered="{!IF(BewertungCount= '0', false, true)}">
       <span itemprop="reviews" itemscope="" itemtype="http://schema.org/Review">  
         <div id="ratinghead">
-        <h2 class="rating">Bewertungen</h2>
+        <h2 class="rating">{!$Label.akademie_workshops_ratings}</h2>
         
-        <a name="bewertung" class="stars r"><img src="/resource/1311154850000/web_style/i/stars_{!Stars}.gif" alt="{!Stars} von 5" /> (<span itemprop="reviewCount">{!BewertungCount}</span> {!IF(Bewertungcount = '1', 'Bewertung', 'Bewertungen')})</a>
+        <a name="bewertung" class="stars r"><img src="/resource/1311154850000/web_style/i/stars_{!Stars}.gif" alt="{!Stars} {!$Label.of} 5" /> (<span itemprop="reviewCount">{!BewertungCount}</span> {!IF(Bewertungcount = '1', $Label.akademie_workshops_rating, $Label.akademie_workshops_ratings)})</a>
         
         </div>
         

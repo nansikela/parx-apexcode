@@ -40,7 +40,7 @@
             <div class = "textline">
                 <h1>{!portfolio.Seminartitel__c}</h1>
                 <p class="headline_submenu">
-                  <span class="active">{!$Label.akademie_workshops_intensive_programs}</span>
+                  <span class="active">{!$Label.akademie_workshops_intensive_program}</span>
                 </p>
             </div>
             <!--EndHeadline-->

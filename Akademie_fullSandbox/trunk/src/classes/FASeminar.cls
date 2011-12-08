@@ -32,7 +32,7 @@ public class FASeminar {
 	final static private String inhouseQuery = 'SELECT id, Enddatum__c, Portfolio2__r.name, Portfolio2__r.seminartitel__c, Beginndatum__c, Veranstaltungsort__c, Reservierungen__c, Max_Teilnehmerzahl__c, Anmeldungen__c, Portfolio2__c, Portfolio2__r.URL__c, Portfolio2__r.web_preis__c,  (Select Id, d.Dozent__r.Sprechende_URL__c, d.Dozent__r.FirstName, d.Dozent__r.LastName, d.Dozent__c From Dozenteneins_tze_Inhouse__r d) FROM Inhouse_Produkt__c ';
 	final static private String product2Query = 'SELECT ID,  ez_Preis__c, hotel__c, Seminar__r.name, seminar__r.Seminarort__c, seminar__r.Seminarort__r.sprechende_url__c, dz_Preis__c, Seminar__c, portfolio__r.name, portfolio__r.Web_Preis__c, seminar__r.id, Seminar__r.Seminarbeginn__c, Ort__c, Seminar__r.Seminarende__c, seminar__r.Trainer__c ,seminar__r.Trainer__r.Titel_Anrede__c, seminar__r.Co_Trainer__r.Titel_Anrede__c , seminar__r.Trainer__r.Firstname, seminar__r.Trainer__r.Lastname, seminar__r.CO_Trainer__c, seminar__r.CO_Trainer__r.Firstname, seminar__r.CO_Trainer__r.Lastname, seminar__r.Restpl_tze__c, Portfolio__r.url__c, Portfolio__r.seminartitel__c, seminar__r.Trainer__r.sprechende_Url__c, seminar__r.Co_Trainer__r.sprechende_Url__c FROM Seminar_to_Portfolio__c';
 	final static private String weProduct2Queray = 'SELECT ID, Inhouse_Seminar__c, Status_Code__c, Inhouse_Seminar__r.id, Inhouse_Seminar__r.Enddatum__c, Inhouse_seminar__r.Portfolio2__r.name, Inhouse_Seminar__r.Portfolio2__r.seminartitel__c, Inhouse_Seminar__r.Beginndatum__c, Inhouse_Seminar__r.Veranstaltungsort__c, Inhouse_Seminar__r.Reservierungen__c, Inhouse_Seminar__r.Max_Teilnehmerzahl__c, Inhouse_Seminar__r.Anmeldungen__c, Inhouse_Seminar__r.Portfolio2__c, Inhouse_Seminar__r.Portfolio2__r.URL__c, Inhouse_Seminar__r.Portfolio2__r.web_preis__c, Seminar__c, Seminar__r.name, seminar__r.Seminarort__c, seminar__r.Seminarort__r.sprechende_url__c, status__c, abreise__c, anreise__c, ez_Preis__c, Einzelzimmer__c, Doppelzimmer__c, Hotelreservierung__c, hotel__c, dz_Preis__c, ist_Reservierung__c, portfolio__r.Web_Preis__c, ort__c, seminar__r.id, Seminar__r.Seminarbeginn__c, Seminar__r.Seminarende__c, seminar__r.Trainer__c , seminar__r.Trainer__r.Firstname, seminar__r.Trainer__r.Lastname, seminar__r.CO_Trainer__c, seminar__r.CO_Trainer__r.Firstname, seminar__r.CO_Trainer__r.Lastname, seminar__r.Restpl_tze__c, Portfolio__r.url__c, Portfolio__r.name, Portfolio__r.Inhouse_Seminar__c, Portfolio__r.seminartitel__c, seminar__r.Trainer__r.sprechende_Url__c, seminar__r.Trainer__r.Titel_Anrede__c, seminar__r.Co_Trainer__r.Titel_Anrede__c, seminar__r.Co_Trainer__r.sprechende_Url__c FROM Warenkorb_Element__c';
-	final static private String NICHTVERFUEGBAR = 'Nicht verfügbar';
+	final static private String NICHTVERFUEGBAR = Label.not_available;
 	
 	public FASeminar()
 	{
@@ -92,9 +92,9 @@ public class FASeminar {
 			{
 				if(trainer!= '')
 				{
-					trainer= ' und ';
+					trainer= ' ' + Label.and;
 				}
-				 trainer += '<a href= \"'+d.Dozent__r.sprechende_Url__c+'\">'+d.Dozent__r.Firstname +' '+d.Dozent__r.Lastname+'</a>';
+				 trainer += ' <a href= \"'+d.Dozent__r.sprechende_Url__c+'\">'+d.Dozent__r.Firstname +' '+d.Dozent__r.Lastname+'</a>';
 			}
 		}
 		
@@ -105,11 +105,11 @@ public class FASeminar {
 		if(inhouseProduct.Max_Teilnehmerzahl__c == null) inhouseProduct.Max_Teilnehmerzahl__c = 0;
 		if((inhouseProduct.Anmeldungen__c+inhouseProduct.Reservierungen__c)<inhouseProduct.Max_Teilnehmerzahl__c)
 		{
-			buchen+='Buchen';
+			buchen+=Label.akademie_workshops_book_here_short;
 		}
 		else
 		{
-			buchen+='Warteliste';
+			buchen+=Label.akademie_workshop_waitlist;
 			isAusgebucht = true;
 		}
 		buchen+='</a>';
@@ -139,7 +139,7 @@ public class FASeminar {
 			trainer+= product.Trainer__r.Firstname +' '+product.Trainer__r.Lastname+'</a>';
 			if(product!= null && product.Co_Trainer__c != null)
 			{
-				trainer+= ' und '+'<a href= \"'+product.Co_Trainer__r.sprechende_Url__c+'\">';
+				trainer+= ' ' + Label.and + ' <a href= \"'+product.Co_Trainer__r.sprechende_Url__c+'\">';
 				try
 				{
 					if(product.Co_Trainer__r.Titel_Anrede__c != null)
@@ -174,11 +174,11 @@ public class FASeminar {
 		buchen = '<a href="'+seminarPortfolio.portfolio__r.url__c+'/order?seminar='+product.id+'&step=1">';
 		if(product.Restpl_tze__c>0)
 		{
-			buchen+='Buchen</a>';
+			buchen+= Label.akademie_workshops_book_here_short + '</a>';
 		}
 		else
 		{
-			buchen = '<a href="#">Ausgebucht</a>';
+			buchen = '<a href="#">' + Label.akademie_workshops_fully_booked + '</a>';
 			isAusgebucht = true;
 		}
 		if(seminarPortfolio.ez_preis__c != null)
@@ -217,7 +217,7 @@ public class FASeminar {
 		if(we.ist_Reservierung__c)
 		{
 			isReservierung = true;
-			preis = 'Reservierung';
+			preis = Label.reservation;
 		}
 		
 		isHotelReservierung = we.Hotelreservierung__c;

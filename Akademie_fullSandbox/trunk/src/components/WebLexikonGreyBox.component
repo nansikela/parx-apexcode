@@ -18,7 +18,7 @@
         <tr class=" first">
             <td>{!article.name}</td>
             <td align="right">
-                    <a title="Details" href="{!article.url}">Details</a>
+                    <a title="Details" href="{!article.url}">{!$Label.akademie_workshops_details}</a>
             </td>
         </tr>
         </apex:repeat>

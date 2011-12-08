@@ -6,18 +6,18 @@
       }
   </style>
   
-  <h1>Buchungen</h1>
+  <h1>{!$Label.akademie_bookings}</h1>
    <apex:outputText rendered="{!$CurrentPage.parameters.mode=='abgeschlossen'}">
-       <p>Hier finden Sie Ihre abgeschlossenen Seminare</p>
+       <p>{!$Label.akademie_booking_your_completed_workshops}.</p>
    </apex:outputText>
    <apex:outputText rendered="{!$CurrentPage.parameters.mode=='zukuenftig'}">
-       <p>Hier finden Sie Ihre geplanten Seminare.</p>
+       <p>{!$Label.akademie_booking_your_upcoming_workshops}.</p>
    </apex:outputText>
    <apex:outputText rendered="{!$CurrentPage.parameters.mode=='storno'}">
-       <p>Hier können Sie gebuchte Seminare wieder stornieren.</p>
+       <p>{!$Label.akademie_booking_cancel_your_workshops}.</p>
    </apex:outputText>
    <apex:dataTable value="{!Instance.warenkorbElementList}" var="seminar">
-       <apex:column headerValue="Datum">
+       <apex:column headerValue="{!$Label.date}">
            <apex:outputText value="{0,date,dd.MM.yyyy}">
                <apex:param value="{!seminar.Seminarbeginn__c}" /> 
            </apex:outputText>
@@ -26,13 +26,13 @@
                <apex:param value="{!seminar.Seminarende__c}" /> 
            </apex:outputText> 
        </apex:column>
-       <apex:column headerValue="{!'Seminartitel'}">
+       <apex:column headerValue="{!$Label.akademie_workshop_title}">
            <a href="{!seminar.portfolio__r.URL__c}">{!seminar.portfolio__r.Seminartitel__c}</a>
        </apex:column>
-       <apex:column headerValue="Preis">
-           {!(Text(seminar.portfolio__r.Web_Preis__c))}{!IF((Text(seminar.portfolio__r.Web_Preis__c))=='','Nicht verfügbar',',-')}
+       <apex:column headerValue="{!$Label.Preis}">
+           {!(Text(seminar.portfolio__r.Web_Preis__c))}{!IF((Text(seminar.portfolio__r.Web_Preis__c))=='',$Label.not_available,',-')}
        </apex:column>
-       <apex:column headerValue="Status">
+       <apex:column headerValue="{!$Label.status}">
           {!seminar.Status_Text__c}
        </apex:column>
    </apex:dataTable>
