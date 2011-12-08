@@ -4,7 +4,7 @@
 	<apex:outputPanel layout="block" id="mgmguide" styleClass="management_guide management_guideDiv {!IF(isFirst=='true', 'first','')}">
 		<apex:outputLink id="mgmtguide_link" value="/resource/1315549087000/ManagementGuide2012" styleClass="management_guide">
 	      <apex:outputPanel layout="block" id="mgmtguidetext" styleClass=" mgmtguidetext {!IF(isFirst=='true', 'first','')}">
-	        Management<br/> Guide 2012
+	        {!$Label.akademie_management_guide_2012}<br/>{!$Label.akademie_management_guide_2012_line2}
 	      </apex:outputPanel>
 	      <apex:image value="{!URLFOR($Resource.web_style2,'/i/btn_download.png')}" alt="{!$Label.Download}" styleClass="management_guideImage" />
 	    </apex:outputLink>

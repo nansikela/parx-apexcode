@@ -1,7 +1,7 @@
 <apex:component controller="FARightBoxesController" >
 <apex:attribute name="show" description="The number of repeats" type="String"  assignTo="{!show}"/>
    <div class="rightbox dark">
-       <h3>{!$Label.akademie_workshops_next_workshops}</h3>
+       <h3 style="text-transform: uppercase;">{!$Label.akademie_workshops_next_workshops}</h3>
        <apex:repeat value="{!NextSeminars}" var="seminar">
            <p>{!seminar.datum}</p>
            <a href="{!seminar.url}">{!seminar.titel}</a>

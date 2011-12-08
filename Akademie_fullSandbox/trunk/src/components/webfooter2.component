@@ -1,7 +1,7 @@
 <apex:component >
   <div id="article_footer">
       <div class="article_footer_cell">
-          <span class="navi_up"><a href="#top" title="Zum Seitenanfang">Zum Seitenanfang</a></span>
+          <span class="navi_up"><a href="#top" title="{!$Label.go_to_page_top}">{!$Label.go_to_page_top}</a></span>
           <ul class="">
             
             <li><!-- Dieses Tag in den Head-Bereich oder direkt vor dem schließenden Body-Tag einfügen -->
@@ -10,7 +10,7 @@
                 </script>
                 <!-- Dieses Tag dort einfügen, wo die +1-Schaltfläche dargestellt werden soll -->
                 <apex:outputText value="{!'<g'&':plusone size=\"medium\" count=\"false\"></g:plusone>'}" escape="false" /></li>
-            <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="de">Twittern</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
+            <li><a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-lang="de" alt="{!$Label.tweet}">{!$Label.tweet}</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></li>
             
           </ul>
       </div>

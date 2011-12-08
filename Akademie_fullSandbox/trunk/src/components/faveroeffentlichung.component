@@ -1,7 +1,7 @@
 <apex:component controller="FARightBoxesController">
   <apex:outputText rendered="{!Veroeffentlichung.isVeroeffentlichung}">
   <div class="rightbox bright">
-      <h3>VERÖFFENTLICHUNGEN</h3>
+      <h3 style="text-transform: uppercase;">{!$Label.akademie_publications}</h3>
       <div class="bookcontainer">
       <img height= "69px" weight= "50px" src="{!Veroeffentlichung.Veroeffentlichung.Amazon_Bild__c}" class="book" />
       <p class="bookText"><apex:outputText escape="false" value="{!Veroeffentlichung.Veroeffentlichung.Amazon_HTML_Code__c}"></apex:outputText> </p>

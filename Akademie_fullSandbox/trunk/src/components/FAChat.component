@@ -1,5 +1,5 @@
 <apex:component >
   <div class="rightbox pink chatWindow">
-      <a href="javascript:void(0)" onclick="javascript:window.open('http://www.arccade.de/yalst/index.php?yinit=true&site=1-1','','height=550,width=530')">BERATUNGS-CHAT</a>
+      <a href="javascript:void(0)" onclick="javascript:window.open('http://www.arccade.de/yalst/index.php?yinit=true&site=1-1','','height=550,width=530')" style="text-transform: uppercase;">{!$Label.akademie_consulting_chat}</a>
   </div>
 </apex:component>

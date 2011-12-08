@@ -8,7 +8,7 @@
   
   <div class="l" id="breadcrubSuggestionBar">
       <div class="breadcrumb">
-          <a href="/startseite" >Startseite</a>
+          <a href="/startseite" >{!$Label.start_page}</a>
           <apex:repeat value="{!breadCrumb}" var="bitem">
               <span class="breadcrumbSeperator">{!'>'}</span> <a href="{!bitem.url}">{!bitem.name}</a>
           </apex:repeat>
@@ -17,12 +17,12 @@
       <ul class="artikelnavi">
           <apex:outputText rendered="{!IF($CurrentPage.Parameters.portfolioId != '', 'true', 'false')}">
           <li>
-              <a class="pdf" target="_blank" >PDF</a>
+              <a class="pdf" target="_blank" >{!$Label.PDF}</a>
               
           </li>
          
           <li>
-              <a class="print" target="_blank" >Drucken</a>
+              <a class="print" target="_blank" >{!$Label.print}</a>
               
           </li>
           <script>
@@ -31,7 +31,7 @@
           </script>
           </apex:outputText>
           <li>
-              <a class="basket" href="/warenkorb">Warenkorb (0)</a>
+              <a class="basket" href="/warenkorb">{!$Label.akademie_shopping_cart} (0)</a>
           </li>
           </ul>
   </div>

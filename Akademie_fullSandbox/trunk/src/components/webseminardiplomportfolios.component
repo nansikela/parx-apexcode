@@ -1,13 +1,13 @@
 <apex:component controller="WebSeminarDiplom">
     <div class="separator_head">
         
-        <h4 class="l">Seminare</h4>
+        <h4 class="l">{}!$Label.akademie_workshops</h4>
         <div class="c"></div>
       </div>
       <table class="first">
         <tbody><tr>
-          <th class="">Code</th>
-          <th class="">Titel</th>
+          <th class="">{!$Label.akademie_workshops_code}</th>
+          <th class="">{!$Label.Titel}</th>
         </tr>
         <apex:repeat value="{!seminarList}" var="item">
             <tr>
@@ -17,6 +17,6 @@
             </tr>
         </apex:repeat>
       </tbody></table>
-      <p class="comment">Für detaillierte Informationen einfach den entsprechenden Seminarcode anklicken!</p>
+      <p class="comment">{!$Label.akademie_workshops_click_for_information}</p>
       
 </apex:component>

@@ -16,7 +16,7 @@
         <c:webseminarnextveranstaltungen />
     <apex:outputText rendered="{!IF(instance.sdetailContent.bewertungen=='0 Bewertungen', 'false', 'true')}">
         <div id="bewertungHeader">
-        <h3>Bewertungen</h3><a name="Bewertung"></a>
+        <h3>{!$Label.akademie_workshops_ratings}</h3><a name="Bewertung"></a>
         <div>
         <img src="{!URLFOR($Resource.web_style,'i/stars_'+ instance.sdetailContent.sterne +'.gif')}" />
         <a href="#Bewertung">({!instance.sdetailContent.bewertungen})</a>

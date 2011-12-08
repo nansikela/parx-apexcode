@@ -54,7 +54,7 @@
                 <td>
                 </td>
                 <td align="right" width="55px">
-                    <a href="{!data.Sprechende_URL__c}" title="Details">Details</a>
+                    <a href="{!data.Sprechende_URL__c}" title="Details">{!$Label.akademie_workshops_details}</a>
                 </td>
             
             <apex:outputText escape="false" value="{!'</tr>'}"></apex:outputText> 

@@ -38,6 +38,9 @@
 	font-size: 13px !important;
 	padding-bottom: 2px;
 }
+.rightbox h2 {
+	text-transform: uppercase;
+}	
 /*
 .columnStartseite h2 {
 	font-size: 17px;
@@ -46,7 +49,7 @@
 </style>
 <apex:outputPanel styleClass="column columnStartseite" style="padding-right: 0;" layout="block">
    <div class="rightbox rightbox_nextsem">
-       <apex:image id="iconcalender" value="{!URLFOR($Resource.web_style2,'/i/icon_calendar.png')}" styleClass="iconcalender" /><h2>Nächste Seminare</h2>
+       <apex:image id="iconcalender" value="{!URLFOR($Resource.web_style2,'/i/icon_calendar.png')}" styleClass="iconcalender" /><h2>{!$Label.akademie_workshops_next_workshops}</h2>
        <div class="rightbox_leftborder">
 	       <apex:repeat value="{!NextSeminars}" var="seminar">
 	           <apex:outputPanel id="seminaritem" layout="block" styleClass="seminaritem">
@@ -58,7 +61,7 @@
 	       <!-- 
 	       <div class="separator">&nbsp;</div>
 	        -->
-	       <span class="seminar_all"><a href="/seminare/kalender" title="Seminarkalender anzeigen">Seminarkalender anzeigen</a></span>
+	       <span class="seminar_all"><a href="/seminare/kalender" >{!$Label.akademie_workshop_calendar} {!$Label.show}</a></span>
        </div>
    </div>
 </apex:outputPanel>

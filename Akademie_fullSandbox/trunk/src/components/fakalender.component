@@ -1,8 +1,8 @@
 <apex:component controller="FAKalender">
-  <h1>Seminarkalender<apex:outputText rendered="{!IsCity}">: {!headLineCity}</apex:outputText></h1>
-  <p>Hier sehen Sie die kommenden Seminare. Wenn Sie die Termine für einen bestimmten Zeitraum angezeigt kommen wollen, wählen Sie bitte aus.</p>
-  <apex:outputText rendered="{!IsCity}"><p><ul><li><a href="/seminare/kalender/{!fromDateString}">Alle Seminarorte anzeigen</a></li></ul></p></apex:outputText>
-  <h2>Termine ab</h2>
+  <h1>{!$Label.akademie_workshop_calendar}<apex:outputText rendered="{!IsCity}">: {!headLineCity}</apex:outputText></h1>
+  <p>{!$Label.akademie_workshop_calendar_text}</p>
+  <apex:outputText rendered="{!IsCity}"><p><ul><li><a href="/seminare/kalender/{!fromDateString}">{!$Label.akademie_workshops_display_all_venues}</a></li></ul></p></apex:outputText>
+  <h2>{!$Label.akademie_dates_starting_from}</h2>
   <select class="formpart_date" id="from_day">
               <option>1</option>
               <option>2</option>
@@ -56,19 +56,19 @@
           </select>
           
           <a class="ui-button-text ui-state-highlight ui-corner-all r" id="anzeigeButton"><img src="{!URLFOR($Resource.web_style2, '/i/btn_show.gif')}"/></a>
-          <h2>Bereich wählen:</h2>
+          <h2>{!$Label.akademie_workshops_choose_category}:</h2>
           <div style="height: 50px;">
           <div class="check_leadership">
-              <input type="checkbox" id="fuehrung" /> <label for="fuehrung">Führung</label>
+              <input type="checkbox" id="fuehrung" /> <label for="fuehrung">{!$Label.akademie_workshop_type_leadership}</label>
           </div>
           <div class="check_strategy">
-              <input type="checkbox" id="persoenlichkeitsentwicklung" /> <label for="persoenlichkeitsentwicklung">Persönlichkeitsentwicklung</label>
+              <input type="checkbox" id="persoenlichkeitsentwicklung" /> <label for="persoenlichkeitsentwicklung">{!$Label.akademie_workshop_type_personality_development}</label>
           </div>
           <div class="check_leadership">
-              <input type="checkbox" id="Managementkompetenz" /> <label for="Managementkompetenz">Managementkompetenz</label>
+              <input type="checkbox" id="Managementkompetenz" /> <label for="Managementkompetenz">{!$Label.akademie_workshop_type_management_competence}</label>
           </div>
           <div class="check_personality">
-              <input type="checkbox" id="ausbildungenbtn" /> <label for="ausbildungenbtn">Ausbildungen</label>
+              <input type="checkbox" id="ausbildungenbtn" /> <label for="ausbildungenbtn">{!$Label.akademie_workshop_type_apprenticeships}</label>
           </div>
           </div>
           <br />
@@ -81,10 +81,10 @@
                   {!seminar.datum}
               </apex:column>
               <apex:column >
-                  {!seminar.titel} <br/> <i>Veranstaltungsort: <a href="/seminare/kalender/{!fromDateString}/{!LOWER(SUBSTITUTE(seminar.ort,' ', '-'))}">{!seminar.ort}</a></i>
+                  {!seminar.titel} <br/> <i>{!$Label.akademie_workshop_venue}: <a href="/seminare/kalender/{!fromDateString}/{!LOWER(SUBSTITUTE(seminar.ort,' ', '-'))}">{!seminar.ort}</a></i>
               </apex:column>
               <apex:column >
-                  <a href="{!seminar.url}">Details</a><br />
+                  <a href="{!seminar.url}">{!$Label.akademie_workshops_details}</a><br />
                   <apex:outputText value="{!'<i>'&seminar.buchen&'</i>'}" escape="false" />
               </apex:column>
           </apex:dataTable>

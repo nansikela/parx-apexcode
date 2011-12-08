@@ -1,6 +1,6 @@
 <apex:component controller="FAHotelSeminar">
     <apex:outputText rendered="{!isCurrentBereichPortfolioList}"> 
-     <h2 class="termine">Seminare</h2>
+     <h2 class="termine">{!$Label.akademie_workshops}</h2>
      <style>
             h2.termine {
             font-size: 1.5em !important;
@@ -14,10 +14,10 @@
               </apex:column>
               <apex:column >
                   {!seminar.Seminartitel__c}
-                  <apex:outpuTText rendered="{!seminar.Neu__c}"><span class=" new"> NEU</span></apex:outpuTText>
+                  <apex:outpuTText rendered="{!seminar.Neu__c}"><span class=" new"> {!$Label.NEW}</span></apex:outpuTText>
               </apex:column>
               <apex:column >
-                  <a href="{!seminar.URL__c}">Details</a>
+                  <a href="{!seminar.URL__c}">{!$Label.akademie_workshops_details}</a>
               </apex:column>
       </apex:dataTable>
       </apex:outputText>
