@@ -12,7 +12,7 @@ public class WebeMailToTeilnehmer
     
     public static Double getPreis(String preis2)
     {
-            Double preis= Double.valueOf(preis2.replace(',-', '').replace(' Reservierung', '').trim());
+            Double preis= Double.valueOf(preis2.replace(',-', '').replace(' ' + Label.reservation, '').trim());
         
         
         return preis;
@@ -72,18 +72,18 @@ public class WebeMailToTeilnehmer
 
                 eMail.setToAddresses(standardEMail.getToAddresses());
                 String eMailText = et.HtmlValue;
-                if(s.preis.contains('Reservierung'))
+                if(s.preis.contains(Label.reservation))
                 {
-                    eMail.setSubject('Ihre Online-Reservierung - Die Akademie');
-                    eMailText = eMailText.replace('XXXBuchungstypXXX', ' Ihr Seminarplatz ist für 10 Tage kostenlos und unverbindlich reserviert. Es gelten unsere AGBs, die Sie <a href = "http://www.die-akademie.de/service/agb"> hier einsehen können</a>.');
-                    eMailText = eMailText.replace('XXXAUFTRAGXXX', 'Ihre Reservierung:');
-                    eMailText = eMailText.replace('XXXPREISXXX', '0,- &nbsp;&nbsp;&nbsp; Reservierung');
+                    eMail.setSubject(Label.akademie_booking_confirmation_your_online_reservation + ' - ' + Label.akademie);
+                    eMailText = eMailText.replace('XXXBuchungstypXXX', ' ' + Label.akademie_booking_confirmation_reservation_for_10_days +' '+ Label.akademie_booking_bind_to_terms1 + ' <a href = "http://www.die-akademie.de/service/agb">' + Label.akademie_booking_bind_to_terms2+'</a>.');
+                    eMailText = eMailText.replace('XXXAUFTRAGXXX', Label.akademie_booking_confirmation_your_reservation+':');
+                    eMailText = eMailText.replace('XXXPREISXXX', '0,- &nbsp;&nbsp;&nbsp; ' + Label.reservation);
                 }
                 else
                 {
-                    eMail.setSubject('Ihre Online-Buchung - Die Akademie');
-                    eMailText = eMailText.replace('XXXBuchungstypXXX', 'herzlichen Dank für Ihren Auftrag. Sie erhalten in Kürze eine schriftliche Bestätigung Ihrer Anmeldung, mit der Ihr Seminarplatz verbindlich gebucht wird. Es gelten unsere AGBs, die Sie <a href = "http://www.die-akademie.de/service/agb"> hier einsehen können</a>.');
-                    eMailText = eMailText.replace('XXXAUFTRAGXXX', 'Ihr Auftrag:');
+                    eMail.setSubject(Label.akademie_booking_confirmation_your_online_booking + ' - ' + Label.akademie);
+                    eMailText = eMailText.replace('XXXBuchungstypXXX', Label.akademie_booking_confirmation_thank_you_for_your_booking +' '+ Label.akademie_booking_bind_to_terms1 + ' <a href = "http://www.die-akademie.de/service/agb">' + Label.akademie_booking_bind_to_terms2+'</a>.');
+                    eMailText = eMailText.replace('XXXAUFTRAGXXX', Label.akademie_booking_confirmation_your_booking + ':');
                 }
                 eMailText = eMailText.replace('XXXCODETITELXXX', s.code+' '+s.titel);
                 if(s.datum != null)
@@ -99,11 +99,11 @@ public class WebeMailToTeilnehmer
                 
                 if((s.dzReservierung != null && s.dzReservierung == true) )
                 {
-                eMailText = eMailText.replace('XXXRESERVATIONXXX', 'Sie reservieren ein DZ von '+s.anreise+' bis '+s.abreise+'.<br/>');
+                eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_double_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
                 }
                 if((s.ezReservierung != null && s.ezReservierung == true) )
                 {
-                eMailText = eMailText.replace('XXXRESERVATIONXXX', 'Sie reservieren ein EZ von '+s.anreise+' bis '+s.abreise+'.<br/>');
+                eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_single_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
                 }
                 eMailText = eMailText.replace('XXXRESERVATIONXXX', '');
                 
@@ -278,7 +278,7 @@ public class WebeMailToTeilnehmer
                     }
                     if(currentPerson.eMail__c != null)
                     {
-                        teilnehmerString+= '<br/>eMail: '+ currentPerson.eMail__c;
+                        teilnehmerString+= '<br/>'+Label.akademie_email+': '+ currentPerson.eMail__c;
                     }
                     
                 eMailText = eMailText.replace('XXXTEILNEHMERXXX', teilnehmerString);

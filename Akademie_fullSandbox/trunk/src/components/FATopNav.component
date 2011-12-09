@@ -2,7 +2,7 @@
     
    
     <!-- Horizontale Navigation -->
-    <div class="headnavi">
+    <div class="headnavi" id="headnavi">
         <ul class="mnavi">
              <apex:repeat value="{!topNaviItem}" var="top">
                  <li class="sub"><a class="caption" href="{!top.url}">{!top.name}</a>

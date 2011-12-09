@@ -17,13 +17,13 @@
   <body>
   <span id="j_id0:j_id2:j_id3:j_id9">
   <div class="site_wrapper">
-    <div class="header"> <a href="/" id="logo" title="Zur Startseite"> Die Akademie f&uuml;r F&uuml;hrungskr&auml;fte </a>
+    <div class="header"> <a href="/" id="logo" title="{!$Label.go_to_start_page}">{!$Label.akademie_fuehrungskraefte}</a>
       <div class="servicenavi">
         <ul>
-          <li><a href="/service/rueckruf">R&uuml;ckruf</a></li>
-          <li><a href="/service/kontakt">Kontakt</a></li>
-          <li><a href="/service/impressum">Impressum</a></li>
-          <li><a href="/service/agb">AGB</a></li>
+          <li><a href="/service/rueckruf">{!$Label.akademie_contact_phone_call_back}</a></li>
+          <li><a href="/service/kontakt">{!$Label.akademie_contact_heading}</a></li>
+          <li><a href="/service/impressum">{!$Label.imprint}</a></li>
+          <li><a href="/service/agb">{!$Label.terms}</a></li>
           
         </ul>
       </div>
@@ -45,7 +45,7 @@
       </span></div>
   </div>
   <div class="FAHomePageContent">
-      <h1>Vossloh Akademie</h1>
+      <h1>{!$Label.Vossloh_Akademie}</h1>
       <p></p>
       
       

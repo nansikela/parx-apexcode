@@ -11,7 +11,7 @@
                     <ul>
                         <li>
                             <div class="caption">{!$Label.Dauer}</div>
-                            <div class="l">{!IF(portfolio.Dauer_in_Tagen__c = 1, '1 Tag', SUBSTITUTE(TEXT(portfolio.Dauer_in_Tagen__c) & ' Tage', '.0', ''))}</div>
+                            {!IF(portfolio.Dauer_in_Tagen__c = 1, '1 ' + $Label.day , SUBSTITUTE(TEXT(portfolio.Dauer_in_Tagen__c) & ' ' + $Label.days, '.0', ''))}
                             <div class="c"></div>
                         </li>
                         <li>
@@ -29,7 +29,7 @@
             <div class = "textline">
                 <h1>{!portfolio.Seminartitel__c}</h1>
                 <p class="headline_submenu"><img alt="{!bewertungsDurchschnittString} Sterne" src="{!URLFOR($Resource.web_style, 'i/stars_'+bewertungsDurchschnittString+'.gif')}"/>
-                      <a title="Zu den Bewertungen" href="#Bewertung">({!IF(bewertungsAnzahlString== '1', bewertungsAnzahlString+' Bewertung', bewertungsAnzahlString+' Bewertungen')})</a>
+                      <a title="Zu den Bewertungen" href="#Bewertung">({!IF(bewertungsAnzahlString== '1', bewertungsAnzahlString+' '+$Label.akademie_workshops_rating, bewertungsAnzahlString+' '+$Label.akademie_workshops_ratings)})</a>
                     </p>
             </div>
             <!--EndHeadline-->
@@ -64,7 +64,7 @@
               <a name="Bewertung"></a>
               <apex:outputText rendered="{!IF(bewertungsAnzahl>0, 'true','false')}">
               <div class="separator_head ratingBottom">
-                <a title="Zu den Bewertungen" href="#Bewertung" class="r">({!IF(bewertungsAnzahlString== '1', bewertungsAnzahlString+' Bewertung', bewertungsAnzahlString+' Bewertungen')})</a>
+                <a title="Zu den Bewertungen" href="#Bewertung" class="r">({!IF(bewertungsAnzahlString== '1', bewertungsAnzahlString+' '+$Label.akademie_workshops_rating, bewertungsAnzahlString+' '+$Label.akademie_workshops_ratings)})</a>
                 <img alt="{!bewertungsDurchschnittString} Sterne" class="r stars" src="{!URLFOR($Resource.web_style, 'i/stars_'+bewertungsDurchschnittString+'.gif')}"/>
                 <h4 class="l">{!$Label.akademie_workshops_ratings}</h4>
                 <div class="c"></div>

@@ -240,7 +240,7 @@ public class FASeminar {
 		if(we.status__c == 'Storno durch Vorgesezter')
 		{
 			status = 'Storno durch den Vorgesetzten';
-		}else if(we.status__c == 'Warten auf Apporval durch Akademie')
+		}else if(we.status__c == 'Warten auf Approval durch Akademie')
 		{
 			status = 'Seminar wurde durch den Vorgesetzten freigegeben.';
 		}

@@ -27,7 +27,7 @@ public class FABestellungZyklus
 				zyklusSelect.add(new SelectOption(t.id, t.name));
 			}
 			gruppe = [SELECT Web_Preis__c, url__c FROM Gruppe__c WHERE ID = :WebURLEncoder.decodeParam('groupId')];
-			preis = String.valueOf(gruppe.Web_Preis__c).replace('.', ',').replace(',00', ',-')+' EUR zzgl. MwSt.';
+			preis = String.valueOf(gruppe.Web_Preis__c).replace('.', ',').replace(',00', ',-')+' ' + Label.euro_plus_vat;
 		}
 		else if(WebURLEncoder.decodeParam('zyklusId') <> '')
 		{

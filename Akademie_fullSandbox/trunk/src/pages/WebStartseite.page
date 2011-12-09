@@ -33,7 +33,7 @@
                     <p>
                         <img src="{!URLFOR($Resource.web_style, 'i/teaser_academy_blog.png')}" />
                     </p>
-                    <h2>Akademie-Blog</h2>
+                    <h2>{!$Label.akademie_blog}</h2>
                     <br />
                     
                     <ul class="academy_blog">
@@ -45,7 +45,7 @@
                             </li>
                         </apex:repeat>
                     </ul>
-                    <a href="http://blog.die-akademie.de" class="link">Alle Blogeinträge</a>
+                    <a href="http://blog.die-akademie.de" class="link">{!$Label.akademie_blog_all_entries}</a>
                     <div class="spacer"></div>
                     <c:contentblock name="RightBox" />
                 </div>

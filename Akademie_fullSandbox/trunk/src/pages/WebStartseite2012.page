@@ -74,7 +74,7 @@
                     	border-top: none!important;
                     	border-right: 1px solid #CCC;
                     	padding: 0px!important;
-                    	color: black;
+                    	color: #333;
                     }
                     .rightbox h2 {
                     	/*

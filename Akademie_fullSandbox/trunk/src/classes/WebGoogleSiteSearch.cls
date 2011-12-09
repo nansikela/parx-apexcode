@@ -39,8 +39,8 @@ public class WebGoogleSiteSearch
 		{
 			googleResult = new List<SearchResultElement>();
 			SearchResultElement element = new SearchResultElement();
-			element.titel = 'Keine Ergebnisse gefunden.';
-			element.content = 'Nutzen Sie unsere Direktsuche auf der rechten Seite oder kontaktieren Sie uns. ';
+			element.titel = Label.search_no_results_found;
+			element.content = Label.akademie_search_hint;
 			element.url = 'http://www.die-akademie.de/service/kontakt';
 			googleResult.add(element);
 		}

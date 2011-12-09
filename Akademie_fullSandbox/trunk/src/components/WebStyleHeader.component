@@ -25,9 +25,9 @@
 
 /* topcontent */
 .topcontent {
-	padding-top: 99px;
+	padding-top: 109px;
 	height: 480px;
-	border-bottom: 1px solid #ACADB0;
+	/* border-bottom: 1px solid #ACADB0; */
 	z-index: -100;
 }
 
@@ -87,6 +87,7 @@
 .teasercontent {
 	/* position: relative;
 	top: 310px; */
+	color: #333;
 }
 
 #content_navi {
@@ -95,7 +96,6 @@
 	font-weight: bold;
 	/* margin-top: 0px; */
 	width: 220px;
-	padding-top: 10px;
 }
 
 #content_navi li {
@@ -126,6 +126,7 @@
 .extension_content_text {
 	float: right;
 	width: 240px;
+	color: #333;
 	/* margin-left: 20px; */
 }
 
@@ -159,7 +160,7 @@
 /* right column - topcontent */
 .direct_search h3 {
 	padding-top: 18px ! important;
-	font-size: 13px;
+	font-size: 17px;
 }
 
 .homepagerightcolumn {
@@ -172,6 +173,7 @@
 	background-color: white;
 	border-right: 1px solid #ACADB0;
 	border-bottom: 1px solid #ACADB0;
+	margin-right: -5px!important;
 }
 
 .direct_search {
@@ -215,7 +217,7 @@
 	border-left: 1px solid #B7B2A9 !important;
 	position: relative;
 	right: -50px;
-	
+	text-align: center;
 }
 
 .optionfieldMonth {
@@ -226,6 +228,7 @@
 	border-left: 1px solid #B7B2A9 !important;
 	position: relative;
 	right: -55px;
+	text-align: center;
 }
 
 .optionfieldYear {
@@ -236,6 +239,7 @@
 	border-left: 1px solid #B7B2A9 !important;
 	position: relative;
 	right: -60px;
+	text-align: center;
 }
 
 .optionfieldDropdown {
@@ -269,29 +273,42 @@
 .bottomcontent {
 	width: 940px;
 	clear: both;
+	padding-top: 15px;
+	background: transparent url('{!URLFOR($Resource.web_style2, 'i/topcontent_horizontal_bar.png')}') no-repeat;
 }
 
 .columnStartseite {
 	/* width: 215px!important; */
+	color: #333;
 }
 
 .columnStartseite h2 {
 	font-size: 22px;
 	font-weight: normal;
 	padding-bottom: 5px;
+	color: #333;
 }
 
 .column li {
 	position: relative;
 	left: -4px;
+	line-height: 1.5em;
 }
 
 .column ul p {
 	padding-left: 20px;
+	line-height: 1.5em;
 }
 
 .column ul {
 	padding-bottom: 0;
+	line-height: 1.5em;
+}
+
+.column a {
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 1.5em;
 }
 
 /* footer */

@@ -117,7 +117,7 @@ public class FaNavigationFacade {
 		String trainerId = WebURLEncoder.decodeParam('trainerId');
 		if(trainerId != '')
 		{
-			breadCrumb.add(new NaviItemBreadC('Trainer und Berater','/seminare/trainer'));
+			breadCrumb.add(new NaviItemBreadC(Label.akademie_trainer_and_consultants,'/seminare/trainer'));
 			FATrainerDetailController controller = new FATrainerDetailController();
 			breadCrumb.add(new NaviItemBreadC(FATrainerDetailController.name,'/seminare/trainer'));
 			
@@ -127,7 +127,7 @@ public class FaNavigationFacade {
 		{
 			if(WebURLEncoder.decodeParam('mode') == 'search')
 			{
-				breadCrumb.add(new NaviItemBreadC('Seminarsuche','/seminarsearch'));
+				breadCrumb.add(new NaviItemBreadC(Label.akademie_naviation_workshop_search,'/seminarsearch'));
 			}
 			
 		}catch(Exception e){}
@@ -172,7 +172,7 @@ public class FaNavigationFacade {
 				//breadCrumb Bestellung
 				if(url.contains('FABestellung'))
 				{
-					breadCrumb.add(new NaviItemBreadC('Bestellung', currentgruppe.url__c+'/order'));
+					breadCrumb.add(new NaviItemBreadC(Label.akademie_booking_order, currentgruppe.url__c+'/order'));
 				}
 			}
 		}
@@ -184,7 +184,7 @@ public class FaNavigationFacade {
 			if(WebURLEncoder.decodeParam('hotelId') != '')
 			{
 				Hotel__c hotel = [SELECT name, Account__r.sprechende_URL__C FROM HOTEL__C WHERE Id = :hotelId];
-				breadCrumb.add(new NaviItemBreadC('Seminarhotels','/seminare/hotels'));
+				breadCrumb.add(new NaviItemBreadC(Label.akademie_workshop_hotels,'/seminare/hotels'));
 				breadCrumb.add(new NaviItemBreadC(hotel.name,hotel.Account__r.sprechende_URL__c));
 			}
 		}catch (Exception e){}
@@ -195,8 +195,8 @@ public class FaNavigationFacade {
 			if(WebURLEncoder.decodeParam('article') != '')
 			{
 				BWL_Lexikon__c articleDB = [SELECT name, sprechende_URL__C FROM BWL_Lexikon__c WHERE Name = :article];
-				breadCrumb.add(new NaviItemBreadC('Service','/service'));
-				breadCrumb.add(new NaviItemBreadC('Akademie Lexikon','/service/lexikon'));
+				breadCrumb.add(new NaviItemBreadC(Label.akademie_navigation_service,'/service'));
+				breadCrumb.add(new NaviItemBreadC(Label.akademie_dictionary,'/service/lexikon'));
 				breadCrumb.add(new NaviItemBreadC(articleDB.name, articleDB.sprechende_URL__c));
 			}
 		}catch (Exception e){}
@@ -237,7 +237,7 @@ public class FaNavigationFacade {
 				//breadCrumb Bestellung
 				if(url.contains('FABestellung'))
 				{
-					breadCrumb.add(new NaviItemBreadC('Bestellung', currentPortfolio.url__c+'/order'));
+					breadCrumb.add(new NaviItemBreadC(Label.akademie_booking_order, currentPortfolio.url__c+'/order'));
 				}
 			}
 		}
