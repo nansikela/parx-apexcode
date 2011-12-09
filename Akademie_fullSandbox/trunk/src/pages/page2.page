@@ -13,10 +13,10 @@
         <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/headerplus.js')}"/>
         <apex:includeScript value="{!URLFOR($Resource.web_style2, 'js/main.js')}"/>
         <meta content="Kh7Sp2vXLeBJGb3LkT5U9Z6oiy554qygPokJ5izV5PI" name="google-site-verification" />
-        <meta content="Die Akademie f&uuml;r F&uuml;hrungskr&auml;fte ist eines der gr&ouml;ssten und renommiertesten Management Institute im deutschsprachigen Raum. Seit &uuml;ber 55 Jahren werden Fach- und F&uuml;hrungskr&auml;fte aller Branchen auf Ihrem beruflichen und pers&ouml;nlichen Entwicklungsweg begleitet." name="description" />
-        <meta content="Seminare, Weiterbildung, Ausbildungen, F&uuml;hrung, Systemische F&uuml;hrung, Pers&ouml;nlichkeitsentwicklung, Projektmanagement, Controlling, Marketing, Produktmanagement, Vertrieb, Office Management, General Management, Coaching, Personalentwicklung, Management" name="keywords" />
+        <meta content="{!$Label.akademie_meta_description}" name="description" />
+        <meta content="{!$Label.akademie_meta_keywords}" name="keywords" />
 
-        <title>Akademie f&uuml;r F&uuml;hrungskr&auml;fte der Wirtschaft GmbH</title>   
+        <title>{!$Label.akademie_fuehrungskraefte_long}</title>   
         <script type="text/javascript">
 
           var _gaq = _gaq || [];

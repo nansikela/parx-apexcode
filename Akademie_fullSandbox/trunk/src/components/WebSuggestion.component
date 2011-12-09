@@ -14,12 +14,12 @@
                                       
                                   , 'http://www.die-akademie.de/apex/WebPDFGenerator?seminarCode='&$CurrentPage.parameters.seminarCode,URLFOR($Resource.IntensivseminarPDF, $CurrentPage.parameters.seminarCode&'.pdf'))}" />
     <ul class="artikelnavi">
-      <apex:outputText rendered="{!$CurrentPage.parameters.seminarCode<>''}"><li><a href="{!pdfLink}" class="pdf" target="_blank" rel="nofollow">PDF</a></li></apex:outputText>
+      <apex:outputText rendered="{!$CurrentPage.parameters.seminarCode<>''}"><li><a href="{!pdfLink}" class="pdf" target="_blank" rel="nofollow">{!$Label.PDF}</a></li></apex:outputText>
      <li>
 <script type="text/javascript">
 var url = window.location.href.replace(/\&/, '%26');
-var currentUrl = '<a href="mailto:?subject=Die Akademie - Meine Empfehlung&body=Guten Tag,%0A%0A ich habe gerade bei der Akademie für Führungskräfte dieses Angebot gefunden: '+ url+'%0A%0A %0A%0AViele Grüsse%0A" class="mail" rel="nofollow">Empfehlen</a>'; document.write(currentUrl);</script>
+var currentUrl = '<a href="mailto:?subject={!$Label.akademie} - {!$Label.akademie_suggestion_my_suggestion}&body={!$Label.akademie_suggestion_hello},%0A%0A {!$Label.akademie_suggestion_found_following_offer} '+ url+'%0A%0A %0A%0A{!$Label.akademie_suggestion_sincerly}%0A" class="mail" rel="nofollow">{!$Label.akademie_suggestion_suggest}</a>'; document.write(currentUrl);</script>
 </li>
-      <apex:outputText rendered="{!$CurrentPage.parameters.seminarCode<>''}"><li><a href="{!pdfLink}" target="_blank" class="print" rel="nofollow">Drucken</a></li></apex:outputText>
+      <apex:outputText rendered="{!$CurrentPage.parameters.seminarCode<>''}"><li><a href="{!pdfLink}" target="_blank" class="print" rel="nofollow">{!$Label.print}</a></li></apex:outputText>
     </ul>
 </apex:component>

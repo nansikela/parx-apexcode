@@ -22,7 +22,7 @@
       }
       
   </style>
-  <h1>Seminare stornieren</h1>
+  <h1>{!$Label.akademie_booking_cancel_workshops}</h1>
   <apex:form >
   <apex:pageBlock rendered="{!IsStornoPossible}" >
                <p>Bitte beachten Sie, dass Ihnen ggf. Stornokosten berechnet werden, sofern Sie im Inhouse Bereich die kostenfreie Stornofrist von 2 Wochen bzw. im Offenen Bereiche die Frist von 4 Wochen überschritten haben.</p>
@@ -48,15 +48,15 @@
       <div >
        <apex:PageBlockSection columns="1" id="stornoMessages">
            
-       	<apex:outputText rendered="{!IF(stornoMessage!='', true, false)}"><p>Bitte geben Sie einen Stornogrund an.</p></apex:outputText>
+       	<apex:outputText rendered="{!IF(stornoMessage!='', true, false)}"><p>{!$Label.akademie_booking_cancel_please_specify_reason}</p></apex:outputText>
            <apex:pageBlockSectionItem rendered="{!IF(stornoMessage!='', true, false)}">
            		
-               <apex:outputLabel >Stornogrund: *</apex:outputLabel>
+               <apex:outputLabel >{!$Label.akademie_booking_cancel_reason}: *</apex:outputLabel>
                <apex:selectList size="1" value="{!stornoElement.Stornogrund__c}" styleClass="stornoGrund">
                    <apex:selectOption itemLabel="- keine -" itemValue="{!'keine Gründe'}" ></apex:selectOption>
                    <apex:selectOption itemLabel="Kurzfristige dienstliche Belange" itemvalue="{!'Kurzfristige dienstliche Belange'}"></apex:selectOption>
-                   <apex:selectOption itemLabel="Gesundheitliche Gründe/ Krankheit" itemvalue="{!'Gesundheitliche Gründe/ Krankheit'}"></apex:selectOption>
-                   <apex:selectOption itemLabel="Andere Gründe" itemvalue="{!'Andere Gründe'}"></apex:selectOption>
+                   <apex:selectOption itemLabel="{!$Label.akademie_booking_cancel_reason_health}" itemvalue="{!$Label.akademie_booking_cancel_reason_health}"></apex:selectOption>
+                   <apex:selectOption itemLabel="{!$Label.akademie_booking_cancel_reason_other}" itemvalue="{!$Label.akademie_booking_cancel_reason_other}"></apex:selectOption>
                   
                </apex:selectList>
            </apex:pageBlockSectionItem>
@@ -76,7 +76,7 @@
                 $(".andereGruende").parent().parent().hide();
                $(".stornoGrund").change(function(e){
         
-                    if($(".stornoGrund").val()=='Andere Gründe')
+                    if($(".stornoGrund").val()=='{!$Label.akademie_booking_cancel_reason_other}')
                     {
                     $(".andereGruende").parent().parent().show();
                         $(".andereGruende").show();
@@ -93,10 +93,10 @@
           </apex:PageBlockSection>
       </div>
       <div class="buttons">
-          <apex:commandButton value="{!'Stornieren'}" action="{!sornieren}" styleClass="stornoButton ui-button-text ui-state-highlight ui-corner-all r" />
+          <apex:commandButton value="{!$Label.akademie_booking_cancel}" action="{!sornieren}" styleClass="stornoButton ui-button-text ui-state-highlight ui-corner-all r" />
       </div>
   </apex:pageBlock>
-  <apex:outputText rendered="{!NOT(IsStornoPossible)}">Sie können gerade keine Seminare stornieren.</apex:outputText>
+  <apex:outputText rendered="{!NOT(IsStornoPossible)}">{!$Label.akademie_booking_cancel_not_possible}</apex:outputText>
   
   </apex:form>
 </apex:component>

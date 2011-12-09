@@ -53,7 +53,7 @@
        <div class="rightbox_leftborder">
 	       <apex:repeat value="{!NextSeminars}" var="seminar">
 	           <apex:outputPanel id="seminaritem" layout="block" styleClass="seminaritem">
-		           <apex:image value="{!URLFOR($Resource.web_style2,'/i/icon_calendar_small.png')}" id="iconcalendersmall" styleClass="iconcalendersmall" /> 
+		           <apex:image value="{!URLFOR($Resource.web_style2,'/i/icon_calendar_small.png')}" id="iconcalendersmall" styleClass="iconcalendersmall iconcalendersmallie7" /> 
 		           <p>{!seminar.datum}</p>
 		           <a href="{!seminar.url}">{!seminar.titel}</a>
 	           </apex:outputPanel>

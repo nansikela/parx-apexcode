@@ -229,41 +229,41 @@ public class FAKalender
 	{
 		if(p.Seminar__r.Seminarbeginn__c.Month() == 1)
 		{
-			return 'Januar';
+			return Label.month_january;
 		}
 		else if(p.Seminar__r.Seminarbeginn__c.Month() == 2)
 		{
-			return 'Februar';
+			return Label.month_february;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 3)
 		{
-			return 'März';
+			return Label.month_march;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 4)
 		{
-			return 'April';
+			return Label.month_april;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 5)
 		{
-			return 'Mai';
+			return Label.month_may;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 6)
 		{
-			return 'Juni';
+			return Label.month_june;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 7)
 		{
-			return 'Juli';
+			return Label.month_july;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 8)
 		{
-			return 'August';
+			return Label.month_august;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 9)
 		{
-			return 'September';
+			return Label.month_september;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 10)
 		{
-			return 'Oktober';
+			return Label.month_october;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 11)
 		{
-			return 'November';
+			return Label.month_november;
 		}else if(p.Seminar__r.Seminarbeginn__c.Month() == 12)
 		{
-			return 'Dezember';
+			return Label.month_december;
 		}
 		else
 		{

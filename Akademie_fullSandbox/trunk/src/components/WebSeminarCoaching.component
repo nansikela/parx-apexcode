@@ -13,7 +13,7 @@
                             <div class="caption">{!$Label.Dauer}</div>
                             <div class="l">
                                 <apex:outputText rendered="{!IF(portfolio.Dauer_der_Ausbildung__c!= '', false, true)}">
-                                    {!IF(portfolio.Dauer_in_Tagen__c = 1, '1 Tag' , SUBSTITUTE(TEXT(portfolio.Dauer_in_Tagen__c) & '  Tage', '.0', ''))}
+                                    {!IF(portfolio.Dauer_in_Tagen__c = 1, '1 ' + $Label.day , SUBSTITUTE(TEXT(portfolio.Dauer_in_Tagen__c) & ' ' + $Label.days, '.0', ''))}
                                 </apex:outputText>
                                 {!portfolio.Dauer_der_Ausbildung__c}</div>
                             <div class="c"></div>

@@ -1,7 +1,7 @@
 <apex:component controller="WebSeminarDiplom">
     <div class="separator_head">
         
-        <h4 class="l">{}!$Label.akademie_workshops</h4>
+        <h4 class="l">{!$Label.akademie_workshops}</h4>
         <div class="c"></div>
       </div>
       <table class="first">

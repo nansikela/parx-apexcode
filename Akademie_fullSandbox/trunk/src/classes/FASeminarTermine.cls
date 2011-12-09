@@ -86,11 +86,11 @@ public class FASeminarTermine
 			if(inhouseProduct.Max_Teilnehmerzahl__c == null) inhouseProduct.Max_Teilnehmerzahl__c = 0;
 			if((inhouseProduct.Anmeldungen__c+inhouseProduct.Reservierungen__c)<inhouseProduct.Max_Teilnehmerzahl__c)
 			{
-				buchen+='Buchen';
+				buchen+=Label.akademie_workshops_book_here_short;
 			}
 			else
 			{
-				buchen+='Warteliste';
+				buchen+=Label.akademie_workshop_waitlist;
 				isAusgebucht = true;
 			}
 			buchen+='</a>';
@@ -128,11 +128,11 @@ public class FASeminarTermine
 			buchen = '<a href="'+seminarPortfolio.portfolio__r.url__c+'/order?seminar='+seminarPortfolio.seminar__r.id+'&step=1">';
 			if(seminarPortfolio.seminar__r.Restpl_tze__c>0)
 			{
-				buchen+='Buchen</a>';
+				buchen+=Label.akademie_workshops_book_here_short + '</a>';
 			}
 			else
 			{
-				buchen = '<a href="#">Ausgebucht</a>';
+				buchen = '<a href="#">' + Label.akademie_workshops_fully_booked + '</a>';
 				isAusgebucht = true;
 			}
 		}

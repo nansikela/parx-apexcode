@@ -63,7 +63,7 @@ public class WebRegisterTeilnehmer
 		Double preis = 0;
 		for(FASeminar seminar : getWarenkorbInhalt())
 		{
-			preis+= Double.valueOf(seminar.Preis.replace(',-', '').replace(' Reservierung', '').trim());
+			preis+= Double.valueOf(seminar.Preis.replace(',-', '').replace(' ' + Label.reservation, '').trim());
 		}
 		
 		return preis;

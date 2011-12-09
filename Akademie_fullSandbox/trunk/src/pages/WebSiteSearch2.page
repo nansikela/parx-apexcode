@@ -17,7 +17,7 @@
         <meta content="Kh7Sp2vXLeBJGb3LkT5U9Z6oiy554qygPokJ5izV5PI" name="google-site-verification" />
         
 
-        <title>Suchergebnisse - Die Akademie</title>   
+        <title>{!$Label.search_results} - {!$Label.akademie}</title>   
         <script type="text/javascript">
 
           var _gaq = _gaq || [];
