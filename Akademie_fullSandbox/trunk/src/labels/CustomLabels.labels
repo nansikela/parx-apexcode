@@ -1,0 +1,2241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Abbrechen</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Abbrechen</shortDescription>
+        <value>Abbrechen</value>
+    </labels>
+    <labels>
+        <fullName>Abteilung</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Abteilung</shortDescription>
+        <value>Bereich / Abteilung</value>
+    </labels>
+    <labels>
+        <fullName>Anmelden</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Anmelden</shortDescription>
+        <value>Anmelden</value>
+    </labels>
+    <labels>
+        <fullName>Anmeldung</fullName>
+        <categories>WebTeilnehmerRegister.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Anmeldung</shortDescription>
+        <value>Anmeldung</value>
+    </labels>
+    <labels>
+        <fullName>Anrede</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Anrede</shortDescription>
+        <value>Anrede</value>
+    </labels>
+    <labels>
+        <fullName>Bearbeiten</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Bearbeiten</shortDescription>
+        <value>Bearbeiten</value>
+    </labels>
+    <labels>
+        <fullName>Beginn</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Beginn</shortDescription>
+        <value>Beginn</value>
+    </labels>
+    <labels>
+        <fullName>Bereich_Abteilung</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Bereich / Abteilung</shortDescription>
+        <value>Bereich / Abteilung</value>
+    </labels>
+    <labels>
+        <fullName>Best_tigungs_Link</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Bestätigungs Link</shortDescription>
+        <value>Bestätigungs Link</value>
+    </labels>
+    <labels>
+        <fullName>Bitte_melden_Sie_sich_an_text</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Bitte melden Sie sich an text</shortDescription>
+        <value>Bitte melden Sie sich mit Ihren Zugangsdaten an oder registrieren Sie sich neu.</value>
+    </labels>
+    <labels>
+        <fullName>Bitte_registrieren_Sie_sich</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Bitte registrieren Sie sich</shortDescription>
+        <value>Bitte registrieren Sie sich</value>
+    </labels>
+    <labels>
+        <fullName>Business_Units</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Business Units</shortDescription>
+        <value>Business Units</value>
+    </labels>
+    <labels>
+        <fullName>ChangePassword</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>ChangePassword</shortDescription>
+        <value>Kennwort ändern</value>
+    </labels>
+    <labels>
+        <fullName>ChangePasswordText</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>ChangePasswordText</shortDescription>
+        <value>Hier können Sie Ihr Passwort ändern.</value>
+    </labels>
+    <labels>
+        <fullName>Dauer</fullName>
+        <categories>Firmenakademie, WebSeminarCoaching, WebSeminarDetail, WebSeminarDiplom, WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Dauer</shortDescription>
+        <value>Dauer</value>
+    </labels>
+    <labels>
+        <fullName>Download</fullName>
+        <categories>ManagementGuide</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Download</shortDescription>
+        <value>Download</value>
+    </labels>
+    <labels>
+        <fullName>EmailAdresse</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>EmailAdresse</shortDescription>
+        <value>eMail Adresse</value>
+    </labels>
+    <labels>
+        <fullName>Email_Adresse_des_Vorgesetzten</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Email-Adresse des Vorgesetzten</shortDescription>
+        <value>Email-Adresse des Vorgesetzten</value>
+    </labels>
+    <labels>
+        <fullName>Ende</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Ende</shortDescription>
+        <value>Ende</value>
+    </labels>
+    <labels>
+        <fullName>ErrorAltesPasswort</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>ErrorAltesPasswort</shortDescription>
+        <value>Bitte geben Sie hier Ihr altes Passwort ein.</value>
+    </labels>
+    <labels>
+        <fullName>ErrorNeuesPasswordverify</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>ErrorNeuesPasswordverify</shortDescription>
+        <value>Bitte wiederholen Sie Ihr neues Passwort</value>
+    </labels>
+    <labels>
+        <fullName>ErrorNeuesPasswort</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>ErrorNeuesPasswort</shortDescription>
+        <value>Bitte geben Sie hier Ihr neues Passwort ein.</value>
+    </labels>
+    <labels>
+        <fullName>Firmenakademie</fullName>
+        <categories>FAApprovalSeminar</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Firmenakademie</shortDescription>
+        <value>Firmenakademie</value>
+    </labels>
+    <labels>
+        <fullName>Gesellschaft</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Gesellschaft</shortDescription>
+        <value>Business Units</value>
+    </labels>
+    <labels>
+        <fullName>Hotel_reservieren</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Hotel reservieren</shortDescription>
+        <value>Hotel reservieren</value>
+    </labels>
+    <labels>
+        <fullName>Ihr_Seminar</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Ihr Seminar</shortDescription>
+        <value>Ihr Seminar</value>
+    </labels>
+    <labels>
+        <fullName>Keine_Berichte_des_Vorgesetzten</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Keine Berichte des Vorgesetzten</shortDescription>
+        <value>Ich berichte NICHT direkt an den Vorgesetzten/Vorstand</value>
+    </labels>
+    <labels>
+        <fullName>Keine_Zugangsdaten</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Keine Zugangsdaten</shortDescription>
+        <value>Sie besitzen noch keine Zugangsdaten?</value>
+    </labels>
+    <labels>
+        <fullName>Kennwort</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Kennwort</shortDescription>
+        <value>Kennwort</value>
+    </labels>
+    <labels>
+        <fullName>Kennwort_eintragen</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Kennwort eintragen</shortDescription>
+        <value>Bitte tragen Sie ihr Kennwort ein</value>
+    </labels>
+    <labels>
+        <fullName>Kennwort_erneut</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Kennwort erneut</shortDescription>
+        <value>Kennwort erneut</value>
+    </labels>
+    <labels>
+        <fullName>Kennwort_vergessen</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Kennwort vergessen</shortDescription>
+        <value>Kennwort vergessen</value>
+    </labels>
+    <labels>
+        <fullName>Kontaktdaten_aendern</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Kontaktdatenändern</shortDescription>
+        <value>Ihre Kontaktdaten</value>
+    </labels>
+    <labels>
+        <fullName>Kontaktdaten_aendernBeschreibung</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>KontaktdatenändernBeschreibung</shortDescription>
+        <value>Hier können Sie Ihre Kontaktdaten ändern.</value>
+    </labels>
+    <labels>
+        <fullName>Link_zum_anmelden</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Link zum anmelden</shortDescription>
+        <value>Link zum anmelden</value>
+    </labels>
+    <labels>
+        <fullName>Login</fullName>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Login</shortDescription>
+        <value>Login</value>
+    </labels>
+    <labels>
+        <fullName>LoginText</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>LoginText</shortDescription>
+        <value>Bitte melden Sie sich an.</value>
+    </labels>
+    <labels>
+        <fullName>LoginUeberschrift</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>LoginUeberschrift</shortDescription>
+        <value>Wenn Sie bereits registriert sind, melden Sie sich hier an:</value>
+    </labels>
+    <labels>
+        <fullName>NEW</fullName>
+        <categories>FABereichUebersicht.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>NEW</shortDescription>
+        <value>NEU</value>
+    </labels>
+    <labels>
+        <fullName>Nachname</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Nachname</shortDescription>
+        <value>Nachname</value>
+    </labels>
+    <labels>
+        <fullName>Name</fullName>
+        <categories>FA Portal, webbestelluebersichtsregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>Newsletter</fullName>
+        <categories>Component, HomePage</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Startseite_Newsletter</shortDescription>
+        <value>Newsletter</value>
+    </labels>
+    <labels>
+        <fullName>NewsletterBtn</fullName>
+        <categories>Component, HomePage</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Startseite_NewsletterButton</shortDescription>
+        <value>abonnieren</value>
+    </labels>
+    <labels>
+        <fullName>PDF</fullName>
+        <categories>Webbreadcrumbsuggest2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>PDF</shortDescription>
+        <value>PDF</value>
+    </labels>
+    <labels>
+        <fullName>PREIS_Grossgeschrieben</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>PREIS (Grossgeschrieben)</shortDescription>
+        <value>PREIS (Grossgeschrieben)</value>
+    </labels>
+    <labels>
+        <fullName>Passwort</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Passwort</shortDescription>
+        <value>Passwort</value>
+    </labels>
+    <labels>
+        <fullName>Preis</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Preis</shortDescription>
+        <value>Preis</value>
+    </labels>
+    <labels>
+        <fullName>Registrieren</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Registrieren</shortDescription>
+        <value>Registrieren</value>
+    </labels>
+    <labels>
+        <fullName>Registrierung_ist_Abgeschlossen</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Registrierung ist Abgeschlossen</shortDescription>
+        <value>Registrierung ist Abgeschlossen</value>
+    </labels>
+    <labels>
+        <fullName>Registrierungsbest_tigung</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Registrierungsbestätigung</shortDescription>
+        <value>Registrierungsbestätigung</value>
+    </labels>
+    <labels>
+        <fullName>Seminar_buchen</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Seminar buchen</shortDescription>
+        <value>Seminar buchen</value>
+    </labels>
+    <labels>
+        <fullName>Seminar_in_den_Warenkorb</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Seminar in den Warenkorb</shortDescription>
+        <value>Seminar in den Warenkorb</value>
+    </labels>
+    <labels>
+        <fullName>Speichern</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Speichern</shortDescription>
+        <value>Speichern</value>
+    </labels>
+    <labels>
+        <fullName>Steuerung_der_Genehmigungsprozesse</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Steuerung der Genehmigungsprozesse</shortDescription>
+        <value>Zur Steuerung der Genehmigungsprozesse bei Ihrer Seminarbuchung benötigen wir noch die Angabe, ob Sie direkt an die Geschäftsführung oder den Vorstand berichten. Wenn dies nicht der Fall ist, tragen Sie bitte die Email-Adresse Ihres Vorgesetzten ein.</value>
+    </labels>
+    <labels>
+        <fullName>Teilnehmer</fullName>
+        <categories>Firmenakademie, WebSeminarCoaching, WebSeminarDetail, WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Teilnehmer</shortDescription>
+        <value>Teilnehmer</value>
+    </labels>
+    <labels>
+        <fullName>Telefon</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Telefon</shortDescription>
+        <value>Telefon</value>
+    </labels>
+    <labels>
+        <fullName>Termin</fullName>
+        <categories>Firmenakademie, FAPreisgruppeZyklus, FABestellung</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Termin</shortDescription>
+        <value>Termin</value>
+    </labels>
+    <labels>
+        <fullName>Termine</fullName>
+        <categories>FAPreisgruppeZyklus, WebSeminarDetailNextSeminars, webseminarnextveranstaltungen</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Termine</shortDescription>
+        <value>Termine</value>
+    </labels>
+    <labels>
+        <fullName>Titel</fullName>
+        <categories>FA Portal, webseminardiplomportfolios</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Titel</shortDescription>
+        <value>Titel</value>
+    </labels>
+    <labels>
+        <fullName>VAT</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>VAT</shortDescription>
+        <value>MwSt.</value>
+    </labels>
+    <labels>
+        <fullName>Vielen_Dank_f_r_Ihre_Registrierung</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Vielen Dank für Ihre Registrierung</shortDescription>
+        <value>Vielen Dank für Ihre Registrierung</value>
+    </labels>
+    <labels>
+        <fullName>VorgesetzterAendern</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>VorgesetzterAendern</shortDescription>
+        <value>Vorgesetzten ändern</value>
+    </labels>
+    <labels>
+        <fullName>VorgesetzterAendernText</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>VorgesetzterAendernText</shortDescription>
+        <value>Hier können Sie die E-mail Ihrer bzw. Ihres Vorgesetzten ändern.</value>
+    </labels>
+    <labels>
+        <fullName>VorgesetztereMailAdresse</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>VorgesetztereMailAdresse</shortDescription>
+        <value>eMail Adresse des Vorgesetzten</value>
+    </labels>
+    <labels>
+        <fullName>Vorname</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Vorname</shortDescription>
+        <value>Vorname</value>
+    </labels>
+    <labels>
+        <fullName>Vossloh_Akademie</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Vossloh Akademie</shortDescription>
+        <value>Vossloh Akademie</value>
+    </labels>
+    <labels>
+        <fullName>Warenkorb</fullName>
+        <categories>Firmenakademie, FAWarenkorb, FAWarenkorbView</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Warenkorb</shortDescription>
+        <value>Warenkorb</value>
+    </labels>
+    <labels>
+        <fullName>Weiter_mit_grossem_W</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Weiter mit grossem W</shortDescription>
+        <value>Weiter mit grossem W</value>
+    </labels>
+    <labels>
+        <fullName>address</fullName>
+        <categories>WebHotelAddress2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>address</shortDescription>
+        <value>Anschrift</value>
+    </labels>
+    <labels>
+        <fullName>akademie</fullName>
+        <categories>WebSuggestion</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie</shortDescription>
+        <value>Die Akademie</value>
+    </labels>
+    <labels>
+        <fullName>akademie_all_prices_in_currency</fullName>
+        <categories>FAWarenkorb_view</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_all_prices_in_currency</shortDescription>
+        <value>Alle Preise in EUR zzgl. MwSt. (19%).</value>
+    </labels>
+    <labels>
+        <fullName>akademie_approval_please_choose_login_method</fullName>
+        <categories>FAApprovalSeminar</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_approval_please_choose_login_method</shortDescription>
+        <value>Bitte wählen Sie das Login Verfahren Ihres Unternehmens</value>
+    </labels>
+    <labels>
+        <fullName>akademie_blog</fullName>
+        <categories>WebStartseite2012</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_blog</shortDescription>
+        <value>Akademie Blog</value>
+    </labels>
+    <labels>
+        <fullName>akademie_blog_all_entries</fullName>
+        <categories>Blog</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_blog_all_entries</shortDescription>
+        <value>Alle Blogeinträge</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking</fullName>
+        <categories>WebSeminarDetailNextSeminars, webseminarnextveranstaltungen</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking</shortDescription>
+        <value>Buchung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_arrival</fullName>
+        <categories>FABestellung, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_arrival</shortDescription>
+        <value>Anreise</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_bind_to_terms1</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_bind_to_terms1</shortDescription>
+        <value>Es gelten unsere AGBs, die Sie</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_bind_to_terms2</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_bind_to_terms2</shortDescription>
+        <value>hier einsehen können</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_cancel</fullName>
+        <categories>FaStornoView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_cancel</shortDescription>
+        <value>Stornieren</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_cancel_not_possible</fullName>
+        <categories>FaStornoView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_cancel_not_possible</shortDescription>
+        <value>Sie können gerade keine Seminare stornieren.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_cancel_please_specify_reason</fullName>
+        <categories>FaStornoView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_cancel_please_specify_reason</shortDescription>
+        <value>Bitte geben Sie einen Stornogrund an.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_cancel_reason</fullName>
+        <categories>FaStornoView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_cancel_reason</shortDescription>
+        <value>Stornogrund</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_cancel_reason_health</fullName>
+        <categories>FaStornoView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_cancel_reason_health</shortDescription>
+        <value>Gesundheitliche Gründe / Krankheit</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_cancel_reason_other</fullName>
+        <categories>FaStornoView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_cancel_reason_other</shortDescription>
+        <value>Andere Gründe</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_cancel_workshops</fullName>
+        <categories>FaStornoView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_cancel_workshops</shortDescription>
+        <value>Seminare stornieren</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_cancel_your_workshops</fullName>
+        <categories>FABestellungenView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_cancel_your_workshops</shortDescription>
+        <value>Hier können Sie gebuchte Seminare wieder stornieren</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirm_terms1</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirm_terms1</shortDescription>
+        <value>Ich bestelle/reserviere oben aufgeführte Produkte im Rahmen der</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirm_terms2</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirm_terms2</shortDescription>
+        <value>Allgemeinen Geschäftsbedingungen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirm_terms3</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirm_terms3</shortDescription>
+        <value>der Akademie für Führungskräfte der Wirtschaft GmbH.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirmation_reservation_for_10_days</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirmation_reservation_for_10_days</shortDescription>
+        <value>Ihr Seminarplatz ist für 10 Tage kostenlos und unverbindlich reserviert.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirmation_thank_you_for_your_booking</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirmation_thank_you_for_your_booking</shortDescription>
+        <value>herzlichen Dank für Ihren Auftrag. Sie erhalten in Kürze eine schriftliche Bestätigung Ihrer Anmeldung, mit der Ihr Seminarplatz verbindlich gebucht wird.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirmation_your_booking</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirmation_your_booking</shortDescription>
+        <value>Ihre Buchung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirmation_your_online_booking</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirmation_your_online_booking</shortDescription>
+        <value>Ihre Online-Buchung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirmation_your_online_reservation</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirmation_your_online_reservation</shortDescription>
+        <value>Ihre Online-Reservierung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_confirmation_your_reservation</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_confirmation_your_reservation</shortDescription>
+        <value>Ihre Reservierung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_departure</fullName>
+        <categories>FABestellung, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_departure</shortDescription>
+        <value>Abreise</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_hotel</fullName>
+        <categories>FABestellung</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_hotel</shortDescription>
+        <value>Hotel</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_hotel_double_room</fullName>
+        <categories>FABestellung, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_hotel_double_room</shortDescription>
+        <value>Doppelzimmer</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_hotel_notice</fullName>
+        <categories>FABestellung, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_hotel_notice</shortDescription>
+        <value>Sie können nun ein Hotelzimmer für Ihr Seminar reservieren. Bitte bezahlen Sie Ihr Hotelzimmer beim Auschecken selbst.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_hotel_per_night</fullName>
+        <categories>FABestellung, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_hotel_per_night</shortDescription>
+        <value>pro Nacht</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_hotel_per_night_short</fullName>
+        <categories>fabestellung_zyklusNoOptionStep2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_hotel_per_night_short</shortDescription>
+        <value>p. N.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_hotel_single_room</fullName>
+        <categories>FABestellung, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_hotel_single_room</shortDescription>
+        <value>Einzelzimmer</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_invoice_address</fullName>
+        <categories>WebTeilnehmerRegister.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_invoice_address</shortDescription>
+        <value>Rechnungsadresse</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_next_coaching_text</fullName>
+        <categories>webnextcoachinggrundmodul</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_next_coaching_text</shortDescription>
+        <value>Für weitere Informationen oder um die Ausbildung zu buchen, wenden Sie sich bitte an Ihre Ansprechpartnerin Frau Silvia Ufer.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_order</fullName>
+        <categories>FANavigationFacade</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_order</shortDescription>
+        <value>Bestellung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_overview</fullName>
+        <categories>WebTeilnehmerRegister.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_overview</shortDescription>
+        <value>Bestellübersicht</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_place_order</fullName>
+        <categories>Warenkorb, FAWarenkorb_view</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_place_order</shortDescription>
+        <value>Bestellung abschicken</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_please_choose_date</fullName>
+        <categories>FADirectbooking</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_please_choose_date</shortDescription>
+        <value>Bitte wählen Sie einen Termin aus.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_please_choose_workshop</fullName>
+        <categories>FADirectbooking</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_please_choose_workshop</shortDescription>
+        <value>Bitte wählen Sie Ihr Seminar aus</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_please_choose_workshop_short</fullName>
+        <categories>FABestellung, Seminare, DropDown</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_please_choose_workshop_short</shortDescription>
+        <value>Bitte Seminar wählen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_please_correct_email</fullName>
+        <categories>FABestellung, Email</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_please_correct_email</shortDescription>
+        <value>Bitte korrigieren Sie Ihre eMail Adresse.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_please_enter_email_of_supervisor</fullName>
+        <categories>FABestellung, Email</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_please_enter_email_of_supervisor</shortDescription>
+        <value>Bitte geben Sie die eMail Adresse Ihres Vorgesetzten an.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_progress_retrieve_hotels</fullName>
+        <categories>FABestellung, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_progress_retrieve_hotels</shortDescription>
+        <value>verarbeite Hotelinformationen ...</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_right_of_withdrawal</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_right_of_withdrawal</shortDescription>
+        <value>Widerrufsrecht für Verbraucher</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_right_of_withdrawal_text</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_right_of_withdrawal_text</shortDescription>
+        <value>Als Verbraucher haben Sie das Recht, Ihre Vertragserklärung innerhalb von zwei Wochen nach Erhalt unserer Anmelde/Bestellbestellbestätigung ohne Angabe von Gründen in Textform (z. B. Brief, Telefax, E-Mail) zu widerrufen. Die Frist für Ihren Widerruf beginnt frühestens am Tag nach Erhalt Ihrer Anmeldebestätigung und dieser Belehrung in Textform. Zur Wahrung der Widerrufsfrist genügt die rechtzeitige Absendung des Widerrufs. Ihr Widerrufsrecht erlischt vorzeitig, wenn Ihr Vertragspartner mit der Ausführung der Dienstleistung mit Ihrer ausdrücklichen Zustimmung vor Ende der Widerrufsfrist begonnen hat oder Sie diese selbst veranlasst haben (z. B. den Besuch des gebuchten Seminars etc.).</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_right_of_withdrawal_text2</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_right_of_withdrawal_text2</shortDescription>
+        <value>Der Widerruf ist zu richten an: Akademie für Führungskräfte der Wirtschaft GmbH, Seepromenade 19, 88662 Überlingen, Telefax: +49.7551.9368100, E-Mail: info@die-akademie.de. Im Falle eines wirksamen Widerrufs sind die beiderseits empfangenen Leistungen zurückzugewähren (und ggf. gezogene Nutzungen, z.B. Zinsen herauszugeben).</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_type</fullName>
+        <categories>FABestellung</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_type</shortDescription>
+        <value>Buchungstyp</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_type_text</fullName>
+        <categories>FABestellung</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_type_text</shortDescription>
+        <value>Sie können sich bei uns entscheiden. Buchen Sie das Seminar entweder verbindlich oder reservieren Sie Ihren Platz unverbindlich für 10 Tage.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_workshop_notice</fullName>
+        <categories>FABestellung, Seminare</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_workshop_notice</shortDescription>
+        <value>Sie buchen nun dieses Seminar</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_you_reserve_a</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_you_reserve_a</shortDescription>
+        <value>Sie reservieren ein</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_your_completed_workshops</fullName>
+        <categories>FABestellungenView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_your_completed_workshops</shortDescription>
+        <value>Hier finden Sie Ihre abgeschlossenen Seminare</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_your_order</fullName>
+        <categories>FABestellung</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_your_order</shortDescription>
+        <value>Ihre Bestellung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_booking_your_upcoming_workshops</fullName>
+        <categories>FABestellungenView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_booking_your_upcoming_workshops</shortDescription>
+        <value>Hier finden Sie Ihre geplanten Seminare</value>
+    </labels>
+    <labels>
+        <fullName>akademie_bookings</fullName>
+        <categories>FABestellungenView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_bookings</shortDescription>
+        <value>Buchungen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_consulting_and_more_information</fullName>
+        <categories>webnextcoachinggrundmodul</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_consulting_and_more_information</shortDescription>
+        <value>Beratung und weitere Informationen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_consulting_chat</fullName>
+        <categories>FAChat</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_consulting_chat</shortDescription>
+        <value>Beratungs-Chat</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_form</fullName>
+        <categories>Akademie, Kontakt</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_form</shortDescription>
+        <value>Kontaktformular</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_heading</fullName>
+        <categories>Akademie,Kontakt,WebKontaktDieAkademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_heading</shortDescription>
+        <value>Kontakt</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in</fullName>
+        <categories>WebKontaktInformationmaterial</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in</shortDescription>
+        <value>Ich habe Interesse an</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in_Akademie_Seminare</fullName>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in_Akademie_Seminare</shortDescription>
+        <value>Offenen Seminarprogramm (Einzelseminare, englischen Seminare, Intensivprogramme)</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in_General_Management_Programm</fullName>
+        <categories>webkontaktinteresse.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in_General_Management_Programm</shortDescription>
+        <value>General Management Programm</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in_Seminars_in_English</fullName>
+        <categories>WebKontaktInformationmaterial</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in_Seminars_in_English</shortDescription>
+        <value>Seminars in English</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in_Seminars_in_English_on_German</fullName>
+        <categories>webcontent_navi</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in_Seminars_in_English_on_German</shortDescription>
+        <value>Seminare auf Englisch</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in_Trainerausbildung</fullName>
+        <categories>WebKontaktInformationmaterial</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in_Trainerausbildung</shortDescription>
+        <value>Ausbildung zum Trainer</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in_firmeninternen_Coaching</fullName>
+        <categories>webkontaktinteresse.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in_firmeninternen_Coaching</shortDescription>
+        <value>Coaching (Individualcoaching, Teamcoaching…)</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in_firmeninternen_Seminaren</fullName>
+        <categories>webkontaktinteresse.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in_firmeninternen_Seminaren</shortDescription>
+        <value>Leistungsangebot der Akademie Inhouse (Inhouse Trainings, Entwicklungsberatung, Firmenakademien…)</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_interested_in_inhouse_material</fullName>
+        <categories>WebKontaktInformationmaterial</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_interested_in_inhouse_material</shortDescription>
+        <value>Akademie Inhouse Broschüre</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_marketing_channel_question</fullName>
+        <categories>WebKontaktInformationmaterial, WebKontaktTelefon</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_marketing_channel_question</shortDescription>
+        <value>Wie sind Sie auf uns aufmerksam geworden?</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_phone_call_back</fullName>
+        <categories>Akademie,Kontakt,WebKontaktTelefon</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_phone_call_back</shortDescription>
+        <value>Rückruf</value>
+    </labels>
+    <labels>
+        <fullName>akademie_contact_your_message_input</fullName>
+        <categories>WebKontaktInformationmaterial, WebKontaktTelefon</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_contact_your_message_input</shortDescription>
+        <value>Ihre Nachricht</value>
+    </labels>
+    <labels>
+        <fullName>akademie_customer_service</fullName>
+        <categories>FAPreisInformation, WebPreisgrupperightinfo</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_customer_service</shortDescription>
+        <value>Kundenberatung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_dates_starting_from</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_dates_starting_from</shortDescription>
+        <value>Termine ab</value>
+    </labels>
+    <labels>
+        <fullName>akademie_dictionary</fullName>
+        <categories>WebLexikonUebersicht.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_dictionary</shortDescription>
+        <value>Akademie Lexikon</value>
+    </labels>
+    <labels>
+        <fullName>akademie_dictionary_text</fullName>
+        <categories>WebLexikonUebersicht.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_dictionary_text</shortDescription>
+        <value>Mit diesem Lexikon wollen wir Ihnen den Weg durch den Dschungel der Fachbegriffe ein wenig erleichtern. Wenn Sie bei uns einem Begriff begegnen, den Sie im hier vermissen, schreiben Sie uns! Wir werden ihn gern aufnehmen.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_email</fullName>
+        <categories>Custom</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_email</shortDescription>
+        <value>eMail</value>
+    </labels>
+    <labels>
+        <fullName>akademie_fuehrungskraefte</fullName>
+        <categories>FAHome.page</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_fuehrungskraefte</shortDescription>
+        <value>Die Akademie für Führungskräfte</value>
+    </labels>
+    <labels>
+        <fullName>akademie_fuehrungskraefte_long</fullName>
+        <categories>page2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_fuehrungskraefte_long</shortDescription>
+        <value>Die Akademie für Führungskräfte  der Wirtschaft GmbH</value>
+    </labels>
+    <labels>
+        <fullName>akademie_impact_workshop</fullName>
+        <categories>WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_impact_workshop</shortDescription>
+        <value>Impact-Workshop</value>
+    </labels>
+    <labels>
+        <fullName>akademie_information_material</fullName>
+        <categories>Informationsmaterial, Kontakt</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_information_material</shortDescription>
+        <value>Informationsmaterial</value>
+    </labels>
+    <labels>
+        <fullName>akademie_management_guide_2012</fullName>
+        <categories>WebManagementGuide2012</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_management_guide_2012</shortDescription>
+        <value>Management</value>
+    </labels>
+    <labels>
+        <fullName>akademie_management_guide_2012_line2</fullName>
+        <categories>WebManagementGuide2012</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_management_guide_2012_line2</shortDescription>
+        <value>Guide 2012</value>
+    </labels>
+    <labels>
+        <fullName>akademie_meta_description</fullName>
+        <categories>page2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_meta_description</shortDescription>
+        <value>Die Akademie für Führungskräfte ist eines der grössten und renommiertesten Management Institute im deutschsprachigen Raum. Seit über 55 Jahren werden Fach- und Führungskräfte aller Branchen auf Ihrem beruflichen und persönlichen Entwicklungsweg begleitet.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_meta_keywords</fullName>
+        <categories>page2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_meta_keywords</shortDescription>
+        <value>Seminare, Weiterbildung, Ausbildungen, Führung, Systemische Führung, Persönlichkeitsentwicklung, Projektmanagement, Controlling, Marketing, Produktmanagement, Vertrieb, Office Management, General Management, Coaching, Personalentwicklung, Management</value>
+    </labels>
+    <labels>
+        <fullName>akademie_more_workshops_and_events</fullName>
+        <categories>WebFULanding, WebPMLanding, WebPELanding</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_more_workshops_and_events</shortDescription>
+        <value>Weitere Seminare und Termine</value>
+    </labels>
+    <labels>
+        <fullName>akademie_naviation_workshop_search</fullName>
+        <categories>FANavigationFacade</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_naviation_workshop_search</shortDescription>
+        <value>Seminarsuche</value>
+    </labels>
+    <labels>
+        <fullName>akademie_navigation_service</fullName>
+        <categories>FANavigationFacade</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_navigation_service</shortDescription>
+        <value>Service</value>
+    </labels>
+    <labels>
+        <fullName>akademie_publications</fullName>
+        <categories>faveroeffentlichungen</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_publications</shortDescription>
+        <value>Veröffentlichungen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_search_hint</fullName>
+        <categories>WebGoogleSiteSearch</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_search_hint</shortDescription>
+        <value>Nutzen Sie unsere Direktsuche auf der rechten Seite oder kontaktieren Sie uns.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_shopping_cart</fullName>
+        <categories>Webbreadcrumbsuggest2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_shopping_cart</shortDescription>
+        <value>Warenkorb</value>
+    </labels>
+    <labels>
+        <fullName>akademie_shopping_cart_action</fullName>
+        <categories>FAWarenkorb_view</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_shopping_cart_action</shortDescription>
+        <value>Aktion</value>
+    </labels>
+    <labels>
+        <fullName>akademie_shopping_cart_double_room_abbrev</fullName>
+        <categories>FAWarenkorb_view</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_shopping_cart_double_room_abbrev</shortDescription>
+        <value>DZ</value>
+    </labels>
+    <labels>
+        <fullName>akademie_shopping_cart_empty</fullName>
+        <categories>Warenkorb, FAWarenkorb_view</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_shopping_cart_empty</shortDescription>
+        <value>Sie haben bisher keine Seminare in Ihrem Warenkorb.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_shopping_cart_hotel_you_reserved_a</fullName>
+        <categories>FAWarenkorb_view, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_shopping_cart_hotel_you_reserved_a</shortDescription>
+        <value>Sie reservieren ein</value>
+    </labels>
+    <labels>
+        <fullName>akademie_shopping_cart_single_room_abbrev</fullName>
+        <categories>FAWarenkorb_view</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_shopping_cart_single_room_abbrev</shortDescription>
+        <value>EZ</value>
+    </labels>
+    <labels>
+        <fullName>akademie_suggestion_found_following_offer</fullName>
+        <categories>WebSuggestion</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_suggestion_found_following_offer</shortDescription>
+        <value>ich habe gerade bei der Akademie für Führungskräfte dieses Angebot gefunden:</value>
+    </labels>
+    <labels>
+        <fullName>akademie_suggestion_hello</fullName>
+        <categories>WebSuggestion</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_suggestion_hello</shortDescription>
+        <value>Guten Tag</value>
+    </labels>
+    <labels>
+        <fullName>akademie_suggestion_my_suggestion</fullName>
+        <categories>WebSuggestion</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_suggestion_my_suggestion</shortDescription>
+        <value>Meine Empfehlung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_suggestion_sincerly</fullName>
+        <categories>WebSuggestion</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_suggestion_sincerly</shortDescription>
+        <value>Viele Grüße</value>
+    </labels>
+    <labels>
+        <fullName>akademie_suggestion_suggest</fullName>
+        <categories>WebSuggestion</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_suggestion_suggest</shortDescription>
+        <value>Empfehlen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_survey_2010</fullName>
+        <categories>WebKontaktInformationmaterial</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_survey_2010</shortDescription>
+        <value>Akademie-Studie 2010</value>
+    </labels>
+    <labels>
+        <fullName>akademie_trainer</fullName>
+        <categories>WebSeminarDetailNextSeminars, webseminarnextveranstaltungen</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_trainer</shortDescription>
+        <value>Trainer</value>
+    </labels>
+    <labels>
+        <fullName>akademie_trainer_and_consultants</fullName>
+        <categories>WebTrainerOverview2.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_trainer_and_consultants</shortDescription>
+        <value>Trainer und Berater</value>
+    </labels>
+    <labels>
+        <fullName>akademie_trainer_and_consultants_text</fullName>
+        <categories>WebTrainerOverview2.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_trainer_and_consultants_text</shortDescription>
+        <value>Über 100 erfahrene und spezialisierte Trainerinnen und Trainer der Akademie für Führungskräfte vermitteln Ihnen nicht nur Theorie- und Fachwissen, sondern unterstützen methodisch das nachhaltige Lernen für Ihre berufliche Praxis. Für Informationen zu den einzelnen Trainerinnen und Trainern klicken Sie bitte auf den entsprechenden Namen in der alphabetischen Übersicht.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_trainer_your_trainers</fullName>
+        <categories>FATainerbox</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_trainer_your_trainers</shortDescription>
+        <value>Ihre Trainer</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop</fullName>
+        <categories>Seminare</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop</shortDescription>
+        <value>Seminar</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_calendar</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_calendar</shortDescription>
+        <value>Seminarkalender</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_calendar_text</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_calendar_text</shortDescription>
+        <value>Hier sehen Sie die kommenden Seminare. Wenn Sie die Termine für einen bestimmten Zeitraum angezeigt kommen wollen, wählen Sie bitte aus.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_hotels</fullName>
+        <categories>webhoteluebersicht2.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_hotels</shortDescription>
+        <value>Seminarhotels</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_hotels_go_to_hotel_website</fullName>
+        <categories>WebHotelAddress2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_hotels_go_to_hotel_website</shortDescription>
+        <value>zur Hotel-Website</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_hotels_text</fullName>
+        <categories>webhoteluebersicht2.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_hotels_text</shortDescription>
+        <value>Unsere ausgewählten Tagungshotels kennen die Bedürfnisse und Wünsche von Seminarleitern, Trainern, Referenten und Seminarteilnehmern. Alle Häuser verfügen über eine professionelle technische Ausstattung in den Seminarräumen. Mit ihrem exzellenten Service und hohen Qualitätsanspruch, ihren individuellen Besonderheiten und einem angenehmen, störungsfreien Umfeld schaffen sie die Voraussetzungen für konzentriertes Arbeiten und einen entspannenden Ausgleich. In jedem Hotel haben wir für unsere Teilnehmer bereits Kontingente zu besonderen Konditionen reserviert. Bitte geben Sie bei Ihrer Seminaranmeldung an, ob wir eine Buchung für Sie vornehmen sollen. Den Hotelprospekt und eine Wegbeschreibung erhalten Sie mit Ihrer Anmeldebestätigung per Post.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_list</fullName>
+        <categories>WebSeminarKategorieUebersicht</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_list</shortDescription>
+        <value>Seminarübersicht</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_search_results</fullName>
+        <categories>faseminarsearch.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_search_results</shortDescription>
+        <value>Ergebnisse Seminar-Suche</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_title</fullName>
+        <categories>FABestellungenView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_title</shortDescription>
+        <value>Seminartitel</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_type_apprenticeships</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_type_apprenticeships</shortDescription>
+        <value>Ausbildungen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_type_intensive</fullName>
+        <categories>faseminarsearch.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_type_intensive</shortDescription>
+        <value>Intensivseminare</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_type_leadership</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_type_leadership</shortDescription>
+        <value>Führung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_type_management_competence</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_type_management_competence</shortDescription>
+        <value>Managementkompetenz</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_type_personality_development</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_type_personality_development</shortDescription>
+        <value>Persönlichkeitsentwicklung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_venue</fullName>
+        <categories>fagarantie.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_venue</shortDescription>
+        <value>Veranstaltungsort</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshop_waitlist</fullName>
+        <categories>FASeminar.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshop_waitlist</shortDescription>
+        <value>Warteliste</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops</fullName>
+        <categories>webbestelluebersichtregister, webseminardiplomportfolios</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops</shortDescription>
+        <value>Seminare</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_additional_dates</fullName>
+        <categories>WebSeminarDetailNextSeminars</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_additional_dates</shortDescription>
+        <value>Zusatztermin</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_book_here</fullName>
+        <categories>WebPreisgrupperightinfo</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_book_here</shortDescription>
+        <value>Seminar buchen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_book_here_short</fullName>
+        <categories>FASeminar.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_book_here_short</shortDescription>
+        <value>Buchen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_choose_category</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_choose_category</shortDescription>
+        <value>Bereich wählen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_click_for_information</fullName>
+        <categories>webseminardiplomportfolios</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_click_for_information</shortDescription>
+        <value>Für detaillierte Informationen einfach den entsprechenden Seminarcode anklicken!</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_code</fullName>
+        <categories>webseminardiplomportfolios</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_code</shortDescription>
+        <value>Code</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_code_long</fullName>
+        <categories>WebSearchBox2.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_code_long</shortDescription>
+        <value>Seminarcode</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_comment_text</fullName>
+        <categories>WebSeminarCoaching, WebSeminarDiplom, WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_comment_text</shortDescription>
+        <value>Zur Buchung der einzelnen Termine, siehe untenstehende Tabelle</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_content</fullName>
+        <categories>WebSeminarCoaching, WebSeminarDiplom, WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_content</shortDescription>
+        <value>Inhalte</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_continuative_workshops</fullName>
+        <categories>FAWeiterfuehrendeSeminare</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_continuative_workshops</shortDescription>
+        <value>Weiterführende Seminare</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_cycle</fullName>
+        <categories>fabestellung_zyklusNoOptionStep1</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_cycle</shortDescription>
+        <value>Zyklus</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_cycle_choice</fullName>
+        <categories>fabestellung_zyklusNoOptionStep1</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_cycle_choice</shortDescription>
+        <value>Zyklusauswahl</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_details</fullName>
+        <categories>FAPreisgruppe, WebSeminarKategorieDetail, WebSeminarMonatList</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_details</shortDescription>
+        <value>Details</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_display_all_venues</fullName>
+        <categories>fakalender.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_display_all_venues</shortDescription>
+        <value>Alle Seminarorte anzeigen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_fully_booked</fullName>
+        <categories>FASeminar.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_fully_booked</shortDescription>
+        <value>ausgebucht</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_guaranty_workshop_heading</fullName>
+        <categories>fagarantie.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_guaranty_workshop_heading</shortDescription>
+        <value>Für garantierten Lernerfolg</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_guaranty_workshop_text</fullName>
+        <categories>fagarantie.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_guaranty_workshop_text</shortDescription>
+        <value>Jetzt planen und erfolgreich weiterbilden. Garantiert. Denn für diese Seminare aus unserem offenen Seminarprogramm können wir Ihnen schon heute die Durchführung gewährleisten (bereits ausgebuchte Termine werden nicht angezeigt). 100% Planungssicherheit für 100% Lernerfolg. Sichern Sie sich deshalb schnellstmöglich die verbleibenden Plätze. Nachfolgend unsere Seminartermine mit Durchführungsgarantie:</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_intensive_program</fullName>
+        <categories>WebSeminarCoaching, WebSeminarDiplom</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_intensive_program</shortDescription>
+        <value>Intensivprogramm</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_method</fullName>
+        <categories>WebSeminarCoaching, WebSeminarDiplom, WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_method</shortDescription>
+        <value>Methode</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_module</fullName>
+        <categories>WebSeminarCoaching, WebSeminarDiplom, WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_module</shortDescription>
+        <value>Module</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_next_workshops</fullName>
+        <categories>FANaechsteSeminare</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_next_workshops</shortDescription>
+        <value>Nächste Seminare</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_rating</fullName>
+        <categories>Seminar</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_rating</shortDescription>
+        <value>Bewertung</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_ratings</fullName>
+        <categories>Seminar, WebSeminarDetail, webseminardetailcontent</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_ratings</shortDescription>
+        <value>Bewertungen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_search_no_results_found_text</fullName>
+        <categories>faseminarsearch.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_search_no_results_found_text</shortDescription>
+        <value>Bitte passen Sie rechts Ihre Einstellungen an oder kontaktieren Sie uns direkt.</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_search_suggestion</fullName>
+        <categories>faseminarsearch.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_search_suggestion</shortDescription>
+        <value>Diese Intensivseminare könnten Sie interessieren</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_search_workshop</fullName>
+        <categories>WebSeminarKategorieUebersicht</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_search_workshop</shortDescription>
+        <value>Seminar suchen</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_target_group</fullName>
+        <categories>WebSeminarCoaching, WebSeminarDiplom, WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_target_group</shortDescription>
+        <value>Zielgruppe</value>
+    </labels>
+    <labels>
+        <fullName>akademie_workshops_training_program</fullName>
+        <categories>WebSeminarGMP</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_workshops_training_program</shortDescription>
+        <value>Ausbildungsprogramm</value>
+    </labels>
+    <labels>
+        <fullName>and</fullName>
+        <categories>FAPreisgruppeZyklus</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>and</shortDescription>
+        <value>und</value>
+    </labels>
+    <labels>
+        <fullName>at_least_short</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>at_least_short</shortDescription>
+        <value>min.</value>
+    </labels>
+    <labels>
+        <fullName>at_most_short</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>at_most_short</shortDescription>
+        <value>max.</value>
+    </labels>
+    <labels>
+        <fullName>bestellen</fullName>
+        <categories>Informationsmaterial, Kontakt</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>bestellen</shortDescription>
+        <value>bestellen</value>
+    </labels>
+    <labels>
+        <fullName>book_here</fullName>
+        <categories>FAPortfolioShortInfo</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>book_here</shortDescription>
+        <value>Hier buchen</value>
+    </labels>
+    <labels>
+        <fullName>confirmation</fullName>
+        <categories>WebTeilnehmerRegister.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>confirmation</shortDescription>
+        <value>Bestätigung</value>
+    </labels>
+    <labels>
+        <fullName>date</fullName>
+        <categories>webbestelluebersichtregister, WebSeminarDetailNextSeminars, webseminarnextveranstaltungen</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>date</shortDescription>
+        <value>Datum</value>
+    </labels>
+    <labels>
+        <fullName>day</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>day</shortDescription>
+        <value>Tag</value>
+    </labels>
+    <labels>
+        <fullName>days</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>days</shortDescription>
+        <value>Tage</value>
+    </labels>
+    <labels>
+        <fullName>delete</fullName>
+        <categories>FAWarenkorb_view</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>delete</shortDescription>
+        <value>löschen</value>
+    </labels>
+    <labels>
+        <fullName>eMail</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>eMail</shortDescription>
+        <value>eMail</value>
+    </labels>
+    <labels>
+        <fullName>euro</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>euro</shortDescription>
+        <value>EUR</value>
+    </labels>
+    <labels>
+        <fullName>euro_plus_vat</fullName>
+        <categories>FABestellungZyklus.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>euro_plus_vat</shortDescription>
+        <value>EUR zzgl. MwSt.</value>
+    </labels>
+    <labels>
+        <fullName>exclusive_of_VAT</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>exclusive_of_VAT</shortDescription>
+        <value>zzgl. MwSt.</value>
+    </labels>
+    <labels>
+        <fullName>form_mandatory_fields</fullName>
+        <categories>WebKontaktInformationmaterial, WebKontaktTelefon</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>form_mandatory_fields</shortDescription>
+        <value>Pflichtfelder</value>
+    </labels>
+    <labels>
+        <fullName>from</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>from</shortDescription>
+        <value>von</value>
+    </labels>
+    <labels>
+        <fullName>go_to</fullName>
+        <categories>Navigation</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>go_to</shortDescription>
+        <value>Zur</value>
+    </labels>
+    <labels>
+        <fullName>go_to_page_top</fullName>
+        <categories>Navigation</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>go_to_page_top</shortDescription>
+        <value>Zum Seitenanfang</value>
+    </labels>
+    <labels>
+        <fullName>go_to_start_page</fullName>
+        <categories>Navigation</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>go_to_start_page</shortDescription>
+        <value>Zur Startseite</value>
+    </labels>
+    <labels>
+        <fullName>imprint</fullName>
+        <categories>Navigation, Impressum</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>imprint</shortDescription>
+        <value>Impressum</value>
+    </labels>
+    <labels>
+        <fullName>month_april</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_april</shortDescription>
+        <value>April</value>
+    </labels>
+    <labels>
+        <fullName>month_august</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_august</shortDescription>
+        <value>August</value>
+    </labels>
+    <labels>
+        <fullName>month_december</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_december</shortDescription>
+        <value>Dezember</value>
+    </labels>
+    <labels>
+        <fullName>month_february</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_february</shortDescription>
+        <value>Februar</value>
+    </labels>
+    <labels>
+        <fullName>month_january</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_january</shortDescription>
+        <value>Januar</value>
+    </labels>
+    <labels>
+        <fullName>month_july</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_july</shortDescription>
+        <value>Juli</value>
+    </labels>
+    <labels>
+        <fullName>month_june</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_june</shortDescription>
+        <value>Juni</value>
+    </labels>
+    <labels>
+        <fullName>month_march</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_march</shortDescription>
+        <value>März</value>
+    </labels>
+    <labels>
+        <fullName>month_may</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_may</shortDescription>
+        <value>Mai</value>
+    </labels>
+    <labels>
+        <fullName>month_november</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_november</shortDescription>
+        <value>November</value>
+    </labels>
+    <labels>
+        <fullName>month_october</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_october</shortDescription>
+        <value>Oktober</value>
+    </labels>
+    <labels>
+        <fullName>month_september</fullName>
+        <categories>FAKalender.cls</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>month_september</shortDescription>
+        <value>September</value>
+    </labels>
+    <labels>
+        <fullName>new_password_has_been_sent</fullName>
+        <categories>FAForgotPassword.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>new_password_has_been_sent</shortDescription>
+        <value>Wir haben Ihnen soeben ein neues Kennwort per eMail zugesendet.</value>
+    </labels>
+    <labels>
+        <fullName>none</fullName>
+        <categories>DropDown</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>none</shortDescription>
+        <value>keine</value>
+    </labels>
+    <labels>
+        <fullName>not_available</fullName>
+        <categories>FABestellungenView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>not_available</shortDescription>
+        <value>Nicht verfügbar</value>
+    </labels>
+    <labels>
+        <fullName>notice</fullName>
+        <categories>FABestellung</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>notice</shortDescription>
+        <value>Hinweis</value>
+    </labels>
+    <labels>
+        <fullName>of</fullName>
+        <categories>Bewertung, webportfolio2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>of</shortDescription>
+        <value>von</value>
+    </labels>
+    <labels>
+        <fullName>ohneVorgesetzten</fullName>
+        <categories>FA Portal</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>ohneVorgesetzten</shortDescription>
+        <value>Ich berichte direkt an GF / Vorstand</value>
+    </labels>
+    <labels>
+        <fullName>overview</fullName>
+        <categories>webhoteluebersicht2.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>overview</shortDescription>
+        <value>Übersicht</value>
+    </labels>
+    <labels>
+        <fullName>place</fullName>
+        <categories>FAWarenkorb_view, webbestelluebersichtregister, WebSeminarDetailNextSeminars, webseminarnextveranstaltungen</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>place</shortDescription>
+        <value>Ort</value>
+    </labels>
+    <labels>
+        <fullName>price_on_application</fullName>
+        <categories>FABestellung, Hotel</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>price_on_application</shortDescription>
+        <value>Preis auf Anfrage</value>
+    </labels>
+    <labels>
+        <fullName>print</fullName>
+        <categories>Webbreadcrumbsuggest2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>print</shortDescription>
+        <value>Drucken</value>
+    </labels>
+    <labels>
+        <fullName>region</fullName>
+        <categories>WebSearchBox2.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>region</shortDescription>
+        <value>Region</value>
+    </labels>
+    <labels>
+        <fullName>reservation</fullName>
+        <categories>FAWarenkorb_view, FASeminar</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>reservation</shortDescription>
+        <value>Reservierung</value>
+    </labels>
+    <labels>
+        <fullName>search_no_results_found</fullName>
+        <categories>faseminarsearch.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>search_no_results_found</shortDescription>
+        <value>Keine Ergebnisse gefunden.</value>
+    </labels>
+    <labels>
+        <fullName>search_results</fullName>
+        <categories>websitesearch2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>search_results</shortDescription>
+        <value>Suchergebnisse</value>
+    </labels>
+    <labels>
+        <fullName>show</fullName>
+        <categories>WebNaechsteSeminare2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>show</shortDescription>
+        <value>anzeigen</value>
+    </labels>
+    <labels>
+        <fullName>show_all</fullName>
+        <categories>DropDown, WebSearchBox2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>show_all</shortDescription>
+        <value>alle anzeigen</value>
+    </labels>
+    <labels>
+        <fullName>start_date</fullName>
+        <categories>WebSearchBox2.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>start_date</shortDescription>
+        <value>Startdatum</value>
+    </labels>
+    <labels>
+        <fullName>start_page</fullName>
+        <categories>Webbreadcrumbsuggest2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>start_page</shortDescription>
+        <value>Startseite</value>
+    </labels>
+    <labels>
+        <fullName>status</fullName>
+        <categories>FABestellungenView.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>sum</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>sum</shortDescription>
+        <value>Summe</value>
+    </labels>
+    <labels>
+        <fullName>terms</fullName>
+        <categories>Navigation, AGB</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>terms</shortDescription>
+        <value>AGB</value>
+    </labels>
+    <labels>
+        <fullName>to</fullName>
+        <categories>WebeMailToTeilnehmer</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>to</shortDescription>
+        <value>bis</value>
+    </labels>
+    <labels>
+        <fullName>total</fullName>
+        <categories>webbestelluebersichtregister</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>total</shortDescription>
+        <value>Gesamt</value>
+    </labels>
+    <labels>
+        <fullName>tweet</fullName>
+        <categories>socialmedia, webfooter2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>tweet</shortDescription>
+        <value>Twittern</value>
+    </labels>
+    <labels>
+        <fullName>vossloh_login_here</fullName>
+        <categories>faregisterconfirm2</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>vossloh_login_here</shortDescription>
+        <value>Sie können sich hier anmelden</value>
+    </labels>
+    <labels>
+        <fullName>vossloh_register_here</fullName>
+        <categories>FALogin.page</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>vossloh_register_here</shortDescription>
+        <value>Registrieren Sie sich hier.</value>
+    </labels>
+    <labels>
+        <fullName>vossloh_register_please_register_long</fullName>
+        <categories>FARegister, Vossloh, Anmeldung</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>vossloh_register_please_register_long</shortDescription>
+        <value>Bitte registrieren Sie sich für den Zugang zur Vossloh Akademie. Wir bitten auch diejenigen Mitarbeiter/innen die sich bereits registriert haben, um eine erneute Registrierung.</value>
+    </labels>
+    <labels>
+        <fullName>vossloh_thank_you_for_registering2</fullName>
+        <categories>Vossloh, Registrierung, FaRegisterStep3.component</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>vossloh_thank_you_for_registering2</shortDescription>
+        <value>Sie erhalten in Kürze eine Email, mit einem Link zur Bestätigung Ihrer Registrierung.</value>
+    </labels>
+    <labels>
+        <fullName>weiter</fullName>
+        <categories>Firmenakademie</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>weiter</shortDescription>
+        <value>weiter</value>
+    </labels>
+</CustomLabels>
