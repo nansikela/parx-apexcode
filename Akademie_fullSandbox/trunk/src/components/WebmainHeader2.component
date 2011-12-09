@@ -15,7 +15,7 @@
                <ul>
                 <li><a href="http://www.cognos-ag.de/" id="cognosLogoNew" target="_blank" title="{!$Label.go_to} Cognos  AG"><apex:image styleClass="cognosLogoNew" value="{!URLFOR($Resource.web_style2,'/i/logo_cognos_competence_group.png')}" /></a></li>
                 <li><a href="/rueckruf">{!$Label.akademie_contact_phone_call_back}</a></li>
-                <li style="padding-right: 5px;"><a href="/die-akademie/kontakt">{!$Label.akademie_contact_heading}</a></li>
+                <li style="padding-right: 20px;"><a href="/die-akademie/kontakt">{!$Label.akademie_contact_heading}</a></li>
                 <!--
 				<li style="padding-left: 7px; padding-top: 0px;">
 				<apex:outputLink id="facebooklink" value="">
@@ -29,7 +29,7 @@
 				</apex:outputLink>
 				</li>
 				<li style="padding-left: 7px; padding-top: 0px;">
-				<apex:outputLink id="googlepluslink" value="https://plus.google.com/u/0/b/112231296677007019889/">
+				<apex:outputLink id="googlepluslink" value="https://plus.google.com/u/0/b/112231296677007019889/112231296677007019889/posts">
 					<div class="googlepluslinkBackground"></div>
 				</apex:outputLink>
 				</li>
@@ -38,7 +38,7 @@
 					<div class="xinglinkBackground"></div>
 				</apex:outputLink>
 				</li>
-				<li>
+				<li style="padding-top: 0px;">
                 	<apex:outputLink styleClass="loginNew">
                 		<div class="loginBackground"></div>
                 		<!-- <apex:image id="loginBtnImg" styleClass="loginImage" value="{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}" /> -->

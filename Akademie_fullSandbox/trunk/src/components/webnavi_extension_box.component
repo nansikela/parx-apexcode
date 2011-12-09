@@ -1,6 +1,6 @@
 <apex:component >
 
-<div id="navi_extension_box" style="padding-top: 10px;">
+<div id="navi_extension_box">
         
       <div class="navi_extension ext_leadership active" id="navi_extension_1" style="display:block;">
           <div class="extension_content">
