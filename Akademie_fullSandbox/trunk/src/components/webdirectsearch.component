@@ -145,7 +145,7 @@
     <div class="direct_search">
       <h3>DIREKTEINSTIEG</h3>
       <form method="post" style="padding-top:0px;">
-      <apex:outputText id="seminartitle" value="Seminarcode / Titel" style="text-style: bold;"/>
+      <apex:outputText id="seminartitle" value="Seminarcode / Titel" style="font-size: 14px;"/>
         <div style="padding-top: 9px;">
             <input class="optionfield optionfieldTitle"  id="quickQuery" onclick="this.value='';" type="text" autocomplete="off" />
         </div>
