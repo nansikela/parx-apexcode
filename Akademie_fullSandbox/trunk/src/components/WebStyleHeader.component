@@ -1,28 +1,6 @@
 <apex:component id="WebStyleHeaderCmp">
 <!-- additional styles for easy handling not in static resources -->
 <style>
-/* naechste seminare */
-.iconcalender {
-	float: left;
-	margin-top: -3px;
-	margin-right: 5px;
-}
-
-.iconcalendersmall {
-	float: left;
-	padding-right: 5px!important;
-	margin-top: 5px;
-}
-
-.seminaritem {
-	margin-left: 11px;
-	padding-right: 11px;
-}
-
-.rightbox_leftborder {
-	border-left: 1px solid #CCC;
-}
-
 /* topcontent */
 .topcontent {
 	padding-top: 109px;

@@ -18,28 +18,28 @@
                 <li style="padding-right: 20px;"><a href="/die-akademie/kontakt">{!$Label.akademie_contact_heading}</a></li>
                 <!--
 				<li style="padding-left: 7px; padding-top: 0px;">
-				<apex:outputLink id="facebooklink" value="">
+				<apex:outputLink target="_blank" id="facebooklink" value="">
 					<div class="facebooklinkBackground"></div>
 				</apex:outputLink>
 				</li>
 				-->
 				<li style="padding-left: 7px; padding-top: 0px;">
-				<apex:outputLink id="twitterlink" value="https://twitter.com/#!/Die_Akademie_de">
+				<apex:outputLink target="_blank" id="twitterlink" value="https://twitter.com/#!/Die_Akademie_de">
 					<div class="twitterlinkBackground"></div>
 				</apex:outputLink>
 				</li>
 				<li style="padding-left: 7px; padding-top: 0px;">
-				<apex:outputLink id="googlepluslink" value="https://plus.google.com/u/0/b/112231296677007019889/112231296677007019889/posts">
+				<apex:outputLink target="_blank" id="googlepluslink" value="https://plus.google.com/u/0/b/112231296677007019889/112231296677007019889/posts">
 					<div class="googlepluslinkBackground"></div>
 				</apex:outputLink>
 				</li>
 				<li style="padding-left: 7px; padding-top: 0px;">
-				<apex:outputLink id="xinglink" value="https://www.xing.com/companies/akademief%252525C3%2525259Crf%252525C3%2525259Chrungskr%252525C3%25252584ftederwirtschaftgmbh">
+				<apex:outputLink target="_blank" id="xinglink" value="https://www.xing.com/companies/akademief%252525C3%2525259Crf%252525C3%2525259Chrungskr%252525C3%25252584ftederwirtschaftgmbh">
 					<div class="xinglinkBackground"></div>
 				</apex:outputLink>
 				</li>
 				<li style="padding-top: 0px;">
-                	<apex:outputLink styleClass="loginNew">
+                	<apex:outputLink styleClass="loginNew" value="http://www.arccade.de/Arccade.htm" target="_blank">
                 		<div class="loginBackground"></div>
                 		<!-- <apex:image id="loginBtnImg" styleClass="loginImage" value="{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}" /> -->
                 	</apex:outputLink>
