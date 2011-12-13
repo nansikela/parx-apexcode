@@ -2,7 +2,7 @@
 <apex:attribute required="false" type="String" name="isFirst" description="is First Component"/>
 	<!-- TODO add background image and postion and format text -->
 	<apex:outputPanel layout="block" id="mgmguide" styleClass="management_guide management_guideDiv {!IF(isFirst=='true', 'first','')}">
-		<apex:outputLink id="mgmtguide_link" value="/resource/1315549087000/ManagementGuide2012" styleClass="management_guide">
+		<apex:outputLink target="_blank" id="mgmtguide_link" value="http://www.die-akademie.de/management-guide" styleClass="management_guide">
 	      <apex:outputPanel layout="block" id="mgmtguidetext" styleClass=" mgmtguidetext {!IF(isFirst=='true', 'first','')}">
 	        {!$Label.akademie_management_guide_2012}<br/>{!$Label.akademie_management_guide_2012_line2}
 	      </apex:outputPanel>

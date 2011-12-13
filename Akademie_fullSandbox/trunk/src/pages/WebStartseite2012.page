@@ -23,7 +23,7 @@
                     	<c:WebStartseiteNewsletter id="WebStartseiteNewsletter" />    
                 	</apex:outputPanel>
                 </apex:outputPanel>
-                 <div id="ie7Fix" style="width:940px; display:block;"> </div>
+                 <!-- <div id="ie7Fix" style="width:940px; display:block;"> </div> -->
                 <apex:outputPanel layout="block" id="bottomcontent" styleClass="bottomcontent">
                  <div class="column columnStartseite">
                  	<!-- Not in Layout anymore -->
