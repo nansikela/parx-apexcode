@@ -1,0 +1,203 @@
+<apex:page controller="FactsheetController" sidebar="false" showHeader="false" language="{!$CurrentPage.parameters.Lang}">
+
+<div width="21cm" style="font-size:12px;left:1cm;position:relative">
+
+    <apex:outputText style="font-weight:bold;left:-5px;position:relative;font-size:14px;" value="{!$Label.Factsheet_AccountInfo}" />
+    <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+       <tr>
+            <th style="text-align: center;">
+                 <apex:outputLabel value="{!$Label.Accounts}" style="font-weight:bold;"/> 
+            </th>
+            <th style="text-align: center;">
+                 <apex:outputLabel value="{!$Label.Contacts}" style="font-weight:bold;"/> 
+            </th>
+       </tr>
+       <tr >  
+          <td width="20%">
+               <table width="100%" >
+                   <tr width="100%">
+                       <td>
+                             <apex:outputLabel value="{!account.Name} "/> 
+                       </td>
+                   </tr>
+                   <tr> 
+                        <td>
+                            <apex:outputLabel value="{!account.BillingStreet}"/>
+                        </td>
+                   </tr>
+                   <tr>
+                        <td>
+                            <apex:outputLabel value="{!account.BillingPostalCode} "/> <apex:outputLabel value="{!account.BillingCity}"/>
+                        </td> 
+                    </tr> 
+                     <tr>
+                        <td>
+                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Phone.Label}:</b> {!account.Phone} "/> 
+                        </td>
+                    </tr>
+                    <tr> 
+                        <td>
+                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Fax.Label}:</b> {!account.Fax}"/>
+                        </td>
+                    </tr>
+                </table>
+        </td>
+        <td width="60%" style="border-left-style: solid; border-left-width:1px;" >
+             <table width="100%" >
+                <tr>
+                    <th>{!$ObjectType.Contact.Fields.Salutation.Label}</th>
+                    <th>{!$ObjectType.Contact.Fields.FirstName.Label}</th>
+                    <th>{!$ObjectType.Contact.Fields.LastName.Label}</th>
+                    <th>{!$ObjectType.Contact.Fields.Email.Label}</th>
+                </tr>
+                <apex:repeat value="{!contact}" var="con">
+                    <tr width="100%">
+                        <td width="25%">
+                            <apex:outputField value="{!con.Salutation}"/> 
+                        </td>
+                        <td width="25%">
+                            <apex:outputField value="{!con.FirstName}"/> 
+                        </td>
+                        <td width="25%">
+                            <apex:outputField value="{!con.LastName}"/> 
+                        </td>
+                        <td width="25%">
+                            <apex:outputField value="{!con.Email}"/> 
+                        </td>
+                    </tr>
+                </apex:repeat>
+            </table>
+         </td>
+       </tr>
+    </table>
+    <br/>
+    <apex:outputText value="{!$Label.Factsheet_LastVisitComments}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+        <tr>
+            <th>{!$ObjectType.Outlet_Visit__c.Fields.LastModifiedDate.Label}</th>
+            <th>{!$ObjectType.Outlet_Visit__c.Fields.Visit_Comments__c.Label}</th>
+        </tr>
+        <apex:repeat value="{!Outlet_Visit}" var="OV">
+            <tr width="100%">
+                <td width="50%">
+                    <apex:outputField value="{!OV.LastModifiedDate}"/> 
+                </td>
+                <td width="50%">
+                    <apex:outputField value="{!OV.Visit_Comments__c}"/> 
+                </td>
+            </tr>
+        </apex:repeat>
+    </table>
+    <br/>
+    <apex:outputText value="{!$Label.Factsheet_AccountBrand}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+        <tr>
+            <th>{!$ObjectType.Account_Brand__c.Fields.of_Forecast__c.Label}</th>
+            <th>{!$ObjectType.Account_Brand__c.Fields.of_Goal__c.Label}</th>
+            <th>{!$ObjectType.Account_Brand__c.Fields.Goal__c.Label}</th>
+            <th>{!$ObjectType.Brand__c.Fields.Name.Label}</th>
+            <th>{!$ObjectType.Account_Brand__c.Fields.Supplier__c.Label}</th>
+        </tr>
+        <apex:repeat value="{!Account_Brand}" var="AB">
+            <tr width="100%">
+                <td >
+                    <apex:outputField value="{!AB.of_Forecast__c}"/> 
+                </td>
+                <td>
+                    <apex:outputField value="{!AB.of_Goal__c}"/> 
+                </td>
+                <td>
+                    <apex:outputField value="{!AB.Goal__c}"/> 
+                </td>
+                <td>
+                    <apex:outputField value="{!AB.Brand__r.Name}"/> 
+                </td>
+                <td>
+                    <apex:outputField value="{!AB.Supplier__c}"/> 
+                </td>
+            </tr>
+        </apex:repeat>
+   </table>
+    <br/>
+    <apex:outputText value="{!$Label.Factsheet_MandatoryProducts}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+        <tr>
+            <th>{!$ObjectType.Product2.Fields.Name.Label}</th>
+            <th>{!$ObjectType.Mandatory_Products__c.Fields.Product_Status__c.Label}</th>
+        </tr>
+        <apex:repeat value="{!Mandatory_Products}" var="MP">
+            <tr width="100%">
+                <td width="50%">
+                    <apex:outputField value="{!MP.Custom_Product__r.Name}"/> 
+                </td>
+                <td width="50%">
+                    <apex:outputField value="{!MP.Product_Status__c}"/> 
+                </td>
+            </tr>
+        </apex:repeat>
+   </table>
+   <br/>
+   <apex:outputText value="{!$Label.Factsheet_Promotions}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+        <tr width="100%" style="font-weight:bold;">
+            <td width="33%">
+                <apex:outputText value="{!$ObjectType.Promotion__c.Fields.Total_Margin__c.Label}"/> 
+            </td>
+            <td width="33%">
+                <apex:outputText value="{!$ObjectType.Promotion__c.Fields.Total_Promotion_Cost__c.Label}"/> 
+            </td>
+            <td width="33%">
+                <apex:outputText value="{!$ObjectType.Promotion__c.Fields.Total_Brand_Profit__c.Label}"/> 
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <apex:outputText value="{!TEXT(Total_Margin) + " " + Currenc}"/> 
+            </td>
+            <td>
+                <apex:outputText value="{!TEXT(Total_Promotion_Cost) + " " + Currenc}"/> 
+            </td>
+            <td>
+                <apex:outputText value="{!TEXT(Total_Brand_Profit) + " " + Currenc}"/> 
+            </td>
+        </tr>
+   </table>
+   <br/>
+   <apex:outputText value="{!$Label.Factsheet_PromotionActivities}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+   <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+        <tr width="100%" style="font-weight:bold;">
+            <th>{!$ObjectType.Promotion_Activity__c.Fields.Name.Label}</th>
+            <th>{!$ObjectType.Promotion_Activity__c.Fields.Description__c.Label}</th>
+        </tr>
+        <apex:repeat value="{!Promotion_Activity}" var="PA">
+            <tr width="100%">
+                <td width="50%">
+                    <apex:outputField value="{!PA.Name}"/> 
+                </td>
+                <td width="50%">
+                    <apex:outputField value="{!PA.Description__c}"/> 
+                </td>
+            </tr>
+       </apex:repeat>
+   </table>
+   <br/>
+   <apex:outputText value="{!$Label.Factsheet_KeyTask}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+   <table width="100%">
+        <tr>
+            <th>{!$ObjectType.Key_Task__c.Fields.Name.Label}</th>
+            <th>{!$ObjectType.Outlet_Visit__c.Fields.Visit_Date__c.Label}</th>
+        </tr>
+        <apex:repeat value="{!Key_Task}" var="KT">
+            <tr width="100%">
+                <td width="50%">
+                    <apex:outputField value="{!KT.Name}"/> 
+                </td>
+                <td width="50%">
+                    <apex:outputField value="{!KT.Outlet_Visit__r.Visit_Date__c}"/> 
+                </td>
+            </tr>
+       </apex:repeat>
+   </table>
+</div>
+
+</apex:page>

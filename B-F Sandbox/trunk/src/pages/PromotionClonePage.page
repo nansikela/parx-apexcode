@@ -1,0 +1,26 @@
+<apex:page standardController="Promotion__c" extensions="PromotionCloneController" >
+<apex:form id="pc_form">
+	<apex:pageMessages id="pc_msgs"/>
+	
+	<apex:pageBlock id="pc_pb" title="Reuse promotion {!promotion.Name}">
+		<apex:pageBlockButtons >
+			<apex:commandButton action="{!save}" value="Proceed" />
+		</apex:pageBlockButtons>
+		
+		<!-- <apex:outputText value="{!size}" />  -->
+		
+		<apex:pageBlockSection title="Selected Accounts" columns="1">
+			<apex:repeat value="{!targetAccounts}" var="dto">
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!dto.position}. {!$ObjectType.account.fields.name.label}" for="account"/>			
+					<apex:outputPanel id="account">
+						<apex:inputField id="field" value="{!dto.record.Account__c}" />
+						<apex:commandButton action="{!addAccount}" value="Add" rendered="{!AmountOfAccounts == dto.position}"/>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+			</apex:repeat> 
+		</apex:pageBlockSection>
+		 
+	</apex:pageBlock>
+</apex:form>
+</apex:page>

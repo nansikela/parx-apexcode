@@ -16,10 +16,10 @@ public with sharing class outletVisit_Controller {
          
     
     
-    
-	Public List<Product__c> myProds = new List<Product__c>();
-	Public List<Depletion__c> myDeps = new List<Depletion__c>();
-	Public Map<Id, Outlet_Visit_Item__c> myOVI = new Map<Id, Outlet_Visit_Item__c>();
+    public String AlertMessage {get;set;}
+    Public List<Product__c> myProds = new List<Product__c>();
+    Public List<Depletion__c> myDeps = new List<Depletion__c>();
+    Public Map<Id, Outlet_Visit_Item__c> myOVI = new Map<Id, Outlet_Visit_Item__c>();
     
 
 
@@ -42,10 +42,10 @@ public with sharing class outletVisit_Controller {
             buildKT();
             if(this.retURL==null || this.retURL=='')
                 this.retURL = '/'+ov.Account__c;
+
         }else{
             this.ov.Visit_Date__c = system.today();
         }   
-
     }
      /*
     public PageReference redirect(){
@@ -63,13 +63,13 @@ public with sharing class outletVisit_Controller {
         }
         return null;
     }
-	*/
+    */
     void setAccountInfo()
     {
         Schema.DescribeSObjectResult deOV = Schema.SObjectType.Outlet_Visit__c;
         Transient Map<String,Schema.RecordTypeInfo> rtMapByNameOV = deOV.getRecordTypeInfosByName();
                         
-        a = [Select Id, Name, Market__c, Market__r.On_Channel__c, Market__r.Off_Channel__c, Channel__c, Outlet_Class__c, CurrencyIsoCode from Account where Id =:ov.Account__c];
+        a = [Select Id, Name, Last_Master_Data_Review__c, Market__c, Market__r.Name, Market__r.On_Channel__c, Market__r.Off_Channel__c, Channel__c, Outlet_Class__c, CurrencyIsoCode, RecordType.developerName from Account where Id =:ov.Account__c];
         gridLayout='1';
         if(a.Channel__c!=null && a.Channel__c!='')
             try{
@@ -158,27 +158,66 @@ public with sharing class outletVisit_Controller {
         buildKT();  
         return null;
     }            
-	public PageReference redirect(){
-		system.debug(ov.Status__c);
-		if(ov.Status__c=='New'){
-			system.debug('inside');
-			PageReference p1 = Page.outletVisit;
-			p1.getParameters().put('CF00N30000005PvLY',ov.Account__r.Name);
-			p1.getParameters().put('CF00N30000005PvLY_lkid',ov.Account__c);			
-			p1.getParameters().put('scontrolCaching','1');
-			p1.getParameters().put('sfdc.override','1');
-			p1.getParameters().put('retURL',retURL);
-			p1.setRedirect(true);
-			return p1;
-		}
-		return null;
-	}
+    public PageReference redirect(){
+        system.debug(ov.Status__c);
+        if(ov.Status__c=='New'){
+            system.debug('inside');
+            PageReference p1 = Page.outletVisit;
+            p1.getParameters().put('CF00N30000005PvLY',ov.Account__r.Name);
+            p1.getParameters().put('CF00N30000005PvLY_lkid',ov.Account__c);         
+            p1.getParameters().put('scontrolCaching','1');
+            p1.getParameters().put('sfdc.override','1');
+            p1.getParameters().put('retURL',retURL);
+            p1.setRedirect(true);
+            return p1;
+        }
+        return null;
+    }
       
     public PageReference next(){
         //insert ov;
-        showDetails=true;
+        
         //a = [Select Id, Market__c, Name, Outlet_Class__c, CurrencyIsoCode, Channel__c from Account where Id =:ov.Account__c];   
         setAccountInfo();
+        
+        /* P00004 
+        *VF Outlet Visit has to be updated. When the "Next" Button is pressed then the Visit Date is validated:
+        *- The rule has to prevent Outlet Visits in the future and
+        *- has to hint the user that the data lays in the past
+        *
+        *This should be done by using a div layer and the user has to press "OK" to proceed to "Next" or to return 
+        * to the Visit.
+        *
+        *This change should be only available for Accounts with Record Type "EUR_Outlets" or DEU_Outlets.
+        *
+        *
+        * P00050
+        * Popup (div layer) occurs on every run of outletVisit VF if Account is a german account (recordtype) 
+        * and the timestamp "Last Master Data Review" is null or older than 4 weeks.
+        * The 4 weeks are configureable!
+        * The Popup does not has any other effect it just has to be confirmed by clicking OK and does not prevent 
+        * preceeding with the visit or does not prevent saving the visit.
+        */
+        if(a.RecordType.developerName == 'EUR_Outlets' || a.RecordType.developerName == 'DEU_Outlets' ) {
+            if(a.Last_Master_Data_Review__c == null || OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c != null && a.Last_Master_Data_Review__c.addDays(Integer.valueOf(OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c))<system.today()) {
+                AlertMessage = System.Label.You_did_not_review_the_account + ' ' + String.valueOf(Integer.valueOf(OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c)) + ' ' + System.Label.days;
+            }
+            else {
+                AlertMessage = '';
+            }
+            if(ov.Visit_Date__c > system.today()) {
+                if(AlertMessage != '')
+                   AlertMessage += '\r\n.';
+                 AlertMessage += System.Label.You_cannot_have_a_visit_date;
+                 return null;
+            }
+            else if(ov.Visit_Date__c < system.today()) {
+                if(AlertMessage != '')
+                   AlertMessage += '\r\n.';
+                 AlertMessage += System.Label.Please_notice_that_the_visit_date_is_not_from_today;
+            }
+        }
+        showDetails=true;
         ov.CurrencyIsoCode = a.CurrencyIsoCode;     
         buildOvi();
         buildKT();
@@ -211,6 +250,7 @@ public with sharing class outletVisit_Controller {
     public string compBrand {get;set;}
 
     public List<wrapper> myBFOvi {get;set;}
+    public List<wrapper> myBFOvi_header {get;set;}
     public List<wrapper> myCompOvi {get;set;}
     public Map<ID,Account_Brand__c> mapBrandAccountBrands;//  {get;set;}
     public Map<ID,Mandatory_Products__c> mapProductsAccount;
@@ -240,7 +280,7 @@ public with sharing class outletVisit_Controller {
         date startdate;
         date enddate;
         Map<ID,Outlet_Visit__c> myOldOV;
-		Map<ID,Outlet_Visit_Item__c> myExistingOVI;    
+        Map<ID,Outlet_Visit_Item__c> myExistingOVI;    
         buildAccountBrandMap();        
         //a = [Select Id, Market__c, Outlet_Class__c from Account where Id =:ov.Account__c];
         if(a.Market__c==null)
@@ -284,11 +324,11 @@ public with sharing class outletVisit_Controller {
         {
             myQueryString +=' and p.Brand__r.Spirit_Type__c = \'' + string.escapeSingleQuotes(spiritType) + '\'';
         }
-//		system.debug(myQueryString);
+//      system.debug(myQueryString);
        // string myBFQueryString;
        // string myCompQueryString;
        // myBFQueryString = myQueryString + ' and p.Brand__r.Supplier__r.Is_B_F_Brand__c = true';
-		myQueryString += ' and p.Brand__c IN (';        
+        myQueryString += ' and p.Brand__c IN (';        
         if(bfBrand!=null && bfBrand!='ALL')
         {
             myQueryString += '\'' + string.escapeSingleQuotes(bfBrand) + '\',';
@@ -302,7 +342,7 @@ public with sharing class outletVisit_Controller {
         {
             myQueryString += '\'' + string.escapeSingleQuotes(compBrand) + '\',';
         } else {
-        	// loop thru all competitor brands
+            // loop thru all competitor brands
             for(Brand__c y :[Select r.Name, r.Id From Brand__c r where Supplier__r.Is_B_F_Brand__c = false ORDER BY r.Name]) {
                 myQueryString += '\'' + y.Id + '\',';
         }           
@@ -313,47 +353,52 @@ public with sharing class outletVisit_Controller {
         myQueryString +=' ORDER BY p.Sort_Order__c';
         system.debug(myQueryString);
         myBFOvi = new List<wrapper>();
+        myBFOvi_header = new List<wrapper>();
         myCompOvi = new List<wrapper>();        
         myProds.clear();
         
         for(Product__c p :Database.query(myQueryString))
         {
-        	//&& p.Outlet_Visit_Items__r.size()==0
+            //&& p.Outlet_Visit_Items__r.size()==0
             if(p.IsActive__c==false)
             {
                 continue;
             }else{
-             	myProds.add(p);
+                myProds.add(p);
                 }
                 
              }
         depletionQry = 'Select Id, Name, Bottles__c, Month_Of_Date__c, Account__c, Custom_Product__c From Depletion__c where Account__c = \'' + a.Id + '\' and Month_Of_Date__c >= ' + startdate.year() +'-'+ (startdate.month()<10?('0'+startdate.month().format()):startdate.month().format()) + '-' + (startdate.day()<10?('0'+startdate.day().format()):startdate.day().format())+ ' and Month_Of_Date__c <= ' + enddate.year() +'-'+ (enddate.month()<10?('0'+enddate.month().format()):enddate.month().format()) + '-' + (enddate.day()<10?('0'+enddate.day().format()):enddate.day().format())+ ' ORDER BY Month_Of_Date__c';
         //String depletionQry = 'Select Id, Name, Bottles__c, Month_Of_Date__c, Account__c, Custom_Product__c From Depletion__c where Account__c = \'0013000000niZRZAA2\'';
         for (Depletion__c d :Database.query(depletionQry))
-		{
-			myDeps.add(d);
+        {
+            myDeps.add(d);
         }       
-		outletVisitItemQry = 'Select Id, Name, Outlet_Visit__c, Custom_Product__c, Bottle_Price__c, Bottle_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Double_Price__c, Double_Price_Special__c, Space_Placement__c, Shelf__c, Facing__c, Available__c From Outlet_Visit_Item__c ' + (((myOldOV!=null && !myOldOV.keyset().isempty())?myOldOV.values()[0].Id:ov.id)!=null?(' where Outlet_Visit__c = \'' + ((myOldOV!=null && !myOldOV.keyset().isempty()) ? myOldOV.values()[0].Id:ov.id)+ '\''):' where Outlet_Visit__r.Account__c = \'' + a.Id + '\'');
+        outletVisitItemQry = 'Select Id, Name, Outlet_Visit__c, Custom_Product__c, Bottle_Price__c, Bottle_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Double_Price__c, Double_Price_Special__c, Space_Placement__c, Shelf__c, Facing__c, Available__c From Outlet_Visit_Item__c ' + (((myOldOV!=null && !myOldOV.keyset().isempty())?myOldOV.values()[0].Id:ov.id)!=null?(' where Outlet_Visit__c = \'' + ((myOldOV!=null && !myOldOV.keyset().isempty()) ? myOldOV.values()[0].Id:ov.id)+ '\''):' where Outlet_Visit__r.Account__c = \'' + a.Id + '\'');
         //String outletVisitItemQry = 'Select Id, IsDeleted, Name, CreatedDate, CreatedById, LastModifiedDate, LastModifiedById, SystemModstamp, Outlet_Visit__c, Product__c, Bottle_Price__c, Bottle_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Double_Price__c, Double_Price_Special__c, Space_Placement__c, Shelf__c, Facing__c, Available__c From Outlet_Visit_Item__c  where Outlet_Visit__c = \'a0MS00000045QrdMAE\'';
         for (Outlet_Visit_Item__c i :Database.query(outletVisitItemQry))
         {
-			myOVI.put(i.Custom_Product__c,i);
-		}
-		for(Product__c prod : myProds)
+            myOVI.put(i.Custom_Product__c,i);
+        }
+        for(Product__c prod : myProds)
             {
                 string requiredBrand = mapProductsAccount.get(prod.Id)!=null?mapProductsAccount.get(prod.Id).Product_Status__c:null;
                 boolean keyBrand = mapBrandAccountBrands.get(prod.Brand__c)!=null?mapBrandAccountBrands.get(prod.Brand__c).Key_Brand__c:null;                        
-			system.debug('prodId = ' + prod.Id);
-			system.debug('prodBrand = ' + prod.Brand__c);			
+            system.debug('prodId = ' + prod.Id);
+            system.debug('prodBrand = ' + prod.Brand__c);           
             system.debug('requiredBrand = ' + requiredBrand);            
             system.debug('keyBrand = ' + keyBrand);
             system.debug('Supplier__c = ' + prod.Supplier__c);
             if (prod.Supplier__c == 'B-F') {
-            	myBFOvi.add(new wrapper(prod,ov,myOVI,myDeps,(myOldOV!=null && !myOldOV.keyset().isempty())?true:false,(requiredBrand!=null?requiredBrand:null),keyBrand));            	
+                myBFOvi.add(new wrapper(prod,ov,myOVI,myDeps,(myOldOV!=null && !myOldOV.keyset().isempty())?true:false,(requiredBrand!=null?requiredBrand:null),keyBrand));             
             } else {
-            	myCompOvi.add(new wrapper(prod,ov,myOVI,myDeps,(myOldOV!=null && !myOldOV.keyset().isempty())?true:false,(requiredBrand!=null?requiredBrand:null),keyBrand));
+                myCompOvi.add(new wrapper(prod,ov,myOVI,myDeps,(myOldOV!=null && !myOldOV.keyset().isempty())?true:false,(requiredBrand!=null?requiredBrand:null),keyBrand));
             }
         }
+        /* P00005a */
+        myBFOvi = sortOVI(myBFOvi);
+  		/* P00005a */
+  
     //    myCompQueryString +=' ORDER BY p.Sort_Order__c';
     //    system.debug(myCompQueryString);
     //    for(Product2 prod :Database.query(myCompQueryString))
@@ -369,6 +414,47 @@ public with sharing class outletVisit_Controller {
      //   }
         system.debug(myBFOvi);
         //End Code Change   
+    }
+    
+        /*
+    *SOW: P00005a 
+    *
+    *Changes VF outletVisit
+    *
+    * For all markets:
+    * Change the order of the drinks to present the account related drinks on top of the list.
+    * Criteria are:
+    * Mandatory Product
+    * Account Brands (actual listings/facings)
+    */
+    public list<wrapper> sortOVI(list<wrapper> OVI) {
+        list<wrapper> TempOVIs = new list<wrapper>();
+        
+        //first available ovi.
+        for(wrapper temp:OVI) {
+            if(temp != null && temp.ovi != null && temp.ovi.Available__c)
+              TempOVIs.add(temp);
+        }
+        
+        //then required Brand by taking care that we don't add again the available.
+        for(wrapper temp:OVI) {
+            if(temp != null && temp.ovi != null && !temp.ovi.Available__c && temp.requiredBrand != null)
+              TempOVIs.add(temp);
+        }
+        
+        //then key Brand by taking care that we don't add again the others
+        for(wrapper temp:OVI) {
+            if(temp != null && temp.ovi != null && !temp.ovi.Available__c && temp.requiredBrand == null && temp.keyBrand != null && temp.keyBrand)
+              TempOVIs.add(temp);
+        }
+        
+        //we add all others items.
+        for(wrapper temp:OVI) {
+            if(temp != null && temp.ovi != null && !temp.ovi.Available__c && temp.requiredBrand == null && (temp.keyBrand == null || !temp.keyBrand))
+              TempOVIs.add(temp);
+        }
+        
+        return TempOVIs;
     }
     
     void saveOvi()
@@ -713,33 +799,33 @@ public with sharing class outletVisit_Controller {
     public boolean selected {get; set;}
     public string requiredBrand {get; set;}
     public boolean keyBrand {get; set;}
-    	public wrapper(Product__c p, Outlet_Visit__c ov, Map<Id,Outlet_Visit_Item__c> OVMap,List<Depletion__c> DepList, boolean isNew, string rb, boolean kb)	
+        public wrapper(Product__c p, Outlet_Visit__c ov, Map<Id,Outlet_Visit_Item__c> OVMap,List<Depletion__c> DepList, boolean isNew, string rb, boolean kb)   
         {
             prod = p;
-	            //Start Code Change
-	           if(OVMap.containsKey(prod.Id))
+                //Start Code Change
+               if(OVMap.containsKey(prod.Id))
             {
-	                Outlet_Visit_Item__c newOvi = OVMap.get(prod.Id);
-	                //system.debug(p.Outlet_Visit_Items__r);
+                    Outlet_Visit_Item__c newOvi = OVMap.get(prod.Id);
+                    //system.debug(p.Outlet_Visit_Items__r);
                 if(isNew)
                 {
                     ovi = new Outlet_Visit_Item__c();
                     ovi.CurrencyIsoCode = ov.CurrencyIsoCode;
                     ovi.Custom_Product__c=p.id;
                     //ovi.Outlet_Visit__c=ov.Id;    
-	                    ovi.Drink_Price__c=newOvi.Drink_Price__c;
-	                    ovi.Drink_Price_Special__c=newOvi.Drink_Price_Special__c;
-	                    ovi.Bottle_Price__c=newOvi.Bottle_Price__c;
-	                    ovi.Bottle_Price_Special__c=newOvi.Bottle_Price_Special__c;
-	                    ovi.Double_Price__c=newOvi.Double_Price__c;
-	                    ovi.Double_Price_Special__c=newOvi.Double_Price_Special__c;
-                    
-						ovi.Space_Placement__c=newOvi.Space_Placement__c;
-						ovi.Shelf__c=newOvi.Shelf__c;
-						ovi.Facing__c=newOvi.Facing__c;
-						ovi.Available__c=newOvi.Available__c;
+                    ovi.Drink_Price__c=newOvi.Drink_Price__c;
+                    ovi.Drink_Price_Special__c=newOvi.Drink_Price_Special__c;
+                    ovi.Bottle_Price__c=newOvi.Bottle_Price__c;
+                    ovi.Bottle_Price_Special__c=newOvi.Bottle_Price_Special__c;
+                    ovi.Double_Price__c=newOvi.Double_Price__c;
+                    ovi.Double_Price_Special__c=newOvi.Double_Price_Special__c;
+                
+                    ovi.Space_Placement__c=newOvi.Space_Placement__c;
+                    ovi.Shelf__c=newOvi.Shelf__c;
+                    ovi.Facing__c=newOvi.Facing__c;
+                    ovi.Available__c=newOvi.Available__c;
                 }else{
-	                    ovi = newOvi;//should be just one row
+                    ovi = newOvi;//should be just one row
                     ovi.CurrencyIsoCode = ov.CurrencyIsoCode;   
                 }            
             }else{
@@ -750,14 +836,14 @@ public with sharing class outletVisit_Controller {
             }
             requiredBrand = rb;
             keyBrand = kb;                        
-			    for(Depletion__c y : DepList) {
-			    	system.debug('y.custom_product__c = ' + y.Custom_product__c);
-			    	system.debug('prod.id = ' + prod.id);			    	
-	            	if(y.Custom_product__c == prod.id) {
+                for(Depletion__c y : DepList) {
+                    system.debug('y.custom_product__c = ' + y.Custom_product__c);
+                    system.debug('prod.id = ' + prod.id);                   
+                    if(y.Custom_product__c == prod.id) {
                 if(y.Month_Of_Date__c.month()==ov.Visit_Date__c.addmonths(-1).month()){dep1=y;}
                 if(y.Month_Of_Date__c.month()==ov.Visit_Date__c.month()){dep2=y;}
                 if(y.Month_Of_Date__c.month()==ov.Visit_Date__c.addmonths(1).month()){dep3=y;}
-	            	}
+                    }
             }
             if(dep1==null)
             {
@@ -801,5 +887,37 @@ public with sharing class outletVisit_Controller {
                 (o.LastModifiedDate >=: date.today().adddays(-1) and o.LastModifiedDate <=: date.today().adddays(1))
             )
         )];
-    }         
+    }  
+  
+  
+   public List<SelectOption> getLocationData() {
+        List<SelectOption> options = new List<SelectOption>();
+
+        options.add(new SelectOption('--None--','--None--'));
+        
+        //Add values to list of Select Options  
+        for (OV_Location_Data__c location : [select Name__c, Market__c, Sort_Order__c, Channel__c From OV_Location_Data__c order by Sort_Order__c]) {
+            if (location.Market__c == a.Market__r.Name && location.Channel__c == a.Channel__c) {
+                options.add(new SelectOption(location.Name__c,location.Name__c));
+            }
+        }
+                
+        return options;
+    }
+    
+   public List<SelectOption> getShelfData() {
+        List<SelectOption> options = new List<SelectOption>();
+
+        options.add(new SelectOption('--None--','--None--'));
+        
+        //Add values to list of Select Options  
+        for (Outlet_Visit_Shelf_Data__c shelf : [select Name__c, Market__c, Sort_Order__c From Outlet_Visit_Shelf_Data__c order by Sort_Order__c]) {
+            if (shelf.Market__c == a.Market__r.Name) {
+                options.add(new SelectOption(shelf.Name__c,shelf.Name__c));
+            }
+        }
+                
+        return options;
+    }    
+     
 }
