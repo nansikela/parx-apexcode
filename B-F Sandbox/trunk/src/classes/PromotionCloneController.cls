@@ -62,6 +62,7 @@ public class PromotionCloneController {
 		return null;
 	}
 	
+	/*
 	private Boolean insertAllPromotionResults(SavePoint sp, list<Promotion__c> allPromotions) {
 		
 		list<Promotion_Result__c> promotion_results = Database.query(getCreatableFieldsSOQL('Promotion_Result__c', 'Promotion__c = \'' + promotion.ID + '\''));
@@ -81,6 +82,7 @@ public class PromotionCloneController {
 		 	 
 		return true; 
 	}
+	*/
 	
 	private Boolean insertAllPromotionMaterialItems(SavePoint sp, list<Promotion__c> allPromotions) {
 		list<Promotion_Material_Item__c> promotion_material_items = Database.query(getCreatableFieldsSOQL('Promotion_Material_Item__c', 'Promotion__c = \'' + promotion.ID + '\''));
@@ -101,6 +103,7 @@ public class PromotionCloneController {
 		return true;
 	}
 	
+	/*
 	private Boolean insertAllPromotionGoals(SavePoint sp, list<Promotion__c> allPromotions) {
 		list<Promotion_Goal__c> promotion_goals = Database.query(getCreatableFieldsSOQL('Promotion_Goal__c', 'Promotion__c = \'' + promotion.ID + '\''));
 		list<Promotion_Goal__c> duplicates = new list<Promotion_Goal__c>();
@@ -119,6 +122,7 @@ public class PromotionCloneController {
 		
 		return true;
 	}
+	*/
 	
 	private list<Promotion__c> cloneAndReturnAllPromotions(SavePoint sp) {
 		
@@ -182,23 +186,101 @@ public class PromotionCloneController {
     	UnitTestUtilities testRecords = new UnitTestUtilities();
     	ApexPages.StandardController stdCtrl;
     	PromotionCloneController ctrl;
+    	list<Promotion__c> promotions;
+    	list<Promotion_Material_Item__c> promotionitems;
+    	Promotion__c originalRecord; 
+    	Integer recordAmount = 0;
+    	set<ID> allPromotionIDs;
     	
     	//First test case
     	stdCtrl = new ApexPages.StandardController(testRecords.promotion1);
     	ctrl = new PromotionCloneController(stdCtrl);
+		originalRecord = (Promotion__c) stdCtrl.getRecord();
 		
-		System.assertEquals('', '');
+		//Check if there is an starting row available and assign 
+		recordAmount = ctrl.getAmountOfAccounts();
+		System.assertEquals(recordAmount, 1);
+		ctrl.targetAccounts.get(ctrl.getAmountOfAccounts()-1).record.Account__c = testRecords.account2.ID;
+		
+		ctrl.addAccount();
+		ctrl.targetAccounts.get(ctrl.getAmountOfAccounts()-1).record.Account__c = testRecords.account3.ID;
+		recordAmount = ctrl.getAmountOfAccounts();
+		System.assertEquals(recordAmount, 2);
+		
+		ctrl.save();
+		
+		//Check if there are 3 records (original and 2 duplicates) available
+		promotions = [Select Id, Name, Account__c From Promotion__c Where Name LIKE :originalRecord.Name];
+		System.assertEquals(promotions.size(), 3);
+		//Note: UnitTest for content of Promotion__c record is not necessary, because the apex deepclone-mechanism is used.
+		
+		
 		
 		//Second test case
 		stdCtrl = new ApexPages.StandardController(testRecords.promotion2);
     	ctrl = new PromotionCloneController(stdCtrl);
+    	originalRecord = (Promotion__c) stdCtrl.getRecord();
+		
+    	//Check if there is an starting row available and assign
+    	System.assertEquals(ctrl.getAmountOfAccounts(), 1);
+		ctrl.targetAccounts.get(ctrl.getAmountOfAccounts()-1).record.Account__c = testRecords.account1.ID;
+		
+		ctrl.addAccount();
+		ctrl.targetAccounts.get(ctrl.getAmountOfAccounts()-1).record.Account__c = testRecords.account3.ID;
+		System.assertEquals(ctrl.getAmountOfAccounts(), 2);
+		
+		ctrl.save();
+		
+		//Check if there are 3 records (original and 2 duplicates) available
+		promotions = [Select Id, Name, Account__c From Promotion__c Where Name LIKE :originalRecord.Name];
+		System.assertEquals(promotions.size(), 3);
+		//Note: UnitTest for content of Promotion__c record is not necessary, because the apex deepclone-mechanism is used,
+		//but a check referring children and lookups are necessary. 
+		
+		allPromotionIDs = new set<ID>();
+		
+		for(Promotion__c promotion : promotions)
+			if(!allPromotionIDs.contains(promotion.ID))	
+				allPromotionIDs.add(promotion.ID);
+		
+		promotionitems = [Select ID, Name, Product__c From Promotion_Material_Item__c Where Promotion__c IN :allPromotionIDs];		
+		
+		
+		System.assertEquals(promotionitems.size(), 3);
     	
-    	System.assertEquals('', '');
+    	
     	
 		//Third test case
 		stdCtrl = new ApexPages.StandardController(testRecords.promotion3);
     	ctrl = new PromotionCloneController(stdCtrl);
     	
-    	System.assertEquals('', '');
+    	//Check if there is an starting row available and assign 
+    	System.assertEquals(ctrl.getAmountOfAccounts(), 1);
+		ctrl.targetAccounts.get(ctrl.getAmountOfAccounts()-1).record.Account__c = testRecords.account1.ID;
+		
+		ctrl.addAccount();
+		ctrl.targetAccounts.get(ctrl.getAmountOfAccounts()-1).record.Account__c = testRecords.account2.ID;
+		System.assertEquals(ctrl.getAmountOfAccounts(), 2);
+		
+		ctrl.save();
+		
+		System.assertEquals(ctrl.getAmountOfAccounts(), 1);
+		
+		//Check if there are 3 records (original and 2 duplicates) available
+		promotions = [Select Id, Name, Account__c From Promotion__c Where Name LIKE :originalRecord.Name];
+		System.assertEquals(promotions.size(), 3);
+		//Note: UnitTest for content of Promotion__c record is not necessary, because the apex deepclone-mechanism is used,
+		//but a check referring children and lookups are necessary. 
+		
+		allPromotionIDs = new set<ID>();
+		
+		for(Promotion__c promotion : promotions)
+			if(!allPromotionIDs.contains(promotion.ID))	
+				allPromotionIDs.add(promotion.ID);
+		
+		promotionitems = [Select ID, Name, Product__c From Promotion_Material_Item__c Where Promotion__c IN :allPromotionIDs];		
+		
+		System.assertEquals(promotionitems.size(), 3);
+    	
     }
 }

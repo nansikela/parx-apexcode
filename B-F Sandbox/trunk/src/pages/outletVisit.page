@@ -91,6 +91,10 @@ backgroundColor:#CCC;
 //buildDimmerDiv();
 window.onload = init();
 
+$ov(document).ready(function() {
+	makeTableScrollable();
+	return false;
+});
 
 function init(){
 	$ov = jQuery.noConflict();
