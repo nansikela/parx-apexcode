@@ -1,4 +1,5 @@
 <apex:component controller="WarenkorbFacade" allowDML="true">
+
     <h1>{!$Label.akademie_booking_your_order}</h1>
     <apex:outputText rendered="{!IF($CurrentPage.parameters.step!=null, false,true)}">
         <apex:form >
@@ -73,13 +74,13 @@
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.akademie_booking_arrival}:" for="anreiseDatum"></apex:outputLabel>
-                        <apex:inputField styleClass="datepicker" value="{!currentWarenKorbElement.Anreise__c}" required="true" id="anreiseDatum"  />
+                        <apex:inputField styleClass="datepicker" value="{!currentWarenKorbElement.Anreise__c}" required="true" id="anreiseDatum" style="width:6em;"   />
                         <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.akademie_booking_departure}:" for="abreiseDatum"></apex:outputLabel>
 <!--                        styleClass="datepicker"-->
-                        <apex:inputField value="{!currentWarenKorbElement.Abreise__c}" styleClass="datepicker" required="true" id="abreiseDatum"  />
+                        <apex:inputField value="{!currentWarenKorbElement.Abreise__c}" styleClass="datepicker" required="true" id="abreiseDatum" style="width:6em;" />
                         <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
 
                     </apex:pageBlockSectionItem>
@@ -96,6 +97,7 @@
 <!--                        <apex:outputLabel value="{!$Label.akademie_booking_hotel_double_room &IF(NOT(BEGINS(SeminarInformation.dzPreis,'0')),SeminarInformation.dzPreis& $Label.akademie_booking_hotel_per_night, $Label.price_on_application)}" for="dz"></apex:outputLabel>-->
 <!--                    </apex:pageBlockSectionItem>-->
                 </apex:PageBlockSection>
+
                  </apex:outputPanel> 
                  </apex:outputPanel> 
             </apex:PageBlock>

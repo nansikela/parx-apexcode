@@ -59,7 +59,7 @@
 	background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser4.png')}') no-repeat;
 }
 .contentteaserImage5 {
-	background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser4.png')}') no-repeat;
+	background: transparent url('{!URLFOR($Resource.web_style2, 'i/Teaser5.png')}') no-repeat;
 }
 
 .teasercontent {
@@ -181,6 +181,7 @@
 
 .optionfieldTitle {
 	height: 21px;
+	line-height: 21px; /* IE fix */
 	width: 178px !important;
 	font-size: 12px;
 	border-top: 1px solid #B7B2A9 !important;
@@ -189,6 +190,7 @@
 
 .optionfieldDay {
 	height: 20px;
+	line-height: 20px;	/* IE fix */
 	width: 22px!important;
 	font-size: 12px;
 	border-top: 1px solid #B7B2A9 !important;
@@ -200,6 +202,7 @@
 
 .optionfieldMonth {
 	height: 20px;
+	line-height: 20px;	/* IE fix */
 	width: 22px!important;
 	font-size: 12px;
 	border-top: 1px solid #B7B2A9 !important;
@@ -211,6 +214,7 @@
 
 .optionfieldYear {
 	height: 20px;
+	line-height: 20px;	/* IE fix */
 	width: 40px!important;
 	font-size: 12px;
 	border-top: 1px solid #B7B2A9 !important;

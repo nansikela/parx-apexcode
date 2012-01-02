@@ -5,7 +5,6 @@
     
     <html>
     <head>
-    
         <apex:stylesheet value="{!URLFOR($Resource.web_style2, 'screen.css')}"/>
         <apex:stylesheet value="{!URLFOR($Resource.web_style2, 'screenplus.css')}"/>
         <link href="{!URLFor($Resource.FA_style, 'pdf.css')}" media="print" rel="stylesheet" type="text/css" /> 
@@ -40,9 +39,10 @@
                  <div class="content_column">
                         <c:WebTrainerOverview2 />
                  </div>
-                 <div class="right_column">
                      <c:WebNaechsteSeminare2 show="6" ></c:WebNaechsteSeminare2>
-                     <c:WebManagementGuide2012 ></c:WebManagementGuide2012>
+                 <div class="right_column">
+                     <!-- <c:WebManagementGuide2012 ></c:WebManagementGuide2012> -->
+                     <c:WebManagementGuide isFirst="true" ></c:WebManagementGuide>
                      <style>
                          .management_guide
                          {

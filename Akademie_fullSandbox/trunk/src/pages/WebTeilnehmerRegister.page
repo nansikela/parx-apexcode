@@ -1,4 +1,4 @@
-<apex:page standardStylesheets="false" 
+<apex:page standardStylesheets="false" id="page" 
     sidebar="false"
     showHeader="false"
     contentType="text/html" cache="false" controller="FASiteFULLFacade"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
@@ -35,12 +35,12 @@
     </head>
     <body>
         
-        <c:WebmainHeader2 breadCrubShow="true">
-             <div class="content_wrapper ">
-                 <div class="content_column article">
-                     <c:WebTeilnehmerRegister rendered="{!IF($CurrentPage.parameters.step == 'teilnehmer', true, false)}" />
-                     <c:WebRechnungsanschriftRegister rendered="{!IF($CurrentPage.parameters.step == 'rechnungsanschrift', true, false)}" />
-                     <c:webbestelluebersichtregister rendered="{!IF($CurrentPage.parameters.step == 'uebersicht', true, false)}" />
+        <c:WebmainHeader2 breadCrubShow="true" id="comp0">
+             <div class="content_wrapper " id="div0">
+                 <div class="content_column article" id="div1">
+                     <c:WebTeilnehmerRegister rendered="{!IF($CurrentPage.parameters.step == 'teilnehmer', true, false)}" id="comp1"/>
+                     <c:WebRechnungsanschriftRegister rendered="{!IF($CurrentPage.parameters.step == 'rechnungsanschrift', true, false)}" id="comp2"/>
+                     <c:webbestelluebersichtregister rendered="{!IF($CurrentPage.parameters.step == 'uebersicht', true, false)}" id="comp3"/>
                  </div>
                  <div class="right_column">
                      

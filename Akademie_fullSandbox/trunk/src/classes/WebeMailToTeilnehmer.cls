@@ -60,6 +60,7 @@ public class WebeMailToTeilnehmer
         eMailBCC.add('support.customer+AnmeldungenDieAkademie@parx.com');
         eMailBCC.add('cbrede@die-akademie.de');
         eMailBCC.add('cbecker@die-akademie.de');
+   // eMailBCC.add('test@parxdemo.de');
         standardEMail.setBccAddresses(eMailBCC);
         if(warenkorbInhalt != null)
         {
@@ -96,16 +97,22 @@ public class WebeMailToTeilnehmer
                 }
                 eMailText = eMailText.replace('XXXORTXXX', s.ort);
                 
-                
-                if((s.dzReservierung != null && s.dzReservierung == true) )
-                {
-                eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_double_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
+                // EZ gets selected on the visual force page per default.
+                // so check first if the hotel reservieren checkbox is selected
+                if (s.isHotelReservierung && Label.from != null && Label.to != null){
+	                if((s.dzReservierung != null && s.dzReservierung == true) )
+	                {
+	                eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_double_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
+	                }
+	                else if((s.ezReservierung != null && s.ezReservierung == true) )
+	                {
+	                eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_single_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
+	                }
                 }
-                if((s.ezReservierung != null && s.ezReservierung == true) )
+                else
                 {
-                eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_single_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
+                eMailText = eMailText.replace('XXXRESERVATIONXXX', 'Sie haben kein Zimmer reserviert.<br/>');	
                 }
-                eMailText = eMailText.replace('XXXRESERVATIONXXX', '');
                 
                 try
                 {

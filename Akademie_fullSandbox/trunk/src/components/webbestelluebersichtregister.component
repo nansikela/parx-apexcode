@@ -1,4 +1,4 @@
-<apex:component controller="WebRegisterTeilnehmer" allowDML="true">
+<apex:component controller="WebRegisterTeilnehmer" allowDML="true" id="comp">
 <h1>{!$Label.Anmeldung}</h1>
     <i class="headline_submenu"><span >1. {!$Label.Teilnehmer}</span> <span class="pipe">|</span><span>2. {!$Label.akademie_booking_invoice_address}</span><span class="pipe">|</span><span class="active">3. {!$Label.akademie_booking_overview}</span><span class="pipe">|</span><span>4. {!$Label.confirmation}</span></i>
     <h2>{!$Label.Teilnehmer}</h2>
@@ -158,17 +158,21 @@
        </apex:pageBlockSection>
    </apex:pageBlock>
    </div>
-    <apex:form >
-        <apex:PageBlock >
-            <apex:pageBlockSection columns="1">
-                <apex:pageblockSectionItem >
-                     <apex:inputField value="{!warenkorbObject.AGB__c}" required="true"/>
+    <apex:form id="form">
+        <apex:PageBlock id="pb">
+            <apex:pageBlockSection columns="1" id="pbs">
+                <apex:pageblockSectionItem id="pbsi">
+                
+                     <apex:inputField value="{!warenkorbObject.AGB__c}" required="true" id="CheckboxValidation">
+                        <div id="divError" style="display:none;color:red;">
+		                        {!$Label.Error_please_click_the_checkbox}
+		                </div>
+                     </apex:inputField>
                      <apex:outputLabel >{!$Label.akademie_booking_confirm_terms1} <a href="/page?pageid=a0M20000003Xnu3" target="_blank" id="link_70">{!$Label.akademie_booking_confirm_terms2}</a> {!$Label.akademie_booking_confirm_terms3}</apex:outputLabel>
-
-          
-              
                 </apex:pageblockSectionItem>
+
             </apex:pageBlockSection>
+
         </apex:PageBlock>
         <p><strong>{!$Label.akademie_booking_right_of_withdrawal}</strong><br />
 	  {!$Label.akademie_booking_right_of_withdrawal_text}
@@ -176,7 +180,7 @@
 	  </p>
     <div>
         <a href="/registrierung?step=rechnungsanschrift" class="l" ><img style="margin-bottom: 0px;" src="{!URLFOR($Resource.web_style2, '/i/btn_prev.gif')}" /></a>
-        <apex:commandButton value="{!$Label.akademie_booking_place_order}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r"  action="{!goToAbschluss}"/>
+        <apex:commandButton value="{!$Label.akademie_booking_place_order}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r" onclick="if(document.getElementById('page:comp0:comp:comp3:comp:form:pb:pbs:pbsi:CheckboxValidation').checked == false) {document.getElementById('divError').style.display = 'block';return false;}else{document.getElementById('divError').style.display = 'none';}" action="{!goToAbschluss}"/>
     </div>
     
     </apex:form>

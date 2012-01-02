@@ -59,9 +59,10 @@
                         
                      </style>
                  </div>
-                 <div class="right_column">
                      <c:WebNaechsteSeminare2 ></c:WebNaechsteSeminare2>
-                     <c:WebManagementGuide2012 ></c:WebManagementGuide2012>
+                 <div class="right_column">
+                     <!-- <c:WebManagementGuide2012 ></c:WebManagementGuide2012> -->
+                     <c:WebManagementGuide isFirst="true" ></c:WebManagementGuide>
                  </div>
              </div>
         </c:WebmainHeader2>

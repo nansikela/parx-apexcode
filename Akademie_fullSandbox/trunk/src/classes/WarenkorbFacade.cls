@@ -122,7 +122,9 @@ public class WarenkorbFacade
 			if(selectedRoom == 'Einzel')
 				currentWarenKorbElement.Einzelzimmer__c = true;
 			else
-				currentWarenKorbElement.Einzelzimmer__c = false; 
+				currentWarenKorbElement.Einzelzimmer__c = false;
+				
+			System.debug('Einzel: ' + currentWarenKorbElement.Einzelzimmer__c + ' Doppel: ' + currentWarenKorbElement.Doppelzimmer__c); 
 		
 			for(Integer i = 0; i<Warenkorb.getInstance().warenkorbElementList.size(); i++)
 			{
@@ -139,7 +141,6 @@ public class WarenkorbFacade
 					delete w;
 				}
 			}
-		
 		Warenkorb.getInstance().add(currentWarenKorbElement);
 		 
 		 Warenkorb.getInstance().save();
