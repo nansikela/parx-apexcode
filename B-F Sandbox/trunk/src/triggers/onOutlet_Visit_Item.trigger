@@ -29,5 +29,6 @@ trigger onOutlet_Visit_Item on Outlet_Visit_Item__c (before delete, after insert
     }
     if(!ovi_Ids.isEmpty()) {
 	    Outlet_Visit_Item_Helper.main(ovi_Ids, deletedIds);
+	    Outlet_Visit_Item_Helper.map_to_Account_Products(ovi_Ids, deletedIds);
     }
 }
