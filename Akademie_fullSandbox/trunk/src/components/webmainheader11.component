@@ -10,7 +10,7 @@
             <div class="servicenavi">
               
               <ul>
-                <li><a href="http://www.cognos-ag.de/" title="Zur Cognos  AG" id="cognosLogo" target="_blank">COGNOS COMPETENCE GROUP</a></li>
+<!--                 <li><a href="http://www.cognos-ag.de/" title="Zur Cognos  AG" id="cognosLogo" target="_blank">COGNOS COMPETENCE GROUP</a></li> -->
                 <li><a href="/service/rueckruf">Rückruf</a></li>
                 <li><a href="/service/kontakt">Kontakt</a></li>
                 <li><a href="/service/impressum">Impressum</a></li>

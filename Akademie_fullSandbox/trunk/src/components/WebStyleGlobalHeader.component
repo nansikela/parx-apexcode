@@ -61,6 +61,8 @@
 }
 
 .header .searchfield .autocomplete {
+	height: 24px;
+	line-height: 24px;
 /*	margin: 0px 0px 0px 0px;
 	font-size: 11px;
 	float: right;
@@ -74,6 +76,11 @@
 
 .headnavi .mnavi {
 	/* z-index: 200; */
+}
+
+/* IE 7 fix with floats */
+.servicenavi img.cognosLogoNew {
+	float: none;
 }
 
 </style>

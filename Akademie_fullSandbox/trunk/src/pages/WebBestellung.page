@@ -1,5 +1,4 @@
-<apex:page standardStylesheets="false" 
-    sidebar="false"
+<apex:page sidebar="false" standardStyleSheets="false"
     showHeader="false"
     contentType="text/html" cache="false" controller="FASiteFULLFacade"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
     

@@ -17,7 +17,7 @@ public class WebRegisterTeilnehmer
 			currentPerson.Email__c = '';
 		}
 		
-		List<Anschrift__c> anschriften = [Select a.eMail__c, Land__c, a.Warenkorb__c, a.Telefon__c, Ihr_Weg_zu_uns__c, Nachricht__c, a.Telefax__c, a.Strasse__c, a.Person__c, a.PLZ__c, a.Ort__c, a.Name, a.Id, a.Firma__c, a.Ansprechpartner__c, a.Abteilung__c From Anschrift__c a WHERE Warenkorb__c =  :Warenkorb.getInstance().warenkorb.id];
+		List<Anschrift__c> anschriften = [Select a.eMail__c, Land__c, a.Warenkorb__c, a.Telefon__c, Ihr_Weg_zu_uns__c, Nachricht__c, a.Telefax__c, a.Strasse__c, a.Person__c, a.PLZ__c, a.Ort__c, a.Name, a.Id, a.Firma__c, a.Ansprechpartner__c, a.Abteilung__c, a.Funktion__c, a.Geburtsdatum__c From Anschrift__c a WHERE Warenkorb__c =  :Warenkorb.getInstance().warenkorb.id];
 		if(anschriften.size()>0)
 		{
 			anschrift = anschriften.get(0);
@@ -123,16 +123,31 @@ public class WebRegisterTeilnehmer
 	
 	public PageReference goToAbschluss()
 	{
-		try
-		{
+		//if (warenkorbObject.AGB__c == null || warenkorbObject.AGB__c == false){
+		//	return ApexPages.currentPage();			
+		//}
+		//else {
+			System.Savepoint sp1 = Database.setSavepoint();
 			warenkorbObject.Status__c = 'Abgeschlossen';
-			Messaging.sendEmail(WebeMailToTeilnehmer.geteMail(getWarenkorbInhalt(), anschrift, currentPerson));
 			update warenkorbObject;
-		
-		}catch(Exception e){
-			System.debug('***AbschlussException'+e);
-		}
-		return new PageReference ('/bestellungdanke');
+			
+			if (ApexPages.hasMessages()){
+				System.debug('Fehler beim Einfuegen der Bestellung. rolling back');
+				Database.rollback(sp1);
+				return ApexPages.currentPage();
+			}
+			else {
+				try{		
+					Messaging.sendEmail(WebeMailToTeilnehmer.geteMail(getWarenkorbInhalt(), anschrift, currentPerson));
+				}catch(Exception e){
+					System.debug('***AbschlussException'+e);
+					Database.rollback(sp1);
+					ApexPages.addMessages(e);
+					return ApexPages.currentPage();
+				}
+				return new PageReference ('/bestellungdanke');
+			}
+		//}
 	}
 	
 	static testMethod void test(){

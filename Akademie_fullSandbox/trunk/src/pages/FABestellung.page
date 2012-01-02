@@ -1,10 +1,11 @@
 <apex:page standardStylesheets="false" title="test"
     sidebar="false"
     showHeader="false"
-    contentType="text/html" cache="false"><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
+    contentType="text/html" cache="false" ><apex:outputText escape="false" value="{!"<!DOCTYPE html>"}"  />
     
     <html>
     <head>
+
         <apex:stylesheet value="{!URLFor($Resource.FA_style, 'custom-theme/jquery-ui-1.8.10.custom.css')}"/>
         <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery-1.4.4.min.js')}"/>
         <apex:includeScript value="{!URLFOR($Resource.FA_style, 'js/jquery-ui-1.8.10.custom.min.js')}"/>

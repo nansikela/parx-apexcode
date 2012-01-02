@@ -20,7 +20,7 @@
     <div class="header"> <a href="/" id="logo" title="{!$Label.go_to_start_page}">{!$Label.akademie_fuehrungskraefte}</a>
       <div class="servicenavi">
         <ul>
-          <li><a href="http://www.cognos-ag.de/" id="cognosLogo" target="_blank" title="{!$Label.go_to} Cognos  AG">COGNOS COMPETENCE GROUP</a></li>
+<!--           <li><a href="http://www.cognos-ag.de/" id="cognosLogo" target="_blank" title="{!$Label.go_to} Cognos  AG">COGNOS COMPETENCE GROUP</a></li> -->
           <li><a href="/service/rueckruf">{!$Label.akademie_contact_phone_call_back}</a></li>
           <li><a href="/service/kontakt">{!$Label.akademie_contact_heading}</a></li>
           <li><a href="/service/impressum">{!$Label.imprint}</a></li>

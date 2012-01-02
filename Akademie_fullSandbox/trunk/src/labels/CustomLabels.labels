@@ -177,6 +177,13 @@
         <value>Bitte geben Sie hier Ihr neues Passwort ein.</value>
     </labels>
     <labels>
+        <fullName>Error_please_click_the_checkbox</fullName>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>Error, please click the checkbox</shortDescription>
+        <value>Bitte AGB zustimmen.</value>
+    </labels>
+    <labels>
         <fullName>Firmenakademie</fullName>
         <categories>FAApprovalSeminar</categories>
         <language>de</language>

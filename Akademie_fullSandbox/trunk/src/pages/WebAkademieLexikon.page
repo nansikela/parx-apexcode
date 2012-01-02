@@ -9,10 +9,9 @@
                  <div class="content_column ">
             <c:WebLexikonUebersicht ></c:WebLexikonUebersicht>
               </div>
-                 <div class="right_column">
-            
             <c:WebNextSeminarsRight show="6" isFirst="true"></c:WebNextSeminarsRight>
-            <c:WebManagementGuide ></c:WebManagementGuide>
+                 <div class="right_column">
+            <c:WebManagementGuide isFirst="true" ></c:WebManagementGuide>
         </div>
              </div>
         </c:webmainheader11>

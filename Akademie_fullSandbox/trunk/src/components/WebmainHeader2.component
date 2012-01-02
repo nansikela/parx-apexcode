@@ -1,4 +1,4 @@
-<apex:component controller="FAHelper">
+<apex:component controller="FAHelper" id="comp">
     <apex:attribute name="breadcrubShow" type="boolean" description="TODO: Describe me" required="true"/>
 
 	<c:WebStyleGlobalHeader />
@@ -8,7 +8,7 @@
                 {!$Label.akademie_fuehrungskraefte}
             </a>
             
-            <c:webcookie />
+            <c:webcookie id="webcookie"/>
             
             <div class="servicenavi">
               
@@ -60,10 +60,10 @@
             	</ul>
             	
              </div>
-            <c:FATopNav />
-            <c:Webbreadcrumbandsuggest2 rendered="{!breadcrubShow}" />
-            <c:fasubnavi rendered="{!breadcrubShow}" />
-            <apex:componentBody />
+            <c:FATopNav id="fat"/>
+            <c:Webbreadcrumbandsuggest2 id="web" rendered="{!breadcrubShow}" />
+            <c:fasubnavi id="fas" rendered="{!breadcrubShow}" />
+            <apex:componentBody id="compBody" />
         </div>
     </div>
     
