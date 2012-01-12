@@ -1,86 +1,257 @@
-<apex:page controller="AccountFactsheet" sidebar="false" showHeader="false" language="{!$CurrentPage.parameters.Lang}">
+<apex:page controller="AccountFactsheet" renderAs="{!mode}" sidebar="false" showHeader="false" language="{!$CurrentPage.parameters.Lang}" id="factsheetpage">
+<apex:form >
+<apex:includeScript value="{!$Resource.JQuery17}"/>
+<script>
+	$n = jQuery.noConflict(); 
+	var pageH = 1200;
+	var page = 1;
+	jQuery(document).ready( function() {
+		var $div = $n('#firstDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}
+			
+		$div = $n('#secDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}
+		
+		$div = $n('#thirdDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}
+		
+		$div = $n('#fourthDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}
+		
+		$div = $n('#fivthDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}
+			
+		$div = $n('#sixthDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}	
+		
+		$div = $n('#seventhDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}
+		
+		$div = $n('#eighthDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}
+	});
+</script>
+<div style="color:white;">
+<style>
+	.marked-horizontal tr:nth-child(odd) {background-color: white; }
+	.marked-horizontal tr:nth-child(even) {background-color: #eeeeee; } 
+	 
+	.even {background: #eeeeee; }
+	.odd {} 
+</style>
+</div>
 
-<div width="21cm" style="font-size:12px;left:1cm;position:relative">
-
-    <apex:outputText style="font-weight:bold;left:-5px;position:relative;font-size:14px;" value="{!$Label.Factsheet_AccountInfo}" />
-    <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
-       <tr>
-            <th style="text-align: center;">
-                 <apex:outputLabel value="{!$Label.Accounts}" style="font-weight:bold;"/> 
-            </th>
-            <th style="text-align: center;">
-                 <apex:outputLabel value="{!$Label.Contacts}" style="font-weight:bold;"/> 
-            </th>
-       </tr>
-       <tr >  
-          <td width="20%">
-               <table width="100%" >
-                   <tr width="100%">
-                       <td>
-                             <apex:outputLabel value="{!account.Name} "/> 
-                       </td>
-                   </tr>
-                   <tr> 
-                        <td>
-                            <apex:outputLabel value="{!account.BillingStreet}"/>
-                        </td>
-                   </tr>
-                   <tr>
-                        <td>
-                            <apex:outputLabel value="{!account.BillingPostalCode} "/> <apex:outputLabel value="{!account.BillingCity}"/>
-                        </td> 
-                    </tr> 
-                     <tr>
-                        <td>
-                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Phone.Label}:</b> {!account.Phone} "/> 
-                        </td>
-                    </tr>
-                    <tr> 
-                        <td>
-                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Fax.Label}:</b> {!account.Fax}"/>
-                        </td>
-                    </tr>
-                </table>
-        </td>
-        <td width="60%" style="border-left-style: solid; border-left-width:1px;" >
-             <table width="100%" >
-                <tr>
-                    <th>{!$ObjectType.Contact.Fields.Salutation.Label}</th>
-                    <th>{!$ObjectType.Contact.Fields.FirstName.Label}</th>
-                    <th>{!$ObjectType.Contact.Fields.LastName.Label}</th>
-                    <th>{!$ObjectType.Contact.Fields.Email.Label}</th>
-                </tr>
-                <apex:repeat value="{!contact}" var="con">
-                    <tr width="100%">
-                        <td width="25%">
-                            <apex:outputField value="{!con.Salutation}"/> 
-                        </td>
-                        <td width="25%">
-                            <apex:outputField value="{!con.FirstName}"/> 
-                        </td>
-                        <td width="25%">
-                            <apex:outputField value="{!con.LastName}"/> 
-                        </td>
-                        <td width="25%">
-                            <apex:outputField value="{!con.Email}"/> 
-                        </td>
-                    </tr>
-                </apex:repeat>
-            </table>
-         </td>
-       </tr>
-    </table>
-    <br/>
+<br />
+<div style="width:21cm; font-size:12px; left:1cm; position:relative; ">
+	<div id="firstDiv">
+	    <apex:outputText style="font-weight:bold;left:-5px;position:relative;font-size:14px;" value="{!$Label.Factsheet_AccountInfo}" />
+	    <apex:outputLink onclick="javascript:print(); return false;" style="padding-left: 10px; float:right;" value="#">{!$Label.Factsheet_Print}</apex:outputLink>
+	    <apex:commandLink action="{!renderAsPDF}" style="float:right;">{!$Label.Factsheet_PDF}</apex:commandLink>
+	    <br />
+	    <table style="border-bottom-style: solid; border-bottom-width:1px;">
+	       <tr>
+	            <th style="text-align: center;">
+	                 <apex:outputLabel value="{!$Label.Accounts}" style="font-weight:bold;"/> 
+	            </th>
+	            <th style="text-align: center;">
+	                 <apex:outputLabel value="{!$Label.Contacts}" style="font-weight:bold;"/> 
+	            </th>
+	       </tr>
+	       <tr >  
+	          <td width="20%">
+	               <table width="100%">
+	                   <tr width="100%">
+	                       <td>	
+	                             <apex:outputLabel value="{!account.Name} "/> 
+	                       </td>
+	                   </tr>
+	                   <tr> 
+	                        <td>
+	                            <apex:outputLabel value="{!account.BillingStreet}"/>
+	                        </td>
+	                   </tr>
+	                   <tr>
+	                        <td>
+	                            <apex:outputLabel value="{!account.BillingPostalCode} "/> <apex:outputLabel value="{!account.BillingCity}"/>
+	                        </td> 
+	                    </tr>
+	                     <tr>
+	                        <td>
+	                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Phone.Label}:</b> {!account.Phone} "/> 
+	                        </td>
+	                    </tr>
+	                    <tr> 
+	                        <td>
+	                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Fax.Label}:</b> {!account.Fax}"/>
+	                        </td>
+	                    </tr>
+	                    <tr> 
+	                        <td>
+	                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Outlet_Class__c.Fields.Name.Label}:</b> {!account.Outlet_Class__r.Name}"/>
+	                        </td>
+	                    </tr>
+	                    <tr> 
+	                        <td>
+	                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Channel__c.Label}:</b> {!account.Channel__c}"/>
+	                        </td>
+	                    </tr>
+	                    <apex:outputPanel rendered="{!isChannelOn}">
+	                    <tr> 
+	                        <td>
+	                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Group__c.Label}:</b> {!account.Group__c}"/>
+	                        </td>
+	                    </tr>
+	                    <tr> 
+	                        <td>
+	                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Subgroup__c.Label}:</b> {!account.Subgroup__c}"/>
+	                        </td>
+	                    </tr>
+	                    </apex:outputPanel>
+	                    <apex:outputPanel rendered="{!isChannelOff}">
+	                    <tr>  
+	                        <td>
+	                            <apex:outputLabel escape="false" value="<b>{!$ObjectType.Account.Fields.Store_Type_TD__c.Label}:</b> {!account.Store_Type_TD__c}"/>
+	                        </td>
+	                    </tr>
+	                    </apex:outputPanel>
+	                </table>
+	        </td>
+	        <td width="60%" style="border-left-style: solid; border-left-width:1px;" >
+	             
+	             <table width="100%">
+	                <tr>
+	                    <th>{!$ObjectType.Contact.Fields.Salutation.Label}</th>
+	                    <th>{!$ObjectType.Contact.Fields.FirstName.Label}</th>
+	                    <th>{!$ObjectType.Contact.Fields.LastName.Label}</th>
+	                    <th>{!$ObjectType.Contact.Fields.Email.Label}</th>
+	                    <th>{!$Label.Factsheet_Contact_Function}</th>
+	                </tr>
+	                <apex:repeat value="{!contact}" var="con">
+	                    <tr width="100%">
+	                        <td width="15%">
+	                            <apex:outputField value="{!con.Salutation}"/> 
+	                        </td>
+	                        <td width="20%">
+	                            <apex:outputField value="{!con.FirstName}"/> 
+	                        </td>
+	                        <td width="20%">
+	                            <apex:outputField value="{!con.LastName}"/> 
+	                        </td>
+	                        <td width="25%">
+	                            <apex:outputField value="{!con.Email}"/> 
+	                        </td>
+	                        <td width="20%">
+	                            <apex:outputField value="{!con.Title__c}"/> 
+	                        </td>
+	                    </tr>
+	                </apex:repeat>
+	            </table>
+	         </td>
+	       </tr>
+	    </table>
+	</div>
+    <br />
+    <br />
+    <div id="secDiv">
     <apex:outputText value="{!$Label.Factsheet_LastVisitComments}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
-     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+     <br />
+     <table width="100%" cellspacing="0" style="border-bottom-style: solid; border-bottom-width:1px;" class="marked-horizontal">
         <tr>
             <th>{!$ObjectType.Outlet_Visit__c.Fields.LastModifiedDate.Label}</th>
             <th>{!$ObjectType.Outlet_Visit__c.Fields.Visit_Comments__c.Label}</th>
         </tr>
         <apex:repeat value="{!Outlet_Visit}" var="OV">
-            <tr width="100%">
-                <td width="50%">
-                    <apex:outputField value="{!OV.LastModifiedDate}"/> 
+            <tr width="100%" bgcolor="#cccccc">
+                <td width="50%" style="vertical-align: text-top;">
+                    <apex:outputField value="{!OV.Last_Visit_Date__c}"/> 
                 </td>
                 <td width="50%">
                     <apex:outputField value="{!OV.Visit_Comments__c}"/> 
@@ -88,116 +259,184 @@
             </tr>
         </apex:repeat>
     </table>
+    </div>
     <br/>
-    <apex:outputText value="{!$Label.Factsheet_AccountBrand}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
-     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
-        <tr>
-            <th>{!$ObjectType.Account_Brand__c.Fields.of_Forecast__c.Label}</th>
-            <th>{!$ObjectType.Account_Brand__c.Fields.of_Goal__c.Label}</th>
-            <th>{!$ObjectType.Account_Brand__c.Fields.Goal__c.Label}</th>
-            <th>{!$ObjectType.Brand__c.Fields.Name.Label}</th>
-            <th>{!$ObjectType.Account_Brand__c.Fields.Supplier__c.Label}</th>
-        </tr>
-        <apex:repeat value="{!Account_Brand}" var="AB">
-            <tr width="100%">
-                <td >
-                    <apex:outputField value="{!AB.of_Forecast__c}"/> 
-                </td>
-                <td>
-                    <apex:outputField value="{!AB.of_Goal__c}"/> 
-                </td>
-                <td>
-                    <apex:outputField value="{!AB.Goal__c}"/> 
-                </td>
-                <td>
-                    <apex:outputField value="{!AB.Brand__r.Name}"/> 
-                </td>
-                <td>
-                    <apex:outputField value="{!AB.Supplier__c}"/> 
-                </td>
-            </tr>
-        </apex:repeat>
-   </table>
+    <br />
+    <apex:outputPanel rendered="{!NOT(isChannelOff)}">
+    <div id="thirdDiv">
+    	<apex:outputText value="{!$Label.Factsheet_KeyTask}" style="page-break-before: auto; font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+	   	<br />
+	   	<table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+	        <tr>
+	            <th>{!$ObjectType.Key_Task__c.Fields.Name.Label}</th>
+	            <th>{!$ObjectType.Outlet_Visit__c.Fields.Visit_Date__c.Label}</th>
+	        </tr>
+	        <apex:repeat value="{!Key_Task}" var="KT">
+	            <tr width="100%">
+	                <td width="50%">
+	                    <apex:outputField value="{!KT.Name}"/> 
+	                </td>
+	                <td width="50%">
+	                    <apex:outputField value="{!KT.Outlet_Visit__r.Visit_Date__c}"/> 
+	                </td>
+	            </tr>
+	       </apex:repeat>
+	   </table>
+	</div>
+	<br />
+	<br />
+	</apex:outputPanel>
+	<div id="fourthDiv">
+	     <apex:outputText value="{!$Label.Factsheet_AccountProduct}" style="page-break-after:auto; font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+	     <br />	
+	     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;" class="marked-horizontal">
+	        <tr> 
+	            <th>{!$ObjectType.Account_Product__c.Fields.Brand__c.Label}</th>
+	            <th>{!$ObjectType.Account_Product__c.Fields.Product__c.Label}</th>
+	        </tr>
+	        <apex:repeat value="{!Account_Product}" var="AP">
+	            <tr width="100%">
+	                <td>
+	                    <i><apex:outputField value="{!AP.Brand__c}"/></i> 
+	                </td>
+	                <td>
+	                    <apex:outputField value="{!AP.Product__c}"/> 
+	                </td>
+	            </tr>
+	        </apex:repeat>
+	   </table>
+	</div>
     <br/>
-    <apex:outputText value="{!$Label.Factsheet_MandatoryProducts}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
-     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
-        <tr>
-            <th>{!$ObjectType.Product2.Fields.Name.Label}</th>
-            <th>{!$ObjectType.Mandatory_Products__c.Fields.Product_Status__c.Label}</th>
-        </tr>
-        <apex:repeat value="{!Mandatory_Products}" var="MP">
-            <tr width="100%">
-                <td width="50%">
-                    <apex:outputField value="{!MP.Custom_Product__r.Name}"/> 
-                </td>
-                <td width="50%">
-                    <apex:outputField value="{!MP.Product_Status__c}"/> 
-                </td>
-            </tr>
-        </apex:repeat>
-   </table>
+    <br />
+    
+    <div id="fivthDiv">
+	    <apex:outputText value="{!$Label.Factsheet_MandatoryProducts}" style="page-break-before: auto; font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+		<br />
+	     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+	        <tr>
+	        	<th>{!$ObjectType.Brand__c.Fields.Name.Label}</th>
+	            <th>{!$ObjectType.Product2.Fields.Name.Label}</th>
+	            <th>{!$ObjectType.Mandatory_Products__c.Fields.Product_Status__c.Label}</th>
+	        </tr>
+	        <apex:repeat value="{!Mandatory_Products}" var="MP">
+	            <tr width="100%">
+	            	<td width="30%">
+	                    <apex:outputText value="{!MP.Brand}"/> 
+	                </td>
+	                <td width="40%">
+	                    <apex:outputField value="{!MP.record.Custom_Product__r.Name}"/> 
+	                </td>
+	                <td width="30%">
+	                    <apex:outputField value="{!MP.record.Product_Status__c}"/> 
+	                </td>
+	            </tr>
+	        </apex:repeat>
+	   </table>
+	</div>
    <br/>
-   <apex:outputText value="{!$Label.Factsheet_Promotions}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
-     <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
-        <tr width="100%" style="font-weight:bold;">
-            <td width="33%">
-                <apex:outputText value="{!$ObjectType.Promotion__c.Fields.Total_Margin__c.Label}"/> 
-            </td>
-            <td width="33%">
-                <apex:outputText value="{!$ObjectType.Promotion__c.Fields.Total_Promotion_Cost__c.Label}"/> 
-            </td>
-            <td width="33%">
-                <apex:outputText value="{!$ObjectType.Promotion__c.Fields.Total_Brand_Profit__c.Label}"/> 
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <apex:outputText value="{!TEXT(Total_Margin) + " " + Currenc}"/> 
-            </td>
-            <td>
-                <apex:outputText value="{!TEXT(Total_Promotion_Cost) + " " + Currenc}"/> 
-            </td>
-            <td>
-                <apex:outputText value="{!TEXT(Total_Brand_Profit) + " " + Currenc}"/> 
-            </td>
-        </tr>
-   </table>
+   <br />
+   
+   <div id="sixthDiv">
+	   <apex:outputText value="{!$Label.Factsheet_Promotions}" style=" page-break-before: auto; font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+	     <table width="100%" cellspacing="0" style="border-bottom-style: solid; border-bottom-width:1px;" class="marked-vertical">
+	        <colgroup>
+    			<col class="even"></col>
+    			<col class="odd"></col>
+    			<col class="even"></col>
+    			<col class="odd"></col>
+    			<col class="even"></col>
+    			<col class="odd"></col>
+    			<col class="even"></col>
+  			</colgroup>
+	        <tr width="100%" style="font-weight:bold;">
+	            <th>{!$ObjectType.Promotion__c.Fields.Name.Label}</th>
+	            <th>{!$ObjectType.Promotion_Activity__c.Fields.Name.Label}</th>
+	            <th>{!$ObjectType.Promotion__c.Fields.Total_Promotion_Cost__c.Label}</th>
+	            <th>{!$Label.Factsheet_Startdate}</th>
+	            <th>{!$Label.Factsheet_Enddate}</th>
+	            <th>{!$ObjectType.Promotion__c.Fields.Approval_Status__c.Label}</th>
+	            <th>{!$ObjectType.Promotion__c.Fields.status_of_Secondary_placement__c.Label}</th>
+	        </tr>
+	        <apex:repeat value="{!Promotions}" var="P">
+	        <tr> 
+	            <td>
+	                <apex:outputField value="{!P.record.Name}"/> 
+	            </td>
+	            <td>
+	                <apex:outputField value="{!P.record.Promotion_Activity__r.Name}"/> 
+	            </td>
+	            <td>
+	                <apex:outputField value="{!P.record.Total_Promotion_Cost__c}"/> 
+	            </td>
+	            <td>
+	                <apex:outputField value="{!P.record.Promotion_Start_Date__c}"/> 
+	            </td>
+	            <td>
+	                <apex:outputField value="{!P.record.Promotion_End_Date__c}"/> 
+	            </td>
+	            <td>
+	                <apex:outputField value="{!P.record.Approval_Status__c}"/> 
+	            </td>
+	            <td>
+	                <apex:outputField value="{!P.record.status_of_Secondary_placement__c}" rendered="{!P.showStatus}" />
+	                <apex:outputText value="" rendered="{!NOT(P.showStatus)}" />
+	            </td>
+	        </tr>
+	        </apex:repeat>
+	   </table>
+	</div>
+	<br/>
+   <br />
+   
+   <div id="seventhDiv">
+	   <apex:outputText value="{!$Label.Factsheet_PromotionActivities}" style=" page-break-before: auto; font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+	   <br />
+	   <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+	        <tr width="100%" style="font-weight:bold;">
+	            <th>{!$ObjectType.Promotion_Activity__c.Fields.Name.Label}</th>
+	            <th>{!$ObjectType.Promotion_Activity__c.Fields.Description__c.Label}</th>
+	        </tr>
+	        <apex:repeat value="{!Promotion_Activity}" var="PA">
+	            <tr width="100%">
+	                <td width="50%">
+	                    <apex:outputField value="{!PA.Name}"/> 
+	                </td>
+	                <td width="50%">
+	                    <apex:outputField value="{!PA.Description__c}"/> 
+	                </td>
+	            </tr>
+	       </apex:repeat>
+	   </table>
+	</div>
    <br/>
-   <apex:outputText value="{!$Label.Factsheet_PromotionActivities}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
-   <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
-        <tr width="100%" style="font-weight:bold;">
-            <th>{!$ObjectType.Promotion_Activity__c.Fields.Name.Label}</th>
-            <th>{!$ObjectType.Promotion_Activity__c.Fields.Description__c.Label}</th>
-        </tr>
-        <apex:repeat value="{!Promotion_Activity}" var="PA">
-            <tr width="100%">
-                <td width="50%">
-                    <apex:outputField value="{!PA.Name}"/> 
-                </td>
-                <td width="50%">
-                    <apex:outputField value="{!PA.Description__c}"/> 
-                </td>
-            </tr>
-       </apex:repeat>
-   </table>
-   <br/>
-   <apex:outputText value="{!$Label.Factsheet_KeyTask}" style="font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
-   <table width="100%">
-        <tr>
-            <th>{!$ObjectType.Key_Task__c.Fields.Name.Label}</th>
-            <th>{!$ObjectType.Outlet_Visit__c.Fields.Visit_Date__c.Label}</th>
-        </tr>
-        <apex:repeat value="{!Key_Task}" var="KT">
-            <tr width="100%">
-                <td width="50%">
-                    <apex:outputField value="{!KT.Name}"/> 
-                </td>
-                <td width="50%">
-                    <apex:outputField value="{!KT.Outlet_Visit__r.Visit_Date__c}"/> 
-                </td>
-            </tr>
-       </apex:repeat>
-   </table>
+   <br />
+   
+   <div id="eighthDiv">
+	<!-- 
+	   <apex:outputText value="{!$Label.Factsheet_Contract}" style=" page-break-before: auto; font-weight:bold;left:-5px;position:relative;font-size:14px;"/>
+	   <br />
+	   <table width="100%" style="border-bottom-style: solid; border-bottom-width:1px;">
+	        <tr width="100%" style="font-weight:bold;">
+	            <th>{!$Label.Factsheet_Runtime}</th>
+	            <th>{!$Label.Factsheet_comparison}</th>
+	            <th>{!$Label.Factsheet_rv}</th>
+	            <th>{!$Label.Factsheet_mandatory_products}</th>
+	        </tr>
+	         
+	        <apex:repeat value="{!Promotion_Activity}" var="PA">
+	            <tr width="100%">
+	                <td width="50%">
+	                    <apex:outputField value="{!PA.Name}"/> 
+	                </td>
+	                <td width="50%">
+	                    <apex:outputField value="{!PA.Description__c}"/> 
+	                </td>
+	            </tr>
+	       </apex:repeat>
+	        
+	   </table>
+	 -->
+	</div>
 </div>
-
+</apex:form>
 </apex:page>

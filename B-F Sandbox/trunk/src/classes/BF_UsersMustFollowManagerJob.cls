@@ -5,7 +5,7 @@
 *Purpose : Batch Job thst runs at night to force users to follow their managers if they unfollow them. 
 ****************************************************************/
 global class BF_UsersMustFollowManagerJob implements Database.Batchable<SObject>{
-  
+   global String Query;
    Id userID;
       
    global BF_UsersMustFollowManagerJob(Id subscriberID) {
@@ -16,16 +16,16 @@ global class BF_UsersMustFollowManagerJob implements Database.Batchable<SObject>
    //method to retrieve jobs to be processed
    //--------------------------------------------//   
   global Database.queryLocator start(Database.BatchableContext ctx){
-  	//Retrieve only those users, who are active and their managers are active
+    //Retrieve only those users, who are active and their managers are active
     if(Test.isRunningTest()) {
-      return Database.getQueryLocator([SELECT ManagerId,DefaultGroupNotificationFrequency 
-                                     FROM User 
-                                     WHERE Id = :userId AND ManagerId != null AND Manager.IsActive = true AND IsActive = true]);
+      query = 'SELECT ManagerId,NextLevelManagers__c,DefaultGroupNotificationFrequency '+
+            ' FROM User WHERE Id = :userId AND ManagerId != null AND Manager.IsActive = true AND IsActive = true';
+      return Database.getQueryLocator(query);
     }
     else {
-      return Database.getQueryLocator([SELECT ManagerId,DefaultGroupNotificationFrequency 
-                                     FROM User 
-                                     WHERE ManagerId != null AND Manager.IsActive = true AND IsActive = true]);
+      query = 'SELECT ManagerId,NextLevelManagers__c,DefaultGroupNotificationFrequency '+
+            ' FROM User WHERE ManagerId != null AND Manager.IsActive = true AND IsActive = true';
+      return Database.getQueryLocator(query);
     }
   } 
   //--------------------------------------------// 
@@ -39,6 +39,7 @@ global class BF_UsersMustFollowManagerJob implements Database.Batchable<SObject>
     BF_UsersMustFollowManager.followManager(mpUser); 
   }
   
+ 
   //--------------------------------------------// 
   // finish method of interface,nothings needs to be done
   // no notification etc needs to be send

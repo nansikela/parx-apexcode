@@ -37,7 +37,4 @@ trigger BF_UsersMustFollowManagerTrigger on User (after insert, after update) {
     }
     return false;
   } 
-    
-  
-  
 }
