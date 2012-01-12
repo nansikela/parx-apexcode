@@ -82,13 +82,20 @@ backgroundColor:#CCC;
 }
 </style>
 
+<!-- 
+PARX --- Helper Style Classes to capture all marked html tags.
+ -->
 <style>
 .bFTablea_header {}
 .bFTablea_row {}
+.compTablec_header {}
+.compTablec_row {}
 </style>
+<!-- END -->
+
 
 <script type="text/javascript">
-//buildDimmerDiv();
+//PARX --- Add init code to fit table columns
 window.onload = init();
 
 $ov(document).ready(function() {
@@ -96,9 +103,31 @@ $ov(document).ready(function() {
 	return false;
 });
 
+$ov('[id$=bFTablea]').ready(function() {
+	makeTableScrollable();
+	return false;
+});
+
+$ov('[id$=bFTableb]').ready(function() {
+	makeTableScrollable();
+	return false;
+});
+
+$ov('[id$=bFTable2a]').ready(function() {
+	makeTableScrollable();
+	return false;
+});
+
+$ov('[id$=compTablea]').ready(function() {
+	makeTableScrollable();
+	return false;
+});
+
 function init(){
 	$ov = jQuery.noConflict();
 }
+//PARX --- END
+
 function dimmer(){
     if(document.getElementById('dimmer').style.visibility == "visible")
     {
@@ -141,6 +170,14 @@ function myDP(){
     document.getElementById('myDP').style.height = "100%";
     }
 }
+
+/* 	PARX  
+ *	Method captures and iterates over all marked html tags with target
+ *	css style classes. Then this method fits all columns in each table.
+ * 
+ *	@date 05.12.2011
+ *	@author Michael Mickiewicz
+ */
 function makeTableScrollable() {
 	var $thead = $ov('[id$=bFTablea]').find('.headerRow');
 	var $tbody = $ov('[id$=bFTableb]').find('tbody').find('tr').first().find('.bFTablea_row');
@@ -152,9 +189,24 @@ function makeTableScrollable() {
        $thead = $ov('[id$=bFTable3a]').find('.headerRow');
        $tbody = $ov('[id$=bFTable3b]').find('tbody').find('tr').first().find('.bFTablea_row');
     }
-	//alert($tbody.size());
+	
 	for(var i = 1; i < $thead.size()-1; i++) {
-		//alert($thead.eq(i).css('width') + ' <== '+ $tbody.eq(i-1).css('width') + '('+$tbody.eq(i-1).attr('id')+')');
+		var w = $tbody.eq(i-1).css('width').substring(0, $tbody.eq(i-1).css('width').length-2);
+		$thead.eq(i).css('width', (w-1)+'px');
+	}
+	
+	var $thead = $ov('[id$=compTablea]').find('.headerRow');
+	var $tbody = $ov('[id$=compTableb]').find('tbody').find('tr').first().find('.compTablec_row');
+	if($tbody.size() == 0) {
+	   $thead = $ov('[id$=compTable2a]').find('.headerRow');
+	   $tbody = $ov('[id$=compTable2]').find('tbody').find('tr').first().find('.compTablec_row');
+	}
+	if($tbody.size() == 0) {
+       $thead = $ov('[id$=compTablec]').find('.headerRow');
+       $tbody = $ov('[id$=compTablec2]').find('tbody').find('tr').first().find('.compTablec_row');
+    }
+	
+	for(var i = 1; i < $thead.size()-1; i++) {
 		var w = $tbody.eq(i-1).css('width').substring(0, $tbody.eq(i-1).css('width').length-2);
 		$thead.eq(i).css('width', (w-1)+'px');
 	}
@@ -170,7 +222,8 @@ function makeTableScrollable() {
         <apex:param name="firstParam1" assignTo="{!productLookup}" value="" />
     </apex:actionFunction>
 <!-- END AJAX "popup" windows -->
-
+	
+	<!-- PARX - Add onstop attribute event to action status to correct tables -->
     <apex:actionstatus id="status" startText="Requesting..." onstop="makeTableScrollable(); return false;">
            <apex:facet name="start">
                <c:INFW_ProgressInformation Message="{!$Label.INFW_Processing}" Width="104px" Height="470px"/>
@@ -185,7 +238,7 @@ function makeTableScrollable() {
 
       <apex:pageBlock id="pb" title="{!$ObjectType.Outlet_Visit__c.Label}" mode="Edit">
         <apex:pageblockbuttons location="top">
-            <apex:commandButton styleClass="cmdButton" action="{!next}" oncomplete="if('{!AlertMessage}' != '')alert('{!AlertMessage}')" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_NextButtonLabel}" rendered="{!showDetails!=true}" />
+            <apex:commandButton styleClass="cmdButton" action="{!next}" oncomplete="if('{!AlertMessage}' != '')alert('{!AlertMessage}'); makeTableScrollable(); return false;" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_NextButtonLabel}" rendered="{!showDetails!=true}" />
             <apex:commandButton styleClass="cmdButton" action="{!saveCommit}" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_SaveButtonLabel}" rendered="{!showDetails}" />
             <apex:commandButton styleClass="cmdButton" action="{!saveCommitClose}" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_SaveCloseButtonLabel}" rendered="{!showDetails}" />
             <apex:commandButton styleClass="cmdButton" action="{!cancel}" immediate="true" value="{!$Label.OutletVisitPage_CancelButtonLabel}" />
@@ -553,13 +606,13 @@ function makeTableScrollable() {
       </apex:pageBlock>
 <!-- END B-F Grid Section -->
 
-
+	
 <!-- START Competitor Grid Section -->
       <apex:pageBlock id="pb2" rendered="{!NOT ISNULL(myCompOvi)}" title="{!$Label.OutletVisitPage_CompSectionLabel}" mode="Edit">
     <!-- #1 HEADER Default Layout Section -->
         <apex:outputpanel rendered="{!gridLayout='1'}" layout="block" >
-            <apex:pageBlockTable id="compTablea" rows="1" value="{!myCompOvi}" rowClasses="firstHeaderRow" var="p" columns="12" columnsWidth="200px,45px,75px,75px,75px,75px,10px,75px,75px,75px,10px,16px">
-              <apex:column >
+            <apex:pageBlockTable id="compTablea" rows="0" value="{!myCompOvi_header}" rowClasses="firstHeaderRow" var="p" >
+              <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
                 <apex:outputfield value="{!p.prod.Name}"/>
                 &nbsp;
@@ -567,27 +620,27 @@ function makeTableScrollable() {
                 <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
                 <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_header">
                     <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
               </apex:column>
               <apex:column style="border-left: 1px solid cyan; padding: 5px;"/>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date1}" />
@@ -595,7 +648,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date2}" />
@@ -603,7 +656,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date3}" />
@@ -611,10 +664,10 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_header">
                     <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                &nbsp;
                </apex:column>
             </apex:pageBlockTable>
@@ -623,9 +676,9 @@ function makeTableScrollable() {
 
     <!-- #1 Default Layout Section -->
         <apex:outputpanel rendered="{!gridLayout='1'}" layout="block" styleclass="prodcontainer">
-            <apex:pageBlockTable id="compTableb" first="1" headerClass="stationaryHeaderRow" value="{!myCompOvi}" var="p" columns="11" columnsWidth="200px,45px,75px,75px,75px,75px,10px,75px,75px,75px,10px,16px">
+            <apex:pageBlockTable id="compTableb" headerClass="stationaryHeaderRow" value="{!myCompOvi}" var="p">
 
-              <apex:column >
+              <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
                 <apex:outputfield value="{!p.prod.Name}"/>
 
@@ -634,28 +687,27 @@ function makeTableScrollable() {
                 <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
                 <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_row">
                     <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
 
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
               </apex:column>
-              <apex:column style="border-left: 1px solid cyan; padding: 5px;"/>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" style="border-left: 1px solid cyan; padding: 5px;">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date1}" />
@@ -663,7 +715,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date2}" />
@@ -671,7 +723,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date3}" />
@@ -679,7 +731,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_row">
                     <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
             </apex:pageBlockTable>
@@ -688,8 +740,8 @@ function makeTableScrollable() {
 
     <!-- This Section for #2 HEADER Layout -->
         <apex:outputpanel rendered="{!gridLayout='2'}" layout="block" >
-            <apex:pageBlockTable id="compTable2a" rows="1" value="{!myCompOvi}" rowClasses="firstHeaderRow" var="p" columns="14" columnsWidth="200px,40px,50px,90px,90px,35px,65px,45px,10px,65px,65px,65px,10px,16px">
-               <apex:column >
+            <apex:pageBlockTable id="compTable2a" rows="0" value="{!myCompOvi_header}" rowClasses="firstHeaderRow" var="p" >
+               <apex:column styleClass="compTablec_header" >
                <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
                 <apex:outputfield value="{!p.prod.Name}"/>
                 &nbsp;
@@ -698,44 +750,42 @@ function makeTableScrollable() {
                 <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
 
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_header">
                     <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
 
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Available__c.label}</apex:facet>
                 <apex:inputfield style="width:50px" value="{!p.ovi.Available__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Space_Placement__c.label}</apex:facet>
                 <!-- <apex:inputfield style="width:90px" value="{!p.ovi.Space_Placement__c}"/>-->
 			    <apex:selectList value="{!p.ovi.Space_Placement__c}" size="1">
 			        <apex:selectOptions value="{!locationData}"/>
 			    </apex:selectList>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Shelf__c.label}</apex:facet>
                <!-- <apex:inputfield style="width:90px" value="{!p.ovi.Shelf__c}"/> -->
                 <apex:selectList value="{!p.ovi.Shelf__c}" size="1">
 			        <apex:selectOptions value="{!shelfData}"/>
 			    </apex:selectList>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Facing__c.label}</apex:facet>
                 <apex:inputfield style="width:35px" value="{!p.ovi.Facing__c}"/>
               </apex:column>
 
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header" >
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
               </apex:column>
-
-              <apex:column style="border-left: 1px solid cyan; padding: 5px;"/>
-               <apex:column >
+               <apex:column styleClass="compTablec_header" style="border-left: 1px solid cyan; padding: 5px;">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date1}" />
@@ -743,7 +793,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date2}" />
@@ -751,7 +801,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date3}" />
@@ -762,7 +812,7 @@ function makeTableScrollable() {
               <apex:column >
                     <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                &nbsp;
                </apex:column>
 
@@ -772,8 +822,8 @@ function makeTableScrollable() {
 
     <!-- This Section for #2 Layout -->
         <apex:outputpanel rendered="{!gridLayout='2'}" layout="block" styleclass="prodcontainer">
-            <apex:pageBlockTable id="compTable2" value="{!myCompOvi}" first="1" headerClass="stationaryHeaderRow" var="p" columns="13" columnsWidth="200px,40px,50px,90px,90px,35px,65px,45px,10px,65px,65px,65px,10px">
-               <apex:column >
+            <apex:pageBlockTable id="compTable2" value="{!myCompOvi}" headerClass="stationaryHeaderRow" var="p" >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
                 <apex:outputfield value="{!p.prod.Name}"/>
                 &nbsp;
@@ -781,44 +831,42 @@ function makeTableScrollable() {
                 <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
                 <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_row">
                     <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
 
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Available__c.label}</apex:facet>
                 <apex:inputfield style="width:50px" value="{!p.ovi.Available__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Space_Placement__c.label}</apex:facet>
                 <!-- <apex:inputfield style="width:90px" value="{!p.ovi.Space_Placement__c}"/>-->
 			    <apex:selectList value="{!p.ovi.Space_Placement__c}" size="1">
 			        <apex:selectOptions value="{!locationData}"/>
 			    </apex:selectList>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Shelf__c.label}</apex:facet>
                <!-- <apex:inputfield style="width:90px" value="{!p.ovi.Shelf__c}"/> -->
                 <apex:selectList value="{!p.ovi.Shelf__c}" size="1">
 			        <apex:selectOptions value="{!shelfData}"/>
 			    </apex:selectList>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Facing__c.label}</apex:facet>
                 <apex:inputfield style="width:35px" value="{!p.ovi.Facing__c}"/>
               </apex:column>
 
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row">
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
               </apex:column>
-
-              <apex:column style="border-left: 1px solid cyan; padding: 5px;"/>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" style="border-left: 1px solid cyan; padding: 5px;">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date1}" />
@@ -826,7 +874,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" >
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date2}" />
@@ -834,7 +882,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" >
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date3}" />
@@ -842,7 +890,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_row" >
                     <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
             </apex:pageBlockTable>
@@ -852,8 +900,8 @@ function makeTableScrollable() {
 
     <!-- #3 HEADER Default Layout Section -->
         <apex:outputpanel rendered="{!gridLayout='3'}" layout="block" >
-            <apex:pageBlockTable id="compTablec" rows="1" value="{!myCompOvi}" rowClasses="firstHeaderRow" var="p" columns="12" columnsWidth="200px,45px,75px,75px,75px,75px,10px,75px,75px,75px,10px,16px">
-              <apex:column >
+            <apex:pageBlockTable id="compTablec" rows="0" value="{!myCompOvi_header}" rowClasses="firstHeaderRow" var="p" >
+              <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
                 <apex:outputfield value="{!p.prod.Name}"/>
                 &nbsp;
@@ -861,27 +909,26 @@ function makeTableScrollable() {
                 <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
                 <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_header">
                     <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Double_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price_Special__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
               </apex:column>
-              <apex:column style="border-left: 1px solid cyan; padding: 5px;"/>
-               <apex:column >
+               <apex:column styleClass="compTablec_header" style="border-left: 1px solid cyan; padding: 5px;">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date1}" />
@@ -889,7 +936,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date2}" />
@@ -897,7 +944,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_header">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date3}" />
@@ -905,20 +952,18 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_header">
                     <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
-               <apex:column >
-               &nbsp;
-               </apex:column>
-            </apex:pageBlockTable>
+            </apex:pageBlockTable> 
         </apex:outputpanel>
     <!-- END #3 HEADER Default Layout Section -->
-
+	
     <!-- #3 Default Layout Section -->
+    
         <apex:outputpanel rendered="{!gridLayout='3'}" layout="block" styleclass="prodcontainer">
-            <apex:pageBlockTable id="compTablec2" first="1" headerClass="stationaryHeaderRow" value="{!myCompOvi}" var="p" columns="11" columnsWidth="200px,45px,75px,75px,75px,75px,10px,75px,75px,75px,16px">
-              <apex:column >
+            <apex:pageBlockTable id="compTablec2" headerClass="stationaryHeaderRow" value="{!myCompOvi}" var="p" >
+              <apex:column styleClass="compTablec_row" >
                <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
                 <apex:outputfield value="{!p.prod.Name}"/>
                 &nbsp;
@@ -926,27 +971,26 @@ function makeTableScrollable() {
                 <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
                 <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_row" >
                     <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" >
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Double_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row"  >
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price_Special__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row"  >
                <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" >
                <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
                 <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
               </apex:column>
-              <apex:column style="border-left: 1px solid cyan; padding: 5px;"/>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" style="border-left: 1px solid cyan; padding: 5px;">
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date1}" />
@@ -954,7 +998,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" >
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date2}" />
@@ -962,7 +1006,7 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
               </apex:column>
-               <apex:column >
+               <apex:column styleClass="compTablec_row" >
                <apex:facet name="header">
                                 <apex:outputText value="{0,date,M/yyyy}">
                                      <apex:param value="{!date3}" />
@@ -970,11 +1014,12 @@ function makeTableScrollable() {
                 </apex:facet>
                 <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
               </apex:column>
-              <apex:column >
+              <apex:column styleClass="compTablec_row" >
                     <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
                </apex:column>
             </apex:pageBlockTable>
         </apex:outputpanel>
+
     <!-- END #3 Default Layout Section -->
       </apex:pageBlock>
 <!-- END Competitor Grid Section -->

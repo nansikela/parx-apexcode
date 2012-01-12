@@ -10,18 +10,24 @@ public class PromotionCloneController {
 		}
 	}
 	
+	
 	public Promotion__c promotion {get;set;}
 	public list<DTO> targetAccounts {get;set;}
+	public Boolean isFinished {get;set;}
+	public list<Promotion__c> resultSet {get;set;} 
+	public String domain {get;set;}
 	
 	
 	public PromotionCloneController(ApexPages.StandardController ctrl) {
-		
+		domain = Site.getDomain();	
 		promotion = (Promotion__c) Database.query(getCreatableFieldsSOQL('Promotion__c', 'ID = \''+ctrl.getRecord().Id+'\''));
 		resetList();
-		
+		isFinished = false;
 		if(promotion == null)
-			throwError(null, 'Record not found!');
+			throwError(null, system.label.clonePromotion_record_not_found); 
+ 
 	}
+	
 	
 	private void resetList() {
 		targetAccounts = new list<DTO>();
@@ -41,12 +47,11 @@ public class PromotionCloneController {
 	public PageReference save() {
 		Savepoint sp = Database.setSavepoint();
 		Boolean errorOccurs = false;
+		system.debug('Orginal PromotionID: '+promotion.Id);
 		
 		list<Promotion__c> allPromotions = cloneAndReturnAllPromotions(sp);
-		if(allPromotions == null || allPromotions.size() == 0) {
-			throwError(sp, 'Cloning promotions failed!');
+		if(allPromotions == null || allPromotions.size() == 0)
 			return null;
-		}
 		
 		//if(!insertAllPromotionResults(sp, allPromotions))
 		//	return null;
@@ -57,8 +62,10 @@ public class PromotionCloneController {
 		//if(!insertAllPromotionGoals(sp, allPromotions))
 		//	return null;
 		
-		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM, 'Cloning process completed!'));
+		resultSet = allPromotions;
+		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM, system.label.clonePromotion_successful));
 		resetList();
+		isFinished = true;
 		return null;
 	}
 	
@@ -88,17 +95,19 @@ public class PromotionCloneController {
 		list<Promotion_Material_Item__c> promotion_material_items = Database.query(getCreatableFieldsSOQL('Promotion_Material_Item__c', 'Promotion__c = \'' + promotion.ID + '\''));
 		list<Promotion_Material_Item__c> duplicates = new list<Promotion_Material_Item__c>();
 		
-		for(DTO dto : targetAccounts)
+		for(Promotion__c p : allPromotions)
 			for(Promotion_Material_Item__c promotion_material_item : promotion_material_items) {
 				Promotion_Material_Item__c newRecord = promotion_material_item.clone(false, true);
-				newRecord.Promotion__c = dto.record.ID;
-				duplicates.add(newRecord);
+				newRecord.Promotion__c = p.ID;
+				system.debug('PMI: '+newRecord.Promotion__c);
+				if(newRecord.Promotion__c != null)
+					duplicates.add(newRecord);
 			}
 		
 		try {
 			if(duplicates.size() > 0)
 				insert duplicates;
-		} catch(Exception e) { throwError(sp, e.getMessage()); }
+		} catch(Exception e) { return throwError(sp, e.getMessage()); }
 		
 		return true;
 	}
@@ -129,21 +138,33 @@ public class PromotionCloneController {
 		list<Promotion__c> allPromotions = new list<Promotion__c>();
 		
 		try {
-			for(DTO dto : targetAccounts)
-				allPromotions.add(dto.record);
-		
+			for(DTO dto : targetAccounts){
+				if(dto.record.Account__c != null)
+					allPromotions.add(dto.record);
+			}
 			insert allPromotions;
-		} catch( Exception e ) { return null; }
+		} catch( Exception e ) { throwError(sp, e.getMessage()); }
 		return allPromotions;
 	}
 	
 	public Boolean throwError(SavePoint sp, String msg) {
 		ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, msg));
+		isFinished = false;
 		
 		if(sp != null)
 			Database.rollback(sp);
+		
+		return isFinished;
+	}
+	
+	public PageReference redirectTo() {
+		String id = ApexPages.currentPage().getParameters().get('promotionID');
+		PageReference ref = new PageReference('/'+id);
+		
+		if(id == null)
+			return null;
 			
-		return false;
+		return ref;	
 	}
 	
 	private string getCreatableFieldsSOQL(String objectName, String whereClause){
@@ -175,6 +196,11 @@ public class PromotionCloneController {
         return 'SELECT ' + selects + ' FROM ' + objectName + ' WHERE ' + whereClause;
     }
    
+   
+   	/*	UnitTest for PromotionCloneController
+   	 *	@date: 02.01.12
+   	 *	@author: Michael Mickiewicz
+   	 */
     public static testMethod void MainTest(){
     	
     	/* 	The complete input domain is divided in following characteristics:
@@ -184,6 +210,8 @@ public class PromotionCloneController {
     	*/
     	
     	UnitTestUtilities testRecords = new UnitTestUtilities();
+    	testRecords.init();
+    	
     	ApexPages.StandardController stdCtrl;
     	PromotionCloneController ctrl;
     	list<Promotion__c> promotions;
@@ -281,6 +309,5 @@ public class PromotionCloneController {
 		promotionitems = [Select ID, Name, Product__c From Promotion_Material_Item__c Where Promotion__c IN :allPromotionIDs];		
 		
 		System.assertEquals(promotionitems.size(), 3);
-    	
     }
 }

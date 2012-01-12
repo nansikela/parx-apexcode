@@ -180,6 +180,7 @@ public with sharing class outletVisit_Controller {
         //a = [Select Id, Market__c, Name, Outlet_Class__c, CurrencyIsoCode, Channel__c from Account where Id =:ov.Account__c];   
         setAccountInfo();
         
+        
         /* P00004 
         *VF Outlet Visit has to be updated. When the "Next" Button is pressed then the Visit Date is validated:
         *- The rule has to prevent Outlet Visits in the future and
@@ -198,6 +199,7 @@ public with sharing class outletVisit_Controller {
         * The Popup does not has any other effect it just has to be confirmed by clicking OK and does not prevent 
         * preceeding with the visit or does not prevent saving the visit.
         */
+        
         if(a.RecordType.developerName == 'EUR_Outlets' || a.RecordType.developerName == 'DEU_Outlets' ) {
             if(a.Last_Master_Data_Review__c == null || OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c != null && a.Last_Master_Data_Review__c.addDays(Integer.valueOf(OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c))<system.today()) {
                 AlertMessage = System.Label.You_did_not_review_the_account + ' ' + String.valueOf(Integer.valueOf(OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c)) + ' ' + System.Label.days;
@@ -205,7 +207,7 @@ public with sharing class outletVisit_Controller {
             else {
                 AlertMessage = '';
             }
-            if(ov.Visit_Date__c > system.today()) {
+            /*if(ov.Visit_Date__c > system.today()) {
                 if(AlertMessage != '')
                    AlertMessage += '\r\n.';
                  AlertMessage += System.Label.You_cannot_have_a_visit_date;
@@ -215,8 +217,39 @@ public with sharing class outletVisit_Controller {
                 if(AlertMessage != '')
                    AlertMessage += '\r\n.';
                  AlertMessage += System.Label.Please_notice_that_the_visit_date_is_not_from_today;
+            }*/
+        }
+        
+        /*
+        * P00004 - extension
+        *
+        * Shows AlertMessages based on the availibility of a record in customsettings. If there 
+        * is any record available, the AlertMessage won't be cleared. If not, set AlertMessage = ''.
+        * Additionally, the custom setting record controls the visit dates in the future.
+        *
+        * @author: Michael Mickiewicz
+        */
+        Boolean isRecordTypeFound = false;
+        Boolean isCheckboxFlagged = false;
+        for(Alert_Settings__c alertSetting : Alert_Settings__c.getAll().values()) 
+        	if(alertSetting.Market_RecordType__c == a.RecordType.developerName) { 
+        		isRecordTypeFound = true;
+        		isCheckboxFlagged = alertSetting.No_Visit_Dates_in_the_Future__c;
+        	}
+        
+        if(!isRecordTypeFound) {
+        	AlertMessage = '';
+        } else {
+        	if(ov.Visit_Date__c > system.today() && isCheckboxFlagged) {
+                 AlertMessage = System.Label.You_cannot_have_a_visit_date;
+                 return null;
+            }
+            else if(ov.Visit_Date__c > system.today() && !isCheckboxFlagged) {
+                 AlertMessage = System.Label.Please_notice_that_the_visit_date_is_not_from_today;
             }
         }
+        /* P00004 - extension END */
+        
         showDetails=true;
         ov.CurrencyIsoCode = a.CurrencyIsoCode;     
         buildOvi();
@@ -252,6 +285,7 @@ public with sharing class outletVisit_Controller {
     public List<wrapper> myBFOvi {get;set;}
     public List<wrapper> myBFOvi_header {get;set;}
     public List<wrapper> myCompOvi {get;set;}
+    public List<wrapper> myCompOvi_header {get;set;}
     public Map<ID,Account_Brand__c> mapBrandAccountBrands;//  {get;set;}
     public Map<ID,Mandatory_Products__c> mapProductsAccount;
     
@@ -352,9 +386,12 @@ public with sharing class outletVisit_Controller {
         myQueryString += ')';
         myQueryString +=' ORDER BY p.Sort_Order__c';
         system.debug(myQueryString);
+        
         myBFOvi = new List<wrapper>();
         myBFOvi_header = new List<wrapper>();
-        myCompOvi = new List<wrapper>();        
+        myCompOvi = new List<wrapper>();    
+        myCompOvi_header = new List<wrapper>();    
+         
         myProds.clear();
         
         for(Product__c p :Database.query(myQueryString))
@@ -919,5 +956,4 @@ public with sharing class outletVisit_Controller {
                 
         return options;
     }    
-     
 }

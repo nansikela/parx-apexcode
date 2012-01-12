@@ -15,7 +15,7 @@
         .filtercontainer{
             width:700px;
         }
-        .prodcontainer{ 
+        .prodcontainer{  
             overflow:auto;
             height:250px;
         }       
@@ -50,12 +50,18 @@
        var ClonedRow = $("#" + Table + "\\:tb tr:first").clone(true);
        //we replace with the right name;
        $(ClonedRow).find("td:eq(1)").find("span").text(RowName);
-
        ClonedRow = $(ClonedRow).html().replace(/:compTable:0/g, ':compTable:' + length); 
+
        length ++;
        //we put the salesforce style into the line, with mouseover, mouseout and all the stuff...
        $("#" + Table + "\\:tb").append('<tr class="dataRow even" onmouseover="if (window.hiOn){hiOn(this);} " onmouseout="if (window.hiOff){hiOff(this);} " onblur="if (window.hiOff){hiOff(this);}" onfocus="if (window.hiOn){hiOn(this);}" productid="'+RowId+'" promoid=""></tr>');
-       $("#" + Table + "\\:tb tr:last").append(ClonedRow);    
+       $("#" + Table + "\\:tb tr:last").append(ClonedRow); 
+       
+      	var myDate = new Date();
+		var prettyDate =(myDate.getMonth()+1) + '/' + myDate.getDate() + '/' +
+        myDate.getFullYear();
+       
+	   $("#" + Table + "\\:tb tr:last").find('[id$=Request_Date_Input]').val(prettyDate);
     }   
     
     function tableToJson(table) {
@@ -155,9 +161,9 @@
       }
     </script>
     
-
-     <apex:form id="myForm">
-               <apex:inputHidden value="{!IdDataTableHidden}" id="inputHidden"/>
+	
+     <apex:form id="myForm">   
+            <apex:inputHidden value="{!IdDataTableHidden}" id="inputHidden"/>
               <apex:pageBlock id="pbSelection_top" title="{!$ObjectType.Promotion_Material_Item__c.labelplural}" mode="Edit" >           
                 <apex:pageBlockButtons location="top">
                 	 <input class="btn" type="button" onclick="top.window.location='/{!pm.Id}'" value="{!$Label.OutletVisitPage_CloseButtonLabel}"/>
@@ -349,7 +355,7 @@
                       </apex:column> 
                        <apex:column id="Request_Date">
                        <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Request_Date__c.label}</apex:facet>
-                        <apex:inputfield style="width:75px" value="{!p.PromMatItem.Request_Date__c}"/>
+                        <apex:inputfield id="Request_Date_Input" style="width:75px" value="{!p.PromMatItem.Request_Date__c}"/>
                       </apex:column>        
                        <apex:column id="Shipped_Date">
                        <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Shipped_Date__c.label}</apex:facet>

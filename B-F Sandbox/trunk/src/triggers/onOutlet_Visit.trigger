@@ -1,4 +1,4 @@
-trigger onOutlet_Visit on Outlet_Visit__c (before delete, after delete, after undelete, after update, after insert) {
+trigger onOutlet_Visit on Outlet_Visit__c (before delete, after delete, after undelete, after update, after insert, before update, before insert) {
 /**
  *Trigger on all events
  *Conditions: 
@@ -15,11 +15,17 @@ trigger onOutlet_Visit on Outlet_Visit__c (before delete, after delete, after un
  *
  * Modification History:
  * 12/05/2011, Jochen Schrader - Id lists are now sets and the strings are now configureable at the head of the trigger.
+ * 01/10/2012, Jochen Schrader - Outlet Visits will be connected to their time tracking records (P00002)
 **/
 
 	private static final String COMPLETESTATE='Complete';
 	private static final String DEU_ACCOUNT_RECORDTYPE='DEU_Outlets';
 	private static final String EUR_ACCOUNT_RECORDTYPE='EUR_Outlets';
+	
+	set<Id> RTIds = new set<Id>();
+    for(RecordType rt:[select id from RecordType where sObjectType = 'Account' AND (developerName = :DEU_ACCOUNT_RECORDTYPE OR developerName = :EUR_ACCOUNT_RECORDTYPE)]) {
+        RTIds.add(rt.Id);
+    }
 	
 	if(trigger.isAfter) {
 		set<Id> AccountIds = new set<Id>();
@@ -50,16 +56,48 @@ trigger onOutlet_Visit on Outlet_Visit__c (before delete, after delete, after un
 	}
 	
 	
-	/* we run the trigger on Outlet Visit Item to update the brand depletion actuals. We don't get the event 
+	/* we run the trigger on Outlet Visit Item to update the product depletion actuals. We don't get the event 
 	* in the Outlet Visit Item trigger when the outlet visit is deleted.
 	*/
 	if(trigger.isDelete && trigger.isBefore) {
-		set<Id> RTIds = new set<Id>();
-        for(RecordType rt:[select id from RecordType where sObjectType = 'Account' AND (developerName = :DEU_ACCOUNT_RECORDTYPE OR developerName = :EUR_ACCOUNT_RECORDTYPE)]) {
-            RTIds.add(rt.Id);
-        }
 		list<Outlet_Visit_Item__c> OVI_List = new list<Outlet_Visit_Item__c>([select id from Outlet_Visit_Item__c where Outlet_Visit__c IN: trigger.old AND Outlet_Visit__r.Account__r.RecordTypeId IN: RTIds]);
 		system.debug('delete OVI_List:' + OVI_List);
 		delete OVI_List;
+	}
+	
+	/* selecting time tracking records and append the outlet visits to them
+		for SOW P00002
+	*/
+	if ((trigger.isUpdate || trigger.isInsert) && trigger.isBefore) {
+		// preparations
+		set<String> ownerids = new set<String>();
+		set<Integer> monthlist = new set<Integer>();
+		map<String, Time_Tracking__c> ttmap=new map<String, Time_Tracking__c>();
+		
+		for (Outlet_Visit__c ov: trigger.new) {
+			if (
+				ov.Status__c==COMPLETESTATE && 
+				ov.Time_Tracking__c==null
+				) {
+				if (!ownerids.contains(String.valueOf(ov.OwnerId).substring(0,15))) ownerids.add(String.valueOf(ov.OwnerId).substring(0,15));
+				if (!monthlist.contains(ov.Visit_Date__c.month() + ov.Visit_Date__c.year()*100)) monthlist.add(ov.Visit_Date__c.month() + ov.Visit_Date__c.year()*100);
+			}
+		}
+
+		// now get the time tracking records and connect them to the ov
+		if (!ownerids.isEmpty() && !monthlist.isEmpty()) {
+			for (Time_Tracking__c tt: [SELECT Id, StartDate__c, OwnerId__c, StartDate_Month__c FROM Time_Tracking__c
+										WHERE OwnerId__c IN :ownerids AND StartDate_Month__c IN :monthlist]) {
+				if (!ttmap.containsKey(tt.OwnerId__c + String.valueOf(tt.StartDate_Month__c)))
+					ttmap.put(tt.OwnerId__c + String.valueOf(tt.StartDate_Month__c),tt);
+			}
+		}
+		// can't avoid this second run ...
+		if (!ttmap.isEmpty()) {
+			for (Outlet_Visit__c ov: trigger.new) {
+				if (ttmap.containsKey(String.valueOf(ov.OwnerId).substring(0,15) + String.valueOf(ov.Visit_Date__c.month()+ ov.Visit_Date__c.Year()*100)))
+					ov.Time_Tracking__c=ttmap.get(String.valueOf(ov.OwnerId).substring(0,15) + String.valueOf(ov.Visit_Date__c.month()+ ov.Visit_Date__c.year()*100)).id;
+			}
+		}
 	}
 }

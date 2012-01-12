@@ -1,0 +1,12 @@
+<apex:page standardController="Outlet_Visit__c" extensions="MandatoryVisitController">
+	<!-- <apex:chart height="350" width="450" data="{!pieData}">
+        <apex:pieSeries dataField="data" labelField="name"/>
+        <apex:legend position="right"/>
+    </apex:chart>  -->
+    <apex:pageBlock >
+   		<apex:outputText value="Target timespace: {!startingDate} - {!endingDate}" /> <br /> <br />
+    
+    	<apex:outputText value="Max. Visits: {!maxDays * visitsPerDay}" /> <br />
+    	<apex:outputText value="Done Visits: {!outletVisitAmount}" />
+    </apex:pageBlock>
+</apex:page>
