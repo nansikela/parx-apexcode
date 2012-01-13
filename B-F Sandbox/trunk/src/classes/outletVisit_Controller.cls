@@ -69,7 +69,7 @@ public with sharing class outletVisit_Controller {
         Schema.DescribeSObjectResult deOV = Schema.SObjectType.Outlet_Visit__c;
         Transient Map<String,Schema.RecordTypeInfo> rtMapByNameOV = deOV.getRecordTypeInfosByName();
                         
-        a = [Select Id, Name, Last_Master_Data_Review__c, Market__c, Market__r.Name, Market__r.On_Channel__c, Market__r.Off_Channel__c, Channel__c, Outlet_Class__c, CurrencyIsoCode, RecordType.developerName from Account where Id =:ov.Account__c];
+        a = [Select Id, Name, Master_data_maintained__c, Market__c, Market__r.Name, Market__r.On_Channel__c, Market__r.Off_Channel__c, Channel__c, Outlet_Class__c, CurrencyIsoCode, RecordType.developerName from Account where Id =:ov.Account__c];
         gridLayout='1';
         if(a.Channel__c!=null && a.Channel__c!='')
             try{
@@ -201,7 +201,7 @@ public with sharing class outletVisit_Controller {
         */
         
         if(a.RecordType.developerName == 'EUR_Outlets' || a.RecordType.developerName == 'DEU_Outlets' ) {
-            if(a.Last_Master_Data_Review__c == null || OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c != null && a.Last_Master_Data_Review__c.addDays(Integer.valueOf(OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c))<system.today()) {
+            if(a.Master_data_maintained__c == false) {
                 AlertMessage = System.Label.You_did_not_review_the_account + ' ' + String.valueOf(Integer.valueOf(OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c)) + ' ' + System.Label.days;
             }
             else {

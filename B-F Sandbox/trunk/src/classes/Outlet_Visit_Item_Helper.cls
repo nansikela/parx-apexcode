@@ -35,48 +35,45 @@ public with sharing class Outlet_Visit_Item_Helper {
 		}
 		
         if(ovi_Ids.size() > 0) {
-	        map<ID, Outlet_Visit_Item__c> ovi_Map = new map<Id, Outlet_Visit_Item__c>([select Available__c, Bottle_Price__c, Bottle_Price_Special__c, Brand__c, Double_Price__c, Double_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Facing__c, Custom_Product__c, Product__c, Shelf__c, Outlet_Visit__r.Account__c, Outlet_Visit__r.Name, Outlet_Visit__r.Last_Visit_Date__c from Outlet_Visit_Item__c where ID IN: ovi_Ids AND Id NOT IN: deletedIds]);
+        	// now we want only the available ones
+	        map<ID, Outlet_Visit_Item__c> ovi_Map = new map<Id, Outlet_Visit_Item__c>();
 	        set<ID> accountIDs = new set<ID>();
 	        
-	        for(Outlet_Visit_Item__c ovi : ovi_Map.values()) {
+	        for(Outlet_Visit_Item__c ovi : [select Id, Available__c, Bottle_Price__c, Bottle_Price_Special__c, Brand__c, Double_Price__c, Double_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Facing__c, Custom_Product__c, Product__c, Shelf__c, Outlet_Visit__r.Account__c, Outlet_Visit__r.Name, Outlet_Visit__r.Last_Visit_Date__c from Outlet_Visit_Item__c where ID IN: ovi_Ids AND Id NOT IN: deletedIds AND Outlet_Visit__r.Last_Visit__c=true]) {
+	        	if (ovi.Available__c && !ovi_Map.containsKey(ovi.id))
+	        		ovi_Map.put(ovi.id, ovi);
 	        	if(!accountIDs.contains(ovi.Outlet_Visit__r.Account__c))
 	        		accountIDs.add(ovi.Outlet_Visit__r.Account__c);
 	        }
 	        
-	        delete [Select ID From Account_Product__c Where Account__c IN: accountIDs];
 	        
-	        //Request all existing account products to complete the lefting records
-	        //map<ID, Account_Product__c> ac_Map = new map<ID, Account_Product__c>([Select Available__c, Bottle_Price__c, Bottle_Price_Special__c, Brand__c, Double_Price__c, Double_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Facings__c, Product__c, Shelf__c, Account__c, 	Last_Outlet_Visit_Number__c, Last_Outlet_Visit_Date__c From Account_Product__c Where Account__c IN: accountIDs]);
+	        
+	        // get existing Account Products to calculate the differences
+	        // the sting key is the combination of account id and product id, because each product can only exists once for each account
+	        map<String, Account_Product__c> oldAccountProducts = new map<String, Account_Product__c>();
+	        for (Account_Product__c ap: [SELECT Id
+	        			, Account__c
+	        			, Product__c
+	        			, Available__c
+	        			, Facings__c
+	        			, Shelf__c
+	        			, Facings_Delta__c
+	        			, Facings_Delta_Indicator__c
+	        			, New_Listing__c
+	        			, New_Listing_Date__c
+	        			, Shelf_Move__c
+	        			, Shelf_Move_Indicator__c
+	        			FROM Account_Product__c 
+	        			WHERE Account__c IN: accountIds
+	        		]) {
+	        	String foreignkey=String.valueOf(ap.Account__c) + String.valueOf(ap.Product__c);
+	        	if (!oldAccountProducts.containsKey(foreignkey)) oldAccountProducts.put(foreignkey,ap);				
+	        }
 	        
 	        //Iterate and map all outlet visit items to account products 
 	        list<Account_Product__c> newAccountProducts = new list<Account_Product__c>();
 	        for(Outlet_Visit_Item__c ovi : ovi_Map.values()) {
-	        	/*
-	        	Boolean isMapped = false;
-				for(Account_Product__c ac : ac_Map.values()) {
-					if(ovi.Custom_Product__c == ac.Product__c) {
-						system.debug('MATCHED: '+ ac.Product__c);  
-	        			ac.Available__c = ovi.Available__c;
-						ac.Bottle_Price__c = ovi.Bottle_Price__c;
-						ac.Bottle_Price_Special__c = ovi.Bottle_Price_Special__c;
-						ac.Brand__c = ovi.Brand__c;
-						ac.Double_Price__c = ovi.Double_Price__c;
-						ac.Double_Price_Special__c = ovi.Double_Price_Special__c;
-						ac.Drink_Price__c = ovi.Drink_Price__c;
-						ac.Drink_Price_Special__c = ovi.Drink_Price_Special__c;
-						//ac.Facings_Delta__c=ovi.Facing__c-ac.Facings__c;
-						ac.Facings__c = ovi.Facing__c;
-						ac.Last_Outlet_Visit_Number__c = ovi.Outlet_Visit__c;
-						ac.Last_Outlet_Visit_Date__c = ovi.Outlet_Visit__r.Last_Visit_Date__c;
-						ac.Shelf__c = ovi.Shelf__c;
-	            		//ac.Account__c = ovi.Outlet_Visit__r.Account__c;	
-						isMapped = true;
-					}
-				}
-				
-				//If a account product is not mapped, it do not exists. So create it and map all values.
-				if(!isMapped) {
-				*/
+	        	
 					Account_Product__c ac = new Account_Product__c();
 					ac.Available__c = ovi.Available__c;
 					ac.Bottle_Price__c = ovi.Bottle_Price__c;
@@ -91,14 +88,54 @@ public with sharing class Outlet_Visit_Item_Helper {
 					ac.Last_Outlet_Visit_Date__c = ovi.Outlet_Visit__r.Last_Visit_Date__c;
 					ac.Product__c = ovi.Custom_Product__c;
 					ac.Shelf__c = ovi.Shelf__c;
-	            	ac.Account__c = ovi.Outlet_Visit__r.Account__c;	
+	            	ac.Account__c = ovi.Outlet_Visit__r.Account__c;
+	            	ac.New_Listing__c=true;
+	            	ac.New_Listing_Date__c=ovi.Outlet_Visit__r.Last_Visit_Date__c;
+	            	
+	            	// we have an old value
+	            	String foreignkey=String.valueOf(ovi.Outlet_Visit__r.Account__c) + String.valueOf(ovi.Custom_Product__c);
+	            	if (oldAccountProducts.containsKey(foreignkey)) {
+	            		Account_Product__c oldAccountProduct = oldAccountProducts.get(foreignkey);
+	            		// facing delta and indicator
+	            		ac.Facings_Delta__c=0;
+	            		if (ovi.Facing__c!=null) {
+	            			ac.Facings_Delta__c=ovi.Facing__c-(oldAccountProduct.Facings__c==null?0:oldAccountProduct.Facings__c);	
+	            		} else if (ovi.Facing__c==null && oldAccountProduct.Facings__c!=null) {
+	            			ac.Facings_Delta__c=0-oldAccountProduct.Facings__c;
+	            		}
+	            		ac.Facings_Delta_Indicator__c=ac.Facings_Delta__c!=0?true:false;
+	            		
+	            		// shelf move and shelf move indicator
+            			Double recentShelf;
+            			try {
+            				recentShelf=Double.valueOf(ovi.Shelf__c.substring(0,1));
+            			} catch (System.Exception e) {
+            				System.debug('Wrong Decimal in Shelf value');
+            			}
+            			Double previousShelf;
+            			try {
+            				previousShelf=Double.valueOf(String.valueOf(oldAccountProduct.Shelf__c==null?ovi.Shelf__c:oldAccountProduct.Shelf__c).substring(0,1));
+            			} catch (System.Exception e) {
+            				System.debug('Wrong Decimal in Shelf value');
+            			}
+            			ac.Shelf_Move__c=0;
+	            		if (recentShelf!=null) {	
+	            			ac.Shelf_Move__c=recentShelf-(previousShelf==null?0:previousShelf);
+	            		} else if (recentShelf==null && previousShelf!=null) {
+	            			ac.Shelf_Move__c=0-previousShelf;
+	            		}
+	            		ac.Shelf_Move_Indicator__c=ac.Shelf_Move__c!=0?true:false;
+	            		// new listing will be false!
+	            		ac.New_Listing__c=false;
+	            		ac.New_Listing_Date__c=null;
+	            	}
 	            	newAccountProducts.add(ac);
-				//}
 	        }
 	        
-	        //if(!ac_Map.values().isEmpty()) {
-	        //    upsert ac_Map.values();
-	        //}
+
+	        if (!oldAccountProducts.isEmpty()) {
+	        	delete oldAccountProducts.values();
+	        }
 	        if(newAccountProducts.size() > 0){
 	        	insert newAccountProducts;
 	        }

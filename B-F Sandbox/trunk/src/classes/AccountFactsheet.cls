@@ -49,10 +49,8 @@ public without sharing class AccountFactsheet {
     public Boolean isChannelOff {get;set;}
     public list<Promotion_Helper> Promotions {get;set;}
     public list<Promotion__c> pouring_contracts {get;set;}
-    public String mode {get;set;}
     
     public AccountFactsheet () {
-    	mode = '';
         String AccountId = ApexPages.currentPage().getParameters().get('AccountId');
         if(AccountId != null && AccountId.length() >=15 && AccountId.substring(0,3) == '001') {
             Promotions = new list<Promotion_Helper>();
@@ -91,7 +89,7 @@ public without sharing class AccountFactsheet {
             //its status has to be shown.
             for(Promotion__c promo:[select Name, Promotion_Activity__c, Promotion_Activity__r.Name, Total_Promotion_Cost__c, Promotion_Start_Date__c, Promotion_End_Date__c, Approval_Status__c, status_of_Secondary_placement__c from Promotion__c where Account__c =: AccountId AND Promotion_Start_Date__c >= :firstVisitDate AND Promotion_Start_Date__c <= :lastVisitDate]) {
                	Boolean showStatus = false;
-               	if(promo.Promotion_Activity__r.Name.contains('Secondary Placement'))
+               	if(promo.Promotion_Activity__c != null && promo.Promotion_Activity__r.Name.contains('Secondary Placement'))
                		showStatus = true;
                 Promotions.add(new Promotion_Helper(promo,showStatus));
                 PromotionActivityIds.add(promo.Promotion_Activity__c);
@@ -150,12 +148,4 @@ public without sharing class AccountFactsheet {
     		lastRecord = mp;
     	}
     }
-	
-	public PageReference renderAsPDF() {
-		mode = 'pdf';
-		return null;
-	}
-	public PageReference dummy() {
-		return null;
-	}
 }
