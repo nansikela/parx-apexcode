@@ -19,6 +19,7 @@ private class Test_Outlet_Visit_Item_Helper {
         Outlet_Visit__c outlet = new Outlet_Visit__c(Visit_Date__c = system.today());
         outlet.Account__c = mgr.contact1.AccountId;
         outlet.Met_With__c = mgr.contact1.Id;
+        outlet.Last_Visit__c=true;
         insert outlet; 
          
         system.debug(outlet.Account__c);
@@ -35,6 +36,7 @@ private class Test_Outlet_Visit_Item_Helper {
             
 			OVI.Facing__c = 20;
 			OVI.Bottle_Price__c = 15;
+			OVI.Shelf__c='3 - shelf';
             update OVI;
             
             for(Account_Product__c ap : [select id, Brand__c, Product__c, Available__c, Account__c, Last_Outlet_Visit_Number__c from Account_Product__c where Last_Outlet_Visit_Number__c =: outlet.Id]) {
