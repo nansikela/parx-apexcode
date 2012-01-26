@@ -1,0 +1,74 @@
+<apex:component controller="MeetUsOnCampusController" allowDML="true">
+    <apex:form rendered="{!NOT(isThankyou)}">
+    <h1>{!$Label.Information_session_in_English_Registration_form}</h1>
+    <strong>{!$Label.Please_select_your_preferred_language_of_contact}</strong><br/>
+    <a href="#">{!$Label.in_English}</a> {!$Label.or} <a href="#">{!$Label.en_fran_ais}</a>
+    <div class="seperator"></div>
+    <h2>Your personal information</h2>
+    <h4>{!$Label.Which_information_session_on_campus_would_you_like_to_attend}</h4>
+    
+    <h4><apex:outPutLabel for="campain">{!$Label.On_campus_information_session_in_English}</apex:outPutLabel></h4>
+    <apex:selectList id="campain" value="{!member.CampaignId}" size="1">
+        <apex:selectOptions value="{!CampainOptionList}"></apex:selectOptions>
+    </apex:selectList>
+    <div class="seperator"></div>
+    <h4><apex:outPutLabel for="account">Where did you study?</apex:outPutLabel></h4>
+    <apex:selectList id="account" value="{!leadForInsert.School__c}" size="1">
+        <apex:selectOptions value="{!SchoolOptionList}"></apex:selectOptions>
+    </apex:selectList>
+    <div class="seperator"></div>
+    <h4><apex:outPutLabel >{!$Label.How_many_people_will_be_accompanying_you}</apex:outPutLabel></h4>
+    <apex:selectList size="1">
+        <apex:selectOptions value="{!counter}"></apex:selectOptions>
+    </apex:selectList>
+    <div class="seperator"></div>
+    <h4>*Title</h4>
+    
+        <apex:inputField value="{!leadForInsert.Salutation}"/>
+    <h4>*Family name:</h4>
+         <apex:inputField value="{!leadForInsert.Lastname}"/>
+    <h4>*First name:</h4>
+        <apex:inputField value="{!leadForInsert.Firstname}"/>
+    <h4>*Nationality:</h4>
+        <apex:inputField value="{!leadForInsert.Nationality_1__c}"/>
+    <h4>*Nationality 2:  (if applicable)</h4>
+        <apex:inputField value="{!leadForInsert.Nationality_2__c}"/>
+    <h4>*Nationality 3:  (if applicable)</h4>
+        <apex:inputField value="{!leadForInsert.Nationality_3__c}"/>
+    <h4>*Current country of residence:</h4>
+        <apex:inputField value="{!leadForInsert.Country__c}"/>
+    <h4>TEL</h4>
+        <apex:inputField value="{!leadForInsert.phone}"/>
+    <h4>FAX</h4>
+        <apex:inputField value="{!leadForInsert.fax}"/>
+    <h4>*eMail:</h4>
+        <apex:inputField value="{!leadForInsert.eMail}"/>
+    <h4>*Date of birth:</h4>
+        <apex:inputField value="{!leadForInsert.Date_of_Birth__c}"/>
+    <div class="seperator"></div>
+    <h4>*Are you currently pursuing or have you completed any post-secondary studies?</h4>
+        <apex:inputField value="{!member.Post_secondary_studies__c}"/>
+    <h4>If yes, please indicate your field of study:</h4>
+        <apex:inputField value="{!member.Field_of_study__c}"/>
+    <h4>*Please indicate the language you wish to study in:</h4>
+        <apex:inputField value="{!member.Language__c}"/>
+    <h4>In the future, we may wish to send you further information about our academic programmes.</h4>
+        <apex:inputField value="{!member.EHL_programme_s_you_are_interested_in__c}"/>
+    <div class="seperator"></div>
+    <h4>How did you hear about EHL? Please select maximum 3 options (Ctrl + left click)</h4>
+     <apex:inputField value="{!member.How_did_you_first_hear_about__c}"/>
+    <h4>How did you first hear about the information session?</h4>
+    <apex:inputField value="{!member.How_did_you_hear_about_EHL__c}"/>
+    <div class="seperator"></div>
+    <h4>Have you already applied to EHL?</h4>
+    <apex:inputField value="{!member.Have_you_already_applied_to_EHL_del__c}"/>
+    <h4>In the future, we may wish to send you further information about our academic programmes.</h4>
+    <apex:inputField value="{!member.Further_information_about_our_programmes__c}"/>
+    <h4>If you have completed the form, please review your details to check that they are correct, then click “Register now” and wait for the acknowledgement page to be displayed.</h4>
+    <apex:commandButton action="{!save}" value="{!'Register now!'}"/>
+    
+    </apex:form>
+    <apex:outputText rendered="{!(isThankyou)}">
+    <h1>Thank you!</h1>
+    </apex:outputText>
+</apex:component>

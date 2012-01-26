@@ -1,0 +1,8 @@
+<apex:component >
+    <apex:attribute name="MemonicNote" type="Memonic.MemonicClipController" required="true" description=""/>
+    <div class="memonic_title"> 
+        <span class="date"><span title="{!MemonicNote.LongMemonicDate}">{!MemonicNote.ShortMemonicDate}</span></span>
+        <span class="source"><a href="{!MemonicNote.myMemonicNote.Memonic__SourceUrl__c}" target="_self">{!MemonicNote.myMemonicNote.Memonic__Source__c}</a></span>
+        <span class="source"><a href="/{!MemonicNote.myMemonicNote.Owner.Id}">{!MemonicNote.myMemonicNote.Owner.Name}</a></span>
+    </div> 
+</apex:component>

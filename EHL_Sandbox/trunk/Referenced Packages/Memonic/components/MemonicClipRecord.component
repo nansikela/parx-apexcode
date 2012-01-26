@@ -1,0 +1,33 @@
+<apex:component >
+    <apex:attribute name="MemonicNote" type="Memonic.MemonicClipController" required="true" description=""/>
+    <apex:attribute name="viewType" type="String" required="false" description=""/>
+    <div class="cbox note note-expanded note-summary view-summary clearfix active {!IF (viewType=='list', 'cbox-list', 'cbox-sum')}">
+        <apex:outputLabel rendered="{!(viewType!='list')}">
+            <div class="collapsable active">
+                <a href="/{!MemonicNote.myMemonicNote.Id}"><h2>{!MemonicNote.myMemonicNote.Name}</h2></a>
+            </div>
+            <c:MemonicTitle MemonicNote="{!MemonicNote}"/>
+            <table>
+                <tr>
+                    <td width="1px">
+                        <apex:image url="{!MemonicNote.myMemonicNote.Memonic__ThumbnailUrl__c}" rendered="{!(MemonicNote.myMemonicNote.Memonic__ThumbnailUrl__c!=null)}" />
+                    </td>
+                    <td>
+                        <apex:outputLabel value="{!MemonicNote.myMemonicNote.Memonic__AbstractText__c}" styleClass="memonic_short_body"/>
+                    </td>
+                </tr>
+            </table>
+        </apex:outputLabel>
+        <apex:outputLabel rendered="{!(viewType=='list')}">
+         <div class="collapsable active">
+           <p class="memonic-metadata">
+               <span class="date shortDate" title="{!MemonicNote.LongMemonicDate}">{!MemonicNote.ShortMemonicDate}</span>
+           </p>
+          <a href="/{!MemonicNote.myMemonicNote.Id}"><h2 class="noteH2">{!MemonicNote.shortViewTitle}</h2></a>
+           <p class="abstract absMargin"> 
+                &nbsp;{!MemonicNote.shortViewBody}
+           </p>
+        </div>
+        </apex:outputLabel>
+    </div>
+</apex:component>

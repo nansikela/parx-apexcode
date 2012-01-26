@@ -1,0 +1,339 @@
+<apex:page showHeader="false" standardStylesheets="true" sidebar="false" controller="OverviewApplicationController" action="{!init}" tabStyle="Application__c" >
+<apex:pageBlock title="Application Overview">
+    <apex:form >
+            <apex:commandButton action="{!doNothing}" value="print" onclick="javascript:print()"/>  
+    </apex:form>
+    <apex:pageBlockSection title="Application Detail">
+        <apex:outputField value="{!oApplication.name}"/>
+        <apex:outputField value="{!oApplication.OwnerId}"/>
+        <apex:outputField value="{!oProduct.Name}"/>
+        <apex:outputField value="{!oApplication.Application_Phase__c}"/>
+        <apex:outputField value="{!oProduct.Product_Language__c}"/>
+        <apex:outputField value="{!oApplication.Application_Status__c}"/>
+        <apex:outputField value="{!oProduct.Product_Period__c}"/>
+        <apex:outputField value="{!oApplication.Application_Start_Date__c}"/>
+        <apex:outputField value="{!oOpportunity.name}"/>
+        <apex:outputField value="{!oApplication.Application_Submit_Date__c}"/>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Candidat">
+        <apex:outputField value="{!oContact.LastName}"/>
+        <apex:outputField value="{!oApplication.Age_at_Start_of_Programme__c}"/>
+        <apex:outputField value="{!oContact.FirstName}"/>
+        <apex:outputField value="{!oContact.Nationality_1__c}"/>
+        <apex:outputField value="{!oContact.Student_Name__c}"/>
+        <apex:outputField value="{!oContact.Nationality_2__c}"/>
+        <apex:outputField value="{!oContact.Gender__c}"/>
+        <apex:outputField value="{!oContact.Nationality_3__c}"/>
+        <apex:outputField value="{!oContact.Birthdate}"/>
+        <apex:outputField value="{!oContact.Nationality_4__c}"/>
+        <apex:outputField value="{!oContact.Country_of_Birth__c}"/>
+        <apex:outputField value="{!oContact.Swiss_Permit__c}"/>
+        <apex:outputField value="{!oAddress.Country__c}"/> 
+        <apex:outputField value="{!oContact.Date_of_Expiry__c}"/>
+        <apex:outputField value="{!oContact.Email_Private__c}"/>
+        <apex:outputField value="{!oApplication.Visa_Required__c}"/>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Language Qualifications">
+        <apex:outputLabel styleClass="labelCol" value="English" />
+        <label class="labelCol">Français</label>
+        <tr>
+            <td colspan="2">
+                <table>
+                    <apex:repeat var="a" value="{!listEducationLQ_EN}">
+                        <tr class="first">
+                            <td class="labelCol">{!$ObjectType.Education__c.fields.Qualification__c.label}</td>
+                            <td class="dataCol">
+                                <span>{!a.Qualification__c}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labelCol">
+                                {!$ObjectType.Education__c.fields.Test_Score__c.label}
+                            </td>
+                            <td class="dataCol">
+                                <span>{!a.Test_Score__c}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labelCol">{!$ObjectType.Education__c.fields.Date_of_Test__c.label}</td>
+                            <td class="dataCol">
+                                <span>{!DAY(a.Date_of_Test__c)}.{!MONTH(a.Date_of_Test__c)}.{!YEAR(a.Date_of_Test__c)}</span>
+                            </td>
+                        </tr>
+                        <tr height="15">
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <apex:repeat var="a" value="{!listEducationLQ_FR}">
+                        <tr>
+                            <td class="labelCol">{!$ObjectType.Education__c.fields.Qualification__c.label}</td>
+                            <td class="dataCol">
+                                <span>{!a.Qualification__c}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labelCol">
+                                {!$ObjectType.Education__c.fields.Test_Score__c.label}
+                            </td>
+                            <td class="dataCol">
+                                <span>{!a.Test_Score__c}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labelCol">{!$ObjectType.Education__c.fields.Date_of_Test__c.label}</td>
+                            <td class="dataCol">
+                                <span>{!DAY(a.Date_of_Test__c)}.{!MONTH(a.Date_of_Test__c)}.{!YEAR(a.Date_of_Test__c)}</span>
+                            </td>
+                        </tr>
+                        <tr height="15">
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </td>
+            <td></td>   
+        </tr>
+        
+    <!-- 
+        <apex:outputLabel styleClass="labelCol" value="English" />
+        <td class="dataCol first " colspan="2">  </td>
+        <apex:repeat var="a" value="{!listEducationLQ_EN}">
+            <tr>
+                <td class="labelCol">
+                    {!$ObjectType.Education__c.fields.Qualification__c.label}
+                </td>
+                <td class="dataCell">
+                    <apex:outputPanel id="theId12">{!a.Qualification__c}</apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCol">
+                    {!$ObjectType.Education__c.fields.Test_Score__c.label}
+                </td>
+                <td class="dataCell">
+                    <apex:outputPanel id="theId32">{!a.Test_Score__c}</apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCol">
+                    {!$ObjectType.Education__c.fields.Date_of_Test__c.label}
+                </td>
+                <td class="dataCell">
+                    <apex:outputPanel id="theId42">
+                        {!DAY(a.Date_of_Test__c)}.{!MONTH(a.Date_of_Test__c)}.{!YEAR(a.Date_of_Test__c)}
+                    </apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCol">
+                </td>
+                <td class="dataCell">
+                </td>
+            </tr>
+        </apex:repeat>
+        <apex:outputLabel styleClass="labelCol" value="Français" />
+        <td class="dataCol" colspan="2">  </td>
+        <apex:repeat var="a" value="{!listEducationLQ_FR}">
+            <tr>
+                <td class="labelCol">
+                    {!$ObjectType.Education__c.fields.Qualification__c.label}
+                </td>
+                <td class="dataCell">
+                    <apex:outputPanel id="theId1">{!a.Qualification__c}</apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCol">
+                    {!$ObjectType.Education__c.fields.Test_Score__c.label}
+                </td>
+                <td class="dataCell">
+                    <apex:outputPanel id="theId3">{!a.Test_Score__c}</apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCol">
+                    {!$ObjectType.Education__c.fields.Date_of_Test__c.label}
+                </td>
+                <td class="dataCell">
+                    <apex:outputPanel id="theId4">
+                        {!DAY(a.Date_of_Test__c)}.{!MONTH(a.Date_of_Test__c)}.{!YEAR(a.Date_of_Test__c)}
+                    </apex:outputPanel>
+                </td>
+            </tr>
+            <tr>
+                <td class="labelCol">
+                </td>
+                <td class="dataCell">
+                </td>
+            </tr>
+        </apex:repeat>
+ -->
+
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Secondary School Qualifications">
+        <apex:pageBlockTable value="{!listEducationSQ_SecSchool}" var="a" cellspacing="3">
+            <apex:column value="{!a.School_Name__c}"/>
+            <apex:column value="{!a.School_Name__r.City_English__c}"/>
+            <apex:column value="{!a.School_Name__r.Country_Preferred__c}"/>
+            <apex:column headerValue="English" value="{!a.Diploma_Name__r.Diploma_Name_English__c}"/> 
+            <apex:column value="{!oApplication.Final_GPA__c}"/>
+            <apex:column value="{!oApplication.Predicted_GPA__c}"/>
+            <apex:column value="{!a.Date_From__c}"/>
+            <apex:column value="{!a.Date_Until__c}"/>
+            <apex:column value="{!a.Diploma_Date__c}"/>         
+            <apex:column value="{!a.Main_Language_of_Instruction__c}"/>
+            <apex:column value="{!oApplication.Type_of_Math_Course__c}"/>
+            <apex:column value="{!oApplication.Math_Grade__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Other Secondary Schools Attended">
+        <apex:pageBlockTable value="{!listEducationSQ_SecSchool_DDnull}" var="a" cellspacing="3">
+            <apex:column value="{!a.School_Name__c}"/>
+            <apex:column value="{!a.School_Name__r.City_English__c}"/>
+            <apex:column value="{!a.School_Name__r.Country_Preferred__c}"/>
+            <apex:column headerValue="English" value="{!a.Diploma_Name__r.Diploma_Name_English__c}"/>
+            <apex:column value="{!a.Date_From__c}"/>
+            <apex:column value="{!a.Date_Until__c}"/>
+            <apex:column value="{!a.Diploma_Date__c}"/>
+            <apex:column value="{!a.Main_Language_of_Instruction__c}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Higher Education">
+        <apex:pageBlockTable value="{!listEducationSQ_HE}" var="a" cellspacing="3">
+            <apex:column value="{!a.School_Name__c}"/>
+            <apex:column value="{!a.School_Name__r.City_English__c}"/>
+            <apex:column value="{!a.School_Name__r.Country_Preferred__c}"/>
+            <apex:column value="{!a.Field_of_Study__c}"/>
+            <apex:column headerValue="English" value="{!a.Diploma_Name__r.Diploma_Name_English__c}"/>
+            <apex:column value="{!a.Date_From__c}"/>
+            <apex:column value="{!a.Date_Until__c}"/>
+            <apex:column value="{!a.Diploma_Date__c}"/>
+            <apex:column value="{!a.Main_Language_of_Instruction__c}"/>
+            <br/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title=" SAT 1 Scores">
+        <apex:outputField value="{!oEducationSATone.SAT_1_Test_taken__c}"/>
+        <apex:outputField value="{!oEducationSATone.SAT_1_Date_of_Test__c}"/>
+        <apex:outputField value="{!oEducationSATone.SAT_1_Verbal_Critical_Reading_Scor__c}"/>
+        <br>
+        <apex:outputField value="{!oEducationSATone.SAT_1_Math_Score__c}"/>
+        <br>
+        <apex:outputField value="{!oEducationSATone.SAT_1_Writing_Score__c}"/>
+        <br>
+        <apex:outputField value="{!oEducationSATone.SAT_1_Total_Score__c}"/>
+<!-- Maybe we need Records of SAT1
+        <apex:pageBlockTable value="{!listEducationTS}" var="a">
+            <apex:column value="{!a.Date_of_Test__c}"/>
+            <apex:column value="{!a.SAT_1_Verbal_Critical_Reading_Scor__c}"/>
+            <apex:column value="{!a.SAT_1_Math_Score__c}"/>
+            <apex:column value="{!a.SAT_1_Writing_Score__c}"/>
+            <br/>
+        </apex:pageBlockTable>
+-->
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Scores (Application / Selection Day)">
+        <apex:outputLabel styleClass="labelCol" value="Application Evaluation" />
+        <apex:outputLabel styleClass="labelCol" value="Selection Results" />
+        <apex:outputField value="{!oSelection.Total_Academic_Potential__c}"/>
+        <apex:outputField value="{!oSelection.Selection_Date__c}"/>
+        <apex:outputField value="{!oSelection.Total_Personal_Potential__c}"/>
+        <apex:outputField value="{!oSelection.Location__c}"/>
+        <apex:outputField value="{!oSelection.Motivation_for_EHL__c}"/>
+        <apex:outputField value="{!oSelection.Scores_Academic_Potential_AP__c}"/>
+        <apex:outputField value="{!oSelection.Quality_of_Essay__c}"/>
+        <apex:outputField value="{!oSelection.Scores_Interpersonal_Skills_IS__c}"/>
+        <apex:outputField value="{!oSelection.Application_Total_Score__c}"/>
+        <apex:outputField value="{!oSelection.Scores_Leadership_Potential_LP__c}"/>
+        <br>
+        <apex:outputField value="{!oSelection.Scores_Motivation_MO__c}"/>
+        <br>
+        <apex:outputField value="{!oSelection.Scores_Total__c}"/>
+        
+        
+        <!--  
+            <apex:outputField value="{!oSelection.Total_Academic_Potential__c}"/>
+            <apex:outputField value="{!oSelection.Selection_Date__c}"/>
+            <apex:outputField value="{!oSelection.Total_Personal_Potential__c}"/>
+            <apex:outputField value="{!oSelection.Location__c}"/>
+            <apex:outputField value="{!oSelection.Motivation_for_EHL__c}"/>
+            <apex:outputField value="{!oSelection.Scores_Academic_Potential_AP__c}"/>
+            <apex:outputField value="{!oSelection.Quality_of_Essay__c}"/>
+            <apex:outputField value="{!oSelection.Scores_Interpersonal_Skills_IS__c}"/>
+            <apex:outputField value="{!oSelection.Application_Total_Score__c}"/>
+            <apex:outputField value="{!oSelection.Scores_Leadership_Potential_LP__c}"/>
+            <br>
+            <apex:outputField value="{!oSelection.Scores_Motivation_MO__c}"/>
+            <br>
+            <apex:outputField value="{!oSelection.Scores_Total__c}"/>   
+        --> 
+        <!-- Maybe we need a record of Selection
+        <apex:pageBlockTable value="{!listSelection}" var="a">
+            <apex:column value="{!a.Total_Academic_Potential__c}"/>
+            <apex:column value="{!a.Total_Personal_Potential__c}"/>
+            <apex:column value="{!a.Motivation_for_EHL__c}"/>
+            <apex:column value="{!a.Quality_of_Essay__c}"/>
+            <apex:column value="{!a.Application_Total_Score__c}"/>
+            <apex:column value="{!a.Selection_Date__c}"/>
+            <apex:column value="{!a.Location__c}"/>
+            <apex:column value="{!a.Scores_Academic_Potential_AP__c}"/>
+            <apex:column value="{!a.Scores_Interpersonal_Skills_IS__c}"/>
+            <apex:column value="{!a.Scores_Leadership_Potential_LP__c}"/>
+            <apex:column value="{!a.Scores_Motivation_MO__c}"/>
+            <apex:column value="{!a.Scores_Total__c}"/>
+            <br/>
+        </apex:pageBlockTable>
+         -->
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Language Skills">
+        <apex:pageBlockTable value="{!listEducationLQ}" var="a">
+            <apex:column value="{!a.Language__c}"/>
+            <apex:column value="{!a.Language_Level__c}"/>
+            <!--
+            <apex:column value="{!a.Language_Learned_By__c}"/>
+            <apex:column value="{!a.Years_of_Study__c}"/> -->
+            <br/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="International Exposure">
+        <apex:pageBlockTable value="{!listAdditional_IE}" var="a" cellspacing="3">
+            <apex:column value="{!a.Country__c}"/>
+            <apex:column value="{!a.Type_of_Activity__c}"/>
+            <apex:column value="{!a.Date_From__c}"/>
+            <apex:column value="{!a.Date_Until__c}"/>
+            <br/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Work Experience">
+        <apex:pageBlockTable value="{!listProfileExperience_WE}" var="a" cellspacing="3">
+            <apex:column value="{!a.Company__c}"/>
+            <apex:column value="{!a.Country_English__c}"/>
+            <apex:column value="{!a.City__c}"/>
+            <apex:column value="{!a.Position_Held__c}"/>
+            <apex:column value="{!a.Weeks_Worked__c}"/>
+            <apex:column value="{!a.Hours_per_Week_Worked__c}"/>
+            <apex:column value="{!a.Date_From__c}"/>
+            <apex:column value="{!a.Date_Until__c}"/>
+            <br/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Extra Curricular Activities">
+        <apex:pageBlockTable value="{!listProfileExperience_ECK}" var="a" cellspacing="3">
+            <apex:column value="{!a.Activity_Type__c}"/>
+            <apex:column value="{!a.Position_Held__c}"/>
+            <apex:column value="{!a.Hours_per_Week_Worked__c}"/>
+            <apex:column value="{!a.Date_From__c}"/>
+            <apex:column value="{!a.Date_Until__c}"/>
+            <br/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+    <apex:pageBlockSection title="Miscellaneous">
+        <apex:pageBlockTable value="{!listAdditional_M}" var="a">
+            <apex:column value="{!a.Miscellaneous__c}"/>
+            <br/>
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+</apex:pageBlock>
+</apex:page>

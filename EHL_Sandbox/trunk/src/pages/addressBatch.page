@@ -1,0 +1,17 @@
+<apex:page controller="BatchJobController">
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Batch Job</h1>
+  <br/><br/><br/>
+  <apex:form >
+      Contact Address Batch Job: <br/>
+      <apex:commandButton value="Start Batch" action="{!startContact}"/>
+      <br/><br/><br/>
+      
+       Account Address Batch Job: <br/>
+      <apex:commandButton value="Start Batch" action="{!startAccount}"/>
+      <br/><br/><br/>
+      
+       Prospect Address Batch Job: <br/>
+      <apex:commandButton value="Start Batch" action="{!startLead}"/>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,20 @@
+<apex:page standardController="Application__c" extensions="AEMMSuperUserLoginController" >
+    <strong>Login to AEMM as this Applicant</strong><br/>
+    <apex:form >
+        <apex:commandLink action="{!aemmLogin}" value="Use current student status ({!Application__c.AEMM_User_Status__c})" target="_blank">
+            <apex:param value="-1" name="forcedStatusId" assignTo="{!forcedStatusId}"/>
+        </apex:commandLink><br/>
+        <apex:commandLink action="{!aemmLogin}" value="Use status 100 (AMM, standard)" target="_blank">
+            <apex:param value="100" name="forcedStatusId" assignTo="{!forcedStatusId}"/>
+        </apex:commandLink><br/>
+        <apex:commandLink action="{!aemmLogin}" value="Use status 200 (AMM, final submitted)" target="_blank">
+            <apex:param value="200" name="forcedStatusId" assignTo="{!forcedStatusId}"/>
+        </apex:commandLink><br/>
+        <apex:commandLink action="{!aemmLogin}" value="Use status 300 (EMM, no decicion taken)" target="_blank">
+            <apex:param value="300" name="forcedStatusId" assignTo="{!forcedStatusId}"/>
+        </apex:commandLink><br/>
+        <apex:commandLink action="{!aemmLogin}" value="Use status 310 (EMM, offer accepted)" target="_blank">
+            <apex:param value="310" name="forcedStatusId" assignTo="{!forcedStatusId}"/>
+        </apex:commandLink><br/>
+    </apex:form>
+</apex:page>

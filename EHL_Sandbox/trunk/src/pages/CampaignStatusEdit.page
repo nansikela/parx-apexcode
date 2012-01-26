@@ -1,0 +1,61 @@
+<apex:page controller="CampaignStatusEdit" tabStyle="Campaign">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"/>
+
+    <apex:form >
+    <apex:pageBlock >
+        
+        <apex:pageBlockSection showHeader="true">
+            <apex:inputField value="{!searchObject.name}" rendered="false"/>
+            <apex:inputField value="{!searchObject.Type}"/>
+            <apex:inputField value="{!searchObject.Status}"/>
+            <apex:inputField value="{!searchObject.StartDate}"/>
+            <apex:inputField value="{!searchObject.EndDate}"/>
+        </apex:pageBlockSection>
+        <apex:pageBlockButtons location="bottom">
+            <apex:commandButton action="{!doSOQL}" value="{!'Search'}"/>
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+    
+    <apex:pageBlock rendered="{!IsResult}">
+        <apex:pageBlockTable value="{!campaignContainerList }" var="c">
+            
+            <apex:column >
+                <apex:facet name="header">
+                    <a href="#" id="selectAll">select all</a>
+                </apex:facet>
+                <apex:inputCheckbox value="{!c.selected}" styleClass="checkboxForCheck"/>
+            </apex:column>
+            <apex:column value="{!c.campaign.name}"/>
+            <apex:column value="{!c.campaign.type}"/>
+            <apex:column value="{!c.campaign.Status}"/>
+            <apex:column value="{!c.campaign.StartDate}"/>
+            <apex:column value="{!c.campaign.EndDate}"/>
+        </apex:pageBlockTable>
+        <apex:pageBlockButtons location="top">
+            <apex:outputLabel >Set new Status to: </apex:outputLabel>
+            <apex:inputField value="{!newStatus.status}"/>
+            <apex:commandButton value="{!'save'}" action="{!saveNewStatus}"/>
+        </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+    <script type="text/javascript"> 
+       
+        
+        
+        $(document).ready(function()
+        {
+            
+            $("#selectAll").click(function()             
+            {
+                var checked_status = this.checked;
+                $(".checkboxForCheck").each(function()
+                {
+                    this.checked = true;
+                });
+            });                 
+        });
+    </script>
+    
+</apex:page>

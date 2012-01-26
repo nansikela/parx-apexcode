@@ -1,0 +1,32 @@
+<apex:page controller="SearchContact" tabStyle="Contact">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"/>
+    <apex:form >
+    
+    <apex:pageBlock >
+        <apex:pageBlockSection showHeader="true">
+            <apex:inputField value="{!searchObject.lastname}" rendered="true"/>
+            <apex:inputField value="{!searchObject.firstname}" rendered="true"/>
+        </apex:pageBlockSection>
+        <apex:pageBlockButtons location="bottom">
+            <apex:commandButton action="{!doSOQL}" value="{!'Search'}"/>
+        </apex:pageBlockButtons>
+        <apex:pageblockSection >
+            <h1>Page Messages:</h1>
+            <apex:pageMessages >
+            </apex:pageMessages>
+        </apex:pageblockSection>
+    </apex:pageBlock>
+    
+    <apex:pageBlock rendered="{!IsResult}">
+       <apex:pageBlockTable value="{!contactList }" var="c">
+            <apex:column headerValue="Name">
+                <a href="https://cs4.salesforce.com/{!c.con.id}" target="_blanc">{!c.con.Name}</a>
+            </apex:column>
+            <apex:column value="{!c.con.Email}"/>
+            <apex:column value="{!c.con.AccountId}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    
+    </apex:form>
+
+</apex:page>

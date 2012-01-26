@@ -1,0 +1,157 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false">
+  <head>
+      <style>
+          body
+          {
+              background: url(http://www.ehl.edu/extension/ezwebin/design/ezwebin/images/ida/EHLBackgrd2.jpg) no-repeat scroll top left;
+              font-family: Verdana, Helvetica, sans-serif;
+          }
+          #pageContainer
+          {
+              margin-left: 280px;
+          }
+          #conentContainer
+          {
+              width:550px;    
+              background: #FFF;
+              background: white url(http://www.ehl.edu/var/storage/packages/eZ-systems/ezwebin_design_blue/files/default/file/images/box-1-border-mc.gif) repeat-x scroll left top;
+              padding: 10px;
+color: #4F4F4F;
+font-family: Verdana, Helvetica, sans-serif;
+font-size: 12px;
+font-weight: bold;
+left: auto;
+line-height: 14px;
+          margin-top:20px;    
+              border: 1px solid #CCC;
+          }
+          #conentContainer h1
+          {
+              color: #4F4F4F;
+              margin: 0 0 0.5em 0;
+              padding: 0;
+              font-size: 1.1em;
+              font-style: normal;
+              font-size: 14px;
+              color: #4F4F4F;
+              font-weight: normal;
+                font-size: 16px;
+          }
+          
+          #conentContainer strong
+          {
+              background-color: transparent;
+            color: #4F4F4F;
+            display: inline;
+            font-family: Verdana, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            height: 0px;
+            left: auto;
+            line-height: 14px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 0px;
+            position: static;
+            text-align: left;
+            top: auto;
+            width: 0px;
+          }
+          #conentContainer a
+          {
+              background-color: transparent;
+color: #3298A7;
+cursor: auto;
+display: inline;
+font-family: Verdana, Helvetica, sans-serif;
+font-size: 12px;
+font-weight: bold;
+height: 0px;
+left: auto;
+line-height: 14px;
+margin-bottom: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-top: 0px;
+padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 0px;
+position: static;
+text-align: left;
+text-decoration: none;
+top: auto;
+width: 0px;
+          }
+          
+          #conentContainer h2
+          {
+              color: #4F4F4F;
+display: block;
+font-family: Verdana, Helvetica, sans-serif;
+font-size: 14px;
+font-weight: normal;
+          }
+          .seperator
+          {
+              margin-top: 40px;
+              background: url(http://www.ehl.edu/var/storage/packages/eZ-systems/ezwebin_design_blue/files/default/file/images/sep-bg.gif) #E2E2E2;
+                background-repeat: no-repeat;
+                
+                height: 1px;
+                width: 100%;
+          }
+          
+          #conentContainer h4
+          {
+              margin-top: 0.5em;
+font-size: 12px;
+color: #005493;
+font-weight: normal;
+margin-bottom: 0.25em;
+          }
+          input[type="text"]
+          {
+              width: 100%;
+              border: 1px solid #D4D4D4;
+              background-image: url(http://www.ehl.edu/var/storage/packages/eZ-systems/ezwebin_design_blue/files/default/file/images/input_box_bg.jpg);
+          }
+          input[type="submit"]
+          {
+              border: 1px solid #94D0E1;
+            background-image: url(http://www.ehl.edu/var/storage/packages/eZ-systems/ezwebin_design_blue/files/default/file/images/button_bg.jpg);
+            background-repeat: repeat-x;
+            font-family: Verdana, Helvetica, sans-serif;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 11px;
+            color: #005493;
+            background-color: #ADDBEB;
+          }
+      </style>
+  </head>
+  <div id="pageContainer">
+  <div id="header">
+                  <div id="flashmenu">
+                
+                     
+             <!-- Top flash menu content: START -->
+                <div id="FlashNav"><embed type="application/x-shockwave-flash" src="http://www.ehl.edu/extension/ezwebin/design/ezwebin/javascript/study.swf" width="686" height="142" style="undefined" id="EHLNav" name="EHLNav" bgcolor="#ffffff" quality="high" allowscriptaccess="always" wmode="transparent" flashvars="lang=eng&amp;page=2&amp;depth=6&amp;rooturl=www.ehl.edu" /></div>
+            
+                      
+                <!-- Top menu content: END -->
+            
+            
+                </div>
+                
+  </div>
+  <div id="conentContainer">
+  <c:meetusoncampusinsert />
+  </div>
+  </div>
+</apex:page>

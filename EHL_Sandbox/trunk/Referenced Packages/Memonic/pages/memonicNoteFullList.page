@@ -1,0 +1,83 @@
+<apex:page standardController="Memonic__MemonicNote__c" recordSetVar="MemNote" extensions="Memonic.MemonicClipListController">
+    <apex:stylesheet value="{!$Resource.Memonic__memonicNote}"/>
+    <apex:outputLabel rendered="{!startPage}">
+        <apex:form >
+            <apex:pageBlock >
+                <apex:commandButton action="{!doSkipStartPage}" value="Hide this installation screen" style="margin:5px;"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                <apex:inputCheckbox value="{!startPageNever}" /> Do not show this screen next time (Click on "Create New... Memonic Note" to get this screen again)
+            </apex:pageBlock>
+        </apex:form>
+        <apex:include pageName="Memonic__MemonicNewClip"/>
+    </apex:outputLabel>
+    <apex:outputLabel rendered="{!(!startPage)}">    
+       <div class="bPageTitle">
+            <div class="ptBody secondaryPalette">
+                <div class="content">
+                    <img src="{!$Resource.MemonicBigLogo}" class="pageTitleIcon" alt="Memonic Notes" title="Memonic Notes"/>
+                    <h1 class="pageType">Memonic Notes<span class="titleSeparatingColon">:</span></h1>
+                    <h2 class="pageDescription"><apex:outputLabel value="{!IF(relatedToName=='', 'Home', relatedToName)}"></apex:outputLabel></h2>
+                    <div class="blank">&nbsp;</div>
+                </div>
+            </div>
+            <apex:outputLabel rendered="{!IF(relatedToName=='', false, true)}">
+                <div class="ptBreadcrumb">&nbsp;&nbsp;
+                    <a href="/{!relatedToId}">{!relatedToType}: {!relatedToName}</a>
+                </div>
+            </apex:outputLabel>
+       </div>
+       <div class="list-main-div">
+       <apex:form >
+           <apex:pageBlock >
+           <div class="list-header">
+           <div class="list-header-left">
+               <b>Filter By Owner: </b>
+               <apex:selectList size="1" value="{!filterName}" onchange="submit();" title="Filter" >
+                   <apex:selectOptions value="{!filterValues}"/>
+               </apex:selectList>
+               <b>Sort by: </b>
+               <apex:selectList size="1" value="{!sortBy}" onchange="submit();" title="Sorting" >
+                   <apex:selectOptions value="{!sortByValues}"/>
+               </apex:selectList>
+               <b class="headLabel">Direction: </b>
+               <apex:selectList size="1" value="{!sortDirection}" onchange="submit();" title="Direction" >
+                   <apex:selectOptions value="{!directionValues}"/>
+               </apex:selectList>
+               </div>
+               <div class="list-header-right">
+               <b class="headLabel">Page size: </b>
+               <apex:selectList size="1" value="{!pageSize}" onchange="submit();" title="Page size">
+                   <apex:selectOptions value="{!pageSizeOptions}"/>
+               </apex:selectList>
+               <b class="headLabel">View: </b>
+               <apex:selectList size="1" value="{!viewType}" onchange="submit();" title="View" >
+                   <apex:selectOptions value="{!viewTypeValues}"/>
+               </apex:selectList>
+               </div>
+               <div class="list-header-middle">
+               <apex:outputlabel rendered="{!(!memonicNoteList.hasPrevious)}">
+                   <img src="/s.gif" class="arrows" style="background-position: 0 -10px;"/>
+                   <img src="/s.gif" class="arrows" style="background-position: -10px -10px;"/>
+               </apex:outputlabel>
+               <apex:outputlabel rendered="{!memonicNoteList.hasPrevious}">
+                   <apex:commandLink action="{!memonicNoteList.first}"><img src="/s.gif" class="arrows" style="background-position: 0 1px;"/></apex:commandLink>
+                   <apex:commandLink action="{!memonicNoteList.previous}"><img src="/s.gif" class="arrows" style="background-position: -10px 1px;"/></apex:commandLink>
+               </apex:outputlabel>
+               <apex:outputLabel >Page {!memonicNoteList.pageNumber} of {!PagesCount}</apex:outputLabel>
+               <apex:outputlabel rendered="{!memonicNoteList.hasNext}">
+                   <apex:commandLink action="{!memonicNoteList.next}"><img src="/s.gif" class="arrows" style="background-position: -17px 1px;"/></apex:commandLink>
+                   <apex:commandLink action="{!memonicNoteList.last}"><img src="/s.gif" class="arrows" style="background-position: -27px 1px;"/></apex:commandLink>
+               </apex:outputlabel>
+               <apex:outputlabel rendered="{!(!memonicNoteList.hasNext)}">
+                   <img src="/s.gif" class="arrows" style="background-position: -17px -10px"/>
+                   <img src="/s.gif" class="arrows" style="background-position: -27px -10px;"/>
+               </apex:outputlabel>
+               </div>
+               </div>
+           </apex:pageBlock>
+       </apex:form>
+        <apex:repeat value="{!memonicClipListPaginator}" var="memNote">
+            <c:MemonicClipRecord MemonicNote="{!memNote}" viewType="{!viewType}"/>
+        </apex:repeat>
+    </div>
+    </apex:outputLabel>
+</apex:page>

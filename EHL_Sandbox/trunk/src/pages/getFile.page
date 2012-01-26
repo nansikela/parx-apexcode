@@ -1,0 +1,3 @@
+<apex:page controller="AWSGetFileController" action="javascript:window.location.href = '{!url}';">
+ 
+</apex:page>
