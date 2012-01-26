@@ -1,0 +1,34 @@
+<apex:page standardController="Memonic__MemonicNote__c" extensions="Memonic.MemonicClipController" showHeader="true" standardStylesheets="true">
+   <apex:stylesheet value="{!$Resource.Memonic__memonicNote}"/>
+   <div class="detail-main-div">
+    <apex:detail relatedList="false" showChatter="true"/>   
+    <apex:outputLabel rendered="{!(assignedToType != '')}">
+    <div class="bDetailBlock bPageBlock">
+    <table class="detailList" border="0" cellpadding="0" cellspacing="0"><tbody>
+        <tr>
+            <td class="labelCol">Related to {!assignedToType}</td>
+            <td class="dataCol col02">
+                <apex:outputField value="{!Memonic__MemonicNote__c.Memonic__AccountId__c}" rendered="{!assignedToType == 'Account'}"/>
+                <apex:outputField value="{!Memonic__MemonicNote__c.Memonic__LeadId__c}" rendered="{!assignedToType == 'Lead'}"/>
+                <apex:outputField value="{!Memonic__MemonicNote__c.Memonic__ContactId__c}" rendered="{!assignedToType == 'Contact'}"/>
+                <apex:outputField value="{!Memonic__MemonicNote__c.Memonic__CaseId__c}" rendered="{!assignedToType == 'Case'}"/>
+                <apex:outputField value="{!Memonic__MemonicNote__c.Memonic__OpportunityId__c}" rendered="{!assignedToType == 'Opportunity'}"/>
+            </td>
+            <td class="labelCol">&nbsp;</td>
+            <td class="dataCol">&nbsp;</td>
+        </tr>
+    </tbody></table>
+    </div>
+    </apex:outputLabel>
+    <div class="cbox note note-expanded note-detail view-summary active toolbar_fixed padding-detail">
+    <div class="collapsable active">
+    <h2>{!Memonic__MemonicNote__c.Memonic__MemonicTitle__c}</h2>
+    </div>
+    <apex:outputLabel rendered="false" value="{!Memonic__MemonicNote__c.Memonic__AccountId__c}{!Memonic__MemonicNote__c.LeadId__r}{!Memonic__MemonicNote__c.AccountId__r}{!Memonic__MemonicNote__c.Memonic__LeadId__c}{!Memonic__MemonicNote__c.Memonic__MemonicCreatedDate__c}{!Memonic__MemonicNote__c.CreatedBy.Id}{!Memonic__MemonicNote__c.Memonic__Completed__c}{!Memonic__MemonicNote__c.CreatedBy.Name}{!Memonic__MemonicNote__c.Memonic__SourceUrl__c }{!Memonic__MemonicNote__c.Memonic__Source__c }{!Memonic__MemonicNote__c.Owner.Name}"/>
+        <c:MemonicTitle MemonicNote="{!this}"/>
+        <div id="nektoon_body" class="nektoon_body detail-padding"> 
+            <apex:outputLabel value="{!AttachmentBody}" escape="false"></apex:outputLabel>
+        </div>
+    </div>
+  </div>
+</apex:page>

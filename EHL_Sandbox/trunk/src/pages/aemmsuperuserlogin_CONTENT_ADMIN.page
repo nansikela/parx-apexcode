@@ -1,0 +1,11 @@
+<apex:page standardController="Application__c" extensions="AEMMSuperUserLoginController" >
+    <strong>CONTENT ADMIN login to AEMM (as this Applicant)</strong><br/>
+    <apex:form >
+        <apex:commandLink action="{!aemmLogin}" value="Content Admin AMM (status 100)" target="_blank">
+            <apex:param value="10000" name="forcedStatusId" assignTo="{!forcedStatusId}"/>
+        </apex:commandLink><br/>
+        <apex:commandLink action="{!aemmLogin}" value="Content Admin EMM (status 310)" target="_blank">
+            <apex:param value="31000" name="forcedStatusId" assignTo="{!forcedStatusId}"/>
+        </apex:commandLink><br/>
+    </apex:form>
+</apex:page>

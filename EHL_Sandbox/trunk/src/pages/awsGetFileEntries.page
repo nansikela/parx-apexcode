@@ -1,0 +1,15 @@
+<apex:page controller="AWSFileHelper" tabStyle="Application__c">
+	<apex:sectionHeader title="Retrieve Documents from Amazon S3"/>
+	<apex:messages layout="list"/>
+	AEMM Id: <b>{!aemmLoginId}</b><p/>
+	File Count <b>{!fileCount}</b><p/>
+	<hr/>
+	Bucket List:
+	<apex:dataList value="{!fileList}" var="o">
+	    <apex:outputText value="{!o.Key}"/>
+	</apex:dataList>
+	<p/>
+	<apex:form >
+	    <apex:commandButton action="{!writeToSalesforce}" value="Update List" disabled="{!NOT(hasFiles)}"/><br/>
+	</apex:form>
+</apex:page>

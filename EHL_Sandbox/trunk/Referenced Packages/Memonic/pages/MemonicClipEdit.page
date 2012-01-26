@@ -1,0 +1,51 @@
+<apex:page standardController="Memonic__MemonicNote__c" extensions="Memonic.MemonicClipController" showHeader="true">
+    <style type="text/css">
+        .pbBody td 
+        {
+            padding-top:5px;
+        }
+    </style>
+    <apex:stylesheet value="{!$Resource.Memonic__memonicNote}"/>
+    <div Class="detail-main-div">
+    <apex:outputLabel rendered="false" value="{!Memonic__MemonicNote__c.Memonic__AccountId__c}{!Memonic__MemonicNote__c.LeadId__r}{!Memonic__MemonicNote__c.AccountId__r}{!Memonic__MemonicNote__c.Memonic__LeadId__c}{!Memonic__MemonicNote__c.Memonic__MemonicCreatedDate__c}{!Memonic__MemonicNote__c.CreatedBy.Id}{!Memonic__MemonicNote__c.Memonic__Completed__c}{!Memonic__MemonicNote__c.CreatedBy.Name}{!Memonic__MemonicNote__c.Memonic__SourceUrl__c }{!Memonic__MemonicNote__c.Owner.Name}"/>
+    <div class="bPageTitle">
+            <div class="ptBody secondaryPalette">
+                <div class="content">
+                    <img src="{!$Resource.MemonicBigLogo}" class="pageTitleIcon" alt="Memonic Note" title="Memonic Note"/>
+                    <h1 class="pageType">Memonic Note<span class="titleSeparatingColon">:</span></h1>
+                    <h2 class="pageDescription"><apex:outputLabel value="{!myMemonicNote.Name}"></apex:outputLabel></h2>
+                    <div class="blank">&nbsp;</div>
+                </div>
+            </div>
+       </div>
+    <apex:form >    
+       <apex:pageBlock title="Edit Memonic Note" mode="edit">
+            <apex:pageMessages />
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <table style="vertical-align:middle;">
+                <tr>
+                    <td class="edit-field-td"><b>Title:</b></td>
+                    <td colspan="2"><apex:inputtext size="41" value="{!Memonic__MemonicNote__c.Name}" /></td>
+                </tr>
+                <tr>
+                    <td class="edit-field-td"><b>Related to:</b></td>
+                    <td>
+                        <apex:selectList value="{!assignedToType}" onchange="submit()" size="1">
+                            <apex:selectOptions value="{!assignTypeList}"></apex:selectOptions>
+                        </apex:selectList>
+                    </td><td>
+                        <apex:inputField value="{!Memonic__MemonicNote__c.Memonic__AccountId__c}" rendered="{!assignedToType == 'Account'}" />
+                        <apex:inputField value="{!Memonic__MemonicNote__c.Memonic__LeadId__c}" rendered="{!(assignedToType == 'Lead' || assignedToType == '')}"/>
+                        <apex:inputField value="{!Memonic__MemonicNote__c.Memonic__CaseId__c}" rendered="{!assignedToType == 'Case'}"/>
+                        <apex:inputField value="{!Memonic__MemonicNote__c.Memonic__OpportunityId__c}" rendered="{!assignedToType == 'Opportunity'}"/>
+                        <apex:inputField value="{!Memonic__MemonicNote__c.Memonic__ContactId__c}" rendered="{!assignedToType == 'Contact'}"/>
+                    </td>
+                </tr>
+            </table>
+        </apex:pageBlock>
+    </apex:form>
+    </div>
+</apex:page>
