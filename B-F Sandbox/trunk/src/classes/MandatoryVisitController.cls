@@ -1,18 +1,6 @@
 public with sharing class MandatoryVisitController {
 	
-    public class DataElement {
-
-        public String name { get; set; }
-        public Integer value { get; set; }
-
-        public DataElement(String name, Integer value) {
-            this.name = name;
-            this.value = value;
-        }
-    }
-    
     private final ID userID;
-	private final ID recordID;
 	public Outlet_Visit__c record {get;set;}
 	
 	Set<ID> accountIDs {get;set;}
@@ -22,32 +10,35 @@ public with sharing class MandatoryVisitController {
 	public Double maxDays {get;set;}
 	public Date startingDate {get;set;}
 	public Date endingDate {get;set;}
-	public Integer visitsPerDay {get;set;}
+
 	
-	
-	public MandatoryVisitController(ApexPages.StandardController ctrl) {
+	public MandatoryVisitController() {
 		maxDays = 0;
-		visitsPerDay = 8;
 		Integer actualMonth = Date.today().month();
 		Integer actualYear = Date.today().year();
 		
 		startingDate = Date.newInstance(actualYear, actualMonth, 1);
-		endingDate = Date.newInstance(actualYear, actualMonth+1, 1);
-		
-		recordID = ctrl.getRecord().Id;
+		endingDate = Date.newInstance(actualYear, actualMonth+1, 1).addDays(-1);
 
 		userID = System.Userinfo.getUserId();
-		accountIDs = new set<ID>(); 
-			
-		for(Account a : [Select Id, Name From Account Where OwnerID =: userID])
-			if(!accountIDs.contains(a.ID))
-				accountIDs.add(a.ID);
-			 
-		for(Time_Tracking__c tt : [Select Working_Days_left__c From Time_Tracking__c Where Staff_Account__c IN: accountIDs AND StartDate__c >=: startingDate AND StartDate__c <: endingDate]){
-			maxDays += tt.Working_Days_left__c;
-		} 
+
+		// a user should only be able to see his outlet visits and the visits of his fellows in the role hierachy below him!
+		list<Outlet_Visit__c> ovlist=new list<Outlet_Visit__c>([Select Id, OwnerId From Outlet_Visit__c Where Last_Visit_Date__c >=: startingDate AND Last_Visit_Date__c <=: endingDate]);
+		outletVisitAmount = ovlist.size();
 		
-		outletVisitAmount = [Select Id From Outlet_Visit__c Where Account__c IN: accountIDs AND Last_Visit_Date__c >=: startingDate AND Last_Visit_Date__c <: endingDate].size();
+		set<Id> ownerids = new set<Id>();
+		for (Outlet_Visit__c ov: ovlist) {
+			if (!ownerids.contains(ov.OwnerId)) ownerids.add(ov.OwnerId);
+		}
+		
+		// hope to get the right time tracking informations with this
+		for(Time_Tracking__c tt : [Select Number_of_possible_Visits__c From Time_Tracking__c Where Staff_Account__r.OwnerId IN :ownerids AND StartDate__c >=: startingDate AND StartDate__c <=: endingDate]){
+			maxDays += tt.Number_of_possible_Visits__c;
+		} 
 	}
 	
+	
+	public static testMethod void MainTest() {
+    	MandatoryVisitController ctrl = new MandatoryVisitController();
+    }
 }

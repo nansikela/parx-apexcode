@@ -54,9 +54,9 @@ public without sharing class AccountFactsheet {
         String AccountId = ApexPages.currentPage().getParameters().get('AccountId');
         if(AccountId != null && AccountId.length() >=15 && AccountId.substring(0,3) == '001') {
             Promotions = new list<Promotion_Helper>();
-            account = [select Name, BillingStreet, BillingPostalCode, BillingCity, BillingCountry, Phone, Fax, Outlet_Class__r.Name, Channel__c, Group__c, Subgroup__c, Store_Type_TD__c  from Account where Id =:AccountId];
+            account = [select Name, BillingStreet, BillingPostalCode, BillingCity, Market__c, BillingCountry, Phone, Fax, Outlet_Class__r.Name, Channel__c, Group__c, Subgroup__c, Store_Type_TD__c  from Account where Id =:AccountId];
             contact = new list<Contact>([select salutation, LastName, FirstName, Email, Title__c from Contact where AccountId =: account.Id]);
-            Outlet_Visit = new list<Outlet_Visit__c>([select Visit_Comments__c, Last_Visit_Date__c from Outlet_Visit__c where Status__c = 'Complete' AND Account__c =: AccountId order by Last_Visit_Date__c desc limit 4]);
+            Outlet_Visit = new list<Outlet_Visit__c>([select Visit_Comments__c, Met_With__c, Last_Visit_Date__c from Outlet_Visit__c where Status__c = 'Complete' AND Account__c =: AccountId order by Last_Visit_Date__c desc limit 4]);
             Account_Product = new list<Account_Product__c>([select Brand__c, Product__c from Account_Product__c where Account__c =: AccountId order by Brand__c asc]);
             list<Mandatory_Products__c> mps = new list<Mandatory_Products__c>([select Custom_Product__r.Name, Custom_Product__r.Brand__r.Name, Product_Status__c from Mandatory_Products__c where Account__c =: AccountId order by Custom_Product__r.Brand__r.Name asc]);
             list<Id> PromotionActivityIds = new list<Id>();
@@ -95,7 +95,7 @@ public without sharing class AccountFactsheet {
                 PromotionActivityIds.add(promo.Promotion_Activity__c);
             }
             //Query all promotion activities that happening still today, are active and targets a special germany subgroup
-            Promotion_Activity = new list<Promotion_Activity__c>([select Name, Description__c from Promotion_Activity__c where Id NOT IN: PromotionActivityIds AND Begin_Date__c <=: system.today() AND End_Date__c >=: system.today() and Active__c = true AND Subgroup_Germany__c =: account.Subgroup__c ]);
+            Promotion_Activity = new list<Promotion_Activity__c>([select Name, Description__c from Promotion_Activity__c where Id NOT IN: PromotionActivityIds AND Begin_Date__c <=: system.today() AND End_Date__c >=: system.today() and Active__c = true AND Subgroup_Germany__c =: account.Subgroup__c AND Market__c =: account.Market__c]);
             
             //Query the last 4 key tasks from the given outlet visit.
         	Key_Task = new list<Key_Task__c>([select Name, Outlet_Visit__r.Visit_Date__c from Key_Task__c where Outlet_Visit__c IN: Outlet_Visit order by Outlet_Visit__r.Visit_Date__c desc  limit 4]);

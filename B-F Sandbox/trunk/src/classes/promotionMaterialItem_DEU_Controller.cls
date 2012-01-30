@@ -18,7 +18,7 @@
 *                                  to save this new column, this should be also implemented in the remoteaction function addNewProduct
 */ 
 
-public with sharing class promotionMaterialItem_Controller {
+public with sharing class promotionMaterialItem_DEU_Controller {
 
     private list<RecordType> RecordTypes =  [select name from RecordType where SobjectType='Product__c'];
     private list<Brand__c> Brands = [Select Name From Brand__c where Supplier__r.Is_B_F_Brand__c = true order BY Name];
@@ -111,7 +111,7 @@ public with sharing class promotionMaterialItem_Controller {
         }
     }   
     
-    public promotionMaterialItem_Controller (){
+    public promotionMaterialItem_DEU_Controller (){
         pm = [select Account__r.Market__c, RecordTypeId, RecordType.Name, Approval_Status__c, Promotion_Start_Date__c from Promotion__c where Id =: ApexPages.currentPage().getParameters().get('Id')];
         promoType = pm.RecordType.Name;
         buildOvi();

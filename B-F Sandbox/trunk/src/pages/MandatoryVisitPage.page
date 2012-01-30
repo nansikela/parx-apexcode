@@ -1,12 +1,31 @@
-<apex:page standardController="Outlet_Visit__c" extensions="MandatoryVisitController">
-	<!-- <apex:chart height="350" width="450" data="{!pieData}">
-        <apex:pieSeries dataField="data" labelField="name"/>
-        <apex:legend position="right"/>
-    </apex:chart>  -->
-    <apex:pageBlock >
-   		<apex:outputText value="Target timespace: {!startingDate} - {!endingDate}" /> <br /> <br />
-    
-    	<apex:outputText value="Max. Visits: {!maxDays * visitsPerDay}" /> <br />
-    	<apex:outputText value="Done Visits: {!outletVisitAmount}" />
-    </apex:pageBlock>
+<apex:page controller="MandatoryVisitController" sidebar="false" showHeader="false">
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script type='text/javascript'>
+		google.load('visualization', '1', {packages:['gauge']});
+      	google.setOnLoadCallback(drawChart);
+      	
+      	function drawChart() {
+        	
+        	var gaugeData = new google.visualization.DataTable();
+  			gaugeData.addColumn('number', 'Visits');
+  			gaugeData.addRows(1);
+  			gaugeData.setCell(0, 0, {!outletVisitAmount});
+  
+        	var options = {
+        		width: 250, height: 250,
+        		min: 0, 
+      			max: {!maxDays},
+        		greenFrom: {!maxDays * 0.8}, 
+        		greenTo: {!maxDays},
+        		minorTicks: 5
+        	};
+
+        	var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        	chart.draw(gaugeData, options);
+      	}
+      	
+</script>
+<apex:pageblock >
+	<div style="text-align:center;" id='chart_div'></div>
+</apex:pageblock>
 </apex:page>
