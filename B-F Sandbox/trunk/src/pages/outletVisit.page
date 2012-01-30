@@ -98,29 +98,9 @@ PARX --- Helper Style Classes to capture all marked html tags.
 //PARX --- Add init code to fit table columns
 window.onload = init();
 
+//Necessary to resize table headers if edit mode is used on record
 $ov(document).ready(function() {
-	makeTableScrollable();
-	return false;
-});
-
-$ov('[id$=bFTablea]').ready(function() {
-	makeTableScrollable();
-	return false;
-});
-
-$ov('[id$=bFTableb]').ready(function() {
-	makeTableScrollable();
-	return false;
-});
-
-$ov('[id$=bFTable2a]').ready(function() {
-	makeTableScrollable();
-	return false;
-});
-
-$ov('[id$=compTablea]').ready(function() {
-	makeTableScrollable();
-	return false;
+	setTimeout( 'makeTableScrollable', 500 );
 });
 
 function init(){
@@ -179,6 +159,8 @@ function myDP(){
  *	@author Michael Mickiewicz
  */
 function makeTableScrollable() {
+	
+	
 	var $thead = $ov('[id$=bFTablea]').find('.headerRow');
 	var $tbody = $ov('[id$=bFTableb]').find('tbody').find('tr').first().find('.bFTablea_row');
 	if($tbody.size() == 0) {
@@ -195,8 +177,8 @@ function makeTableScrollable() {
 		$thead.eq(i).css('width', (w-1)+'px');
 	}
 	
-	var $thead = $ov('[id$=compTablea]').find('.headerRow');
-	var $tbody = $ov('[id$=compTableb]').find('tbody').find('tr').first().find('.compTablec_row');
+	$thead = $ov('[id$=compTablea]').find('.headerRow');
+	$tbody = $ov('[id$=compTableb]').find('tbody').find('tr').first().find('.compTablec_row');
 	if($tbody.size() == 0) {
 	   $thead = $ov('[id$=compTable2a]').find('.headerRow');
 	   $tbody = $ov('[id$=compTable2]').find('tbody').find('tr').first().find('.compTablec_row');
@@ -224,7 +206,7 @@ function makeTableScrollable() {
 <!-- END AJAX "popup" windows -->
 	
 	<!-- PARX - Add onstop attribute event to action status to correct tables -->
-    <apex:actionstatus id="status" startText="Requesting..." onstop="makeTableScrollable(); return false;">
+    <apex:actionstatus id="status" startText="Requesting..." onstop="setTimeout( 'makeTableScrollable()', 500 );">
            <apex:facet name="start">
                <c:INFW_ProgressInformation Message="{!$Label.INFW_Processing}" Width="104px" Height="470px"/>
            </apex:facet>
@@ -237,8 +219,8 @@ function makeTableScrollable() {
     <apex:pagemessages id="messages"/>
 
       <apex:pageBlock id="pb" title="{!$ObjectType.Outlet_Visit__c.Label}" mode="Edit">
-        <apex:pageblockbuttons location="top">
-            <apex:commandButton styleClass="cmdButton" action="{!next}" oncomplete="if('{!AlertMessage}' != '')alert('{!AlertMessage}'); makeTableScrollable(); return false;" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_NextButtonLabel}" rendered="{!showDetails!=true}" />
+        <apex:pageblockbuttons location="top"> 
+            <apex:commandButton styleClass="cmdButton" action="{!next}" oncomplete="if('{!AlertMessage}' != '')alert('{!AlertMessage}');" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_NextButtonLabel}" rendered="{!showDetails!=true}" />
             <apex:commandButton styleClass="cmdButton" action="{!saveCommit}" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_SaveButtonLabel}" rendered="{!showDetails}" />
             <apex:commandButton styleClass="cmdButton" action="{!saveCommitClose}" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_SaveCloseButtonLabel}" rendered="{!showDetails}" />
             <apex:commandButton styleClass="cmdButton" action="{!cancel}" immediate="true" value="{!$Label.OutletVisitPage_CancelButtonLabel}" />

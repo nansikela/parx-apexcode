@@ -1,4 +1,4 @@
-<apex:page controller="promotionMaterialItem_Controller" tabStyle="Promotion_Material_Item__c" showHeader="true" sidebar="false" id="pageId"  standardStylesheets="false">
+<apex:page controller="promotionMaterialItem_DEU_Controller" tabStyle="Promotion_Material_Item__c" showHeader="true" sidebar="false" id="pageId"  standardStylesheets="false">
 
 <apex:includeScript value="{!$Resource.JQuery17}"/>
 <apex:includeScript value="{!$Resource.jsrender}"/>
@@ -30,7 +30,7 @@
         var RecordTypeName = $('#pageId\\:myForm\\:pbSelection_top\\:pbProds\\:pbs\\:cRecordType\\:RecordType').val();
         var Brand = $('#pageId\\:myForm\\:pbSelection_top\\:pbProds\\:pbs\\:cBFBrand\\:BFBrand').val();
 
-        promotionMaterialItem_Controller.buildProdSelection2(ProductNameTextValue, Brand, RecordTypeName, '{!pm.Account__r.Market__c}', function(result, event) {
+        promotionMaterialItem_DEU_Controller.buildProdSelection2(ProductNameTextValue, Brand, RecordTypeName, '{!pm.Account__r.Market__c}', function(result, event) {
             //we use the wonderful jsrender plugin to display the table
             $("#SearchProductTable tbody").html($("#liveboard_tmpl").render(result));
         });
@@ -114,7 +114,7 @@
          }
          var JSonTable = tableToJson(myTable);
          
-         promotionMaterialItem_Controller.AddNewProduct(JSonTable, '{!promoType}', '{!pm.Id}', function(result, event) {      
+         promotionMaterialItem_DEU_Controller.AddNewProduct(JSonTable, '{!promoType}', '{!pm.Id}', function(result, event) {      
               if(event.status) {
                     //success, we assign the promotion material id to each row of the table.
                     var table= myTable;//document.getElementById(Table);
@@ -137,7 +137,7 @@
      function removeLine(Img){
          var RowId = $(Img).parent().parent().attr('promoid');
          if(RowId != '' && RowId != null) {
-             promotionMaterialItem_Controller.RemoveLine(RowId, function(result, event) {
+             promotionMaterialItem_DEU_Controller.RemoveLine(RowId, function(result, event) {
                  if(event.status) {
                     //success
                     $(Img).parent().parent().remove();

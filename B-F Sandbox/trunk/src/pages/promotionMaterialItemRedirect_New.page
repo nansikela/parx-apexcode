@@ -1,0 +1,5 @@
+<apex:page controller="promotionMaterialItemRedirect_New" action="{!Redirect}">
+	<apex:pageblock title="Error" rendered="{!recordID=null}">
+		<apex:outputText value="ID is missing!" />
+	</apex:pageblock>
+</apex:page>

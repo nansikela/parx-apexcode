@@ -14,7 +14,7 @@ public with sharing class outletVisit_Controller {
  */ 
 
          
-    
+     
     
     public String AlertMessage {get;set;}
     Public List<Product__c> myProds = new List<Product__c>();
@@ -201,7 +201,7 @@ public with sharing class outletVisit_Controller {
         */
         
         if(a.RecordType.developerName == 'EUR_Outlets' || a.RecordType.developerName == 'DEU_Outlets' ) {
-            if(a.Master_data_maintained__c == false) {
+            if(a.Master_data_maintained__c == false && OutletVisit__c.getOrgDefaults() != null) {
                 AlertMessage = System.Label.You_did_not_review_the_account + ' ' + String.valueOf(Integer.valueOf(OutletVisit__c.getOrgDefaults().Number_of_days_for_the_review_time__c)) + ' ' + System.Label.days;
             }
             else {
@@ -292,7 +292,7 @@ public with sharing class outletVisit_Controller {
     void buildAccountBrandMap()
     { 
         mapBrandAccountBrands = new Map<ID,Account_Brand__c>();
-        for(Account_Brand__c ab : [Select a.Key_Brand__c, a.Brand__c, a.Required_Brand__c, a.Account__c From Account_Brand__c a where a.Account__c =: a.Id])
+        for(Account_Brand__c ab : [Select Key_Brand__c, Brand__c, Required_Brand__c, Account__c From Account_Brand__c where Account__c =: a.Id])
         {
             mapBrandAccountBrands.put(ab.Brand__c,ab);
             system.debug('adding keyBrand: ' + ab.Brand__c);
@@ -340,7 +340,7 @@ public with sharing class outletVisit_Controller {
         if(myExistingOVI.keyset().isempty())
         {
             //try and get an old OV to pull previous entries
-            myOldOV = new Map<ID,Outlet_Visit__c>([Select id from Outlet_Visit__c where Status__c != 'New' and Account__c =: ov.Account__c and id!=: ov.Id ORDER BY Visit_Date__c desc, Name desc LIMIT 1]);
+            myOldOV = new Map<ID,Outlet_Visit__c>([Select id, Account__c from Outlet_Visit__c where Status__c != 'New' and Account__c =: ov.Account__c and id!=: ov.Id ORDER BY Visit_Date__c desc, Name desc LIMIT 1]);
         } 
         //system.debug(myOldOV);
         myQueryString = 'Select p.Supplier__c, p.Name, p.Market__c, p.Id, p.Brand__c, p.IsActive__c From Product__c p where '

@@ -110,20 +110,20 @@ private class Test_promotionMaterialItem_Controller {
 
             ApexPages.currentPage().getParameters().put('Id', prom.Id);     
             test.startTest();
-	            promotionMaterialItem_Controller constructor = new promotionMaterialItem_Controller();        
-	            constructor.myLimit = 100; 
-	
-	            List<SelectOption> myRecordTypeList = constructor.getrecordTypeList();
-	            List<SelectOption> myBrandsList = constructor.getBFBrandsList();
-	            Promotion_Material_Item__c PMI = new Promotion_Material_Item__c(Promotion__c = prom.Id, Product_Custom__c = pList.get(0).Id);
-	            insert PMI;
+                promotionMaterialItem_Controller constructor = new promotionMaterialItem_Controller();        
+                constructor.myLimit = 100; 
+    
+                List<SelectOption> myRecordTypeList = constructor.getrecordTypeList();
+                List<SelectOption> myBrandsList = constructor.getBFBrandsList();
+                Promotion_Material_Item__c PMI = new Promotion_Material_Item__c(Promotion__c = prom.Id, Product_Custom__c = pList.get(0).Id);
+                insert PMI;
 
-	            promotionMaterialItem_Controller.buildProdSelection2('Jack', 'ALL', 'ALL', null);
-	            list<promotionMaterialItem_Controller.wrapperRemote> NewProducts = new list<promotionMaterialItem_Controller.wrapperRemote>();
-	            promotionMaterialItem_Controller.wrapperRemote NewProduct = new promotionMaterialItem_Controller.wrapperRemote();
-	            NewProduct.productid = pList.get(0).Id;
-	            NewProduct.promoid = PMI.Id;
-	            NewProducts.add(NewProduct);
+                promotionMaterialItem_Controller.buildProdSelection2('Jack', 'ALL', 'ALL', null);
+                list<promotionMaterialItem_Controller.wrapperRemote> NewProducts = new list<promotionMaterialItem_Controller.wrapperRemote>();
+                promotionMaterialItem_Controller.wrapperRemote NewProduct = new promotionMaterialItem_Controller.wrapperRemote();
+                NewProduct.productid = pList.get(0).Id;
+                NewProduct.promoid = PMI.Id;
+                NewProducts.add(NewProduct);
                 promotionMaterialItem_Controller.AddNewProduct(NewProducts, 'Agreement', prom.Id);
                 promotionMaterialItem_Controller.RemoveLine(PMI.Id);
             test.stopTest();
