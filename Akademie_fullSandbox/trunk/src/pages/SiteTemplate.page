@@ -1,4 +1,4 @@
-<apex:page showHeader="false" id="SiteTemplate">
+<apex:page showHeader="false" id="SiteTemplate" controller="SiteTemplateController" language="{!language}">
   <apex:stylesheet value="{!URLFOR($Resource.SiteSamples, 'SiteStyles.css')}"/>
   <apex:insert name="header">
     <c:SiteHeader />

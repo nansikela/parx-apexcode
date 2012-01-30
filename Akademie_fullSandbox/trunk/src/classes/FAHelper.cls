@@ -207,5 +207,15 @@ public class FAHelper
 		return w.countElements();
 	}
 	
+	/**
+	@author Matthias Rolke
+	**/
+	public static String getLanguage(){
+		return SiteTemplateController.getLanguage();
+	}
+	
+	public static String getUrl(){
+		return SiteTemplateController.getUrl();
+	}
 	
 }

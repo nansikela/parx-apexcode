@@ -2,9 +2,9 @@
 <apex:attribute required="false" type="String" name="isFirst" description="is First Component"/>
 
 
-	<!-- <div class="management_guide {!IF(isFirst=='true', 'first','')}"> -->      
+    <!-- <div class="management_guide {!IF(isFirst=='true', 'first','')}"> -->      
       <!-- <a href="/page?pageid=a0M20000003Y7rC">Management Guide 2011<span>Hier downloaden</span></a> -->
-      <div class="rightbox pink pdfWindow {!IF(isFirst=='true', 'first','')}">
+      <div style="width: 195px;float: left;top: 10px;position:relative;" class="rightbox pink pdfWindow {!IF(isFirst=='true', 'first','')}">
         <a href="/management-guide">Management Guide 2012<span>Hier downloaden</span></a>
       </div>
       

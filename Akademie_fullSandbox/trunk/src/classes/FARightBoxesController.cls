@@ -266,6 +266,12 @@ public class FARightBoxesController
         result.add(new ShortInfoElemet(Label.Beginn, portfolio.beginn__c));
         //ende
         result.add(new ShortInfoElemet(Label.Ende, portfolio.ende__c));
+        // englischsprachige Website - Temporaer deaktiviert wegen Case 39
+        String language = Label.german;
+        if (portfolio.Englisch__c == true){
+        	language = Label.english;
+        }
+        //result.add(new ShortInfoElemet(Label.language, language));
         return result;
     }
     
@@ -341,7 +347,8 @@ public class FARightBoxesController
             
             if(portfolio.Web_Preis__c != null && portfolio.Web_Preis__c!= 0)
             {
-                preis= '<strong>'+String.valueOf(portfolio.Web_Preis__c).replace('.',',').replace(',00',',-')+' ' + Label.euro + '</strong> ' + Label.exclusive_of_VAT;
+                preis= ''+String.valueOf(portfolio.Web_Preis__c).replace('.',',').replace(',00',',-')+' ' + Label.euro + ' ' + Label.exclusive_of_VAT;
+                preis=preis+'<br /><span style="color: #605B4F;">'+String.valueOf(portfolio.Preis_Brutto__c ).replace('.',',').replace(',00',',-')+' ' + Label.euro + '</span> ' + Label.inclusive_of_VAT;
             }
             
             
@@ -395,7 +402,7 @@ public class FARightBoxesController
         if(currentPortfolio== null)
         {
             String portfolioId = WebURLEncoder.decodeparam('portfolioId');
-            List<Portfolio2__c> portfolioList = [SELECT id, url__c,Dauer_in_Tagen__c, Web_Preis__c, Min_Teilnehmer__c, beginn__c, ende__c, Max_Teilnehmer__c, seminartitel__c, Buchbar__c FROM Portfolio2__c WHERE ID = :portfolioId];
+            List<Portfolio2__c> portfolioList = [SELECT id, url__c,Dauer_in_Tagen__c, Web_Preis__c, Preis_Brutto__c , Min_Teilnehmer__c, beginn__c, ende__c, Max_Teilnehmer__c, seminartitel__c, Buchbar__c, Englisch__c FROM Portfolio2__c WHERE ID = :portfolioId];
             if(portfolioList.size()>0)
             {
                 currentPortfolio = portfolioList.get(0);

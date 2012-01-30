@@ -40,6 +40,8 @@
              <div class="content_wrapper ">
                  <div class="content_column article">
                      <c:FAPreisgruppe />
+                     <c:fapreisgruppebewertung />
+                     
                  </div>
                  <div class="right_column">
                      <c:WebPreisgrupperightinfo />

@@ -1,7 +1,7 @@
 public class WarenkorbFacade 
 {
 	private FAPortfolioController portfolioController;
-	private FASeminar currentSeminar;
+	public FASeminar currentSeminar {get;set;}
 	private Warenkorb_Element__c currentWarenKorbElement {get; set;}
 	private static List<FASeminar>faSeminare;
 	public String terminString {get; set;}

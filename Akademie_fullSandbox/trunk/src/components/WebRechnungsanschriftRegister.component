@@ -64,8 +64,8 @@
             
         </apex:pageBlock>
         <div class="separator"></div>
-        <a href="/registrierung" class="l" ><img style="margin-bottom: 0px;" src="{!URLFOR($Resource.web_style2, '/i/btn_prev.gif')}" /></a>
-        <apex:commandButton action="{!goToUebersicht}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r"  value="{!$Label.weiter}" />
+        <a href="/registrierung" class="l" ><img style="margin-bottom: 0px;" src="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_prev.gif')}" /></a>
+        <apex:commandButton action="{!goToUebersicht}" image="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_next.gif')}" styleClass="r"  value="{!$Label.weiter}" />
     </apex:form>
     
     <style>

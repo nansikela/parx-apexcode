@@ -36,11 +36,11 @@
 }
 
 .loginBackground {
-	background: transparent url("{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}") 0 0px no-repeat;
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/'+$Label.language_code+'/btn_loginAkademie.png')}") 0 0px no-repeat;
 }
 
 .loginBackground:hover {
-	background: transparent url("{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie_hover.png')}") 0 0px no-repeat;
+	background: transparent url("{!URLFOR($Resource.web_style2, 'i/'+$Label.language_code+'/btn_loginAkademie_hover.png')}") 0 0px no-repeat;
 }
 
 .searchfieldbackground {

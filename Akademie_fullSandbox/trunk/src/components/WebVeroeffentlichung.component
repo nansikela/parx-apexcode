@@ -1,7 +1,8 @@
 <apex:component controller="WebVeroeffentlichung" rendered="{!TrainerVeroeffentlichung}">
 <apex:variable var="itembefore" value=""/>
     <apex:repeat var="item" value="{!Veroeffentlichungen}">
-    <apex:outputText escape="false" value="{!IF(itembefore == '', '<div class=\"right_column_box element bright\">','')}" />
+    <!-- _box element bright -->
+        <apex:outputText escape="false" value="{!IF(itembefore == '', '<div style=\"float:left;\" class=\"right_column_box\">','')}" />
         <apex:outputText escape="false" value="{!IF(itembefore == '', '<h3>VERÖFFENTLICHUNGEN</h3>','')}" />
         <apex:outputText escape="false" value="{!IF(itembefore == '', '<ul>','')}" />
             

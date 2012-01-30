@@ -1,5 +1,159 @@
-<apex:component controller="WarenkorbFacade" allowDML="true">
+<apex:component controller="WarenkorbFacade" allowDML="true" id="comp">
+    <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/base/jquery-ui.css" />
+    
+    <style>
+    .optionfieldTitle {
+	    height: 21px;
+	    width: 178px !important;
+	    font-size: 12px;
+	    border-top: 1px solid #B7B2A9 !important;
+	    border-left: 1px solid #B7B2A9 !important;
+	}
+	
+	.optionfieldDay {
+	    height: 20px;
+	    width: 22px!important;
+	    font-size: 12px;
+	    border-top: 1px solid #B7B2A9 !important;
+	    border-left: 1px solid #B7B2A9 !important;
+	    position: relative;
+	    text-align: center;
+	}
+	
+	.optionfieldMonth {
+	    height: 20px;
+	    width: 22px!important;
+	    font-size: 12px;
+	    border-top: 1px solid #B7B2A9 !important;
+	    border-left: 1px solid #B7B2A9 !important;
+	    position: relative;
+	    text-align: center;
+	}
+	
+	.optionfieldYear {
+	    height: 20px;
+	    width: 40px!important;
+	    font-size: 12px;
+	    border-top: 1px solid #B7B2A9 !important;
+	    border-left: 1px solid #B7B2A9 !important;
+	    position: relative;
+	    text-align: center;
+	}
 
+ /* adopt Datepicker */
+        .ui-widget { font-family: Arial, Verdana, Tahoma, Sans-Serif; font-size: 0.9em; } /* IE7, IE8, Firefox fix*/
+        .ui-datepicker { width: 170px; padding: .1em .1em 0; } // 170=178 (fieldlength) - 8 (padding-left + padding-right)
+        .ui-datepicker .ui-datepicker-header { position:relative; padding:.1em 0; }
+        .ui-datepicker .ui-datepicker-title { margin: 0 1.5em; line-height: 1.8em; text-align: center; font-weight:normal }
+        /* disable weekdays */
+        .ui-datepicker th { display: none;}
+        /* bring dialog to front */
+        #ui-datepicker-div { z-index: 1!important; padding-left: 4px; padding-right: 4px;}
+        .ui-datepicker-header {background-color: white!important; background-image:none; border-width: 0px; }
+        .ui-datepicker tbody {background-color:#EDECE9;}
+        .ui-datepicker td a { text-align: center; }
+        a.ui-state-default {background-image:none!important; background-color:white!important;}
+        /* todays date */
+        a.ui-state-highlight, .ui-datepicker-today  {color: #8A1544!important; background-color:white!important; font-weight:bold!important; border-color: lightGray!important; }
+        /* selected date */
+        a.ui-state-active, .ui-datepicker-current-day {color: white!important; background-color: #8A1544!important; font-weight:bold!important; border-color: #8A1544!important;}
+        /* Disable Corner radius */
+        .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { -moz-border-radius-topleft: 0px/*{cornerRadius}*/; -webkit-border-top-left-radius: 0px/*{cornerRadius}*/; -khtml-border-top-left-radius: 0px/*{cornerRadius}*/; border-top-left-radius: 0px/*{cornerRadius}*/; }
+        .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { -moz-border-radius-topright: 0px/*{cornerRadius}*/; -webkit-border-top-right-radius: 0px/*{cornerRadius}*/; -khtml-border-top-right-radius: 0px/*{cornerRadius}*/; border-top-right-radius: 0px/*{cornerRadius}*/; }
+        .ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { -moz-border-radius-bottomleft: 0px/*{cornerRadius}*/; -webkit-border-bottom-left-radius: 0px/*{cornerRadius}*/; -khtml-border-bottom-left-radius: 0px/*{cornerRadius}*/; border-bottom-left-radius: 0px/*{cornerRadius}*/; }
+        .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { -moz-border-radius-bottomright: 0px/*{cornerRadius}*/; -webkit-border-bottom-right-radius: 0px/*{cornerRadius}*/; -khtml-border-bottom-right-radius: 0px/*{cornerRadius}*/; border-bottom-right-radius: 0px/*{cornerRadius}*/; }
+        .ui-widget-content { border: 0px; }
+        /* change the icons for previous and next month in datepicker */
+        .ui-icon-circle-triangle-e { background-position: -32px -16px; }
+        .ui-icon-circle-triangle-w { background-position: -96px -16px; }
+        
+        /* style for option fields */
+        /* all form DIVs have position property set to relative so we can easily position newly created SPAN */
+        form div{position:relative;} 
+        
+
+       
+        .content_column img {
+            float: none;
+            margin-bottom: 0px;
+        }
+        /* IE 7 fix font-size in input elements */
+        input.optionfield { font-size: 12px; }
+    </style>
+    
+ <script type="text/javascript">
+    
+    /* datepicker */    
+    function showDatePicker1(){
+        var pos=$("#iconcalender1").offset();
+        var posLeft=pos["left"] - 157; 
+        var posTop=pos["top"] + 30;
+        var monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+        var opts={"showAnim": "slideDown", "dateFormat": 'dd,mm,yy', "showButtonPanel": false, monthNames: monthNames};
+        $('.date-picker1').datepicker("dialog" , getDateFromInput1(), setDate1, opts, [posLeft,posTop]);
+    };
+    
+    function showDatePicker2(){
+        var pos=$("#iconcalender2").offset();
+        var posLeft=pos["left"] - 157; 
+        var posTop=pos["top"] + 30;
+        var monthNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+        var opts={"showAnim": "slideDown", "dateFormat": 'dd,mm,yy', "showButtonPanel": false, monthNames: monthNames};
+        $('.date-picker2').datepicker("dialog" , getDateFromInput2(), setDate2, opts, [posLeft,posTop]);
+    };
+
+    function getDateFromInput1(){
+        var day = $("#from_day1").val();
+        var month = $("#from_month1").val() - 1;
+        var year = $("#from_year1").val();
+        return new Date(year, month, day);
+    };
+    
+    function getDateFromInput2(){
+        var day = $("#from_day2").val();
+        var month = $("#from_month2").val() - 1;
+        var year = $("#from_year2").val();
+        return new Date(year, month, day);
+    };
+    
+    function setDate1(myDate){
+        var strFilled;
+        strFilled=myDate.split(',');
+        $("#from_day1").val(strFilled[0]);
+        $("#from_month1").val(strFilled[1]);
+        $("#from_year1").val(strFilled[2]);
+        
+        if(document.getElementById('{!$Component.SeminarBuchung.pb.pbs.anreise}'))
+            document.getElementById('{!$Component.SeminarBuchung.pb.pbs.anreise}').value = $("#from_day1").val() + "." + $("#from_month1").val() + "." + $("#from_year1").val();
+    };
+    
+    function setDate2(myDate){
+        var strFilled;
+        strFilled=myDate.split(',');
+        $("#from_day2").val(strFilled[0]);
+        $("#from_month2").val(strFilled[1]);
+        $("#from_year2").val(strFilled[2]);
+        
+        if(document.getElementById('{!$Component.SeminarBuchung.pb.pbs.abreise}'))
+            document.getElementById('{!$Component.SeminarBuchung.pb.pbs.abreise}').value = $("#from_day2").val() + "." + $("#from_month2").val() + "." + $("#from_year2").val();
+    };
+     
+    function initDate(){
+        
+        var today = new Date();
+        var month = today.getMonth() + 1; // starts width 0
+        if($("#from_day1").val() == '' || $("#from_day1").val() == null)
+            setDate1('{!currentSeminar.Seminarbeginn}'.replace(/\./g,','));
+        if($("#from_day2").val() == '' || $("#from_day2").val() == null)
+            setDate2('{!currentSeminar.Seminarende}'.replace(/\./g,','));
+    };
+    
+    $(document).ready(function(){
+        initDate();
+            
+    });
+    </script>
+    
     <h1>{!$Label.akademie_booking_your_order}</h1>
     <apex:outputText rendered="{!IF($CurrentPage.parameters.step!=null, false,true)}">
         <apex:form >
@@ -21,16 +175,16 @@
                     
                 </apex:PageBlockSection>
                     <div class="buttons">
-                        <apex:commandButton styleClass=" r" value="{!'weiter'}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" action="{!toStep2}"/>
+                        <apex:commandButton styleClass=" r" value="{!'weiter'}" image="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_next.gif')}" action="{!toStep2}"/>
                     </div>
             </apex:PageBlock>
         </apex:form>
     </apex:outputText>
-    <apex:outputText rendered="{!IF($CurrentPage.parameters.step=='1', true,false)}">
+    <apex:outputText rendered="{!IF($CurrentPage.parameters.step=='1', true,false)}" id="output">
     <apex:form id="SeminarBuchung">
     	
         <p>{!$Label.akademie_booking_workshop_notice}:</p>
-        <apex:PageBlock >
+        <apex:PageBlock id="pb">
                 <apex:PageBlockSection columns="1">
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.Ihr_Seminar}:" for="portfolioName"></apex:outputLabel>
@@ -62,30 +216,45 @@
                 <apex:outputText value=" " /><apex:actionStatus startText="{!$Label.akademie_booking_progress_retrieve_hotels}" id="hotelReservierungOptionStatus" startStyle="vertical-align: baseline;"/>
                 <!-- hotelReservierungOption  -->
                 <apex:outputPanel id="hotelReservierungOptionRerenderPanel">
-                <apex:actionFunction name="showReservationOptions" action="{!showReservationOptions}" rerender="hotelReservierungOptionRerenderPanel" status="hotelReservierungOptionStatus" immediate="true"> 
+                <apex:actionFunction name="showReservationOptions" action="{!showReservationOptions}" rerender="hotelReservierungOptionRerenderPanel" status="hotelReservierungOptionStatus" immediate="true" oncomplete="initDate();"> 
 	    		   <apex:param name="ValueCheckbox" value=""/>
 	    	    </apex:actionFunction>
                 <apex:outputPanel id="hotelReservierungOption" layout="block" styleClass=""  rendered="{!showReservationOptions}">
                 <p>{!$Label.akademie_booking_hotel_notice}</p>
-                <apex:PageBlockSection rendered="{!SeminarInformation.isHotelReservierungPossible}" columns="1" >
+                <apex:PageBlockSection rendered="{!SeminarInformation.isHotelReservierungPossible}" columns="1" id="pbs">
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.akademie_booking_hotel}:" for="HotelName"></apex:outputLabel>
                         <apex:outputText value="{!SeminarInformation.hotelName}" id="HotelName"></apex:outputText>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.akademie_booking_arrival}:" for="anreiseDatum"></apex:outputLabel>
-                        <apex:inputField styleClass="datepicker" value="{!currentWarenKorbElement.Anreise__c}" required="true" id="anreiseDatum" style="width:6em;"   />
+<!--                         <apex:inputField styleClass="datepicker" value="{!currentWarenKorbElement.Anreise__c}" required="true" id="anreiseDatum" style="width:6em;"   /> -->
                         <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
+                       <div class="formpart_date" id="fromdate1" onclick="showDatePicker1()" >
+					          <input readonly="readonly" type="text" class="optionfield optionfieldDay" id="from_day1" onfocus="this.select()"/>
+					          <input readonly="readonly" type="text" class="optionfield optionfieldMonth" id="from_month1" onfocus="this.select()" />
+					          <input readonly="readonly" type="text" class="optionfield optionfieldYear" id="from_year1" onfocus="this.select()" />
+					          <img id="iconcalender1" src="{!URLFOR($Resource.web_style2,'/i/icon_calendar.png')}" alt="Kalender" class="iconcalenderDirectSearch"/>
+					          <input type="hidden" class="date-picker1" id="startDate" />
+					   </div>
                     </apex:pageBlockSectionItem>
+                    <apex:inputHidden value="{!currentWarenKorbElement.Anreise__c}" id="anreise"/>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.akademie_booking_departure}:" for="abreiseDatum"></apex:outputLabel>
 <!--                        styleClass="datepicker"-->
-                        <apex:inputField value="{!currentWarenKorbElement.Abreise__c}" styleClass="datepicker" required="true" id="abreiseDatum" style="width:6em;" />
+<!--                         <apex:inputField value="{!currentWarenKorbElement.Abreise__c}" styleClass="datepicker" required="true" id="abreiseDatum" style="width:6em;" /> -->
                         <!-- required="{!currentWarenKorbElement.Hotelreservierung__c}" -->
-
+                        <div class="formpart_date" id="fromdate2" onclick="showDatePicker2()" >
+                              <input readonly="readonly" type="text" class="optionfield optionfieldDay" id="from_day2" onfocus="this.select()"/>
+                              <input readonly="readonly" type="text" class="optionfield optionfieldMonth" id="from_month2" onfocus="this.select()" />
+                              <input readonly="readonly" type="text" class="optionfield optionfieldYear" id="from_year2" onfocus="this.select()" />
+                              <img id="iconcalender2" src="{!URLFOR($Resource.web_style2,'/i/icon_calendar.png')}" alt="Kalender" class="iconcalenderDirectSearch" />
+                              <input type="hidden" class="date-picker2" id="startDate" />
+                        </div>
                     </apex:pageBlockSectionItem>
-<!--                    <apex:pageBlockSectionItem >-->
-                        <apex:selectRadio value="{!selectedRoom}" required="true" layout="pageDirection">
+                    <apex:inputHidden value="{!currentWarenKorbElement.Abreise__c}" id="abreise"/>
+
+                    <apex:selectRadio value="{!selectedRoom}" required="true" layout="pageDirection">
 		            	<apex:selectOptions value="{!KindOfRooms}"/>
 		            </apex:selectRadio>
 <!--                        <apex:inputCheckbox value="{!currentWarenKorbElement.Einzelzimmer__c}" id="ez" />-->
@@ -104,31 +273,10 @@
             <small>*{!$Label.form_mandatory_fields}</small>
             
                     <div class="buttons">
-                        <apex:commandButton value="{!$Label.Seminar_in_den_Warenkorb}" styleClass="r" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}"  action="{!putItemToWarenkorb}"/>
+                        <apex:commandButton value="{!$Label.Seminar_in_den_Warenkorb}" styleClass="r" image="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_next.gif')}"  action="{!putItemToWarenkorb}"/>
                     </div>
     </apex:form>
     </apex:outputText>
-    
-    <script type="text/javascript"> 
-      /*$(document).ready(function() {
-          $(".hotelReservierungOption").hide();
-          $(".hotelCheckbox").change(function(e){ 
-            if($('.hotelCheckbox').attr('checked')){
-            $(".hotelReservierungOption").show();
-            }else{
-            $(".hotelReservierungOption").hide();
-            }
-            });
-         
-         $(".datepicker").datepicker( $.datepicker.regional[ "de" ]  );
-      });
-     */ 
-  
-  </script>
-  <style>
-    div.ui-datepicker{
- font-size:10px;
-}
-  </style>
+
     
 </apex:component>

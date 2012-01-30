@@ -320,6 +320,47 @@ public class FaNavigationFacade {
 	}
 	
 	
+	private static Gruppe__c gruppe;
+	private static Portfolio2__c portfolio;
+	/*IS PDF RENDERED */
+	public String getGroupPDF()
+	{
+		
+		if(portfolio == null)
+		{
+			for(Portfolio2__c g : [SELECT Id, PDF__c FROM Portfolio2__c WHERE ID = :ApexPages.currentPage().getParameters().get('portfolioId')])
+			{
+				portfolio = g;
+			}
+		}
+		
+		if(portfolio!= null)
+		{
+			return portfolio.pdf__c;
+		}
+		
+		
+		if(gruppe == null)
+		{
+			for(Gruppe__c g : [SELECT Id, PDF__c FROM Gruppe__c WHERE ID = :ApexPages.currentPage().getParameters().get('groupId')])
+			{
+				gruppe = g;
+			}
+		}
+		
+		
+		if(gruppe != null)
+		{
+			return gruppe.pdf__c;
+		}
+		
+		
+		
+		
+		return null;	
+	}
+	
+	
 	//Tracking on webSites
 	public void tracking()
 	{

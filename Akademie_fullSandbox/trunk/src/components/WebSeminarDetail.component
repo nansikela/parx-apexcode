@@ -21,7 +21,7 @@
                         </li>
                     </ul>
                     <!--<div class="modul_spacer"></div>-->
-                    <a href="/page?pageid=a0M20000003XjFrEAK&seminarCode={!portfolio.name}"><img type="image" src="{!URLFOR($Resource.web_style, 'i/btn_seminar_booking.gif')}" /></a>
+                    <a href="/page?pageid=a0M20000003XjFrEAK&seminarCode={!portfolio.name}"><img type="image" src="{!URLFOR($Resource.web_style, 'i/'+$Label.language_code+'/btn_seminar_booking.gif')}" /></a>
                 </div>
             </div>
             <!--End Right box-->

@@ -100,6 +100,11 @@ public class FASiteFULLFacade {
 	{
 		return AkademieBlog__c.getAll().values();
 	}
+	
+	public static String getLanguage(){
+		return SiteTemplateController.getLanguage();
+	}
+	
 	static testMethod void test(){
 		FASiteFULLFacade.identifyUser();
 		FASiteFULLFacade.getMetaDescription();

@@ -47,10 +47,11 @@
                         </style>
                  </div>
                      <c:WebTrainerGreyBox2 ></c:WebTrainerGreyBox2>
+                     <c:WebManagementGuide isFirst="true" ></c:WebManagementGuide>
                      <c:WebVeroeffentlichung ></c:WebVeroeffentlichung>
                  <div class="right_column" style="padding-top: 10px;">
                      <!-- <c:WebManagementGuide2012 ></c:WebManagementGuide2012> -->
-                     <c:WebManagementGuide isFirst="true" ></c:WebManagementGuide>
+                     
                  </div>
              </div>
         </c:WebmainHeader2>

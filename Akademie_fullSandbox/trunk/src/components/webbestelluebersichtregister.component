@@ -165,8 +165,8 @@
                 
                      <apex:inputField value="{!warenkorbObject.AGB__c}" required="true" id="CheckboxValidation">
                         <div id="divError" style="display:none;color:red;">
-		                        {!$Label.Error_please_click_the_checkbox}
-		                </div>
+                                {!$Label.Error_please_click_the_checkbox}
+                        </div>
                      </apex:inputField>
                      <apex:outputLabel >{!$Label.akademie_booking_confirm_terms1} <a href="/page?pageid=a0M20000003Xnu3" target="_blank" id="link_70">{!$Label.akademie_booking_confirm_terms2}</a> {!$Label.akademie_booking_confirm_terms3}</apex:outputLabel>
                 </apex:pageblockSectionItem>
@@ -175,12 +175,13 @@
 
         </apex:PageBlock>
         <p><strong>{!$Label.akademie_booking_right_of_withdrawal}</strong><br />
-	  {!$Label.akademie_booking_right_of_withdrawal_text}
-	  {!$Label.akademie_booking_right_of_withdrawal_text2}
-	  </p>
+      {!$Label.akademie_booking_right_of_withdrawal_text}
+      {!$Label.akademie_booking_right_of_withdrawal_text2}
+      </p>
     <div>
-        <a href="/registrierung?step=rechnungsanschrift" class="l" ><img style="margin-bottom: 0px;" src="{!URLFOR($Resource.web_style2, '/i/btn_prev.gif')}" /></a>
-        <apex:commandButton value="{!$Label.akademie_booking_place_order}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" styleClass="r" onclick="if(document.getElementById('page:comp0:comp:comp3:comp:form:pb:pbs:pbsi:CheckboxValidation').checked == false) {document.getElementById('divError').style.display = 'block';return false;}else{document.getElementById('divError').style.display = 'none';}" action="{!goToAbschluss}"/>
+        <a href="/registrierung?step=rechnungsanschrift" class="l" ><img style="margin-bottom: 0px;" src="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_prev.gif')}" /></a>
+        <apex:commandButton value="{!$Label.akademie_booking_place_order}" image="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_next.gif')}" styleClass="r" onclick="if(document.getElementById('{!$Component.form.pb.pbs.pbsi.CheckboxValidation}').checked == false) {document.getElementById('divError').style.display = 'block';return false;}else{document.getElementById('divError').style.display = 'none';}" action="{!goToAbschluss}"/>
+      
     </div>
     
     </apex:form>

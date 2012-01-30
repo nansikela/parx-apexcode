@@ -51,11 +51,11 @@
               <option>12</option>
           </select>
           <select class="formpart_year" id="formpart_year">
-              <option>2011</option>
               <option>2012</option>
+              <option>2013</option>
           </select>
           
-          <a class="ui-button-text ui-state-highlight ui-corner-all r" id="anzeigeButton"><img src="{!URLFOR($Resource.web_style2, '/i/btn_show.gif')}"/></a>
+          <a class="ui-button-text ui-state-highlight ui-corner-all r" id="anzeigeButton"><img src="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_show.gif')}"/></a>
           <h2>{!$Label.akademie_workshops_choose_category}:</h2>
           <div style="height: 50px;">
           <div class="check_leadership">

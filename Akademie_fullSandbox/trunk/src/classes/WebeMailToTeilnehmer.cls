@@ -99,19 +99,19 @@ public class WebeMailToTeilnehmer
                 
                 // EZ gets selected on the visual force page per default.
                 // so check first if the hotel reservieren checkbox is selected
-                if (s.isHotelReservierung && Label.from != null && Label.to != null){
-	                if((s.dzReservierung != null && s.dzReservierung == true) )
-	                {
-	                eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_double_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
-	                }
-	                else if((s.ezReservierung != null && s.ezReservierung == true) )
-	                {
-	                eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_single_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
-	                }
+                if (s.isHotelReservierung && s.anreise != null && s.abreise != null){
+                    if((s.dzReservierung != null && s.dzReservierung == true) )
+                    {
+                    eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_double_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
+                    }
+                    else if((s.ezReservierung != null && s.ezReservierung == true) )
+                    {
+                    eMailText = eMailText.replace('XXXRESERVATIONXXX', Label.akademie_booking_you_reserve_a +' '+ Label.akademie_shopping_cart_single_room_abbrev +' '+ Label.from +' '+ s.anreise +' '+ Label.to +' '+ s.abreise+'.<br/>');
+                    }
                 }
                 else
                 {
-                eMailText = eMailText.replace('XXXRESERVATIONXXX', 'Sie haben kein Zimmer reserviert.<br/>');	
+                eMailText = eMailText.replace('XXXRESERVATIONXXX', 'Sie haben kein Zimmer reserviert.<br/>');   
                 }
                 
                 try
@@ -285,7 +285,19 @@ public class WebeMailToTeilnehmer
                     }
                     if(currentPerson.eMail__c != null)
                     {
-                        teilnehmerString+= '<br/>'+Label.akademie_email+': '+ currentPerson.eMail__c;
+                        teilnehmerString+= '<br/>'+'<br/>'+Label.akademie_email+': '+ currentPerson.eMail__c;
+                    }
+                    if(currentPerson.Abteilung__c != null)
+                    {
+                        teilnehmerString+= '<br/>'+Label.akademie_abteilung+': '+ currentPerson.Abteilung__c;
+                    }
+                    if(currentPerson.Funktion__c != null)
+                    {
+                        teilnehmerString+= '<br/>'+Label.akademie_funktion+': '+ + currentPerson.Funktion__c;
+                    }
+                    if(currentPerson.Geburtsdatum__c != null)
+                    {
+                        teilnehmerString+= '<br/>'+Label.akademie_geburtsdatum+': '+ + currentPerson.Geburtsdatum__c;
                     }
                     
                 eMailText = eMailText.replace('XXXTEILNEHMERXXX', teilnehmerString);

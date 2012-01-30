@@ -57,7 +57,7 @@
                 </apex:PageBlockSectionItem>
                 
             </apex:PageBlockSection>
-            <apex:commandButton value="{!$Label.weiter}" image="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}"  styleClass="r" action="{!goToRechnungsanschrift}"/>
+            <apex:commandButton value="{!$Label.weiter}" image="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_next.gif')}"  styleClass="r" action="{!goToRechnungsanschrift}"/>
             
         </apex:pageBlock>
     </apex:form>
