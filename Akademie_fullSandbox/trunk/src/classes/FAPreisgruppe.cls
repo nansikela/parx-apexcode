@@ -52,9 +52,12 @@ public class FAPreisgruppe
 		List<String>result = new List<String>();
 		if(currentProductgruppe.Preisinformation__c!= null)
 		{
-			for(String info : currentProductgruppe.Preisinformation__c.split('<br><br>'))
+			for(String info : currentProductgruppe.Preisinformation__c.split('<br>\n<br>'))
 			{
-				result.add(info.replaceFirst('<strong>', '<h3>').replaceFirst('</strong>', '</h3><p>')+'</p>');
+				// JS, Bugfix 26.01.2012: add Seperator that is missing in Priceinformation
+				//info.replaceAll('<br><br>','<div class="separator">&nbsp;</div><br />');
+				//info=info+'<div class="separator">&nbsp;</div><br />';
+				result.add(info.replaceALL('\n<br>\n<br>\n','\n<div class="separator">&nbsp;</div>\n<br />\n').replaceFirst('<strong>', '<h3>').replaceFirst('</strong>', '</h3><p>')+'</p>');
 			}
 		}
 		return result;

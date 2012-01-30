@@ -174,7 +174,7 @@
         <!-- </apex:outputLink> -->
         </div>
         </div>
-            <input class="submitbtn" style="padding-left: 39px;" id="quicksearchButton" name="submit" src="{!URLFOR($Resource.web_style2,'/i/btn_directsearch_send.png')}" type="image" value="submit" />
+            <input class="submitbtn" style="padding-left: 39px;" id="quicksearchButton" name="submit" src="{!URLFOR($Resource.web_style2,'/i/'+$Label.language_code+'/btn_directsearch_send.png')}" type="image" value="submit" />
       </form>
     </div>
 </apex:component>

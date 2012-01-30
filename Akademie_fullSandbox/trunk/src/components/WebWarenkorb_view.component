@@ -24,7 +24,7 @@
       </apex:dataTable>
       <p>{!$Label.akademie_all_prices_in_currency}</p>
       <div class="buttons">
-          <a href="/registrierung" class="r"><img src="{!URLFOR($Resource.web_style2, '/i/btn_next.gif')}" /></a>
+          <a href="/registrierung" class="r"><img src="{!URLFOR($Resource.web_style2, '/i/'+$Label.language_code+'/btn_next.gif')}" /></a>
       </div>
   </apex:PageBlock>
   

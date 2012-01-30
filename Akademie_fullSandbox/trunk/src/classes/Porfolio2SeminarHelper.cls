@@ -31,6 +31,24 @@ global class Porfolio2SeminarHelper {
         return message;
     }
     
+    public webservice static String SeminarAktualisieren(Id portfolioId){
+        if(portfolioId != null){
+            Portfolio2__c p=getPortfolio(portfolioId);
+            if (p!=null) {
+                list<Product2> Prods = new list<Product2>([select Description from Product2 where Portfolio2__c =: portfolioId]);
+                for(Product2 prod:Prods) {
+                    prod.Description = p.Zertifikatsinhalte__c;
+                }
+                Database.DMLOptions dml = new Database.DMLOptions();
+			    dml.allowFieldTruncation = true;
+                database.update(Prods, dml);
+            } else{
+                return 'No portfolio with Id \''+ portfolioId + '\' found.';
+            }
+        }
+        return 'Die Inhalte der verknüpften Seminare wurden aktualisiert.';
+    }
+    
     private static String createSeminarsFromPortfolio(Portfolio2__c p, Integer anzahl) {
         String message='';
         try{
@@ -65,8 +83,6 @@ global class Porfolio2SeminarHelper {
     private static Product2 createNewProduct(Portfolio2__c p) {
         Product2 prod = new Product2();
         prod.Name = p.Seminartitel__c;
-        prod.Unterregister__c = p.Bereich__r.Name;
-        prod.Themen_Register__c = p.hauptbereich__c;
         prod.Sonderpreis__c = p.Sonderpreis__c;
         prod.Seminargebuehr__c = p.Web_Preis__c;
         prod.Seminarcode__c = p.Name;
@@ -77,10 +93,13 @@ global class Porfolio2SeminarHelper {
         prod.Dauer_in_Tagen__c = p.Dauer_in_Tagen__c;
         prod.In_Vorbereitung__c = true;
         prod.Portfolio2__c = p.Id;
-        
         prod.Uhrzeit_Beginn__c = p.Beginn__c;
         prod.Uhrzeit_Ende__c = p.Ende__c;
         prod.Min_Teilnehmer_f_r_Garantie__c = p.Min_Teilnehmer__c;
+        prod.Kostenstelle__c = p.Kostenstelle__c;
+        prod.Produktmanager__c = p.Produktmanager__c;
+        prod.Bereiche__c = p.Bereiche__c;
+        prod.AZWV_Ma_nahmenzulassung__c = p.AZWV_Massnahmenzulassung__c;
         return prod;
     }
     
@@ -93,16 +112,18 @@ global class Porfolio2SeminarHelper {
                 , p.Min_Teilnehmer__c
                 , p.Beginn__c
                 , p.Ende__c
-                , p.Bereich__r.Name
                 , p.Sonderpreis__c
                 , p.Seminartitel__c
                 , p.Zertifikatsinhalte__c
-                , p.hauptbereich__c
                 , p.Web_Preis__c
                 , p.Max_Teilnehmer__c
                 , p.Leitung__c
                 , p.Key_Note_Speaker__c
                 , p.Dauer_in_Tagen__c 
+                , p.Kostenstelle__c
+                , p.Produktmanager__c
+                , p.Bereiche__c
+                , p.AZWV_Massnahmenzulassung__c
                 From Portfolio2__c p where p.Id = :portfolioId];
         } catch (System.Exception e) {}
         return p;

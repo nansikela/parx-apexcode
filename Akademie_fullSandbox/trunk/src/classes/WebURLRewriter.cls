@@ -5,7 +5,7 @@
 */
 global class WebURLRewriter implements Site.UrlRewriter{
 	
-	
+	String enPrefix = '/en';
 	
 	/**
 	* @author Christian Deckert
@@ -31,7 +31,12 @@ global class WebURLRewriter implements Site.UrlRewriter{
 		}
 		url = url.toLowerCase();
 		
-		
+		/**
+		* /en/, /en
+		**/
+		if (url.startsWith(enPrefix+'/') || (url == enPrefix)){
+			url = url.substring(enPrefix.length(), url.length());
+		}
 		
 		if(url.endsWith('/') && url.length()>2)
 		{
@@ -117,12 +122,29 @@ global class WebURLRewriter implements Site.UrlRewriter{
 		if(url.startsWith('/seminare/') && url.endsWith('/pdf'))
 		{
 			String tempURL = url.replace('/pdf', '');
-			List<Portfolio2__c> portfolioList = [SELECT ID, pdf__c FROM Portfolio2__c WHERE URL__c = : tempURL AND Bereich__r.Hauptbereich__r.Firma__c = : 'a0g20000000If9L'];
-			if(portfolioList.get(0).pdf__c != null)
+			List<Portfolio2__c> portfolioList = [SELECT ID, pdf__c, PDF_URL__c FROM Portfolio2__c WHERE URL__c = : tempURL AND Bereich__r.Hauptbereich__r.Firma__c = : 'a0g20000000If9L'];
+			
+			System.debug('*****tempURL:'+tempURL);
+			
+			//IF PORTFOLIO
+			if(portfolioList.size()>0)
 			{
-				return new PageReference(portfolioList.get(0).pdf__c);
+				if(portfolioList.get(0).pdf__c != null)
+				{
+					return new PageReference(portfolioList.get(0).pdf__c);
+				}
+				return new PageReference('/WebPDFPortfolio?portfolioId='+portfolioList.get(0).id+'&mode=pdf&'+param);
 			}
-			return new PageReference('/WebPDFPortfolio?portfolioId='+portfolioList.get(0).id+'&mode=pdf&'+param);
+			else
+			{
+				System.debug('***********PRODUKTGRUPPE PDF ********/');
+				List<Gruppe__c> produktgruppen = [SELECT ID, pdf__c FROM Gruppe__c WHERE URL__c = : tempURL AND Bereich__r.Hauptbereich__r.Firma__c = : 'a0g20000000If9L'];
+				if(produktgruppen.size()> 0 && produktgruppen.get(0).pdf__c != null)
+				{
+					System.debug(new PageReference( produktgruppen.get(0).pdf__c ));
+					return new PageReference( produktgruppen.get(0).pdf__c );
+				}
+			}
 		}
 		//Print Seminar
 		if(url.startsWith('/seminare/') && url.endsWith('/print'))

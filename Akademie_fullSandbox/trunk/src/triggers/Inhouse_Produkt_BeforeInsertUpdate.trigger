@@ -129,12 +129,19 @@ trigger Inhouse_Produkt_BeforeInsertUpdate on Inhouse_Produkt__c (before insert,
 	/*"Inhouse-Produktname: ((STORNO -)) Accountname - ((K - )) Seminartitel - Dozent
 	Storno: wenn Phase Inhouse Produkte = Storno - zusätzlich: Umsatz = 0
 	K: wenn Veranstaltungsform = Konzeptionstag"*/
+	
 	Set<Id>opportunityIdSet = new Set<Id>();
+	Set<Id>accountIdSet = new Set<Id>();
+	
 	for(Inhouse_Produkt__c ip : trigger.new)
 	{
 		if(ip.Opportunity__c != null && !opportunityIdSet.contains(ip.Opportunity__c))
 		{
 			opportunityIdSet.add(ip.Opportunity__c);
+		}
+		if(ip.Account__c != null && !accountIdSet.contains(ip.Account__c))
+		{
+			accountIdSet.add(ip.Account__c);
 		}
 		//Clear name
 		ip.name = '';
@@ -174,7 +181,12 @@ trigger Inhouse_Produkt_BeforeInsertUpdate on Inhouse_Produkt__c (before insert,
 			ip.name += ' '+ip.Sprache__c.subString(0,1);
 		}
 	}
-	Map<Id, Opportunity> opportunityMap = new Map<Id, Opportunity>([Select o.id, o.StageName, o.Account.Name, o.AccountId, o.Account.Kurz_Name__c From Opportunity o WHERE ID IN :opportunityIdSet]);
+	Map<Id, Opportunity> opportunityMap = new Map<Id, Opportunity>([Select o.id, o.StageName, o.Account.Name, o.AccountId, o.Account.Id, o.Account.Kurz_Name__c From Opportunity o WHERE ID IN :opportunityIdSet]);
+	// alle Opportunity.Accounts in accountIdSet aufnehmen
+	for (Opportunity op: opportunityMap.values()){
+		accountIdSet.add(op.AccountId);
+	}
+	Map<Id, Account> accountMap = new Map<Id, Account>([Select Id, Name, Kurz_Name__c From Account WHERE Id IN :accountIdSet]);
 	
 	//Dozent kann nur gefunden werden bei Update
 	if(!trigger.isInsert)
@@ -201,14 +213,17 @@ trigger Inhouse_Produkt_BeforeInsertUpdate on Inhouse_Produkt__c (before insert,
 		{
 			product.name = 'K - '+product.name;
 		}
-		//Accountname
-		if(product.Opportunity__c!= null && opportunityMap.containsKey(product.Opportunity__c))
+		// Account Fallback zu Opportunity.Account
+		if (product.Account__c == null)
 		{
-			if(product.Account__c == null)
-			{
-				product.Account__c = opportunityMap.get(product.Opportunity__c).AccountId;
-			}
-			product.name = opportunityMap.get(product.Opportunity__c).Account.Kurz_Name__c + ' - '+product.name;
+			product.Account__c = opportunityMap.get(product.Opportunity__c).AccountId;	
+		}
+		// Accountnamen in Produktnamen aufnehmen
+		if(product.Account__c!= null && accountMap.containsKey(product.Account__c))
+		{
+			// Kurz_Name des Accounts, ansonsten Name
+			String accountName = accountMap.get(product.Account__c).Kurz_Name__c != null ? accountMap.get(product.Account__c).Kurz_Name__c : accountMap.get(product.Account__c).Name;
+			product.name = accountName + ' - '+product.name;
 		}
 		//Phase = Storno
 		if(product.Phase_Inhouse_Produkt__c != null && product.Phase_Inhouse_Produkt__c == 'Storno')

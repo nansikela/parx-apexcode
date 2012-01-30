@@ -1,6 +1,8 @@
 public class FASeminar {
 	//Define Object
 	public String datum {get; set;}
+	public String seminarbeginn {get; set;}
+	public String seminarende {get; set;}
 	public String buchen {get; set;}
 	public String titel {get; set;}
 	public String code {get; set;}
@@ -122,6 +124,8 @@ public class FASeminar {
 		if(product != null && product.Seminarbeginn__c!= null)
 		{
 			datum = product.Seminarbeginn__c.format()+' - '+product.Seminarende__c.format();
+			seminarbeginn = product.Seminarbeginn__c.addDays(-1).format();
+			Seminarende = product.Seminarende__c.format();
 		}
 		if(product!= null && product.Trainer__c != null)
 		{

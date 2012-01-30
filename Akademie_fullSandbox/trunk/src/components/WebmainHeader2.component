@@ -14,6 +14,8 @@
               
                <ul>
                 <li><a href="http://www.cognos-ag.de/" id="cognosLogoNew" target="_blank" title="{!$Label.go_to} Cognos  AG"><apex:image styleClass="cognosLogoNew" value="{!URLFOR($Resource.web_style2,'/i/logo_cognos_competence_group.png')}" /></a></li>
+                <!-- <li>URL: {!Url}</li>  -->
+                <li><apex:outputLink value="{! IF((language != 'en'), '/en', '/')}" id="websiteLanguage">{! IF((language == 'en'), 'Deutsch', 'English')}</apex:outputLink></li>
                 <li><a href="/rueckruf">{!$Label.akademie_contact_phone_call_back}</a></li>
                 <li style="padding-right: 20px;"><a href="/die-akademie/kontakt">{!$Label.akademie_contact_heading}</a></li>
                 <!--
@@ -41,7 +43,7 @@
 				<li style="padding-top: 0px;">
                 	<apex:outputLink styleClass="loginNew" value="http://www.arccade.de/Arccade.htm" target="_blank">
                 		<div class="loginBackground"></div>
-                		<!-- <apex:image id="loginBtnImg" styleClass="loginImage" value="{!URLFOR($Resource.web_style2, 'i/btn_loginAkademie.png')}" /> -->
+                		<!-- <apex:image id="loginBtnImg" styleClass="loginImage" value="{!URLFOR($Resource.web_style2, 'i/'+$Label.language_code+'/btn_loginAkademie.png')}" /> -->
                 	</apex:outputLink>
                 	<!-- <a class="login" style="" href="http://www.arccade.de/Arccade.htm" target="_blank">Login</a> -->
               	</li>
@@ -52,8 +54,7 @@
 			            <form method="post"> 
 			            <input class="autocomplete ui-autocomplete-input searchfieldbackground" type="text" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true" />
 			             
-			            <input class="submitbtn" src="/resource/1315250542000/web_style2/i/btn_submit_loupe.gif" style="display:none;" type="image" />
-							 
+			            <input class="submitbtn" src="/resource/1315250542000/web_style2/i/btn_submit_loupe.gif" style="display:none;" type="image" />							 
 			            </form>
 		            </div>
              	</li>

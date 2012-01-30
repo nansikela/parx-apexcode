@@ -9,8 +9,7 @@
         <p>Seminarcode/Titel</p>
              <input type="text"  class="searchTextField" onclick="this.value='';" value="" id="quickQuery" />
 
-        
-         <p>Region</p>
+        <p>Region</p>
             <select id="region" class="optionfield">
                  <option>- alle anzeigen -</option>
              </select>

@@ -1,0 +1,1 @@
+<apex:page controller="FAAttachment" contentType="">{!contentType}<br/>{!file}</apex:page>

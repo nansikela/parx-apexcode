@@ -40,6 +40,7 @@
                  <div class="content_column article">
                      <c:FAPreisgruppe />
                      <c:FAPreisgruppeZyklus />
+                     <c:fapreisgruppebewertung />
                  </div>
                  <div class="right_column">
                      <c:WebPreisgrupperightinfo />

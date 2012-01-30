@@ -567,6 +567,14 @@
         <value>Die Akademie</value>
     </labels>
     <labels>
+        <fullName>akademie_abteilung</fullName>
+        <categories>Custom</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_abteilung</shortDescription>
+        <value>Abteilung</value>
+    </labels>
+    <labels>
         <fullName>akademie_all_prices_in_currency</fullName>
         <categories>FAWarenkorb_view</categories>
         <language>de</language>
@@ -1180,6 +1188,22 @@
         <protected>false</protected>
         <shortDescription>akademie_fuehrungskraefte_long</shortDescription>
         <value>Die Akademie für Führungskräfte  der Wirtschaft GmbH</value>
+    </labels>
+    <labels>
+        <fullName>akademie_funktion</fullName>
+        <categories>Custom</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_funktion</shortDescription>
+        <value>Funktion</value>
+    </labels>
+    <labels>
+        <fullName>akademie_geburtsdatum</fullName>
+        <categories>Custom</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>akademie_geburtsdatum</shortDescription>
+        <value>Geburtsdatum</value>
     </labels>
     <labels>
         <fullName>akademie_impact_workshop</fullName>
@@ -1846,6 +1870,14 @@
         <value>eMail</value>
     </labels>
     <labels>
+        <fullName>english</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>english</shortDescription>
+        <value>Englisch</value>
+    </labels>
+    <labels>
         <fullName>euro</fullName>
         <categories>FARightBoxesController</categories>
         <language>de</language>
@@ -1886,6 +1918,14 @@
         <value>von</value>
     </labels>
     <labels>
+        <fullName>german</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>german</shortDescription>
+        <value>Deutsch</value>
+    </labels>
+    <labels>
         <fullName>go_to</fullName>
         <categories>Navigation</categories>
         <language>de</language>
@@ -1916,6 +1956,29 @@
         <protected>false</protected>
         <shortDescription>imprint</shortDescription>
         <value>Impressum</value>
+    </labels>
+    <labels>
+        <fullName>inclusive_of_VAT</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>inclusive_of_VAT</shortDescription>
+        <value>inkl. MwSt.</value>
+    </labels>
+    <labels>
+        <fullName>language</fullName>
+        <categories>FARightBoxesController</categories>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>language</shortDescription>
+        <value>Sprache</value>
+    </labels>
+    <labels>
+        <fullName>language_code</fullName>
+        <language>de</language>
+        <protected>false</protected>
+        <shortDescription>language_code</shortDescription>
+        <value>de</value>
     </labels>
     <labels>
         <fullName>month_april</fullName>

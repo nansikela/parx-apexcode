@@ -6,7 +6,7 @@
 	      <apex:outputPanel layout="block" id="mgmtguidetext" styleClass=" mgmtguidetext {!IF(isFirst=='true', 'first','')}">
 	        {!$Label.akademie_management_guide_2012}<br/>{!$Label.akademie_management_guide_2012_line2}
 	      </apex:outputPanel>
-	      <apex:image value="{!URLFOR($Resource.web_style2,'/i/btn_download.png')}" alt="{!$Label.Download}" styleClass="management_guideImage" />
+	      <apex:image value="{!URLFOR($Resource.web_style2,'/i/'+$Label.language_code+'/btn_download.png')}" alt="{!$Label.Download}" styleClass="management_guideImage" />
 	    </apex:outputLink>
     </apex:outputPanel>
 </apex:component>

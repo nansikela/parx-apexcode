@@ -15,16 +15,29 @@
       </div>
       <c:WebSuggestion rendered="false" />
       <ul class="artikelnavi">
-          <apex:outputText rendered="{!IF($CurrentPage.Parameters.portfolioId != '', 'true', 'false')}">
-          <li>
-              <a class="pdf" target="_blank" >{!$Label.PDF}</a>
+          
+          <apex:outputText rendered="{!IF(GroupPDF!= null, true, false)}">
+              <li>
               
-          </li>
+                  <a class="pdf" target="_blank" href="{!GroupPDF}" >{!$Label.PDF}</a>
+              
+              
+              </li>
+         </apex:outputText>
+         <apex:outputText rendered="{!IF(AND($CurrentPage.Parameters.portfolioId != '', GroupPDF== null), 'true', 'false')}">
+         
+         <li>
+              
+                  <a class="pdf" target="_blank" >{!$Label.PDF}</a>
+              
+              
+              </li>
          
           <li>
               <a class="print" target="_blank" >{!$Label.print}</a>
               
           </li>
+          
           <script>
                   $(".pdf").attr('href', window.location.pathname+'/pdf');
                   $(".print").attr('href', window.location.pathname+'/print');

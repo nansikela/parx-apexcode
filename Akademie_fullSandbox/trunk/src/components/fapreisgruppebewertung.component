@@ -1,0 +1,30 @@
+<apex:component controller="FAPreisgruppebewertungController">
+  <apex:outputText rendered="{!IsBewertung}">
+  <div id="ratinghead">
+       <h2 class="rating">{!$Label.akademie_workshops_ratings}</h2>
+       
+  </div>
+  <apex:repeat value="{!ratings}" var="rating">
+      <div class="ratingText">
+          <span itemprop="name"><strong>{!If(rating.Fazit__c!= null, rating.Fazit__c, '')}</strong></span>
+          <p>{!IF(rating.Bewertungstext__c!= null, rating.Bewertungstext__c, '')}</p>
+                    <p class="author" itemprop="author">{!IF(rating.Teilnehmer__c != null, rating.Teilnehmer__r.Firstname, '')} {!IF(rating.Teilnehmer__c != null, rating.Teilnehmer__r.Lastname, '')}</p>
+      </div>
+  </apex:repeat>
+  </apex:outputText>
+  <style>
+      .author {
+        font-size: 0.8750em;
+        color: #666;
+        }
+        #ratinghead
+        {
+            height: 40px;
+            margin-top:70px;
+        }
+        .ratingText
+        {
+            margin-bottom: 20px;
+        }
+  </style>
+</apex:component>

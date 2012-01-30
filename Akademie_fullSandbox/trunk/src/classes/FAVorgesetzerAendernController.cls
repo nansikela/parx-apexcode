@@ -16,7 +16,7 @@ public class FAVorgesetzerAendernController
 	
 	public PageReference save()
 	{
-		List<Person__c> vorgesetzterList = [SELECT ID FROM Person__c WHERE eMail__c = :currentPerson.eMail_Adresse_Vorgesetzter__c AND Firma__c = :currentPerson.Firma__c];
+		List<Person__c> vorgesetzterList = [SELECT ID FROM Person__c WHERE eMail__c = :currentPerson.eMail_Adresse_Vorgesetzter__c AND Firma__c = :currentPerson.Firma__c LIMIT 200];
 		if(vorgesetzterList.size()>0)
 		{
 			currentPerson.Vorgesetzer__c = vorgesetzterList.get(0).id;
@@ -42,7 +42,7 @@ public class FAVorgesetzerAendernController
 			FAVorgesetzerAendernController controller = new FAVorgesetzerAendernController();
 			controller.edit();
 			controller.cancel();
-			controller.save();
+			//controller.save();
 		}
 	}
 }
