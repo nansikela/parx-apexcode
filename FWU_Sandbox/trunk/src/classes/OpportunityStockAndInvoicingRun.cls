@@ -1,0 +1,133 @@
+global class OpportunityStockAndInvoicingRun {
+
+	private static String[] sourceIds=new list<String>();
+	static final String oppwherecond=' (Lizenznummer__c<>\'10206\' OR medienart_id__c<>\'55\') AND Opportunity.RechnungsartVorUmwandlung__c!=0 AND Opportunity.StageNamePosition__c!=0 AND Opportunity.StageNamePosition__c!=4 AND Opportunity.StageNamePosition__c!=5 AND Opportunity.LFKZ2A__c=false AND (Opportunity.Zahlerkennzeichen__c<>\'S\' OR (Opportunity.Zahlerkennzeichen__c=\'S\' AND Opportunity.RA_Lagerabgang__c=1))';
+	// umgewandelte Opps dürfen nicht nochmals manuell fakturiert werden: AND Opportunity.RechnungsartVorUmwandlung__c!=0
+	// AND StatusPosition__c<3
+	// AND Opportunity.StageNamePosition__c!=4
+	// (Lizenznummer__c<>\'10206\' OR (((KreisListe__c=\'\' OR KreisListe__c=null) AND medienart_id__c<>\'55\') OR ((medienart_55__c<>null OR medienart_55__c<>\'\') AND MedSig1Prod__c<>\'46\' AND medienart_id__c<>\'55\'))) AND
+	// (((KreisListe__c=\'\' OR KreisListe__c=null) AND medienart_id__c<>\'55\') OR ((medienart_55__c<>null OR medienart_55__c<>\'\') AND MedSig1Prod__c<>\'46\' AND medienart_id__c<>\'55\')) AND
+	static final String oppwhereorder=' ORDER BY Opportunity.WE_Kundennummer__c';
+	static final Integer batchsize=100;
+	
+	webservice static String fak(String[] ids) {
+		String result='';
+		if (ids!=null && !ids.isEmpty()) {
+			sourceIds=ids.clone();
+			// unlock Opportunities to be sure that the will not selected twice in any batches
+			result=unlockOpportunities();
+			// if any of the opps could not be unlocked, do not run!
+			if (result=='') result=collectDataAuftraege();
+		}
+		return result;
+	}
+	
+	//webservice static String fakone(String oppid) {
+	//	String result='';
+	//	if (oppid!=null && oppid!='') {
+	//		String query='SELECT ';
+	//		query+=getOpportunityLineItemFields() + ' FROM Opportunity WHERE ' + oppwherecond + ' AND Id = \'' + oppid + '\'' + oppwhereorder;
+			//List<sObject> L = Database.query(query);
+			//OpportunityStockAndInvoicing.Run(query);
+	//	}
+	//	return result;
+	//}
+	
+	webservice static String fakall() {
+		String result='';
+		result=collectDataAuftraege();
+		return result;
+	}
+
+	private static String collectDataAuftraege() {
+		// we got oppids to get suitable opportunities
+		String query='SELECT ';
+		Id oppid;
+		// create dynamic query
+		if (getOppIdListString()!='')
+			query+=getOpportunityLineItemFields() + ' FROM OpportunityLineItem WHERE ' + oppwherecond + ' AND OpportunityId IN ' + getOppIdListString() + oppwhereorder;
+		else
+			query+=getOpportunityLineItemFields() + ' FROM OpportunityLineItem WHERE ' + oppwherecond + oppwhereorder;
+		//query='SELECT ' + getOppFields() + ' FROM Opportunity WHERE ID=\'006R0000005Cp6b\'';
+		OpportunityStockAndInvoicingBatch fak=new OpportunityStockAndInvoicingBatch(query);
+		//fak.Query=query;
+		ID batchprocessid = Database.executeBatch(fak, batchsize);
+		System.assert(batchprocessid!=null);
+		return batchprocessid;
+	}
+	
+	public static String getOpportunityLineItemFields() {
+		String fieldnames='';
+		
+		Map<String, Schema.SObjectField> M = Schema.SObjectType.OpportunityLineItem.fields.getMap();
+		
+		for (String fname: M.keySet()) {
+			if (M.get(fname).getDescribe().isAccessible()
+				) {
+				if (fieldnames=='') fieldnames+=fname;
+				else fieldnames+=', ' + fname;
+			}
+		}
+		
+		return fieldnames;
+	}
+	
+	public static String getOppIdListString() {
+		String idlist='';
+		
+		if (!sourceIds.isEmpty()) {
+			for (String sid: sourceIds) {
+				if (idlist=='') idlist+='( \'' + sid;
+				else idlist+='\', \''+ sid;
+			}
+		}
+		
+		if (idlist.length()>0) idlist+= '\' )';
+		SystemSettings.insertErrors();
+		return idlist;
+	}
+	
+	private static String unlockOpportunities() {
+		map<Id, Opportunity> opportunities=getOpportunities();
+		if (!opportunities.isEmpty()) {
+			for (Id oppid: opportunities.keySet()) {
+				if (opportunities.get(oppid).Locked__c && !opportunities.get(oppid).LFKZ2A__c)
+					opportunities.get(oppid).Locked__c=false;
+				else if (opportunities.get(oppid).Locked__c && opportunities.get(oppid).LFKZ2A__c)
+					if (opportunities.get(oppid).Zahl_der_fakturierungen__c==null || opportunities.get(oppid).Zahl_der_fakturierungen__c==0)
+						opportunities.get(oppid).Zahl_der_fakturierungen__c=1;
+				else
+					return 'Auftrag/Aufträge bereits in Faktura';
+			}
+		}
+		try {
+			update opportunities.values();
+		} catch (System.Dmlexception e) {
+			SystemSettings.logError(e.getMessage(),'DEBUG');
+			//if (SystemSettings.isDebug) throw e;
+			return 'Auftrag/Aufträge können nicht fakturiert werden, es ist ein Fehler aufgetreten. Versuchen Sie es später erneut.';
+		}
+		return '';
+	}
+	
+	private static map<id, Opportunity> getOpportunities() {
+		map<id, Opportunity> retmap = new map<id, opportunity>();
+		if (!sourceIds.isEmpty()) {
+			for (Opportunity opp: [SELECT Id, Locked__c, LFKZ2A__c FROM Opportunity WHERE 
+				Id IN :sourceids
+				AND RechnungsartVorUmwandlung__c!=0 
+				AND StageNamePosition__c!=0 
+				AND StageNamePosition__c!=4 
+				AND StageNamePosition__c!=5 
+				AND LFKZ2A__c=false 
+				AND (Zahlerkennzeichen__c<>'S' 
+				OR (Zahlerkennzeichen__c='S' 
+				AND RA_Lagerabgang__c=1))
+				]) {
+				if (!retmap.containsKey(opp.id)) retmap.put(opp.id, opp);
+			}
+		}
+		return retmap;
+	}
+	
+}

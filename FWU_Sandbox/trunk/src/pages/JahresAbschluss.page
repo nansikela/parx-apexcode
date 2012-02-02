@@ -1,0 +1,29 @@
+<apex:page sidebar="false" showHeader="false" controller="JahresAbschlussPage" id="monatsabschluss" cache="false" >
+	<style>
+		.centered {
+			text-align: center;
+			margin-top: 20px;
+			vertical-align: center;
+		}
+	</style>
+	<apex:outputPanel layout="block" id="confirmation" StyleClass="centered" rendered="{!showConfirm}">
+		Wollen Sie den Jahresabschluss für das Jahr {!currentOrLastYear} wirklich starten?
+		<apex:form id="confirmationform">
+			<apex:commandButton action="{!confirmed}" value="Ja" id="btn_yes" />
+			<apex:commandButton action="{!noaction}" value="Nein" onclick="window.close();" id="btn_no" />
+		</apex:form>
+	</apex:outputPanel>
+	<apex:outputPanel layout="block" id="running" StyleClass="centered">
+		<apex:form id="theform" >
+			<apex:actionPoller action="{!init}" rerender="pb" interval="15" rendered="{!showWait}" />
+			<apex:pageBlock id="pb">
+				<p><apex:outputText value="{!debugmsg}" rendered="{!debug}"/>
+				<apex:pageMessages id="errmsg"/>
+				</p>
+				<p><apex:outputText id="wait" rendered="{!showWait}">{!pleasewait}</apex:outputText>
+				<apex:outputText id="finish" rendered="{!showFinish}">{!finished}</apex:outputText>
+				</p>
+			</apex:pageBlock>
+		</apex:form>
+	</apex:outputPanel>
+</apex:page>
