@@ -1,0 +1,8 @@
+<apex:page standardController="Issue__c">
+<apex:pageMessages />
+  outputField Test:<br/>
+  <apex:outputField value="{!Issue__c.Body__c}"/>
+  <br/>
+  outputText Test:<br/>
+  <apex:outputText value="{!Issue__c.Body__c}" />
+</apex:page>

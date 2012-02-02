@@ -1,0 +1,39 @@
+<apex:component >
+<!-- Attribute Definitions -->
+<apex:attribute name="BorderColor" type="String" required="true" description=""></apex:attribute>
+<apex:attribute name="Width" type="String" required="true" description=""></apex:attribute>
+<apex:attribute name="Height" type="String" required="true" description=""></apex:attribute>
+<apex:attribute name="BackColor" type="String" required="true" description=""></apex:attribute>
+<apex:attribute name="BackColor" type="String" required="true" description=""></apex:attribute>
+<apex:attribute name="BorderSize" type="String" required="true" description=""></apex:attribute>
+<apex:attribute name="ImageUrl" type="String" required="false" description=""></apex:attribute>
+<apex:attribute name="Message" type="String" required="false" description=""></apex:attribute>
+<apex:attribute name="messageStyle" type="String" required="false" description="Message inline style"></apex:attribute>
+<apex:attribute name="BorderStyle" type="String" required="false" description="Message box border style: solid, outset, inset, etc"></apex:attribute>
+	
+<apex:includeScript value="{!$Resource.jsAlign}"/>
+	
+
+<div id="salesforceSource_blurybackground" style="position:absolute; left:1px; top:1px; width:100%; height:100%; text-align:center; vertical-align: middle; background-color: #dcdcdc; opacity:0.8;filter:alpha(opacity=80)">
+</div>
+<div id="salesForceSource_StatusBox" style="position:absolute;left:100px; bottom: 100px;width: {!Width}; height:{!Height}; opacity:1;filter:alpha(opacity=100)">
+<table border="{!BorderSize}" cellpadding="0" cellspacing="0" style="border-left-color: {!BorderColor};
+border-bottom-color: {!BorderColor}; width: {!Width}; border-top-color: {!BorderColor}; height:{!Height};
+border-right-color:{!BorderColor}; border-style:{!BorderStyle}; background-color:{!BackColor};">
+<tr>
+<td style="border-style:none;vertical-align:middle;text-align:center;{!messageStyle}">
+<img src="{!ImageUrl}"/>{!Message}</td>
+</tr> 
+</table>
+</div>
+	<script type="text/javascript">
+		var AgreementForm = document.getElementById("salesforceSource_blurybackground");
+		//AgreementForm.style.height = window.screen.availHeight + "px";
+		AgreementForm.style.width = window.screen.availWidth + "px";
+		
+		var ContainerElem = document.getElementById("salesForceSource_StatusBox");
+		ContainerElem.style.display = "block";
+		AlignToCenter(ContainerElem);
+
+	</script>
+</apex:component>

@@ -1,0 +1,250 @@
+<apex:page standardController="Account" showHeader="false" sidebar="false">
+<!-- Begin Default Content REMOVE THIS -->
+AD &nbsp;&nbsp;  ANDORRA<BR />
+AE &nbsp;&nbsp;  VEREINIGTE ARABISCHE EMIRATE<BR />
+AF &nbsp;&nbsp;  AFGHANISTAN<BR />
+AG &nbsp;&nbsp;  ANTIGUA UND BARBUDA<BR />
+AI &nbsp;&nbsp;  ANGUILLA<BR />
+AL &nbsp;&nbsp;  ALBANIEN<BR />
+AM &nbsp;&nbsp;  ARMENIEN<BR />
+AN &nbsp;&nbsp;  NIEDERLÄNDISCHE ANTILLEN<BR />
+AO &nbsp;&nbsp;  ANGOLA<BR />
+AQ &nbsp;&nbsp;  ANTARKTIS<BR />
+AR &nbsp;&nbsp;  ARGENTINIEN<BR />
+AS &nbsp;&nbsp;  AMERIKANISCH-SAMOA<BR />
+AT &nbsp;&nbsp;  ÖSTERREICH<BR />
+AU &nbsp;&nbsp;  AUSTRALIEN<BR />
+AW &nbsp;&nbsp;  ARUBA<BR />
+AX &nbsp;&nbsp;  ÅLAND<BR />
+AZ &nbsp;&nbsp;  ASERBAIDSCHAN<BR />
+BA &nbsp;&nbsp;  BOSNIEN UND HERZEGOWINA<BR />
+BB &nbsp;&nbsp;  BARBADOS<BR />
+BD &nbsp;&nbsp;  BANGLADESCH<BR />
+BE &nbsp;&nbsp;  BELGIEN<BR />
+BF &nbsp;&nbsp;  BURKINA FASO<BR />
+BG &nbsp;&nbsp;  BULGARIEN<BR />
+BH &nbsp;&nbsp;  BAHRAIN<BR />
+BI &nbsp;&nbsp;  BURUNDI<BR />
+BJ &nbsp;&nbsp;  BENIN<BR />
+BL &nbsp;&nbsp;  SAINT-BARTHÉLEMY<BR />
+BM &nbsp;&nbsp;  BERMUDA<BR />
+BN &nbsp;&nbsp;  BRUNEI DARUSSALAM<BR />
+BO &nbsp;&nbsp;  BOLIVIEN<BR />
+BR &nbsp;&nbsp;  BRASILIEN<BR />
+BS &nbsp;&nbsp;  BAHAMAS<BR />
+BT &nbsp;&nbsp;  BHUTAN<BR />
+BV &nbsp;&nbsp;  BOUVETINSEL<BR />
+BW &nbsp;&nbsp;  BOTSWANA<BR />
+BY &nbsp;&nbsp;  BELARUS (WEISSRUSSLAND)<BR />
+BZ &nbsp;&nbsp;  BELIZE<BR />
+CA &nbsp;&nbsp;  KANADA<BR />
+CC &nbsp;&nbsp;  KOKOSINSELN<BR />
+CD &nbsp;&nbsp;  KONGO, DEMOKRATISCHE REPUBLIK<BR />
+CF &nbsp;&nbsp;  ZENTRALAFRIKANISCHE REPUBLIK<BR />
+CG &nbsp;&nbsp;  REPUBLIK KONGO<BR />
+CH &nbsp;&nbsp;  SCHWEIZ<BR />
+CI &nbsp;&nbsp;  CÔTE D´IVOIRE<BR />
+CK &nbsp;&nbsp;  COOKINSELN<BR />
+CL &nbsp;&nbsp;  CHILE<BR />
+CM &nbsp;&nbsp;  KAMERUN<BR />
+CN &nbsp;&nbsp;  CHINA, VOLKSREPUBLIK<BR />
+CO &nbsp;&nbsp;  KOLUMBIEN<BR />
+CR &nbsp;&nbsp;  COSTA RICA<BR />
+CU &nbsp;&nbsp;  KUBA<BR />
+CV &nbsp;&nbsp;  KAP VERDE<BR />
+CX &nbsp;&nbsp;  WEIHNACHTSINSEL<BR />
+CY &nbsp;&nbsp;  ZYPERN<BR />
+CZ &nbsp;&nbsp;  TSCHECHISCHE REPUBLIK<BR />
+DE &nbsp;&nbsp;  DEUTSCHLAND<BR />
+DJ &nbsp;&nbsp;  DSCHIBUTI<BR />
+DK &nbsp;&nbsp;  DÄNEMARK<BR />
+DM &nbsp;&nbsp;  DOMINICA<BR />
+DO &nbsp;&nbsp;  DOMINIKANISCHE REPUBLIK<BR />
+DZ &nbsp;&nbsp;  ALGERIEN<BR />
+EC &nbsp;&nbsp;  ECUADOR<BR />
+EE &nbsp;&nbsp;  ESTLAND<BR />
+EG &nbsp;&nbsp;  ÄGYPTEN<BR />
+EH &nbsp;&nbsp;  WESTSAHARA<BR />
+ER &nbsp;&nbsp;  ERITREA<BR />
+ES &nbsp;&nbsp;  SPANIEN<BR />
+ET &nbsp;&nbsp;  ÄTHIOPIEN<BR />
+FI &nbsp;&nbsp;  FINNLAND<BR />
+FJ &nbsp;&nbsp;  FIDSCHI<BR />
+FK &nbsp;&nbsp;  FALKLANDINSELN<BR />
+FM &nbsp;&nbsp;  MIKRONESIEN<BR />
+FO &nbsp;&nbsp;  FÄRÖER<BR />
+FR &nbsp;&nbsp;  FRANKREICH<BR />
+GA &nbsp;&nbsp;  GABUN<BR />
+GB &nbsp;&nbsp;  VEREINIGTES KÖNIGREICH GROSSBRITANNIEN UND NORDIRLAND<BR />
+GD &nbsp;&nbsp;  GRENADA<BR />
+GE &nbsp;&nbsp;  GEORGIEN<BR />
+GF &nbsp;&nbsp;  FRANZÖSISCH-GUAYANA<BR />
+GG &nbsp;&nbsp;  GUERNSEY<BR />
+GH &nbsp;&nbsp;  GHANA<BR />
+GI &nbsp;&nbsp;  GIBRALTAR<BR />
+GL &nbsp;&nbsp;  GRÖNLAND<BR />
+GM &nbsp;&nbsp;  GAMBIA<BR />
+GN &nbsp;&nbsp;  GUINEA<BR />
+GP &nbsp;&nbsp;  GUADELOUPE<BR />
+GQ &nbsp;&nbsp;  ÄQUATORIALGUINEA<BR />
+GR &nbsp;&nbsp;  GRIECHENLAND<BR />
+GS &nbsp;&nbsp;  SÜDGEORGIEN UND DIE SÜDLICHEN SANDWICHINSELN<BR />
+GT &nbsp;&nbsp;  GUATEMALA<BR />
+GU &nbsp;&nbsp;  GUAM<BR />
+GW &nbsp;&nbsp;  GUINEA-BISSAU<BR />
+GY &nbsp;&nbsp;  GUYANA<BR />
+HK &nbsp;&nbsp;  HONGKONG<BR />
+HM &nbsp;&nbsp;  HEARD UND MCDONALDINSELN<BR />
+HN &nbsp;&nbsp;  HONDURAS<BR />
+HR &nbsp;&nbsp;  KROATIEN<BR />
+HT &nbsp;&nbsp;  HAITI<BR />
+HU &nbsp;&nbsp;  UNGARN<BR />
+ID &nbsp;&nbsp;  INDONESIEN<BR />
+IE &nbsp;&nbsp;  IRLAND<BR />
+IL &nbsp;&nbsp;  ISRAEL<BR />
+IM &nbsp;&nbsp;  INSEL MAN<BR />
+IN &nbsp;&nbsp;  INDIEN<BR />
+IO &nbsp;&nbsp;  BRITISCHES TERRITORIUM IM INDISCHEN OZEAN<BR />
+IQ &nbsp;&nbsp;  IRAK<BR />
+IR &nbsp;&nbsp;  IRAN, ISLAMISCHE REPUBLIK<BR />
+IS &nbsp;&nbsp;  ISLAND<BR />
+IT &nbsp;&nbsp;  ITALIEN<BR />
+JE &nbsp;&nbsp;  JERSEY<BR />
+JM &nbsp;&nbsp;  JAMAIKA<BR />
+JO &nbsp;&nbsp;  JORDANIEN<BR />
+JP &nbsp;&nbsp;  JAPAN<BR />
+KE &nbsp;&nbsp;  KENIA<BR />
+KG &nbsp;&nbsp;  KIRGISISTAN<BR />
+KH &nbsp;&nbsp;  KAMBODSCHA<BR />
+KI &nbsp;&nbsp;  KIRIBATI<BR />
+KM &nbsp;&nbsp;  KOMOREN<BR />
+KN &nbsp;&nbsp;  ST. KITTS UND NEVIS<BR />
+KP &nbsp;&nbsp;  KOREA, DEMOKRATISCHE VOLKSREPUBLIK<BR />
+KR &nbsp;&nbsp;  KOREA, REPUBLIK<BR />
+KW &nbsp;&nbsp;  KUWAIT<BR />
+KY &nbsp;&nbsp;  KAIMANINSELN<BR />
+KZ &nbsp;&nbsp;  KASACHSTAN<BR />
+LA &nbsp;&nbsp;  LAOS, DEMOKRATISCHE VOLKSREPUBLIK<BR />
+LB &nbsp;&nbsp;  LIBANON<BR />
+LC &nbsp;&nbsp;  ST. LUCIA<BR />
+LI &nbsp;&nbsp;  LIECHTENSTEIN<BR />
+LK &nbsp;&nbsp;  SRI LANKA<BR />
+LR &nbsp;&nbsp;  LIBERIA<BR />
+LS &nbsp;&nbsp;  LESOTHO<BR />
+LT &nbsp;&nbsp;  LITAUEN<BR />
+LU &nbsp;&nbsp;  LUXEMBURG<BR />
+LV &nbsp;&nbsp;  LETTLAND<BR />
+LY &nbsp;&nbsp;  LIBYSCH-ARABISCHE DSCHAMAHIRIJA (LIBYEN)<BR />
+MA &nbsp;&nbsp;  MAROKKO<BR />
+MC &nbsp;&nbsp;  MONACO<BR />
+MD &nbsp;&nbsp;  MOLDAWIEN (REPUBLIK MOLDAU)<BR />
+ME &nbsp;&nbsp;  MONTENEGRO<BR />
+MF &nbsp;&nbsp;  SAINT-MARTIN<BR />
+MG &nbsp;&nbsp;  MADAGASKAR<BR />
+MH &nbsp;&nbsp;  MARSHALLINSELN<BR />
+MK &nbsp;&nbsp;  MAZEDONIEN, EHEM. JUGOSLAWISCHE REPUBLIK<BR />
+ML &nbsp;&nbsp;  MALI<BR />
+MM &nbsp;&nbsp;  MYANMAR (BURMA)<BR />
+MN &nbsp;&nbsp;  MONGOLEI<BR />
+MO &nbsp;&nbsp;  MACAO<BR />
+MP &nbsp;&nbsp;  NÖRDLICHE MARIANEN<BR />
+MQ &nbsp;&nbsp;  MARTINIQUE<BR />
+MR &nbsp;&nbsp;  MAURETANIEN<BR />
+MS &nbsp;&nbsp;  MONTSERRAT<BR />
+MT &nbsp;&nbsp;  MALTA<BR />
+MU &nbsp;&nbsp;  MAURITIUS<BR />
+MV &nbsp;&nbsp;  MALEDIVEN<BR />
+MW &nbsp;&nbsp;  MALAWI<BR />
+MX &nbsp;&nbsp;  MEXIKO<BR />
+MY &nbsp;&nbsp;  MALAYSIA<BR />
+MZ &nbsp;&nbsp;  MOSAMBIK<BR />
+NA &nbsp;&nbsp;  NAMIBIA<BR />
+NC &nbsp;&nbsp;  NEUKALEDONIEN<BR />
+NE &nbsp;&nbsp;  NIGER<BR />
+NF &nbsp;&nbsp;  NORFOLKINSEL<BR />
+NG &nbsp;&nbsp;  NIGERIA<BR />
+NI &nbsp;&nbsp;  NICARAGUA<BR />
+NL &nbsp;&nbsp;  NIEDERLANDE<BR />
+NO &nbsp;&nbsp;  NORWEGEN<BR />
+NP &nbsp;&nbsp;  NEPAL<BR />
+NR &nbsp;&nbsp;  NAURU<BR />
+NU &nbsp;&nbsp;  NIUE<BR />
+NZ &nbsp;&nbsp;  NEUSEELAND<BR />
+OM &nbsp;&nbsp;  OMAN<BR />
+PA &nbsp;&nbsp;  PANAMA<BR />
+PE &nbsp;&nbsp;  PERU<BR />
+PF &nbsp;&nbsp;  FRANZÖSISCH-POLYNESIEN<BR />
+PG &nbsp;&nbsp;  PAPUA-NEUGUINEA<BR />
+PH &nbsp;&nbsp;  PHILIPPINEN<BR />
+PK &nbsp;&nbsp;  PAKISTAN<BR />
+PL &nbsp;&nbsp;  POLEN<BR />
+PM &nbsp;&nbsp;  SAINT-PIERRE UND MIQUELON<BR />
+PN &nbsp;&nbsp;  PITCAIRNINSELN<BR />
+PR &nbsp;&nbsp;  PUERTO RICO<BR />
+PS &nbsp;&nbsp;  PALÄSTINENSISCHE AUTONOMIEGEBIETE<BR />
+PT &nbsp;&nbsp;  PORTUGAL<BR />
+PW &nbsp;&nbsp;  PALAU<BR />
+PY &nbsp;&nbsp;  PARAGUAY<BR />
+QA &nbsp;&nbsp;  KATAR<BR />
+RE &nbsp;&nbsp;  RÉUNION<BR />
+RO &nbsp;&nbsp;  RUMÄNIEN<BR />
+RS &nbsp;&nbsp;  SERBIEN<BR />
+RU &nbsp;&nbsp;  RUSSISCHE FÖDERATION<BR />
+RW &nbsp;&nbsp;  RUANDA<BR />
+SA &nbsp;&nbsp;  SAUDI-ARABIEN<BR />
+SB &nbsp;&nbsp;  SALOMONEN<BR />
+SC &nbsp;&nbsp;  SEYCHELLEN<BR />
+SD &nbsp;&nbsp;  SUDAN<BR />
+SE &nbsp;&nbsp;  SCHWEDEN<BR />
+SG &nbsp;&nbsp;  SINGAPUR<BR />
+SH &nbsp;&nbsp;  ST. HELENA<BR />
+SI &nbsp;&nbsp;  SLOWENIEN<BR />
+SJ &nbsp;&nbsp;  SVALBARD UND JAN MAYEN<BR />
+SK &nbsp;&nbsp;  SLOWAKEI<BR />
+SL &nbsp;&nbsp;  SIERRA LEONE<BR />
+SM &nbsp;&nbsp;  SAN MARINO<BR />
+SN &nbsp;&nbsp;  SENEGAL<BR />
+SO &nbsp;&nbsp;  SOMALIA<BR />
+SR &nbsp;&nbsp;  SURINAME<BR />
+ST &nbsp;&nbsp;  SÃO TOMÉ UND PRÍNCIPE<BR />
+SV &nbsp;&nbsp;  EL SALVADOR<BR />
+SY &nbsp;&nbsp;  SYRIEN, ARABISCHE REPUBLIK<BR />
+SZ &nbsp;&nbsp;  SWASILAND<BR />
+TC &nbsp;&nbsp;  TURKS- UND CAICOSINSELN<BR />
+TD &nbsp;&nbsp;  TSCHAD<BR />
+TF &nbsp;&nbsp;  FRANZÖSISCHE SÜD- UND ANTARKTISGEBIETE<BR />
+TG &nbsp;&nbsp;  TOGO<BR />
+TH &nbsp;&nbsp;  THAILAND<BR />
+TJ &nbsp;&nbsp;  TADSCHIKISTAN<BR />
+TK &nbsp;&nbsp;  TOKELAU<BR />
+TL &nbsp;&nbsp;  OSTTIMOR (TIMOR-LESTE)<BR />
+TM &nbsp;&nbsp;  TURKMENISTAN<BR />
+TN &nbsp;&nbsp;  TUNESIEN<BR />
+TO &nbsp;&nbsp;  TONGA<BR />
+TR &nbsp;&nbsp;  TÜRKEI<BR />
+TT &nbsp;&nbsp;  TRINIDAD UND TOBAGO<BR />
+TV &nbsp;&nbsp;  TUVALU<BR />
+TW &nbsp;&nbsp;  REPUBLIK CHINA (TAIWAN)<BR />
+TZ &nbsp;&nbsp;  TANSANIA, VEREINIGTE REPUBLIK<BR />
+UA &nbsp;&nbsp;  UKRAINE<BR />
+UG &nbsp;&nbsp;  UGANDA<BR />
+UM &nbsp;&nbsp;  UNITED STATES MINOR OUTLYING ISLANDS<BR />
+US &nbsp;&nbsp;  VEREINIGTE STAATEN VON AMERIKA<BR />
+UY &nbsp;&nbsp;  URUGUAY<BR />
+UZ &nbsp;&nbsp;  USBEKISTAN<BR />
+VA &nbsp;&nbsp;  VATIKANSTADT<BR />
+VC &nbsp;&nbsp;  ST. VINCENT UND DIE GRENADINEN<BR />
+VE &nbsp;&nbsp;  VENEZUELA<BR />
+VG &nbsp;&nbsp;  BRITISCHE JUNGFERNINSELN<BR />
+VI &nbsp;&nbsp;  AMERIKANISCHE JUNGFERNINSELN<BR />
+VN &nbsp;&nbsp;  VIETNAM<BR />
+VU &nbsp;&nbsp;  VANUATU<BR />
+WF &nbsp;&nbsp;  WALLIS UND FUTUNA<BR />
+WS &nbsp;&nbsp;  SAMOA<BR />
+YE &nbsp;&nbsp;  JEMEN<BR />
+YT &nbsp;&nbsp;  MAYOTTE<BR />
+ZA &nbsp;&nbsp;  SÜDAFRIKA<BR />
+ZM &nbsp;&nbsp;  SAMBIA<BR />
+ZW &nbsp;&nbsp;  SIMBABWE<BR />
+<!-- End Default Content REMOVE THIS -->
+</apex:page>

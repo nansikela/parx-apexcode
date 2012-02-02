@@ -1,0 +1,132 @@
+<apex:page standardController="Opportunity" extensions="controllerOLI" action="{!initCheck}">
+<script>
+var timerId =0;								
+function tojs() {
+    clearTimeout(timerId);
+    timerId = setTimeout('redirect()',10000);
+    //set to 10 seconds for testing
+}
+
+function redirect() {
+    location.href = '../apex/FormTimeOut';
+}
+</script>
+<apex:sectionHeader title="Schnellerfassung"></apex:sectionHeader>
+<apex:form >
+
+<apex:outputPanel rendered="{!showfirstpage}" id="firstpage">
+<apex:pageBlock title="" id="pageBlock" >
+  <!-- This block will show the search textbox and the Search button -->
+<!--  <apex:pageBlockButtons location="top">-->
+<!--    <apex:inputText value="{!keywords}" style="height:15px;"></apex:inputText>-->
+<!--    <apex:commandButton value="Search" action="{!ViewData}" id="theButton" rerender="pageBlock" status="status"></apex:commandButton>-->
+<!--  </apex:pageBlockButtons> -->
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!saveIt}" value="Speichern"  /> 
+                <apex:commandButton action="{!saveContinue}" value="Speichern & Weiter" />
+                <apex:outputPanel onclick="checkLine()" styleClass="btn">Prüfung</apex:outputPanel> 
+                <apex:outputPanel onclick="updateLine()" styleClass="btn">+10 Zeilen</apex:outputPanel>
+                <apex:commandButton action="{!cancel}" value="Abbrechen"  /> 
+            </apex:pageBlockButtons>
+  <!-- To show page level messages -->
+  <apex:pageMessages ></apex:pageMessages>  
+
+  <!-- The below tag will provide a javascript method which when is called in turn will call a controller's method -->
+<!--    <apex:actionFunction action="{!checkLine}" name="check" rerender="pageBlock" status="status2"></apex:actionFunction>-->
+  <apex:actionFunction action="{!updateLine}" name="updateLine" rerender="pageBlock" status="status"></apex:actionFunction>
+  <apex:actionFunction action="{!checkLine}" name="checkLine" rerender="pageBlock" status="status2"></apex:actionFunction>
+
+  
+  <!-- This table contains columns which have inputfield components -->
+ 
+
+
+		<apex:dataTable id="linkList" value="{!Terms}" var="oli" width="80%"  columnsWidth="10%,10%,10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%" cellspacing="5" >
+			<apex:facet name="header"></apex:facet>
+			<apex:column ></apex:column> <apex:column > </apex:column>
+			<apex:column style="text-align:right">
+				<apex:facet name="header"></apex:facet>
+				<apex:commandLink action="{!Del}" value="Entf" rendered="{!oli.displayOutput}"> 
+					<apex:param name="oliId" value="{!oli.Id}"/>
+				</apex:commandLink>
+			</apex:column>
+			<apex:column style="vertical-align:top; text-align:center;">
+				<apex:facet name="header"><div align="center">Artikel</div></apex:facet>
+				<apex:inputText value="{!oli.Name}" rendered="{!oli.displayInput}" style="width:80px;"/> 
+				<!--				<apex:outputText value="{!oli.Name}" rendered="{!oli.displayOutput}" style="width:80px;" />-->
+				<apex:outputLink value="../{!oli.ArtikelId}" target="_blank" rendered="{!oli.displayOutput}">{!oli.Name}</apex:outputLink>
+				
+				<br/>
+				<apex:outputText style="color:red;" value="{!oli.NameError}" />
+                  </apex:column>  
+                  <apex:column style="vertical-align:top; text-align:center;">
+				<apex:facet name="header"><div align="center">Lizenz</div></apex:facet>
+				<apex:inputText value="{!oli.Lizenznummer}" style="width:80px;"/>  <br/>
+				<apex:outputText style="color:red;" value="{!oli.NameError}" />	
+			</apex:column>
+			<apex:column style="vertical-align:top; text-align:center;">
+				<apex:facet name="header"><div align="center">Menge</div></apex:facet>
+				<apex:inputText value="{!oli.Quantity}" style="width:60px;"/>  <br/>
+				<apex:outputText style="color:red;" value="{!oli.QuantityError}" />	
+			</apex:column>
+			<apex:column style="vertical-align:top; text-align:center;" rendered="{!displayKopienRabatt}">
+				<apex:facet name="header"><div align="center">Einzelpreis brutto</div></apex:facet>
+				<apex:inputText value="{!oli.UnitPrice}" style="width:80px;" />
+<!--				<apex:outputText value="{!oli.UnitPrice}" style="width:80px;" rendered="{!oli.Kopien_Rabatt}"/>  <br/>-->
+				<apex:outputText style="color:red;" value="{!oli.UnitPriceError}" />	
+			</apex:column>
+            <apex:column style="vertical-align:top; text-align:center;" rendered="{!displayKopienRabatt}">
+				<apex:facet name="header"><div align="center">Std. Preis -50%</div></apex:facet>
+				<apex:inputCheckbox value="{!oli.Kopien_Rabatt}" style="width:60px;"/> 	
+			</apex:column>
+			<apex:column style="vertical-align:top; text-align:center;">
+				<apex:facet name="header"><div align="center">Rabatt (in %)</div></apex:facet>
+				<apex:inputText value="{!oli.Rabatt}" style="width:60px;"/>   <br/>
+				<apex:outputText style="color:red;" value="{!oli.RabattError}" />	
+			</apex:column>
+			<apex:column style="vertical-align:top; text-align:center;" rendered="{!NOT(displayKopienRabatt)}">
+				<apex:facet name="header"><div align="center">Anzahl Schulen</div></apex:facet>
+				<apex:inputText value="{!oli.Anzahl_Schulen}" style="width:60px;"/>  <br/>
+				<apex:outputText style="color:red;" value="{!oli.Anzahl_SchulenError}" />	
+			</apex:column>
+			<apex:column style="vertical-align:top; text-align:center;"> 
+				<apex:facet name="header"><div align="center">Titel</div></apex:facet>
+				<apex:outputText value="{!oli.Titel}" /> 
+                  </apex:column>
+			<apex:column ></apex:column>
+			<apex:column ></apex:column>
+
+		</apex:dataTable>
+		<div style="text-align:center">
+			<apex:outputText value="{!Amount}"  style="width:250px;font-size:12pt;font-weight:bold;"/> 
+		</div>
+	</apex:pageBlock> 
+
+	
+<!--	<apex:actionStatus id="status" startText="Adding 10 lines..."/>-->
+</apex:outputPanel>
+<apex:outputPanel rendered="{!showsecondpage}" id="secondpage" >
+	    
+	    <apex:pageBlock title="" id="pageBlock2">
+	       <apex:pageBlockButtons location="both">
+                <apex:commandButton action="{!cancel}" value="Zurück zum Auftrag"  /> 
+            </apex:pageBlockButtons>
+	    
+	<h1>{!$Label.ChooseLicence}</h1>
+		</apex:pageBlock> 
+</apex:outputPanel>	
+	<apex:actionStatus id="status">
+		<apex:facet name="start">
+			<c:enhancedActionStatus BackColor="#EEECD1" borderColor="#000000" borderstyle="solid" borderSize="1" height="70px" width="70px" ImageUrl="{!$Resource.AjaxAnimation}" Message="" messageStyle="color:black;font-size:11pt;font-weight:bold;"/>	
+		</apex:facet>
+	</apex:actionStatus>
+	
+	<apex:actionStatus id="status2">
+		<apex:facet name="start">
+			<c:enhancedActionStatus2 BackColor="#EEECD1" borderColor="#000000" borderstyle="solid" borderSize="1" height="70px" width="70px" ImageUrl="{!$Resource.AjaxAnimation}" Message="" messageStyle="color:black;font-size:11pt;font-weight:bold;"/>	
+		</apex:facet>
+	</apex:actionStatus>
+	
+<!--	<apex:actionStatus id="status2" startText="Checking the datas..."/>-->
+</apex:form>
+</apex:page>
