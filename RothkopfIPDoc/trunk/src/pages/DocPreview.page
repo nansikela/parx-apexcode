@@ -1,0 +1,118 @@
+<apex:page showHeader="false" sidebar="false" controller="DocPreview" id="pageDoc">
+
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"/>
+    <link rel="stylesheet" href="/sCSS/24.0/sprites/1330620696000/Theme3/default/gc/chatterCore.css"/>
+    
+    <script>
+        function execute(file, fileName, fileType, DocumentId) {
+            $("#myDiv").show();
+            if(fileType == 'PDF') {
+                $("#PDFPlugin").show();
+                $("#EmbeddedDocDiv").hide();
+                $("#SigningLink").show();
+
+                sforce.connection.sessionId = '{!$Api.Session_ID}';
+                //select name, id, body from document where Id ='015d0000000bNVh'
+                sforce.connection.query("Select id, VersionData From ContentVersion where Id ='" + file + "'",  {
+                      onSuccess : function(result, doc_ta) {
+                           var records = result.getArray("records");
+                           render(records[0].VersionData );
+                      },
+                      onFailure : function(error, doc_ta) {
+                           alert("Oops something went wrong: " + error);
+                      }
+                }); 
+                
+            }
+            else {
+                $("#PDFPlugin").hide();
+                $("#EmbeddedDocDiv").show();
+                $("#SigningLink").hide();
+            }
+            
+            $("#EmailLinkCurrentDoc").show();
+                
+            $('#SigningLink').attr('onclick', 'openSigningWindow(\'' + file + '\',\'' + DocumentId + '\');');
+            $('#EmailLinkCurrentDoc').attr('onclick', 'sendEmailCurrentDoc(\'' + file + '\');');
+            $('#EmbeddedDoc').attr('flashvars', 'shepherd_prefix=/sfc/servlet.shepherd&v='+file+'&mode=chatterfilepreview&in_tests=false');
+            $('#spanEmbeddedDoc').html( fileName );
+            ct = $("#EmbeddedDocDiv").detach();
+            ct.appendTo("#myDiv");
+        }
+        
+        function openSigningWindow(file, DocumentId) {
+            var win = window.open("/apex/SigningDoc?DocId=" + file + "&DocumentId=" + DocumentId,"Signing","menubar=1,resizable=1,width=950,height=850, scrollb");
+        }
+        
+        function fixImg(file) {
+              $('.' + file).hide();
+        }
+        
+        function sendEmail() {
+            var records = '';
+            $(".checkbox").each( 
+                function() { 
+                    if($(this).attr('checked')) {
+                        records += $(this).attr('id') + ',';
+                    }
+                } 
+            );
+            window.open("/apex/SendEmail?Records="+records, "Emailing", "width=800,height=700,resizable=yes");
+        }
+        
+        function sendEmailCurrentDoc(records) {
+            window.open("/apex/SendEmail?Records="+records, "Emailing", "width=800,height=700,resizable=yes");
+        }
+    </script>
+    <div style="float:left;width:200px;height:900px;margin-right:20px;top: 40px;position: relative;">
+    </div>
+    <div style="float:left;width:200px;text-align:center;height:900px;overflow:auto;margin-right:20px;top: 40px;position: fixed;" class="feedcontainer cxfeedcontainer actionsOnHoverEnabled" id="leftDiv">
+        <apex:repeat value="{!Files}" var="file">
+    
+            <input type="checkbox" id="{!file}" class="{!file} checkbox"/>
+            <a href="javascript:void(0)" onclick="execute('{!file}', '{!file.Title}', '{!file.FileType}', '{!file.ContentDocumentId}');" class="contentActionLink {!file}" >
+                <span class="contentTitleLink" title="{!file.title}">
+                    {!file.title}
+                </span>
+            </a>
+            <a href="javascript:void(0)" onclick="execute('{!file}', '{!file.Title}', '{!file.FileType}', '{!file.ContentDocumentId}');" class="contentThumbnail-a {!file}" onfocus="null" onmouseover="null" style="width: 69px; height: 99px; margin-left: auto; margin-right: auto;">
+                <img  onerror="fixImg('{!file}')" src="/sfc/servlet.shepherd/version/renditionDownload?rendition=THUMB120BY90&versionId={!file}&operationContext=CHATTER" alt="Click to preview" class="contentThumbnail" title="Click to preview"/>
+                <div class="previewHover" title="Click to preview" style="width: 64px; height: 90px; position: relative; left: 0px; top: -95px; display: none; "></div>
+            </a>
+            <br/>
+        </apex:repeat>
+    </div>
+    <div id="myDiv" style="float:left;display:none">
+        <div id="EmbeddedDocDiv" style="display:none;text-align: center;width: 800px;">
+            <span id="spanEmbeddedDoc" class="contentTitleLink contentActionLink">
+            </span>
+            <br/>
+            <embed id="EmbeddedDoc" src="/_swf/121310/sfc/flex/DocViewer.swf" flashvars="shepherd_prefix=/sfc/servlet.shepherd&v={!Files[0]}&mode=chatterfilepreview&in_tests=false" width="500px" height="600px" align="middle"  quality="high" bgcolor="#f3f3f3" name="renditionLarge" allowscriptaccess="sameDomain" allowfullscreen="true" pluginspage="http://www.adobe.com/go/getflashplayer" wmode="opaque" type="application/x-shockwave-flash" />
+        </div>
+        <div id="PDFPlugin">
+            <c:PdfJsPlugin />
+        </div>
+    </div>
+    <div style="margin-top: 100px;font-size:18px;margin-left: 1100px;position: fixed;">
+    
+            <a href="javascript:void(0)" id="SigningLink" class="contentActionLink" style="display:none;">
+                <span class="contentTitleLink" title="Sign the Document">
+                    Sign the document
+                </span>
+            </a>
+            <br/>
+              <!--   myId:{!Files[0]} -->
+            <a href="javascript:void(0)" id="EmailLink" class="contentActionLink" onclick="sendEmail();">
+                <span class="contentTitleLink" title="Send as Email">
+                    Send selected documents as Email
+                </span>
+            </a>
+            <br/>
+            <a href="javascript:void(0)" id="EmailLinkCurrentDoc" class="contentActionLink" style="display:none;">
+                <span class="contentTitleLink" title="Send as Email">
+                    Send current document as Email
+                </span>
+            </a>
+    </div>
+
+</apex:page>

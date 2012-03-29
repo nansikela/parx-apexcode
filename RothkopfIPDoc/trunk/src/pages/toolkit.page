@@ -1,0 +1,42 @@
+<apex:page SHOwHeader="FALSE" Sidebar="FALSE">
+
+<head>
+<script src="../../js/dojo/0.3.1/dojo.js" type="text/javascript"></script>
+<script src="{!$Resource.connectionjs}" type="text/javascript"></script>
+
+<script>
+function setup() {
+var document_ta = document.getElementById("document-ta");
+sforce.connection.sessionId = '{!$Api.Session_ID}';
+sforce.connection.query("select name, id, body from document limit 1",
+{onSuccess : querySuccess,
+onFailure : function(error, doc_ta) {
+doc_ta.value = "Oops something went wrong: " + error;
+},
+source: document_ta});
+}
+function querySuccess(result, doc_ta) {
+var records = result.getArray("records");
+if (records.length == 1) {
+/*dojo.io.bind({
+url: "/servlet/servlet.FileDownload?file=" + records[0].Id,
+load: loadDocument});*/
+ //   var body = records[0].Body;
+    var body = sforce.Base64Binary.prototype.decode(records[0].Body);
+     document.getElementById("document-ta").innerHTML = body;
+} else {
+doc_ta.value = "no records found";
+}
+}
+function loadDocument(type, data, event) {
+var document_ta = document.getElementById("document-ta");
+document_ta.value = data;
+alert
+}
+</script>
+</head>
+<body onload="setup()">
+<textarea id="document-ta" cols="80" rows="20">
+</textarea>
+</body>
+</apex:page>
