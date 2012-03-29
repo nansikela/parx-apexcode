@@ -1,0 +1,208 @@
+<apex:page controller="SendEmailController" showHeader="false" sidebar="false" id="page">
+
+<script>
+        
+    if('{!AlertSuccessErrorAfterSend}' != null && '{!AlertSuccessErrorAfterSend}' != "") {
+        alert('{!AlertSuccessErrorAfterSend}');
+        self.close();
+    }
+            
+    function trim(str) {
+        return str.replace(/^\s*([\S\s]*?)\s*$/, '$1');
+    }
+     
+    function copy2BodyIframe(text) {
+        var iframeDoc = document.getElementById("page:form:PBEdit:body_frame").contentDocument.getElementById("page:form:PBEdit:body_rta_body");
+        iframeDoc.innerHTML = text;
+    }
+    
+    function check() {
+        var filter = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        var filterSpecial = /^\{\'.*\'\,\'.*\'\}$/;
+        var i=0; 
+        
+        //email TO.
+        var email = document.getElementById("page:form:PBEdit:emailTo").value;
+        var test = email.split(';');    
+        for(i=0; i< test.length; i++ ) {
+            testIt = trim(test[i]);
+            if (!filter.test(testIt) && !filterSpecial.test(testIt)) {
+                alert("Please provide a valid 'To' email address");
+                return false;
+            }
+        }
+        
+        //email CC.
+        email = document.getElementById("page:form:PBEdit:emailCC").value;
+        test = email.split(';');    
+        for(i=0; i< test.length; i++ ) {
+            testIt = trim(test[i]);
+            if (testIt != null && testIt != "" && !filter.test(testIt) && !filterSpecial.test(testIt)) {
+                alert("Please provide a valid 'CC' email address");
+                return false;
+            }
+        }
+        
+        //email BCC.
+        email = document.getElementById("page:form:PBEdit:emailBCC").value;
+        test = email.split(';');    
+        for(i=0; i< test.length; i++ ) {
+            testIt = trim(test[i]);
+            if (testIt != null && testIt != "" && !filter.test(testIt) && !filterSpecial.test(testIt)) {
+                alert("Please provide a valid 'BCC' email address");
+                return false;
+            }
+        }
+        
+        
+        var subject = document.getElementById("page:form:PBEdit:subject").value;
+        subject = trim(subject);
+        if(subject == null || subject == "") {
+            alert("Please provide a subject");
+            return false;
+        }
+            
+        return true;
+    }
+    function pickupValue(additionalToValue, ccValue, bccValue) {
+        var delim = ";";
+        if(additionalToValue != '') {
+            if (document.getElementById('page:form:PBEdit:emailTo').value != '') {
+                document.getElementById('page:form:PBEdit:emailTo').value += delim;
+            }
+            document.getElementById('page:form:PBEdit:emailTo').value += additionalToValue;
+        }
+        if(ccValue != '') {
+            if (document.getElementById('page:form:PBEdit:emailCC').value != '') {
+                document.getElementById('page:form:PBEdit:emailCC').value += delim;
+            }
+            document.getElementById('page:form:PBEdit:emailCC').value += ccValue;
+        } 
+        if(bccValue != '') {
+            if (document.getElementById('page:form:PBEdit:emailBCC').value != '') {
+                document.getElementById('page:form:PBEdit:emailBCC').value += delim;
+            }
+            document.getElementById('page:form:PBEdit:emailBCC').value += bccValue;
+        }
+        closePopup();
+    }
+</script>
+
+
+ 
+    <apex:form id="form"> 
+        <apex:pageblock id="PBEdit" Title="Email">
+            <apex:outputText style="font-weight:bold;" value="Please seperate the different email Addresses with a ';'"/>   
+            
+            <table class="detailList" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td >
+                            <a href="javascript: openPopup(%27/apex/EmailLookup%27, %27CCBCCLookup%27, 420, 550, %27width=420,height=550,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no%27, true);" onclick="javascript: setLastMousePosition(event);" title="To (New Window)">To:</a>
+                        </td>
+                        <td  colspan="3">
+                            <apex:inputTextarea value="{!EmailTo}" id="emailTo" rows="2" style="width:550px;float:left;"/>
+<!--                            <textarea cols="65" id="p24" maxlength="2000" name="p24" rows="2" title="To" type="text" wrap="soft"></textarea>&nbsp;-->
+                            <a href="javascript:%20openPopup%28%27%2Fapex%2FEmailLookup%27%2C%20%27CCBCCLookup%27%2C%20420%2C%20490%2C%20%27width%3D420%2Cheight%3D550%2Ctoolbar%3Dno%2Cstatus%3Dno%2Cdirectories%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollable%3Dno%27%2C%20true%29%3B" id="p24_lkwgt" onclick="setLastMousePosition(event)" title="To Lookup (New Window)">
+                                <img src="/s.gif" alt="To Lookup (New Window)" class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" title="To Lookup (New Window)"/>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="javascript: openPopup(%27/apex/EmailLookup%27, %27CCBCCLookup%27, 420, 550, %27width=420,height=550,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no%27, true);" onclick="javascript: setLastMousePosition(event);" title="CC (New Window)">CC:</a>
+                        </td>
+                        <td>
+                            <apex:inputTextarea value="{!EmailCC}" id="emailCC" rows="2" style="width:550px;float:left;"/>
+<!--                            <textarea cols="65" id="p4" maxlength="2000" name="p4" rows="2" title="CC" type="text" wrap="soft"></textarea>&nbsp;-->
+                            <a href="javascript:%20openPopup%28%27%2Fapex%2FEmailLookup%27%2C%20%27CCBCCLookup%27%2C%20420%2C%20490%2C%20%27width%3D420%2Cheight%3D550%2Ctoolbar%3Dno%2Cstatus%3Dno%2Cdirectories%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollable%3Dno%27%2C%20true%29%3B" id="p4_lkwgt" onclick="setLastMousePosition(event)" title="CC Lookup (New Window)">
+                                <img src="/s.gif" alt="CC Lookup (New Window)" class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" title="CC Lookup (New Window)"/>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="javascript: openPopup(%27/apex/EmailLookup%27, %27CCBCCLookup%27, 420, 550, %27width=420,height=550,toolbar=no,status=no,directories=no,menubar=no,resizable=yes,scrollable=no%27, true);" onclick="javascript: setLastMousePosition(event);" title="BCC (New Window)">BCC:</a>
+                        </td>
+                        <td>
+                            <apex:inputTextarea value="{!EmailBCC}" id="emailBCC" rows="2" style="width:550px;float:left;"/>
+<!--                            <textarea cols="65" id="p5" maxlength="2000" name="p5" rows="2" title="BCC" type="text" wrap="soft">salesforce2dropbox@parxdemo.de</textarea>&nbsp;-->
+                            <a href="javascript:%20openPopup%28%27%2Fapex%2FEmailLookup%27%2C%20%27CCBCCLookup%27%2C%20420%2C%20490%2C%20%27width%3D420%2Cheight%3D550%2Ctoolbar%3Dno%2Cstatus%3Dno%2Cdirectories%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollable%3Dno%27%2C%20true%29%3B" id="p5_lkwgt" onclick="setLastMousePosition(event)" title="BCC Lookup (New Window)">
+                                <img src="/s.gif" alt="BCC Lookup (New Window)" class="lookupIcon" onblur="this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" title="BCC Lookup (New Window)"/>
+                            </a>
+                        </td>
+                    </tr>
+                <tr>
+                    <td>
+                        <apex:outputText value="Subject: "/>
+                    </td>
+                    <td>
+                        <apex:inputText value="{!Subject}" id="subject" style="width:550px;"/>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <apex:outputText value="Body: "/>
+                    </td>
+                    <td style="width:700px;">
+                        <apex:inputTextarea value="{!Body}" richText="true" style="width:700px;" id="body"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <apex:outputText value="Select your Template: "/>
+                    </td>
+                    <td>
+<!--                         <input type="button" onclick="copy2BodyIframe();"  value="test"/>-->
+                         <apex:selectList id="Selection" size="1" value="{!selectedTemplate}" onchange="rerenderTemplate()" >
+                             <apex:selectOptions value="{!Templates}" /> 
+                         </apex:selectList>
+                         <apex:actionFunction name="rerenderTemplate" action="{!rerenderTemplate}" rerender="subject" id="actionF" oncomplete="copy2BodyIframe('{!Body}');"/> 
+<!--                          <apex:actionStatus id="statusRerender" onstart="setHiddenBGPublic();" onstop="afterHiddenBGPublic();"/> -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <apex:outputText value="Add signature: "/>
+                    </td>
+                    <td>
+                        <apex:inputCheckbox value="{!hasSignature}" id="checkbox"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <apex:outputText value="Send me a copy (BCC): "/>
+                    </td>
+                    <td>
+                        <apex:inputCheckbox value="{!addAutoBCC}" id="checkbox2"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <apex:commandButton style="position:relative;left:10px;" value="Send Email"  onclick="return check()" action="{!SendEmail}"/>
+                    </td>
+                </tr>
+            </table>
+
+
+            <apex:outputPanel id="outputPanel">
+                <table>
+                    <tr>
+                        <td>
+                            <apex:outputText value="Included File: "/>
+                        </td>
+                        <td> 
+                            <apex:repeat value="{!CVList}" var="CV" id="files">
+                                <apex:commandLink value="del " style="color:blue;" action="{!removeFile}" rerender="outputPanel" >
+                                    <apex:param name="deleteId" value="{!CV.Id}" assignTo="{!DeleteId}"/>
+                                </apex:commandLink> 
+                                <apex:outputText value="{!CV.PathOnClient}"/> 
+                                <br/>  
+                            </apex:repeat>
+                        </td>
+                    </tr>
+                </table>
+            </apex:outputPanel>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

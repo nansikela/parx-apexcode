@@ -1,0 +1,232 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false">
+<head>
+
+  <!-- In production, only one script (pdf.js) is necessary -->
+  <!-- In production, change the content of PDFJS.workerSrc below -->
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/core.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/util.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/canvas.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/obj.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/function.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/charsets.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/cidmaps.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/colorspace.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/crypto.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/evaluator.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/fonts.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/glyphlist.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/image.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/metrics.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/parser.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/pattern.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/stream.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/worker.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'external/jpgjs/jpg.js')}"></script>
+  <script type="text/javascript" src="{!URLFOR($Resource.pdfSrc, 'src/jpx.js')}"></script>
+
+  <script type="text/javascript">
+    // Specify the main script used to create a new PDF.JS web worker.
+    // In production, change this to point to the combined `pdf.js` file.
+    PDFJS.workerSrc = '{!URLFOR($Resource.pdfSrc, 'src/worker_loader.js')}';
+  </script>
+
+        <script src="{!$Resource.connectionjs}" type="text/javascript"></script>
+        <script> 
+            var data= "";
+            var Base64Binary = {
+                _keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+            
+                /* will return a  Uint8Array type */
+                decodeArrayBuffer: function(input) {
+                    var bytes = Math.ceil( (3*input.length) / 4.0);
+                    var ab = new ArrayBuffer(bytes);
+                    this.decode(input, ab);
+            
+                    return ab;
+                },
+            
+                decode: function(input, arrayBuffer) {
+                    //get last chars to see if are valid
+                    var lkey1 = this._keyStr.indexOf(input.charAt(input.length-1));      
+                    var lkey2 = this._keyStr.indexOf(input.charAt(input.length-1));      
+            
+                    var bytes = Math.ceil( (3*input.length) / 4.0);
+                    if (lkey1 == 64) bytes--; //padding chars, so skip
+                    if (lkey2 == 64) bytes--; //padding chars, so skip
+            
+                    var uarray;
+                    var chr1, chr2, chr3;
+                    var enc1, enc2, enc3, enc4;
+                    var i = 0;
+                    var j = 0;
+            
+                    if (arrayBuffer)
+                        uarray = new Uint8Array(arrayBuffer);
+                    else
+                        uarray = new Uint8Array(bytes);
+            
+                    input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+            
+                    for (i=0; i<bytes; i+=3) {  
+                        //get the 3 octects in 4 ascii chars
+                        enc1 = this._keyStr.indexOf(input.charAt(j++));
+                        enc2 = this._keyStr.indexOf(input.charAt(j++));
+                        enc3 = this._keyStr.indexOf(input.charAt(j++));
+                        enc4 = this._keyStr.indexOf(input.charAt(j++));
+            
+                        chr1 = (enc1 << 2) | (enc2 >> 4);
+                        chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+                        chr3 = ((enc3 & 3) << 6) | enc4;
+            
+                        uarray[i] = chr1;           
+                        if (enc3 != 64) uarray[i+1] = chr2;
+                        if (enc4 != 64) uarray[i+2] = chr3;
+                    }
+            
+                    return uarray;  
+                }
+            }
+            
+            function render(data1) {
+                
+                  var pdf = new PDFJS.PDFDoc(Base64Binary.decodeArrayBuffer(data1));
+                  var page = pdf.getPage(1);
+                  var scale = 1.5;
+                
+                  //
+                  // Prepare canvas using PDF page dimensions
+                  //
+                  var canvas = document.getElementById('viewer');
+                  var context = canvas.getContext('2d');
+                  canvas.height = page.height * scale;
+                  canvas.width = page.width * scale;
+                
+                  //
+                  // Render PDF page into canvas context
+                  //
+                  page.startRendering(context);
+            }
+            
+            sforce.connection.sessionId = '{!$Api.Session_ID}';
+            sforce.connection.query("select name, id, body from document where Id ='015d0000000bNVh'",  {
+                      onSuccess : function(result, doc_ta) {
+                           var records = result.getArray("records");
+                           render(records[0].Body);
+                      },
+                      onFailure : function(error, doc_ta) {
+                           alert("Oops something went wrong: " + error);
+                      }
+             });       
+        
+        </script>
+
+</head>
+ <body>
+    <div id="controls">
+      <button id="previous" onclick="PDFView.page--;" oncontextmenu="return false;">
+        <img src="images/go-up.svg" align="top" height="16"/>
+        Previous
+      </button>
+
+      <button id="next" onclick="PDFView.page++;" oncontextmenu="return false;">
+        <img src="images/go-down.svg" align="top" height="16"/>
+        Next
+      </button>
+
+      <div class="separator"></div>
+
+      <input type="number" id="pageNumber" onchange="PDFView.page = this.value;" value="1" size="4" min="1" />
+
+      <span>/</span>
+      <span id="numPages">--</span>
+
+      <div class="separator"></div>
+
+      <button id="zoomOut" title="Zoom Out" onclick="PDFView.zoomOut();" oncontextmenu="return false;">
+        <img src="images/zoom-out.svg" align="top" height="16"/>
+      </button>
+      <button id="zoomIn" title="Zoom In" onclick="PDFView.zoomIn();" oncontextmenu="return false;">
+        <img src="images/zoom-in.svg" align="top" height="16"/>
+      </button>
+
+      <div class="separator"></div>
+
+      <select id="scaleSelect" onchange="PDFView.parseScale(this.value);" oncontextmenu="return false;">
+        <option id="customScaleOption" value="custom"></option>
+        <option value="0.5">50%</option>
+        <option value="0.75">75%</option>
+        <option value="1">100%</option>
+        <option value="1.25">125%</option>
+        <option value="1.5">150%</option>
+        <option value="2">200%</option>
+        <option id="pageWidthOption" value="page-width">Page Width</option>
+        <option id="pageFitOption" value="page-fit">Page Fit</option>
+        <option id="pageAutoOption" value="auto" selected="selected">Auto</option>
+      </select>
+
+      <div class="separator"></div>
+
+      <button id="print" onclick="window.print();" oncontextmenu="return false;">
+        <img src="images/document-print.svg" align="top" height="16"/>
+        Print
+      </button>
+
+      <button id="download" title="Download" onclick="PDFView.download();" oncontextmenu="return false;">
+        <img src="images/download.svg" align="top" height="16"/>
+        Download
+      </button>
+
+      <div class="separator"></div>
+
+      <input id="fileInput" type="file" oncontextmenu="return false;"/>
+
+      <div id="fileInputSeperator" class="separator"></div>
+
+      <a href="#" id="viewBookmark" title="Bookmark (or copy) current location">
+        <img src="images/bookmark.svg" alt="Bookmark" align="top" height="16"/>
+      </a>
+
+    </div>
+    <div id="errorWrapper" hidden='true'>
+      <div id="errorMessageLeft">
+        <span id="errorMessage"></span>
+        <button id="errorShowMore" onclick="" oncontextmenu="return false;">
+          More Information
+        </button>
+        <button id="errorShowLess" onclick="" oncontextmenu="return false;" hidden='true'>
+          Less Information
+        </button>
+      </div>
+      <div id="errorMessageRight">
+        <button id="errorClose" oncontextmenu="return false;">
+          Close
+        </button>
+      </div>
+      <div class="clearBoth"></div>
+      <textarea id="errorMoreInfo" hidden='true' readonly="readonly"></textarea>
+    </div>
+
+    <div id="sidebar">
+      <div id="sidebarBox">
+        <div id="pinIcon" onClick="PDFView.pinSidebar()"></div>
+        <div id="sidebarScrollView">
+          <div id="sidebarView"></div>
+        </div>
+        <div id="outlineScrollView" hidden='true'>
+          <div id="outlineView"></div>
+        </div>
+        <div id="sidebarControls">
+          <button id="thumbsSwitch" title="Show Thumbnails" onclick="PDFView.switchSidebarView('thumbs')" data-selected="data-selected">
+            <img src="images/nav-thumbs.svg" align="top" height="16" alt="Thumbs" />
+          </button>
+          <button id="outlineSwitch" title="Show Document Outline" onclick="PDFView.switchSidebarView('outline')" disabled="disabled">
+            <img src="images/nav-outline.svg" align="top" height="16" alt="Document Outline" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="loading">Loading... 0%</div>
+    <div id="viewer"></div>
+  </body>
+</apex:page>

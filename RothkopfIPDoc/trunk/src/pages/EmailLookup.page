@@ -1,0 +1,138 @@
+<apex:page sidebar="false" controller="EmailLookupController">
+    <script>
+        document.getElementById('AppBodyHeader').style.display = 'none';
+    </script>
+    <style>
+        body .bPageFooter {
+            display: none;
+        }
+    </style>
+    <div class="bPageTitle">
+        <div class="ptBody secondaryPalette">
+            <div class="content">
+                <img src="/s.gif" alt="Home" class="pageTitleIcon" title="Home"/>
+                <h1>Email Address Lookup</h1>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="additional_to_name" name="additional_to_name" value="Chris Chris"/>
+    <input type="hidden" id="additional_to_addr" name="additional_to_addr" value="salesforce2dropbox@parxdemo.de"/>
+    <input type="hidden" id="cc_name" name="cc_name" value="Chris Chris"/>
+    <input type="hidden" id="cc_addr" name="cc_addr" value="salesforce2dropbox@parxdemo.de"/>
+    <input type="hidden" id="bcc_name" name="bcc_name" value=""/>
+    <input type="hidden" id="bcc_addr" name="bcc_addr" value=""/>
+
+    <div class="bPageBlock bEditBlock bLayoutBlock secondaryPalette" id="ep">
+    <apex:form id="form">
+        <div class="pbHeader pbHeaderEmpty">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td style="text-align:center;">
+                            <apex:selectList value="{!categorieChoosen}" multiselect="false" size="1" onchange="refreshCategorie();" style="font-size: 100%;">
+                                 <apex:selectOptions value="{!categories}"/>
+                            </apex:selectList>
+                            <apex:inputText value="{!Criterium}" onkeyup="refreshCategorie();"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="pbBody" style="text-align:center;">
+            <div class="pbSubsection">
+                <table class="detailList" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                        <tr class="detailRow">
+                            <td colspan="4">
+                                <table class="emailCcBcc" cellpadding="0" cellspacing="0" style="width:100%;">
+                                    <tbody>
+                                        <tr> 
+                                            <th scope="col" style="text-align: center;">List:</th>
+                                            <th scope="col">&nbsp;</th>
+                                            <th scope="col" style="text-align: center;">To Recipients:</th>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="5">
+                                                <apex:outputPanel id="panel">
+                                                <select id="ref" multiple="Multiple" name="ref" size="18" style="{width: 160px}" title="Contacts:">     
+                                                    <apex:repeat value="{!inCategories}" var="Categorie" id="repeat"> 
+                                                        <option value="{!Categorie.value}">{!Categorie.name}</option>
+                                                    </apex:repeat>
+                                                </select>
+                                                <apex:actionFunction action="{!updateInCategorie}" name="refreshCategorie" rerender="panel"/>
+                                                    </apex:outputPanel>
+                                            </td>
+                                            <td style="vertical-align:middle">
+                                                <div>
+                                                    <input value=" >> " class="btn" name="to_right" onclick="javascript: moveSelectElement3(document.getElementById(EmailCCBccLookupConstants.REF_ID), document.getElementById(EmailCCBccLookupConstants.ADDITIONAL_TO_ID), '--None--', '--None--', true);" title="Add addresses to Additional To" type="button"/>
+                                                </div>
+                                                <div>
+                                                    <input value=" << " class="btn" name="to_left" onclick="javascript: removeSelectElement3(document.getElementById(EmailCCBccLookupConstants.ADDITIONAL_TO_ID), '--None--');" title="Remove addresses from Additional To" type="button"/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <select id="additional_to" multiple="MULTIPLE" name="additional_to" size="5" style="{width: 160px}" title="Additional To Recipients:">
+                                                    <option value="">--None--</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">&nbsp;</th>
+                                            <th scope="col" style="text-align: center;">CC Recipients:</th>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align:middle">
+                                                <div>
+                                                    <input value=" >> " class="btn" name="cc_right" onclick="javascript: moveSelectElement3(document.getElementById(EmailCCBccLookupConstants.REF_ID), document.getElementById(EmailCCBccLookupConstants.CC_ID), '--None--', '--None--', true);" title="Add addresses to CC" type="button"/>
+                                                </div>
+                                                <div>
+                                                    <input value=" << " class="btn" name="cc_left" onclick="javascript: removeSelectElement3(document.getElementById(EmailCCBccLookupConstants.CC_ID), '--None--');" title="Remove addresses from CC" type="button"/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <select id="cc" multiple="MULTIPLE" name="cc" size="5" style="{width: 160px}" title="CC Recipients:">
+                                                    <option value="">--None--</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">&nbsp;</th>
+                                            <th scope="col" style="text-align: center;">BCC Recipients:</th>
+                                        </tr>
+                                        <tr>
+                                            <td style="vertical-align:middle">
+                                                <div>
+                                                    <input value=" >> " class="btn" name="bcc_right" onclick="javascript: moveSelectElement3(document.getElementById(EmailCCBccLookupConstants.REF_ID), document.getElementById(EmailCCBccLookupConstants.BCC_ID), '--None--', '--None--', true);" title="Add addresses to BCC" type="button"/>
+                                                </div>
+                                                <div>
+                                                    <input value=" << " class="btn" name="bcc_left" onclick="javascript: removeSelectElement3(document.getElementById(EmailCCBccLookupConstants.BCC_ID), '--None--');" title="Remove addresses from BCC" type="button"/>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <select id="bcc" multiple="MULTIPLE" name="bcc" size="5" style="{width: 160px}" title="BCC Recipients:">
+                                                    <option value="">--None--</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="detailRow last">
+                            <td colspan="4">
+                                <div class="pbBottomButtons">
+                                    &nbsp;
+                                    <input value=" Save " class="btn" name="save" onclick="javascript: EmailCCBccLookup.prototype.storeAllAddresses('--None--'); top.window.opener.pickupValue(document.getElementById(EmailCCBccLookupConstants.ADDITIONAL_TO_ADDR_ID).value, document.getElementById(EmailCCBccLookupConstants.CC_ADDR_ID).value, document.getElementById(EmailCCBccLookupConstants.BCC_ADDR_ID).value);" title="Save" type="button"/>&nbsp;
+                                    <input value="Cancel" class="btn" name="cancel" onclick="javascript: window.close()" title="Cancel" type="button"/>
+                                    &nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            </apex:form>
+    </div>
+</apex:page>

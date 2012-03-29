@@ -1,0 +1,31 @@
+<apex:page sidebar="false" showHeader="false">
+
+<div align="center">
+<h1>DigiSigner Embedded Applet Demo</h1>
+
+<script src="http://www.java.com/js/deployJava.js"></script>
+<script>
+   
+    var archive = "https://c.na14.content.force.com/servlet/servlet.FileDownload?file=015d0000000b9Ky"; 
+    var attributes =
+        {code:'EmbeddedApplet.class',
+        archive:archive,
+        width:930, height:800};
+    var parameters = 
+        {java_arguments:'-Djnlp.packEnabled=true',
+        url:'https://na14.salesforce.com/sfc/servlet.shepherd/version/download/{!$CurrentPage.parameters.DocId}',
+        accessToken:'{!$Api.Session_ID}',
+        DocumentId:'{!$CurrentPage.parameters.DocumentId}'};
+        //http://www.digisigner.com/DigiSigner.pdf
+    var version = '1.6.0';
+    deployJava.runApplet(attributes, parameters, version);
+</script>
+
+</div>
+<!-- https://c.na14.content.force.com/servlet/servlet.FileDownload?file=015d0000000aw9i -->
+<!--     <applet code="EmbeddedApplet.class" Archive="https://c.na14.content.force.com/servlet/servlet.FileDownload?file=015d0000000ay2l" width="930" height="800" border="0"> -->
+<!--         <param name="url" value="http://www.digisigner.com/DigiSigner.pdf"/> -->
+<!--         <param name="java_arguments" value="-Djnlp.packEnabled=true"/> -->
+<!--     </applet> -->
+
+</apex:page>
