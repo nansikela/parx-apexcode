@@ -3,7 +3,7 @@ public class JahresAbschlussAccount {
 	private static map<Id, Account> accounts=new map<Id, Account>();
 	private static list<Account> accountstoupdate= new list<Account>();
 	public static Boolean runTest=false;
-	private static final Integer MONTHTORUN=System.today().month(); // TODO has to to be changed to 1, if we go live!
+	private static final Integer MONTHTORUN=1; // TODO has to to be changed to 1, if we go live!
 
 	// in this batch we only need to change something if years have changed
 	// the turnover volume of all acounts will be propageted through the turnover volume fields

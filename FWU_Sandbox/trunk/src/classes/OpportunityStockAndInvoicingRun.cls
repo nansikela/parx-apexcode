@@ -1,14 +1,15 @@
 global class OpportunityStockAndInvoicingRun {
 
 	private static String[] sourceIds=new list<String>();
-	static final String oppwherecond=' (Lizenznummer__c<>\'10206\' OR medienart_id__c<>\'55\') AND Opportunity.RechnungsartVorUmwandlung__c!=0 AND Opportunity.StageNamePosition__c!=0 AND Opportunity.StageNamePosition__c!=4 AND Opportunity.StageNamePosition__c!=5 AND Opportunity.LFKZ2A__c=false AND (Opportunity.Zahlerkennzeichen__c<>\'S\' OR (Opportunity.Zahlerkennzeichen__c=\'S\' AND Opportunity.RA_Lagerabgang__c=1))';
+	static final String oppwherecond=' (Lizenznummer__c<>\'10206\' OR medienart_id__c<>\'55\') AND Opportunity.StageNamePosition__c!=0 AND Opportunity.StageNamePosition__c!=4 AND Opportunity.StageNamePosition__c!=5 AND Opportunity.LFKZ2A__c=false AND (Opportunity.Zahlerkennzeichen__c<>\'S\' OR (Opportunity.Zahlerkennzeichen__c=\'S\' AND Opportunity.RA_Lagerabgang__c=0))';
+	// AND Opportunity.RechnungsartVorUmwandlung__c!=0
 	// umgewandelte Opps dürfen nicht nochmals manuell fakturiert werden: AND Opportunity.RechnungsartVorUmwandlung__c!=0
 	// AND StatusPosition__c<3
 	// AND Opportunity.StageNamePosition__c!=4
 	// (Lizenznummer__c<>\'10206\' OR (((KreisListe__c=\'\' OR KreisListe__c=null) AND medienart_id__c<>\'55\') OR ((medienart_55__c<>null OR medienart_55__c<>\'\') AND MedSig1Prod__c<>\'46\' AND medienart_id__c<>\'55\'))) AND
 	// (((KreisListe__c=\'\' OR KreisListe__c=null) AND medienart_id__c<>\'55\') OR ((medienart_55__c<>null OR medienart_55__c<>\'\') AND MedSig1Prod__c<>\'46\' AND medienart_id__c<>\'55\')) AND
 	static final String oppwhereorder=' ORDER BY Opportunity.WE_Kundennummer__c';
-	static final Integer batchsize=100;
+	static final Integer batchsize=1200;
 	
 	webservice static String fak(String[] ids) {
 		String result='';
@@ -19,6 +20,45 @@ global class OpportunityStockAndInvoicingRun {
 			// if any of the opps could not be unlocked, do not run!
 			if (result=='') result=collectDataAuftraege();
 		}
+		if (result==null) {
+			result=unlockOpps(sourceIds);
+		}
+		return result;
+	}
+	
+	webservice static String lockOpportunitiesAgainstOtherFak(String[] ids) {
+		String result='';
+		if (ids!=null && !ids.isEmpty()) {
+			result=lockOpps(Ids);
+		}
+		return result;
+	}
+	
+	private static String lockOpps(String[] ids) {
+		String result='Success';
+		list<Opportunity> opps = new list<Opportunity>([select id, Aktive_Fakturierung__c from Opportunity where Id IN: ids AND (StageName = 'Bereit zur Freigabe' OR StageName = 'Teillieferung') AND LFKZ2A__c=false AND (Zahlerkennzeichen__c<>'S' OR (Zahlerkennzeichen__c='S' AND RA_Lagerabgang__c=0))]);
+		Boolean activeFaktura=false;
+		for(Opportunity o:opps) {
+			if (o.Aktive_Fakturierung__c) activeFaktura=true;
+			else o.Aktive_Fakturierung__c = True;
+		}
+		if(!opps.isEmpty() && !activeFaktura)
+			update opps;
+		else
+			result='Fakturierung kann nicht durchgeführt werden! Bitte versuchen Sie es eventuell später erneut!';
+		return result;
+	}
+	
+	public static String unlockOpps(String[] ids) {
+		String result='Fakturierung kann nicht durchgeführt werden! Bitte versuchen Sie es eventuell später erneut!';
+		list<Opportunity> opps = new list<Opportunity>([select id, Aktive_Fakturierung__c from Opportunity where Id IN: ids]);
+		for(Opportunity o:opps) {
+			o.Aktive_Fakturierung__c = false;
+		}
+		if(!opps.isEmpty())
+			update opps;
+		else
+			result='Fakturierung kann nicht durchgeführt werden! Bitte versuchen Sie es eventuell später erneut!';
 		return result;
 	}
 	
@@ -49,10 +89,15 @@ global class OpportunityStockAndInvoicingRun {
 		else
 			query+=getOpportunityLineItemFields() + ' FROM OpportunityLineItem WHERE ' + oppwherecond + oppwhereorder;
 		//query='SELECT ' + getOppFields() + ' FROM Opportunity WHERE ID=\'006R0000005Cp6b\'';
-		OpportunityStockAndInvoicingBatch fak=new OpportunityStockAndInvoicingBatch(query);
+		OpportunityStockAndInvoicingBatch fak=new OpportunityStockAndInvoicingBatch(query, sourceIds);
+		//OpportunityStockAndInvoicingBatch fak=new OpportunityStockAndInvoicingBatch(query);
 		//fak.Query=query;
-		ID batchprocessid = Database.executeBatch(fak, batchsize);
-		System.assert(batchprocessid!=null);
+		Id ApexClassId=[SELECT Id FROM ApexClass WHERE Name='OpportunityStockAndInvoicingBatch'].Id;
+		ID batchprocessid;
+		if ([SELECT count() FROM AsyncApexJob WHERE Status!='Completed' AND Status!='Aborted' AND ApexClassId=:ApexClassId]==0) {
+			batchprocessid = Database.executeBatch(fak, batchsize);
+			System.assert(batchprocessid!=null);
+		}
 		return batchprocessid;
 	}
 	
@@ -115,14 +160,14 @@ global class OpportunityStockAndInvoicingRun {
 		if (!sourceIds.isEmpty()) {
 			for (Opportunity opp: [SELECT Id, Locked__c, LFKZ2A__c FROM Opportunity WHERE 
 				Id IN :sourceids
-				AND RechnungsartVorUmwandlung__c!=0 
+				//AND RechnungsartVorUmwandlung__c!=0 
 				AND StageNamePosition__c!=0 
 				AND StageNamePosition__c!=4 
 				AND StageNamePosition__c!=5 
 				AND LFKZ2A__c=false 
 				AND (Zahlerkennzeichen__c<>'S' 
 				OR (Zahlerkennzeichen__c='S' 
-				AND RA_Lagerabgang__c=1))
+				AND RA_Lagerabgang__c=0))
 				]) {
 				if (!retmap.containsKey(opp.id)) retmap.put(opp.id, opp);
 			}

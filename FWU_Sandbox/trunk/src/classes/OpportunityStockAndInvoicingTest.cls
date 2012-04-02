@@ -31,6 +31,8 @@ private class OpportunityStockAndInvoicingTest {
 	    System.assert(initOli.hasData);
 	    oppids.add(initOpp.opp.id);
 	    initOpp.opp.StageName='Bereit zur Freigabe';
+	    initOpp.opp.Locked__c=false;
+	    initOpp.opp.Aktive_Fakturierung__c=true;
 	    update initOpp.opp;
 	    gw.opportunities.put(initOpp.opp.id,initOpp.opp);
 	    gw.opportunitiesNoFak.put(initOpp.opp.id, 1);
@@ -50,6 +52,36 @@ private class OpportunityStockAndInvoicingTest {
 		OpportunityStockAndInvoicingHelper.lockOpportunities(gw);
 		test.stopTest();
 	}
+	
+	static testMethod void helperTest02() {
+		OpportunityStockAndInvoicingHelper.globalwrapper gw=new OpportunityStockAndInvoicingHelper.globalwrapper();
+		list<String> oppids=new list<String>();
+	    testData.testOpportunity initOpp=new testData.testOpportunity();
+	    System.assert(initOpp.hasData);
+	    testData.testOli initOli=new testData.testOli(initOpp.opp.id);
+	    System.assert(initOli.hasData);
+	    oppids.add(initOpp.opp.id);
+	    initOpp.opp.StageName='Bereit zur Freigabe';
+	    initOpp.opp.Locked__c=false;
+	    initOpp.opp.Aktive_Fakturierung__c=true;
+	    update initOpp.opp;
+	    gw.opportunities.put(initOpp.opp.id,initOpp.opp);
+	    gw.opportunitiesNoFak.put(initOpp.opp.id, 1);
+	   	Rechnung__c r = new Rechnung__c(KDW211__c=initOpp.opp.KDWE2A__c
+								,AUN211__c=initOpp.opp.id
+								,KDR211__c=initOpp.opp.AccountId
+								//,MWB211__c=o.MWSt_Betrag__c // SOLVED by Rollup
+								//,MWS211__c=o.MWST2A__c // SOLVED by Formular
+								//,NRB211__c=o.Beleg_Nettobetrag__c  // // SOLVED by Rollup
+								//,MWB211__c=o.Beleg_MWSt_Betrag__c
+								,RED211__c=System.today()
+								);
+		insert r;
+		gw.invoices.put(r.id,r);
+		test.startTest();
+		OpportunityStockAndInvoicingHelper.freeOpportunities(oppids, gw);
+		test.stopTest();
+	}
 
 	// Todo Test for KOL!
 
@@ -61,9 +93,27 @@ private class OpportunityStockAndInvoicingTest {
 	    System.assert(initOli.hasData);
 	    oppids.add(initOpp.opp.id);
 	    initOpp.opp.StageName='Bereit zur Freigabe';
+	    initOpp.opp.Locked__c=false;
 	    update initOpp.opp;
 	    //test.startTest();
 	    OpportunityStockAndInvoicingRun.fak(oppids);
+	    //test.stopTest();
+	}
+	
+	static testMethod void runTest02() {
+	    list<String> oppids=new list<String>();
+	    testData.testOpportunity initOpp=new testData.testOpportunity();
+	    System.assert(initOpp.hasData);
+	    testData.testOli initOli=new testData.testOli(initOpp.opp.id);
+	    System.assert(initOli.hasData);
+	    oppids.add(initOpp.opp.id);
+	    initOpp.opp.StageName='Bereit zur Freigabe';
+	    update initOpp.opp;
+	    initOpp.opp.Aktive_Fakturierung__c=false;
+	    initOpp.opp.Locked__c=false;
+	    update initOpp.opp;
+	    //test.startTest();
+	    OpportunityStockAndInvoicingRun.lockOpportunitiesAgainstOtherFak(oppids);
 	    //test.stopTest();
 	}
 
@@ -77,6 +127,7 @@ private class OpportunityStockAndInvoicingTest {
 	    OpportunityStockAndInvoicingRun.fak(oppids);
         
         initOpp.opp.StageName='Bereit zur Freigabe';
+        initOpp.opp.Locked__c=false;
         update initOpp.opp;
         //test.startTest();
         OpportunityStockAndInvoicingRun.fak(oppids);
@@ -93,6 +144,7 @@ private class OpportunityStockAndInvoicingTest {
         initOpp.opp.REAR2A__c=7;
         initOpp.opp.Rabattgutschrift__c=true;
         initOpp.opp.StageName='Bereit zur Freigabe';
+        initOpp.opp.Locked__c=false;
         update initOpp.opp;
         //test.startTest();
         OpportunityStockAndInvoicingRun.fak(oppids);
@@ -120,11 +172,12 @@ private class OpportunityStockAndInvoicingTest {
 	}
         
         initOpp.opp.StageName='Bereit zur Freigabe';
+        initOpp.opp.Locked__c=false;
         update initOpp.opp;
         String query='SELECT ' + fieldnames + ' FROM OpportunityLineItem WHERE OpportunityId=\'' + initOpp.opp.id + '\'';
         
         //test.startTest();
-        ID batchprocessid = Database.executeBatch(new OpportunityStockAndInvoicingBatch(query),1);
+        ID batchprocessid = Database.executeBatch(new OpportunityStockAndInvoicingBatch(query, oppids),1);
         //test.stopTest();
     }
     
@@ -136,6 +189,7 @@ private class OpportunityStockAndInvoicingTest {
 	    System.assert(initOli.hasData);
 	    oppids.add(initOpp.opp.id);
 	    initOpp.opp.StageName='Bereit zur Freigabe';
+	    initOpp.opp.Locked__c=false;
 	    update initOpp.opp;
 	    //String oppwherecond=' (KreisListe__c=\'\' OR KreisListe__c=null) AND Opportunity.StageNamePosition__c!=4 AND Opportunity.StageNamePosition__c!=0 AND Opportunity.LFKZ2A__c=false AND Opportunity.Zahlerkennzeichen__c<>\'S\'';
 		//String oppwhereorder=' ORDER BY Opportunity.WE_Kundennummer__c LIMIT 50';
@@ -157,6 +211,7 @@ private class OpportunityStockAndInvoicingTest {
 	    oppids.add(initOpp.opp.id);
 	    opps.put(initOpp.opp.id, initOpp.opp);
 	    initOpp.opp.StageName='Bereit zur Freigabe';
+	    initOpp.opp.Locked__c=false;
 	    update initOpp.opp;
 	    //String oppwherecond=' (KreisListe__c=\'\' OR KreisListe__c=null) AND Opportunity.StageNamePosition__c!=4 AND Opportunity.StageNamePosition__c!=0 AND Opportunity.LFKZ2A__c=false AND Opportunity.Zahlerkennzeichen__c<>\'S\'';
 		//String oppwhereorder=' ORDER BY Opportunity.WE_Kundennummer__c LIMIT 50';
@@ -192,11 +247,12 @@ private class OpportunityStockAndInvoicingTest {
 	}
         
         initOpp.opp.StageName='Bereit zur Freigabe';
+        initOpp.opp.Locked__c=false;
         update initOpp.opp;
         String query='SELECT ' + fieldnames + ' FROM OpportunityLineItem WHERE OpportunityId=\'' + initOpp.opp.id + '\'';
         
         //test.startTest();
-        ID batchprocessid = Database.executeBatch(new OpportunityStockAndInvoicingBatch(query),1);
+        ID batchprocessid = Database.executeBatch(new OpportunityStockAndInvoicingBatch(query, oppids),1);
         //test.stopTest();
         delete iv;
     }
@@ -225,11 +281,12 @@ private class OpportunityStockAndInvoicingTest {
 	}
         
         initOpp.opp.StageName='Bereit zur Freigabe';
+        initOpp.opp.Locked__c=false;
         update initOpp.opp;
         String query='SELECT ' + fieldnames + ' FROM OpportunityLineItem WHERE OpportunityId=\'' + initOpp.opp.id + '\'';
         
         //test.startTest();
-        ID batchprocessid = Database.executeBatch(new OpportunityStockAndInvoicingBatch(query), 1);
+        ID batchprocessid = Database.executeBatch(new OpportunityStockAndInvoicingBatch(query, oppids), 1);
         //test.stopTest();
         delete iv;
     }
@@ -284,18 +341,22 @@ private class OpportunityStockAndInvoicingTest {
 	}
         
         Opp01.opp.StageName='Bereit zur Freigabe';
+        Opp01.opp.Locked__c=false;
         update Opp01.opp;
         Opp03.opp.StageName='Bereit zur Freigabe';
+        Opp03.opp.Locked__c=false;
         update Opp03.opp;
         Opp02.opp.REAR2A__c=3;
+        Opp02.opp.Locked__c=false;
         update Opp02.opp;
         Opp02.opp.StageName='Bereit zur Freigabe';
         Opp02.opp.Teillieferung__c=false;
+        Opp02.opp.Locked__c=false;
         update Opp02.opp;
         String query='SELECT ' + fieldnames + ' FROM OpportunityLineItem WHERE OpportunityId IN (\'' + Opp01.opp.id + '\',\'' + Opp03.opp.id + '\',\'' + Opp02.opp.id + '\')';
         
         test.startTest();
-        ID batchprocessid = Database.executeBatch(new OpportunityStockAndInvoicingBatch(query), 1);
+        ID batchprocessid = Database.executeBatch(new OpportunityStockAndInvoicingBatch(query, oppids), 1);
         test.stopTest();
     }
 }

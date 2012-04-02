@@ -2,10 +2,11 @@ public class onRechnung {
 	public static void onInsert(list<Rechnung__c> trigg, boolean comeFromGutschriftRueckrechnung) {
 		list<Nummernkreis__c> NummerKreis;
 		try {
-		NummerKreis = new list<Nummernkreis__c>([Select Id, Nummer__c from Nummernkreis__c]);
+		NummerKreis = new list<Nummernkreis__c>([Select Id, Nummer__c from Nummernkreis__c for update]);
 	 	}
 		catch (system.Queryexception e) {
 			system.debug('EXCEPTION !!!');
+			throw e;
 		}
 		if(NummerKreis.size() < 4) {  //it should be 4 
 			try {
@@ -122,6 +123,7 @@ public class onRechnung {
 			update NummerKreis;  }//we update the full invoice number
 		catch (system.Dmlexception e) {
 			system.debug('EXCEPTION !!!');
+			throw e;
 		}
 		
 	}

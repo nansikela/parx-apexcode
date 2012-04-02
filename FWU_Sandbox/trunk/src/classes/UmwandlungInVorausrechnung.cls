@@ -34,20 +34,41 @@ public class UmwandlungInVorausrechnung {
 	}
 	
 	public static void UmwandlungInVorausrechnungRun(list<sObject> auftraege) {
+		String[] ids=new String[]{};
 		if (!auftraege.isEmpty()) {
 			for (sObject s: auftraege) {
 				Opportunity o=(Opportunity)s;
 				if (!opps.containsKey(o.id)) opps.put(o.id, o);
+				ids.add(o.id);
 			}
 		}
 		run();
 		//OpportunityFreigabeFakturierung.OpportunityFreigabeFakturierungRun(opps);
+		OpportunityStockAndInvoicingRun.unlockOpps(ids);
 		OpportunityStockAndInvoicingHelper.globalwrapper oppsandinvoices=new OpportunityStockAndInvoicingHelper.globalwrapper();
 		oppsandinvoices=OpportunityStockAndInvoicing.OppsRun(opps);
 		// jobs to do with opps and invoices ...
-		if (oppsandinvoices!=null && !oppsandinvoices.opportunities.isEmpty()) {
+		SystemSettings.logError('Number of initial Opps' + ids.size());
+		SystemSettings.logError('HasError: ' + oppsandinvoices.hasError);
+		OpportunityStockAndInvoicingHelper.freeOpportunities(ids, oppsandinvoices);
+		if (oppsandinvoices!=null && !oppsandinvoices.hasError && !oppsandinvoices.opportunities.isEmpty()) {
 			OpportunityStockAndInvoicingHelper.print(oppsandinvoices.opportunities, oppsandinvoices.opportunitiesNoFak, oppsandinvoices.invoices);
+		}
+		if (!oppsandinvoices.opportunities.isEmpty()) {
 			OpportunityStockAndInvoicingHelper.lockOpportunities(oppsandinvoices);
+		}
+		// Auftragsbestaetigungen muessen gedruckt werden wenn:
+		// Latzte Rechnung = NULL AND Zahl_der_Fakturierungen__c=1
+		// TODO Code fuer Auftragsbestaetung 
+		if (oppsandinvoices!=null && !oppsandinvoices.hasError) {
+			list<Opportunity> oppstoupdate = new list<Opportunity>();
+			for(Opportunity o:[ SELECT Id, Letzte_Rechnung__c, Zahl_der_Fakturierungen__c, Conga_Workflow_for_Activation__c FROM Opportunity WHERE Id IN: oppsandinvoices.Opportunities.keySet()]) {
+				if(o.Letzte_Rechnung__c == null && o.Zahl_der_Fakturierungen__c == 1 && o.Zahl_der_Fakturierungen__c!=oppsandinvoices.opportunitiesNoFak.get(o.id)) {
+	                o.Conga_Workflow_for_Activation__c = True;
+	                oppstoupdate.add(o);
+				}
+			}
+			update oppstoupdate;
 		}
 	}
 	

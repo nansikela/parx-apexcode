@@ -2,7 +2,7 @@ public class JahresAbschlussArtikel {
 
   private static map<Id, Product2> artikel=new map<Id, Product2>();
   public static Boolean runTest=false;
-  private static final Integer MONTHTORUN=System.today().month(); // TODO has to to be changed to 1, if we go live!
+  private static final Integer MONTHTORUN=1; // TODO has to to be changed to 1, if we go live!
   
   // in this process we have to change values of turnover and sales volume
   // -

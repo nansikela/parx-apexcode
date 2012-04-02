@@ -1,5 +1,5 @@
+@isTest
 public class testData {
-
 
 	public static String creationAccount() {
 		Account acc = new Account(
@@ -506,6 +506,13 @@ public class testData {
 			system.debug('Oli-List: ' + olimap.values());
 		}
 		
+		public void unlookOpportunities() {
+			for (id oppid:oppmap.keySet()) {
+				oppmap.get(oppid).Locked__c=false;
+			}
+			update oppmap.values();
+		}
+		
 	}
 	
 	// creates Opportunity for testing purpose
@@ -527,6 +534,11 @@ public class testData {
 			if (a.Id!=null) opp=new Opportunity(Name='Test',AccountId=a.Id,CloseDate=System.today()+365,StageName='In Erstellung',Pricebook2Id=pricebook2id,Lizenznummer__c='10001');
 			insert opp;
 			if (opp.id!=null) hasData=true;
+		}
+				
+		public void unlookOpportunities() {
+			opp.Locked__c=false;
+			update opp;
 		}
 	}
 	
