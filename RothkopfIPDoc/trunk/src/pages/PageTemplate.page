@@ -1,0 +1,19 @@
+<apex:page standardStylesheets="false" id="pageTemplate">
+	<apex:outputPanel layout="block" id="header" style="width: 100%; float:left; clear:both; text-align: center;">
+		<apex:insert name="header"/>
+	</apex:outputPanel>
+	<apex:outputPanel layout="block" id="body" style="width: 100%; float:left; clear:both;">
+		<apex:outputPanel layout="block" id="column_left_tree" style="width: 20%; float:left; min-height:250px;">
+			<apex:insert name="leftcolumn" />
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" id="column_mid_body" style="float:left; min-height:50%;">
+			<apex:insert name="midcolumn" />
+		</apex:outputPanel>
+		<apex:outputPanel layout="block" id="column_right_actions" style="width: 20%; float: right; min-height:250px;">
+			<apex:insert name="rightcolumn" />
+		</apex:outputPanel>
+	</apex:outputPanel>
+	<apex:outputPanel layout="block" id="footer" style="width: 100%; float:left; clear:both; text-align: center;">
+		<apex:insert name="footer"/>
+	</apex:outputPanel>
+</apex:page>

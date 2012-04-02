@@ -1,0 +1,26 @@
+<apex:component controller="treeController" id="treecomp">
+	<script type="text/javascript" src="{!URLFOR($Resource.jstree, '_lib/jquery.js')}"></script>
+	<script type="text/javascript" src="{!URLFOR($Resource.jstree, 'jquery.jstree.js')}"></script>
+	<script type="text/javascript">
+	
+	$(function () {
+		$("#theTree").jstree({
+			"core" : {
+				"animation": 0
+			}, 
+			"json_data" : {
+				"data" : [
+					{!Data} 
+				]
+			},
+			"themes" : {
+	            "theme" : "apple"
+	        },
+			"plugins" : [ "themes", "json_data", "ui" ]
+		}).bind("select_node.jstree", function (e, data) { alert(data.rslt.obj.data("id")); });
+	});
+	</script>
+	Tree:<br/>
+	<div id="theTree">
+	</div>
+</apex:component>

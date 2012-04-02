@@ -1,3 +1,19 @@
-<apex:page >
-
+<apex:page standardStylesheets="false" >
+<apex:composition template="PageTemplate">
+	<apex:define name="header">
+	header
+	</apex:define>
+	<apex:define name="leftcolumn">
+		<c:FileTree id="filetreecomp" />
+	</apex:define>
+	<apex:define name="midcolumn">
+	mid
+	</apex:define>
+	<apex:define name="rightcolumn">
+	right
+	</apex:define>
+	<apex:define name="footer">
+	footer
+	</apex:define>
+</apex:composition>
 </apex:page>
