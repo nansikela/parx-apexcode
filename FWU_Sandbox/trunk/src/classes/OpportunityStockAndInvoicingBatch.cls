@@ -1,9 +1,12 @@
 global class OpportunityStockAndInvoicingBatch implements Database.Batchable<sObject>, Database.Stateful {
 	global final String query;
+	global final String[] initialoppids;
 	global OpportunityStockAndInvoicingHelper.globalwrapper oppsandinvoices=new OpportunityStockAndInvoicingHelper.globalwrapper();
 	
-	global OpportunityStockAndInvoicingBatch(String q){
+	global OpportunityStockAndInvoicingBatch(String q, String[] oppids){
+	//global OpportunityStockAndInvoicingBatch(String q){
 		query=q;
+		initialoppids=oppids;
 		oppsandinvoices=new OpportunityStockAndInvoicingHelper.globalwrapper();
 	}
 
@@ -11,33 +14,40 @@ global class OpportunityStockAndInvoicingBatch implements Database.Batchable<sOb
 		return Database.getQueryLocator(query);
 	}
 
-	global void execute(Database.BatchableContext BC, List<sObject> scope){	
-		oppsandinvoices=OpportunityStockAndInvoicing.Run(scope, oppsandinvoices);
+	global void execute(Database.BatchableContext BC, List<sObject> scope){
+		Savepoint startInvoicing = database.setSavepoint();
+		if (oppsandinvoices!=null && !oppsandinvoices.hasError)	
+			oppsandinvoices=OpportunityStockAndInvoicing.Run(scope, oppsandinvoices);
+		if (oppsandinvoices!=null && oppsandinvoices.hasError)
+			database.rollback(startInvoicing);
 	}
 	
 	global void finish(Database.BatchableContext BC){
 		// jobs to do with opps and invoices ...
-		if (oppsandinvoices!=null && !oppsandinvoices.opportunities.isEmpty()) {
+		SystemSettings.logError('Number of initial Opps' + initialoppids.size());
+		SystemSettings.logError('HasError: ' + oppsandinvoices.hasError);
+		OpportunityStockAndInvoicingHelper.freeOpportunities(initialoppids, oppsandinvoices);
+		if (oppsandinvoices!=null && !oppsandinvoices.hasError && !oppsandinvoices.opportunities.isEmpty()) {
 			OpportunityStockAndInvoicingHelper.print(oppsandinvoices.opportunities, oppsandinvoices.opportunitiesNoFak, oppsandinvoices.invoices);
+		}
+		if (!oppsandinvoices.opportunities.isEmpty()) {
 			OpportunityStockAndInvoicingHelper.lockOpportunities(oppsandinvoices);
 		}
 		// Auftragsbestaetigungen muessen gedruckt werden wenn:
 		// Latzte Rechnung = NULL AND Zahl_der_Fakturierungen__c=1
 		// TODO Code fuer Auftragsbestaetung 
-		for(Opportunity o:oppsandinvoices.Opportunities.values()) {
-			if(o.Letzte_Rechnung__c == null && o.Zahl_der_Fakturierungen__c == 1) {
-				o.Locked__c = false;
-                o.Conga_Workflow_Trigger__c = True;
+		if (oppsandinvoices!=null && !oppsandinvoices.hasError) {
+			list<Opportunity> oppstoupdate = new list<Opportunity>();
+			for(Opportunity o:[ SELECT Id, Letzte_Rechnung__c, Zahl_der_Fakturierungen__c FROM Opportunity WHERE Id IN: oppsandinvoices.Opportunities.keySet()]) {
+				if(o.Letzte_Rechnung__c == null && o.Zahl_der_Fakturierungen__c == 1 && o.Zahl_der_Fakturierungen__c!=oppsandinvoices.opportunitiesNoFak.get(o.id)) {
+	                o.Conga_Workflow_for_Activation__c = True;
+	                oppstoupdate.add(o);
+				}
 			}
+			update oppstoupdate;
 		}
-		update oppsandinvoices.Opportunities.values();
-		for(Opportunity o:oppsandinvoices.Opportunities.values()) {
-            if(o.Letzte_Rechnung__c == null && o.Zahl_der_Fakturierungen__c == 1) {
-                o.Locked__c = true;
-            }
-        }
-        update oppsandinvoices.Opportunities.values();
-		
+
+		SystemSettings.insertErrors();
 		// Get the ID of the AsyncApexJob representing this batch job
 		// from Database.BatchableContext.
 		// Query the AsyncApexJob object to retrieve the current job's information.

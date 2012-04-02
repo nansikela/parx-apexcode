@@ -32,7 +32,7 @@ global with sharing class onOpportunitySammelnummerRun {
 		Map<String, Schema.SObjectField> M = Schema.SObjectType.OpportunityLineItem.fields.getMap();
 		
 		for (String fname: M.keySet()) {
-			if (M.get(fname).getDescribe().isAccessible()
+			if (M.get(fname).getDescribe().isAccessible() 
 				) {
 				if (fieldnames=='') fieldnames+=fname;
 				else fieldnames+=', ' + fname;

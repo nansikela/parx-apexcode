@@ -78,7 +78,7 @@ global class ReportCalculationBatchStart {
 	
 	private static void buildRPCond() {
 		// Auftragsbestand - offene Olis von Anbegin der Zeit bis heute!
-		queryrpcond=' WHERE RA_Statistik__c=1 ';
+		queryrpcond=' WHERE RA_Statistik__c=1 AND (Rechnungsdatum__c<2012-01-01 OR (Rechnungsdatum__c>2012-01-01 AND ZUA212__c!=\'PA\'))';
 		queryrpcond+=' AND ( (Rechnungsdatum__c>= ' + rkonf.APEX_QueryArea01Start__c + ' AND Rechnungsdatum__c <= ' + rkonf.APEX_QueryArea01End__c + ' ) ';
 		queryrpcond+=' OR (Rechnungsdatum__c>= ' + rkonf.APEX_QueryArea02Start__c + ' AND Rechnungsdatum__c <= ' + rkonf.APEX_QueryArea02End__c + ' ) )';
 	}

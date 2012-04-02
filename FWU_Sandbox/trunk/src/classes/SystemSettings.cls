@@ -1,5 +1,5 @@
 public class SystemSettings {
-	public static final Boolean isDebug=true;
+	public static final Boolean isDebug=false;
 	public static final String STANDARDPRICEBOOKNAME='Standard Price Book';
 	private static list<ErrorLog__c> errors = new list<ErrorLog__c>();
 	public static set<Integer> Lagerabgang = new set<Integer>{0, 4, 8};

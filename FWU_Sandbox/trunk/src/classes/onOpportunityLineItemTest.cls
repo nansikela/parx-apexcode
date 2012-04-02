@@ -46,7 +46,7 @@ private class onOpportunityLineItemTest {
         	System.debug('PARX testmsg ' + e.getMessage());
         	if (SystemSettings.isDebug) throw e;
         }
-        System.assertNotEquals(null,snoli.id);
+        System.assertNotEquals(null,snoli.id); 
         // now we can prove that all the Signatures (Products) from the sammelnummer has been created as LineItems for this opportunity
         map<Id, OpportunityLineItem> olimap=new map<Id, OpportunityLineItem>();
         Set<Id> pbeids=new Set<Id>();

@@ -5,6 +5,7 @@ global class OpportunityStockAndInvoicing {
 	static map<Id, OpportunityLineItem> opportunitylineitems = new map<Id, OpportunityLineItem>();
 	private static map<Id, String> opportunitylineitems_orig = new map<Id, String>();
 	private static map<Id, Opportunity> newopps = new map<Id, Opportunity>();
+	private static list<Rechnung__c> newInvoices = new list<Rechnung__c>();
 
 	static set<Id> oppids = new set<Id>();
 	
@@ -17,11 +18,12 @@ global class OpportunityStockAndInvoicing {
 
 	private static OpportunityStockAndInvoicingHelper.globalwrapper oppsandinvoices=new OpportunityStockAndInvoicingHelper.globalwrapper();
 	
-	static final String oppwherecond=' StageNamePosition__c!=0 AND LFKZ2A__c=false AND (Opportunity.Zahlerkennzeichen__c<>\'S\' OR (Zahlerkennzeichen__c=\'S\' AND RA_Lagerabgang__c=1))';
+	static final String oppwherecond=' StageNamePosition__c!=0 AND LFKZ2A__c=false AND (Opportunity.Zahlerkennzeichen__c<>\'S\' OR (Zahlerkennzeichen__c=\'S\' AND RA_Lagerabgang__c=0))';
 	// StageNamePosition__c!=4 AND 
 	static final String oppwhereorder=' ORDER BY WE_Kundennummer__c';
 	
 	private static String errormsg='';
+	private static Database.DMLOptions dlo = new Database.DMLOptions();
 	
 	public static OpportunityStockAndInvoicingHelper.globalwrapper Run(list<sObject> olis, OpportunityStockAndInvoicingHelper.globalwrapper globaloppsandinvoices) {
 		oppsandinvoices=globaloppsandinvoices;
@@ -39,13 +41,15 @@ global class OpportunityStockAndInvoicing {
 		// to free memory
 		olis.clear();
 		run();
+		
 		return oppsandinvoices;
 	}
 	
 	public static OpportunityStockAndInvoicingHelper.globalwrapper OppsRun(map<id, Opportunity> opps) {
 		// we need to select the lineitems
+		oppsandinvoices=new OpportunityStockAndInvoicingHelper.globalwrapper();
 		if (!opps.isEmpty()) {
-			String localoliwherecond=' StatusPosition__c<3 AND Opportunity.StageNamePosition__c!=0 AND Opportunity.LFKZ2A__c=false AND (Opportunity.Zahlerkennzeichen__c<>\'S\' OR (Opportunity.Zahlerkennzeichen__c=\'S\' AND Opportunity.RA_Lagerabgang__c=1))';
+			String localoliwherecond=' StatusPosition__c<3 AND Opportunity.StageNamePosition__c!=0 AND Opportunity.LFKZ2A__c=false AND (Opportunity.Zahlerkennzeichen__c<>\'S\' OR (Opportunity.Zahlerkennzeichen__c=\'S\' AND Opportunity.RA_Lagerabgang__c=0))';
 			// AND Opportunity.StageNamePosition__c!=4 
 			// (((KreisListe__c<>\'\' AND KreisListe__c<>null) AND medienart_id__c=\'55\') OR ((medienart_55__c==null OR medienart_55__c==\'\') AND MedSig1Prod__c=\'46\'))) AND
 			String localoliwhereorder=' ORDER BY Opportunity.WE_Kundennummer__c';
@@ -63,36 +67,43 @@ global class OpportunityStockAndInvoicing {
 	}
 	
 	private static void run() {
+		dlo.optAllOrNone = true;
 		//Savepoint startrun = database.setSavepoint();
 		getMissingOpportunities();
-		
-		if (!oppsandinvoices.opportunities.isEmpty() && !locked() && unlockOpportunities() ) {
-			saveOldInformation(); // save the old number of facturations
-			updateOpportunityLineItems(); // set Liefermenge to 0
-			collectProducts();
-			freeStockQuantity();
-			invoicing();
-			accounts = new map<Id, Account>();
-			sales(); 
-			turnover();
-			updateProducts();
-			collectAccounts();
-			salesAccounts();
-			updateAccounts();
-			//if (!lockOpportunities()) database.rollback(startrun);
-		}
-		// extended error handling
-		if (errormsg!='') {
-			String oppnumbers='';
-			set<Id> recentoppids = new set<Id>();
-			for (OpportunityLineItem oli:opportunitylineitems.values()) {
-				if (!recentoppids.contains(oli.OpportunityId)) recentoppids.add(oli.OpportunityId);
+		Savepoint startInvoicing = database.setSavepoint();
+		if (!oppsandinvoices.hasError) {
+			if (!oppsandinvoices.opportunities.isEmpty() && !locked() && unlockOpportunities() ) {
+				saveOldInformation(); // save the old number of facturations
+				updateOpportunityLineItems(); // set Liefermenge to 0
+				collectProducts();
+				freeStockQuantity(startInvoicing);
+				invoicing(startInvoicing);
+				accounts = new map<Id, Account>();
+				sales(); 
+				turnover();
+				oppsandinvoices.hasError=updateProducts();
+				if (oppsandinvoices.hasError) database.rollback(startInvoicing);
+				collectAccounts();
+				salesAccounts();
+				updateAccounts();
+				oppsandinvoices.hasError=updateAccounts();
+				if (oppsandinvoices.hasError) database.rollback(startInvoicing);
+				//if (!lockOpportunities()) database.rollback(startrun);
 			}
-			for (Id oppid:recentoppids) {
-				if (oppsandinvoices.opportunities.containsKey(oppid)) oppnumbers=oppnumbers==''?'':', ' + oppsandinvoices.opportunities.get(oppid).Name;
+			// extended error handling
+			if (errormsg!='' || oppsandinvoices.hasError) {
+				String oppnumbers='';
+				set<Id> recentoppids = new set<Id>();
+				for (OpportunityLineItem oli:opportunitylineitems.values()) {
+					if (!recentoppids.contains(oli.OpportunityId)) recentoppids.add(oli.OpportunityId);
+				}
+				for (Id oppid:recentoppids) {
+					if (oppsandinvoices.opportunities.containsKey(oppid)) oppnumbers=oppnumbers==''?'':', ' + oppsandinvoices.opportunities.get(oppid).Name;
+				}
+				systemsettings.sendInformationalEmailToUser('Freigabe/Faktura','Fehler bei Freigabe oder Fakturierung der Aufträge ' + oppnumbers + ', bitte versuchen Sie es später erneut!');
 			}
-			systemsettings.sendInformationalEmailToUser('Freigabe/Faktura','Fehler bei Freigabe oder Fakturierung der Aufträge ' + oppnumbers + ', bitte versuchen Sie es später erneut!');
 		}
+		if (oppsandinvoices.hasError) database.rollback(startInvoicing);
 		SystemSettings.insertErrors();
 	}
 
@@ -147,10 +158,10 @@ global class OpportunityStockAndInvoicing {
 		if (!products.isEmpty() && !opportunitylineitems.isEmpty()) {
 			for (OpportunityLineItem oli: opportunitylineitems.values()) {
 				Id oliProductId=oli.Product2Id__c;
-				if (oli.Produkttyp__c=='Signatur' && (SystemSettings.Lagerzugang.contains(oli.OppRechnungsart__c.intValue())
-					||  SystemSettings.Lagerabgang.contains(oli.OppRechnungsart__c.intValue())
+				if (oli.Produkttyp__c=='Signatur' && (SystemSettings.DebHaben.contains(oli.OppRechnungsart__c.intValue())
+					||  SystemSettings.DebSoll.contains(oli.OppRechnungsart__c.intValue())
 					)) {
-					Double sign=SystemSettings.Lagerzugang.contains(oli.OppRechnungsart__c.intValue())?-1:1;
+					Double sign=SystemSettings.DebHaben.contains(oli.OppRechnungsart__c.intValue())?-1:1;
 					if (products.containsKey(oliProductId)) {
 						if (products.get(oliProductId).ABMO01__c==null) products.get(oliProductId).ABMO01__c=0;
 						if (products.get(oliProductId).ABGS01__c==null) products.get(oliProductId).ABGS01__c=0;
@@ -166,9 +177,8 @@ global class OpportunityStockAndInvoicing {
 	
 	// Bestandspruefung
 	// Status auf Auftrag
-	private static void freeStockQuantity() {
+	private static void freeStockQuantity(Savepoint startInvoicing) {
 		Savepoint free1 = database.setSavepoint();
-		Boolean hasError=false;
 		if (!oppsandinvoices.opportunities.isEmpty() && !opportunitylineitems.isEmpty() && !products.isEmpty()) {
 			opportunitylineitems_orig=getOldOliStatus();
 			setAvailableQuantity();
@@ -178,18 +188,18 @@ global class OpportunityStockAndInvoicing {
 			setOpportunitylineitemsDeliverdQuantity();
 		}
 		
-		hasError=updateOpportunitylineitemsWithInvoicing();
-		if (hasError && !SystemSettings.isDebug) database.rollback(free1);
+		oppsandinvoices.hasError=updateOpportunitylineitemsWithInvoicing();
+		if (oppsandinvoices.hasError) database.rollback(startInvoicing);
 		else {
 			//for (Id oid: oppsandinvoices.opportunities.keySet()) {
 			for (OpportunityLineItem oli:opportunitylineitems.values()) {
 				if (oppsandinvoices.opportunities.get(oli.OpportunityId).StageName!='Teillieferung' && oppsandinvoices.opportunities.get(oli.OpportunityId).StageName!='Gelöscht' ) oppsandinvoices.opportunities.get(oli.OpportunityId).StageName='Freigabe / Fakturierung';
 			}
-			hasError=updateOpportunities();
+			oppsandinvoices.hasError=updateOpportunities();
 		} 
-		if (hasError && !SystemSettings.isDebug) 
-			database.rollback(free1);
-		if (hasError) SystemSettings.logError('Freigabe HasError: ' + errormsg);
+		if (oppsandinvoices.hasError) 
+			database.rollback(startInvoicing);
+		if (oppsandinvoices.hasError) SystemSettings.logError('Freigabe HasError: ' + errormsg);
 		SystemSettings.insertErrors();
 	}
 	
@@ -442,10 +452,9 @@ global class OpportunityStockAndInvoicing {
 	
 	// Erzeugung Rechnungsdaten und Belegdaten
 	// Status auf Auftrag
-	private static void invoicing() {
+	private static void invoicing(Savepoint startInvoicing) {
 		Savepoint fak1 = database.setSavepoint();
 		errormsg='';
-		Boolean hasError=false;
 		//collectAuftragspostenFaktura();
 		// for all auftraege we assume that in the end they all will be fakturiert
 		// if this is not the case we change the state for each opp if it is necessary
@@ -473,12 +482,12 @@ global class OpportunityStockAndInvoicing {
 			}
 		}
 		// update Artikel
-		hasError=updateProducts();
-		if (hasError && !SystemSettings.isDebug) database.rollback(fak1);
+		oppsandinvoices.hasError=updateProducts();
+		if (oppsandinvoices.hasError) database.rollback(startInvoicing);
 		// insertInvoices
-		hasError=upsertInvoices();
-		if (hasError && !SystemSettings.isDebug) {
-			database.rollback(fak1);
+		oppsandinvoices.hasError=insertNewInvoices(newInvoices);
+		if (oppsandinvoices.hasError) {
+			database.rollback(startInvoicing);
 		} else {
 			// update Auftragsposten with Invoices
 			if (!opportunitylineitems.isEmpty() && !oppsandinvoices.invoices.isEmpty()) {
@@ -490,9 +499,9 @@ global class OpportunityStockAndInvoicing {
 					}
 				}
 			}
-			hasError=updateOpportunitylineitemsWithInvoicing();
-			if (hasError && !SystemSettings.isDebug) {
-				database.rollback(fak1);
+			oppsandinvoices.hasError=updateOpportunitylineitemsWithInvoicing();
+			if (oppsandinvoices.hasError) {
+				database.rollback(startInvoicing);
 			} else {
 				if (!oppsandinvoices.opportunities.isEmpty()) {
 					if (!opportunitylineitems.isEmpty() && !products.isEmpty() && !oppsandinvoices.invoices.isEmpty()) {
@@ -508,24 +517,24 @@ global class OpportunityStockAndInvoicing {
 						}
 					}
 					// insertLineItems
-					hasError=insertInvoiceItems();
-					if (hasError && !SystemSettings.isDebug) {
-						database.rollback(fak1);
+					oppsandinvoices.hasError=insertInvoiceItems();
+					if (oppsandinvoices.hasError) {
+						database.rollback(startInvoicing);
 					}
 					setOpportunitylineitemInvoiceStatus();
 					setOpportunitiesInvoiceStatus();
 					// updateAuftraege
-					hasError=updateOpportunities();
-					if (hasError && !SystemSettings.isDebug) {
-						database.rollback(fak1);
+					oppsandinvoices.hasError=updateOpportunities();
+					if (oppsandinvoices.hasError) {
+						database.rollback(startInvoicing);
 					} else {
-						hasError=updateOpportunitylineitemsWithInvoicing();
-						if (hasError && !SystemSettings.isDebug) database.rollback(fak1);
+						oppsandinvoices.hasError=updateOpportunitylineitemsWithInvoicing();
+						if (oppsandinvoices.hasError) database.rollback(startInvoicing);
 					}
 				}
 			}
 		}
-		if (hasError) SystemSettings.logError('Faktura HasError: ' + errormsg);
+		if (oppsandinvoices.hasError) SystemSettings.logError('Faktura HasError: ' + errormsg);
 		SystemSettings.insertErrors();
 	}
 	
@@ -562,6 +571,7 @@ global class OpportunityStockAndInvoicing {
 								,RED211__c=System.today()
 								);
 			if (!oppsandinvoices.invoices.containsKey(o.id)) oppsandinvoices.invoices.put(o.id,r);
+			newInvoices.add(r);
 		}
 	}
 	
@@ -687,7 +697,7 @@ global class OpportunityStockAndInvoicing {
 				opportunitylineitems.get(oliid).FRME2D__c=0;
 				if (opportunitylineitems.get(oliid).STAT2D__c=='Freigabe') {
 					opportunitylineitems.get(oliid).STAT2D__c='Fakturiert';
-					if (opportunitylineitems.get(oliid).STAT2D__c=='Freigabe'
+					if (opportunitylineitems.get(oliid).STAT2D__c=='Fakturiert'
 							&& opportunitylineitems.get(oliid).OppTeillieferung__c==1
 							&& !opportunitylineitems.get(oliid).Sperrkz__c 
 							&& opportunitylineitems.get(oliid).Lizenzmenge__c!=opportunitylineitems.get(oliid).GELM2D__c
@@ -723,14 +733,20 @@ global class OpportunityStockAndInvoicing {
 				system.debug('Has missing opps ...');
 				Opportunity o=(Opportunity)s;
 				if (!oppsandinvoices.opportunities.containsKey(o.id)) {
+					//o.StageName='Vollständig Fakturiert';
+					//o.Probability=100;
+					//o.ForecastCategoryName='Closed';
 					newopps.put(o.id, o);
-				} else {
-					oppsandinvoices.opportunities.remove(o.id);
-				}
-				o.StageName='Vollständig Fakturiert';
-				o.Probability=100;
-				o.ForecastCategoryName='Closed';
-				oppsandinvoices.opportunities.put(o.id, o);
+					oppsandinvoices.opportunities.put(o.id, o);
+				} 
+				//else {
+				//	oppsandinvoices.opportunities.remove(o.id);
+				//}
+				if (newopps.containsKey(o.id))
+					oppsandinvoices.opportunities.get(o.id).StageName='Vollständig Fakturiert';
+				oppsandinvoices.opportunities.get(o.id).Probability=100;
+				oppsandinvoices.opportunities.get(o.id).ForecastCategoryName='Closed';
+				//oppsandinvoices.opportunities.put(o.id, o);
 			}
 		}
 	}
@@ -813,7 +829,7 @@ global class OpportunityStockAndInvoicing {
 			// now we have our set of interessting account ids
 			// lets get the accounts
 			if (!accountids.isEmpty()) {
-				for (Account a: [SELECT id, UMLJ02__c FROM Account WHERE Id IN :accountids]) {
+				for (Account a: [SELECT id, UMLJ02__c FROM Account WHERE Id IN :accountids FOR UPDATE]) {
 					if (a.UMLJ02__c==null) a.UMLJ02__c=0;
 					if (!accounts.containsKey(a.id)) accounts.put(a.id, a);
 				}
@@ -827,9 +843,9 @@ global class OpportunityStockAndInvoicing {
 			for (OpportunityLineItem oli: opportunitylineitems.values()) {
 				if (!pids.contains(Id.valueOf(oli.Product2Id__c))) pids.add(Id.valueOf(oli.Product2Id__c));
 			} 
-			try {
+			//try {
 				list<Product2> pkzmod=new list<Product2>();
-				for (Product2 p: [SELECT Id, GESB01__c, RESB01__c, PDKZ01__c, ABLJ01__c, ABMO01__c, ABGS01__c, UMGS01__c, UMLJ01__c, UMMO01__c, AUEA01__c FROM Product2 WHERE Id IN:pids]) {
+				for (Product2 p: [SELECT Id, GESB01__c, RESB01__c, PDKZ01__c, ABLJ01__c, ABMO01__c, ABGS01__c, UMGS01__c, UMLJ01__c, UMMO01__c, AUEA01__c FROM Product2 WHERE Id IN:pids FOR UPDATE]) {
 					if (p.GESB01__c!=null && p.GESB01__c==0 && p.PDKZ01__c==6) {
 							p.PDKZ01__c=8;
 							pkzmod.add(p);
@@ -838,17 +854,18 @@ global class OpportunityStockAndInvoicing {
 				}
 				// if a product runs out it will set to pkz 8 so that it can not be sold anymore
 				if (!pkzmod.isEmpty()) {
-					try {
-						update pkzmod;
-					} catch (System.DMLException dmle) {
-						SystemSettings.logError(dmle.getMessage(),'DEBUG');
-					}
+					//try {
+						database.update (pkzmod, dlo);
+					//} catch (System.DMLException dmle) {
+					//	SystemSettings.logError(dmle.getMessage(),'DEBUG');
+					//}
 				}
-			} catch (System.Queryexception e) {
-				SystemSettings.logError(e.getMessage(),'DEBUG');
-				errormsg=errormsg + ' / ' + e.getMessage();
+			//} catch (System.Queryexception e) {
+			//	SystemSettings.logError(e.getMessage(),'DEBUG');
+			//	errormsg=errormsg + ' / ' + e.getMessage();
 				//if (SystemSettings.isDebug) throw e;
-			}
+			//	throw e;
+			//}
 		}
 	}
 	
@@ -857,12 +874,13 @@ global class OpportunityStockAndInvoicing {
 		if (!oppsandinvoices.opportunities.isEmpty() 
 			) {
 			try {
-				update oppsandinvoices.opportunities.values();
+				database.update(oppsandinvoices.opportunities.values(),dlo);
 			} catch (System.Dmlexception e) {
 				SystemSettings.logError(e.getMessage(),'DEBUG');
 				//if (SystemSettings.isDebug) throw e;
 				errormsg=errormsg + ' / ' + e.getMessage();
 				return true;
+				throw e;
 			}
 		}
 		return false;
@@ -878,11 +896,12 @@ global class OpportunityStockAndInvoicing {
 				}
 			}
 			try {
-				update olitonull;
+				database.update(olitonull,dlo);
 			} catch (System.Queryexception e) {
 				SystemSettings.logError(e.getMessage(),'DEBUG');
 				errormsg=errormsg + ' / ' + e.getMessage();
 				//if (SystemSettings.isDebug) throw e;
+				throw e;
 			}
 		}
 	}
@@ -890,7 +909,7 @@ global class OpportunityStockAndInvoicing {
 	private static Boolean updateAccounts() {
 		if (!accounts.isEmpty()) {
 			try {
-				update accounts.values();
+				database.update(accounts.values(),dlo);
 			} catch (System.Dmlexception e) {
 				SystemSettings.logError(e.getMessage(),'DEBUG');
 				errormsg=errormsg + ' / ' + e.getMessage();
@@ -902,20 +921,40 @@ global class OpportunityStockAndInvoicing {
 	}
 	
 	private static Boolean unlockOpportunities() {
+		if (test.isRunningTest()) {
 		if (!oppsandinvoices.opportunities.isEmpty()) {
 			for (Id oppid: oppsandinvoices.opportunities.keySet()) {
-				if (oppsandinvoices.opportunities.get(oppid).Locked__c)
+				if (oppsandinvoices.opportunities.get(oppid).Locked__c) {
+					SystemSettings.logError('Fakturierung hat gesperrten Auftrag!','DEBUG');
 					oppsandinvoices.opportunities.get(oppid).Locked__c=false;
+				}
 			}
 		}
 		try {
-			update oppsandinvoices.opportunities.values();
+			database.update(oppsandinvoices.opportunities.values(),dlo);
 			return true;
 		} catch (System.Dmlexception e) {
 			SystemSettings.logError(e.getMessage(),'DEBUG');
 			errormsg=errormsg + ' / ' + e.getMessage();
 			//if (SystemSettings.isDebug) throw e;
 			return false;
+			throw e;
+		}
+		return false;
+		} else {
+		if (!oppsandinvoices.opportunities.isEmpty()) {
+			for (Id oppid: oppsandinvoices.opportunities.keySet()) {
+				if (oppsandinvoices.opportunities.get(oppid).Locked__c) {
+					SystemSettings.logError('Fakturierung hat gesperrten Auftrag!','DEBUG');
+					if (oppsandinvoices.opportunities.get(oppid).RechnungsartVorUmwandlung__c==0) {
+						oppsandinvoices.opportunities.get(oppid).Locked__c=false;
+					} else
+						return false;
+					//oppsandinvoices.opportunities.get(oppid).Locked__c=false;
+				}
+			}
+		}
+		return true;
 		}
 		return false;
 	}
@@ -925,27 +964,29 @@ global class OpportunityStockAndInvoicing {
 			try {
 				onProduct.inFutureContextStoredId='true';
 				MediathekSammelnummer.createMedienpaketLizenzenOnce=true;
-				update products.values();
+				database.update(products.values(),dlo);
 				MediathekSammelnummer.createMedienpaketLizenzenOnce=false;
 			} catch (System.Dmlexception e) {
 				SystemSettings.logError(e.getMessage(),'DEBUG');
 				errormsg=errormsg + ' / ' + e.getMessage();
 				//if (SystemSettings.isDebug) throw e;
 				return true;
+				throw e;
 			}
 		}
 		return false;	
 	}
 	
-	private static Boolean upsertInvoices() {
-		if (!oppsandinvoices.invoices.isEmpty()) {
+	private static Boolean insertNewInvoices(list<Rechnung__c> invoices) {
+		if (!invoices.isEmpty()) {
 			try {
-				upsert oppsandinvoices.invoices.values();
+				database.insert(invoices,dlo);
 			} catch (System.Dmlexception e) {
 				SystemSettings.logError(e.getMessage(),'DEBUG');
 				errormsg=errormsg + ' / ' + e.getMessage();
 				//if (SystemSettings.isDebug) throw e;
 				return true;
+				throw e;
 			}
 		}
 		return false;
@@ -961,13 +1002,14 @@ global class OpportunityStockAndInvoicing {
 			}
 			try {
 				onOpportunityLineItem.doNotRun=true;
-				update ol;
+				database.update( ol,dlo);
 				onOpportunityLineItem.doNotRun=false;
 			} catch (System.Dmlexception e) {
 				SystemSettings.logError(e.getMessage(),'DEBUG');
 				errormsg=errormsg + ' / ' + e.getMessage();
 				//if (SystemSettings.isDebug) throw e;
 				return true;
+				throw e;
 			}
 		}
 		return false;
@@ -976,23 +1018,25 @@ global class OpportunityStockAndInvoicing {
 	private static Boolean insertInvoiceItems() {
 		if (!invoiceitems.isEmpty()) {
 			try {
-				insert invoiceitems.values();
+				database.insert (invoiceitems.values(),dlo);
 			} catch (System.Dmlexception e) {
 				SystemSettings.logError(e.getMessage(),'DEBUG');
 				errormsg=errormsg + ' / ' + e.getMessage();
 				errormsg=errormsg + ' / ' + e.getMessage();
 				//if (SystemSettings.isDebug) throw e;
 				return true;
+				throw e;
 			}
 		}
 		if (!discountinvoiceitems.isEmpty()) {
 			try {
-				insert discountinvoiceitems.values();
+				database.insert (discountinvoiceitems.values(),dlo);
 			} catch (System.Dmlexception e) {
 				SystemSettings.logError(e.getMessage(),'DEBUG');
 				errormsg=errormsg + ' / ' + e.getMessage();
 				//if (SystemSettings.isDebug) throw e;
 				return true;
+				throw e;
 			}
 		}
 		return false;
