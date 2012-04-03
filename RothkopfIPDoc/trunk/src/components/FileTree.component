@@ -1,5 +1,6 @@
 <apex:component controller="treeController" id="treecomp">
-	<script type="text/javascript" src="{!URLFOR($Resource.jstree, '_lib/jquery.js')}"></script>
+<!-- 	<script type="text/javascript" src="{!URLFOR($Resource.jstree, '_lib/jquery.js')}"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="{!URLFOR($Resource.jstree, 'jquery.jstree.js')}"></script>
 	<script type="text/javascript">
 	
@@ -19,8 +20,11 @@
 			"plugins" : [ "themes", "json_data", "ui" ]
 		}).bind("select_node.jstree", function (e, data) { alert(data.rslt.obj.data("id")); });
 	});
+	
 	</script>
 	Tree:<br/>
 	<div id="theTree">
 	</div>
+	<input type="button" onclick="renderDoc('a00d0000002hYUs')" value="click me"/>
+
 </apex:component>

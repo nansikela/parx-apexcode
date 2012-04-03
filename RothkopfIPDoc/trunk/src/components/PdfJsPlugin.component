@@ -19,6 +19,11 @@
 </script>
         <script type="text/javascript" src="{!URLFOR($Resource.pdfjs, 'debugger.js')}"></script>
         <script type="text/javascript" src="{!URLFOR($Resource.pdfjs, 'viewer.js')}"></script>
+        <style>
+	        body {
+	            background:white;
+	        }
+	    </style>
         <script src="{!$Resource.connectionjs}" type="text/javascript"></script>
 <script>
         var Base64Binary = {
@@ -118,35 +123,35 @@
 
   <body>
     <div id="controls">
-      <button id="previous" onclick="PDFView.page--;" oncontextmenu="return false;">
+      <button id="previous" onclick="PDFView.page--;return false;" oncontextmenu="return false;">
         <img src="{!URLFOR($Resource.pdfjs, 'images/go-up.png')}" align="top" height="16"/>
         Previous
       </button>
 
-      <button id="next" onclick="PDFView.page++;" oncontextmenu="return false;">
+      <button id="next" onclick="PDFView.page++;return false;" oncontextmenu="return false;">
         <img src="{!URLFOR($Resource.pdfjs, 'images/go-down.png')}" align="top" height="16"/>
         Next
       </button>
 
       <div class="separator"></div>
 
-      <input type="number" id="pageNumber" onchange="PDFView.page = this.value;" value="1" size="4" min="1" />
+      <input type="number" id="pageNumber" onchange="PDFView.page = this.value;return false;" value="1" size="4" min="1" />
 
       <span>/</span>
       <span id="numPages">--</span>
 
       <div class="separator"></div>
 
-      <button id="zoomOut" title="Zoom Out" onclick="PDFView.zoomOut();" oncontextmenu="return false;" style="vertical-align: top;">
+      <button id="zoomOut" title="Zoom Out" onclick="PDFView.zoomOut();return false;" oncontextmenu="return false;" style="vertical-align: top;">
         <img src="{!URLFOR($Resource.pdfjs, 'images/zoom-out.png')}" align="top" height="16"/>
       </button>
-      <button id="zoomIn" title="Zoom In" onclick="PDFView.zoomIn();" oncontextmenu="return false;" style="vertical-align: top;">
+      <button id="zoomIn" title="Zoom In" onclick="PDFView.zoomIn();return false;" oncontextmenu="return false;" style="vertical-align: top;">
         <img src="{!URLFOR($Resource.pdfjs, 'images/zoom-in.png')}" align="top" height="16"/>
       </button>
 
       <div class="separator"></div>
 
-      <select id="scaleSelect" onchange="PDFView.parseScale(this.value);" oncontextmenu="return false;">
+      <select id="scaleSelect" onchange="PDFView.parseScale(this.value);return false;" oncontextmenu="return false;">
         <option id="customScaleOption" value="custom"></option>
         <option value="0.5">50%</option>
         <option value="0.75">75%</option>
@@ -161,7 +166,7 @@
 
       <div class="separator"></div>
 
-      <button id="print" onclick="window.print();" oncontextmenu="return false;">
+      <button id="print" onclick="window.print();return false;" oncontextmenu="return false;">
         <img src="{!URLFOR($Resource.pdfjs, 'images/document-print.png')}" align="top" height="16"/>
         Print
       </button>
