@@ -1,4 +1,4 @@
-<apex:page standardStylesheets="false" >
+<apex:page standardStylesheets="false" sidebar="false" showHeader="false">
 <apex:composition template="PageTemplate">
 	<apex:define name="header">
 	header
@@ -7,7 +7,7 @@
 		<c:FileTree id="filetreecomp" />
 	</apex:define>
 	<apex:define name="midcolumn">
-	mid
+	   <c:DocPreview id="DocPreview" />
 	</apex:define>
 	<apex:define name="rightcolumn">
 	right
