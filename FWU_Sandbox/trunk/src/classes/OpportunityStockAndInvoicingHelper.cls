@@ -90,7 +90,7 @@ public class OpportunityStockAndInvoicingHelper {
 			update oppstoupdate;
 			return true;
 		} catch (System.Dmlexception e) {
-			SystemSettings.logError(e.getMessage(),'DEBUG');
+			SystemSettings.logError('Free Opportunity ' + e.getMessage(),'DEBUG');
 			//if (SystemSettings.isDebug) throw e;
 			return false;
 		}
