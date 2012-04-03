@@ -82,7 +82,7 @@ public class KreisOnlinePackage {
 				//totalprice=totalprice+oli46g.quantity*oli46g.UnitPrice*(1-oli46g.Discount==null?0:oli46g.Discount);
 				totalprice=totalprice+oli46g.UnitPrice;
 				if (oli46v!=null)
-					totalprice=totalprice+2*oli46v.UnitPrice;
+					totalprice=totalprice+oli46v.Quantity*oli46v.UnitPrice;
 				if (oli55!=null)
 					totalprice=totalprice+oli55.UnitPrice;
 				
@@ -319,8 +319,8 @@ public class KreisOnlinePackage {
 					totalprice=totalprice+(packages.get(pkgid).oli55.UnitPrice * packages.get(pkgid).oli55.Quantity);
 				System.debug('kopkg: the price ' + totalprice);
 				//now check for VAT
-				//if (packages.get(pkgid).oli46g.isMWSt__c==0)
-				//	totalprice=totalprice/(1+vatpart);
+				if (packages.get(pkgid).oli46g.isMWSt__c==0)
+					totalprice=totalprice/(1+vatpart);
 				System.debug('kopkg: the price ' + totalprice);
 			}
 		}
@@ -352,13 +352,13 @@ public class KreisOnlinePackage {
 			if (packages.get(pkgid).oli46g!=null) {
 				totalprice=totalprice+packages.get(pkgid).oli46g.UnitPrice;
 				if (packages.get(pkgid).oli46v!=null)
-					totalprice=totalprice+2*packages.get(pkgid).oli46v.UnitPrice;
+					totalprice=totalprice+packages.get(pkgid).oli46v.Quantity*packages.get(pkgid).oli46v.UnitPrice;
 				if (packages.get(pkgid).oli55!=null)
 					totalprice=totalprice+packages.get(pkgid).oli55.UnitPrice;
 				
 				//now check for VAT
-				//if (packages.get(pkgid).oli46g.isMWSt__c==0)
-				//	totalprice=totalprice/(1+vatpart);
+				if (packages.get(pkgid).oli46g.isMWSt__c==0)
+					totalprice=totalprice/(1+vatpart);
 			}
 			
 			// things we have to sync:

@@ -30,9 +30,6 @@ global class OpportunityStockAndInvoicingBatch implements Database.Batchable<sOb
 		if (oppsandinvoices!=null && !oppsandinvoices.hasError && !oppsandinvoices.opportunities.isEmpty()) {
 			OpportunityStockAndInvoicingHelper.print(oppsandinvoices.opportunities, oppsandinvoices.opportunitiesNoFak, oppsandinvoices.invoices);
 		}
-		if (!oppsandinvoices.opportunities.isEmpty()) {
-			OpportunityStockAndInvoicingHelper.lockOpportunities(oppsandinvoices);
-		}
 		// Auftragsbestaetigungen muessen gedruckt werden wenn:
 		// Latzte Rechnung = NULL AND Zahl_der_Fakturierungen__c=1
 		// TODO Code fuer Auftragsbestaetung 
@@ -44,7 +41,16 @@ global class OpportunityStockAndInvoicingBatch implements Database.Batchable<sOb
 	                oppstoupdate.add(o);
 				}
 			}
-			update oppstoupdate;
+			try {
+				update oppstoupdate;
+			} catch (System.DmlException e) {
+				SystemSettings.logError('Print Auftragsbestaetigung ist fehlgeschlagen! ' + e.getMessage());
+			}
+		}
+		
+		// finally lock opp
+		if (!oppsandinvoices.opportunities.isEmpty()) {
+			OpportunityStockAndInvoicingHelper.lockOpportunities(oppsandinvoices);
 		}
 
 		SystemSettings.insertErrors();

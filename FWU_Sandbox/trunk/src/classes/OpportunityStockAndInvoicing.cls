@@ -665,10 +665,11 @@ global class OpportunityStockAndInvoicing {
 						&& opportunitylineitems.get(oliid).STAT2D__c!='Ausgelassen'
 						&& opportunitylineitems.get(oliid).STAT2D__c!='Gelöscht'
 						)
-					) 
+					) { 
 					oppsandinvoices.opportunities.get(opportunitylineitems.get(oliid).OpportunityId).StageName='Teillieferung';
 					oppsandinvoices.opportunities.get(opportunitylineitems.get(oliid).OpportunityId).Probability=90;
 					oppsandinvoices.opportunities.get(opportunitylineitems.get(oliid).OpportunityId).ForecastCategoryName='Commit';
+					}
 			}
 			for (Id oppid: oppsandinvoices.opportunities.keySet()) {
 				if (oppsandinvoices.opportunities.get(oppid).Zahl_der_Fakturierungen__c==null) oppsandinvoices.opportunities.get(oppid).Zahl_der_Fakturierungen__c=0;
