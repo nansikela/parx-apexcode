@@ -1,0 +1,90 @@
+<apex:page controller="project_prioritization">
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    <apex:variable value="{!1}" var="rowNum"/>
+    <apex:variable value="{!1}" var="totalrows"/>
+
+    <apex:repeat var="p" value="{!Projects}">
+          <apex:variable var="totalrows" value="{!totalrows+ 1}"/>
+    </apex:repeat>
+
+      google.load('visualization', '1', {'packages':['motionchart']});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Project');
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Acheivement');
+        data.addColumn('number', 'Attractiveness');
+        data.addColumn('number', '5 Yr NPV');
+        data.addColumn('string', 'Category');
+        data.addRows([
+          <apex:repeat var="p" value="{!Projects}">
+          <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+              ["{!p.Name}",new Date (),{!p.Achievement__c},{!p.Attractiveness__c},{!p.X5_Yr_NPV__c},"{!p.Category__c}"]<apex:outputText value="," rendered="{!IF((rowNum != totalrows), 'true', 'false')}" />
+          </apex:repeat>
+          ]);
+        var chart = new google.visualization.MotionChart(document.getElementById('chart_div'));
+        var options = {};
+        options['state'] = '{"xAxisOption":"2","orderedByY":false,"yZoomedIn":false,"yLambda":1,"time":"2011-12-14","playDuration":15000,"uniColorForNonSelected":false,"orderedByX":false,"iconKeySettings":[],"duration":{"multiplier":1,"timeUnit":"D"},"xZoomedDataMin":1,"dimensions":{"iconDimensions":["dim0"]},"xLambda":1,"colorOption":"5","xZoomedDataMax":10,"sizeOption":"4","showTrails":false,"yAxisOption":"3","yZoomedDataMin":1,"xZoomedIn":false,"yZoomedDataMax":10,"iconType":"BUBBLE","nonSelectedAlpha":0.4};';
+        options['width'] = 1000;
+        options['height'] = 500;
+        options['showXScalePicker'] = false;
+        options['showYScalePicker'] = false;
+        chart.draw(data, options);
+      }
+    </script>
+    <style>
+        .filtercontainer{
+            width:700px;
+        }
+    </style>
+  </head>
+
+  <body>
+  <apex:form >
+  <apex:pageBlock >
+  <apex:outputpanel layout="block" styleclass="filtercontainer">
+      <apex:pageBlockSection columns="4" >
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="Brand" for="BrandFilter"/>
+              <apex:selectList value="{!selBrand}"  size="1" id="BrandFilter" >
+                  <apex:selectOptions value="{!BrandsList}"/>
+              </apex:selectList>
+          </apex:pageBlockSectionItem>    
+          <apex:pageBlockSectionItem >    
+              <apex:outputLabel value="Market" for="MarketFilter"/>
+              <apex:selectList value="{!selMarket}"  size="1" id="MarketFilter" >
+                  <apex:selectOptions value="{!MarketsList}"/>
+              </apex:selectList>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >    
+              <apex:outputLabel value="Category" for="CategoryFilter"/>
+              <apex:selectList value="{!selCategory}"  size="1" id="CategoryFilter" >
+                  <apex:selectOptions value="{!CategoryList}"/>
+              </apex:selectList>
+          </apex:pageBlockSectionItem>     
+          <apex:pageBlockSectionItem >
+              <apex:commandButton action="{!refresh}" status="status" value="Apply Filter" />
+          </apex:pageBlockSectionItem>
+    </apex:pageBlockSection>
+  </apex:outputPanel>
+  </apex:pageBlock>
+    </apex:form>
+    <div id="chart_div" style="width: 1000px; height: 500px;"></div>
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!Projects}" var="p">
+            <apex:column value="{!p.Name}" />
+            <apex:column value="{!p.Brand__r.Name}" />
+            <apex:column value="{!p.Market__r.Name}" />
+            <apex:column value="{!p.Achievement__c}" />
+            <apex:column value="{!p.Attractiveness__c}" />
+            <apex:column value="{!p.X5_Yr_NPV__c}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+  </body>
+
+
+
+</apex:page>

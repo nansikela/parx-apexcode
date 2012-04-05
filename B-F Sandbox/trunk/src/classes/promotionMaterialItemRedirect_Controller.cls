@@ -4,7 +4,7 @@ public with sharing class promotionMaterialItemRedirect_Controller {
 	public promotionMaterialItemRedirect_Controller (ApexPages.StandardController controller)
 	{
 		this.pm = (Promotion_Material_Item__c)controller.getRecord();
-		pm = [Select Promotion__r.RecordTypeId, Promotion__c From Promotion_Material_Item__c p where Id=:pm.Id];
+		pm = [Select Promotion__r.RecordTypeId, Promotion__r.Account__r.Market__r.Name, Promotion__c From Promotion_Material_Item__c p where Id=:pm.Id];
 	}
     
 	public PageReference Redirect()
@@ -19,8 +19,10 @@ public with sharing class promotionMaterialItemRedirect_Controller {
 			return p;
 		}
 		else {
-			Profile p = [Select Name From Profile Where ID = :UserInfo.getProfileId() limit 1];
 			PageReference ref = Page.promotionMaterialItem;
+			if(pm.Promotion__r.Account__c!=null && pm.Promotion__r.Account__r.Market__r.Name.contains('Germany')) {
+				ref = Page.promotionMaterialItem_deu;	
+			}
 			
 			ref.getParameters().put('id',pm.Promotion__c);
 			return ref;

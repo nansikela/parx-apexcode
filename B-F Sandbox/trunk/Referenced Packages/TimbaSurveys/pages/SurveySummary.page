@@ -1,0 +1,446 @@
+<apex:page standardController="TIMBASURVEYS__Survey_Summary__c" extensions="TIMBASURVEYS.SurveySummaryController" sidebar="false" tabstyle="Timba_Surveys__tab">
+    <apex:include pageName="TIMBASURVEYS__entityEncodeJs" />
+
+    <!-- Custom StyleSheets -->
+    <apex:stylesheet value="{!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'css/navigation_survey_analyzer.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'css/tabsDisplay.css')}" />
+
+    <apex:stylesheet value="{!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'css/analyzecontact.css')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.TIMBASURVEYS__tooltipStyles, 'tooltipStyles.css')}" />
+
+    <style type="text/css">
+        .masterContainer{
+            background: #FFFFFF;
+            border: 1px solid #2791C1;
+
+            border-top-style: hidden;
+
+            margin-top: -1px;
+
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+
+            -webkit-border-bottom-right-radius: 6px;
+            -webkit-border-bottom-left-radius: 6px;
+
+            -moz-border-radius-bottomright: 6px;
+            -moz-border-radius-bottomleft: 6px;
+
+        }
+
+        .marginout{
+            margin: auto;
+            width: auto;
+            padding: 15px;
+        }
+
+        .containerright{
+            float: none;
+            width: auto;
+
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .containerleft{
+            width: 28%;
+            min-width: 190px;
+            max-width: 350px;
+        }
+
+        .userdata{
+            overflow: hidden;
+        }
+
+        .vertmid{
+            padding: 0 !important;
+            overflow: hidden;
+            height: 18px;
+        }
+
+        #bodyTable #breadCrumb a.close {
+            overflow: hidden;
+        }
+
+        .banner{
+            padding-top: 3px;
+            height: 47px;
+            overflow: hidden;
+        }
+
+        .banner .surveyStat{
+            margin-top: 10px;
+        }
+        .banner .browseBy{
+            margin-top: 16px;
+        }
+        .banner .questions{
+            margin-top: 16px;
+        }
+
+        .banner .recipients{
+            margin-top: 16px;
+            cursor: default;
+        }
+        .banner .corrector{
+            margin-top: 12px;
+        }
+
+        .banner .selected{
+            margin-top: 12px;
+        }
+
+        .banner .selected .underline{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .dijitContentPane{
+            overflow: hidden;
+        }
+
+        .banner .excel{
+            float:right;
+            font-size: 13px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #1f9ecd;
+            outline: none;
+
+            background-color:#ffffff;
+            margin-top: 4px;
+            margin-right:8px;
+            padding: 4px;
+
+            -webkit-border-bottom-left-radius: 5px;
+            -webkit-border-bottom-right-radius: 5px;
+            -moz-border-radius-bottomleft: 5px;
+            -moz-border-radius-bottomright: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+
+
+            overflow: hidden;
+        }
+
+        .banner .excel img{
+            margin-top: 1px;
+            margin-right: 2px;
+            vertical-align: middle;
+        }
+
+        .banner .excel span{
+            margin-top: 2px;
+        }
+
+        .points {
+        -moz-border-radius:6px 6px 6px 6px;
+        background-color:#2C98C5;
+        color:#FFFFFF;
+        float:right;
+        font-size:12px;
+        font-weight:bold;
+        height:19px;
+        padding-top:3px;
+        text-align:center;
+        text-decoration:none;
+        width:113px;
+        }
+
+        .titlemainquestions_mod {
+        color:#2C98C5;
+        float:left;
+        font-family:arial;
+        font-size:18px;
+        font-weight:bold;
+        margin-bottom:8px;
+        width:97%;
+        }
+
+        .textin {
+        clear:both;
+        font-size:17px;
+        margin:13px;
+        }
+
+        .titlemain {
+        color:#2C98C5;
+        font-family:arial;
+        font-size:18px;
+        font-weight:bold;
+        margin:5px;
+        }
+
+        .questiontype {
+        color:#69BDE0;
+        float:right;
+        font-family:arial;
+        font-size:12px;
+        line-height:0;
+        position:relative;
+        width:100%;
+        }
+
+        .useranswer {
+        -moz-border-radius:6px 6px 6px 6px;
+        -moz-box-shadow:0 0 4px #666666 inset;
+        background:none repeat scroll 0 0 #FFFFFF;
+        border:1px solid #E4F0FC;
+        clear:both;
+        color:#737373;
+        font-family:arial;
+        font-size:13px;
+        padding:15px;
+        }
+
+        .surveyButton {
+            padding: 6px 8px;
+        }
+    </style>
+
+    <apex:composition template="TIMBASURVEYS__timbaSurveysTemplate">
+        <!-- customJs Imports & Script Tags -->
+        <apex:define name="customJs">
+            <script type="text/javascript">
+            
+            	//////////// Tool Tips /////////////////////////////////////////////////////////////////////
+
+        jQuery(document).ready(function() {
+            $(".NameX").tooltip({ 
+			    bodyHandler: function() { 
+			        return $($(this).attr("href")).html(); 
+			    }, 
+			    showURL: false 
+			});
+			
+///////////// End Tool Tips ///////////////////////////////////////////////////////////////
+
+                /* remove summary */
+                function startRemoveSummary() {
+                   if(confirm('{!$Label.timbasurvey_surveyAnalyze_Delete_all}')){
+                       listOverlay.show();
+                       removeSummary();
+                   }
+                }
+
+                function removeSummaryCompleted(success, redirectToCollect){
+                    if(success == 'true'){
+                        if(redirectToCollect == 'true'){
+                            window.location = '{!$Page.TIMBASURVEYS__SurveyCollect}?id={!URLENCODE(survey_summary.Survey__r.Id)}';
+                        }else{
+                            window.location = '{!$Page.SurveyBrowser}?id={!URLENCODE(survey_summary.Survey__r.Id)}';
+                        }
+                    }else{
+                        window.location = '{!$Page.SurveyBrowser}?id={!URLENCODE(survey_summary.Survey__r.Id)}';
+                    }
+                    listOverlay.hide();
+                }
+
+                function removeSummary(){
+                    removeSummaryOperation('delete', '{!JSENCODE(recipientType)}', '{!JSENCODE(recId)}');
+
+                }
+
+                function removeSummaryCallFinal(){
+                    removeSummaryCallFinalOperation('removeSummary');
+                }
+
+                function removeSummaryCallFinalCompleted(success){
+                    if(success == 'true'){
+                        window.location = '{!$Page.SurveyBrowser}?id={!survey_summary.Survey__r.Id}';
+                    }
+                    else{
+                         listOverlay.hide();
+                    }
+                }
+
+                 var initialize = function() {
+
+                    var lis = dojo.query('span.qNameX');
+                    for(var index = 0; index < lis.length; index++) {
+
+                        lis[index].innerHTML = entity.decode(lis[index].innerHTML);
+                    };
+
+                    dojo.query('.bPageFooter')[0].style.display = 'none';
+
+                    dojo.connect(dojo.byId('gobacktoRecipients'), 'onclick', openRecipientsList);
+                 }
+
+                 function openRecipientsList(){
+                    window.open("{!$Page.SurveyBrowser}?id={!JSENCODE(survey_summary.Survey__c)}",'_self');
+                 }
+
+
+                  dojo.addOnLoad(initialize);
+
+                  function deleteSummary(summary_id){
+                    if(confirm('{!$Label.timbasurveys_branchingJS_are_u_sure}')){
+                        overlay.show();
+                        dojo.byId('designerFooter').style.display = 'none';
+
+                        var surveyId = '{!JSENCODE(survey_summary.Survey__c)}';
+                        deleteSummaryOperation('removeSummary');
+                     }
+                  }
+
+                  function deleteSummaryCompleted(success){
+                    var surveyId = '{!JSENCODE(survey_summary.Survey__c)}';
+                    if(success == 'true'){
+                        if (surveyId.length > 0){
+                            window.location = '{!$Page.SurveyBrowser}?id={!JSENCODE(survey_summary.Survey__c)}';
+                        }
+                        else{
+                            window.location = '{!$Page.SurveyList}';
+                        }
+                    }
+                    else{
+                    }
+                }
+
+                  var overlay = {
+                        show: function (){
+                            dojo.byId('overlay_div').style.display = '';
+
+                        },
+                        hide: function(){
+                            dojo.byId('overlay_div').style.display = 'none';
+                        }
+                    };
+
+                    function overButton(me, over){
+                        if(over){
+                            dojo.addClass(me,'corrector');
+                        }else{
+                            dojo.removeClass(me,'corrector');
+                        }
+                    }
+
+            </script>
+
+        </apex:define>
+
+
+        <!-- BreadCrumb -->
+        <apex:define name="breadCrumb">
+            <c:timbaSurveysBreadCrumb steps="{!$Label.timbasurveys__timbasurveys_Survey_List}:::{!$Page.TIMBASURVEYS__SurveyList},,,{!survey_name}"/>
+        </apex:define>
+
+        <!-- Body Section -->
+        <apex:define name="body">
+
+
+            <div dojoType="dijit.layout.ContentPane" title="{!$Label.timbasurvey_Analyze_Analyze_Items}" id="analyze">
+
+                <apex:outputPanel styleClass="tabSet" layout="block">
+                    <a href="#" class="tabElem">{!$Label.timbasurveys_tabs_overview}</a>
+                    <apex:outputpanel layout="none" rendered="{!$ObjectType.TIMBASURVEYS__Survey__c.updateable}">
+                        <apex:outputLink value="{!$Page.TIMBASURVEYS__SurveyPreview}" styleClass="tabElem">
+                            <apex:param name="id" value="{!survey_summary.TIMBASURVEYS__Survey__c}" />
+                            <apex:outputText value="{!$Label.timbasurveys__timbasurvey_surveyCollect_Design}" />
+                        </apex:outputLink>
+                        <apex:outputLink value="{!$Page.TIMBASURVEYS__SurveyCollect}" styleClass="tabElem">
+                            <apex:param name="id" value="{!survey_summary.TIMBASURVEYS__Survey__c}" />
+                            <apex:outputText value="{!$Label.timbasurveys__timbasurvey_surveylist_Collect}" />
+                        </apex:outputLink>
+                    </apex:outputpanel>
+                    <apex:outputLink value="{!$Page.TIMBASURVEYS__SurveyAnalyze}" styleClass="tabElem imIn">
+                        <apex:param name="id" value="{!survey_summary.TIMBASURVEYS__Survey__c}" />
+                        <apex:outputText value="{!$Label.timbasurveys__timbasurveys_tabs_analize}" />
+                    </apex:outputLink>
+                    <div class="marginInf"></div>
+                </apex:outputPanel>
+
+                <div class="banner" style="text-align: right;">
+                    <div class="surveyStat">{!$Label.timbasurveys_analyzer_surveyStats}</div>
+                    <div class="browseBy">{!$Label.timbasurveys_analyzer_browseBy}</div>
+                    <apex:outputLink value="{!$Page.TIMBASURVEYS__SurveyAnalyze}" styleClass="questions" onmouseover="overButton(this, true);" onmouseout="overButton(this, false);">
+                        <apex:param name="id" value="{!survey_summary.TIMBASURVEYS__Survey__c}" />
+                        <apex:outputText value="{!$Label.timbasurveys__timbasurveys_analyzer_questions}" />
+                    </apex:outputLink>
+                    <a href="javascript:;" onclick="return false;" class="recipients selected" onmouseover="overButton(this, true);" onmouseout="overButton(this, false);"><span class="underline" id="gobacktoRecipients">{!$Label.timbasurveys_analyzer_recipients}</span> &gt; {!recipient_name} </a>
+                    <apex:outputpanel layout="none" rendered="{!$ObjectType.TIMBASURVEYS__SurveyResponse__c.deletable}">
+                        <button onclick="startRemoveSummary();" class="surveyButton cancel" style="float:right;margin-top: 4px;"><img src="{!URLFOR($Resource.SurveyResources2, 'img/icons/canceliconsmall.png')}" /><span>{!$Label.timbasurveys_analyzer_deleteResponses}</span></button>
+                    </apex:outputpanel>
+                    <button onclick="window.location='{!$Page.SurveySummaryXlsReport}?id={!survey_summary.id}&p=1&isxls=true';" class="surveyButton" style="float:right;margin-top: 4px;"><img src="{!URLFOR($Resource.SurveyResources2, 'img/icons/xlssmall.png')}" /><span>{!$Label.timbasurveys_analyzer_excelReport}</span></button>
+                </div>
+
+
+                <div class="masterContainer" style="overflow-x: hidden;">
+                    <div class="marginout">
+                        <div class="containerleft">
+                            <div class="containersingle">
+                                <apex:outputText styleClass="titlemain" value="{!$Label.timbasurveys__timbasurveys_Summary_Answer_from}" /><br />
+                                <apex:outputPanel layout="block" styleClass="userdata">
+                                    <img alt="" src="{!IF(OR(survey_summary.Recipient__r.RelatedContact__c != null , survey_summary.Recipient__r.RelatedContact__c != ''), URLFOR($Resource.SurveyResources2,'img/analyze_recipients/contact.png') , IF(OR(survey_summary.Recipient__r.RelatedLead__c != null , survey_summary.Recipient__r.RelatedLead__c != ''), URLFOR($Resource.SurveyResources2,'img/analyze_recipients/lead.png') , IF(OR(survey_summary.Recipient__r.RelatedUser__c != null , survey_summary.Recipient__r.RelatedUser__c != ''), URLFOR($Resource.SurveyResources2,'img/analyze_recipients/user.png') , IF(OR(survey_summary.Recipient__r.EmailAddress__c != null , survey_summary.Recipient__r.EmailAddress__c != ''), URLFOR($Resource.SurveyResources2,'img/analyze_recipients/email.png') , URLFOR($Resource.SurveyResources2,'img/analyze_recipients/anonymous.png') ) ) ))}" /><br /><br />
+                                    <apex:outputText styleClass="textin" value="{!IF(OR(recipient_name != '' , recipient_name != null), IF(recipient_name != '', recipient_name ,$Label.timbasurveys__timbasurvey_Analyze_Anonymous) ,$Label.timbasurveys__timbasurvey_SurveySummary_Not_Available)}" /><br />
+                                    <apex:outputText value="{!IF(OR(recipient_email != '' , recipient_email != null),recipient_email, $Label.timbasurveys__timbasurvey_SurveySummary_Email_Not_Available)}" />
+                                </apex:outputPanel>
+                                <span class="textout">{!$Label.timbasurveys_Summary_Survey_completed} {!IF(OR(completed_date != '' , completed_date != null),completed_date,$Label.timbasurvey_SurveySummary_Not_Available)}</span>
+                             <br />
+                             <apex:outputpanel rendered="{!IF(hasWeight, true, false)}" layout="none">
+                             <div class="userdata">
+                                    <span class="titlemain">{!$Label.timbasurvey_Total_Weight_Text}</span>
+                                    <span>   </span>
+                                     <span class="titlemain">{!$Label.timbasurvey_Max_Text}</span> <br />
+                                    <apex:outputText styleClass="textin" value="{!FLOOR(total_weight)}" />
+                                    <span>   </span>
+                                    <apex:outputText value="{!FLOOR(total_max_weight)}" styleClass="textin"/>
+                                </div>
+                             </apex:outputpanel>
+                          </div>
+                        </div>
+                            <div class="containerright">
+                            <apex:repeat value="{!summaryPages}" var="summaryPage">
+                                   <div class="containersingle textleft">
+                                       <apex:outputText styleClass="titlemainquestions" value="{!$Label.timbasurveys__timbasurveys_Summary_Page_Number}: {!summaryPage.pageNumber}" />
+                                       <br />
+                                   </div>
+                                    <apex:repeat value="{!summaryPage.questionSummaries}" var="qSummary">
+                                        <div class="containersingle textleft">
+                                            <div class="titlemainquestions_mod">
+                                                <span class="questionnumber">{!FLOOR(qSummary.Position__c)}</span>
+                                                <apex:outputText title="{!qSummary.TIMBASURVEYS__Question2__c}" styleClass="NameX" value="{!qSummary.Name}" escape="false" />
+                                                    <apex:outputpanel rendered="{!IF(ISNULL(qSummary.TIMBASURVEYS__max_weight__c), false, true)}">
+                                                        <apex:outputText styleClass="points" value="{!$Label.timbasurveys__timbasurvey_Points}">
+                                                            <apex:param value="{!FLOOR(qSummary.TIMBASURVEYS__weight__c)}" />
+                                                            <apex:param value="{!FLOOR(qSummary.TIMBASURVEYS__max_weight__c)}" />
+                                                        </apex:outputText>
+                                                    </apex:outputpanel>
+                                            </div>
+                                            <br />
+                                            <div class="useranswer">
+                                                <apex:outputText id="hasAnswer" value="{!IF((qSummary.TIMBASURVEYS__Answer__c != null), qSummary.TIMBASURVEYS__Answer__c, $Label.timbasurveys__timbasurveys_not_answered)}" />
+                                            </div>
+                                        </div>
+                                     </apex:repeat>
+                                 </apex:repeat>
+                           </div>
+                    </div>
+                </div>
+            </div>
+            <div jsId="listOverlay" dojoType="dojox.widget.Standby" target="bodyTable" color="white"></div>
+          </apex:define>
+    </apex:composition>
+    <apex:outputPanel id="myStateSurveySummary" rendered="false" />
+    <apex:form id="sureysummaryActions">
+        <apex:actionFunction name="removeSummaryCallFinalOperation" oncomplete="removeSummaryCallFinalCompleted('{!success}')" action="{!doOperation}" rerender="myStateSurveySummary" >
+            <apex:param name="operation" value="" assignTo="{!operation}" />
+        </apex:actionFunction>
+        <apex:actionFunction name="deleteSummaryOperation" oncomplete="deleteSummaryCompleted('{!success}')" action="{!doOperation}" rerender="myStateSurveySummary">
+            <apex:param name="operation" value="" assignTo="{!operation}" />
+        </apex:actionFunction>
+        <apex:actionFunction name="removeSummaryOperation" oncomplete="removeSummaryCompleted('{!success}','{!redirectToCollect}')" action="{!doOperation}" rerender="myStateSurveySummary">
+            <apex:param name="operation" value="" assignTo="{!operation}" />
+            <apex:param name="recipientType" value="" assignTo="{!recipientType}" />
+            <apex:param name="recipientId" value="" assignTo="{!recipientId}" />
+        </apex:actionFunction>
+    </apex:form>
+</apex:page>

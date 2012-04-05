@@ -7,7 +7,10 @@
             where user can add and remove his/her favourite quick links
             
 *Modified by Mike Shroyer on 10/3/2011
-*Purpose : Changed the getItems() method to read Quick link categories from the DB               
+*Purpose : Changed the getItems() method to read Quick link categories from the DB    
+
+*Modified by Mike Shroyer on 11/8/2011
+*Purpose : Changed the getItems() return a list of strings for VF output instead of SelectOptions               
 ****************************************************************/
 public with sharing class EverythingElseController {
    String category = 'All';
@@ -31,7 +34,8 @@ public with sharing class EverythingElseController {
      //Check if user has any favorites. If yes then display the My Links Category
      if(mpLinkUser.size()>0){
          setCategory('My Links');
-         changeCategory();
+         //changeCategory();
+         showFavourites();
      }else{
          myLinks = 'none';
      }
@@ -78,6 +82,7 @@ public with sharing class EverythingElseController {
    // based on the selection made from drop down
    //-------------------------------------------------//
    public PageReference changeCategory() {
+ 	 Category = System.currentPageReference().getParameters().get('category');
      if(category == 'My Links') {
        showFavourites();
      }
@@ -88,12 +93,14 @@ public with sharing class EverythingElseController {
        QuickLinks =  [SELECT Category__c, Name__c,Image_Link__c,Link_Location__c,External__c FROM Quick_Link__c Where Category__c Includes (:category) ORDER BY Name__c];
      }
      return null;
+     
+     
    }
    //-------------------------------------------------//
    // To populate the category drop down    
    // to be displayed on the page
    //-------------------------------------------------//
-
+/*
 	public List<SelectOption> getItems() {
 		List<SelectOption> options = new List<SelectOption>();
 		Map<String,String> uniqueOptions = new Map<String,String>();
@@ -111,7 +118,7 @@ public with sharing class EverythingElseController {
 		List<String> sortedOptions = uniqueOptions.values();
 		sortedOptions.sort();
 		
-		//Add values to list of Select Options
+		//Add values to list of Select Options	
 		options.add(new SelectOption('All','All'));
 		for (String s : sortedOptions) {
 			options.add(new SelectOption(s,s));
@@ -119,6 +126,28 @@ public with sharing class EverythingElseController {
 		
 		return options;
 	}   
+*/	
+	public List<String> getItems() {
+		List<String> options = new List<String>();
+		Map<String,String> uniqueOptions = new Map<String,String>();
+		
+		//Get all values from the DB
+		for (Quick_Link__c q : [select Category__c From Quick_Link__c where Category__c <> null]) {
+			//split the multi-select options and put into map
+  			String[] temp = q.Category__c.split(';');
+  			for(String s : temp) {
+    			uniqueOptions.put(s,s);
+			}	
+		}		
+		
+		//Get the values from the Map and sort them
+		List<String> sortedOptions = uniqueOptions.values();
+		sortedOptions.sort();
+
+		options.add('All');
+		options.addAll(sortedOptions);
+		return options;
+	} 	
    //-------------------------------------------------//
    // To query all the user links to be displayed on the page    
    // for initialiing the page
@@ -190,5 +219,13 @@ public with sharing class EverythingElseController {
      }
      showFavourites();
      return null;
+   }
+   
+    public string listItemClass(string s) {
+   		if (s==Category) {
+	   		return 'cur';
+	   	} else {
+   			return '';   		
+   		}
    }
 }

@@ -20,7 +20,7 @@
  * See the Apex Language Reference for more information about Testing and Code Coverage.
  */
 @isTest
-private class INFW_CodeCoverage { 
+private class INFW_CodeCoverage {
 
     //Assume that products and Brands are already setup.
     static testMethod void promotionProductSelection_Controller_Coverage() {
@@ -141,10 +141,10 @@ private class INFW_CodeCoverage {
             system.assert(Apexpages.getmessages().size()==0);
         }       
     }
-           
-  //Assume that products and Brands are already setup.
+             
+    //Assume that products and Brands are already setup.
     static testMethod void promotionMaterialItem_Controller_Coverage() {
-        
+    	
   //....6/15 Levites Helper Class has User data
         INFW_TestHelper helper = new INFW_TestHelper();
         User u1 = helper.createUser();
@@ -160,7 +160,7 @@ private class INFW_CodeCoverage {
             Market__c m = new Market__c();
             m.Name = 'Test Market'; 
             insert m;
- 
+
 // Test Data for Suppiler            
             Supplier__c s = new Supplier__c();
             s.Name='BF';
@@ -230,8 +230,8 @@ private class INFW_CodeCoverage {
 // Running as the created Test User             
         system.runas(u1)
         {   
-            
-// Account Creation             
+        	
+// Account Creation         	
             a.Name = 'Test Account';
             a.Market__c = m.Id;
             //a.Outlet_Class__c = o.id;
@@ -261,11 +261,10 @@ system.debug(rtype[0].id)    ;
  //OLD// sObject so = new Outlet_Visit__c();
  
 // "prom" = Newly Created Promotion
-       //     ApexPages.StandardController sc = new ApexPages.StandardController(prom);
-// "sc" = ApexPages.StandardController     
-            ApexPages.currentPage().getParameters().put('Id', prom.Id);     
-            promotionMaterialItem_Controller constructor = new promotionMaterialItem_Controller();        
-            constructor.myLimit = 100; 
+            ApexPages.StandardController sc = new ApexPages.StandardController(prom);
+// "sc" = ApexPages.StandardController          
+            promotionMaterialItem_Controller constructor = new promotionMaterialItem_Controller(sc);        
+            constructor.myLimit = 100;
  //OLD// constructor.ov.Account__c = a.id;
  
  //Creating List for Records Types from promotionMaterialItem_Controller-->>promotionProductHelper
@@ -288,42 +287,57 @@ system.debug(rtype[0].id)    ;
             constructor.bfBrandValue = myBrandsList[0].getvalue();
  
 //            
-            myval = constructor.ProductNameTextValue; 
-            myval = constructor.bfBrandValue;
+            myval = constructor.ProductNameTextValue;
+            myval = constructor.ProductCodeTextValue;     
+            myval = constructor.bfBrandTextValue;
+            myval = constructor.DescriptionTextValue;
+            
+// Call's Filter Action from Controller
+            constructor.filterAction();
             
 //Create List Object--Reference             
-            system.debug('SIZE: '+constructor.myPromMatItems);
+            List<promotionMaterialItem_Controller.wrapperP> mySelectedP = constructor.ProdSelection;
+            //mySelectedP[0].selected=true;
+            mySelectedP[0].planBottle=1;
+            mySelectedP[0].planRebate=25;            
+            mySelectedP[0].brandQty=2;
+            constructor.addProducts(); //OLD//
+            //constructor.addProducts2(); //NEW//
+ 
 //          
             List<promotionMaterialItem_Controller.wrapper> mySelected = constructor.myPromMatItems;
-            system.debug('Current elements: '+mySelected);
-            system.assert(mySelected.size()==1); //Was An Issue
+            system.debug(mySelected);
+            system.assert(mySelected.size()==2); //Was An Issue
 
             //constructor.saveAction();
-            system.debug(Apexpages.getmessages());          
-            system.assert(Apexpages.getmessages().size()==0);
+            //system.debug(Apexpages.getmessages());          
+            //system.assert(Apexpages.getmessages().size()==1);
             
             system.debug('about to save');
             mySelected = constructor.myPromMatItems;
             //mySelected[0].selected=true; //Was An Issue
             //mySelected[0].PromMatItem.Quantity__c=1; //Was An Issue
             mySelected[0].PromMatItem.Approval_Status__c = 'New';
-
+            constructor.saveAction();
             system.debug(Apexpages.getmessages());          
-            system.assert(Apexpages.getmessages().size()==0); 
+            system.assert(Apexpages.getmessages().size()==1);
                         
             mySelected = constructor.myPromMatItems; 
-
+            mySelected[0].selected=true; //Was An Issue
+            constructor.delPromMatItems();
             system.debug(Apexpages.getmessages());          
-            system.assert(Apexpages.getmessages().size()==0);           
+            system.assert(Apexpages.getmessages().size()==1);           
             
             mySelected = constructor.myPromMatItems;    
             system.debug(mySelected);
-            system.assert(mySelected.size()==1);  //Was An Issue  
-             
+            system.assert(mySelected.size()==2);  //Was An Issue  
+            
+            constructor.close();                        
         }     
           
     }
-   
+           
+           /* 
     //Assume that products and Brands are already setup.
     static testMethod void outletVisit_Controller_Coverage() {
         INFW_TestHelper helper = new INFW_TestHelper();
@@ -337,9 +351,7 @@ system.debug(rtype[0].id)    ;
         insert u1;
 
             Market__c m = new Market__c();
-            m.Name = 'Test Market';
-            m.on_Channel__c = '2';
-            m.off_Channel__c = '3'; 
+            m.Name = 'Test Market'; 
             insert m;
             
             Supplier__c s = new Supplier__c();
@@ -375,8 +387,8 @@ system.debug(rtype[0].id)    ;
             k.Market__c=m.id;
             insert k;
             
+            
             RecordType r = [Select r.Name, r.Id From RecordType r where  r.Name = 'Wet Goods' and SobjectType = 'Product__c'];
-            RecordType rA = [Select r.Name, r.Id From RecordType r where  r.DeveloperName = 'EUR_Outlets'];
             
             List<Product__c> pList = new List<Product__c>();
             for(Integer x = 0; x<10; x++)
@@ -393,8 +405,8 @@ system.debug(rtype[0].id)    ;
                 pList.add(p);
             }
 
-            //Inactive Product
-            Product__c pInactive = new Product__c();
+       		//Inactive Product
+       		Product__c pInactive = new Product__c();
             pInactive.Name = 'myInactiveProduct';
             //p.Supplier__r = s.id;
             pInactive.IsActive__c=false;
@@ -420,15 +432,12 @@ system.debug(rtype[0].id)    ;
             }           
             insert pList;
             
-        Account_Brand__c ab = new Account_Brand__c();
-        Account a = new Account(RecordTypeID = rA.Id);          
-        
+            Account_Brand__c ab = new Account_Brand__c();
+        Account a = new Account();          
         system.runas(u1)
         {   
             a.Name = 'Test Account';
-            a.Master_data_maintained__c = false;    
             a.Market__c = m.Id;
-            a.Channel__c = 'on'; 
             a.Outlet_Class__c = o.id;
             insert a;
             
@@ -443,75 +452,26 @@ system.debug(rtype[0].id)    ;
             ab.FY_Start__c = date.today().addMonths(-2);
             ab.FY_End__c = date.today().addMonths(10);
             ab.Brand__c = b.id;
-            ab.Depletion_Actuals__c = 100;
             insert ab;
             
             PageReference pageRef = new PageReference('/apex/outletVisit');
             Test.setCurrentPage(pageRef);
-            sObject so = new Outlet_Visit__c(Account__c=a.id, Visit_Date__c = system.today().addDays(5), Status__c = 'New');
-            
+            sObject so = new Outlet_Visit__c();
             ApexPages.StandardController sc = new ApexPages.StandardController(so);
             outletVisit_Controller constructor = new outletVisit_Controller(sc);        
             
             constructor.nullAction();
+            constructor.refresh();
             
             constructor.ov.Account__c = a.id;
-            //constructor.refresh();
-            
             List<SelectOption> myContacts = constructor.getContacts();
             system.debug(myContacts);
             system.assert(myContacts.size()==1);
-            constructor.ov.Visit_date__c = system.today().addDays(5);
+            
             constructor.ov.Met_With__c=myContacts[0].getValue();
             constructor.next();
             system.debug(Apexpages.getmessages());          
             system.assert(Apexpages.getmessages().size()==0);
-            
-            Alert_Settings__c asconfig = [Select Id, No_Visit_Dates_in_the_Future__c From Alert_Settings__c Where Market_RecordType__c = 'EUR_Outlets'];
-            asconfig.No_Visit_Dates_in_the_Future__c = false;
-            update asconfig;
-            
-            pageRef = new PageReference('/apex/outletVisit');
-            Test.setCurrentPage(pageRef);
-            so = new Outlet_Visit__c(Account__c=a.id, Visit_Date__c = system.today().addDays(5), Status__c = 'New');
-            
-            sc = new ApexPages.StandardController(so);
-            constructor = new outletVisit_Controller(sc);        
-            
-            constructor.nullAction();
-            
-            constructor.ov.Account__c = a.id;
-            //constructor.refresh();
-            
-            myContacts = constructor.getContacts();
-            system.debug(myContacts);
-            system.assert(myContacts.size()==1);
-            constructor.ov.Visit_date__c = system.today().addDays(5);
-            constructor.ov.Met_With__c=myContacts[0].getValue();
-            constructor.next();
-            system.debug(Apexpages.getmessages());          
-            system.assert(Apexpages.getmessages().size()==0);
-            
-            
-            pageRef = new PageReference('/apex/outletVisit');
-            Test.setCurrentPage(pageRef);
-            so = new Outlet_Visit__c(Account__c=a.id, Visit_Date__c = system.today(), Status__c = 'New');
-            
-            sc = new ApexPages.StandardController(so);
-            constructor = new outletVisit_Controller(sc);        
-            constructor.nullAction();
-            
-            constructor.ov.Account__c = a.id;
-            //constructor.refresh();
-            
-            myContacts = constructor.getContacts();
-            system.debug(myContacts);
-            system.assert(myContacts.size()==1);
-            constructor.ov.Met_With__c=myContacts[0].getValue();
-            constructor.next();
-            system.debug(Apexpages.getmessages());          
-            system.assert(Apexpages.getmessages().size()==0);
-             
             
             List<SelectOption> myTypeList = constructor.getspiritTypeList();
             List<SelectOption> myBrandsList = constructor.getBFBrandsList();
@@ -520,7 +480,6 @@ system.debug(rtype[0].id)    ;
            
             List<outletVisit_Controller.wrapper> myBF = constructor.myBFOvi; 
             system.debug(myBF);
-            myBF[0].ovi.Product__c = pList.get(0).Id;
             myBF[0].ovi.Drink_Price__c = 1; 
             myBF[0].ovi.Bottle_Price__c = 10;
             myBF[0].dep1.Bottles__c = 100; 
@@ -538,58 +497,53 @@ test.starttest();
 test.stoptest();                
             List<Key_Task__c> myCompletedKTs = constructor.myCompletedKTs;
             system.debug(myCompletedKTs);
-            system.assert(myCompletedKTs.size()==0);
+            system.assert(myCompletedKTs.size()==1);
             
             constructor.productLookup = myBF[0].ovi.Product__c;
             List<Outlet_Visit_Item__c> myPH = constructor.getmyPHs();
             system.debug(myPH);
-            system.assert(myPH.size()==0);
+            system.assert(myPH.size()==1);
             outletVisit_Controller.wrapperDPHeader myDP = constructor.getmyDPs();
             system.debug(myDP);
             
-            constructor.redirect(); 
-            
-			string myPstring = constructor.productLookupName; 
-			
+            string myPstring = constructor.productLookupName; 
+
             pageRef = new PageReference('/apex/outletVisit?id=' +constructor.ov.id );
             Test.setCurrentPage(pageRef);
             so = new Outlet_Visit__c(id=constructor.ov.id,Account__c=constructor.ov.Account__c,Visit_Date__c = constructor.ov.Visit_Date__c);
             sc = new ApexPages.StandardController(so);
             constructor = new outletVisit_Controller(sc);        
-			
-			
-			constructor.refresh();
+
             constructor.cancelKT();
             constructor.spiritType = 'Bourbon';
             constructor.compBrand = 'Bob Beam';
             constructor.nullAction();
-                           
+                                
         }       
 
         system.assertequals(100,[Select a.Depletion_Actuals__c from Account_Brand__c a where a.Id =: ab.id].Depletion_Actuals__c);
         Depletion__c d = new Depletion__c();
         d.Account__c = a.id;
-        d.Custom_Product__c = pList[0].id;
+        d.Product__c = pList[0].id;
         d.Month_Of_Date__c = date.today();
         d.Bottles__c = 100;
         insert d;
         delete d;
 //Now, verify that the processDateOVIs (which is ran because of insert of Accoutn) pulls in KeyTasks and OfflineOVIs records.        
-    for(Outlet_Visit__c lstOVs : [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
-            (Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
-            (Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r),
-            (Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)           
-            From Outlet_Visit__c o where o.Account__c =: a.Id and o.Status__c = 'New' order by Visit_Date__c]){
-        //system.assertequals(1,lstOVs.size());
-        system.assertequals(0,lstOVs.Outlet_Visit_Items__r.size());
-        system.assertequals(0,lstOVs.Offline_Outlet_Visit_Items__r.size());
-        system.assertequals(0,lstOVs.Key_Tasks__r.size());              
+	for(Outlet_Visit__c lstOVs : [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
+        	(Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
+        	(Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r),
+ 			(Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)         	 
+        	From Outlet_Visit__c o where o.Account__c =: a.Id and o.Status__c = 'New' order by Visit_Date__c]){
+		//system.assertequals(1,lstOVs.size());
+		system.assertequals(0,lstOVs.Outlet_Visit_Items__r.size());
+		system.assertequals(20,lstOVs.Offline_Outlet_Visit_Items__r.size());
+		system.assertequals(1,lstOVs.Key_Tasks__r.size());        		
      }
-     
-        
+               
     }
-    
-   
+    */
+        
     static testMethod void beforeInsertUpdatePromotion_Coverage() {
         INFW_TestHelper helper = new INFW_TestHelper();
         User u1 = helper.createUser();
@@ -635,14 +589,14 @@ test.stoptest();
                 }
             }
             // Get the Promotion record types by name
-            Map<String,Schema.RecordTypeInfo> promoRTMap = Schema.SObjectType.Promotion__c.getRecordTypeInfosByName();
+ 			Map<String,Schema.RecordTypeInfo> promoRTMap = Schema.SObjectType.Promotion__c.getRecordTypeInfosByName();
             // Id for National Promotions US record type
-            Id natPromoUSRecType = null;
-            // Get the record type id for National Promotions US from the record type map
-            if(promoRTMap.containsKey('National Promotion - US')){
-                natPromoUSRecType = promoRTMap.get('National Promotion - US').getRecordTypeId();
-            }
-            List<Internal_Order__c> ioList = new List<Internal_Order__c>{
+			Id natPromoUSRecType = null;
+			// Get the record type id for National Promotions US from the record type map
+		 	if(promoRTMap.containsKey('National Promotion - US')){
+		 		natPromoUSRecType = promoRTMap.get('National Promotion - US').getRecordTypeId();
+		 	}
+			List<Internal_Order__c> ioList = new List<Internal_Order__c>{
                 new Internal_Order__c(Name='IO1',Description__c='IO1',Internal_Order_Number__c='IO1'),
                 new Internal_Order__c(Name='IO2',Description__c='IO2',Internal_Order_Number__c='IO2')};
             insert ioList;
@@ -651,7 +605,7 @@ test.stoptest();
             pro.Promotion_Status__c = 'Active';
             update pro;
             try{
-                delete pro;
+            	delete pro;
             }catch(Exception e){}
             
         Test.stoptest(); 
@@ -705,7 +659,7 @@ test.stoptest();
                 update pList;               
             }
         Test.stoptest(); 
-      //  system.assertequals(0,[Select count() from Promotion__c where Brand_Manager__c=:userinfo.getUserId() and Id in: pSet]);     
+        system.assertequals(0,[Select count() from Promotion__c where Brand_Manager__c=:userinfo.getUserId() and Id in: pSet]);     
     }
 
 
@@ -790,7 +744,7 @@ test.stoptest();
                 pList.add(p);
             }           
             insert pList;
-        
+            
         Account_Brand__c ab = new Account_Brand__c();
         Account a = new Account();  
         List<Depletion__c> dList = new List<Depletion__c>();
@@ -878,20 +832,20 @@ test.stoptest();
         update newOv;
         offlineOutletVisit.processDatedOOVIs(); //runs asynchronously; didn't do assertions here; would need a new test
 
-        Set<ID> setTest = new Set<ID>();
-        setTest.add(newOv.Id);
+		Set<ID> setTest = new Set<ID>();
+		setTest.add(newOv.Id);
         batchableProcessDatedOfflineOutletVisits batch2 = new batchableProcessDatedOfflineOutletVisits('',1,offlineOutletVisit.swapStringForCollection(setTest));
   
         batch2.query = 'Select Id from Account where Id = \'' + a.Id + '\'';        
-        Database.BatchableContext BC;
+    	Database.BatchableContext BC;
         Database.QueryLocator ql = batch2.start(BC);
         batch2.execute(BC, 
-                new Map<ID, Account>(
+        		new Map<ID, Account>(
                  [Select p.Id From Account p where p.Id =: a.Id]).values());        
              
     }
  
-     
+  /*       
     //Assume that products and Brands are already setup.
     static testMethod void outletVisit_Controller_Coverage2() {
         INFW_TestHelper helper = new INFW_TestHelper();
@@ -954,7 +908,7 @@ test.stoptest();
                 p.ProductCode__c = 'myProduct'+x;
                 p.Market__c = m.id; 
                 p.Competes_On_Brand__c = b.id; 
-                p.Brand__c = b1.id;              
+                p.Brand__c = b1.id;         	 
                 pList.add(p);
             }
             
@@ -966,7 +920,7 @@ test.stoptest();
             pI.ProductCode__c = 'myInvalidProduct';
             pI.Market__c = m.id; 
             pI.Competes_On_Brand__c = b.id; 
-            pI.Brand__c = b1.id;             
+            pI.Brand__c = b1.id;         	 
             pList.add(pI);
                             
             for(Integer x = 0; x<10; x++)
@@ -1009,8 +963,8 @@ test.stoptest();
             ab.Brand__c = b.id;
             insert ab;
         
-            u1.UserPermissionsMobileUser=true; //to test OFFLINE OVIs    
-            update u1;            
+        	u1.UserPermissionsMobileUser=true; //to test OFFLINE OVIs    
+        	update u1;            
             PageReference pageRef = new PageReference('/apex/outletVisit');
             Test.setCurrentPage(pageRef);
             sObject so = new Outlet_Visit__c();
@@ -1053,22 +1007,22 @@ test.stoptest();
         }       
 
 //Now, verify that the processOVI (which is ran because of update to existing COmpleted OV) updates the OfflineRecords with pricing & depletion values.        
-    for(Outlet_Visit__c lstOVs : [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
-            (Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
-            (Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r where Bottle_Price__c=10 or Bottle_Price__c=100), // where Bottle_Price__c=10 or Bottle_Price__c=100
-            (Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)           
-            From Outlet_Visit__c o where o.Account__c =: a.Id and o.Status__c = 'New' order by Visit_Date__c]){
-        //system.assertequals(1,lstOVs.size());
-        system.assertequals(0,lstOVs.Outlet_Visit_Items__r.size());
-        for(Offline_Outlet_Visit_Items__c y : lstOVs.Offline_Outlet_Visit_Items__r)
-            system.debug(y);
-        system.assertequals(2,lstOVs.Offline_Outlet_Visit_Items__r.size());     
-        system.debug(lstOVs.Key_Tasks__r);              
-        system.assertequals(1,lstOVs.Key_Tasks__r.size());      
+	for(Outlet_Visit__c lstOVs : [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
+        	(Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
+        	(Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r where Bottle_Price__c=10 or Bottle_Price__c=100), // where Bottle_Price__c=10 or Bottle_Price__c=100
+ 			(Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)         	 
+        	From Outlet_Visit__c o where o.Account__c =: a.Id and o.Status__c = 'New' order by Visit_Date__c]){
+		//system.assertequals(1,lstOVs.size());
+		system.assertequals(0,lstOVs.Outlet_Visit_Items__r.size());
+		for(Offline_Outlet_Visit_Items__c y : lstOVs.Offline_Outlet_Visit_Items__r)
+			system.debug(y);
+		system.assertequals(2,lstOVs.Offline_Outlet_Visit_Items__r.size());		
+		system.debug(lstOVs.Key_Tasks__r);        		
+		system.assertequals(1,lstOVs.Key_Tasks__r.size());		
      }
                
     }
-
+ */
      //Assume that products and Brands are already setup.
     static testMethod void afterUpdateUserCreateOfflineOV_Coverage() {
         INFW_TestHelper helper = new INFW_TestHelper();
@@ -1160,24 +1114,24 @@ test.stoptest();
         u1.UserPermissionsMobileUser=true; //have to set before we run the test because of salesforce bug.
         update u1;       
        test.starttest();
-            u1.Create_Offline_Outlet_Visit_Records__c=true; //to test OFFLINE OVIs    
-            update u1;
-        test.stoptest();    
+	        u1.Create_Offline_Outlet_Visit_Records__c=true; //to test OFFLINE OVIs    
+	        update u1;
+		test.stoptest();	
 
 //Now, verify that the processDateOVIs (which is ran because of insert of Accoutn) pulls in KeyTasks and OfflineOVIs records.        
-    Outlet_Visit__c[] lstOVs = [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
-            (Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Custom_Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
-            (Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r),
-            (Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)           
-            From Outlet_Visit__c o where o.Account__c =: a.Id and o.Status__c = 'New' order by Visit_Date__c];
-        system.assertequals(1,lstOVs.size());
-    
-        delete lstOVs;
-        u1.Create_Offline_Outlet_Visit_Records__c=true; //to test OFFLINE OVIs    
-        update u1;
+	Outlet_Visit__c[] lstOVs = [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
+        	(Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Custom_Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
+        	(Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r),
+ 			(Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)         	 
+        	From Outlet_Visit__c o where o.Account__c =: a.Id and o.Status__c = 'New' order by Visit_Date__c];
+		system.assertequals(1,lstOVs.size());
+	
+		delete lstOVs;
+		u1.Create_Offline_Outlet_Visit_Records__c=true; //to test OFFLINE OVIs    
+	    update u1;
     }     
     
-    static testMethod void outletVisit_Controller_Coverage3() {
+    static testMethod void outletVisit_Controller_Coverage() {
        INFW_TestHelper helper = new INFW_TestHelper();
         User u1 = helper.createUser();
         u1.Sales_Manager__c=userinfo.getUserId();
@@ -1237,7 +1191,7 @@ test.stoptest();
                 p.ProductCode__c = 'myProduct'+x;
                 p.Market__c = m.id; 
                 p.Competes_On_Brand__c = b.id; 
-                p.Brand__c = b.id;           
+                p.Brand__c = b.id;         	 
                 pList.add(p);
             }
             
@@ -1249,7 +1203,7 @@ test.stoptest();
             pI.ProductCode__c = 'myInvalidProduct';
             pI.Market__c = m.id; 
             pI.Competes_On_Brand__c = b.id; 
-            pI.Brand__c = b1.id;             
+            pI.Brand__c = b1.id;         	 
             pList.add(pI);
                             
             for(Integer x = 0; x<10; x++)
@@ -1268,99 +1222,99 @@ test.stoptest();
             insert pList;
             
             Account_Brand__c ab = new Account_Brand__c();
-            Account a = new Account();          
-            system.runas(u1)
-            {   
-                a.Name = 'Test Account';
-                a.Market__c = m.Id;
-                a.Outlet_Class__c = o.id;
-                insert a;
-                
-                Contact c = new Contact();
-                c.AccountId = a.Id;
-                c.FirstName = 'Info';
-                c.LastName = 'Welders';
-                insert c;
-                
-                //add logic to test Account_Brand
-                ab.Account__c =a.id;
-                ab.FY_Start__c = date.today().addMonths(-2);
-                ab.FY_End__c = date.today().addMonths(10);
-                ab.Brand__c = b.id;
-                insert ab;
-            
-                u1.UserPermissionsMobileUser=true; //to test OFFLINE OVIs    
-                u1.UserPermissionsOfflineUser=true;
-                update u1;         
-                
-            for(Integer x = 0; x<2; x++) {                     
-                PageReference pageRef = new PageReference('/apex/outletVisit');
-                Test.setCurrentPage(pageRef);
-                sObject so = new Outlet_Visit__c();
-                ApexPages.StandardController sc = new ApexPages.StandardController(so);
-                outletVisit_Controller constructor = new outletVisit_Controller(sc);        
-                
-                constructor.ov.Account__c = a.id;
-                List<SelectOption> myContacts = constructor.getContacts();
-                system.debug(myContacts);
-                system.assert(myContacts.size()==1);
-                
-                constructor.ov.Met_With__c=myContacts[0].getValue();
-                constructor.next();
-                system.debug(Apexpages.getmessages());          
-                system.assert(Apexpages.getmessages().size()==x);
-                constructor.refresh();
-                
-                List<SelectOption> myTypeList = constructor.getspiritTypeList();
-                List<SelectOption> myBrandsList = constructor.getBFBrandsList();
-                List<SelectOption> myCompBrandsList = constructor.getCompBrandsList();
-                
-                List<outletVisit_Controller.wrapper> myBF = constructor.myBFOvi; 
-                system.debug('MYBF: ' + myBF);
-                myBF[0].ovi.Drink_Price__c = 1; 
-                myBF[0].ovi.Bottle_Price__c = 10;
-                myBF[0].dep1.Bottles__c = 100; 
-                
-                List<outletVisit_Controller.wrapper> myCompOvi = constructor.myCompOvi;
-                system.debug(myCompOvi);
-                myCompOvi[0].ovi.Drink_Price__c = 1; 
-                myCompOvi[0].ovi.Bottle_Price__c = 10;
-                myBF[0].dep1.Bottles__c = 100;              
-                
-                List<outletVisit_Controller.wrapperKT> myKTs = constructor.myKTs;
-                myKTs[0].selected=true;
-                myKTs[0].kt.Met_With__c = c.id;
-                           
-                if (x==0) {       
-                    constructor.saveCommit();
-                } else {
-                    constructor.retURL='/' + a.id;
-                    constructor.saveCommitClose();
-                }   
-            }                                   
-         }       
+	        Account a = new Account();          
+	        system.runas(u1)
+	        {   
+	            a.Name = 'Test Account';
+	            a.Market__c = m.Id;
+	            a.Outlet_Class__c = o.id;
+	            insert a;
+	            
+	            Contact c = new Contact();
+	            c.AccountId = a.Id;
+	            c.FirstName = 'Info';
+	            c.LastName = 'Welders';
+	            insert c;
+	            
+	            //add logic to test Account_Brand
+	            ab.Account__c =a.id;
+	            ab.FY_Start__c = date.today().addMonths(-2);
+	            ab.FY_End__c = date.today().addMonths(10);
+	            ab.Brand__c = b.id;
+	            insert ab;
+	        
+	        	u1.UserPermissionsMobileUser=true; //to test OFFLINE OVIs    
+	        	u1.UserPermissionsOfflineUser=true;
+	        	update u1;         
+	        	
+			for(Integer x = 0; x<2; x++) {		        	   
+	            PageReference pageRef = new PageReference('/apex/outletVisit');
+	            Test.setCurrentPage(pageRef);
+	            sObject so = new Outlet_Visit__c();
+	            ApexPages.StandardController sc = new ApexPages.StandardController(so);
+	            outletVisit_Controller constructor = new outletVisit_Controller(sc);        
+	            
+	            constructor.ov.Account__c = a.id;
+	            List<SelectOption> myContacts = constructor.getContacts();
+	            system.debug(myContacts);
+	            system.assert(myContacts.size()==1);
+	            
+	            constructor.ov.Met_With__c=myContacts[0].getValue();
+	            constructor.next();
+	            system.debug(Apexpages.getmessages());          
+	            system.assert(Apexpages.getmessages().size()==x);
+	         	constructor.refresh();
+	         	
+	            List<SelectOption> myTypeList = constructor.getspiritTypeList();
+	            List<SelectOption> myBrandsList = constructor.getBFBrandsList();
+	            List<SelectOption> myCompBrandsList = constructor.getCompBrandsList();
+	            
+	            List<outletVisit_Controller.wrapper> myBF = constructor.myBFOvi; 
+	            system.debug('MYBF: ' + myBF);
+	            myBF[0].ovi.Drink_Price__c = 1; 
+	            myBF[0].ovi.Bottle_Price__c = 10;
+	            myBF[0].dep1.Bottles__c = 100; 
+	            
+	            List<outletVisit_Controller.wrapper> myCompOvi = constructor.myCompOvi;
+	            system.debug(myCompOvi);
+	            myCompOvi[0].ovi.Drink_Price__c = 1; 
+	            myCompOvi[0].ovi.Bottle_Price__c = 10;
+	            myBF[0].dep1.Bottles__c = 100;              
+	            
+	            List<outletVisit_Controller.wrapperKT> myKTs = constructor.myKTs;
+	            myKTs[0].selected=true;
+	            myKTs[0].kt.Met_With__c = c.id;
+	                       
+				if (x==0) {       
+	            	constructor.saveCommit();
+				} else {
+					constructor.retURL='/' + a.id;
+					constructor.saveCommitClose();
+				}   
+			}                                   
+	     }       
 
-        //Now, verify that the processOVI (which is ran because of update to existing COmpleted OV) updates the OfflineRecords with pricing & depletion values.        
-            for(Outlet_Visit__c lstOVs : [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
-                    (Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Custom_Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
-                    (Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r where Bottle_Price__c=10 or Bottle_Price__c=100), // where Bottle_Price__c=10 or Bottle_Price__c=100
-                    (Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)           
-                    From Outlet_Visit__c o where o.Account__c =: a.Id and o.Status__c = 'New' order by Visit_Date__c]){
-                //system.assertequals(1,lstOVs.size());
-                system.assertequals(0,lstOVs.Outlet_Visit_Items__r.size());
-                for(Offline_Outlet_Visit_Items__c y : lstOVs.Offline_Outlet_Visit_Items__r)
-                    system.debug(y);
-                //system.assertequals(2,lstOVs.Offline_Outlet_Visit_Items__r.size());               
-                system.assertequals(0,lstOVs.Offline_Outlet_Visit_Items__r.size());     
-                system.debug(lstOVs.Key_Tasks__r);              
-                //system.assertequals(1,lstOVs.Key_Tasks__r.size());        
-                system.assertequals(0,lstOVs.Key_Tasks__r.size());              
-             }
-    }
-    
-    
-    static testMethod void deactive_trigger_Coverage() {
-        INFW_TestHelper helper = new INFW_TestHelper();
+		//Now, verify that the processOVI (which is ran because of update to existing COmpleted OV) updates the OfflineRecords with pricing & depletion values.        
+			for(Outlet_Visit__c lstOVs : [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
+		        	(Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Custom_Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
+		        	(Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r where Bottle_Price__c=10 or Bottle_Price__c=100), // where Bottle_Price__c=10 or Bottle_Price__c=100
+		 			(Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)         	 
+		        	From Outlet_Visit__c o where o.Account__c =: a.Id and o.Status__c = 'New' order by Visit_Date__c]){
+				//system.assertequals(1,lstOVs.size());
+				system.assertequals(0,lstOVs.Outlet_Visit_Items__r.size());
+				for(Offline_Outlet_Visit_Items__c y : lstOVs.Offline_Outlet_Visit_Items__r)
+					system.debug(y);
+				//system.assertequals(2,lstOVs.Offline_Outlet_Visit_Items__r.size());				
+				system.assertequals(0,lstOVs.Offline_Outlet_Visit_Items__r.size());		
+				system.debug(lstOVs.Key_Tasks__r);        		
+				//system.assertequals(1,lstOVs.Key_Tasks__r.size());		
+				system.assertequals(0,lstOVs.Key_Tasks__r.size());				
+		     }
+   	}
+   	
+   	
+ 	static testMethod void deactive_trigger_Coverage() {
+      	INFW_TestHelper helper = new INFW_TestHelper();
         User u1 = helper.createUser();
         u1.UserPermissionsMobileUser = true;
         u1.Sales_Manager__c=userinfo.getUserId();
@@ -1485,17 +1439,17 @@ test.stoptest();
             d.Account__c = a.id;
             dList.add(d);
             insert dList;
-            Set<ID> myIDS = new Set<ID>();
-            for(Integer x = 0; x<dList.size(); x++)
-            {
-                myIDS.add(dList[x].Account__c);
-            }
-            try{
-                updateAccountBrandAsynch.updateAccountBrandAsynch(myIDS);
-            }catch(AsyncException e)
-            {
-                updateAccountBrandAsynch.updateAccountBrandSynch(myIDS);
-            }
+ 			Set<ID> myIDS = new Set<ID>();
+ 			for(Integer x = 0; x<dList.size(); x++)
+ 			{
+ 				myIDS.add(dList[x].Account__c);
+ 			}
+ 			try{
+ 				updateAccountBrandAsynch.updateAccountBrandAsynch(myIDS);
+ 			}catch(AsyncException e)
+ 			{
+ 				updateAccountBrandAsynch.updateAccountBrandSynch(myIDS);
+ 			}
             ov = new Outlet_Visit__c(Account__c = a.id,Visit_Date__c=date.today(),Status__c = 'New');
             insert ov;
             Offline_Outlet_Visit_Items__c ovi = new Offline_Outlet_Visit_Items__c(Outlet_Visit__c=ov.id);
@@ -1514,15 +1468,15 @@ test.stoptest();
             insert ovi;         
             ov.Status__c = 'Complete';
             update ov;
-            test.starttest();   
+		    test.starttest();   
             update ovi;
                if(INFW_Stateful.hasAlreadyCreated()){return;}
-                User u = [Select u.UserPermissionsOfflineUser, u.UserPermissionsMobileUser From User u where u.Id =: UserInfo.getuserId()];
-                Set<ID> myIds2 = new Set<ID>();
-                myIds2.add(ov.Id);
-                if(!myIds2.isempty() && (u.UserPermissionsOfflineUser || u.UserPermissionsMobileUser))
-                    offlineOutletVisit.processOVI(myIds2,false,false);
-                test.stoptest();                                
+    			User u = [Select u.UserPermissionsOfflineUser, u.UserPermissionsMobileUser From User u where u.Id =: UserInfo.getuserId()];
+    			Set<ID> myIds2 = new Set<ID>();
+    			myIds2.add(ov.Id);
+    			if(!myIds2.isempty() && (u.UserPermissionsOfflineUser || u.UserPermissionsMobileUser))
+        			offlineOutletVisit.processOVI(myIds2,false,false);
+    			test.stoptest();                                
         }       
         system.assertequals(2,[Select count() from Outlet_Visit__c where Account__c =: a.id]);
         system.assertequals(2,[Select count() from Outlet_Visit_Item__c where Outlet_Visit__c =: ov.id]);
@@ -1533,14 +1487,14 @@ test.stoptest();
         newOv.Visit_Date__c = date.today().addmonths(-1);
         update newOv;
         offlineOutletVisit.processDatedOOVIs(); //runs asynchronously; didn't do assertions here; would need a new test
-        Set<ID> setTest = new Set<ID>();
-        setTest.add(newOv.Id);
+		Set<ID> setTest = new Set<ID>();
+		setTest.add(newOv.Id);
         batchableProcessDatedOfflineOutletVisits batch2 = new batchableProcessDatedOfflineOutletVisits('',1,offlineOutletVisit.swapStringForCollection(setTest));
         batch2.query = 'Select Id from Account where Id = \'' + a.Id + '\'';        
-        Database.BatchableContext BC;
+    	Database.BatchableContext BC;
         Database.QueryLocator ql = batch2.start(BC);
         batch2.execute(BC, 
-                new Map<ID, Account>(
+        		new Map<ID, Account>(
                  [Select p.Id From Account p where p.Id =: a.Id]).values());        
-    }
+ 	}
 }

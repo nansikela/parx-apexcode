@@ -255,7 +255,8 @@
                 
                 if(result.length > 0)
                 {
-                    $('#allDestinationList').css('background-image','url(\'/abcd\')');
+                    //$('#allDestinationList').css('background-image','url(\'/abcd\')');
+                    $('#allDestinationList').css('background-image','none');
                     var a=0;
                     var b=0;
                     var temp = new Array();
@@ -284,7 +285,7 @@
         var pp;
         var t ='<ul id='allList' class="Connected" style="height:500px; ">';
         for(pp=0; pp<allMapItems.length; pp++){
-            t+='<li class=\'item\' "id=\''+allMapItems[pp].id+'\'><img src=\''+allMapItems[pp].myIcon.image+'\' width=\'15\'/><img id=\'Event'+allMapItems[pp].id+'\' src=\'{!URLFOR($Resource.FN__Plus)}\' width=\'10\'/> '+allMapItems[pp].name+'</li>';
+            t+='<li class=\'item\' id=\''+allMapItems[pp].id+'\'><img src=\''+allMapItems[pp].myIcon.image+'\' width=\'15\'/><img id=\'Event'+allMapItems[pp].id+'\' src=\'{!URLFOR($Resource.FN__Plus)}\' width=\'10\'/> '+allMapItems[pp].name+'</li>';
         }
         t+='</ul>';
         
@@ -304,7 +305,8 @@
                         $('#getRouteSummaryDetails').hide();
                     }
 
-                    $('#allDestinationList').css('background-image','url(\'abcd\')');
+                    //$('#allDestinationList').css('background-image','url(\'abcd\')');
+                    $('#allDestinationList').css('background-image','none');
                     var a=0; //First Counter
                     var b=0; // Inner Counter
                     var temp = new Array(); // The new Destination List. 
@@ -430,7 +432,8 @@
                     }
                     if(result.length > 0)
                     {
-                        $('#allDestinationList').css('background-image','url(\'abcd\')');
+                        //$('#allDestinationList').css('background-image','url(\'abcd\')');
+                        $('#allDestinationList').css('background-image','none');
                     }
                     var a=0; //First Counter
                     var b=0; // Inner Counter

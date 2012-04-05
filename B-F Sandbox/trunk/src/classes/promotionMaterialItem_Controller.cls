@@ -1,278 +1,284 @@
 /* Class Name : promotionMaterialItem_Controller_Remed
 * Description: --
 * Created By : --
-* Created On : -- 
+* Created On : --
 *
 * Modification Log :  
 * ----------------------------------------------------------------------------------------------------------------------------
 * Developer       Date              Description
 * ----------------------------------------------------------------------------------------------------------------------------
 * Fayas Mansoor  06-27-2011        Code for Product Remediation Check.
-* Mike Shroyer  11/22/2011         Added logic to set approval status to Submit if submit is checked.  
-* Christophe Vidal 12/14/2011      Revamped the whole controller and page to improve drastically the performance of the slow wrapper 
-*                                  classes. Please be aware that moving elements, changing id of elements or removing elements can
-*                                  break javascript functions. Most of logic has now be moved to the VF Page in order to improve
-*                                  the performance. 
-*                                  Please also be aware by adding columns to existing tables. You should not forget
-*                                  to add the right id to the column and to add it also to the wrapperRemote wrapper class. If you expect
-*                                  to save this new column, this should be also implemented in the remoteaction function addNewProduct
+* Mike Shroyer  11/22/2011      Added logic to set approval status to Submit if submit is checked.                                  
 */ 
 
 public with sharing class promotionMaterialItem_Controller {
-
-    private list<RecordType> RecordTypes =  [select name from RecordType where SobjectType='Product__c'];
-    private list<Brand__c> Brands = [Select Name From Brand__c where Supplier__r.Is_B_F_Brand__c = true order BY Name];
-    
+    public Promotion__c pm;
+    Account a;
+    ID marketID;
+    string promoType;
+    promotionProductHelperClass helper;
     public integer myLimit = 1000;
-    
-    public static Promotion__c pm {get;set;}
-       
-    public String promoType {get;set;}
-    public String IdDataTableHidden {get;set;}
-    public string RecordTypeValue {get;set;}
-    public string bfBrandValue {get;set;}
-    public string ProductNameTextValue {get;set;}     
-    public List<wrapper> myPromMatItems {get;set;}
-    
-    //this wrapper is used for each Promotion_Material_Item__c record .
-    public  class wrapper {
-        public Product__c prod {get; set;}
-        public Promotion_Material_Item__c PromMatItem {get; set;}
-         
-        public wrapper(Product__c pr, Promotion_Material_Item__c pmi) {
-            prod = pr==null?(new Product__c(id=pmi.Product_Custom__c,Name=pmi.product_custom__r.Name)):(pr);
-            PromMatItem = pmi!=null?pmi:(new Promotion_Material_Item__c(Promotion__c=pm.Id,Product_Custom__c=prod.id));            
-        }    
-    }
-      
-    public class wrapperRemote {
-        public String productid;
-        public String promoid;
-        public String Act_Date;
-        public String Plan_Qty;
-        public String Remarks;
-        public String Act_Qty;
-        public String Selected;
-        public String Plan_Date;
-        public Boolean Submit;
-        public String Actual_Rebate;
-        public String Plan_Rebate;
-        public String Approval_Status;
-        
-        //other fields for non agreement RT
-        public String Promotion_Cost_w_o_VAT;
-        public String Extended_Cost;
-        public String Delivery_From;
-        public String Wet_Good_Use;
-        public String Shipped_Date;
-        public String Request_Date;
-        public String Quantity;
-        public String Unit_Cost;
-        public String Brand;
-        public String ProductCode;
-
-        public wrapperRemote() {
-        }
-    }    
-
-    public void buildOvi(){ 
-        //we still use this function in order to load for the first time the existing products.
-        myPromMatItems = new List<wrapper>();
-        //grab all products in case they were since inactivated or in different markets
-
-        Set<ID> myProducts = new Set<ID>();
-        
-        list<Promotion_Material_Item__c> PMIList = new list<Promotion_Material_Item__c>([Select Wet_Good_Use__c, Unit_Cost__c, Shipped_Date__c, Shipped_Amount__c, Request_Time__c, Request_Date__c, Remarks__c, Quantity__c, Promotion__c, Promotion_Cost_w_o_VAT__c, Product_Custom__c, Product_Custom__r.Name, Product_Custom__r.ProductCode__c, Product_Custom__r.Brand__c, Product_Custom__r.Brand__r.Name, Name, Extended_Cost__c, Delivery_From__c, CurrencyIsoCode, Plan_Qty__c, Plan_Payment__c, Plan_Date__c, Act_Qty__c, Act_Date__c, Approval_Status__c, Actual_Payment__c,plan_rebate__c,Actual_Rebate__c,
-        Act_Payment2__c, Payment_Date__c, Submit__c from Promotion_Material_Item__c where Promotion__c =: pm.id order by Product_Custom__r.Name,Plan_Date__c]);
-        
-        for(Promotion_Material_Item__c pmi : PMIList) {
-             myProducts.add(pmi.Product_Custom__c);
-        }
-        Map<ID,Product__c> pr = new Map<ID,Product__c>([Select p.VAT__c, p.Unit_Cost__c, p.Supplier__c, p.Sort_Order__c, p.RecordType.Name, p.RecordTypeId, p.ProductCode__c, p.Name, p.Market__c, p.IsActive__c, p.Id, p.Family__c, p.Description__c, p.CurrencyIsoCode, p.Competes_On_Brand__c, p.Case_Multiplier__c, p.Brand__c, p.Brand__r.Name, p.Brand_Code__c From Product__c p where p.Id in: myProducts LIMIT :myLimit]);
-        
-        //we add a dummy hidden product for the row duplication in the html table.
-        //this is used to be able to clone easily the row.
-        Promotion_Material_Item__c helper = [Select Wet_Good_Use__c, Unit_Cost__c, Shipped_Date__c, Shipped_Amount__c, Request_Time__c, Request_Date__c, Remarks__c, Quantity__c, Promotion__c, Promotion_Cost_w_o_VAT__c, Product_Custom__c, Product_Custom__r.Name, Product_Custom__r.ProductCode__c, Product_Custom__r.Brand__c, Product_Custom__r.Brand__r.Name, Name, Extended_Cost__c, Delivery_From__c, CurrencyIsoCode, Plan_Qty__c, Plan_Payment__c, Plan_Date__c, Act_Qty__c, Act_Date__c, Approval_Status__c, Actual_Payment__c,plan_rebate__c,Actual_Rebate__c,
-        Act_Payment2__c, Payment_Date__c, Submit__c from Promotion_Material_Item__c where Submit__c = false AND Extended_Cost__c = 0 limit 1];
-        //we just reset all field of our helper row. we don't make any update on this row but we use it as a template for our cloning.
-        //Promotion_Material_Item__c helper = new Promotion_Material_Item__c();
-        helper.Plan_Qty__c = helper.Plan_Rebate__c = helper.Plan_Payment__c = helper.Act_Qty__c = helper.Actual_Rebate__c = helper.Quantity__c = helper.Unit_Cost__c = null ;
-        helper.Plan_Date__c = helper.Act_Date__c = helper.Request_Date__c = helper.Shipped_Date__c = null;
-        helper.Remarks__c = null;
-        helper.Submit__c = false;
-        helper.Approval_Status__c = 'New';
-        helper.Delivery_From__c = null;
-        
-        myPromMatItems.add(new wrapper(null,  helper));
-        IdDataTableHidden = 'none ';
-        for(Promotion_Material_Item__c pmi : PMIList) {
-             myPromMatItems.add(new wrapper(pr.get(pmi.Product_Custom__c),pmi/*,pm*/));
-             IdDataTableHidden += pmi.Id + ' ';
-        }
-    }   
-    
-    public promotionMaterialItem_Controller (){
-        pm = [select Account__r.Market__c, RecordTypeId, RecordType.Name, Approval_Status__c, Promotion_Start_Date__c from Promotion__c where Id =: ApexPages.currentPage().getParameters().get('Id')];
+    public promotionMaterialItem_Controller (ApexPages.StandardController controller)
+    {
+        this.pm = (Promotion__c)controller.getRecord();
+        marketID = pm.Account__r.Market__c; 
         promoType = pm.RecordType.Name;
+        helper = new promotionProductHelperClass();
+        system.debug(Limits.getLimitQueryRows());
+        if(Limits.getLimitQueryRows()<1000){ //unit test limit...
+            myLimit = 100;
+        }
         buildOvi();
+            buildProdSelection();
+        
+        
     }
     
     public List<SelectOption> getrecordTypeList() {
-        //same old function
-        List<SelectOption> recordTypeList = new List<SelectOption>();
-        recordTypeList.add(new SelectOption('ALL','ALL'));
 
-        for(RecordType rt :  RecordTypes) {
-            recordTypeList.add(new SelectOption(rt.Id,rt.Name));            
-        }         
-        //end of product remediation code 
-
-        return recordTypeList;   
-    }  
-       
-    public List<SelectOption> getBFBrandsList() {
-        //same old function
-        List<SelectOption> optionList = new List<SelectOption>();
-
-        optionList.add(new SelectOption('ALL','ALL'));
-        for(Brand__c y :Brands) {
-            optionList.add(new SelectOption(y.Id,y.Name));
-        }
-        return optionList;
+        return helper.getrecordTypeList();     
     }     
-    
-    @RemoteAction
-    public static void RemoveLine(String RowId) {
-        //called when the X is clicked.
-        if(RowId != null && RowId != ''){
-            try {
-                Database.delete(RowId);
+    public List<SelectOption> getBFBrandsList() 
+    {
+        return helper.getBFBrandsList();
+    }     
+    public string RecordTypeValue {get;set;}
+    public string bfBrandValue {get;set;}
+        
+    public string ProductNameTextValue {get;set;}
+    public string ProductCodeTextValue {get;set;}      
+    public string bfBrandTextValue {get;set;}
+    public string DescriptionTextValue {get;set;}
+       
+    public PageReference saveAction(){
+        //Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, ''));
+        List<Promotion_Material_Item__c> myInserts = new List<Promotion_Material_Item__c>();
+        List<Promotion_Material_Item__c> myUpdates = new List<Promotion_Material_Item__c>();
+        Savepoint sp = Database.setSavepoint();
+        try{    
+            for(wrapper wp : myPromMatItems)
+            {
+                if (promoType=='Agreement') {
+                wp.PromMatItem.Plan_Payment__c = wp.PromMatItem.Plan_Qty__c*wp.PromMatItem.Plan_Rebate__c;
+                }
+                if (wp.PromMatItem.Approval_Status__c=='New' & wp.PromMatItem.submit__c==true){
+                  wp.PromMatItem.Approval_Status__c='Submit';
+                }
+                if(wp.PromMatItem.Id!=null)
+                {
+                    myUpdates.add(wp.PromMatItem);
+                }else{
+                    myInserts.add(wp.PromMatItem);
+                }
             }
-            catch(Exception e) {
-                if(!e.getMessage().contains('ENTITY_IS_DELETED')) //if the user clicks very fast on the same X, it will produce this error. We don't need to confuse the user so we ignore this error.
-                    throw e;
-            }
-        }
+                insert myInserts;
+                update myUpdates;
+         }catch(System.DmlException insertDmlexp){
+                Database.rollback(sp);
+                for (Integer i = 0; i < insertDmlexp.getNumDml(); i++) {
+                    pm.addError(insertDmlexp.getDmlMessage(i));
+                }
+            return null;
+         }           
+        buildOvi();
+        Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, ''));
+        return null;
+    }     
+    public PageReference filterAction(){
+        
+            buildProdSelection();
+        return null;
     }
-    
-    @RemoteAction
-    public static list<Product__c> buildProdSelection2(String ProductNameTextValue, String bfBrandValue, String RecordTypeValue, String marketID) {  
-        //this is the old search function, adapted to js remoting.
-        string myQueryString = 'Select Name, ProductCode__c, Unit_Cost__c,  Brand__r.Name From Product__c '
-        + ' where IsActive__c=true'
-        + ' and Brand__r.Supplier__r.Is_B_F_Brand__c = true'
-        + (marketID!=null?' and Market__c=\''+marketID+'\'':'');
-        if(RecordTypeValue!=null && RecordTypeValue!='ALL')   {
-            myQueryString+=' and RecordTypeId=\''+RecordTypeValue+'\'';
+    public PageReference close(){
+        return new PageReference('/'+pm.Id);
+    }    
+    public List<wrapperP> ProdSelection {get;set;}       
+
+    void buildProdSelection()
+    {    
+        ProdSelection = new List<wrapperP>();
+        System.debug('The value of conditions'+ProductNameTextValue+ProductCodeTextValue+bfBrandTextValue);
+        
+        string myQueryString = 'Select p.VAT__c, p.Unit_Cost__c, p.Supplier__c, p.Sort_Order__c, p.RecordType.Name, p.RecordTypeId, p.ProductCode__c, p.Name, p.Market__c, p.IsActive__c, p.Id, p.Family__c, p.Description__c, p.CurrencyIsoCode, p.Competes_On_Brand__c, p.Case_Multiplier__c, p.Brand__c, p.Brand__r.Name, p.Brand_Code__c From Product__c p'
+        + ' where p.IsActive__c=true'
+        + ' and p.Brand__r.Supplier__r.Is_B_F_Brand__c = true'
+        + (marketID!=null?' and p.Market__c=\''+marketID+'\'':'');
+        if(RecordTypeValue!=null && RecordTypeValue!='ALL')
+        {
+            myQueryString+=' and p.RecordTypeId=\''+RecordTypeValue+'\'';
         }
-        if(bfBrandValue!=null && bfBrandValue!='ALL') {
-            myQueryString+=' and Brand__c=\''+bfBrandValue+'\'';
+        if(bfBrandValue!=null && bfBrandValue!='ALL')
+        {
+            myQueryString+=' and p.Brand__c=\''+bfBrandValue+'\'';
         }        
-        if(ProductNameTextValue!=null && ProductNameTextValue!='') {
-            myQueryString+=' and Name like \'%'+ProductNameTextValue+'%\'';
+        if(ProductNameTextValue!=null && ProductNameTextValue!='')
+        {
+            myQueryString+=' and p.Name like \'%'+ProductNameTextValue+'%\'';
         }
-        myQueryString+=' ORDER BY Sort_Order__c limit 1000';                                  
+        if(ProductCodeTextValue!=null && ProductCodeTextValue!='')
+        {
+            myQueryString+=' and p.ProductCode__c like \'%'+ProductCodeTextValue+'%\'';
+        }    
+        if(bfBrandTextValue!=null && bfBrandTextValue!='')
+        {
+            myQueryString+=' and p.Brand__r.Name like \'%'+bfBrandTextValue+'%\'';
+        }    
+        if(DescriptionTextValue!=null && DescriptionTextValue!='')
+        {
+            myQueryString+=' and p.Description__c like \'%'+DescriptionTextValue+'%\'';
+        }     
+        myQueryString+=' ORDER BY p.Sort_Order__c';                                  
         system.debug(myQueryString);
-
-        return Database.query(myQueryString);
+            for(Product__c pr :Database.query(myQueryString))
+            {
+                ProdSelection.add( new wrapperP(pr));
+            }
+     
+               
     }
-
-    @RemoteAction
-    public static list<wrapperRemote> AddNewProduct(list<wrapperRemote> NewProducts, String promoType, String PromoId) { 
-        system.debug('Test0:' + NewProducts);
-        list<Promotion_Material_Item__c> PMIList = new list<Promotion_Material_Item__c>();
-        Promotion_Material_Item__c PMI = new Promotion_Material_Item__c();
-        //we have now to handle our data, to check of wrong input, and to save them.
-        map<Id, Promotion_Material_Item__c> ExistingPromoMat;
-        list<Id> ExistingPromoMatIds = new list<Id>();
-        for(wrapperRemote wR:NewProducts) {
-            if(wR.promoid != null && wR.promoid != '')
-               ExistingPromoMatIds.add(wR.promoid);
+    
+    
+    public PageReference addProducts(){
+        //Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, ''));
+        for(wrapperP wp : ProdSelection)
+        {
+            if(wp.selected || wp.brandQTY > 0)
+            {
+                for (Integer i=0;i<wp.brandQTY;i++){
+                    //myPromMatItems.add(new wrapper(wp.prod,null,pm));
+                    	system.debug(myPromMatItems);
+                    	system.debug(wp);
+                        myPromMatItems.add(new wrapper(wp.prod,null,pm,wp.planBottle,wp.planRebate,wp.planBottle*wp.planRebate));                    
+                }              
+                wp.selected=false;
+                wp.brandQTY = 0;
+                wp.planRebate = 0;
+                wp.planBottle = 0;
+                
+            }
         }
-        if(!ExistingPromoMatIds.isEmpty())
-            ExistingPromoMat = new map<Id, Promotion_Material_Item__c>([select Product_Custom__c, Plan_Qty__c, Remarks__c, Act_Qty__c, Submit__c, Actual_Rebate__c, Plan_Rebate__c, Act_Date__c, Plan_Date__c, Plan_Payment__c, Approval_Status__c from Promotion_Material_Item__c where Id IN:ExistingPromoMatIds]);
-
-        
-        for(wrapperRemote wR:NewProducts) {
-            //we have to try catch every single element to produce a more consistent output error to the user.
-            if(wR.promoid != null && wR.promoid != '')  {
-                PMI = new Promotion_Material_Item__c();
-                PMI = ExistingPromoMat.get(Id.valueOf(wR.promoid));
+        saveAction();
+        return null;
+    }     
+       //Add Products for Non-Agreement Record Types
+      public PageReference addProducts2(){
+        //Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, ''));
+        for(wrapperP wp : ProdSelection)
+        {
+            if(wp.selected)
+            {
+                        myPromMatItems.add(new wrapper(wp.prod,null,pm));               
+                           
+                wp.selected=false;
+                
             }
-            else {
-               PMI = new Promotion_Material_Item__c();
-               try {PMI.Promotion__c = PromoId;}
-               catch(exception e) { throw e;}
-            }
+        }
+        return null;
+    }         
+    //this wrapper is used for each Product__c selection record .
+    // Remediated for custom product as well
+    public class wrapperP {
+    public Product__c prod {get; set;}
+    // part of remediation
+    public boolean selected {get; set;}
+    public integer brandQTY {get;set;}    
+    public integer planBottle {get;set;}
+    public double planRebate {get;set;}             
+        // part of remediation
 
-            try {PMI.Product_Custom__c = wr.productid!=null?wr.productid:PMI.Product_Custom__c; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Plan_Qty__c = wR.Plan_Qty!=null&&wR.Plan_Qty!=''?Double.valueOf(wR.Plan_Qty):0; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Remarks__c = wR.Remarks; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Act_Qty__c = wR.Act_Qty!=null&&wR.Act_Qty!=''?Double.valueOf(wR.Act_Qty):0; }
-            catch(exception e) { throw e;} 
-            
-            try {PMI.Submit__c = wR.Submit!=null?wR.Submit:PMI.Submit__c;}
-            catch(exception e) { throw e;} 
-            
-            try {PMI.Actual_Rebate__c = wR.Actual_Rebate!=null&&wR.Actual_Rebate!=''?Double.valueOf(wR.Actual_Rebate):0;}
-            catch(exception e) { throw e;}
-            
-            try {PMI.Plan_Rebate__c = wR.Plan_Rebate!=null&&wR.Plan_Rebate!=''?Double.valueOf(wR.Plan_Rebate):0; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Act_Date__c = wR.Act_Date!=null&&wR.Act_Date!=''?Date.parse(wR.Act_Date):null;}
-            catch(exception e) { throw e;}
-            
-            try {PMI.Plan_Date__c = wR.Plan_Date!=null&&wR.Plan_Date!=''?Date.parse(wR.Plan_Date):null; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Approval_Status__c = wR.Approval_Status; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Delivery_From__c = wR.Delivery_From; }
-            catch(exception e) { throw e;}
-
-            try {PMI.Wet_Good_Use__c = wR.Wet_Good_Use; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Shipped_Date__c = wR.Shipped_Date!=null&&wR.Shipped_Date!=''?Date.parse(wR.Shipped_Date):null; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Request_Date__c = wR.Request_Date!=null&&wR.Request_Date!=''?Date.parse(wR.Request_Date):null; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Quantity__c = wR.Quantity!=null&&wR.Quantity!=''?Double.valueOf(wR.Quantity):0; }
-            catch(exception e) { throw e;}
-            
-            try {PMI.Unit_Cost__c = wR.Unit_Cost!=null&&wR.Unit_Cost!=''?Double.valueOf(wR.Unit_Cost):0; }
-            catch(exception e) { throw e;}
-            
-            
-            if (promoType=='Agreement') {
-                PMI.Plan_Payment__c = PMI.Plan_Qty__c * PMI.Plan_Rebate__c;
+    public wrapperP(Product__c a)
+        {
+            prod = a;
+            selected=false;
+        }
+    }    
+    
+    public List<wrapper> myPromMatItems {get;set;}
+    
+    void buildOvi()
+    { 
+        myPromMatItems = new List<wrapper>();
+        //grab all products in case they were since inactivated or in different markets
+        system.debug(myLimit);
+        Set<ID> myProducts = new Set<ID>();
+        Map<ID,Promotion_Material_Item__c> mapPMIs = new Map<ID,Promotion_Material_Item__c>();  
+        for(Promotion_Material_Item__c[] pmi : [Select p.Wet_Good_Use__c, p.Unit_Cost__c, p.Shipped_Date__c, p.Shipped_Amount__c, p.Request_Time__c, p.Request_Date__c, p.Remarks__c, p.Quantity__c, p.Promotion__c, p.Promotion_Cost_w_o_VAT__c, p.Product_Custom__c, p.Product_Custom__r.Name, p.Product_Custom__r.ProductCode__c, p.Product_Custom__r.Brand__c, p.Product_Custom__r.Brand__r.Name, p.Name, p.Id, p.Extended_Cost__c, p.Delivery_From__c, p.CurrencyIsoCode, p.Plan_Qty__c, p.Plan_Payment__c, p.Plan_Date__c, p.Act_Qty__c, p.Act_Date__c, p.Approval_Status__c, p.Actual_Payment__c,p.plan_rebate__c,p.Actual_Rebate__c,p.Act_Payment2__c
+        ,p.Payment_Date__c, p.Submit__c
+         
+         From Promotion_Material_Item__c p where p.Promotion__c =: pm.id order by p.Product_Custom__r.Name,p.Plan_Date__c])
+        {
+            for (Integer x=0;x<pmi.size();x++)
+            {           
+                    myProducts.add(pmi[x].Product_Custom__c);
+                //mapPMIs.put(pmi[x].Id,pmi[x]);
             }
-            if (wR.Approval_Status=='New' & wR.submit== true){
-                PMI.Approval_Status__c ='Submit';
-            }
-
-            PMIList.add(PMI);
+            Map<ID,Product__c> pr = new Map<ID,Product__c>([Select p.VAT__c, p.Unit_Cost__c, p.Supplier__c, p.Sort_Order__c, p.RecordType.Name, p.RecordTypeId, p.ProductCode__c, p.Name, p.Market__c, p.IsActive__c, p.Id, p.Family__c, p.Description__c, p.CurrencyIsoCode, p.Competes_On_Brand__c, p.Case_Multiplier__c, p.Brand__c, p.Brand__r.Name, p.Brand_Code__c From Product__c p where p.Id in: myProducts LIMIT :myLimit]);
+            for (Integer x=0;x<pmi.size();x++)
+            {      
+                    myPromMatItems.add(new wrapper(pr.get(pmi[x].Product_Custom__c),pmi[x],pm));
+            }           
         }
         
-        system.debug('PMIList:' + PMIList);
-        upsert PMIList; 
-        
-        Integer i = 0;
-        for(wrapperRemote wR:NewProducts) {
-            wR.promoId = PMIList.get(i).Id;
-            i++;
+        //nds 09/20/10 - this loop was causing sorting issues.        
+        /*for(Promotion_Material_Item__c pmi : mapPMIs.values())
+        {
+            myPromMatItems.add(new wrapper(pr.get(pmi.Product__c),pmi,pm));
+        }*/
+    }    
+    public PageReference delPromMatItems(){
+        //Apexpages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, ''));
+        List<Promotion_Material_Item__c> myDels = new List<Promotion_Material_Item__c>();
+        integer counter=0;
+        List<integer> myset = new List<integer>();
+        try{
+            for(wrapper wp : myPromMatItems)
+            {
+                if(wp.selected)
+                {
+                    if(wp.PromMatItem.Id!=null)
+                    {
+                        myDels.add(wp.PromMatItem);
+                    }
+                    myset.add(counter);
+                }else{
+                    counter++;
+                }
+            }
+            for(integer y : myset){
+                myPromMatItems.remove(y);    
+            }      
+            delete myDels;
+         }catch(exception e){
+            pm.addError(e.getMessage());
+            return null;
+         }         
+        return null;
+    }           
+    //this wrapper is used for each Promotion_Material_Item__c record .
+    public class wrapper {
+    //public Product2 prod {get; set;}
+    public Product__c prod {get; set;}
+    public Promotion_Material_Item__c PromMatItem {get; set;}
+    public boolean selected {get; set;}
+         
+    public wrapper(Product__c pr, Promotion_Material_Item__c pmi, Promotion__c pm)
+        {
+            prod = pr==null?(new Product__c(id=pmi.Product_Custom__c,Name=pmi.product_custom__r.Name)):(pr);
+            PromMatItem = pmi!=null?pmi:(new Promotion_Material_Item__c(Promotion__c=pm.Id,Product_Custom__c=prod.id));            
         }
-        
-        return NewProducts;
-    }      
+    public wrapper(Product__c pr, Promotion_Material_Item__c pmi, Promotion__c pm, Integer planBottle, double planRebate, double planPayment)
+        {
+            prod = pr==null?(new Product__c(id=pmi.Product_Custom__c,Name=pmi.product_custom__r.Name)):(pr);
+            PromMatItem = pmi!=null?pmi:(new Promotion_Material_Item__c(Promotion__c=pm.Id,Product_Custom__c=prod.id,plan_qty__c=planBottle,plan_rebate__c=planRebate,plan_payment__c=planPayment));            
+        }        
+    }
+    
+    private String formatString(String val) {
+    	
+    	if(val.contains(',') && val.contains('.')) {
+    		
+    	}
+    	
+    	return val;
+    }
 }

@@ -46,7 +46,8 @@ private class test_beforeInsertUpdateVendor {
 
 //Creating a test Vendor (Block1)  
 Vendor__c testVendor = new Vendor__c(Copy_Business_Address_to_Payment_Address__c = true,
-                                     Company_Code__c = '1000-Brown Forman Corparation', Purchasing_Org__c = '5590',
+                                     Company_Code__c = '1000-Brown Forman Corparation', 
+                                     Purchasing_Org__c = '5590',
                                      Country_LAND1__c = 'US-USA', Business_Name_NAME1__c = 'Dicks Crab Shack',
                                      Business_Address_STRAS__c = '123 anywhere', Business_City_ORT01__c = 'Seaside',
                                      Business_Region__c = 'NJ',Business_Postal_Code_PSTLZ__c = '08816',
@@ -67,7 +68,8 @@ Vendor__c testVendor = new Vendor__c(Copy_Business_Address_to_Payment_Address__c
   
   //Block 2   Copy_Business_Name_to_Business_Legal__c == true
      Vendor__c testVendor2 = new Vendor__c(Copy_Business_Name_to_Business_Legal__c = true,
-                                     Company_Code__c = '1000-Brown Forman Corparation', Purchasing_Org__c = '5590',
+                                     Company_Code__c = '1000-Brown Forman Corparation',
+                                     Purchasing_Org__c = '5590',
                                      Country_LAND1__c = 'US-USA', Business_Name_NAME1__c = 'Dicks Crab Shack',
                                      Business_Address_STRAS__c = '123 anywhere', Business_City_ORT01__c = 'Seaside',
                                      Business_Region__c = 'NJ',Business_Postal_Code_PSTLZ__c = '08816',
@@ -88,7 +90,8 @@ Vendor__c testVendor = new Vendor__c(Copy_Business_Address_to_Payment_Address__c
      
       //Block 3   Copy_Business_Address_to_Tax_Address__c == true
      Vendor__c testVendor3 = new Vendor__c(Copy_Business_Address_to_Tax_Address__c = true,
-                                     Company_Code__c = '1000-Brown Forman Corparation', Purchasing_Org__c = '5590',
+                                     Company_Code__c = '1000-Brown Forman Corparation',
+                                     Purchasing_Org__c = '5590',
                                      Country_LAND1__c = 'US-USA', Business_Name_NAME1__c = 'Dicks Crab Shack',
                                      Business_Address_STRAS__c = '123 anywhere', Business_City_ORT01__c = 'Seaside',
                                      Business_Region__c = 'NJ',Business_Postal_Code_PSTLZ__c = '08816',

@@ -7,4 +7,6 @@
     <tab>standard-Dashboard</tab>
     <tab>standard-report</tab>
     <tab>AboutITCM</tab>
+    <tab>Price_Tolerance__c</tab>
+    <tab>Price_Material_Group__c</tab>
 </CustomApplication>

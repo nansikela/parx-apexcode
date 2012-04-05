@@ -1,4 +1,4 @@
-/* Class Name : promotionMaterialItem_Controller_Remed
+/* Class Name : promotionMaterialItem_Controller_DEU
 * Description: --
 * Created By : --
 * Created On : -- 
@@ -7,18 +7,22 @@
 * ----------------------------------------------------------------------------------------------------------------------------
 * Developer       Date              Description
 * ----------------------------------------------------------------------------------------------------------------------------
-* Fayas Mansoor  06-27-2011        Code for Product Remediation Check.
-* Mike Shroyer  11/22/2011         Added logic to set approval status to Submit if submit is checked.  
-* Christophe Vidal 12/14/2011      Revamped the whole controller and page to improve drastically the performance of the slow wrapper 
-*                                  classes. Please be aware that moving elements, changing id of elements or removing elements can
-*                                  break javascript functions. Most of logic has now be moved to the VF Page in order to improve
-*                                  the performance. 
-*                                  Please also be aware by adding columns to existing tables. You should not forget
-*                                  to add the right id to the column and to add it also to the wrapperRemote wrapper class. If you expect
-*                                  to save this new column, this should be also implemented in the remoteaction function addNewProduct
+* Fayas Mansoor  06-27-2011        	Code for Product Remediation Check.
+* Mike Shroyer  11/22/2011         	Added logic to set approval status to Submit if submit is checked.  
+* Christophe Vidal 12/14/2011      	Revamped the whole controller and page to improve drastically the performance of the slow wrapper 
+*                                  	classes. Please be aware that moving elements, changing id of elements or removing elements can
+*                                  	break javascript functions. Most of logic has now be moved to the VF Page in order to improve
+*                                  	the performance. 
+*                                  	Please also be aware by adding columns to existing tables. You should not forget
+*                                  	to add the right id to the column and to add it also to the wrapperRemote wrapper class. If you expect
+*                                  	to save this new column, this should be also implemented in the remoteaction function addNewProduct
+* Mike Shroyer	2/1/2012			Modified to account for China markets
+*									Added Account__r.Market__r.Name to the promotion SOQL for VF to access
+*									Added check on AddNewProduct to see if PaymentDate != ''
+* Michael Mickiewicz 02/28/2012		Added branch between new and old IF 
 */ 
 
-public with sharing class promotionMaterialItem_DEU_Controller {
+global with sharing class promotionMaterialItem_DEU_Controller {
 
     private list<RecordType> RecordTypes =  [select name from RecordType where SobjectType='Product__c'];
     private list<Brand__c> Brands = [Select Name From Brand__c where Supplier__r.Is_B_F_Brand__c = true order BY Name];
@@ -26,13 +30,15 @@ public with sharing class promotionMaterialItem_DEU_Controller {
     public integer myLimit = 1000;
     
     public static Promotion__c pm {get;set;}
-       
+    
     public String promoType {get;set;}
     public String IdDataTableHidden {get;set;}
     public string RecordTypeValue {get;set;}
     public string bfBrandValue {get;set;}
     public string ProductNameTextValue {get;set;}     
-    public List<wrapper> myPromMatItems {get;set;}
+    public List<wrapper> myPromMatItems {get;set;}    
+    public List<wrapper> myPromMatItemsDummy {get;set;} 
+    
     
     //this wrapper is used for each Promotion_Material_Item__c record .
     public  class wrapper {
@@ -45,7 +51,7 @@ public with sharing class promotionMaterialItem_DEU_Controller {
         }    
     }
       
-    public class wrapperRemote {
+    global class wrapperRemote {
         public String productid;
         public String promoid;
         public String Act_Date;
@@ -55,6 +61,7 @@ public with sharing class promotionMaterialItem_DEU_Controller {
         public String Selected;
         public String Plan_Date;
         public Boolean Submit;
+        public String Payment_Date;
         public String Actual_Rebate;
         public String Plan_Rebate;
         public String Approval_Status;
@@ -92,12 +99,13 @@ public with sharing class promotionMaterialItem_DEU_Controller {
         
         //we add a dummy hidden product for the row duplication in the html table.
         //this is used to be able to clone easily the row.
-        Promotion_Material_Item__c helper = [Select Wet_Good_Use__c, Unit_Cost__c, Shipped_Date__c, Shipped_Amount__c, Request_Time__c, Request_Date__c, Remarks__c, Quantity__c, Promotion__c, Promotion_Cost_w_o_VAT__c, Product_Custom__c, Product_Custom__r.Name, Product_Custom__r.ProductCode__c, Product_Custom__r.Brand__c, Product_Custom__r.Brand__r.Name, Name, Extended_Cost__c, Delivery_From__c, CurrencyIsoCode, Plan_Qty__c, Plan_Payment__c, Plan_Date__c, Act_Qty__c, Act_Date__c, Approval_Status__c, Actual_Payment__c,plan_rebate__c,Actual_Rebate__c,
-        Act_Payment2__c, Payment_Date__c, Submit__c from Promotion_Material_Item__c where Submit__c = false AND Extended_Cost__c = 0 limit 1];
+        //Promotion_Material_Item__c helper = [Select Wet_Good_Use__c, Unit_Cost__c, Shipped_Date__c, Shipped_Amount__c, Request_Time__c, Request_Date__c, Remarks__c, Quantity__c, Promotion__c, Promotion_Cost_w_o_VAT__c, Product_Custom__c, Product_Custom__r.Name, Product_Custom__r.ProductCode__c, Product_Custom__r.Brand__c, Product_Custom__r.Brand__r.Name, Name, Extended_Cost__c, Delivery_From__c, CurrencyIsoCode, Plan_Qty__c, Plan_Payment__c, Plan_Date__c, Act_Qty__c, Act_Date__c, Approval_Status__c, Actual_Payment__c,plan_rebate__c,Actual_Rebate__c,
+       	// Act_Payment2__c, Payment_Date__c, Submit__c from Promotion_Material_Item__c where Submit__c = false AND Extended_Cost__c = 0 limit 1];
+ 		Promotion_Material_Item__c helper = new Promotion_Material_Item__c(Submit__c = false);
         //we just reset all field of our helper row. we don't make any update on this row but we use it as a template for our cloning.
         //Promotion_Material_Item__c helper = new Promotion_Material_Item__c();
         helper.Plan_Qty__c = helper.Plan_Rebate__c = helper.Plan_Payment__c = helper.Act_Qty__c = helper.Actual_Rebate__c = helper.Quantity__c = helper.Unit_Cost__c = null ;
-        helper.Plan_Date__c = helper.Act_Date__c = helper.Request_Date__c = helper.Shipped_Date__c = null;
+        helper.Plan_Date__c = helper.Payment_Date__c = helper.Act_Date__c = helper.Request_Date__c = helper.Shipped_Date__c = null;
         helper.Remarks__c = null;
         helper.Submit__c = false;
         helper.Approval_Status__c = 'New';
@@ -112,9 +120,12 @@ public with sharing class promotionMaterialItem_DEU_Controller {
     }   
     
     public promotionMaterialItem_DEU_Controller (){
-        pm = [select Account__r.Market__c, RecordTypeId, RecordType.Name, Approval_Status__c, Promotion_Start_Date__c from Promotion__c where Id =: ApexPages.currentPage().getParameters().get('Id')];
+        pm = [select Account__r.Market__c, CurrencyIsoCode, Account__r.Market__r.Name, RecordTypeId, RecordType.Name, Approval_Status__c, Promotion_Start_Date__c from Promotion__c where Id =: ApexPages.currentPage().getParameters().get('Id')];
+        
         promoType = pm.RecordType.Name;
         buildOvi();
+        myPromMatItemsDummy = new List<wrapper>();
+        myPromMatItemsDummy.add(new wrapper(new Product__c(), new Promotion_Material_Item__c()));
     }
     
     public List<SelectOption> getrecordTypeList() {
@@ -142,7 +153,7 @@ public with sharing class promotionMaterialItem_DEU_Controller {
     }     
     
     @RemoteAction
-    public static void RemoveLine(String RowId) {
+    global static void RemoveLine(String RowId) {
         //called when the X is clicked.
         if(RowId != null && RowId != ''){
             try {
@@ -156,9 +167,9 @@ public with sharing class promotionMaterialItem_DEU_Controller {
     }
     
     @RemoteAction
-    public static list<Product__c> buildProdSelection2(String ProductNameTextValue, String bfBrandValue, String RecordTypeValue, String marketID) {  
+    global static list<Product__c> buildProdSelection2(String ProductNameTextValue, String bfBrandValue, String RecordTypeValue, String marketID) {  
         //this is the old search function, adapted to js remoting.
-        string myQueryString = 'Select Name, ProductCode__c, Unit_Cost__c,  Brand__r.Name From Product__c '
+        string myQueryString = 'Select Name, ProductCode__c, Unit_Cost__c,  Brand__r.Name, RecordType.Name From Product__c '
         + ' where IsActive__c=true'
         + ' and Brand__r.Supplier__r.Is_B_F_Brand__c = true'
         + (marketID!=null?' and Market__c=\''+marketID+'\'':'');
@@ -178,10 +189,15 @@ public with sharing class promotionMaterialItem_DEU_Controller {
     }
 
     @RemoteAction
-    public static list<wrapperRemote> AddNewProduct(list<wrapperRemote> NewProducts, String promoType, String PromoId) { 
+    global static list<wrapperRemote> AddNewProduct(list<wrapperRemote> NewProducts, String promoType, String PromoId) { 
         system.debug('Test0:' + NewProducts);
+        
         list<Promotion_Material_Item__c> PMIList = new list<Promotion_Material_Item__c>();
         Promotion_Material_Item__c PMI = new Promotion_Material_Item__c();
+        Promotion__c promo = [Select CurrencyIsoCode From Promotion__c Where ID = :PromoId limit 1];
+        Promotion_Material_Item__c pmi_record = null;
+        String curr = promo.CurrencyIsoCode;
+        
         //we have now to handle our data, to check of wrong input, and to save them.
         map<Id, Promotion_Material_Item__c> ExistingPromoMat;
         list<Id> ExistingPromoMatIds = new list<Id>();
@@ -191,7 +207,6 @@ public with sharing class promotionMaterialItem_DEU_Controller {
         }
         if(!ExistingPromoMatIds.isEmpty())
             ExistingPromoMat = new map<Id, Promotion_Material_Item__c>([select Product_Custom__c, Plan_Qty__c, Remarks__c, Act_Qty__c, Submit__c, Actual_Rebate__c, Plan_Rebate__c, Act_Date__c, Plan_Date__c, Plan_Payment__c, Approval_Status__c from Promotion_Material_Item__c where Id IN:ExistingPromoMatIds]);
-
         
         for(wrapperRemote wR:NewProducts) {
             //we have to try catch every single element to produce a more consistent output error to the user.
@@ -204,32 +219,41 @@ public with sharing class promotionMaterialItem_DEU_Controller {
                try {PMI.Promotion__c = PromoId;}
                catch(exception e) { throw e;}
             }
-
+			
+			if(PMI.ID != null)
+				curr = [Select CurrencyIsoCode From Promotion_Material_Item__c Where ID = :PMI.Id limit 1].CurrencyIsoCode;
+			
+			system.debug(curr);
+			system.debug(wR.Quantity);
+				
             try {PMI.Product_Custom__c = wr.productid!=null?wr.productid:PMI.Product_Custom__c; }
             catch(exception e) { throw e;}
             
-            try {PMI.Plan_Qty__c = wR.Plan_Qty!=null&&wR.Plan_Qty!=''?Double.valueOf(wR.Plan_Qty):0; }
+            try {PMI.Plan_Qty__c = wR.Plan_Qty!=null&&wR.Plan_Qty!=''&&wR.Plan_Qty!='&nbsp;'?Integer.valueOf(formatNumberInString(wR.Plan_Qty, curr)):0; }
             catch(exception e) { throw e;}
             
             try {PMI.Remarks__c = wR.Remarks; }
             catch(exception e) { throw e;}
             
-            try {PMI.Act_Qty__c = wR.Act_Qty!=null&&wR.Act_Qty!=''?Double.valueOf(wR.Act_Qty):0; }
+            try {PMI.Act_Qty__c = wR.Act_Qty!=null&&wR.Act_Qty!=''&&wR.Act_Qty!='&nbsp;'?Decimal.valueOf(formatNumberInString(wR.Act_Qty, curr)):0; }
+            catch(exception e) { throw e;} 
+            
+            try {PMI.Payment_Date__c = wR.Payment_Date!=null&&wR.Payment_Date!=''&&wR.Payment_Date!='&nbsp;'?Date.parse(wR.Payment_Date):null;}
             catch(exception e) { throw e;} 
             
             try {PMI.Submit__c = wR.Submit!=null?wR.Submit:PMI.Submit__c;}
             catch(exception e) { throw e;} 
             
-            try {PMI.Actual_Rebate__c = wR.Actual_Rebate!=null&&wR.Actual_Rebate!=''?Double.valueOf(wR.Actual_Rebate):0;}
+            try {PMI.Actual_Rebate__c = wR.Actual_Rebate!=null&&wR.Actual_Rebate!=''&&wR.Actual_Rebate!='&nbsp;'?Decimal.valueOf(formatNumberInString(wR.Actual_Rebate, curr)):0;}
             catch(exception e) { throw e;}
             
-            try {PMI.Plan_Rebate__c = wR.Plan_Rebate!=null&&wR.Plan_Rebate!=''?Double.valueOf(wR.Plan_Rebate):0; }
+            try {PMI.Plan_Rebate__c = wR.Plan_Rebate!=null&&wR.Plan_Rebate!=''&&wR.Plan_Rebate!='&nbsp;'?Decimal.valueOf(formatNumberInString(wR.Plan_Rebate, curr)):0; }
             catch(exception e) { throw e;}
             
-            try {PMI.Act_Date__c = wR.Act_Date!=null&&wR.Act_Date!=''?Date.parse(wR.Act_Date):null;}
+            try {PMI.Act_Date__c = wR.Act_Date!=null&&wR.Act_Date!=''&&wR.Act_Date!='&nbsp;'?Date.parse(wR.Act_Date):null;}
             catch(exception e) { throw e;}
             
-            try {PMI.Plan_Date__c = wR.Plan_Date!=null&&wR.Plan_Date!=''?Date.parse(wR.Plan_Date):null; }
+            try {PMI.Plan_Date__c = wR.Plan_Date!=null&&wR.Plan_Date!=''&&wR.Plan_Date!='&nbsp;'?Date.parse(wR.Plan_Date):null; }
             catch(exception e) { throw e;}
             
             try {PMI.Approval_Status__c = wR.Approval_Status; }
@@ -241,18 +265,17 @@ public with sharing class promotionMaterialItem_DEU_Controller {
             try {PMI.Wet_Good_Use__c = wR.Wet_Good_Use; }
             catch(exception e) { throw e;}
             
-            try {PMI.Shipped_Date__c = wR.Shipped_Date!=null&&wR.Shipped_Date!=''?Date.parse(wR.Shipped_Date):null; }
+            try {PMI.Shipped_Date__c = wR.Shipped_Date!=null&&wR.Shipped_Date!=''&&wR.Shipped_Date!='&nbsp;'?Date.parse(wR.Shipped_Date):null; }
             catch(exception e) { throw e;}
             
-            try {PMI.Request_Date__c = wR.Request_Date!=null&&wR.Request_Date!=''?Date.parse(wR.Request_Date):null; }
+            try {PMI.Request_Date__c = wR.Request_Date!=null&&wR.Request_Date!=''&&wR.Request_Date!='&nbsp;'?Date.parse(wR.Request_Date):null; }
             catch(exception e) { throw e;}
             
-            try {PMI.Quantity__c = wR.Quantity!=null&&wR.Quantity!=''?Double.valueOf(wR.Quantity):0; }
+            try {PMI.Quantity__c = wR.Quantity!=null&&wR.Quantity!=''&&wR.Quantity!='&nbsp;'?Double.valueOf(formatNumberInString(wR.Quantity, curr)):0; }
             catch(exception e) { throw e;}
             
-            try {PMI.Unit_Cost__c = wR.Unit_Cost!=null&&wR.Unit_Cost!=''?Double.valueOf(wR.Unit_Cost):0; }
+            try {PMI.Unit_Cost__c = wR.Unit_Cost!=null&&wR.Unit_Cost!=''&&wR.Unit_Cost!='&nbsp;'?Double.valueOf(formatNumberInString(wR.Unit_Cost, curr)):0; }
             catch(exception e) { throw e;}
-            
             
             if (promoType=='Agreement') {
                 PMI.Plan_Payment__c = PMI.Plan_Qty__c * PMI.Plan_Rebate__c;
@@ -275,4 +298,50 @@ public with sharing class promotionMaterialItem_DEU_Controller {
         
         return NewProducts;
     }      
+    
+    public static String formatNumberInString(String text, String curr) {
+    	String decimalSeparator = whatDecimalSeparator(); 
+    
+    	system.debug('Before: '+text);
+    	system.debug('with pm currency: '+curr);
+    	
+    	if(decimalSeparator.equals(',')) {
+    		text = text.replaceAll('\\.','');
+    		text = text.replaceAll('/','');
+    		
+    		text = text.replaceAll(',','.');
+    		
+    	} else if(decimalSeparator.equals('.')) {
+    		text = text.replaceAll(',','');
+    		text = text.replaceAll('/','');
+    	} else if(decimalSeparator.equals('/')) {
+    		text = text.replaceAll(',','');
+    		text = text.replaceAll('\\.','');
+    	}
+    	
+    	if(!text.contains(UserInfo.getDefaultCurrency()) && !text.contains(curr))
+    		return text;
+    	
+    	text = text.replaceAll(UserInfo.getDefaultCurrency(),'');
+    	
+    	if(UserInfo.isMultiCurrencyOrganization()) {
+    		text = text.replaceAll(curr, '');
+    		
+    		if(text.indexOf('(') != -1)
+    			text = text.substring(0,text.indexOf('('));
+    	} 
+    		
+    	text = text.replaceAll(' ','');
+    	
+    	system.debug('After: '+text);
+    	return text;
+    }
+    	
+	private static String whatDecimalSeparator() {
+		decimal testValue = 123.45;
+    	String testOutput = testValue.format();
+    
+		testOutput = testOutput.substring(3, 4);
+		return testOutput;
+	}  
 }

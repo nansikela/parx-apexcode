@@ -112,7 +112,14 @@
 <style type="text/css">
 	.marked-horizontal tr:nth-child(odd) {background-color: white; }
 	.marked-horizontal tr:nth-child(even) {background-color: #eeeeee; } 
-	 
+	
+	.promotion_header {
+		border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color: silver;
+	}
+	.promotion_row {word-wrap:break-word}
+	
 	.even {background: #eeeeee; }
 	.odd {} 
 </style>
@@ -149,18 +156,27 @@
 		    				<b> <apex:outputText id="channelLabel" value="{!$ObjectType.Account.Fields.Channel__c.Label}:" /> </b>
 		    				<apex:outputText id="channel" value="{!account.Channel__c}" /> <br />
 		    				
-		    				<b> <apex:outputText id="groupLabel" value="{!$ObjectType.Account.Fields.Group__c.Label}:" rendered="{!isChannelOn}"/> </b>
-		    				<apex:outputText id="group" value="{!account.Group__c}" rendered="{!isChannelOn}" /> <br />
+		    				<apex:outputPanel rendered="{!isChannelOn}">
+		    					<b> <apex:outputText id="groupLabel" value="{!$ObjectType.Account.Fields.Group__c.Label}:" /> </b>
+		    					<apex:outputText id="group" value="{!account.Group__c}" rendered="{!isChannelOn}" /> <br />
+		    				</apex:outputPanel>
+		    				
+		    				<apex:outputPanel rendered="{!isChannelOn}">
+	    						<b> <apex:outputText id="subgroupLabel" value="{!$ObjectType.Account.Fields.Subgroup__c.Label}:"  /> </b>
+	    						<apex:outputText id="subgroup" value="{!account.Subgroup__c}" rendered="{!isChannelOn}" /> <br />
+	    					</apex:outputPanel>
 	    					
-	    					<b> <apex:outputText id="subgroupLabel" value="{!$ObjectType.Account.Fields.Subgroup__c.Label}:" rendered="{!isChannelOn}" /> </b>
-	    					<apex:outputText id="subgroup" value="{!account.Subgroup__c}" rendered="{!isChannelOn}" /> <br />
+	    					<apex:outputPanel rendered="{!isChannelOff}">
+	    						<b> <apex:outputText id="storetypeLabel" value="{!$ObjectType.Account.Fields.Store_Type_TD__c.Label}:" /> </b>
+	    						<apex:outputText id="storetype" value="{!account.Store_Type_TD__c}" rendered="{!isChannelOff}" /> <br />
+	    					</apex:outputPanel>
 	    					
-	    					<b> <apex:outputText id="storetypeLabel" value="{!$ObjectType.Account.Fields.Store_Type_TD__c.Label}:" rendered="{!isChannelOff}"/> </b>
-	    					<apex:outputText id="storetype" value="{!account.Store_Type_TD__c}" rendered="{!isChannelOff}" />
+	    					<b> <apex:outputText id="personalnotesLabel" value="{!$ObjectType.Account.Fields.personal_Notes__c.Label}:" /> </b> <br />
+	    					<apex:outputField value="{!account.personal_Notes__c}" />
 	    				</td>
 	    				
 	    				<td style="vertical-align:top;">
-	    					<apex:dataTable value="{!contact}" var="con" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
+	    					<apex:dataTable value="{!contact}" var="con" cellpadding="5px" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
 			    				<apex:column >
 			    					<apex:facet name="header">{!$ObjectType.Contact.Fields.Salutation.Label}</apex:facet>
 			    					<apex:outputField value="{!con.Salutation}"/>
@@ -196,8 +212,8 @@
     	<apex:pageblock title="{!$Label.Factsheet_LastVisitComments}">
     		<apex:dataTable value="{!Outlet_Visit}" cellspacing="5" var="OV" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
    				<apex:column style="vertical-align: top;" >
-   					<apex:facet name="header">{!$ObjectType.Outlet_Visit__c.Fields.Last_Visit_Date__c.Label}</apex:facet>
-   					<apex:outputField value="{!OV.Last_Visit_Date__c}"/>
+   					<apex:facet name="header">{!$ObjectType.Outlet_Visit__c.Fields.Visit_Date__c.Label}</apex:facet>
+   					<apex:outputField value="{!OV.Visit_Date__c}"/>
    				</apex:column>
    				<apex:column style="vertical-align: top;" >
    					<apex:facet name="header">{!$ObjectType.Outlet_Visit__c.Fields.Met_With__c.Label}</apex:facet>
@@ -209,7 +225,7 @@
    				</apex:column>
    			</apex:dataTable>
     	</apex:pageblock>
-    </div>
+    </div> 
     
     <br/>
     <br />
@@ -259,7 +275,7 @@
    					<apex:outputText value="{!MP.Brand}"/> 
    				</apex:column>
    				<apex:column >
-   					<apex:facet name="header">{!$ObjectType.Product2.Fields.Name.Label}</apex:facet>
+   					<apex:facet name="header">{!$ObjectType.Product__c.Fields.Name.Label}</apex:facet>
    					<apex:outputField value="{!MP.record.Custom_Product__r.Name}"/> 
    				</apex:column>
    				<apex:column >
@@ -274,37 +290,95 @@
    
    	<div id="sixthDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
    		<apex:pageBlock title="{!$Label.Factsheet_Promotions}">
-   			<apex:dataTable value="{!Promotions}" var="P" cellspacing="2" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
-   				<apex:column >
-   					<apex:facet name="header">{!$Label.Factsheet_Promotion}</apex:facet>
-   					<apex:outputField value="{!P.record.Name}"/> 
-   				</apex:column>
-   				<apex:column >
-   					<apex:facet name="header">{!$Label.Factsheet_Promotion_Activity}</apex:facet>
-   					<apex:outputField value="{!P.record.Promotion_Activity__r.Name}"/> 
-   				</apex:column>
-   				<apex:column >
-   					<apex:facet name="header">{!$ObjectType.Promotion__c.Fields.Total_Promotion_Cost__c.Label}</apex:facet>
-   					<apex:outputField value="{!P.record.Total_Promotion_Cost__c}"/>
-   				</apex:column>
-   				<apex:column >
-   					<apex:facet name="header">{!$Label.Factsheet_Startdate}</apex:facet>
-   					<apex:outputField value="{!P.record.Promotion_Start_Date__c}"/>
-   				</apex:column>
-   				<apex:column >
-   					<apex:facet name="header">{!$Label.Factsheet_Enddate}</apex:facet>
-   					<apex:outputField value="{!P.record.Promotion_End_Date__c}"/> 
-   				</apex:column>
-   				<apex:column >
-   					<apex:facet name="header">{!$ObjectType.Promotion__c.Fields.Approval_Status__c.Label}</apex:facet>
-   					<apex:outputField value="{!P.record.Approval_Status__c}"/> 
-   				</apex:column>
-   				<apex:column >
-   					<apex:facet name="header">{!$ObjectType.Promotion__c.Fields.status_of_Secondary_placement__c.Label}</apex:facet>
-   					<apex:outputField value="{!P.record.status_of_Secondary_placement__c}" rendered="{!P.showStatus}" />
-	                <apex:outputText value="" rendered="{!NOT(P.showStatus)}" />
-   				</apex:column>
+   			<table style="table-layout: fixed; width:692px; height:100%;" class="odd,even">
+   			<tbody>
+   				<tr>
+   					<td><span style="font-weight:bold">{!$Label.Factsheet_Promotion} </span></td>
+   					<td><span style="font-weight:bold">{!$Label.Factsheet_Promotion_Activity} </span></td>
+   					<apex:outputPanel rendered="{!isChannelOff}">	
+   						<td><span style="font-weight:bold">{!$ObjectType.Promotion__c.Fields.costs_of_Secondary_placement__c.Label} </span></td>
+   					</apex:outputPanel>
+   					<apex:outputPanel rendered="{!NOT(isChannelOff)}">
+   						<td><span style="font-weight:bold">{!$ObjectType.Promotion__c.Fields.Total_Promotion_Cost__c.Label} </span></td>
+   					</apex:outputPanel>
+   					<td><span style="font-weight:bold">{!$Label.Factsheet_Startdate} </span></td>
+   					<td><span style="font-weight:bold">{!$Label.Factsheet_Enddate} </span></td>
+   					<apex:outputPanel rendered="{!isChannelOff}">	
+   						<td><span style="font-weight:bold">{!$ObjectType.Promotion__c.Fields.Number_of_Bottles__c.Label} </span></td>
+   					</apex:outputPanel>
+   					<apex:outputPanel rendered="{!NOT(isChannelOff)}">	
+   						<td><span style="font-weight:bold">{!$ObjectType.Promotion__c.Fields.Approval_Status__c.Label} </span></td>
+   					</apex:outputPanel>
+   					<td><span style="font-weight:bold">{!$ObjectType.Promotion__c.Fields.status_of_Secondary_placement__c.Label} </span></td>
+   				</tr>
+   				<apex:repeat value="{!Promotions}" var="p">
+   				<tr> 
+   					<td style="word-break:break-all;word-wrap:break-word;">
+   						<apex:outputField value="{!p.record.Name}" />
+   					</td>
+   					<td style="word-break:break-all;word-wrap:break-word;">
+   						<apex:outputField value="{!p.record.Promotion_Activity__r.Name}" />
+   					</td>
+   					<td>
+   						<apex:outputField value="{!p.record.costs_of_Secondary_placement__c}" rendered="{!isChannelOff}"/>
+   						<apex:outputField value="{!p.record.Total_Promotion_Cost__c}" rendered="{!NOT(isChannelOff)}"/>
+   					</td>
+   					<td>
+   						<apex:outputField value="{!p.record.Promotion_Start_Date__c}" />
+   					</td>
+   					<td>
+   						<apex:outputField value="{!p.record.Promotion_End_Date__c}" />
+   					</td>
+   					<td>
+   						<apex:outputField value="{!p.record.Number_of_Bottles__c}" rendered="{!isChannelOff}"/>
+   						<apex:outputField value="{!p.record.Approval_Status__c}" rendered="{!NOT(isChannelOff)}"/>
+   					</td>
+   					<td>
+   						<apex:outputField value="{!p.record.status_of_Secondary_placement__c}" />
+   					</td>
+   				</tr>
+   				</apex:repeat>
+   			</tbody>
+   			</table>
+   			<!-- 
+   			<apex:dataTable value="{!Promotions}" var="P" cellspacing="2" style="table-layout: fixed; max-width:692px; height:100%;" rowClasses="odd,even" styleClass="tableClass">
+   				<apex:column headervalue="{!$Label.Factsheet_Promotion}" width="10%" styleClass="promotion_header">      
+      				<DIV style="width:100%;">        
+        				<apex:outputField value="{!P.record.Name}"></apex:outputField>      
+      				</DIV>    
+    			</apex:column> 
+    			<apex:column headervalue="{!$Label.Factsheet_Promotion_Activity}" width="10%" styleClass="promotion_header">      
+      				<DIV style="width:100%;">        
+        				<apex:outputField value="{!P.record.Promotion_Activity__r.Name}"></apex:outputField>      
+      				</DIV>    
+    			</apex:column>
+    			<apex:column headervalue="{!$ObjectType.Promotion__c.Fields.Total_Promotion_Cost__c.Label}" width="50px" styleClass="promotion_header">      
+      				<DIV style="width:100%;">        
+        				<apex:outputField value="{!P.record.Total_Promotion_Cost__c}"></apex:outputField>      
+      				</DIV>    
+    			</apex:column>
+    			<apex:column headervalue="{!$Label.Factsheet_Startdate}" width="10%" styleClass="promotion_header">      
+      				<DIV style="width:100%;">        
+        				<apex:outputField value="{!P.record.Promotion_Start_Date__c}"></apex:outputField>      
+      				</DIV>    
+    			</apex:column>
+    			<apex:column headervalue="{!$Label.Factsheet_Enddate}" width="10%" styleClass="promotion_header">      
+      				<DIV style="width:100%;">        
+        				<apex:outputField value="{!P.record.Promotion_End_Date__c}"></apex:outputField>      
+      				</DIV>    
+    			</apex:column>
+    			<apex:column headervalue="{!$ObjectType.Promotion__c.Fields.Approval_Status__c.Label}" width="10%" styleClass="promotion_header">      
+      				<DIV style="width:100%;">        
+        				<apex:outputField value="{!P.record.Approval_Status__c}"></apex:outputField>      
+      				</DIV>    
+    			</apex:column>
+    			<apex:column headervalue="{!$ObjectType.Promotion__c.Fields.status_of_Secondary_placement__c.Label}" width="10%" styleClass="promotion_header">      
+      				<DIV style="width:100%;">        
+        				<apex:outputField value="{!P.record.status_of_Secondary_placement__c}" rendered="{!NOT(P.showStatus)}"></apex:outputField>      
+      				</DIV>    
+    			</apex:column>
    			</apex:dataTable>
+   			 -->
    		</apex:pageBlock>
 	</div>
 	<br/>
