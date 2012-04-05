@@ -10,24 +10,26 @@ public with sharing class outletVisit_Controller {
 * Developer       Date              Description
 * ----------------------------------------------------------------------------------------------------------------------------
 * VARUN           06-13-2011        Code for Product Remediation Check.
+* Mike Shroyer		2/16/2012		AccountChannel, marketName, Location_On and Location_Off fields
 *                                   
- */ 
+*/ 
 
          
      
-    
+    public String accountChannel {get;set;}
+    public String marketName {get;set;}    
+    public String objectives {get;set;}
     public String AlertMessage {get;set;}
     Public List<Product__c> myProds = new List<Product__c>();
     Public List<Depletion__c> myDeps = new List<Depletion__c>();
     Public Map<Id, Outlet_Visit_Item__c> myOVI = new Map<Id, Outlet_Visit_Item__c>();
     
-
-
     public Outlet_Visit__c ov;
     public string gridLayout {get;set;}
     public string retURL;
     //Map<ID,Outlet_Visit_Item__c> mapOvi = new Map<ID,Outlet_Visit_Item__c>{};
     Account a;
+
        
     public outletVisit_Controller(ApexPages.StandardController controller)
     {
@@ -42,10 +44,9 @@ public with sharing class outletVisit_Controller {
             buildKT();
             if(this.retURL==null || this.retURL=='')
                 this.retURL = '/'+ov.Account__c;
-
         }else{
             this.ov.Visit_Date__c = system.today();
-        }   
+        }
     }
      /*
     public PageReference redirect(){
@@ -69,14 +70,17 @@ public with sharing class outletVisit_Controller {
         Schema.DescribeSObjectResult deOV = Schema.SObjectType.Outlet_Visit__c;
         Transient Map<String,Schema.RecordTypeInfo> rtMapByNameOV = deOV.getRecordTypeInfosByName();
                         
-        a = [Select Id, Name, Master_data_maintained__c, Market__c, Market__r.Name, Market__r.On_Channel__c, Market__r.Off_Channel__c, Channel__c, Outlet_Class__c, CurrencyIsoCode, RecordType.developerName from Account where Id =:ov.Account__c];
+        a = [Select Id, Name, Master_data_maintained__c, Market__c, Market__r.Name, Market__r.On_Channel__c, Market__r.Off_Channel__c, Channel__c, Outlet_Class__c, CurrencyIsoCode, RecordType.developerName, Objectives__c from Account where Id =:ov.Account__c];
         gridLayout='1';
         if(a.Channel__c!=null && a.Channel__c!='')
             try{
                 if(a.Market__r.get(a.Channel__c+'_Channel__c')!=null && a.Market__r.get(a.Channel__c+'_Channel__c')!='')
                     gridLayout=(string)a.Market__r.get(a.Channel__c+'_Channel__c');
             }catch(exception e){}
-        ov.RecordTypeID = rtMapByNameOV.get(gridLayout).RecordTypeID;       
+        ov.RecordTypeID = rtMapByNameOV.get(gridLayout).RecordTypeID;     
+        accountChannel = a.Channel__c;
+        marketName = a.Market__r.Name;
+		ov.objectives__c = a.Objectives__c;       
         /*if(a.Channel__c=='Off' && a.Market__r.Off_Channel__c=='2')
         {
             gridLayout='2';
@@ -232,15 +236,15 @@ public with sharing class outletVisit_Controller {
         Boolean isRecordTypeFound = false;
         Boolean isCheckboxFlagged = false;
         for(Alert_Settings__c alertSetting : Alert_Settings__c.getAll().values()) 
-        	if(alertSetting.Market_RecordType__c == a.RecordType.developerName) { 
-        		isRecordTypeFound = true;
-        		isCheckboxFlagged = alertSetting.No_Visit_Dates_in_the_Future__c;
-        	}
+            if(alertSetting.Market_RecordType__c == a.RecordType.developerName) { 
+                isRecordTypeFound = true;
+                isCheckboxFlagged = alertSetting.No_Visit_Dates_in_the_Future__c;
+            }
         
         if(!isRecordTypeFound) {
-        	AlertMessage = '';
+            AlertMessage = '';
         } else {
-        	if(ov.Visit_Date__c > system.today() && isCheckboxFlagged) {
+            if(ov.Visit_Date__c > system.today() && isCheckboxFlagged) {
                  AlertMessage = System.Label.You_cannot_have_a_visit_date;
                  return null;
             }
@@ -411,10 +415,13 @@ public with sharing class outletVisit_Controller {
         {
             myDeps.add(d);
         }       
-        outletVisitItemQry = 'Select Id, Name, Outlet_Visit__c, Custom_Product__c, Bottle_Price__c, Bottle_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Double_Price__c, Double_Price_Special__c, Space_Placement__c, Shelf__c, Facing__c, Available__c From Outlet_Visit_Item__c ' + (((myOldOV!=null && !myOldOV.keyset().isempty())?myOldOV.values()[0].Id:ov.id)!=null?(' where Outlet_Visit__c = \'' + ((myOldOV!=null && !myOldOV.keyset().isempty()) ? myOldOV.values()[0].Id:ov.id)+ '\''):' where Outlet_Visit__r.Account__c = \'' + a.Id + '\'');
-        //String outletVisitItemQry = 'Select Id, IsDeleted, Name, CreatedDate, CreatedById, LastModifiedDate, LastModifiedById, SystemModstamp, Outlet_Visit__c, Product__c, Bottle_Price__c, Bottle_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Double_Price__c, Double_Price_Special__c, Space_Placement__c, Shelf__c, Facing__c, Available__c From Outlet_Visit_Item__c  where Outlet_Visit__c = \'a0MS00000045QrdMAE\'';
+        outletVisitItemQry = 'Select Id, Name, Outlet_Visit__c, Custom_Product__c, Bottle_Price__c, Bottle_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Double_Price__c, Double_Price_Special__c, Space_Placement__c, Location_On__c, Location_Off__c, Shelf__c, Facing__c, Available__c From Outlet_Visit_Item__c ' + (((myOldOV!=null && !myOldOV.keyset().isempty())?myOldOV.values()[0].Id:ov.id)!=null?(' where Outlet_Visit__c = \'' + ((myOldOV!=null && !myOldOV.keyset().isempty()) ? myOldOV.values()[0].Id:ov.id)+ '\''):' where Outlet_Visit__r.Account__c = \'' + a.Id + '\'');
         for (Outlet_Visit_Item__c i :Database.query(outletVisitItemQry))
         {
+            //TODO convert to variable ... this ID is Germany
+           // system.debug('before recordTypeId = ' + i.RecordTypeId);
+           // i.RecordTypeId = '012V0000000CkMwIAK';
+           // system.debug('after recordTypeId = ' + i.RecordTypeId);            
             myOVI.put(i.Custom_Product__c,i);
         }
         for(Product__c prod : myProds)
@@ -434,7 +441,7 @@ public with sharing class outletVisit_Controller {
         }
         /* P00005a */
         myBFOvi = sortOVI(myBFOvi);
-  		/* P00005a */
+        /* P00005a */
   
     //    myCompQueryString +=' ORDER BY p.Sort_Order__c';
     //    system.debug(myCompQueryString);
@@ -521,7 +528,8 @@ public with sharing class outletVisit_Controller {
                     if((y.ovi.Bottle_Price__c!=null && y.ovi.Bottle_Price__c!=0) || 
                     (y.ovi.Drink_Price__c!=null && y.ovi.Drink_Price__c!=0) ||
                     y.ovi.Double_Price__c!=null ||
-                    y.ovi.Space_Placement__c!=null ||
+                    y.ovi.Location_Off__c!=null ||
+					y.ovi.Location_On__c!=null ||                    
                     y.ovi.Shelf__c!=null ||
                     y.ovi.Facing__c!=null ||
                     y.ovi.Available__c!=null
@@ -571,7 +579,8 @@ public with sharing class outletVisit_Controller {
                     if((y.ovi.Bottle_Price__c!=null && y.ovi.Bottle_Price__c!=0) || 
                     (y.ovi.Drink_Price__c!=null && y.ovi.Drink_Price__c!=0) ||
                     y.ovi.Double_Price__c!=null ||
-                    y.ovi.Space_Placement__c!=null ||
+                    y.ovi.Location_On__c!=null ||
+					y.ovi.Location_Off__c!=null ||	                    
                     y.ovi.Shelf__c!=null ||
                     y.ovi.Facing__c!=null ||
                     y.ovi.Available__c!=null
@@ -856,8 +865,9 @@ public with sharing class outletVisit_Controller {
                     ovi.Bottle_Price_Special__c=newOvi.Bottle_Price_Special__c;
                     ovi.Double_Price__c=newOvi.Double_Price__c;
                     ovi.Double_Price_Special__c=newOvi.Double_Price_Special__c;
-                
-                    ovi.Space_Placement__c=newOvi.Space_Placement__c;
+                              
+                    ovi.Location_Off__c=newOvi.Location_Off__c;                   
+                    ovi.Location_On__c=newOvi.Location_On__c;
                     ovi.Shelf__c=newOvi.Shelf__c;
                     ovi.Facing__c=newOvi.Facing__c;
                     ovi.Available__c=newOvi.Available__c;
@@ -925,35 +935,4 @@ public with sharing class outletVisit_Controller {
             )
         )];
     }  
-  
-  
-   public List<SelectOption> getLocationData() {
-        List<SelectOption> options = new List<SelectOption>();
-
-        options.add(new SelectOption('--None--','--None--'));
-        
-        //Add values to list of Select Options  
-        for (OV_Location_Data__c location : [select Name__c, Market__c, Sort_Order__c, Channel__c From OV_Location_Data__c order by Sort_Order__c]) {
-            if (location.Market__c == a.Market__r.Name && location.Channel__c == a.Channel__c) {
-                options.add(new SelectOption(location.Name__c,location.Name__c));
-            }
-        }
-                
-        return options;
-    }
-    
-   public List<SelectOption> getShelfData() {
-        List<SelectOption> options = new List<SelectOption>();
-
-        options.add(new SelectOption('--None--','--None--'));
-        
-        //Add values to list of Select Options  
-        for (Outlet_Visit_Shelf_Data__c shelf : [select Name__c, Market__c, Sort_Order__c From Outlet_Visit_Shelf_Data__c order by Sort_Order__c]) {
-            if (shelf.Market__c == a.Market__r.Name) {
-                options.add(new SelectOption(shelf.Name__c,shelf.Name__c));
-            }
-        }
-                
-        return options;
-    }    
 }

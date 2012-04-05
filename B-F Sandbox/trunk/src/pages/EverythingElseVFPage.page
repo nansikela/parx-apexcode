@@ -4,6 +4,10 @@
 <script src="{!URLFOR($Resource.QuickLinkAssets,'context/jquery.min.js')}"></script>
 <script src="{!URLFOR($Resource.QuickLinkAssets,'context/jquery-ui.min.js')}"></script>
 <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.QuickLinkAssets,'context/css/vscontext.css')}"/>
+<style>
+
+
+</style>
 <script src="{!URLFOR($Resource.QuickLinkAssets,'context/vscontext.jquery.js')}"></script>
     <script>
  
@@ -54,6 +58,26 @@
    function changeCursor(th) {
      th.style.cursor = 'pointer';
    }
+   
+	function rollover()
+	{
+	  if(!document.getElementById || !document.createTextNode){return;}
+	  var n=document.getElementById('nav');
+	  if(!n){return;}
+	  var lis=n.getElementsByTagName('li');
+	  for (var i=0;i<lis.length;i++)
+	  {
+	    lis[i].onmouseover=function()
+	    {
+	      this.className=this.className?'cur':'over';
+	    }
+	    lis[i].onmouseout=function()
+	    {
+	       this.className=this.className=='cur'?'cur':'';
+	    }
+	  }
+	}
+	window.onload=rollover;   
   </script>
     <apex:form id="linkfrm">
       <script>
@@ -127,11 +151,23 @@
     <apex:actionFunction name="deleteFavourites" action="{!deleteFavourites}" reRender="linkfrm,alllinkpnl,myfav" oncomplete="showDeleteStatus();showRemove();" status="linkstatus">
       <apex:param assignTo="{!selectedLink}" value="" name="delfav"/>
     </apex:actionFunction> 
-    <apex:selectList value="{!Category}" size="1">
-        <apex:selectOptions value="{!items}"/>
-    </apex:selectList>
-    <apex:commandButton value="Go" action="{!changeCategory}" reRender="linkfrm,alllinkpnl,myfav" oncomplete="applyJquery();" status="linkstatus"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     
+    <apex:outputPanel id="navPanel" layout="block">
+    	<ul id="nav">
+    		<apex:repeat value="{!items}" var="i" id="Categories">
+    			<li >
+   					<apex:commandLink value="{!i}" styleClass="cur" action="{!changeCategory}" reRender="linkfrm,alllinkpnl,myfav" oncomplete="applyJquery();" status="linkstatus" rendered="{!i==Category}">
+	    				<apex:param name="Category" value="{!i}"/>    	
+	   				</apex:commandLink>
+	   				
+					<apex:commandLink value="{!i}" action="{!changeCategory}" reRender="linkfrm,alllinkpnl,myfav" oncomplete="applyJquery();" status="linkstatus" rendered="{!i!=Category}">
+	    				<apex:param name="Category" value="{!i}"/>    	
+	   				</apex:commandLink>	   				
+	   			</li>
+			</apex:repeat>
+		</ul>		
+	</apex:outputPanel>
+
      <apex:outputPanel layout="block" styleClass="myLinksMsg" rendered="{!if(Category == 'My Links' && myLinks == 'none',true,false)}">
        <apex:outputText value="{!Instructions}" escape="false" />
      </apex:outputPanel>   
@@ -148,6 +184,8 @@
     </div>
     
    </apex:form>
+   <br style="clear:both"/>
+   
       <apex:outputPanel id="myfav" layout="block" styleClass="link" >
         <apex:image height="75" width="75" url="{!URLFOR($Resource.NewsFiles, '/images/MyLinks.png')}" id="favimg" styleClass="{!linkClass}" onclick="showFavourites('My Links');" rendered="{!if(Category == 'My Links',false,true)}" onmouseover="changeCursor(this);"/>      
       </apex:outputPanel>      
@@ -171,6 +209,7 @@
 
         </apex:repeat>  
     </apex:outputPanel>
+    
    <div class="vs-context-menu" id="contextdiv">
         <ul>            
             <li class="delete"><a href="javascript:deleteFavourites(linkID);" id="menu_5">Remove from My Links</a></li>
@@ -185,5 +224,18 @@
     </div>
 <script>
 applyJquery();
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26701751-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
 </script>
 </apex:page>

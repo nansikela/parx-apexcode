@@ -9,4 +9,6 @@
     <tab>GeoCode</tab>
     <tab>standard-GoogleDocs</tab>
     <tab>Policies</tab>
+    <tab>Price_Tolerance__c</tab>
+    <tab>Price_Material_Group__c</tab>
 </CustomApplication>

@@ -1,419 +1,709 @@
-<apex:page controller="promotionMaterialItem_DEU_Controller" tabStyle="Promotion_Material_Item__c" showHeader="true" sidebar="false" id="pageId"  standardStylesheets="false">
+<apex:page controller="promotionMaterialItem_DEU_Controller"
+	tabStyle="Promotion_Material_Item__c" showHeader="true" sidebar="false"
+	id="pageId" standardStylesheets="false">
 
-<apex:includeScript value="{!$Resource.JQuery17}"/>
-<apex:includeScript value="{!$Resource.jsrender}"/>
+	<apex:includeScript value="{!$Resource.JQuery17}" />
+	<apex:includeScript value="{!$Resource.jsrender}" />
 
-    <style> 
-        .container{
-            overflow:auto;
-            height:250px;
-        }
-        .container1{
-            overflow:auto;
-            height:73px;
-        }        
-        .filtercontainer{
-            width:700px;
-        }
-        .prodcontainer{  
-            overflow:auto;
-            height:250px;
-        }       
-    </style>    
+	<style>
+.container {
+	overflow: auto;
+	height: 250px;
+}
 
-    <script type="text/javascript">  
-    
-    //the search function
-    function searchProducts() {
-       //we retrieve the 3 searched values
-        var ProductNameTextValue = $('#pageId\\:myForm\\:pbSelection_top\\:pbProds\\:pbs\\:cProdNameText\\:ProdNameText').val();
-        var RecordTypeName = $('#pageId\\:myForm\\:pbSelection_top\\:pbProds\\:pbs\\:cRecordType\\:RecordType').val();
-        var Brand = $('#pageId\\:myForm\\:pbSelection_top\\:pbProds\\:pbs\\:cBFBrand\\:BFBrand').val();
+.container1 {
+	overflow: auto;
+	height: 73px;
+}
 
-        promotionMaterialItem_DEU_Controller.buildProdSelection2(ProductNameTextValue, Brand, RecordTypeName, '{!pm.Account__r.Market__c}', function(result, event) {
-            //we use the wonderful jsrender plugin to display the table
-            $("#SearchProductTable tbody").html($("#liveboard_tmpl").render(result));
-        });
-    }
-       
-    var length = 99999;
-    //with this function, we transfer the row from the search table to the table under.
-    function TransferRowFirst(RowId, RowName) {
-       if(document.getElementById('pageId:myForm:pbSelection')) {
-           var Table = "pageId\\:myForm\\:pbSelection\\:compTable";
-       }
-       else {
-           var Table = "pageId\\:myForm\\:pbSelection2\\:compTable";
-       }
-       //var length = $("#" + Table + "\\:tb > tr").length;
-       
-       var ClonedRow = $("#" + Table + "\\:tb tr:first").clone(true);
-       //we replace with the right name;
-       $(ClonedRow).find("td:eq(1)").find("span").text(RowName);
-       ClonedRow = $(ClonedRow).html().replace(/:compTable:0/g, ':compTable:' + length); 
+.filtercontainer {
+	width: 700px;
+}
 
-       length ++;
-       //we put the salesforce style into the line, with mouseover, mouseout and all the stuff...
-       $("#" + Table + "\\:tb").append('<tr class="dataRow even" onmouseover="if (window.hiOn){hiOn(this);} " onmouseout="if (window.hiOff){hiOff(this);} " onblur="if (window.hiOff){hiOff(this);}" onfocus="if (window.hiOn){hiOn(this);}" productid="'+RowId+'" promoid=""></tr>');
-       $("#" + Table + "\\:tb tr:last").append(ClonedRow); 
-       
-        var myDate = new Date();
-        var prettyDate =(myDate.getMonth()+1) + '/' + myDate.getDate() + '/' +
-        myDate.getFullYear();
-       
-       $("#" + Table + "\\:tb tr:last").find('[id$=Request_Date_Input]').val(prettyDate);
-    }   
-    
-    function tableToJson(table) {
-        var data = []; 
-        // first row needs to be headers 
-        var headers = [];
-        headers[0] = 'productid'; // first the product id field
-        headers[1] = 'promoid'; // then the promo id field
-        for (var i=0; i< table.rows[1].cells.length; i++) {
-           //we extract the salesforce id
-           headers[i+2] = table.rows[1].cells[i].getAttribute('id').substring(table.rows[1].cells[i].getAttribute('id').lastIndexOf(':') + 1);
+.prodcontainer {
+	overflow: auto;
+	height: 250px;
+}
 
-        }
-        // go through cells
-        for (var i=2; i<table.rows.length; i++) {
-           var tableRow = table.rows[i]; var rowData = {};
-           rowData[ headers[0] ] = tableRow.getAttribute('productid');
-           rowData[ headers[1] ] = tableRow.getAttribute('promoid');
-           for (var j=0; j<tableRow.cells.length; j++) {
-              if( $(tableRow.cells[j]).find("*:first").attr('type') != 'checkbox') {
-                 if($(tableRow.cells[j]).find("*:first").length && $(tableRow.cells[j]).find("*:first").get(0).tagName == 'SPAN') {
-                     //we have a date or something within a span.
-                     if($(tableRow.cells[j]).find("span").find("input").length)
-                        rowData[ headers[j+2] ] = $(tableRow.cells[j]).find("span").find("input").val();
-                     else
-                        rowData[ headers[j+2] ] = $(tableRow.cells[j]).find("span").find("div").find("span").find("input").val();
-                 }
-                 else { 
-                     //for select and normal input
-                     rowData[ headers[j+2] ] = $(tableRow.cells[j]).find("*:first").val();
-                 }
-             } else {
-                 // for checkboxes
-                 rowData[ headers[j+2] ] = $(tableRow.cells[j]).find("*:first").is(':checked');
-              }
-           } 
-           //end: we add the row to the array
-           data.push(rowData);
-        }
-        return data; 
-     }
-     
-     function save() {
-         var myTable;
-         if(document.getElementById('pageId:myForm:pbSelection')) {
-             myTable = document.getElementById('pageId:myForm:pbSelection:compTable');
-         }
-         else {
-             myTable = document.getElementById('pageId:myForm:pbSelection2:compTable');
-         }
-         var JSonTable = tableToJson(myTable);
-         
-         promotionMaterialItem_DEU_Controller.AddNewProduct(JSonTable, '{!promoType}', '{!pm.Id}', function(result, event) {      
-              if(event.status) {
-                    //success, we assign the promotion material id to each row of the table.
-                    var table= myTable;//document.getElementById(Table);
-                    var j = 0; 
-                    for (var i=2; i<table.rows.length; i++) {
-                       var tableRow = table.rows[i]; 
-                       tableRow.setAttribute('promoid', result[j]['promoid']);
-                       j++;
-                    }                    
-                    alert('{!$Label.Saved}');
-               }
-               else {
-                    //handling errors.
-                    alert(event.message);
-               }
-         });
-     }
-     
-     //function to remove the rows when the X is clicked
-     function removeLine(Img){
-         var RowId = $(Img).parent().parent().attr('promoid');
-         if(RowId != '' && RowId != null) {
-             promotionMaterialItem_DEU_Controller.RemoveLine(RowId, function(result, event) {
-                 if(event.status) {
-                    //success
-                    $(Img).parent().parent().remove();
-                 }
-                 else {
-                    alert(event.message);
-                 }
-             });   
-         }
-         else  {
-            $(Img).parent().parent().remove();
-         }  
-     }
-     
-     //when we click on enter, we search for products.
-     function handleKeyUp(event){
-        event = event || window.event;
-        if(event.keyCode == 13)
-           searchProducts();
-           return true;
-      }
-    </script>
-    
-    
-     <apex:form id="myForm">   
-            <apex:inputHidden value="{!IdDataTableHidden}" id="inputHidden"/>
-              <apex:pageBlock id="pbSelection_top" title="{!$ObjectType.Promotion_Material_Item__c.labelplural}" mode="Edit" >           
-                <apex:pageBlockButtons location="top">
-                     <input class="btn" type="button" onclick="top.window.location='/{!pm.Id}'" value="{!$Label.OutletVisitPage_CloseButtonLabel}"/>
-                </apex:pageBlockButtons>
-                <apex:outputpanel >
-                <table style="width:75%;"><tr>
-                    <td style="width:7%;"></td>  
-                    <td style="width:93%;">                                   
-                      <apex:pageBlock id="pbProds" title="{!$ObjectType.Product__c.labelplural}" >            
-                          <apex:outputpanel layout="block" styleclass="filtercontainer">
-                               <apex:pageBlockSection columns="2" id="pbs">
-                                    <apex:pageBlockSectionItem id="cRecordType" >
-                                         <apex:outputLabel value="{!$ObjectType.Product__c.fields.RecordTypeId.label}" for="RecordType"/>
-                                             <apex:selectList value="{!RecordTypeValue}"  size="1" id="RecordType" onchange="searchProducts();">
-                                             <apex:selectOptions value="{!RecordTypeList}"/>
-                                         </apex:selectList>                            
-                                     </apex:pageBlockSectionItem>   
-                                     <apex:pageBlockSectionItem id="cBFBrand" >
-                                         <apex:outputLabel value="{!$ObjectType.Brand__c.labelplural}" for="BFBrand"/>
-                                             <apex:selectList value="{!BFBrandValue}"  size="1" id="BFBrand" onchange="searchProducts();">
-                                             <apex:selectOptions value="{!BFBrandsList}"/>
-                                         </apex:selectList>                            
-                                     </apex:pageBlockSectionItem>
-                                 <apex:pageBlockSectionItem id="cProdNameText" >
-                                     <apex:outputLabel value="{!$Label.PromotionPage_SearchLabel}" for="ProdNameText"/>
-                                     <apex:inputtext value="{!ProductNameTextValue}" size="30" id="ProdNameText" onkeyup="handleKeyUp(event);" />                            
-                                  </apex:pageBlockSectionItem>                                              
-                                  <apex:pageBlockSectionItem >        
-                                       <input type="button" class="btn" id="btnsearch" onclick="searchProducts();" value="{!$Label.OutletVisitPage_FilterButtonLabel}" />                    
-                                  </apex:pageBlockSectionItem>                                                            
-                            </apex:pageBlockSection> 
-                        </apex:outputpanel>         
-                        <apex:outputpanel id="selProducts" layout="block" styleclass="prodcontainer" >                      
-                           <apex:pageBlockSection columns="1">
-                                
-                                <table cellspacing="0" cellpadding="0" border="0" id="SearchProductTable" class="list " style="width: 800px" name="table">
-                                    <colgroup span="2"></colgroup>
-                                    <thead class="rich-table-thead" id="tableHeader" >
-                                        <tr class="headerRow ">
-                                            <th colspan="1" scope="col" class="headerRow">{!$ObjectType.Product__c.fields.Name.label}</th>
-                                            <th colspan="1" scope="col" class="headerRow">{!$ObjectType.Product__c.fields.ProductCode__c.label}</th>    
-                                            <th colspan="1" scope="col" class="headerRow">{!$ObjectType.Product__c.fields.Unit_Cost__c.label}</th>  
-                                            <th colspan="1" scope="col" class="headerRow">{!$ObjectType.Product__c.fields.Brand__c.label}</th>  
-                                            <th colspan="1" scope="col" class="headerRow"></th>    
-                                        </tr>
-                                    </thead>
-                                     <!-- table body left empty for populating via row template using jquery and jsrender-->
-                                    <tbody id="tableBody"/>
-                                </table>   
-                           </apex:pageBlockSection>
+.noInput {
+	
+}
+</style>
 
-<!-- this is the template used by jsrender  -->
-<script id="liveboard_tmpl" type="text/html">
+	<script type="text/javascript">
+		//the search function
+		function searchProducts() {
+			//we retrieve the 3 searched values
+			var ProductNameTextValue = $(
+					'#pageId\\:myForm\\:pbSelection_top\\:pbProds\\:pbs\\:cProdNameText\\:ProdNameText')
+					.val();
+			var RecordTypeName = $(
+					'#pageId\\:myForm\\:pbSelection_top\\:pbProds\\:pbs\\:cRecordType\\:RecordType')
+					.val();
+			var Brand = $(
+					'#pageId\\:myForm\\:pbSelection_top\\:pbProds\\:pbs\\:cBFBrand\\:BFBrand')
+					.val();
+
+			promotionMaterialItem_DEU_Controller.buildProdSelection2(
+					ProductNameTextValue, Brand, RecordTypeName,
+					'{!pm.Account__r.Market__c}', function(result, event) {
+						//we use the wonderful jsrender plugin to display the table
+						$("#SearchProductTable tbody").html(
+								$("#liveboard_tmpl").render(result));
+					});
+		}
+
+		var length = 99999;
+		//with this function, we transfer the row from the search table to the table under.
+		function TransferRowFirst(RowId, RowName, RowRecordType) {
+			if (document.getElementById('pageId:myForm:pbSelection')) {
+				var Table = "pageId\\:myForm\\:pbSelection\\:compTable";
+				var TableHidden = "pageId\\:myForm\\:pbSelection\\:CTDummy";
+			} else {
+				var Table = "pageId\\:myForm\\:pbSelection2\\:compTable";
+				var TableHidden = "pageId\\:myForm\\:pbSelection2\\:CTDummy";
+			}
+			//var length = $("#" + Table + "\\:tb > tr").length;
+
+			var ClonedRow = $("#" + TableHidden + "\\:tb tr:first").clone(true);
+			//we replace with the right name;
+			$(ClonedRow).find("td:eq(1)").find("span").text(RowName);
+			ClonedRow = $(ClonedRow).html().replace(/:compTable:0/g,
+					':compTable:' + length);
+			ClonedRow = ClonedRow.replace(/:CTDummy:0/g,
+					':compTable:' + length);
+		
+			length++;
+			//we put the salesforce style into the line, with mouseover, mouseout and all the stuff...
+			$("#" + Table + "\\:tb")
+					.append(
+							'<tr class="dataRow even" onmouseover="if (window.hiOn){hiOn(this);} " onmouseout="if (window.hiOff){hiOff(this);} " onblur="if (window.hiOff){hiOff(this);}" onfocus="if (window.hiOn){hiOn(this);}" productid="'
+									+ RowId + '" promoid=""></tr>');
+			$("#" + Table + "\\:tb tr:last").append(ClonedRow);
+			
+			if(RowRecordType != 'Wet Goods' && $("#" + Table + "\\:tb tr:last").find('[id$=Wet_Good_Use_Input]') != null)
+				$("#" + Table + "\\:tb tr:last").find('[id$=Wet_Good_Use_Input]').css('display', 'none');
+			
+			var prettyDate = $("#" + Table + "\\:tb tr:last").find(
+					'[id$=Request_Date]').find('a').text();
+			$("#" + Table + "\\:tb tr:last").find('[id$=Request_Date_Input]')
+					.val(prettyDate);
+		}
+
+		function tableToJson(table) {
+			var data = [];
+			// first row needs to be headers 
+			var headers = [];
+			headers[0] = 'productid'; // first the product id field
+			headers[1] = 'promoid'; // then the promo id field
+			for ( var i = 0; i < table.rows[1].cells.length; i++) {
+				//we extract the salesforce id
+				headers[i + 2] = table.rows[1].cells[i].getAttribute('id')
+						.substring(
+								table.rows[1].cells[i].getAttribute('id')
+										.lastIndexOf(':') + 1);
+
+			}
+			// go through cells
+			for ( var i = 2; i < table.rows.length; i++) {
+				var tableRow = table.rows[i];
+				var rowData = {};
+				rowData[headers[0]] = tableRow.getAttribute('productid');
+				rowData[headers[1]] = tableRow.getAttribute('promoid');
+				for ( var j = 0; j < tableRow.cells.length; j++) {
+					if ($(tableRow.cells[j]).find("*:first").attr('type') != 'checkbox') {
+						if ($(tableRow.cells[j]).find("*:first").length
+								&& $(tableRow.cells[j]).find("*:first").get(0).tagName == 'SPAN') {
+							//we have a date or something within a span.
+							if ($(tableRow.cells[j]).find("span").find("input").length)
+								rowData[headers[j + 2]] = $(tableRow.cells[j])
+										.find("span").find("input").val();
+							else if ($(tableRow.cells[j]).find("span").find(
+									"div").length)
+								rowData[headers[j + 2]] = $(tableRow.cells[j])
+										.find("span").find("div").find("span")
+										.find("input").val();
+							else if ($(tableRow.cells[j]).find(".noInput").length == 0
+									&& $(tableRow.cells[j]).attr('id').indexOf(
+											':Name') == -1)
+								rowData[headers[j + 2]] = $(tableRow.cells[j])
+										.find("span").html();
+
+						} else {
+							//for select and normal input
+							rowData[headers[j + 2]] = $(tableRow.cells[j])
+									.find("*:first").val();
+						}
+					} else {
+						// for checkboxes
+						rowData[headers[j + 2]] = $(tableRow.cells[j]).find(
+								"*:first").is(':checked');
+					}
+				}
+				//end: we add the row to the array
+				data.push(rowData);
+			}
+			return data;
+		}
+
+		function save() {
+			var myTable;
+			if (document.getElementById('pageId:myForm:pbSelection')) {
+				myTable = document
+						.getElementById('pageId:myForm:pbSelection:compTable');
+			} else {
+				myTable = document
+						.getElementById('pageId:myForm:pbSelection2:compTable');
+			}
+			var JSonTable = tableToJson(myTable);
+
+			promotionMaterialItem_DEU_Controller.AddNewProduct(JSonTable,
+					'{!promoType}', '{!pm.Id}', function(result, event) {
+						if (event.status) {
+							//success, we assign the promotion material id to each row of the table.
+							var table = myTable;//document.getElementById(Table);
+							var j = 0;
+							for ( var i = 2; i < table.rows.length; i++) {
+								var tableRow = table.rows[i];
+								tableRow.setAttribute('promoid',
+										result[j]['promoid']);
+								j++;
+							}
+							alert('{!$Label.Saved}');
+						} else {
+							//handling errors.
+							alert(event.message);
+						}
+					});
+		}
+
+		//function to remove the rows when the X is clicked
+		function removeLine(Img) {
+			var RowId = $(Img).parent().parent().attr('promoid');
+			if (RowId != '' && RowId != null) {
+				promotionMaterialItem_DEU_Controller.RemoveLine(RowId,
+						function(result, event) {
+							if (event.status) {
+								//success
+								$(Img).parent().parent().remove();
+							} else {
+								alert(event.message);
+							}
+						});
+			} else {
+				$(Img).parent().parent().remove();
+			}
+		}
+
+		//when we click on enter, we search for products.
+		function handleKeyUp(event) {
+			event = event || window.event;
+			if (event.keyCode == 13)
+				searchProducts();
+			return true;
+		}
+	</script>
+
+
+	<apex:form id="myForm">
+		<apex:inputHidden value="{!IdDataTableHidden}" id="inputHidden" />
+		<apex:pageBlock id="pbSelection_top"
+			title="{!$ObjectType.Promotion_Material_Item__c.labelplural}"
+			mode="Edit">
+			<apex:pageBlockButtons location="top">
+				<input class="btn" type="button"
+					onclick="top.window.location='/{!pm.Id}'"
+					value="{!$Label.OutletVisitPage_CloseButtonLabel}" />
+			</apex:pageBlockButtons>
+			<apex:outputpanel >
+				<table style="width: 75%;">
+					<tr>
+						<td style="width: 7%;"></td>
+						<td style="width: 93%;"><apex:pageBlock id="pbProds"
+								title="{!$ObjectType.Product__c.labelplural}">
+								<apex:outputpanel layout="block" styleclass="filtercontainer">
+									<apex:pageBlockSection columns="2" id="pbs">
+										<apex:pageBlockSectionItem id="cRecordType">
+											<apex:outputLabel value="{!$ObjectType.Product__c.fields.RecordTypeId.label}"
+												for="RecordType" />
+											<apex:selectList value="{!RecordTypeValue}" size="1"
+												id="RecordType" onchange="searchProducts();">
+												<apex:selectOptions value="{!RecordTypeList}" />
+											</apex:selectList>
+										</apex:pageBlockSectionItem>
+										<apex:pageBlockSectionItem id="cBFBrand">
+											<apex:outputLabel value="{!$ObjectType.Brand__c.labelplural}"
+												for="BFBrand" />
+											<apex:selectList value="{!BFBrandValue}" size="1"
+												id="BFBrand" onchange="searchProducts();">
+												<apex:selectOptions value="{!BFBrandsList}" />
+											</apex:selectList>
+										</apex:pageBlockSectionItem>
+										<apex:pageBlockSectionItem id="cProdNameText">
+											<apex:outputLabel value="{!$Label.PromotionPage_SearchLabel}"
+												for="ProdNameText" />
+											<apex:inputtext value="{!ProductNameTextValue}" size="30"
+												id="ProdNameText" onkeyup="handleKeyUp(event);" />
+										</apex:pageBlockSectionItem>
+										<apex:pageBlockSectionItem >
+											<input type="button" class="btn" id="btnsearch"
+												onclick="searchProducts();"
+												value="{!$Label.OutletVisitPage_FilterButtonLabel}" />
+										</apex:pageBlockSectionItem>
+									</apex:pageBlockSection>
+								</apex:outputpanel>
+								<apex:outputpanel id="selProducts" layout="block"
+									styleclass="prodcontainer">
+									<apex:pageBlockSection columns="1">
+
+										<table cellspacing="0" cellpadding="0" border="0"
+											id="SearchProductTable" class="list " style="width: 800px"
+											name="table">
+											<colgroup span="2"></colgroup>
+											<thead class="rich-table-thead" id="tableHeader">
+												<tr class="headerRow ">
+													<th colspan="1" scope="col" class="headerRow">{!$ObjectType.Product__c.fields.Name.label}</th>
+													<th colspan="1" scope="col" class="headerRow">{!$ObjectType.Product__c.fields.ProductCode__c.label}</th>
+													<th colspan="1" scope="col" class="headerRow">{!$ObjectType.Product__c.fields.Unit_Cost__c.label}</th>
+													<th colspan="1" scope="col" class="headerRow">{!$ObjectType.Product__c.fields.Brand__c.label}</th>
+													<th colspan="1" scope="col" class="headerRow"></th>
+												</tr>
+											</thead>
+											<!-- table body left empty for populating via row template using jquery and jsrender-->
+											<tbody id="tableBody" />
+										</table>
+									</apex:pageBlockSection>
+
+									<!-- this is the template used by jsrender  -->
+									<script id="liveboard_tmpl" type="text/html">
   <tr onfocus="if (window.hiOn){hiOn(this);}" onblur="if (window.hiOff){hiOff(this);}" onmouseout="if (window.hiOff){hiOff(this);} " onmouseover="if (window.hiOn){hiOn(this);} " class="dataRow even  first" id="{{=Id!}}">
     <td class="dataCell">{{=Name!}}</td> 
     <td class="dataCell">{{=ProductCode__c!}}</td>
     <td class="dataCell">{{=Unit_Cost__c!}}</td>
     <td class="dataCell">{{=Brand__r.Name!}}</td>
-    <td class="dataCell"><a  href="javascript: TransferRowFirst('{{=Id!}}', '{{=Name}}');"><img src="{!$Resource.Add}"/></a></td>
+	<td class="dataCell"><a  href="javascript: TransferRowFirst('{{=Id!}}', '{{=Name}}', '{{=RecordType.Name!}}');"><img src="{!$Resource.Add}"/></a></td>
   </tr>  
-</script>
+									</script>
 
-                        </apex:outputpanel>
-                    </apex:pageBlock>   
-                        </td>
-                        </tr>
-                    </table>
-                </apex:outputpanel>                     
-              </apex:pageBlock>
-   
-           <apex:pageBlock id="pbSelection" title="{!$ObjectType.Promotion_Material_Item__c.labelplural}" mode="Edit" rendered="{!pm.RecordType.Name = 'Agreement'}">
+								</apex:outputpanel>
+							</apex:pageBlock></td>
+					</tr>
+				</table>
+			</apex:outputpanel>
+		</apex:pageBlock>
 
-              <apex:pageBlockButtons >            
-                      <input class="btn" type="button" onclick="save();" value="{!$Label.OutletVisitPage_SaveButtonLabel}"/>   
-                      <input class="btn" type="button" onclick="top.window.location='/{!pm.Id}'" value="{!$Label.OutletVisitPage_CloseButtonLabel}"/>                 
-              </apex:pageBlockButtons>                    
-                <apex:outputpanel layout="block" styleclass="container">
-                     <apex:pageBlockTable id="compTable" value="{!myPromMatItems}" var="p" columns="14" >
+		<apex:pageBlock id="pbSelection"
+			title="{!$ObjectType.Promotion_Material_Item__c.labelplural}"
+			mode="Edit" rendered="{!pm.RecordType.Name = 'Agreement'}">
 
-                        <apex:column width="1%" id="Selected">
-                            <apex:facet name="header">{!$Label.Remove_Rows}</apex:facet>
-                            <a href="#" onclick="removeLine(this); return false;" id="aId"><img src="{!$Resource.remove}"/></a>
-                        </apex:column>                      
-                       <apex:column style="width:100px" id="Name">
-                           <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
-                           <apex:outputfield style="width:150px" value="{!p.prod.Name}"/>
-                      </apex:column>  
-                      <apex:column id="Plan_Qty">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Qty__c.label}</apex:facet>
-                        <apex:inputfield style="width:100px" value="{!p.PromMatItem.Plan_Qty__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'New'}" />
-                        <apex:outputfield style="width:100px" value="{!p.PromMatItem.Plan_Qty__c}" rendered="{!p.PromMatItem.Approval_Status__c != 'New'}" />
-                      </apex:column>
-                      <apex:column id="Plan_Rebate">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Rebate__c.label}</apex:facet>
-                        <apex:inputfield style="width:100px" value="{!p.PromMatItem.Plan_Rebate__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'New'}" />
-                        <apex:outputtext style="width:100px" value="{!p.PromMatItem.Plan_Rebate__c}" rendered="{!p.PromMatItem.Approval_Status__c != 'New'}" />
-                      </apex:column> 
-                       
-                      <apex:column id="Plan_Payment">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Payment__c.label}</apex:facet>
-                        <apex:outputtext style="width:100px" value="{!p.PromMatItem.Plan_Payment__c}"/>
-                      </apex:column> 
-                      <apex:column id="Plan_Date">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Date__c.label}</apex:facet>
-                        <c:noDateLink rendered="{!p.PromMatItem.Approval_Status__c == 'New'}">
-                        <apex:inputfield style="width:100px" value="{!p.PromMatItem.Plan_Date__c}"/>
-                        </c:noDateLink>                        
-                        <apex:outputfield style="width:100px" value="{!p.PromMatItem.Plan_Date__c}" rendered="{!p.PromMatItem.Approval_Status__c != 'New'}"/>                      
-                      </apex:column> 
-                       <apex:column id="Act_Qty">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Qty__c.label}</apex:facet>
-                        <apex:inputfield style="width:100px" value="{!p.PromMatItem.Act_Qty__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Submit' || p.PromMatItem.Approval_Status__c == 'New'}" />
-                        <apex:outputtext style="width:100px" value="{!p.PromMatItem.Act_Qty__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Approved' || p.PromMatItem.Approval_Status__c == 'Paid'}" />
-                      </apex:column> 
-                      <apex:column id="Actual_Rebate">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Actual_Rebate__c.label}</apex:facet>
-                        <apex:inputfield style="width:100px" value="{!p.PromMatItem.Actual_Rebate__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Submit' || p.PromMatItem.Approval_Status__c == 'New'}"/>
-                        <apex:outputtext style="width:100px" value="{!p.PromMatItem.Actual_Rebate__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Approved' || p.PromMatItem.Approval_Status__c == 'Paid'}"/>
-                      </apex:column>    
-                      <apex:column id="Act_Payment2">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Payment2__c.label}</apex:facet>
-                        <apex:outputtext style="width:100px" value="{!p.PromMatItem.Act_Payment2__c}"/>
-                      </apex:column>       
-                       <apex:column id="Act_Date">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Date__c.label}</apex:facet>
-                        <c:noDateLink >                       
-                        <apex:inputfield style="width:100px" value="{!p.PromMatItem.Act_Date__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Submit' || p.PromMatItem.Approval_Status__c == 'New'}"/>
-                        </c:noDateLink>                        
-                        <apex:outputfield style="width:100px" value="{!p.PromMatItem.Act_Date__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Approved' || p.PromMatItem.Approval_Status__c == 'Paid'}"/>
-                      </apex:column> 
-                      <apex:column id="Payment_Date">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Payment_Date__c.label}</apex:facet>
-                       <c:noDateLink >  
-                        <apex:inputfield style="width:100px" value="{!p.PromMatItem.Payment_Date__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Approved'}" />
-                        </c:noDateLink>                          
-                        <apex:outputfield style="width:100px" value="{!p.PromMatItem.Payment_Date__c}" rendered="{!p.PromMatItem.Approval_Status__c != 'Approved'}"/>
-                      </apex:column>        
-                      <apex:column id="Submit">                                  
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Submit__c.label}</apex:facet>
-                        <apex:inputField style="width:100px" value="{!p.PromMatItem.Submit__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'New'}"/>
-                        <apex:outputField style="width:100px" value="{!p.PromMatItem.Submit__c}" rendered="{!p.PromMatItem.Approval_Status__c != 'New'}"/>                        
-                      </apex:column>                            
+			<apex:pageBlockButtons >
+				<input class="btn" type="button" onclick="save();"
+					value="{!$Label.OutletVisitPage_SaveButtonLabel}" />
+				<input class="btn" type="button"
+					onclick="top.window.location='/{!pm.Id}'"
+					value="{!$Label.OutletVisitPage_CloseButtonLabel}" />
+			</apex:pageBlockButtons>
+			<apex:outputpanel layout="block" styleclass="container">
+				<apex:pageBlockTable id="compTable" value="{!myPromMatItems}"
+					var="p" columns="14">
 
-                      <apex:column id="Approval_Status">                                  
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Approval_Status__c.label}</apex:facet>
-                        <apex:inputfield style="width:100px" value="{!p.PromMatItem.Approval_Status__c}" rendered="{!p.PromMatItem.Approval_Status__c != 'Paid'}" />
-                        <apex:outputtext style="width:100px" value="{!p.PromMatItem.Approval_Status__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Paid'}"/>
-                      </apex:column>
-                       <apex:column id="Remarks">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Remarks__c.label}</apex:facet>
-                        <apex:inputfield style="width:125px" value="{!p.PromMatItem.Remarks__c}" rendered="{!p.PromMatItem.Approval_Status__c != 'Paid'}"/>
-                        <apex:outputtext style="width:125px" value="{!p.PromMatItem.Remarks__c}" rendered="{!p.PromMatItem.Approval_Status__c == 'Paid'}"/>
-                      </apex:column> 
-                    </apex:pageBlockTable>
-                </apex:outputpanel>             
-                                  
-              </apex:pageBlock>
+					<apex:column width="1%" id="Selected"
+						rendered="{!pm.Account__r.Market__r.Name == 'Germany'}">
+						<apex:facet name="header">{!$Label.Remove_Rows}</apex:facet>
+						<a href="#" onclick="removeLine(this); return false;" id="aId"><img
+							src="{!$Resource.remove}" /></a>
+					</apex:column>
+					<apex:column style="width:100px" id="Name">
+						<apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+						<apex:outputfield style="width:150px" styleClass="noInput"
+							value="{!p.prod.Name}" />
+					</apex:column>
+					<apex:column id="Plan_Qty">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Qty__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Plan_Qty__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'New'}" />
+						<apex:outputfield style="width:100px"
+							value="{!p.PromMatItem.Plan_Qty__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'New'}" />
+					</apex:column>
+					<apex:column id="Plan_Rebate">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Rebate__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Plan_Rebate__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'New'}" />
+						<apex:outputtext style="width:100px"
+							value="{!p.PromMatItem.Plan_Rebate__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'New'}" />
+					</apex:column>
 
-              <apex:pageBlock id="pbSelection2" title="{!$ObjectType.Promotion_Material_Item__c.labelplural}" mode="Edit" rendered="{!pm.RecordType.Name != 'Agreement'}">           
-              <apex:pageBlockButtons >
-                  <input class="btn" type="button" onclick="save();" value="{!$Label.OutletVisitPage_SaveButtonLabel}"/>   
-                  <input class="btn" type="button" onclick="top.window.location='/{!pm.Id}'" value="{!$Label.OutletVisitPage_CloseButtonLabel}"/>                 
-              </apex:pageBlockButtons>                    
-                <apex:outputpanel layout="block" styleclass="container">                
-                    <apex:pageBlockTable id="compTable" value="{!myPromMatItems}" var="p" columns="13" >
-                        <apex:column width="1%" id="Selected">
-                            <apex:facet name="header">{!$Label.Remove_Rows}</apex:facet>  
-                            <a href="#" onclick="removeLine(this); return false;" id="aId"><img src="{!$Resource.remove}"/></a>
-                        </apex:column>                         
-                       <apex:column style="width:100px" id="Name">
-                       <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
-                        <apex:outputfield style="width:150px" value="{!p.prod.Name}"/>
-                      </apex:column>  
-                      <apex:column style="width:50px" id="ProductCode">
-                       <apex:facet name="header">{!$ObjectType.Product__c.fields.ProductCode__c.label}</apex:facet>
-                        <apex:outputfield style="width:75px" value="{!p.prod.ProductCode__c}"/>
-                      </apex:column>    
-                      <apex:column style="width:50px" id="Brand">
-                       <apex:facet name="header">{!$ObjectType.Product__c.fields.Brand__c.label}</apex:facet>
-                        <apex:outputfield style="width:75px" value="{!p.prod.Brand__c}"/>
-                      </apex:column>    
-                      <apex:column style="width:50px" id="Unit_Cost">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Unit_Cost__c.label}</apex:facet>
-                        <apex:outputfield style="width:75px" value="{!p.PromMatItem.Unit_Cost__c}"/>
-                      </apex:column>                                                          
-                       <apex:column id="Quantity">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Quantity__c.label}</apex:facet>
-                        <apex:inputfield style="width:75px" value="{!p.PromMatItem.Quantity__c}"/>
-                      </apex:column> 
-                       <apex:column id="Request_Date">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Request_Date__c.label}</apex:facet>
-                        <apex:inputfield id="Request_Date_Input" style="width:75px" value="{!p.PromMatItem.Request_Date__c}"/>
-                      </apex:column>        
-                       <apex:column id="Shipped_Date">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Shipped_Date__c.label}</apex:facet>
-                        <apex:inputfield style="width:75px" value="{!p.PromMatItem.Shipped_Date__c}"/>
-                      </apex:column>      
-                      
-                       <apex:column id="Wet_Good_Use">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Wet_Good_Use__c.label}</apex:facet>
-                        <apex:inputfield rendered="{!p.prod.RecordType.Name=='Wet Goods'}" style="width:75px" value="{!p.PromMatItem.Wet_Good_Use__c}"/>
-                        <apex:outputfield rendered="{!p.prod.RecordType.Name!='Wet Goods'}" style="width:75px" value="{!p.PromMatItem.Wet_Good_Use__c}"/>
-                      </apex:column>            
-                                                                                   
-                       <apex:column style="width:75px" id="Delivery_From">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Delivery_From__c.label}</apex:facet>
-                        <apex:inputfield style="width:75px" value="{!p.PromMatItem.Delivery_From__c}"/>
-                      </apex:column> 
-                      <apex:column style="width:75px" id="Extended_Cost">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Extended_Cost__c.label}</apex:facet>
-                        <apex:outputfield style="width:75px" value="{!p.PromMatItem.Extended_Cost__c}"/>
-                      </apex:column>  
-                      <apex:column style="width:50px" id="Promotion_Cost_w_o_VAT">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Promotion_Cost_w_o_VAT__c.label}</apex:facet>
-                        <apex:outputfield style="width:50px" value="{!p.PromMatItem.Promotion_Cost_w_o_VAT__c}"/>
-                      </apex:column>                      
-                       <apex:column id="Remarks">
-                       <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Remarks__c.label}</apex:facet>
-                        <apex:inputfield style="width:125px" value="{!p.PromMatItem.Remarks__c}"/>
-                      </apex:column>                                                                                                                                                                                        
-                    </apex:pageBlockTable>
-                </apex:outputpanel>             
-              </apex:pageBlock>             
+					<apex:column id="Plan_Payment">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Payment__c.label}</apex:facet>
+						<apex:outputtext style="width:100px" styleClass="noInput"
+							value="{!p.PromMatItem.Plan_Payment__c}" />
+					</apex:column>
+					<apex:column id="Plan_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Date__c.label}</apex:facet>
+						<c:noDateLink rendered="{!p.PromMatItem.Approval_Status__c == 'New'}">
+							<apex:inputfield style="width:100px"
+								value="{!p.PromMatItem.Plan_Date__c}" />
+						</c:noDateLink>
+						<apex:outputfield style="width:100px"
+							value="{!p.PromMatItem.Plan_Date__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'New'}" />
+					</apex:column>
+					<apex:column id="Act_Qty">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Qty__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Act_Qty__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Submit' || p.PromMatItem.Approval_Status__c == 'New'}" />
+						<apex:outputtext style="width:100px"
+							value="{!p.PromMatItem.Act_Qty__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Approved' || p.PromMatItem.Approval_Status__c == 'Paid'}" />
+					</apex:column>
+					<apex:column id="Actual_Rebate">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Actual_Rebate__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Actual_Rebate__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Submit' || p.PromMatItem.Approval_Status__c == 'New'}" />
+						<apex:outputtext style="width:100px"
+							value="{!p.PromMatItem.Actual_Rebate__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Approved' || p.PromMatItem.Approval_Status__c == 'Paid'}" />
+					</apex:column>
+					<apex:column id="Act_Payment2">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Payment2__c.label}</apex:facet>
+						<apex:outputtext style="width:100px" styleClass="noInput"
+							value="{!p.PromMatItem.Act_Payment2__c}" />
+					</apex:column>
+					<apex:column id="Act_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Date__c.label}</apex:facet>
+						<c:noDateLink >
+							<apex:inputfield style="width:100px"
+								value="{!p.PromMatItem.Act_Date__c}"
+								rendered="{!p.PromMatItem.Approval_Status__c == 'Submit' || p.PromMatItem.Approval_Status__c == 'New'}" />
+						</c:noDateLink>
+						<apex:outputfield style="width:100px"
+							value="{!p.PromMatItem.Act_Date__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Approved' || p.PromMatItem.Approval_Status__c == 'Paid'}" />
+					</apex:column>
+					<apex:column id="Payment_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Payment_Date__c.label}</apex:facet>
+						<c:noDateLink >
+							<apex:inputfield style="width:100px"
+								value="{!p.PromMatItem.Payment_Date__c}"
+								rendered="{!p.PromMatItem.Approval_Status__c == 'Approved'}" />
+						</c:noDateLink>
+						<apex:outputfield style="width:100px"
+							value="{!p.PromMatItem.Payment_Date__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'Approved'}" />
+					</apex:column>
+					<apex:column id="Submit">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Submit__c.label}</apex:facet>
+						<apex:inputField style="width:100px"
+							value="{!p.PromMatItem.Submit__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'New'}" />
+						<apex:outputField style="width:100px"
+							value="{!p.PromMatItem.Submit__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'New'}" />
+					</apex:column>
 
-        </apex:form>
+					<apex:column id="Approval_Status">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Approval_Status__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Approval_Status__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'Paid'}" />
+						<apex:outputtext style="width:100px"
+							value="{!p.PromMatItem.Approval_Status__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Paid'}" />
+					</apex:column>
+					<apex:column id="Remarks">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Remarks__c.label}</apex:facet>
+						<apex:inputfield style="width:125px"
+							value="{!p.PromMatItem.Remarks__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'Paid'}" />
+						<apex:outputtext style="width:125px"
+							value="{!p.PromMatItem.Remarks__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Paid'}" />
+					</apex:column>
+				</apex:pageBlockTable>
 
-      <script>
-           //for some reason, the window.onload destroy the PickDate from salesforce so we do things just like that when the window is loaded...
-           //first row is hidden ... this is used as template
-           $("#pageId\\:myForm\\:pbSelection\\:compTable\\:tb > tr:first").hide();
-           $("#pageId\\:myForm\\:pbSelection2\\:compTable\\:tb > tr:first").hide();
-           
-           //we fill out the products.
-           searchProducts();
-           
-           //we assign Ids to the existing rows.
-           var Ids = $("#pageId\\:myForm\\:inputHidden").val().split(" ");
-           var j= 0;
-           if(document.getElementById('pageId:myForm:pbSelection')) {
-               $("#pageId\\:myForm\\:pbSelection\\:compTable\\:tb > tr").each(function() {
-                      $(this).attr('promoid', Ids[j]).removeClass('last');
-                      j++;
-               });
-           }
-           else {
-               $("#pageId\\:myForm\\:pbSelection2\\:compTable\\:tb > tr").each(function() {
-                      $(this).attr('promoid', Ids[j]).removeClass('last');
-                      j++;
-               });
-           }
+				<apex:pageBlockTable id="CTDummy" value="{!myPromMatItemsDummy}" var="p" columns="14" style="visibility:hidden; height:5px;">
+					<apex:column width="1%" id="Selected"
+						rendered="{!pm.Account__r.Market__r.Name == 'Germany'}">
+						<apex:facet name="header">{!$Label.Remove_Rows}</apex:facet>
+						<a href="#" onclick="removeLine(this); return false;" id="aId"><img
+							src="{!$Resource.remove}" /></a>
+					</apex:column>
+					<apex:column style="width:100px" id="Name">
+						<apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+						<apex:outputfield style="width:150px" styleClass="noInput"
+							value="{!p.prod.Name}" />
+					</apex:column>
+					<apex:column id="Plan_Qty">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Qty__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Plan_Qty__c}" />
+					</apex:column>
+					<apex:column id="Plan_Rebate">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Rebate__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Plan_Rebate__c}" />
+					</apex:column>
+					<apex:column id="Plan_Payment">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Payment__c.label}</apex:facet>
+						<apex:outputtext style="width:100px" styleClass="noInput"
+							value="{!p.PromMatItem.Plan_Payment__c}" />
+					</apex:column>
+					<apex:column id="Plan_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Plan_Date__c.label}</apex:facet>
+						<c:noDateLink >
+							<apex:inputfield style="width:100px"
+								value="{!p.PromMatItem.Plan_Date__c}" />
+						</c:noDateLink>
+					</apex:column>
+					<apex:column id="Act_Qty">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Qty__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Act_Qty__c}"/>
+					</apex:column>
+					<apex:column id="Actual_Rebate">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Actual_Rebate__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Actual_Rebate__c}"/>
+					</apex:column>
+					<apex:column id="Act_Payment2">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Payment2__c.label}</apex:facet>
+						<apex:outputtext style="width:100px" styleClass="noInput"
+							value="{!p.PromMatItem.Act_Payment2__c}" />
+					</apex:column>
+					<apex:column id="Act_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Act_Date__c.label}</apex:facet>
+						<c:noDateLink >
+							<apex:inputfield style="width:100px"
+								value="{!p.PromMatItem.Act_Date__c}" />
+						</c:noDateLink>
+					</apex:column>
+					<apex:column id="Payment_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Payment_Date__c.label}</apex:facet>
+						<c:noDateLink >
+							<apex:inputfield style="width:100px"
+								value="{!p.PromMatItem.Payment_Date__c}"
+								rendered="{!p.PromMatItem.Approval_Status__c == 'Approved'}" />
+						</c:noDateLink>
+						<apex:outputfield style="width:100px"
+							value="{!p.PromMatItem.Payment_Date__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'Approved'}" />
+					</apex:column>
+					<apex:column id="Submit">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Submit__c.label}</apex:facet>
+						<apex:inputField style="width:100px"
+							value="{!p.PromMatItem.Submit__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'New'}" />
+						<apex:outputField style="width:100px"
+							value="{!p.PromMatItem.Submit__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'New'}" />
+					</apex:column>
+					<apex:column id="Approval_Status">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Approval_Status__c.label}</apex:facet>
+						<apex:inputfield style="width:100px"
+							value="{!p.PromMatItem.Approval_Status__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'Paid'}" />
+						<apex:outputtext style="width:100px"
+							value="{!p.PromMatItem.Approval_Status__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Paid'}" />
+					</apex:column>
+					<apex:column id="Remarks">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Remarks__c.label}</apex:facet>
+						<apex:inputfield style="width:125px"
+							value="{!p.PromMatItem.Remarks__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c != 'Paid'}" />
+						<apex:outputtext style="width:125px"
+							value="{!p.PromMatItem.Remarks__c}"
+							rendered="{!p.PromMatItem.Approval_Status__c == 'Paid'}" />
+					</apex:column>
+				</apex:pageBlockTable>
+			</apex:outputpanel>
 
-      </script>
+		</apex:pageBlock>
+
+		<apex:pageBlock id="pbSelection2"
+			title="{!$ObjectType.Promotion_Material_Item__c.labelplural}"
+			mode="Edit" rendered="{!pm.RecordType.Name != 'Agreement'}">
+			<apex:pageBlockButtons >
+				<input class="btn" type="button" onclick="save();"
+					value="{!$Label.OutletVisitPage_SaveButtonLabel}" />
+				<input class="btn" type="button"
+					onclick="top.window.location='/{!pm.Id}'"
+					value="{!$Label.OutletVisitPage_CloseButtonLabel}" />
+			</apex:pageBlockButtons>
+			<apex:outputpanel layout="block" styleclass="container">
+				<apex:pageBlockTable id="compTable" value="{!myPromMatItems}"
+					var="p" columns="13">
+					<apex:column width="1%" id="Selected">
+						<apex:facet name="header">{!$Label.Remove_Rows}</apex:facet>
+						<a href="#" onclick="removeLine(this); return false;" id="aId"><img
+							src="{!$Resource.remove}" /></a>
+					</apex:column>
+					<apex:column style="width:100px" id="Name">
+						<apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+						<apex:outputfield style="width:150px" value="{!p.prod.Name}" />
+					</apex:column>
+					<apex:column style="width:50px" id="ProductCode">
+						<apex:facet name="header">{!$ObjectType.Product__c.fields.ProductCode__c.label}</apex:facet>
+						<apex:outputfield style="width:75px"
+							value="{!p.prod.ProductCode__c}" />
+					</apex:column>
+					<apex:column style="width:50px" id="Brand">
+						<apex:facet name="header">{!$ObjectType.Product__c.fields.Brand__c.label}</apex:facet>
+						<apex:outputfield style="width:75px" value="{!p.prod.Brand__c}" />
+					</apex:column>
+					<apex:column style="width:50px" id="Unit_Cost">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Unit_Cost__c.label}</apex:facet>
+						<apex:outputField style="width:75px"
+							value="{!p.PromMatItem.Unit_Cost__c}" />
+					</apex:column>
+					<apex:column id="Quantity">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Quantity__c.label}</apex:facet>
+						<apex:inputfield style="width:75px"
+							value="{!p.PromMatItem.Quantity__c}" />
+					</apex:column>
+					<apex:column id="Request_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Request_Date__c.label}</apex:facet>
+						<apex:inputfield id="Request_Date_Input" style="width:75px"
+							value="{!p.PromMatItem.Request_Date__c}" />
+					</apex:column>
+					<apex:column id="Shipped_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Shipped_Date__c.label}</apex:facet>
+						<apex:inputfield id="Shipped_Date_Input" style="width:75px"
+							value="{!p.PromMatItem.Shipped_Date__c}" />
+					</apex:column>
+
+					<apex:column id="Wet_Good_Use">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Wet_Good_Use__c.label}</apex:facet>
+						<apex:inputfield rendered="{!p.prod.RecordType.Name=='Wet Goods'}"
+							style="width:75px" value="{!p.PromMatItem.Wet_Good_Use__c}" />
+						<apex:outputfield rendered="{!p.prod.RecordType.Name!='Wet Goods'}"
+							style="width:75px" value="{!p.PromMatItem.Wet_Good_Use__c}" />
+					</apex:column>
+
+					<apex:column style="width:75px" id="Delivery_From">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Delivery_From__c.label}</apex:facet>
+						<apex:inputfield style="width:75px"
+							value="{!p.PromMatItem.Delivery_From__c}" />
+					</apex:column>
+					<apex:column style="width:75px" id="Extended_Cost">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Extended_Cost__c.label}</apex:facet>
+						<apex:outputField style="width:75px"
+							value="{!p.PromMatItem.Extended_Cost__c}" />
+					</apex:column>
+					<apex:column style="width:50px" id="Promotion_Cost_w_o_VAT">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Promotion_Cost_w_o_VAT__c.label}</apex:facet>
+						<apex:outputField style="width:50px"
+							value="{!p.PromMatItem.Promotion_Cost_w_o_VAT__c}" />
+					</apex:column>
+					<apex:column id="Remarks">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Remarks__c.label}</apex:facet>
+						<apex:inputfield style="width:125px"
+							value="{!p.PromMatItem.Remarks__c}" />
+					</apex:column>
+				</apex:pageBlockTable>
+				
+				
+				<apex:pageBlockTable id="CTDummy" value="{!myPromMatItemsDummy}"
+					var="p" columns="13" style="visibility:hidden;">
+					<apex:column width="1%" id="Selected">
+						<apex:facet name="header">{!$Label.Remove_Rows}</apex:facet>
+						<a href="#" onclick="removeLine(this); return false;" id="aId"><img
+							src="{!$Resource.remove}" /></a>
+					</apex:column>
+					<apex:column style="width:100px" id="Name">
+						<apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+						<apex:outputfield style="width:150px" value="{!p.prod.Name}" />
+					</apex:column>
+					<apex:column style="width:50px" id="ProductCode">
+						<apex:facet name="header">{!$ObjectType.Product__c.fields.ProductCode__c.label}</apex:facet>
+						<apex:outputfield style="width:75px"
+							value="{!p.prod.ProductCode__c}" />
+					</apex:column>
+					<apex:column style="width:50px" id="Brand">
+						<apex:facet name="header">{!$ObjectType.Product__c.fields.Brand__c.label}</apex:facet>
+						<apex:outputfield style="width:75px" value="{!p.prod.Brand__c}" />
+					</apex:column>
+					<apex:column style="width:50px" id="Unit_Cost">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Unit_Cost__c.label}</apex:facet>
+						<apex:outputtext style="width:75px"
+							value="{!p.PromMatItem.Unit_Cost__c}" />
+					</apex:column>
+					<apex:column id="Quantity">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Quantity__c.label}</apex:facet>
+						<apex:inputfield style="width:75px"
+							value="{!p.PromMatItem.Quantity__c}" />
+					</apex:column>
+					<apex:column id="Request_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Request_Date__c.label}</apex:facet>
+						<apex:inputfield id="Request_Date_Input" style="width:75px"
+							value="{!p.PromMatItem.Request_Date__c}" />
+					</apex:column>
+					<apex:column id="Shipped_Date">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Shipped_Date__c.label}</apex:facet>
+						<apex:inputfield id="Shipped_Date_Input" style="width:75px"
+							value="{!p.PromMatItem.Shipped_Date__c}" />
+					</apex:column>
+
+					<apex:column id="Wet_Good_Use">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Wet_Good_Use__c.label}</apex:facet>
+						<apex:inputfield style="width:75px" value="{!p.PromMatItem.Wet_Good_Use__c}" id="Wet_Good_Use_Input"/>
+					</apex:column>
+
+					<apex:column style="width:75px" id="Delivery_From">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Delivery_From__c.label}</apex:facet>
+						<apex:inputfield style="width:75px"
+							value="{!p.PromMatItem.Delivery_From__c}" />
+					</apex:column>
+					<apex:column style="width:75px" id="Extended_Cost">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Extended_Cost__c.label}</apex:facet>
+						<apex:outputtext style="width:75px"
+							value="{!p.PromMatItem.Extended_Cost__c}" />
+					</apex:column>
+					<apex:column style="width:50px" id="Promotion_Cost_w_o_VAT">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Promotion_Cost_w_o_VAT__c.label}</apex:facet>
+						<apex:outputtext style="width:50px"
+							value="{!p.PromMatItem.Promotion_Cost_w_o_VAT__c}" />
+					</apex:column>
+					<apex:column id="Remarks">
+						<apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Remarks__c.label}</apex:facet>
+						<apex:inputfield style="width:125px"
+							value="{!p.PromMatItem.Remarks__c}" />
+					</apex:column>
+				</apex:pageBlockTable>
+			</apex:outputpanel>
+		</apex:pageBlock>
+	</apex:form>
+
+	<script>
+		//for some reason, the window.onload destroy the PickDate from salesforce so we do things just like that when the window is loaded...
+		//first row is hidden ... this is used as template
+		$("#pageId\\:myForm\\:pbSelection\\:compTable\\:tb > tr:first").hide();
+		$("#pageId\\:myForm\\:pbSelection2\\:compTable\\:tb > tr:first").hide();
+
+		//we fill out the products.
+		searchProducts();
+
+		//we assign Ids to the existing rows.
+		var Ids = $("#pageId\\:myForm\\:inputHidden").val().split(" ");
+		var j = 0;
+		if (document.getElementById('pageId:myForm:pbSelection')) {
+			$("#pageId\\:myForm\\:pbSelection\\:compTable\\:tb > tr").each(
+					function() {
+						$(this).attr('promoid', Ids[j]).removeClass('last');
+						j++;
+					});
+		} else {
+			$("#pageId\\:myForm\\:pbSelection2\\:compTable\\:tb > tr").each(
+					function() {
+						$(this).attr('promoid', Ids[j]).removeClass('last');
+						j++;
+					});
+		}
+	</script>
 </apex:page>

@@ -23,12 +23,12 @@ Jishad P A(DC)      15-Jun-2011 Modified to add record type check to exclude
         Set<ID> ownerIds = new Set<ID>();
         if(Trigger.isInsert){
             for(Integer x = 0; x<Trigger.new.size(); x++){
-                ownerIds.add(Trigger.new[x].OwnerId__c);
+                ownerIds.add(Trigger.new[x].OwnerId);
             }
-        } else{ 
+        } else{
             for(Integer x = 0; x<Trigger.new.size(); x++){
-                if(Trigger.new[x].OwnerId__c!=Trigger.old[x].OwnerId__c){
-                    ownerIds.add(Trigger.new[x].OwnerId__c);
+                if(Trigger.new[x].OwnerId!=Trigger.old[x].OwnerId){
+                    ownerIds.add(Trigger.new[x].OwnerId);
                 }
             }
         }
@@ -37,7 +37,7 @@ Jishad P A(DC)      15-Jun-2011 Modified to add record type check to exclude
                 Sales_Manager__c from User where Id in: ownerIds]);
         for(Promotion__c p : Trigger.new){
             if(p.RecordTypeId!=natPromoUSRecType){
-                User u = mapUser.get(p.OwnerId__c);
+                User u = mapUser.get(p.OwnerId);
                 if(u==null){continue;}
                 p.Brand_Manager__c = u.Brand_Manager__c;
                 p.Finance_Manager__c = u.Finance_Manager__c;

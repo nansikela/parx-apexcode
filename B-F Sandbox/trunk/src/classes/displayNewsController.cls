@@ -21,7 +21,11 @@ public class displayNewsController {
         return returnList;
     }
     
-
+    public double getArticleList() {
+       	return news_settings__c.getInstance().Article_List__c;
+    }  
+    public Integer articleLimit = getArticleList().intValue();
+    
     public String getPageTitle() {
         return news_settings__c.getInstance().Page_Title__c;
     }
@@ -79,7 +83,7 @@ public class displayNewsController {
     }     
     
     public List<News__c> getCompanyNews() {
-        return [SELECT id, name__c,external_url__c FROM News__c WHERE Group__c = :'Company' ORDER BY LastModifiedDate Desc limit 5];
+        return [SELECT id, name__c,external_url__c, CreatedDate FROM News__c WHERE Group__c = :'Company' ORDER BY LastModifiedDate Desc limit :articleLimit];
    }
    
     public List<News__c> getAllSectionNews() {
@@ -87,19 +91,19 @@ public class displayNewsController {
    }   
 
    public List<News__c> getBrandNews() {
-        return [SELECT id, name__c,external_url__c FROM News__c WHERE Group__c = :'Brands' ORDER BY LastModifiedDate Desc limit 5];
+        return [SELECT id, name__c,external_url__c, CreatedDate FROM News__c WHERE Group__c = :'Brands' ORDER BY LastModifiedDate Desc limit :articleLimit];
    }
    
    public List<News__c> getEmployeeNews() {
-        return [SELECT id, name__c,external_url__c FROM News__c WHERE Group__c = :'Employee' ORDER BY LastModifiedDate Desc limit 5];
+        return [SELECT id, name__c,external_url__c, CreatedDate FROM News__c WHERE Group__c = :'Employee' ORDER BY LastModifiedDate Desc limit :articleLimit];
    }   
 
     public List<News__c> getIndustryNews() {
-        return [SELECT id, name__c,external_url__c FROM News__c WHERE Group__c = :'Industry' ORDER BY LastModifiedDate Desc limit 5];
+        return [SELECT id, name__c,external_url__c, CreatedDate FROM News__c WHERE Group__c = :'Industry' ORDER BY LastModifiedDate Desc limit :articleLimit];
    }  
    
    public List<News__c> getFeatured() {
-        return [SELECT id, name__c,external_url__c FROM News__c WHERE Featured__c = true ORDER BY LastModifiedDate Desc limit 5];
+        return [SELECT id, name__c,external_url__c FROM News__c WHERE Featured__c = true ORDER BY LastModifiedDate Desc limit :articleLimit];
    }  
 
    public News__c getBreakingNews() {

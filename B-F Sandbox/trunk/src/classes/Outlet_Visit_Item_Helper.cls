@@ -1,6 +1,7 @@
 public with sharing class Outlet_Visit_Item_Helper {
 	private static final String DEU_ACCOUNT_RECORDTYPE='DEU_Outlets';
 	private static final String EUR_ACCOUNT_RECORDTYPE='EUR_Outlets';
+	private static final String GERMANMARKETNAME='Germany';
 	
 	public static boolean runIt = false;
     
@@ -39,9 +40,17 @@ public with sharing class Outlet_Visit_Item_Helper {
 	        map<ID, Outlet_Visit_Item__c> ovi_Map = new map<Id, Outlet_Visit_Item__c>();
 	        set<ID> accountIDs = new set<ID>();
 	        
-	        for(Outlet_Visit_Item__c ovi : [select Id, Available__c, Bottle_Price__c, Bottle_Price_Special__c, Brand__c, Double_Price__c, Double_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Facing__c, Custom_Product__c, Product__c, Shelf__c, Outlet_Visit__r.Account__c, Outlet_Visit__r.Name, Outlet_Visit__r.Last_Visit_Date__c from Outlet_Visit_Item__c where ID IN: ovi_Ids AND Id NOT IN: deletedIds AND Outlet_Visit__r.Last_Visit__c=true]) {
-	        	if (ovi.Available__c && !ovi_Map.containsKey(ovi.id))
-	        		ovi_Map.put(ovi.id, ovi);
+	        for(Outlet_Visit_Item__c ovi : [select Id, Available__c, Bottle_Price__c, Bottle_Price_Special__c, Brand__c, Double_Price__c, Double_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Facing__c, Custom_Product__c, Product__c, Shelf__c, Outlet_Visit__r.Account__c, Outlet_Visit__r.Account__r.Channel__c, Outlet_Visit__r.Account__r.Market__r.Name, Outlet_Visit__r.Name, Outlet_Visit__r.Last_Visit_Date__c from Outlet_Visit_Item__c where ID IN: ovi_Ids AND Id NOT IN: deletedIds AND Outlet_Visit__r.Last_Visit__c=true]) {
+	        	// new change request
+	        	// PARX Jochen Schrader
+	        	if (ovi.Outlet_Visit__r.Account__r.Channel__c=='On') {
+		        	if (ovi.Available__c && !ovi_Map.containsKey(ovi.id))
+		        		ovi_Map.put(ovi.id, ovi);
+	        	} else {
+	        		if (ovi.Bottle_Price__c!=null || ( !ovi.Outlet_Visit__r.Account__r.Market__r.Name.contains(GERMANMARKETNAME) && (ovi.Bottle_Price__c==null && ovi.Available__c))) {
+	        			ovi_Map.put(ovi.id, ovi);
+	        		}
+	        	}
 	        	if(!accountIDs.contains(ovi.Outlet_Visit__r.Account__c))
 	        		accountIDs.add(ovi.Outlet_Visit__r.Account__c);
 	        }

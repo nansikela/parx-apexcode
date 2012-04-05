@@ -8,6 +8,7 @@ trigger onTimeTracking on Time_Tracking__c (after insert) {
      * @author  Jochen Schrader
     */
 
+	private static final String COMPLETESTATE='Complete';
 
 	map<Id, Time_Tracking__c> ttmap= new map<Id, Time_Tracking__c>();
 	set<Integer> monthlist = new set<Integer>();
@@ -23,6 +24,7 @@ trigger onTimeTracking on Time_Tracking__c (after insert) {
 						FROM Outlet_Visit__c 
 						WHERE OwnerId IN :ttmap.KeySet() 
 							AND Visit_Date_Month__c IN :monthlist
+							AND Status__c=:COMPLETESTATE
 							]) {
 		if (ttmap.containsKey(ov.OwnerId) 
 			&& ov.Visit_Date__c.Month()==ttmap.get(ov.OwnerId).StartDate__c.Month()

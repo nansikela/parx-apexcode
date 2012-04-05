@@ -1,0 +1,632 @@
+<apex:page standardController="TIMBASURVEYS__Survey__c" extensions="TIMBASURVEYS.SurveyDesignController" showheader="false" sidebar="false" standardstylesheets="false">
+    <style type="text/css">
+    
+        /*
+            Survey Analyze Styles
+        */
+            
+        .surveyInfo {
+            clear:both;
+            border:2px solid #657C9C;
+            margin:30px 10px;
+            padding:5px;
+            background:#F2F2F2;  
+        }
+        
+        .surveyInfo h1 {
+            font-family: Arial !important;
+            font-weight:bold;
+            font-size:18px; 
+        }
+        
+        .surveyInfo .data { 
+            font-family:Tahoma !important;
+            font-size: 11px;
+        }
+        
+        /* 
+        ============================================
+            Move to common.css after dev 
+        ============================================
+        */
+        
+        /* Light Blue */
+        
+        div.topCornersLightBlue {
+            height:8px;
+            clear:both;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_topright_lightblue.png')}) repeat-x top right;
+            
+        }
+        
+        div.topCornersLightBlue span.leftCorner {
+            display:block;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_topleft_lightblue.png')}) repeat-x top left;
+            height:8px;
+            width:8px;
+        }
+        
+        div.bottomCornersLightBlue {
+            height:8px;
+            clear:both;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_bottomright_lightblue.png')}) repeat-x bottom right;
+            
+        }
+        * html div.bottomCornersLightBlue {
+            height:1px;
+            clear:both;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_bottomright_lightblue.png')}) repeat-x bottom right;
+            
+        }
+        div.bottomCornersLightBlue span.leftCorner {
+            display:block;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_bottomleft_lightblue.png')}) repeat-x bottom left;
+            height:8px;
+            width:8px;
+        }
+        
+        /* Edition Blue */
+        
+        div.topCornersEditionBlue {
+            height:8px;
+            clear:both;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_topright_editionblue.png')}) repeat-x top right;
+            
+        }
+        
+        div.topCornersEditionBlue span.leftCorner {
+            display:block;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_topleft_editionblue.png')}) repeat-x top left;
+            height:8px;
+            width:8px;
+        }
+        
+        div.bottomCornersEditionBlue {
+            height:8px;
+            clear:both;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_bottomright_editionblue.png')}) repeat-x 0 right;
+            
+        }
+        
+        div.bottomCornersEditionBlue span.leftCorner {
+            display:block;
+            position:relative;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources, 'imgs/roundedBoxes/rc_bottomleft_editionblue.png')}) repeat-x bottom left;
+            height:8px;
+            width:8px;
+        }
+        
+        /*
+            Rails Wireframes
+            Initial Structure 3 columns.
+        */
+        
+        .formRails {
+            overflow:hidden;
+            position:relative; 
+            clear:both;
+            margin:10px;
+            height:auto;
+            margin-top:0px;
+        }
+        
+        .formRails .leftRail {
+            width:20%;
+            overflow:hidden;
+            position:relative;
+            margin:10px;
+            float:left;
+        }
+        
+        .formRails .middleRail {
+            width:50%;
+            overflow:hidden;
+            position:relative;
+            float:left;
+            margin:10px;
+        }
+        
+        .formRails .rightRail {
+            width:25%;
+            
+            position:relative;
+            float:left;
+            margin:10px;
+            height:auto;
+            overflow:visible;
+        }
+        
+        /* reset some styles at the main container */
+        
+        .formRails ul, .formRails li {
+            list-style: none;
+            margin:0 ;
+            padding: 0 ;
+        }
+        
+        /*
+            Question properties / Edition of questions.
+        */
+        
+        .formRails .rightRail .questionProperties {
+            color:#000000;
+            position:absolute;
+            top:0px;
+            left:0px;
+        }
+        
+    /*  .formRails .rightRail .questionProperties .editorBody {
+            padding:10px;           
+            background: #A6CAE4;
+            padding: 7px;
+        }
+    */
+        
+        
+        .formRails .rightRail .questionProperties .editorBody input {
+            height:18px;
+            margin:2px 4px;
+            padding-top:2px;
+            padding-left:2px;
+            vertical-align:middle;
+        }
+        
+        .formRails .rightRail .questionProperties .editorBody .removelink a {
+            margin:5px;
+        }
+        
+        .formRails .rightRail .questionProperties .editorBody h2 {
+            clear:both;
+            position:relative;
+            overflow:hidden;
+            margin:4px;
+        }
+        
+        .formRails .rightRail .questionProperties .editorBody .editionPanelButton {
+            float:right;
+            margin:5px 0;
+        }
+        
+        .formRails .rightRail .questionProperties .editorBody .additionalEditionTools {
+            clear:both;
+            position:relative;
+            overflow:hidden;
+            margin:5px 0;
+        }
+        
+        /*
+            Toolbox
+        */
+        .formRails .leftRail {
+            height:800px;
+            width:245px;
+        }
+        
+        .formRails .leftRail .toolbox {
+            overflow:hidden;
+            position:relative;
+            clear:both;
+            padding: 0 4px;
+        }
+        
+        .formRails .leftRail .toolboxWrapper {
+            overflow:hidden;
+            position:relative;
+            width:236px;    
+            background: #ECF0F3;
+        }
+        
+        .formRails .leftRail .toolbox .dojoDndItem {
+            background:white;
+            overflow: hidden;
+            position:relative;
+            border: 1px solid #8CA1BE;
+            padding:4px 4px 4px 30px;
+            margin:5px;
+            font-size:11px;
+            height: 20px;
+            color: white;
+            
+        }
+        
+        .formRails .leftRail .toolbox .dojoDndItem a,
+        .formRails .leftRail .toolbox .dojoDndItem a:hover {
+            text-decoration: none;
+        }
+        
+        .toolbox .textboxbutton {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/textbox_control.png')}) no-repeat  ;
+        }
+        
+        .toolbox .datebutton {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/date_control.png')}) no-repeat  ;
+        }
+        
+        .toolbox .matrixmultibutton {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/matrix_multiple_controls.png')}) no-repeat  ;
+        }
+        
+        .toolbox .matrixsinglebutton {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/matrix_single_controls.png')}) no-repeat ;
+        }
+        
+        .toolbox .multiplemultiplebutton {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/multiple_choice_multiple_answers_control.png')}) no-repeat ;
+        }
+        
+        .toolbox .multiplesinglebutton {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/multiple_choice_single_answers_control.png')}) no-repeat ;
+        }
+        
+        .toolbox .textareabutton {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/textarea_control.png')}) no-repeat ;
+        }
+        
+        .toolbox .descriptivetextbutton {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/descriptive_control.png')}) no-repeat ;
+        }
+        .toolbox .picklist {
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/designer/picklist_control.png')}) no-repeat;
+        }
+        
+        
+        /*
+            Middle Container (principal) and Drag n' drop items.
+        */
+        
+        .formRails .middleRail #surveyFormContainer {
+            padding: 10px 5px;
+            overflow:hidden;
+            min-height:400px;
+            position:relative;
+    
+            border: 2px dashed #EDEDED;
+            
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem {
+            padding:10px;
+            margin:5px;
+            background:#F2F2F2;
+            border: 1px solid white;
+            position:relative;
+            color:#909090;
+            
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem h2.question {
+            font-family: Tahoma, Helvetica, Arial !important;
+            font-size:18px;
+            display:block;
+            font-weight:normal;
+            position:relative;
+            overflow:hidden;
+            width:400px;        
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .optionsContainer,
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .matrix {
+            display:block;
+            font-weight:normal;
+            position:relative;
+            overflow:hidden;
+            font-size:14px;
+            margin:10px;
+            font-family: Tahoma, Helvetica, Arial !important;
+        }
+        
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .matrix tr td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .matrix tr td.rowHeader {
+            text-align: right !important;
+            margin-right:4px;
+            max-height: 100px;
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .matrix tr td {
+            margin-right:4px;
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .matrix tr.rowHeader td {
+            margin:3px 8px;
+        }
+    
+        table.matrix{
+            table-layout: fixed; 
+            word-wrap: break-word;
+        }
+        
+         table.matrix td{           
+                max-width: 200px;
+                word-wrap: break-word;
+         } 
+         
+    
+        
+        /* 
+            Input alignement  
+        */
+        
+        .optionsContainer {
+            width:388px!important;
+        }
+        .formRails .middleRail #surveyFormContainer .dojoDndItem ul.optionsContainer  {
+            overflow:hidden;
+            clear:both;
+            position:relative;
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .optionsContainer li {
+            clear:both;
+            position:relative;
+            overflow:hidden; 
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .optionsContainer input, 
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .optionsContainer label {
+            float:left;
+            position:relative;
+            margin:2px;
+        }
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .optionsContainer input{
+            margin-top:6px;
+        }
+        * html .formRails .middleRail #surveyFormContainer .dojoDndItem .optionsContainer input{
+        margin-top:1px;
+        }
+        /* Drag and drop items  */
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItemOver {
+            border: 1px solid #A6CAE4;
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItemAfter {
+            border-bottom:4px solid #657C9C;            
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItemBefore {
+            border-top:4px solid #657C9C;
+        }
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItemAnchor {   
+            background: #C9E1FA;              
+        }
+        
+        .dojoDndCopy .dojoDndAvatarHeader   {background-color: #f58383;}
+        .dojoDndCopy .dojoDndAvatarCanDrop .dojoDndAvatarHeader {background-color: #97e68d;}
+            
+            
+        /*
+            Question Containers
+        */
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .rowPlacement {
+            display:none;
+        }
+        /* form components at the question designer */
+        
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .QuestionOptions {
+            text-align:right;
+        }   
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .deleteQuestion {
+            position:absolute;
+            right:10px;
+            top:10px;
+        }
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .deleteQuestion a{
+            display:block;
+            width:11px;
+            height:12px;
+            background:url({!URLFOR($Resource.TIMBASURVEYS__SurveyResources2, 'img/edition_panel/x.png')});
+            text-indent:9999px;
+            overflow:hidden;
+        }
+        .formRails .middleRail #surveyFormContainer .dojoDndItem .deleteQuestion a:hover{
+            background-position: 0 12px;
+        }
+        /*
+            Designer Footer 
+        */
+        
+        .DesignerFooter {
+            width:100%;
+            height:27px; 
+            background:#F2F2F2; 
+            position:fixed; 
+            bottom:0; left:0; 
+            padding:10px;
+            border-top:2px solid #657C9C;
+        }
+        
+        .DesignerFooter .navigation {
+            float:left;
+            width:30%;
+            position:relative;
+            overflow:hidden;
+        }
+        
+        .DesignerFooter .commands {
+            float:right;
+            width:40%;
+            position:relative;
+            overflow:hidden;
+            text-align: right;
+            margin-right:27px;
+        }
+           
+        * html #footer {
+            width: 100%;
+            height:45px;
+            overflow:hidden;
+            padding:0px !important;
+            position: absolute !important;
+            left: expression( ( 0 -footer.offsetWidth + ( document.documentElement.clientWidth ? document.documentElement.clientWidth : document.body.clientWidth ) + ( ignoreMe2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) ) + 'px' );
+            top: expression( ( 0 - footer.offsetHeight + ( document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight ) + ( ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) ) + 'px' );
+        }
+        
+        * html #footer .navigation,* html #footer .commands {
+            padding:0px !important; 
+            margin:10px;        
+        }
+        
+        /*
+            Select Theme Overlay 
+        */  
+        .themeselectiondialogContent {
+            oveflow:hidden;
+        }
+        
+        
+        .themeselectiondialogContent .themeListWrapper {
+            height:350px;
+            overflow-x:hidden;
+            overflow-y:scroll;
+            width:350px;
+            clear:both;
+            position:relative;
+            text-align:center;
+        } 
+        
+        .themeselectiondialogContent .themeListWrapper .themeSlot {
+            padding:5px;
+            background:#FBFBFB;
+            margin:4px;
+            overflow:hidden;
+            position:relative; 
+            clear:both;
+        }
+        
+        .themeselectiondialogContent .themeListWrapper .themeSlot.selected {
+            padding:5px;
+            background:#E4EFF7;
+            border:2px solid #6F85A3;
+            
+            margin:4px;
+        } 
+        
+        .dojoButtonsContainer {
+            clear:both;
+            padding:10px 0;
+            overflow:hidden;
+            position:relative;
+        }
+        
+        
+        /* 
+         Theme Selection
+        */
+        .surveyInfo {
+            margin:0 10px !important; 
+        }
+        
+        .theme_tab {
+            height:20px;
+            border:1px solid black;
+            overflow:hidden;
+            float:left;
+            cursor:pointer;
+        }
+        
+        .form_field {
+            clear:both;
+            margin:3px 0px;
+            overflow:hidden;
+            position:relative;
+        }
+        
+        .theme_creation_dialog {
+            
+            clear:both;
+            overflow:hidden;
+            padding:2px;
+            position:relative;
+        }
+        
+        .theme_creation_dialog  .right_col, 
+        .theme_creation_dialog  .left_col  {
+            float:left;
+            width:45%;
+            margin:0 4px;
+            overflow:hidden;
+            position:relative;
+        }
+        
+        /*
+            Theme Previews
+        */
+        
+        #theme_creator {
+            width:450px;
+            overflow:hidden;
+            position:relative;
+        }
+        
+        .theme_previewer {
+            font-size:50%;
+            height:100px;
+            margin:12px;
+            overflow:hidden;
+            position:relative;
+        }
+        
+        .theme_previewer div.title {
+            font-size:2.8em;
+            letter-spacing:-0.02em;
+            margin:8px;
+            font-weight:bold;
+        } 
+        
+        .theme_previewer .desc_division {
+            padding:4px;
+            border-width:1px 0;
+            border-style:solid;
+            padding-left:8px;
+        }
+        
+        .theme_previewer .question {
+            font-size:1.5em;
+            font-weight:bold;
+            margin:2px 8px;
+        }
+        
+        .theme_previewer .option {
+            margin:2px 20px;
+        }
+            
+        .theme_previewer .theme_attached_img {
+            position:absolute;
+            top:4px;
+            right:4px;
+            text-align:right;
+            width:130px;
+            overflow:hidden;
+            height:40px;
+        }
+        
+        .theme_previewer .theme_attached_img img {
+            width:50%;
+        }
+        
+        .explain {
+            font-size:11px;
+            font-style:italic;
+            color:#666;
+        }
+        
+    </style>
+</apex:page>

@@ -1,4 +1,5 @@
 <apex:page controller="MandatoryVisitController" sidebar="false" showHeader="false">
+<apex:includeScript value="{!$Resource.JQuery17}"/>
 <script type='text/javascript' src='https://www.google.com/jsapi'></script>
 <script type='text/javascript'>
 		google.load('visualization', '1', {packages:['gauge']});
@@ -15,17 +16,27 @@
         		width: 250, height: 250,
         		min: 0, 
       			max: {!maxDays},
-        		greenFrom: {!maxDays * 0.8}, 
+      			greenFrom: {!maxDays * breakPoint}, 
         		greenTo: {!maxDays},
+        		redFrom : 0,
+        		redTo : {!maxDays * breakPoint},
         		minorTicks: 5
         	};
-
+				
+			if({!isRedConfigured}) 
+				options['redColor'] = '{!redColor}';
+			
+			if({!isGreenConfigured})
+				options['greenColor'] = '{!greenColor}'; 
+		
         	var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-        	chart.draw(gaugeData, options);
+        	chart.draw(gaugeData, options); 
       	}
       	
 </script>
-<apex:pageblock >
-	<div style="text-align:center;" id='chart_div'></div>
+<apex:pageMessages />
+<apex:pageblock > 
+	<div style="text-align:center;" id='chart_div'></div> 
+	<div id="gauge_div_clickable" style="position:absolute;z-index:2;top:0px;width:250px;height:250px;" onclick="window.parent.location = '{!reportURL}';" > </div>
 </apex:pageblock>
 </apex:page>

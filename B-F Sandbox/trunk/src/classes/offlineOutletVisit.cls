@@ -45,8 +45,8 @@ Mike Shroyer		24-Aug-2011  	Changed the Outlet_Visit_Item loop in CreateOffline 
 
         
         for(Outlet_Visit__c[] o : [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c, 
-	        	(Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Custom_Product__c, Available__c, Facing__c, Shelf__c, Space_Placement__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
-	        	(Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r),
+	        	(Select Id, Name, Outlet_Visit__c, Bottle_Price_Special__c, Bottle_Price__c, Drink_Price_Special__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Custom_Product__c, Available__c, Facing__c, Shelf__c, Location_On__c, Location_Off__c, Double_Price__c, Double_Price_Special__c From Outlet_Visit_Items__r), 
+	        	(Select Id, Name, RecordTypeId, Location_On__c, Location_Off__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_Last_Month_Date__c, Depletions_This_Month__c, Depletions_This_Month_Date__c, Depletions_Next_Month__c, Depletions_Next_Month_Date__c From Offline_Outlet_Visit_Items__r),
 	 			(Select Id, Name, CurrencyIsoCode, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)         	 
 	        	From Outlet_Visit__c o where o.Id in: myIDS for update]){//order by Visit_Date__c 
 	    			for(Integer x = 0; x<o.size(); x++){
@@ -111,7 +111,8 @@ Mike Shroyer		24-Aug-2011  	Changed the Outlet_Visit_Item loop in CreateOffline 
 	                if((oovi.Bottle_Price__c!=null && oovi.Bottle_Price__c!=0) || 
 	                (oovi.Drink_Price__c!=null && oovi.Drink_Price__c!=0) ||
 	                oovi.Double_Price__c!=null ||
-					oovi.Space_Placement__c!=null ||
+	                oovi.Location_On__c!=null ||
+	                oovi.Location_Off__c != null ||
 					oovi.Shelf__c!=null ||
 					oovi.Facing__c!=null ||
 					oovi.Available__c!=false
@@ -119,7 +120,8 @@ Mike Shroyer		24-Aug-2011  	Changed the Outlet_Visit_Item loop in CreateOffline 
 	                {	        	
 	                	//create new OVI record
 			        	Outlet_Visit_Item__c ovi = new Outlet_Visit_Item__c();
-			        	ovi.Space_Placement__c = oovi.Space_Placement__c;
+			        	ovi.Location_On__c = oovi.Location_On__c;
+			        	ovi.Location_Off__c = oovi.Location_Off__c;
 			        	ovi.Shelf__c = oovi.Shelf__c;
 
 			        	ovi.Custom_Product__c = oovi.Product_ID__c;
@@ -293,8 +295,8 @@ Mike Shroyer		24-Aug-2011  	Changed the Outlet_Visit_Item loop in CreateOffline 
         //query the OV's again (and child OVI's) for the affected Account records; Order by ID 
         Map<ID,List<Outlet_Visit__c>> mapAccountOV = new Map<ID,List<Outlet_Visit__c>>();
         for(Outlet_Visit__c[] ov : [Select o.Account__r.Outlet_Class__c, o.Account__r.Outlet_Class__r.Monthly_Visit_Goal__c, o.Account__r.Channel__c, o.Account__r.Market__r.On_Channel__c, o.Account__r.Market__r.Off_Channel__c, o.Visit_Date__c, o.Visit_Comments__c, o.Status__c, o.OwnerId, o.Name, o.Met_With__c, o.Legacy_ID__c, o.Id, o.CurrencyIsoCode, o.Competitor_Activity__c, o.Account__c,  
-			(Select Id, IsDeleted, Name, Outlet_Visit__c, Custom_Product__c, Bottle_Price__c, Bottle_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Double_Price__c, Double_Price_Special__c, Space_Placement__c, Shelf__c, Facing__c, Available__c From Outlet_Visit_Items__r),
-			(Select Id, Name, RecordTypeId, Space_Placement__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_This_Month__c, Depletions_Next_Month__c From Offline_Outlet_Visit_Items__r),
+			(Select Id, IsDeleted, Name, Outlet_Visit__c, Custom_Product__c, Bottle_Price__c, Bottle_Price_Special__c, Drink_Price__c, Drink_Price_Special__c, Double_Price__c, Double_Price_Special__c, Location_On__c, Location_Off__c, Shelf__c, Facing__c, Available__c From Outlet_Visit_Items__r),
+			(Select Id, Name, RecordTypeId, Location_On__c, Location_Off__c, Available__c, Bottle_Price__c, Shelf__c, Bottle_Price_Special__c, Double_Price__c, Double_Price_Special__c, Product_ID__c, Drink_Price__c, Outlet_Visit_Item_Key__c, Drink_Price_Special__c, Facing__c, Outlet_Visit__c, Depletions_Last_Month__c, Depletions_This_Month__c, Depletions_Next_Month__c From Offline_Outlet_Visit_Items__r),
 			(Select Id, Name, Outlet_Visit__c, Comments__c, Key_Task_Template__c, Met_With__c, Complete__c From Key_Tasks__r)
         	From Outlet_Visit__c o where o.Account__c in: accountIDS.keyset() and (o.Status__c = 'New' or o.Id in: myIDS) for update]){
         	
@@ -645,7 +647,7 @@ system.debug(p.Depletions__r);
        	// Loop through the Outlet_Visit_Items for the the current Outlet_Vist
         // for(Outlet_Visit_Item__c ovi : ov.Outlet_Visit_Items__r){
         for(Outlet_Visit_Item__c ovi : [Select o.Name, o.Custom_Product__c, o.Drink_Price__c, o.Drink_Price_Special__c, o.Bottle_Price__c, 
-        		o.Bottle_Price_Special__c, o.Double_Price__c, o.Double_Price_Special__c, o.Space_Placement__c, o.Shelf__c, o.Facing__c, o.Available__c 
+        		o.Bottle_Price_Special__c, o.Double_Price__c, o.Double_Price_Special__c, o.Location_On__c, o.Location_Off__c, o.Shelf__c, o.Facing__c, o.Available__c 
         		from Outlet_Visit_Item__c o 
         		where o.Outlet_Visit__c = :ov.Id] ) {
         	        	
@@ -661,7 +663,8 @@ system.debug(p.Depletions__r);
 	            oovi.Double_Price__c=ovi.Double_Price__c;
 	            oovi.Double_Price_Special__c=ovi.Double_Price_Special__c;
 	            
-				oovi.Space_Placement__c=ovi.Space_Placement__c;
+	            oovi.Location_On__c = ovi.Location_On__c;
+	            oovi.Location_Off__c = ovi.Location_Off__c;
 				oovi.Shelf__c=ovi.Shelf__c;
 				oovi.Facing__c=ovi.Facing__c;
 				oovi.Available__c=ovi.Available__c;   

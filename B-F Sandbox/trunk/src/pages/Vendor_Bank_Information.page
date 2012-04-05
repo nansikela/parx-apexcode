@@ -14,6 +14,6 @@
     }            
   </style>
   <div id="bankInfo">
-    It is required that the banking information provided be faxed (or Emailed) on the company's letterhead to the Accounts Payable Department of Brown-Forman for verification at 502-774-7183.
+    It is required that the banking information provided be faxed (or Emailed) on the company's letterhead or Invoice to the Accounts Payable Department of Brown-Forman for verification at 502-774-7183.
   </div>
 </apex:page>

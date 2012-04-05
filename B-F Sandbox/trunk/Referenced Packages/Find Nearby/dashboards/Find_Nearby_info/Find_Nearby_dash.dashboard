@@ -94,7 +94,7 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>michael_levites@b-f.com.crmdev</runningUser>
+    <runningUser>michael_levites@b-f.com.config01</runningUser>
     <textColor>#000000</textColor>
     <title>Find Nearby Dash</title>
     <titleColor>#000000</titleColor>

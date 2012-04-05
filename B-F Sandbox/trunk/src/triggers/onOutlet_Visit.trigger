@@ -16,14 +16,16 @@ trigger onOutlet_Visit on Outlet_Visit__c (before delete, after delete, after un
  * Modification History:
  * 12/05/2011, Jochen Schrader - Id lists are now sets and the strings are now configureable at the head of the trigger.
  * 01/10/2012, Jochen Schrader - Outlet Visits will be connected to their time tracking records (P00002)
+ * 02/16/2012, Jochen Schrader - Outlet Visit Date check for offline Clients transfer future Visit Dates to LastModifiedDate 
 **/
 
 	private static final String COMPLETESTATE='Complete';
 	private static final String DEU_ACCOUNT_RECORDTYPE='DEU_Outlets';
 	private static final String EUR_ACCOUNT_RECORDTYPE='EUR_Outlets';
+	private static final String CAD_ACCOUNT_RECORDTYPE='CAD_Outlets';	
 	
 	set<Id> RTIds = new set<Id>();
-    for(RecordType rt:[select id from RecordType where sObjectType = 'Account' AND (developerName = :DEU_ACCOUNT_RECORDTYPE OR developerName = :EUR_ACCOUNT_RECORDTYPE)]) {
+    for(RecordType rt:[select id from RecordType where sObjectType = 'Account' AND (developerName = :DEU_ACCOUNT_RECORDTYPE OR developerName = :EUR_ACCOUNT_RECORDTYPE OR developerName = :CAD_ACCOUNT_RECORDTYPE)]) {
         RTIds.add(rt.Id);
     }
 	
@@ -38,6 +40,23 @@ trigger onOutlet_Visit on Outlet_Visit__c (before delete, after delete, after un
 					//we have to make the update.
 					if (!AccountIds.contains(OV.Account__c)) AccountIds.add(OV.Account__c);
 				}  
+			}
+			
+			/* Outlet Visit Date not in Future for offline Clients of german market */
+			if (trigger.isUpdate || trigger.isInsert) {
+				list<Outlet_Visit__c> ovlist = new list<Outlet_Visit__c>();
+
+				map<Id, Account> DEUaccounts=new map<Id, Account>([SELECT Id FROM Account WHERE Id IN :AccountIds AND RecordTypeId IN:RTIds]);
+				for(Outlet_Visit__c OV:[SELECT Id, LastModifiedDate, Status__c, Account__c, Visit_Date__c FROM Outlet_Visit__c WHERE Id IN :trigger.newMap.keySet()]) {
+					if (OV.Status__c == COMPLETESTATE && OV.Account__c != null && DEUaccounts.containsKey(OV.Account__c)) {
+						Date ThisLastModifiedDate=Date.newInstance(OV.LastModifiedDate.Year(), OV.LastModifiedDate.Month(), OV.LastModifiedDate.Day());
+						if (OV.Visit_Date__c>ThisLastModifiedDate) {
+							OV.Visit_Date__c=ThisLastModifiedDate;
+							ovlist.add(OV);
+						}
+					}
+				}
+				update ovlist;
 			}
 		}
 		

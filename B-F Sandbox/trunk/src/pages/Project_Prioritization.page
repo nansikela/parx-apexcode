@@ -1,0 +1,165 @@
+<apex:page standardController="Project_Prioritization__c" cache="false">
+<head>
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js"  />
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"  />
+<apex:stylesheet value="http://bfextweb1.b-f.com/googlegadgets/googlesurveys/jquery-ui.css" />
+<script>
+$(document).ready(function() {
+    $(".slide").slider({
+          orientation: "vertical",
+          min: 1,
+          max: 9,
+          animate: true,
+          range: "min",
+          slide: function(event, ui) {
+            //alert(ui.value);
+            document.getElementById("j_id0:j_id6:entr"+this.id).value = ui.value;
+          }
+     });
+     $( "#y_2" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_2").value);
+     $( "#y_3" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_3").value);
+     $( "#y_4" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_4").value);
+     $( "#y_5" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_5").value);
+     $( "#y_6" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_6").value);
+     $( "#y_7" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_7").value);
+     $( "#y_15" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_15").value);
+     $( "#y_8" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_8").value);
+     $( "#y_9" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_9").value);
+     $( "#y_10" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_10").value);
+     $( "#y_11" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_11").value);
+     $( "#y_12" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_12").value);
+     $( "#y_13" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_13").value);
+     $( "#y_14" ).slider( "option", "value", document.getElementById("j_id0:j_id6:entry_14").value);
+     document.getElementById("j_id0:j_id6:help").focus();
+});
+</script>
+<style type="text/css">
+#header{
+    width: 700px;
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+    font-weight: bold;
+}
+#description{
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    font-size: 16px;
+}
+#content {
+    width: 972px;
+    margin: auto;
+    text-align: center;
+}
+.button{
+    width: 100px;
+    padding-top: 10px;
+} 
+</style>
+</head>
+<body>
+<apex:form >
+<div id="header">
+<apex:outputText value="{!Project_Prioritization__c.Project__r.Name}"/>
+</div><br/>
+<div id="content">
+        <apex:outputLink style="float:right;text-decoration:underline;" id="help" target="_blank" value="https://docs.google.com/a/b-f.com/document/d/1KEUsAxTgp08-Hw801rCLm2H9F0mzlw5McmvSlV0PY4Q/edit?hl=en_US">Field Definitions</apex:outputLink>
+        <fieldset class="field">
+        <legend>Attractiveness</legend>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_2">Operating Profit Margin&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Project delivers below 10%, 9 - Project returns in excess of 60%"/><br />&nbsp;</label>
+        <div class="slide" id="y_2"></div>
+        <!--<input type="text" name="entry.2.single" value="1" class="ss-q-short num" id="entry_2" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Operating_Profit_Margin_5yr__c}" id="entry_2" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_3">Payback<br /> Timing&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Long term payback +3 yrs, 9 - No payback required"/><br />&nbsp;</label>
+        <div class="slide" id="y_3"></div>
+        <!--<input type="text" name="entry.3.single" value="1" class="ss-q-short num" id="entry_3" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Payback_Timing__c}" id="entry_3" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_4">Capital<br /> Expenditure&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - High level of expenditure, 9 - Low to no expenditure"/><br />&nbsp;</label>
+        <div class="slide" id="y_4"></div>
+        <!--<input type="text" name="entry.4.single" value="1" class="ss-q-short num" id="entry_4" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Capital_Expenditure__c}" id="entry_4" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_5">Strategic<br /> Alignment&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - No value to overall business strategy, tactical solution only, 9 - Integral to BF150 objectives"/><br />&nbsp;</label>
+        <div class="slide" id="y_5"></div>
+        <!--<input type="text" name="entry.5.single" value="1" class="ss-q-short num" id="entry_5" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Strategic_Alignment__c}" id="entry_5" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_6">Consumer /<br /> Occasion Fit&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Project is not consumer driven, 9 - Project has strong alignment with new consumers not being met by our brands"/><br />&nbsp;</label>
+        <div class="slide" id="y_6"></div>
+        <!--<input type="text" name="entry.6.single" value="1" class="ss-q-short num" id="entry_6" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Consumer_Occasion_Fit__c}" id="entry_6" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_7">Market Trend<br /> Alignment&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Project does not align with market trends, 9 - Project aligns with market trends that our portfolio is not meeting"/><br />&nbsp;</label>
+        <div class="slide" id="y_7"></div>
+        <!--<input type="text" name="entry.7.single" value="1" class="ss-q-short num" id="entry_7" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Market_Trend_Alignment__c}" id="entry_7" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_15">Competitor<br /> Defensibility&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Easily replicated by competitors, 9 - Unique concept, delivered by production capabilities or brand/heritage association.  Next to impossible to replicate."/><br />&nbsp;</label>
+        <div class="slide" id="y_15"></div>
+        <!--<input type="text" name="entry.15.single" value="1" class="ss-q-short num" id="entry_15" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Competitor_Defensibility__c}" id="entry_15" styleClass="num" disabled="false"/>
+        </div>
+        </fieldset>
+        <br /><br />
+        <fieldset class="field">
+        <legend>Achievement</legend>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_8">2020 Brand Profit Contribution&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Stretches the trademark too far and high risk of losing existing consumer, 9 - The project will open the brand to new consumers, maintains a strong correlation with brand values and positioning"/><br />&nbsp;</label>
+        <div class="slide" id="y_8"></div>
+        <!--<input type="text" name="entry.8.single" value="1" class="ss-q-short num" id="entry_8" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Fit_with_Trademark__c}" id="entry_8" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_9">Development<br /> Required&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - New to world product or acquisition, 9 - Existing B-F brand, no changes required"/><br />&nbsp;</label>
+        <div class="slide" id="y_9"></div>
+        <!--<input type="text" name="entry.9.single" value="1" class="ss-q-short num" id="entry_9" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Development_Required__c}" id="entry_9" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_10">Production<br /> Capability&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Project production doesn not exist within our current capability, 9 - Project production exists within our current capability"/><br />&nbsp;</label>
+        <div class="slide" id="y_10"></div>
+        <!--<input type="text" name="entry.10.single" value="1" class="ss-q-short num" id="entry_10" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Production_Capability__c}" id="entry_10" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_11">Sales<br /> Capacity&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - The new product cannot be managed by our crrent sales structure, 9 - The new product can be integrated into our current sales structure without disruption"/><br />&nbsp;</label>
+        <div class="slide" id="y_11"></div>
+        <!--<input type="text" name="entry.11.single" value="1" class="ss-q-short num" id="entry_11" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Sales_Capacity__c}" id="entry_11" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_12">Customer<br /> Fit&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - No customer interest in product or category, 9 - High level of deman by customers driven by both consumers and category value"/><br />&nbsp;</label>
+        <div class="slide" id="y_12"></div>
+        <!--<input type="text" name="entry.12.single" value="1" class="ss-q-short num" id="entry_12" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Customer_Fit__c}" id="entry_12" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_13">Category /<br /> Segment&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Declining segment outlook, 9 - Large category with strong growth forecast"/><br />&nbsp;</label>
+        <div class="slide" id="y_13"></div>
+        <!--<input type="text" name="entry.13.single" value="1" class="ss-q-short num" id="entry_13" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Category_Segment_Outlook__c}" id="entry_13" styleClass="num" disabled="false"/>
+        </div>
+        <div class="errorbox-good slidebox">
+        <label class="ss-q-title" for="entry_14">Management /<br /> Support&nbsp;<apex:image url="{!URLFOR($Resource.prioritization,'tip.png')}" title="1 - Taking into consideration how you have evaluated the above variables you consider the project to have a low chance of  succeeding and be extremely high risk, 9 - Taking into consideration how you have evaluated the above variables you consider the project to have a high chance of  succeeding and as such risk is minimal or worthwhile undertaking"/><br />&nbsp;</label>
+        <div class="slide" id="y_14"></div>
+        <!--<input type="text" name="entry.14.single" value="1" class="ss-q-short num" id="entry_14" />-->
+        <apex:inputText value="{!Project_Prioritization__c.Management_Support__c}" id="entry_14" styleClass="num" disabled="false"/>
+        </div>
+   
+        </fieldset>
+        <br/>
+        <apex:commandButton action="{!save}" value="Save" styleClass="button" />
+</div>          
+ </apex:form> 
+</body>
+</apex:page>
