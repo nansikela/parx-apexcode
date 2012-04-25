@@ -2,6 +2,7 @@ global class OpportunityStockAndInvoicingRun {
 
 	private static String[] sourceIds=new list<String>();
 	static final String oppwherecond=' (Lizenznummer__c<>\'10206\' OR medienart_id__c<>\'55\') AND Opportunity.StageNamePosition__c!=0 AND Opportunity.StageNamePosition__c!=4 AND Opportunity.StageNamePosition__c!=5 AND Opportunity.LFKZ2A__c=false AND (Opportunity.Zahlerkennzeichen__c<>\'S\' OR (Opportunity.Zahlerkennzeichen__c=\'S\' AND Opportunity.RA_Lagerabgang__c=0))';
+	//static final String oppwherecond=' Opportunity.StageNamePosition__c!=0 AND Opportunity.StageNamePosition__c!=4 AND Opportunity.StageNamePosition__c!=5 AND Opportunity.LFKZ2A__c=false';
 	// AND Opportunity.RechnungsartVorUmwandlung__c!=0
 	// umgewandelte Opps dürfen nicht nochmals manuell fakturiert werden: AND Opportunity.RechnungsartVorUmwandlung__c!=0
 	// AND StatusPosition__c<3
@@ -45,19 +46,20 @@ global class OpportunityStockAndInvoicingRun {
 		if(!opps.isEmpty() && !activeFaktura)
 			update opps;
 		else
-			result='Fakturierung kann nicht durchgeführt werden! Bitte versuchen Sie es eventuell später erneut!';
+			result='Fakturierung kann nicht durchgeführt werden! Bitte versuchen Sie es eventuell später erneut! Debug: lockOpps';
 		return result;
 	}
 	
 	public static String unlockOpps(String[] ids) {
-		String result='Fakturierung kann nicht durchgeführt werden! Bitte versuchen Sie es eventuell später erneut!';
+		String result='Fakturierung kann nicht durchgeführt werden! Bitte versuchen Sie es eventuell später erneut! Debug: unlockOpps';
 		list<Opportunity> opps = new list<Opportunity>([select id, Aktive_Fakturierung__c from Opportunity where Id IN: ids]);
 		for(Opportunity o:opps) {
 			o.Aktive_Fakturierung__c = false;
+			o.Locked__c=true;
 		}
-		if(!opps.isEmpty())
+		if(!opps.isEmpty()) {
 			update opps;
-		else
+		} else
 			result='Fakturierung kann nicht durchgeführt werden! Bitte versuchen Sie es eventuell später erneut!';
 		return result;
 	}
@@ -89,12 +91,14 @@ global class OpportunityStockAndInvoicingRun {
 		else
 			query+=getOpportunityLineItemFields() + ' FROM OpportunityLineItem WHERE ' + oppwherecond + oppwhereorder;
 		//query='SELECT ' + getOppFields() + ' FROM Opportunity WHERE ID=\'006R0000005Cp6b\'';
+		system.debug('Query for QueryLocator: ' + query);
 		OpportunityStockAndInvoicingBatch fak=new OpportunityStockAndInvoicingBatch(query, sourceIds);
 		//OpportunityStockAndInvoicingBatch fak=new OpportunityStockAndInvoicingBatch(query);
 		//fak.Query=query;
 		Id ApexClassId=[SELECT Id FROM ApexClass WHERE Name='OpportunityStockAndInvoicingBatch'].Id;
+		System.assert(ApexClassId!=null);
 		ID batchprocessid;
-		if ([SELECT count() FROM AsyncApexJob WHERE Status!='Completed' AND Status!='Aborted' AND ApexClassId=:ApexClassId]==0) {
+		if ([SELECT count() FROM AsyncApexJob WHERE Status!='Completed' AND Status!='Aborted' AND Status!='Failed' AND ApexClassId=:ApexClassId]==0) {
 			batchprocessid = Database.executeBatch(fak, batchsize);
 			System.assert(batchprocessid!=null);
 		}

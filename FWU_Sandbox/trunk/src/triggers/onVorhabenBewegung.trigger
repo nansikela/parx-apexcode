@@ -3,15 +3,26 @@ trigger onVorhabenBewegung on VorhabenBewegung__c (before insert, before delete,
 		onVorhabenKosten.inFutureContext = True;
 		list<VorhabenBewegung__c> toSend = new list<VorhabenBewegung__c>();
 		list<VorhabenBewegung__c> toDuplicate = new list<VorhabenBewegung__c>();
+		list<VorhabenBewegung__c> toDuplicate06 = new list<VorhabenBewegung__c>();
 		for(VorhabenBewegung__c trig:trigger.new) {
-			if(trig.DORGB9__c == 04 && !trig.wasInterfaced__c)
+			if(trig.DORGB9__c == 04 && !trig.wasInterfaced__c && !trig.DupOf06__c)
 				toSend.add(trig);
-			if (trig.DORGB9__c == 01 && trig.Duplizieren_f_r_02__c)
+			else if (trig.DORGB9__c == 01 && trig.Duplizieren_f_r_02__c)
 				toDuplicate.add(trig);
+		    else if(trig.DORGB9__c == 06) {
+		    	if(trig.GKTOK9__c == null) {
+		    	//   trig.addError('Bitte einen Lieferanten eingeben!');
+		    	}
+		    	else
+		           toDuplicate06.add(trig);
+		    }
 		}
 		if(!toSend.isEmpty())
 			onVorhabenKosten.init(toSend);
-		if (!toDuplicate.isEmpty()) onVorhabenKosten.duplicate(toDuplicate);
+		if (!toDuplicate.isEmpty()) 
+		    onVorhabenKosten.duplicate(toDuplicate);
+		if (!toDuplicate06.isEmpty()) 
+            onVorhabenKosten.duplicate06(toDuplicate06);
 	}
 	
 	if(!onVorhabenKosten.inFutureContext && !onVorhabenKosten.alreadyInUpdate && trigger.isUpdate) {

@@ -5,28 +5,37 @@ private class rabattUpdateTest {
     
     static testMethod void myUnitTest() {
     
-    
-        String sampleId = '0012000000WvVnT';
-        Account acc = createAccount(); 
-        //new Account(Name='TestRabatt', );
-        //acc = [Select Id From Account Where Name = 'test'];
-        //insert acc;
+        Account acc = createAccount();
+        insert acc;
         
         Opportunity opp = createOpportunity(acc);
+        insert opp;
+        
         System.debug( 'opp.Account.Name = ' + opp.Account.Name );
-        createOppLineItem(opp);
+        //createOppLineItem(opp);
         
     }
 
 
     public static Opportunity createOpportunity(Account acc) {
     
+    	// FRAGE / PROBLEM ??? Wieso funktioniert das hier nicht; Kopie aus testData! ???
+    	//Id pricebook2id = [SELECT Id FROM Pricebook2 WHERE IsActive=true AND name='Standard Price Book' limit 1].Id;
+    	Id pricebook2id;
+    	list<Pricebook2> listPricebook2 = new list<Pricebook2>([SELECT Id, name FROM Pricebook2 WHERE IsActive=true]);
+    	if( ! listPricebook2.isEmpty() ) {
+    		pricebook2id = listPricebook2[0].Id;
+    		// scheint kein Treffer zu kommen
+    		system.debug('listPricebook2 Name = ' + listPricebook2[0].name);
+    	}
+    	
         Opportunity opp = new Opportunity();
+        opp.Account = acc;
         opp.Name = 'TestRabatte';
         opp.StageName = 'In Erstellung';
         opp.CloseDate = System.today() + 10;
-        opp.Account = acc;
-        insert opp;
+        //opp.Pricebook2Id = pricebook2id;
+        opp.Lizenznummer__c = '10001';
         
         return opp;
     }
@@ -45,6 +54,7 @@ private class rabattUpdateTest {
         
         return oli;
     }
+    
     
     public static Product2 createProduct( Integer randomNumber ) {
     
@@ -90,15 +100,14 @@ private class rabattUpdateTest {
     }
     
     public static Account createAccount() {
-           Account acc = new Account(
-                           Name='Test 01', 
-                           BillingCity = 'city', 
-                           BillingStreet = 'Street', 
-                           BillingPostalCode = '12345', 
-                           BillingCountry = 'DE', 
-                           CODE02__c = '01');
+           Account acc = new Account(	name = 'Test 01', 
+           								BillingCity = 'city', 
+           								BillingStreet = 'Street', 
+           								BillingPostalCode = '12345', 
+           								BillingCountry = 'DE', 
+           								CODE02__c = '01');
                            
-          insert acc;
+          //insert acc;
           return acc;
     }
 }
