@@ -121,6 +121,19 @@ public class onVorhabenKosten {
 			insert toInsert;
 	}
 	
+	public static void duplicate06(list<VorhabenBewegung__c> todup) {
+		list<VorhabenBewegung__c> toInsert = new list<VorhabenBewegung__c>();
+        for (VorhabenBewegung__c item: todup) {
+            VorhabenBewegung__c nVB=item.clone(false,true);
+            nVB.DORGB9__c=04;
+            nVB.DupOf06__c=true;
+            nVB.BTRGB9__c *= -1;
+            toInsert.add(nVB);
+        }
+        if (!toInsert.isEmpty())
+            insert toInsert;
+	}
+	
 	/*
 		wir berechnen für jeden geänderten Eintrag die Zugehörige 03er Bewegung neu, oder legen neue an oder löschen, falls nötig alte 03er
 		

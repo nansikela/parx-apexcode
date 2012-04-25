@@ -366,6 +366,7 @@ global class OpportunityStockAndInvoicing {
 	// we need to controll the delivery by using the new licenses in KOL_Lizenzen
 	private static void KOLspecialcheck() {
 		map<Id, map<Id, OpportunityLineItem>> olimap = new map<Id, map<Id, OpportunityLineItem>>();
+		// AK Spezial
 		if (!opportunitylineitems.isEmpty()) {
 			for (OpportunityLineItem oli46: opportunitylineitems.values()) {
 				if (oli46.Verkaufsprogramm__c=='AK') {
@@ -425,6 +426,8 @@ global class OpportunityStockAndInvoicing {
 			}
 		}
 		
+		
+		// KO, K1 und K2
 		if (!opportunitylineitems.isEmpty()) {
 			map<Id, OpportunityLineItem> koolis = new map<Id, OpportunityLineItem>();
 			for (OpportunityLineItem oli: opportunitylineitems.values()) {

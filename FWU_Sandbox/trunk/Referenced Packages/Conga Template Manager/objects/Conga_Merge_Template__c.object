@@ -164,6 +164,7 @@ Stage__c=In+Progress</inlineHelpText>
         <lookupDialogsAdditionalFields>Description__c</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Name__c</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>Description__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
         <searchFilterFields>Name__c</searchFilterFields>
         <searchFilterFields>Description__c</searchFilterFields>
         <searchResultsAdditionalFields>Name__c</searchResultsAdditionalFields>
