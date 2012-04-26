@@ -1,0 +1,302 @@
+<apex:component controller="TrainingController" allowDML="true">
+<apex:outputPanel id="scripts">
+<script type="text/javascript">
+    $('[id="training_form"]').ready(function() {
+		$('.main').css('height',$(window).height());
+	});
+</script>
+</apex:outputPanel>
+	
+<apex:form id="training_form">
+	<apex:actionFunction name="initHome" action="{!initMobileHome}" rerender="training_form" />
+	<body onload="initHome()">
+	<apex:outputPanel styleClass="main-Div" rendered="{!Modules_showFirstpage}" >
+		<table cellpadding="0" cellspacing="0" border="0" class="main">
+		    <tr>
+	            <td align="left" class="top-bar">
+	                <div class="logo">
+	                   <a href="javascript:void(0);">
+	                    <img src="{!URLFOR($Resource.gigaset_mobile_ressources, 'images/info.png')}" alt="Info"/>
+	                   </a>
+	                </div>
+	            </td>
+	        </tr>
+	        <tr> 
+	            <td align="left" class="body">
+	                <!-- main content -->
+	                <table cellpadding="0" cellspacing="0" border="0" class="content">
+	                    <tr>
+	                        <td align="center" valign="middle">
+	                            <div class="bodyleft">
+	                                  <p class="welcome">
+	                                   <span class="welcome-text">{!Campus_Welcome},{!salutation} {!if(OR(ISNULL(salutation),ISBLANK(salutation)), ' ',lastname + '!')}</span>
+	                                  </p>
+	                                   
+	                                  <p class="ppadding3">
+	                                   <span class="msg">{!Campus_main_Description1} {!Campus_main_Description2}</span>
+	                                  </p>  
+	                                  
+	                                   <p class="msgwhite">
+	                                   <span class="msg white">{!Campus_lastPage2}</span>
+	                                  </p>                      
+	                              <div class="menu">
+	                                    <!--menu item with red cycle for sub menues count indecates-->
+	                                    <apex:repeat value="{!Books}" var="book" id="Repeat2">
+	                                        <div class="menu-item">
+	                                            <a onclick="{!book.function}();" href="#" class="ovalbutton">
+	                                            	<apex:actionFunction name="{!book.function}" rerender="training_form, scripts" action="{!secondPage}" >
+                                    					<apex:param name="param" value="{!book.book.Titel__c}" />
+                                   					</apex:actionFunction>
+	                                            	<span class="label span-menu">{!UPPER(book.book.Titel__c)}</span>
+	                                                <div class="exex"> 	
+	                                                    <span class="redbutton redfirst" >
+	                                                        <span class="labelredbutton">
+	                                                            <!--if there is no string here the red cycle will not be displayed-->
+	                                                            {!ROUND(book.book.New_Modules__c,0)}
+	                                                        </span>
+	                                                    </span>
+	                                                </div> 
+	                                            </a>
+	                                        </div>
+	                                    </apex:repeat>
+	                                </div> 
+	                            </div>
+	                        </td>
+	                    </tr>     
+	                </table>
+	            </td>
+	        </tr>
+	        <tr>
+	            <td align="left" class="bottom-bar">
+	                <div class="navigation navigation-process">
+	                    <apex:commandLink action="{!processPage}" rerender="training_form, scripts" styleclass="ovalbutton button-progress">
+	                        <span class="label">{!Campus_smallBox1}</span>
+	                    </apex:commandLink>
+	                </div>
+	                <div class="slogan-bar">
+	                    <span class="msg regular msg-slogan"></span>
+	                </div>
+	            </td>
+	        </tr>
+	    </table>
+	</apex:outputPanel>
+	
+<!-- 2nd Page -----------------------------------------------------------------------------------------------	 --> 
+
+	<apex:outputPanel styleClass="main-Div" rendered="{!AND(NOT(Modules_showFirstpage),NOT(Modules_showProcesspage))}" >
+		<apex:includeScript value="{!$Resource.cloudCarousel105}" />
+	
+		<script type="text/javascript">
+			
+			$('[id="secondPage"]').ready(function(){	
+				
+				// This initialises carousels on the container elements specified, in this case, carousel1.
+				$("#carousel").CloudCarousel(		
+					{			
+						reflHeight: 25,
+						reflGap:0,
+						xPos: 128,
+						yPos: 22,
+						xRadius: 236,
+						yRadius: 15,
+						autoRotate: 'no',
+						autoRotateDelay: 1000,
+						autoStart: $("#autoStart"),
+						bulletBox: $("#bulletBox"),
+						buttonLeft: $("#left-but"),
+						buttonRight: $("#right-but"),
+						salesforceURL: '{!$Resource.gigaset_mobile_ressources}'
+					}
+				);
+			});
+			
+			function changePropertySecondPage() {
+				var $id = null
+				//Search for the target recordid
+				$.each($('.cloudcarousel'), function() {
+					
+					$element = $(this);
+					if($element.css('z-index') == 100) {
+						$id = $element.find('.reflection-container').find('#recordID').text();
+					}
+				});
+				
+				//Run the load
+				showModule($id); 
+                      
+                return true;
+            }
+		</script>
+		
+		<apex:actionFunction name="initModuleLoad" action="{!initModuleResult}" rerender="inline1" oncomplete="window.location.href = '{!Modules_LektoraURL}'; return true;" />
+		
+		<apex:actionFunction name="showModule" action="{!showModule}" oncomplete="initModuleLoad();">
+			<apex:param name="moduleId" value="" />
+		</apex:actionFunction>
+		
+		<table cellpadding="0" cellspacing="0" border="0" class="main">
+			<tr>
+				<td align="left" class="top-bar">
+					<div class="logo">
+					   <a href="javascript:void(0);">
+						<img src="{!URLFOR($Resource.gigaset_mobile_ressources, 'images/info.png')}" alt="Info"/>
+					   </a>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="body">
+					<!-- main content -->
+					<table cellpadding="0" cellspacing="0" border="0" class="content">
+						<tr>
+							<td align="center" valign="middle">
+								<div class="bodyleft">
+									  <p class="welcome">
+									  	<span class="welcome-text">{!Modules_book.Titel__c}</span>
+									  </p>
+									   
+									  <p class="ppadding1">
+									  	<span class="msg msg-small">{!Modules_book.Beschreibung__c}</span>
+									  </p>
+							    </div>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" valign="middle">
+								  <div class="carousel-container">
+							        <div id = "carousel">        
+										<apex:repeat value="{!Modules_modulesSecondPage1}" var="module">
+										<!-- All divs with class of "cloudcarousel" will be turned into carousel items -->
+										<div class="cloudcarousel">
+											<div class="showTick" style="position:absolute; visibility:hidden">{!module.showCoins__c}</div>
+											<div class="cloudcarousel-top">
+												<div class="cloudcarousel-message">
+													<span class="msg msg-carulsel-small" style="text-decoration:none !important;">{!Campus_otherPage2}:</span><br/>
+													<span id="title" class="msg msg-carulsel-small orange" style="text-decoration:none !important;">{!module.Titel__c}</span>
+													<span id="recordID" style="visibility:hidden; text-decoration:none !important;">{!module.ID}</span>
+													<p>{!module.Beschreibung__c}</p>
+												</div>
+											</div>
+											<div class="cloudcarousel-bottom">
+											   <span class="carousel-bottom-message carousel-sandglass" style="text-decoration:none !important;">{!Campus_otherPage3}&nbsp;{!module.Dauer__c}&nbsp;{!Campus_otherPage4}</span>
+											   <span class="carousel-bottom-message carousel-sign" style="text-decoration:none !important;">{!module.Punkte__c}&nbsp;{!Campus_otherPage5}</span>
+											</div> 
+										</div>
+										</apex:repeat>
+							        </div>
+									<div id="bulletBox" align="center"></div>
+								        <!-- Define left and right buttons. -->
+									<div class="carousel-nav nav-left" id="left-but"></div>
+									<div class="carousel-nav nav-right" id="right-but"></div>
+								  </div>	
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="bottom-bar">
+					<div class="navigation navigation-module">
+						<apex:commandLink action="{!firstPage}" rerender="training_form, scripts" styleClass="ovalbutton button-back" >
+							<span class="label">{!$Label.back}</span>
+						</apex:commandLink>
+					
+						<a class="ovalbutton button-start" href="#" onClick="return changePropertySecondPage();" id="autoStart">
+							<span class="label">{!$Label.Start}</span>
+						</a>					
+					</div>
+					<div class="slogan-bar">
+					</div>
+				</td>
+			</tr>
+		</table>
+	</apex:outputPanel>
+	
+<!-- ProcessPage ----------------------------------------------------------------------------------------- -->
+
+	<apex:outputPanel styleClass="main-Div" rendered="{!Modules_showProcesspage}">
+		<apex:stylesheet value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css"/>
+		<apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" />
+		<apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" />
+	
+		<script>
+			$(document).ready(function() {
+				//length of bar
+		    	var allchapters = {!Modules_total};
+				//complete percentage
+		    	var completedchapters = {!Modules_currentSuccess};
+		    	$("#progress-bar").progressbar({ value: showProgress(allchapters, completedchapters) });
+		    	
+		    	showProgress();
+		  	});
+		  
+		  	function showProgress(percentage, value) 
+		  	{
+		  		var aa = document.getElementById("progress-bar").style.width;
+		  		var result = value*252/percentage;
+		  	  $("#status").animate( { width: result }, 0);
+		  	}
+		</script>
+		<table cellpadding="0" cellspacing="0" border="0" class="main">
+			<tr>
+				<td align="left" class="top-bar">
+					<div class="logo">
+					   <a href="javascript:void(0);">
+						<img src="{!URLFOR($Resource.gigaset_mobile_ressources, 'images/info.png')}" alt="Info"/>
+					   </a>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="body">
+					<!-- main content -->
+					<table cellpadding="0" cellspacing="0" border="0" class="content">
+						<tr>
+							<td align="center" valign="middle">
+								<div class="bodyleft">
+									<p class="welcome">
+									   <span class="welcome-text">{!Campus_smallBox1}</span>
+									</p>
+									   
+									<p class="ppadding2">
+									   <span class="msg">{!Campus_smallBox2}</span>
+									</p>	
+							    </div>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" valign="middle">
+								<div class="bodyleft">
+									<div id="progress-bar">
+									     <div id="status"></div>
+									</div>
+									
+									<div class="msgfinal">
+									   <span class="msg msg-small white">{!Campus_smallBox3}:&nbsp;<span class="msg msg-small">{!Modules_currentSuccess}/{!Modules_total}</span></span>
+									   <span class="msg msg-small white" style="float: right;">{!Campus_smallBox4}<span class="msg msg-small" style="margin-left: 3px;">{!Modules_currentpoint}</span></span>
+									</div>
+									<p class="ppadding4">
+									   <span class="msg">{!Campus_lastPage1}</span>
+									</p>
+								</div>	
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="bottom-bar">
+					<div class="navigation">
+						<apex:commandLink action="{!firstPage}" rerender="training_form, scripts" styleClass="ovalbutton button-back" >
+							<span class="label">{!$Label.back}</span>
+						</apex:commandLink>
+					</div>
+					<div class="slogan-bar">
+					</div>
+				</td>
+			</tr>
+		</table>
+	</apex:outputPanel>
+	</body>
+</apex:form>
+</apex:component>

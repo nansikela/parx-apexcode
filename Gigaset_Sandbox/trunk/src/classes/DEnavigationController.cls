@@ -36,7 +36,11 @@ public class DEnavigationController {
 		if (isPro==null) isPro=SystemSettings.isPro;
 
 		portal=SystemSettings.portal;
+
+		
 		homeurl=SystemSettings.goHome().getUrl();
+		if(Site.getName() == 'Knowledge_Base')
+		   homeurl = '/pkb_Home?l=' + SystemSettings.setLanguage();
 		
 		isAuthenticated=isPortalUser();
 		linktootherportal=getLinkToOtherPortal();

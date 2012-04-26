@@ -167,7 +167,7 @@
                 <apex:inputField id="contactemail" value="{!u.Email}" required="true" styleClass="FieldRequired" />
             <apex:outputLabel value="{!$ObjectType.User.fields.Funktion__c.label}" for="function" />
                 <apex:inputText id="functiont" value="{!u.Funktion__c}" styleClass="FieldRequired" rendered="{!isPro}"  />
-                <apex:inputField id="function" value="{!u.Funktion__c}" styleClass="FieldRequiredSelect" rendered="{!NOT(isPro)}" /><br />
+                <apex:inputField id="function" value="{!u.Funktion__c}" styleClass="FieldRequired" rendered="{!NOT(isPro)}" /><br />
             <apex:outputLabel value="{!$ObjectType.User.fields.Abteilung_Auswahl__c.label}" for="department" />
                 <apex:inputText id="departmentt" value="{!u.Abteilung_Auswahl__c}" styleClass="FieldRequired" rendered="{!isPro}" />
                 <apex:inputField id="department" value="{!u.Abteilung_Auswahl__c}" styleClass="FieldRequiredSelect" rendered="{!NOT(isPro)}" /><br />

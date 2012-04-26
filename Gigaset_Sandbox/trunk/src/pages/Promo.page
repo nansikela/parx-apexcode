@@ -1,0 +1,333 @@
+<apex:page controller="PromoformularController" language="{!$CurrentPage.parameters.lang}" id="Promoregistration" showHeader="false"  sidebar="false" title="Promoformular" >
+<!--     <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP2, 'css/main.css')}" /> -->
+<!--     <apex:outputPanel layout="none" rendered="{!browserName = 'IE'}"> -->
+<!--            <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP2, 'css/main_ie.css')}" /> -->
+<!--      </apex:outputPanel> -->
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+        
+     <apex:outputPanel rendered="{!display}" style="float: left;">
+        <c:contentblock name="promo"  />
+        <apex:form id="step0form" rendered="{!firstPage}">  
+            <apex:outputText value="{!camp.Header__c}" escape="false"/>
+            <apex:outputPanel rendered="{!isnull(con)}">
+                <table width="600px;">
+                    <tr>
+                        <td style="width: 240px;">
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Company.label}*" for="company" />
+                        </td>
+                        <td style="width:340px">    
+                            <apex:inputField id="company" value="{!l.Company}" required="true" styleClass="FieldRequiredSelect" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Salutation.label}*" for="Salutation" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="Salutation" value="{!l.Salutation}" required="true" styleClass="FieldRequiredSelect" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.FirstName.label}*" for="FirstName" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="FirstName" value="{!l.FirstName}" required="true" styleClass="FieldRequired" />
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.LastName.label}*" for="LastName" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="LastName" value="{!l.LastName}" required="true" styleClass="FieldRequired" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Funktion__c.label}*" for="Funktion" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="Funktion" value="{!l.Funktion__c}" required="true" styleClass="FieldRequired" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Email.label}*" for="Email" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="Email" value="{!l.Email}" required="true" styleClass="FieldRequired" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Phone.label}*" for="phone" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="phone" value="{!l.Phone}" required="true" styleClass="FieldRequired" />
+                            <apex:outputPanel id="errorc1" rendered="{!showPhoneErr}">
+                                <div class="errorMsg" >
+                                    <apex:outputText escape="false" value="{!errorText}" />
+                                </div>
+                            </apex:outputPanel>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Street.label}*" for="street" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="street" value="{!l.Street}" required="true" styleClass="FieldRequiredStreet" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.PostalCode.label}*" for="plz" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="plz" value="{!l.PostalCode}" required="true" styleClass="FieldRequired" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.City.label}*" for="city" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="city" value="{!l.City}" required="true" styleClass="FieldRequired" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Lead.fields.Land_Auswahl__c.label}*" for="country" />
+                        </td>
+                        <td>    
+                            <apex:inputField id="country" value="{!l.Land_Auswahl__c}" required="true" styleClass="FieldRequiredSelect" />
+                        </td>
+                    </tr>
+                </table> 
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!not(isnull(con))}">
+                <table width="600px;">
+                    <tr>
+                        <td style="width: 240px;">
+                            <apex:outputLabel value="{!$ObjectType.Account.fields.Name.label}*" for="company2" />
+                        </td>
+                        <td style="width:340px">    
+                            <apex:inputText id="company2" value="{!con.Account.Name}" disabled="true" style="width:340px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.Salutation.label}*" for="Salutation2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="Salutation2" value="{!con.Salutation}"  disabled="true" style="width:340px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.FirstName.label}*" for="FirstName2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="FirstName2" value="{!con.FirstName}" disabled="true" style="width:340px"/>
+                        </td>
+                    </tr>   
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.LastName.label}*" for="LastName2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="LastName2" value="{!con.LastName}"   disabled="true" style="width:340px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.Funktion__c.label}*" for="Funktion2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="Funktion2" value="{!con.Funktion__c}" disabled="true" style="width:340px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.Email.label}*" for="Email2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="Email2" value="{!con.Email}"  disabled="true" style="width:340px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.Phone.label}*" for="phone2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="phone2" value="{!con.Phone}"  disabled="true" style="width:340px" />
+    <!--                         <apex:outputPanel id="errorc2" rendered="{!showPhoneErr}"> -->
+    <!--                             <div class="errorMsg" > -->
+    <!--                                 <apex:outputText escape="false" value="{!errorText}" /> -->
+    <!--                             </div> -->
+    <!--                         </apex:outputPanel> -->
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.MailingStreet.label}*" for="street2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="street2" value="{!con.MailingStreet}" disabled="true" style="width:340px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.MailingPostalCode.label}*" for="plz2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="plz2" value="{!con.MailingPostalCode}"  disabled="true" style="width:340px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.MailingCity.label}*" for="city2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="city2" value="{!con.MailingCity}" disabled="true" style="width:340px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <apex:outputLabel value="{!$ObjectType.Contact.fields.Land_Auswahl__c.label}*" for="country2" />
+                        </td>
+                        <td>    
+                            <apex:inputText id="country2" value="{!con.MailingCountry}"  disabled="true" style="width:340px"/>
+                        </td>
+                    </tr>
+                </table> 
+            </apex:outputPanel>
+            
+            <table width="600px;">
+                <tr>
+                    <td>  
+                        <apex:outputText id="ProdInfo" value="{!camp.Produktinformation__c}" escape="false"/>
+                    </td>
+                </tr>
+            </table>
+    
+            <table width="600px;">
+                <tr>
+                    <td style="width: 240px;vertical-align:top;">
+                        <apex:outputLabel value="{!$ObjectType.Campaign.fields.Produkt__c.label}*" rendered="{!NOT(showProduct)}" />
+                        <apex:outputPanel id="errorc2" rendered="{!showProdErr}"> 
+                            <div class="errorMsg" >
+                                <apex:outputText escape="false" value="{!$Label.registration_errormsg}" />
+                            </div>
+                        </apex:outputPanel>
+                    </td>
+    
+                    <td style="width: 340px;">  
+                        <apex:selectCheckBoxes id="Produkt" value="{!SelectedProducts}" layout="pageDirection">
+                           <apex:selectOptions value="{!Products}"/>
+                        </apex:selectCheckBoxes>
+                    </td>
+                </tr>
+                <apex:outputPanel rendered="{!NOT(ISNULL(Distributors)) }">
+                    <tr>
+                        <td style="width: 240px;vertical-align:top;">
+                            <apex:outputLabel value="{!$ObjectType.Campaign.fields.Distributor__c.label}*" />
+                        </td>
+        
+                        <td style="width: 340px;">  
+                            <apex:selectList id="Distributor" value="{!selectedDistributor}" size="1" required="true">
+                               <apex:selectOptions value="{!Distributors}"/>
+                            </apex:selectList>
+                        </td>
+                    </tr>
+                </apex:outputPanel>
+            </table>
+    
+            <div style="left:0px;position:relative;width: 608px;" id="divinit2">
+                    <br/>
+                    <div style="float: right!important;margin-right: 14px!important;position:relative;top:-10px;">
+    
+                        <apex:commandLink action="{!insertIt}" value="" styleClass="btn rght" style="text-decoration:none;" >
+                            <span style="margin-left:-2px;">{!$Label.KontaktFormular_Insert}</span>
+                        </apex:commandLink>
+                    </div> 
+                    
+                   <p style="top: 15px;position: relative;">{!$Label.registration_required_fields}</p>              
+            </div>  
+            
+        </apex:form>
+    
+        <apex:outputPanel id="step1form" rendered="{!NOT(firstPage)}" layout="block" >
+                <apex:outputText style="font-family: Arial;font-size: 12px;"  escape="false" value="{!camp.ReturnText__c}"/>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    
+   </apex:define></apex:composition>
+    <style>
+        
+
+        .errorMsg {
+            margin-left:0px;
+        }
+        
+        h1 {
+            font-size:20px;
+        }
+
+        .FieldRequired {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            border: 1px solid #b2b2b2;
+            width:346px;
+            margin-bottom:6px;
+            font-size:11px;
+        }
+        
+        .FieldRequiredStreet {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size:11px;
+            width:346px;
+            border: 1px solid #b2b2b2;
+            margin-bottom:6px;
+        }
+        
+        .FieldRequiredSelect {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size:11px;
+            width:350px;
+            border: 1px solid #b2b2b2;
+            margin-bottom:6px;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+
+        .errorMsg {
+          font-size:11px;
+        }
+        .multiSelectPicklistRow select {
+              height:70px;
+        }
+        
+        .datePicker{
+            display:none;
+        }
+
+        td {
+            vertical-align: top;
+        }
+        body {
+          background: none; 
+        }
+        
+        #spanBreadCrumbs {
+            display:none;
+        }
+        #Promoregistration\:DE_SiteTemplate\:DE_breadcrumpcomp\:breadcrump\:arrow {
+            display:none;
+        }
+
+    </style>
+</apex:page>

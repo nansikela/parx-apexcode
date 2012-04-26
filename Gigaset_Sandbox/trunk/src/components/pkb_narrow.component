@@ -1,0 +1,53 @@
+<apex:component allowDML="true" language="{!$CurrentPage.parameters.l}">
+<apex:attribute name="pkbCon" type="pkb_Controller" required="true" description="handle to the pkb controller" />
+<style>
+
+</style>
+<apex:form >
+   <apex:outputPanel layout="block" styleClass="narrowSearch" rendered="{!pkbCon.displayNarrow}" id="narrowSearch"> 
+			<div class="oneCol">
+				   <div class="oneColTop" id="filterArea">
+				        <h1>{!$Label.PKB2_Narrow_Search}</h1> 
+				         
+					     <apex:outputPanel layout="block" styleClass="searchDrill" rendered="{!pkbCon.multiLanguage}">
+                              <span><apex:outputText value="{!$Label.pkb_Language}" /></span>
+						       <apex:selectList value="{!pkbCon.selectedLanguage}" multiSelect="false" size="1" onchange="setLanguage(this);">
+						             <apex:selectOptions value="{!pkbCon.languageOptions}" />
+						       </apex:selectList>
+				         </apex:outputPanel> 
+				         
+					     <apex:outputPanel layout="block" styleClass="searchDrill" rendered="{!pkbCon.displayCategory1}">
+						       <c:pkb_categoryselect catNum="1" 
+						         catGroup="{!pkbCon.categoryGroup1}" 
+						         catGroupLabel="{!pkbCon.categoryLabel1}" 
+						         rootCat="{!pkbCon.rootCategory1}" />
+					     </apex:outputPanel> 
+					
+					     <apex:outputPanel layout="block" styleClass="searchDrill" rendered="{!pkbCon.displayCategory2}">
+						       <c:pkb_categoryselect catNum="2" 
+						         catGroup="{!pkbCon.categoryGroup2}" 
+						         catGroupLabel="{!pkbCon.categoryLabel2}" 
+						         rootCat="{!pkbCon.rootCategory2}" />
+					     </apex:outputPanel>
+					
+					     <apex:outputPanel layout="block" styleClass="searchDrill" rendered="{!pkbCon.displayCategory3}">
+						       <c:pkb_categoryselect catNum="3" 
+						         catGroup="{!pkbCon.categoryGroup3}" 
+						         catGroupLabel="{!pkbCon.categoryLabel3}" 
+						         rootCat="{!pkbCon.rootCategory3}" />
+					     </apex:outputPanel>  
+					     
+					     <apex:outputPanel layout="block" styleClass="searchDrill" rendered="{!pkbCon.displayCategory4}">
+                               <c:pkb_categoryselect catNum="4" 
+                                 catGroup="{!pkbCon.categoryGroup4}" 
+                                 catGroupLabel="{!pkbCon.categoryLabel4}" 
+                                 rootCat="{!pkbCon.rootCategory4}" />
+                         </apex:outputPanel>  
+		
+					</div>
+					<div class="oneColBtm"></div>
+		   </div>
+   </apex:outputPanel>
+</apex:form>
+<script type="text/javascript">setCurrCategories();</script>
+</apex:component>

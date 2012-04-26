@@ -1,51 +1,59 @@
 <apex:page showheader="false" id="CRD_home" sidebar="false" controller="CRD_pageTemplatesController" 
-	extensions="TrainingController"
-	cache="true" expires="2592000"
-	title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" standardStylesheets="false">
+    cache="false" expires="2592000"
+    title="{!$Label.de_title}" language="{!defaultlanguage}" action="{!initHome}" standardStylesheets="false">
 
-<apex:composition template="{!$Site.Template}">
+<apex:composition template="{!$Site.Template}"> 
  
-		<apex:define name="body">
-		<c:CRD_Clearing id="declearingcomp" rendered="{!showclearingcomp}" />
-		<c:CRD_preset id="depresetcomp" rendered="{!showpresetcomp}" />
-		<!-- this can work only if we are not inside a component
-			but we need to be inside a componet with the registration, bad enough -->
-		<!-- <apex:include pageName="DEPrivacy" id="DEPrivacyInclude" rendered="{!showprivacy}"/> -->
-		<c:CRD_privacy id="deprivacycomp" rendered="{!showprivacy}" />
- 		
- 		<!-- <div id="prodOver"> -->
- 		<apex:outputPanel id="truecontent" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showothercomp)/*,NOT(showNextTopShop)*/)}">
- 		<div id="prodOver">
-	 		<!--Start LeftSide Content -->
-	 		
-	 		<div class="contentTextSmall">
-	 			<div id="contact" class="small">
-	 				<c:CRD_Training id="training" rendered="{!showTraining}" />
-	 				<c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
-	 				<c:Download id="Download" rendered="{!showNextTopShop}"/>
-					
-					<!-- News Reader component for new CR -->
-					<c:CRD_newscontent id="newsreadercomp" />
-				</div>
-			</div>
-			
-     		<!--End LeftSide Content -->
-     		<!--Start RightSide Content -->
-     		<div id="colRgt">
-         		<c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
-         		<c:CRD_topnews rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp))}" id="topnewscomp" />
-       			
-			</div>
-    		<!--End RightSide Content -->
+        <apex:define name="body">
+        <c:CRD_Clearing id="declearingcomp" rendered="{!showclearingcomp}" />
+        <c:CRD_preset id="depresetcomp" rendered="{!showpresetcomp}" />
+        <!-- this can work only if we are not inside a component
+            but we need to be inside a componet with the registration, bad enough -->
+        <!-- <apex:include pageName="DEPrivacy" id="DEPrivacyInclude" rendered="{!showprivacy}"/> -->
+        <c:CRD_privacy id="deprivacycomp" rendered="{!showprivacy}" />
+        
+        <!-- <div id="prodOver"> -->
+        <apex:outputPanel id="truecontent" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showothercomp)/*,NOT(showNextTopShop)*/)}">
+        <div id="prodOver">
+            <!--Start LeftSide Content -->
+            
+            <div class="contentTextSmall">
+                <div id="contact" class="small">
+                   <apex:outputPanel rendered="{!NOT(GewinnSpiel)}">
+                        <!-- 
+                        <c:CRD_Training id="training" rendered="{!showTraining}" />
+                        -->
+                        <c:contentblock name="maincontent"  rendered="{!NOT(showNextTopShop)}"/>
+                        <!-- 
+                        <c:Download id="Download" rendered="{!showNextTopShop}"/>
+                        -->
+                        
+                        <!-- News Reader component for new CR -->
+                        <c:CRD_newscontent id="newsreadercomp" />
+                    </apex:outputPanel> 
+                    <c:Gewinn_Spiel id="GewinnSpiel" rendered="{!GewinnSpiel}"/>
+                </div>
+            </div>
+            
+            <!--End LeftSide Content -->
+            <!--Start RightSide Content -->
+            <apex:outputPanel rendered="{!NOT(GewinnSpiel)}">
+                <div id="colRgt">
+                    <c:CRD_contactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp),showcontactportlet)}" id="contactportletcomp" />
+                    <c:CRD_topnews rendered="{!AND(isAuthenticated,NOT(showclearingcomp),NOT(showpresetcomp))}" id="topnewscomp" />
+                    
+                </div>
+            </apex:outputPanel>
+            <!--End RightSide Content -->
     <!-- end prodOver -->
-	 </div>
-	 </apex:outputPanel>
-	</apex:define>
+     </div>
+     </apex:outputPanel>
+    </apex:define>
 </apex:composition>
 
         <apex:stylesheet value="{!URLFOR($Resource.colorboxcss2, 'colorbox.css')}"/> 
 <!-- 
-       		<!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
+            <!--        <apex:includeScript value="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"/>-->
         
   <apex:includeScript value="{!$Resource.jquery142}"/> 
   <apex:includeScript value="{!$Resource.jquerycolorboxjs}"/>

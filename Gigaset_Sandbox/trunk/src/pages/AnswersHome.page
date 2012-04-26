@@ -1,1 +1,82 @@
-<apex:page action="{!URLFOR('/answers/answersHome.apexp')}"/>
+<apex:page showHeader="false">
+
+
+
+<script>
+   /* function after() { 
+       var elem = document.getElementById('frame');
+       elem.setAttribute("width", "1000px");
+       elem.setAttribute("height", "700px");
+    }
+    function fromIframe2() {
+        var iframe;
+        if(document.frames)
+            iframe = document.frames["frame"];
+        else
+            iframe = window.frames["frame"];
+        //console.log("step5:" + iframe.document.getElementById("TheStyleSheet"));
+        
+        if(iframe.document.getElementById("TheStyleSheet") != null)
+            setTimeout("fromIframe2()",500);   
+        else
+            setTimeout("after()",2000);
+        //console.log("step 2");
+    }
+    function fromIframe() {
+        //console.log("step 1");
+        
+        var elem = document.getElementById('frame');
+        elem.setAttribute("width", "0px");
+        elem.setAttribute("height", "0px");
+        fromIframe2();
+    }
+    function setStyle() {
+        //console.log("step 3");
+        
+        var iframe;
+        if(document.frames)
+            iframe = document.frames["frame"];
+        else
+            iframe = window.frames["frame"];
+            
+        if(iframe.document.getElementById("AppBodyHeader") != null && (iframe.document.getElementById("AppBodyHeader").currentStyle == null && iframe.document.getElementById("TheStyleSheet") == null 
+           || iframe.document.getElementById("AppBodyHeader").currentStyle && iframe.document.getElementById("AppBodyHeader").currentStyle["display"] != "none")) {
+
+            var ss = document.createElement("link");
+            ss.type = "text/css";
+            ss.rel = "stylesheet";
+            ss.id= "TheStyleSheet";
+            ss.name= "TheStyleSheet";
+            ss.href = "{!$Resource.StyleCssIframe}";
+            
+            var newScript = document.createElement("script");
+            newScript.type = "text/javascript";
+            newScript.src = "{!$Resource.ScriptIframe}";
+            
+            if(document.all) {
+                iframe.document.createStyleSheet(ss.href);
+                iframe.document.getElementsByTagName("head")[0].appendChild(newScript);
+            }
+            else {
+                iframe.document.getElementsByTagName("head")[0].appendChild(ss);
+                iframe.document.getElementsByTagName("head")[0].appendChild(newScript);
+            }
+        }
+        setTimeout("setStyle()",500);
+        //console.log("step 4");
+        */
+    }
+    
+    function init() {
+        //console.log("init");
+        setStyle();
+        var elem = document.getElementById('frame');
+        elem.setAttribute("width", "1000px");
+        elem.setAttribute("height", "700px");
+    }
+  //  window.onload=init;
+</script>
+
+<iframe name="frame" id="frame" src="/answer/answers/answersHome.apexp" width="1000px" height="700px" style="border:0;" frameborder="0" />
+<!--input type="button" name="test" onclick="init();"/-->
+</apex:page>

@@ -1,0 +1,21 @@
+<apex:component access="global" controller="Case_Close_with_Solution_DE_VFController">
+    <apex:attribute name="CaseId" type="Id" assignTo="{!CaseId}"  description="Case Id" access="global"/>
+
+	    <apex:dataTable value="{!FAQ_Artikeltyp}" var="Article" id="theTable" rowClasses="odd,even" styleClass="tableClass" columnsWidth="5%,10%,85%">
+	        <apex:column >
+	            <apex:facet name="header">Article</apex:facet>
+	            <apex:outputLink value="https://eu1.salesforce.com/{!Article.Id}">
+	                {!Article.Title} 
+	            </apex:outputLink>
+	        </apex:column>
+	        <apex:column >
+	            <apex:facet name="header">Zusammenfassung</apex:facet>
+	            <apex:outputText value="{!Article.Summary}"/>
+	        </apex:column>
+	        <apex:column >
+	            <apex:facet name="header">Inhalt</apex:facet>
+	            <apex:outputText value="{!Article.Body__c}" escape="false"/>
+	        </apex:column>
+	    </apex:dataTable>
+
+</apex:component>

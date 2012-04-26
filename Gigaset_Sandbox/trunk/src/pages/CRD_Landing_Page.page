@@ -1,22 +1,34 @@
 <apex:page showheader="false" id="CRD_landing_page" sidebar="false" title="{!$Label.de_title}" 
-		cache="true" expires="2592000"
+		cache="false" expires="2592000"
 		controller="loginPageController"
 		standardStylesheets="false" 
 		language="{!defaultlanguage}" action="{!init}" >
 
 <apex:composition template="{!$Site.Template}">
-
+ 
         <apex:define name="body">
         	<div id="insidecontent" class="loginbackground" >
 		         <apex:outputPanel id="landingpagecontent" styleClass="landingpagecontent" layout="block">
 		            <c:contentblock name="maincontent" />
+		            <!-- 
 		            <apex:form id="landingform" style="margin-top: 10px;">
+		            -->
+		            	<!-- 
 		            	<div id="btnarea" class="newBTN_area isLeft">
 			                    <div class="newBTN_arrow"></div>
 			                    <div class="newBTN">
 		            			<apex:commandButton styleclass="newBTN" value="{!$Label.site.login_button}" action="{!redirectToLogin}">
 		            				<apex:param name="clicked" value="true" />
 		            			</apex:commandButton>
+		            		</div>
+		            	</div> 
+		            	-->
+		            	<div id="btnarea" class="newBTN_area isLeft">
+			                    <div class="newBTN_arrow"></div>
+			                    <div class="newBTN">
+		            			<apex:outputLink styleclass="newBTN" value="{!$Page.page}?pageid={!loginpageid}" >
+		      						<apex:outputText value="{!$Label.site.login_button}" />
+		      					</apex:outputLink>
 		            		</div>
 		            	</div> 
 		            	<div id="btnarea2" class="newBTN_area isLeft" style="margin-left: 10px;">
@@ -44,7 +56,9 @@
 		            		</div>
 		            	</div>
 		            	-->
+		            <!-- 
 					</apex:form>
+					-->
 				</apex:outputPanel>
 			 </div>
     </apex:define>

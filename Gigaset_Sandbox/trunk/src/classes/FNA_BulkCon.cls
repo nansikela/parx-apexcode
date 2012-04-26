@@ -130,19 +130,19 @@ public class FNA_BulkCon {
         else{
             hasPersonAccounts = false;
         }
-    }
+    } 
     
     /*Constructs the String based on Person Accounts Response. */
     public static String getQueryString(){
-        String q= 'Select BillingCountry,BillingStreet,BillingCity,BillingState,BillingPostalCode, phone,Type, FN__Lat__c, FN__Lon__c, ShippingStreet,ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, FN__Which_Address__c, Name, Id, distance__c from Account where ';
+        String q= 'Select website, Pro_Partner_Typ__c,Produktfokus__c,Einzugsgebiet__c,Pro_Partner_Status__c,BillingCountry,BillingStreet,BillingCity,BillingState,BillingPostalCode, phone,Type, FN__Lat__c, FN__Lon__c, ShippingStreet,ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, FN__Which_Address__c, Name, Id, distance__c from Account where ';
                 
         if(hasPersonAccounts){
             q+=' (IsPersonAccount = false) and '; 
         }
         q+='(FN__Mapping_Status__c != \'Located\' and FN__Mapping_Status__c != \'Do Not Map\' and FN__Mapping_Status__c != \'Problem with Address\')  and (FN__Which_Address__c != \'Do Not Map\') limit 10'; 
         return q;
-   }
-   
+   } 
+    
     /*Only show the Google Chart on the Bulk page if there are some misses and some hits... no point otherwise. */
     public boolean getShowChart() {
         if(totalHits>0 && totalMisses>0 ){return true;}

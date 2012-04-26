@@ -1,32 +1,32 @@
 <apex:component controller="DEnavigationController" id="denavigation" rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired))}" >
-	<div class="prodTeaserFrame">
+    <div class="prodTeaserFrame">
     <div class="prodTeaserBig" >
         <ul id="navimenu" >
-        	<apex:outputPanel id="link1span" rendered="{!AND(Link01Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=1))}">
+            <apex:outputPanel id="link1span" rendered="{!AND(AND(Link01Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=1)), labellink01 != '')}">
             <li><apex:outputLink value="{!Link01Url}" id="link1" target="{!IF(link01pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link01pageid,'active','')}" >{!labellink01}</apex:outputLink></li>
             </apex:outputPanel>
-            <apex:outputPanel id="link2span" rendered="{!AND(Link02Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=2))}">
+            <apex:outputPanel id="link2span" rendered="{!AND(AND(Link02Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=2)), labellink02 != '')}">
             <li><apex:outputLink value="{!Link02Url}" id="link2" target="{!IF(link02pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link02pageid,'active','')}" >{!labellink02}</apex:outputLink></li>
             </apex:outputPanel>
-            <apex:outputPanel id="link3span" rendered="{!AND(Link03Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=3))}">
+            <apex:outputPanel id="link3span" rendered="{!AND(AND(Link03Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=3)), labellink03 != '')}">
             <li><apex:outputLink value="{!Link03Url}" id="link3" target="{!IF(link03pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link03pageid,'active','')}" >{!labellink03}</apex:outputLink></li>
             </apex:outputPanel>
-            <apex:outputPanel id="link4span" rendered="{!AND(Link04Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=4))}">
+            <apex:outputPanel id="link4span" rendered="{!AND(AND(Link04Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=4)), labellink04 != '')}">
             <li><apex:outputLink value="{!Link04Url}" id="link4" target="{!IF(link04pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link04pageid,'active','')}" >{!labellink04}</apex:outputLink></li>
             </apex:outputPanel> 
-            <apex:outputPanel id="link5span" rendered="{!AND(Link05Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=5))}">
+            <apex:outputPanel id="link5span" rendered="{!AND(AND(Link05Url!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert,LinkHomeNumber=5)), labellink05 != '')}">
             <li><apex:outputLink value="{!Link05Url}" id="link5" target="{!IF(link05pageid == '', '_blank', '_self')}" styleClass="{!IF($CurrentPage.parameters.pageid=link05pageid,'active','')}" >{!labellink05}</apex:outputLink></li>
             </apex:outputPanel>
 
-	            <apex:outputPanel id="pmurl" rendered="{!AND(showpmlink,OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">
-	            <li><apex:outputLink value="#" onclick="window.open('{!PicturemanagemantUrl}');" id="linkpicturemanagement" >{!$Label.menu_de_pm}</apex:outputLink></li>
-	           	</apex:outputPanel>
-	            <apex:outputPanel id="werbemittelspan" rendered="{!AND(WerbemittelUrl!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">
-	            <li><apex:outputLink value="{!WerbemittelUrl}" id="werbemittel" styleClass="{!IF($CurrentPage.parameters.pageid=werbemittelpageid,'active','')}" >{!labelwerbemittel}</apex:outputLink></li>
-	            </apex:outputPanel>
-				<apex:outputPanel id="linktootherportal" rendered="{!AND(linktootherportal!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">
-	            <li><apex:outputLink value="{!linktootherportal}" id="otherportal" >{!$Label.breadcrump_dealer}<apex:outputText rendered="{!Not(isPro)}" value=" Pro" /></apex:outputLink></li>
-	            </apex:outputPanel>
+                <apex:outputPanel id="pmurl" rendered="{!AND(showpmlink,OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">
+                <li><apex:outputLink value="#" onclick="window.open('{!PicturemanagemantUrl}');" id="linkpicturemanagement" >{!$Label.menu_de_pm}</apex:outputLink></li>
+                </apex:outputPanel>
+                <apex:outputPanel id="werbemittelspan" rendered="{!AND(WerbemittelUrl!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">
+                <li><apex:outputLink value="{!WerbemittelUrl}" id="werbemittel" styleClass="{!IF($CurrentPage.parameters.pageid=werbemittelpageid,'active','')}" >{!labelwerbemittel}</apex:outputLink></li>
+                </apex:outputPanel>
+                <apex:outputPanel id="linktootherportal" rendered="{!AND(linktootherportal!='',OR(NOT(ProAuthorizationSwitch),ProAuthorisiert))}">
+                <li><apex:outputLink value="{!linktootherportal}" id="otherportal" >{!$Label.breadcrump_dealer}<apex:outputText rendered="{!Not(isPro)}" value=" Pro" /></apex:outputLink></li>
+                </apex:outputPanel>
 
         </ul>
     </div>

@@ -1,0 +1,125 @@
+<apex:component controller="SiteLoginController" id="loginComponent"
+	rendered="{!$Site.LoginEnabled}">
+ 
+	<apex:form id="loginForm" forceSSL="true">
+	<script type="text/javascript">
+	    $(document).ready(function() {
+	        $('.main').css('height',$(window).height());
+	        
+	        if({!handleLoginErrorMessage})
+	            showError();
+	    });
+	    
+	    function showError(){
+	        var maskHeight = $(document).height();
+	        var maskWidth = $(window).width();
+	     
+	        //Set height and width to mask to fill up the whole screen
+	        $('#mask').css({'width':maskWidth,'height':(maskHeight-43)});
+	         
+	        //transition effect    
+	        $('#mask').show();   
+	        $('#mask').css({"opacity":0.4});  
+	        $('#mask').css("z-index",99);  
+	        
+	        //Get the window height and width
+	        var winH = $(window).height();
+	        var winW = $(window).width();
+	               
+	        //Set the popup window to center
+	        $('#dialog').css('top',  winH/2-$('#dialog').height()/2);
+	        $('#dialog').css('left', (winW-($('#dialog').width() + 30))/2);               
+	        $('#dialog').css("z-index",100);
+	        
+	        //transition effect
+	        $('#dialog').css({"display":"block"});
+	    }
+	    
+	    function noenter(ev)  {
+	        if (window.event && window.event.keyCode == 13 || ev.which == 13) {
+	            enterLogin();
+	         }
+	     }
+	 
+	    function closeError() {
+	        $('#mask').hide();   
+	        $('#dialog').hide();
+	    }
+	</script>
+	
+		<apex:actionFunction name="enterLogin" action="{!login}" />
+	
+		<table cellpadding="0" cellspacing="0" border="0" class="main">
+			<tr>
+				<td align="left" class="top-bar">
+					<div class="logo">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="body">
+					<table cellpadding="0" cellspacing="0" border="0"
+						class="content content-login">
+						<tr>
+							<td align="center" valign="middle">
+								<div class="bodyleft"> 
+									<p class="welcome">
+										<span class="welcome-text">{!$Label.campus_welcome}</span>
+									</p>
+
+									<p>
+										<span class="msg">{!$Label.campus_login}</span>
+									</p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td align="center" valign="middle">
+								<div class="login" id="login">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td align="left" valign="middle"><span class="label">{!$Label.site.username}:</span>
+											</td>
+											<td align="left" valign="middle"><apex:inputText id="userName" value="{!username}"
+													styleClass="input username" /></td>
+										</tr>
+										<tr>
+											<td align="left" valign="middle"><span class="label">{!$Label.site.password}:</span>
+											</td>
+											<td align="left" valign="middle"><apex:inputSecret id="passWord" value="{!password}"
+													onkeypress="noenter(event);"
+													styleClass="input password" /></td>
+										</tr>
+										<tr>
+											<td align="left" valign="bottom" colspan="2"
+												style="padding-bottom: 0px;">
+												<apex:commandLink action="{!login}" value=""
+													id="loginButton" styleClass="ovalbutton button-login">
+													<span class="label">{!$Label.site.login_button} </span>
+												</apex:commandLink> 
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td align="left" class="bottom-bar">
+					<div class="slogan-bar"></div>
+				</td>
+			</tr>
+		</table>
+	</apex:form>
+	
+	<div id="mask"></div>
+	<div id="dialog" class="modal">
+		<p>{!loginErrorSummary}</p>
+		<a class="ovalbutton button-forward" href="javascript:closeError()">
+			<span class="label">Again</span>
+		</a>
+	</div>
+	
+</apex:component>

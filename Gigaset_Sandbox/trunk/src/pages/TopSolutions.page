@@ -11,7 +11,7 @@ var date3 = '{!TODAY() + 24}';
 
     
    <!-- This section shows the top solutions in a table -->
-   <apex:pageBlock title="{!$Label.PopularSolutions}">
+   <apex:pageBlock >
       <apex:pageBlockTable value="{!TopSolutions}" var="currentSolution" id="solutionTable">
          <apex:column >
             <apex:facet name="header">

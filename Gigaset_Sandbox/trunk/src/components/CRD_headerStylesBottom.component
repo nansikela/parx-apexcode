@@ -3,7 +3,7 @@
 
         type="Boolean" required="true"/>
 
-    <apex:attribute name="Modules_URLPage" description="This is Modules URL for Training." 
+    <apex:attribute name="trainingpageid" description="This is Id for Training." 
 
         type="String" required="true"/>
 	
@@ -70,7 +70,7 @@
             window.onload = new function(){
 
 				if(training == 1)
-            		$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!Modules_URLPage}"});	
+            		$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540, href:"{!$Page.page}?pageid={!trainingpageid}"});	
  			 	
  			 	var url = window.location.href;
 
@@ -104,7 +104,7 @@
                 document.getElementById('custom_popup_bg').style.display = 'inline-block';
                 document.getElementById('custom_popup_close').style.display = 'inline-block';
                 document.getElementById("custom_popup").style.display = 'inline-block';
-           		document.getElementById("iFrameOfPopup").src = '{!Modules_URLPage}';
+           		document.getElementById("iFrameOfPopup").src = '{!$Page.page}?pageid={!trainingpageid}';
            	 } else  
            	 	if(document.getElementById("custom_popup") != null && getURLParam('download') != ''){
            	 		document.getElementById('custom_popup_bg').style.display = 'inline-block';

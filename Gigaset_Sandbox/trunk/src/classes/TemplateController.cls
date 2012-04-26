@@ -4,33 +4,36 @@ public class TemplateController {
 	
 	public Boolean showTraining { get; set; }
 	public Boolean isDone {get; set; }
-	public Transient Boolean isPro { get; private set; }
+	public  Boolean isPro { get; private set; }
 	public  String portal { get; private set; }
-    public String currentNavigationPoint { get; set; }
+    public String currentNavigationPoint;
     public  String homeurl { get; set; }
 	pageReference CMSpage = Page.page;
 	public  Id kontaktpageid { get; private set; }
 	public  Id registrationpageid { get; private set; }
 	public  Id userdatapageid { get; private set; }
+	public Id trainingpageid { get; private set; }
 	public  String label_menu_home { get; set; }
 	public  String defaultlanguage { get; set; }
-	public Transient Boolean showpresetcomp { get; set; }
-	public Transient Boolean showclearingcomp { get; set; }
-	public Transient Boolean showcontactportlet { get; set; }
-	public Transient Boolean showothercomp { get; set; }
-	public Transient Boolean showprivacy { get; set; }
+	public  Boolean showpresetcomp { get; set; }
+	public  Boolean showclearingcomp { get; set; }
+	public  Boolean showcontactportlet { get; set; }
+	public  Boolean showothercomp { get; set; }
+	public  Boolean showprivacy { get; set; }
 	public  String callback_imgurl { get; set; }
-	public Transient String styleSelector { get; set; }
+	public  String styleSelector { get; set; }
 	public String test {get;set;}
-	public Transient String loginBackgroundImageId { get; private set; }
+	public  String loginBackgroundImageId { get; private set; }
 	
 	public User u0{get;set;}
 	public Contact c0 {get;set;}
 	
 	public Boolean trainingActivation {get;set;}
+	public CustomLabel__c menuImpressum {get;set;}
 	
 	// constructor
 	public TemplateController() {
+		
 		defaultlanguage=System_Settings.setLanguage();
 		Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=8');
 		System_Settings.cookie = ApexPages.currentPage().getCookies().get('guest');
@@ -58,11 +61,17 @@ public class TemplateController {
 		loginBackgroundImageId=System_Settings.getLabel('loginBackgroundImageId');
 		kontaktpageid=System_Settings.kontaktpageid;
 		userdatapageid=System_Settings.userdatapageid;
+		trainingpageid=System_Settings.TrainingId;
 		isAuthenticated=System_Settings.isPortalUser();
-		currentNavigationPoint='';
+		
+		try {
+			system.debug('PRO: '+isPro+' / Portal: '+portal+' / LanguageCode: '+System_Settings.setLanguage());
+          menuImpressum = [SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :portal AND LanguageCode__c = :System_Settings.setLanguage() AND CommonCode__c = 'extranet_topNavi_Impressum' ];
+        }
+        catch(exception e) {
+        	system.debug(e.getStackTraceString());
+        }
 		if (ApexPages.currentPage().getParameters().containsKey('pageid')) {
-			currentNavigationPoint=getCurrentNavigationPointLabel(ApexPages.currentPage().getParameters().get('pageid'));
-			
 			for (pages__c l:pages__c.getAll().values()) {
 				if (l.Portal__c==portal && l.Label__c=='training_firstPage') {
 					if(ApexPages.currentPage().getParameters().get('pageid') == l.PageId__c)
@@ -70,12 +79,30 @@ public class TemplateController {
 					else
 						showTraining = false;
 				}
-			}	
-		}
+			}
+		}	
+		
 		homeurl=System_Settings.goHome().getUrl();
 		u0=System_Settings.currentuser;
 		c0=System_Settings.currentusercontact;
 		//System.debug('******* Zustand: showprivacy: ' + showprivacy + ' / showpresetcomp: '+ showpresetcomp + ' / showclearingcomp: ' +showclearingcomp + ' / showothercomp: ' + showothercomp + ' / shownexttopshop: ' + showNextTopShop + ' / isAuthenticated: ' + isAuthenticated + ' / isPro: ' + isPro +  ' / Portal: ' + System_Settings.portal + ' / UserId: ' + UserInfo.getUserId() );
+	}
+	
+	public String getBaseTopNaviUrl() {
+       /* if(isPro)
+            return System_Settings.baseurl+'pro/'+portal.substring(0,2)+'/'+String.valueOf(System_Settings.setLanguage()).substring(0,2)+'/';
+        else*/
+            return System_Settings.baseurl+portal.substring(0,2)+'/'+String.valueOf(System_Settings.setLanguage()).substring(0,2)+'/';
+    }
+    
+	public String getcurrentNavigationPoint() {
+		//if (currentNavigationPoint==null) {
+			currentNavigationPoint='';
+			if (ApexPages.currentPage()!=null && ApexPages.currentPage().getParameters()!=null && !ApexPages.currentPage().getParameters().isEmpty() && ApexPages.currentPage().getParameters().containsKey('pageid')) {
+				currentNavigationPoint=getCurrentNavigationPointLabel(ApexPages.currentPage().getParameters().get('pageid'));
+			}
+		//}
+		return currentNavigationPoint;
 	}
 	 
 	public String getCurrentNavigationPointLabel(String pid) {
@@ -99,7 +126,7 @@ public class TemplateController {
 			//String werbemittelpageid=System_Settings.werbemittelpageid;
 			Id imprintpageid=System_Settings.imprintpageid;
 			Id kontaktpageid=kontaktpageid;
-			Id registrationpageid=registrationpageid;
+			Id registrationpageid=System_Settings.registrationpageid;
 			Id userdatapageid=System_Settings.userdatapageid;
 			Id loginpageid=System_Settings.loginpageid;
 			Id rueckrufservicepageid=System_Settings.rueckrufservicepageid;
@@ -130,6 +157,7 @@ public class TemplateController {
 
 	// actions
 	public PageReference init() {
+		system.debug(System_Settings.isMobile);
 		if (defaultlanguage=='' || defaultlanguage==null) defaultlanguage=System_Settings.setLanguage();
 		CRD_Landing_Controller.init();
 	 	if (ApexPages.currentPage().getParameters().containsKey('pid')) System_Settings.addParam='&pid='+ApexPages.currentPage().getParameters().get('pid');
@@ -182,195 +210,10 @@ public class TemplateController {
 		return copyright;
 	}
 
-	public String getModules_URLPage(){
-		return TrainingController.Modules_URLPage;
-	}
-	
-	public String getFirstName(){
-		return TrainingController.firstName;
-	}
-	
-	public String getLastName(){
-		return TrainingController.lastName;
-	}
-	
-	public String getSalutation(){
-		return TrainingController.salutation;
-	}
-	
 	public Boolean getShowNextTopShop(){
 		return System_Settings.showNextTopShop;
 	}
-	 
-	public Integer getModules_currentSuccess(){
-		return TrainingController.Modules_currentSuccess;
-	}
-	
-	public String getModules_Param(){
-		return TrainingController.Modules_Param;
-	}
-	
-	public Integer getModules_total(){
-		return TrainingController.Modules_total;
-	}
-	
-	public Integer getModules_currentpoint(){
-		return TrainingController.Modules_currentpoint;
-	}
-	
-	public Double getModules_currentbar(){
-		return TrainingController.Modules_currentbar;
-	}
-	
-	public Boolean getModules_showFirstpage(){
-		return TrainingController.Modules_showFirstpage;
-	}
-	
-	public Boolean getModules_showThirdpage(){
-		return TrainingController.Modules_showThirdpage;
-	}
-	
-	public String getModules_LektoraURL(){
-		return TrainingController.Modules_LektoraURL;
-	}
-	
-	public String getNewsid(){
-		return TrainingController.newsid;
-	}
-	
-	public Training_Book__c getModules_book(){
-		return TrainingController.Modules_book;
-	}
-	
-	public list<Training_Module__c> getModules_modulesSecondPage1(){
-		return TrainingController.Modules_modulesSecondPage1;
-	}
-	
-	public Training_Module__c getModules_SingleModule(){
-		return TrainingController.Modules_SingleModule;
-	}
-	
-	public list<TrainingController.Modulen> getModules(){
-		return TrainingController.Modules;
-	}
-	
-	public PageReference Poller(){ 
-		return TrainingController.Poller();
-	}
 
-	public PageReference firstPage(){
-		return TrainingController.firstPage();
-	}
-	
-	public PageReference secondPage(){
-		return TrainingController.secondPage();
-	}
-	
-	public PageReference showModule(){
-		return TrainingController.showModule();
-	}
-	
-	public PageReference initModuleResult(){
-		return TrainingController.initModuleResult();
-	}
-	
-	public list<TrainingController.Modulen> getModules_modulesSecondPage2(){
-		return TrainingController.Modules_modulesSecondPage2;
-	}
-	
-	public list<TrainingController.Booken> getBooks(){
-		return TrainingController.Books;
-	}
-	
-	
-	public NextTopShop__c getNTS(){
-		return TrainingController.NTS;
-	}
-	
-	public String getCampus_Title_1() {
-		return TrainingController.getCampus_Title_1();
-	}
-	
-	public String getCampus_Welcome() {
-		return TrainingController.getCampus_Welcome();
-	}
-	
-	public String getCampus_main_Description1() {
-		return TrainingController.getCampus_main_Description1();
-	}
-	
-	public String getCampus_main_Description2() {
-		return TrainingController.getCampus_main_Description2();
-	}
-	
-	public String getCampus_1_Title() {
-		return TrainingController.getCampus_1_Title();
-	}
-	
-	public String getCampus_2_Title() {
-		return TrainingController.getCampus_2_Title();
-	}
-	
-	public String getCampus_3_Title() {
-		return TrainingController.getCampus_3_Title();
-	}
-	
-	public String getCampus_4_Title() {
-		return TrainingController.getCampus_4_Title();
-	}
-	
-	public String getCampus_underTitle() {
-		return TrainingController.getCampus_underTitle();
-	}
-	
-	public String getCampus_smallBox1() {
-		return TrainingController.getCampus_smallBox1();
-	}
-	
-	public String getCampus_smallBox2() {
-		return TrainingController.getCampus_smallBox2();
-	}
-	
-	public String getCampus_smallBox3() {
-		return TrainingController.getCampus_smallBox3();
-	}
-	
-	public String getCampus_smallBox4() {
-		return TrainingController.getCampus_smallBox4();
-	}
-	
-	public String getCampus_otherPage1() {
-		return TrainingController.getCampus_otherPage1();
-	}
-	
-	public String getCampus_otherPage2() {
-		return TrainingController.getCampus_otherPage2();
-	}
-	
-	public String getCampus_otherPage3() {
-		return TrainingController.getCampus_otherPage3();
-	}
-	
-	public String getCampus_otherPage4() {
-		return TrainingController.getCampus_otherPage4();
-	}
-	
-	public String getCampus_otherPage5() {
-		return TrainingController.getCampus_otherPage5();
-	}
-	
-	public String getCampus_otherPage6() {
-		return TrainingController.getCampus_otherPage6();
-	} 
-	
-	public String getCampus_lastPage1() {
-		return TrainingController.getCampus_lastPage1();
-	}
-	
-	public String getCampus_lastPage2() {
-		return TrainingController.getCampus_lastPage2();
-	}
-	
 	public PageReference redirectToLogin(){
 		return System_Settings.redirectDirectlyToLogin();
 	}
@@ -378,8 +221,6 @@ public class TemplateController {
 	public String getTarget(){
 		return 'pdf_logo.pdf';
 	}
-	
-	
 	
 	public Boolean getIsPDF(){
 		return System_Settings.popupIsPDF;
@@ -410,4 +251,23 @@ public class TemplateController {
 	
 		return null;
 	}
+	
+	public Boolean getGewinnSpiel(){
+        User u = [select Contact.Keine_Teilnahme_Campus_Incentiv__c from User where Id=:UserInfo.getUserId()];
+        if(u.Contact.Keine_Teilnahme_Campus_Incentiv__c) //user already clicked on "ich möchte nicht teilnehmen"
+            return false;
+        
+        map<String, Cookie> Cookies = ApexPages.currentPage().getCookies();
+        if(Cookies.containsKey('HideGewinnSpiel')) //user clicked during the current session on "jetzt nicht teilnehmen"
+            return false;
+            
+        try {
+            Campaign camp = [select id from Campaign where RecordType.developerName = 'Top_Shop' AND Portal__c =: SystemSettings.portal and isActive = true and StartDate <=: system.today() and EndDate >=: system.today() limit 1];
+        }
+        catch(exception e) {
+            return false;
+        }
+        
+        return true;
+    } 
 }

@@ -1,4 +1,4 @@
-<apex:component id="metanavi" >
+<apex:component id="metanavi" language="{!defaultlanguage}"  >
 <!-- controller="TemplateController" -->
 
 <apex:attribute name="homeurl" description="back to home url" type="String" required="true"/>
@@ -7,13 +7,19 @@
 <apex:attribute name="KontaktformularUrl" description="url for contactform" type="String" required="true"/>
 <apex:attribute name="kontaktpageid" description="kontaktform pageid" type="String" required="true"/>
 <apex:attribute name="label_menu_home" description="label for home" type="String" required="true"/>
+<apex:attribute name="defaultlanguage" description="defaultlanguage" type="String" required="true"/>
+<apex:attribute name="isPro" description="isPro" type="Boolean" required="true"/>
+<apex:attribute name="BaseTopNaviUrl" description="BaseTopNaviUrl" type="String" required="true"/>
+<apex:attribute name="menuImpressum" description="menuImpressum" type="String" required="true"/>
 
 <ul id="metanavi">
     <li>
         <apex:outputLink value="{!homeurl}">{!label_menu_home}</apex:outputLink>
     </li>
     <li>
-        <apex:outputLink value="{!ImprintUrl}">{!$Label.tplt_label_imprint}</apex:outputLink>
+       <!-- <apex:outputLink value="{!ImprintUrl}" rendered="{!isPro}">{!$Label.tplt_label_imprint}</apex:outputLink>-->
+        <!--http://gigaset.com/de/de/cms/PageImprint.html-->
+        <apex:outputLink value="{!BaseTopNaviUrl}{!menuImpressum}" target="top" >{!$Label.tplt_label_imprint}</apex:outputLink>
     </li>
     <apex:outputPanel id="kontaktlink" rendered="{!isAuthenticated}" style="font-size: inherit;">
     <li>

@@ -417,9 +417,9 @@
                 
         <h3 class="firstHeader"><apex:outputText value="Survey URL Link"/></h3>
         <h4>Contact with Case:</h4>
-        <apex:outputText value="{!templateURL}"/>&cId=&#123;!Contact.SFID}&caId=&#123;!Case.id}
+        <apex:outputText value="{!templateURL}"/>&cId=&#123;!Contact.SFID__c}&caId=&#123;!Case.id}
         <h4>Just Contact:</h4>
-        <apex:outputText value="{!templateURL}"/>&cId=&#123;!Contact.SFID}&caId=none
+        <apex:outputText value="{!templateURL}"/>&cId=&#123;!Contact.SFID__c}&caId=none
         <h4>Anonymous:</h4>
         <apex:outputText value="{!templateURL}"/>&cId=none&caId=none
         <br />

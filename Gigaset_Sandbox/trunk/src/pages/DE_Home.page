@@ -19,10 +19,13 @@
             
             <div class="contentText">
                 <div id="contact">
-                    <c:DE_Training id="training" rendered="{!AND(showTraining,OR(ProAuthorisiert,NOT(ProAuthorizationSwitch)))}" />
-                    <c:contentblock name="maincontent"  rendered="{!AND(NOT(showNextTopShop),NOT(AND(ProAuthorizationSwitch,NOT(ProAuthorisiert))))}"/>
-                    <c:contentblock name="ProAuthorizationContent"  rendered="{!AND(ProAuthorizationSwitch,NOT(ProAuthorisiert))}"/>
-                    <c:Download id="Download" rendered="{!AND(showNextTopShop,OR(ProAuthorisiert,NOT(ProAuthorizationSwitch)))}"/>
+                	<apex:outputPanel rendered="{!NOT(GewinnSpiel)}">
+                    	<c:DE_Training id="training" rendered="{!AND(showTraining,OR(ProAuthorisiert,NOT(ProAuthorizationSwitch)))}" />
+                   	 	<c:contentblock name="maincontent"  rendered="{!AND(NOT(showNextTopShop),NOT(AND(ProAuthorizationSwitch,NOT(ProAuthorisiert))))}"/>
+                    	<c:contentblock name="ProAuthorizationContent"  rendered="{!AND(ProAuthorizationSwitch,NOT(ProAuthorisiert))}"/>
+                    	<c:Download id="Download" rendered="{!AND(showNextTopShop,OR(ProAuthorisiert,NOT(ProAuthorizationSwitch)))}"/>
+					</apex:outputPanel> 
+					<c:Gewinn_Spiel id="GewinnSpiel" rendered="{!GewinnSpiel}"/>
 
                     <!-- News Reader component for new CR
                     <apex:form id="testform">

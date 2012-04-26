@@ -8,7 +8,7 @@
 				<p>&nbsp;</p>
 				<!-- Start Contact -->
 				
-					<c:DE_register />
+					<c:DE_register defaultlanguage="{!defaultlanguage}"/>
 
 				<c:contentblock name="sidebarimage" />
         		<!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/kontakt.png')}" alt="kontakt" /> -->

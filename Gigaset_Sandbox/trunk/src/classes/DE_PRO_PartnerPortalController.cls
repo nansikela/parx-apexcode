@@ -8,6 +8,7 @@ public class DE_PRO_PartnerPortalController {
 	
 	public String homeurl { get; set; }
 	pageReference CMSpage = Page.page;
+	public CustomLabel__c menuImpressum {get;set;}
 	
 	public DE_PRO_PartnerPortalController() {
 		isPro=true;
@@ -31,8 +32,19 @@ public class DE_PRO_PartnerPortalController {
 		for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
 			if (gs!=null && gs.Portal__c==portal && gs.isPro__c==isPro && gs.Sprache__c!=null) defaultlanguage=gs.Sprache__c;
 		}
+		
+		try {
+          menuImpressum = [SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :portal AND LanguageCode__c = :SystemSettings.setLanguage() AND CommonCode__c = 'extranet_topNavi_Impressum' ];
+        }
+        catch(exception e) {}
 	}
 	
-	
+	public String getBaseTopNaviUrl() {
+     /*   if(isPro)
+            return SystemSettings.baseurl+'pro/'+portal.substring(0,2)+'/'+String.valueOf(SystemSettings.setLanguage()).substring(0,2)+'/';
+        else*/
+            return SystemSettings.baseurl+portal.substring(0,2)+'/'+String.valueOf(SystemSettings.setLanguage()).substring(0,2)+'/';
+    }
+    
 
 }

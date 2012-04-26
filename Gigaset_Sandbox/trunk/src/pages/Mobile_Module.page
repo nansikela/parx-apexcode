@@ -1,0 +1,110 @@
+<apex:page controller="TrainingController" action="{!firstPage}" language="{!defaultlanguage}" id="training" showHeader="false" sidebar="false">
+
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<meta content="initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport" id="viewport" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	
+	
+<apex:stylesheet value="{!URLFOR($Resource.gigaset_mobile_ressources, 'stylesheets/gigaset.css')}"/>
+<apex:includeScript value="{!$Resource.jQuery171}" />
+<apex:includeScript value="{!$Resource.cloudCarousel105}" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+							   
+		// This initialises carousels on the container elements specified, in this case, carousel1.
+		$("#carousel").CloudCarousel(		
+			{			
+				reflHeight: 25,
+				reflGap:0,
+				xPos: 128,
+				yPos: 22,
+				xRadius: 236,
+				yRadius: 15,
+				autoRotateDelay: 4500,
+				autoStart: $("#autoStart"),
+				bulletBox: $("#bulletBox"),
+				buttonLeft: $("#left-but"),
+				buttonRight: $("#right-but")
+			}
+		);
+	});
+</script>
+<apex:form id="form">
+	<table cellpadding="0" cellspacing="0" border="0" class="main">
+		<tr>
+			<td align="left" class="top-bar">
+				<div class="logo">
+				   <a href="javascript:void(0);">
+					<img src="{!URLFOR($Resource.gigaset_mobile_ressources, 'images/info.png')}" alt="Info"/>
+				   </a>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" class="body">
+				<!-- main content -->
+				<table cellpadding="0" cellspacing="0" border="0" class="content">
+					<tr>
+						<td align="center" valign="middle">
+							<div class="bodyleft">
+								  <p class="welcome">
+								  	<span class="welcome-text">{!Modules_book.Titel__c}</span>
+								  </p>
+								   
+								  <p class="ppadding1">
+								  	<span class="msg msg-small">{!Modules_book.Beschreibung__c}</span>
+								  </p>
+						    </div>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" valign="middle">
+							  <div class="carousel-container">
+						        <div id = "carousel">            
+									<apex:repeat value="{!Modules_modulesSecondPage1}" var="module">
+									<!-- All divs with class of "cloudcarousel" will be turned into carousel items -->
+									<div class="cloudcarousel">
+										<div class="cloudcarousel-top">
+											<div class="cloudcarousel-message">
+												<span class="msg msg-carulsel-small">{!Campus_otherPage2}:</span><br/>
+												<span class="msg msg-carulsel-small orange">{!module.Titel__c}</span>
+												<p>{!module.Beschreibung__c}</p>
+											</div>
+										</div>
+										<div class="cloudcarousel-bottom">
+										   <span class="carousel-bottom-message carousel-sandglass">{!Campus_otherPage3}.&nbsp;xxx&nbsp;{!Campus_otherPage4}</span>
+										   <span class="carousel-bottom-message carousel-sign">xxx&nbsp;{!Campus_otherPage5}</span>
+										</div>
+									</div>
+									</apex:repeat>
+						        </div>
+								<div id="bulletBox" align="center"></div>
+							        <!-- Define left and right buttons. -->
+								<div class="carousel-nav nav-left" id="left-but"></div>
+								<div class="carousel-nav nav-right" id="right-but"></div>
+							  </div>	
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" class="bottom-bar">
+				<div class="navigation navigation-module">
+					<apex:commandLink action="{!firstPage}" styleClass="ovalbutton button-back" >
+						<span class="label">{!$Label.back}</span>
+					</apex:commandLink>
+					
+					<apex:commandLink id="autoStart" action="{!firstPage}" styleClass="ovalbutton button-start" >
+						<span class="label">{!$Label.Start}</span>
+					</apex:commandLink>
+				</div>
+				<div class="slogan-bar">
+				</div>
+			</td>
+		</tr>
+	</table>	
+</apex:form>
+</apex:page>

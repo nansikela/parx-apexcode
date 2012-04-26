@@ -20,7 +20,7 @@ public class registerController {
 	public String labelHotline { get; set; }
 	public String labelPrivacy { get; set; }
 	public String errorText { get; set; }
-	public Transient String errorBase='<strong>' + System.Label.site.Error2 + ':</strong> ';
+	public String errorBase='<strong>' + System.Label.site.Error2 + ':</strong> ';
 	public String stdErrorText='';
 	public Set<String> gfks = new Set<String>();
 	public Boolean showDistribution { get; set; }
@@ -29,10 +29,10 @@ public class registerController {
 	public Set<String> distributionValues { get; set; }
 	public Set<String> distributionLabels { get; set; }
 	public Map<String, String> distributionMap = new Map<String, String>();
-	public Transient String goHomeUrl { get; set; }
-	public Transient Boolean isPro { get; set; }
-	public Transient string portal { get; set; }
-	public Transient String privacypageurl { get; set; }
+	public String goHomeUrl { get; set; }
+	public Boolean isPro { get; set; }
+	public string portal { get; set; }
+	public String privacypageurl { get; set; }
 	public Boolean showprivacy { get; set; }
 	public String marginleft { get; set; }
 
@@ -199,6 +199,8 @@ public class registerController {
 	 }
 	 
 	 public PageReference nextStep() {
+	 	//if (!ApexPages.currentPage().getParameters().containsKey(System_Settings.registrationpageId))
+	 	//ApexPages.currentPage().getParameters().put('pageid',System_Settings.registrationpageId);
 	 	messages='';
 	 	Boolean hasErr=false;
 	 	showPhoneErr=false;

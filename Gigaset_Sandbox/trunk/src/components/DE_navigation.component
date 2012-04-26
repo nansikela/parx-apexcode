@@ -1,4 +1,4 @@
-<apex:component controller="DEnavigationController" id="denavigation" >
+<apex:component controller="DEnavigationController"  id="denavigation" >
 <apex:attribute name="isPro" description="pro or not pro" 
 
         type="Boolean" required="false" assignTo="{!isProAttribute}"/>
@@ -6,33 +6,34 @@
 
         type="String" required="false" assignTo="{!portalAttribute}"/>
 <!-- to clarify if the portals will have different consumer portals -->
-	<apex:outputPanel id="topNavi">
-		<ul id="Navigation">
-			<apex:repeat value="{!menuItems}" var="item" id="proMenu">
-				<li class="">
-					<apex:outputPanel rendered="{!item.ExternalUrl__c == ''}">
-						<a class="activate" href="{!homeurl}">{!item.Label__c}</a>
-					</apex:outputPanel>
-					<apex:outputPanel rendered="{!NOT(item.ExternalUrl__c == '')}">
-						<a href="{!BaseTopNaviUrl}{!item.ExternalUrl__c}">{!item.Label__c}</a>
-					</apex:outputPanel>
-				</li>
-			</apex:repeat>
-		</ul>
-	</apex:outputPanel>
+    <apex:outputPanel id="topNavi">
+        <ul id="Navigation">
+            <apex:repeat value="{!menuItems}" var="item" id="proMenu">
+                <li class="">
+                    <apex:outputPanel rendered="{!item.ExternalUrl__c == ''}">
+                        <a class="activate" href="{!homeurl}">{!item.Label__c}</a>
+                        
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!NOT(item.ExternalUrl__c == '')}">
+                        <a href="{!BaseTopNaviUrl}{!item.ExternalUrl__c}">{!item.Label__c}</a>
+                    </apex:outputPanel>
+                </li>
+            </apex:repeat>
+        </ul>
+    </apex:outputPanel>
 </apex:component>
 
 <!-- 
-			<li class="">
-				<a href="{!BaseTopNaviUrl}{!$Label.topnavi_link01}">{!$Label.topnavi_label01}</a>
-			</li>
-			<li class="">
-				<a href="{!BaseTopNaviUrl}{!$Label.topnavi_link02}">{!$Label.topnavi_label02}</a>
-			</li>
-			<li class="">
-				<a href="{!BaseTopNaviUrl}{!$Label.topnavi_link03}">{!$Label.topnavi_label03}</a>
-			</li>
-			<li class="">
-				<a href="{!$Site.CustomWebAddress}" class="activate">{!$Label.topnavi_label04}</a>
-			</li>
+            <li class="">
+                <a href="{!BaseTopNaviUrl}{!$Label.topnavi_link01}">{!$Label.topnavi_label01}</a>
+            </li>
+            <li class="">
+                <a href="{!BaseTopNaviUrl}{!$Label.topnavi_link02}">{!$Label.topnavi_label02}</a>
+            </li>
+            <li class="">
+                <a href="{!BaseTopNaviUrl}{!$Label.topnavi_link03}">{!$Label.topnavi_label03}</a>
+            </li>
+            <li class="">
+                <a href="{!$Site.CustomWebAddress}" class="activate">{!$Label.topnavi_label04}</a>
+            </li>
 -->

@@ -36,24 +36,25 @@ public class DEkontaktController {
 					SystemSettings.logError('PARX User not authenticated or has no Contact Id! ' + e.getMessage(),'DEkontaktController','prefillRequest','','ERROR');
 					if (SystemSettings.isDebug) throw e;
 				}
-				if (contactid!=null) {
-					rq.Kontakt__c=contactid;
-					Contact c;
-					try {
-						c=SystemSettings.currentusercontact;
-						if (c==null)
-						c=[SELECT Id, Salutation, Lastname, Firstname, Email, Briefanrede__c, MailingCountry FROM Contact WHERE Id =: contactid];
-					} catch (Exception e) {
-						System.debug('PARX something went wrong, perhaps contact does not exist?');
-						SystemSettings.logError('PARX something went wrong, perhaps contact does not exist? ' + e.getMessage(),'DEkontaktController','prefillRequest','','ERROR');
-						if (SystemSettings.isDebug) throw e;
-					}
-					if (c!=null) {
-						rq.Email__c=c.Email;
-						rq.Land__c=c.MailingCountry;
-					}
- 				}
 			}
+			//if (contactid!=null) {
+				rq.Kontakt__c=id.valueOf(contactid);
+				Contact c;
+				try {
+					c=SystemSettings.currentusercontact;
+					if (c==null)
+					c=[SELECT Id, Salutation, Lastname, Firstname, Email, Briefanrede__c, MailingCountry FROM Contact WHERE Id =: contactid];
+				} catch (Exception e) {
+					System.debug('PARX something went wrong, perhaps contact does not exist?');
+					SystemSettings.logError('PARX something went wrong, perhaps contact does not exist? ' + e.getMessage(),'DEkontaktController','prefillRequest','','ERROR');
+					if (SystemSettings.isDebug) throw e;
+				}
+				if (c!=null) {
+					rq.Kontakt__c=c.id;
+					rq.Email__c=c.Email;
+					rq.Land__c=c.MailingCountry;
+				}
+ 			//}
 		}
 	}
 	

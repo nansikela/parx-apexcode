@@ -89,7 +89,7 @@
 								<apex:outputLabel value="{!$ObjectType.Lead.fields.Funktion__c.label}*" for="Funktion" />
 							</td>
 							<td>	
-								<apex:inputField id="Funktion" value="{!l.Funktion__c}" required="true" styleClass="FieldRequiredSelect" />
+								<apex:inputField id="Funktion" value="{!l.Funktion__c}" required="true" styleClass="FieldRequired" />
 							</td>
 						</tr>
 						<tr>

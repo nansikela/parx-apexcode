@@ -10,7 +10,7 @@ global class DESiteLoginController {
 	global String loginErrorTitle { get; private set; }
 	
 	global PageReference login() {
-		handleLoginErrorMessage=false;
+		handleLoginErrorMessage=false; 
 		if (username==null || password==null || username=='' || password=='') {
 			ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.FATAL,Label.site.login_or_register_first);
 			ApexPages.addMessage(msg);

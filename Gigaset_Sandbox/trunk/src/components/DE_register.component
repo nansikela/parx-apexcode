@@ -1,7 +1,6 @@
 <apex:component controller="DEregisterController" allowDML="true" id="deregistration1" language="{!defaultlanguage}" >
 	<!--  language="{!defaultlanguage}"  -->
-
-				
+	<apex:attribute name="defaultlanguage" description="defaultlanguage" type="String" required="true"/>
 	<apex:outputPanel id="register" >
 		<apex:outputPanel id="navi" rendered="{!step<4}">
 			<apex:form id="javascriptform" > 
@@ -292,7 +291,7 @@
 						<tr>
 						<td><apex:outputLabel value="{!$ObjectType.Lead.fields.Funktion__c.label}" for="function" />
 						</td><td>	<apex:inputText style="right: 4px;top: 3px;position: relative;" id="functiont" value="{!l.Funktion__c}" styleClass="FieldRequired" rendered="{!isPro}"  />
-						<apex:inputField style="right: 4px;top: 3px;position: relative;" id="function" value="{!l.Funktion__c}" styleClass="FieldRequiredSelect" rendered="{!NOT(isPro)}"  />
+						<apex:inputField style="right: 4px;top: 3px;position: relative;" id="function" value="{!l.Funktion__c}" styleClass="FieldRequired" rendered="{!NOT(isPro)}"  />
 						<br />
 						</td>
 						</tr>

@@ -29,10 +29,10 @@ global with sharing class GSurveysController {
     setupShowSites(sites.size());
     sitesPicklist.add(new Selectoption('--SELECT SITE--','--SELECT SITE--' ));
     for(Site s : sites){
-      if(s.UrlPathPrefix== null)
+      if(/*s.UrlPathPrefix*/s.TopLevelDomain == null)
         pathPrefix='EMPTY';
       else
-        pathPrefix=s.UrlPathPrefix;
+        pathPrefix=s.TopLevelDomain;//s.UrlPathPrefix;
       sitesPicklist.add(new Selectoption(pathPrefix, s.Name));
     }
   }
@@ -123,7 +123,7 @@ global with sharing class GSurveysController {
   }
   
   private String setupDomainForSurvey(String pod){
-    if(pod != 'NO_POD' && !useTopLevelDomain && checkSubdomain(subdomain)){
+   /* if(pod != 'NO_POD' && !useTopLevelDomain && checkSubdomain(subdomain)){
       return 'http://'+'subdomain' +'.'+pod+'.force.com';
     }
     else if(pod != 'NO_POD' && useTopLevelDomain && checkSubdomain(subdomain)){
@@ -132,10 +132,10 @@ global with sharing class GSurveysController {
     else if(useTopLevelDomain) {
       return 'http://'+subdomain;   
     }
-    else{
-  //     return 'http://' +  surveySite ;
-      return 'http://'+ subdomain+ '.force.com';
-    }
+    else{*/
+       return 'http://' +  surveySite ;
+      //return 'http://'+ subdomain+ '.force.com';
+  //  }
   }
   
   private boolean checkSubdomain(String subdomain){
