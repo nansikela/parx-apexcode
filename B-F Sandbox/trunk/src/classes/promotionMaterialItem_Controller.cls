@@ -148,7 +148,8 @@ public with sharing class promotionMaterialItem_Controller {
                     //myPromMatItems.add(new wrapper(wp.prod,null,pm));
                     	system.debug(myPromMatItems);
                     	system.debug(wp);
-                        myPromMatItems.add(new wrapper(wp.prod,null,pm,wp.planBottle,wp.planRebate,wp.planBottle*wp.planRebate));                    
+                        myPromMatItems.add(new wrapper(wp.prod,null,pm,wp.planBottle,wp.planRebate,wp.planBottle*wp.planRebate));
+//                          myPromMatItems.add(new wrapper(wp.prod)); 
                 }              
                 wp.selected=false;
                 wp.brandQTY = 0;

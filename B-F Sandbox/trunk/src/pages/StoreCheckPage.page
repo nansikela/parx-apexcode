@@ -96,8 +96,8 @@
 				</apex:pageBlockSectionItem>
 			</apex:pageBlockSection>
 
-			<br />
-
+			<br /> 
+ 
 			<apex:pageBlockSection title="{!$Label.sc_headerSubTitle}"
 				columns="2">
 				<apex:pageBlockSectionItem >
@@ -234,7 +234,7 @@
 															<apex:inputField value="{!i.Special_Price__c}" />
 														</apex:column>
 														<apex:column style="min-width: 85px;" styleClass="bodyRow">
-															<apex:inputField value="{!i.Price__c}" />
+															<apex:inputField style="max-width: 100px;" value="{!i.Price__c}" />
 														</apex:column>
 														<apex:column style="min-width: 85px;" styleClass="bodyRow">
 															<apex:inputField value="{!i.Facings_shelf__c}" />
@@ -377,7 +377,7 @@
 											<td><apex:inputField value="{!record.Product_second_SCP__c}" /></td>
 											<td><apex:inputField value="{!record.Product_third_SCP__c}" /></td>
 										</tr>
-										<tr>
+										<tr> 
 											<td>{!$ObjectType.Store_Check__c.Fields.Location_first_SCP__c.Label}</td>
 											<td><apex:inputField value="{!record.Location_first_SCP__c}" style="width:97%" /></td>
 											<td><apex:inputField value="{!record.Location_second_SCP__c}" style="width:97%" /></td>

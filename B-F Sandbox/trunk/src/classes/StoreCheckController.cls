@@ -1,26 +1,44 @@
+/* Class Name : StoreCheckController
+* Description: Controller that loads and saves all data referring to StoreCheck records
+* Created By : Germany Consultant
+* Created On : 05/03/12
+*
+* Modification Log :  
+* ----------------------------------------------------------------------------------------------------------------------------
+* Developer       		Date			Description
+* ----------------------------------------------------------------------------------------------------------------------------
+* Michael Mickiewicz 	05/03/2012		Create the whole business logic for the Store Check Interface. Including field-level-
+*										access, read-only mode and new-record-mode. 
+*/ 
 public with sharing class StoreCheckController {
     
     public ID recordID {get;set;}
     public Account a {get;set;}
     public Store_Check__c record {get;set;}
-    public list<Product__c> products {get;set;}
-    public list<Store_Check_Item__c> sci_header {get;set;}
-    public list<Store_Check_Item__c> selected_sci {get;set;}
     public Outlet_Visit__c lastVisitedOutletVisit {get;set;}
+    public Boolean isReadOnly {get;set;}	//Necessary to identify, if interface is in read-only of read-write mode
+    public list<Product__c> products {get;set;}
+    public list<Store_Check_Item__c> sci_header {get;set;} //Required as a dummy list for fixed-table-header-workaround
+    public list<Store_Check_Item__c> selected_sci {get;set;}
     public list<Outlet_Visit_Item__c> lastOVIs {get;set;}
-    public Boolean isReadOnly {get;set;}
+    
+    private Boolean isNewRecord;	//Necessary to identify, if interface is opened in new or edit mode
     
     
     public StoreCheckController(ApexPages.StandardController ctrl){
         isReadOnly = false;
         recordID = ctrl.getRecord().ID;
+        isNewRecord = false;
         
-        if(recordID == null) 
+        //Branch for distinction if interface is in new or in edit mode
+        if(recordID == null) {
             record = new Store_Check__c(Account__c = ((Store_Check__c)ctrl.getRecord()).Account__c);
-        else {
+            isNewRecord = true;
+        } else {
             record = [Select ID, 
                         Account__c, 
-                        Last_Visit_SR__c, 
+                        Last_Visit_SR__c,  
+                        Last_Outlet_Visit__c,
                         SR__c, 
                         SC_By__c, 
                         SC_Date__c, 
@@ -63,20 +81,37 @@ public with sharing class StoreCheckController {
                     Where ID = :recordID limit 1];
         }
         
-        a = [Select ID, Billingcity, Billingstreet From Account Where ID = :record.Account__c limit 1];
+        //Query all needed account information
+        a = [Select ID, Billingcity, Billingstreet, Market__c From Account Where ID = :record.Account__c limit 1];
         
-        list<Outlet_Visit__c> ovs = [Select Id, Name, Met_With__c, Visit_Date__c, Visit_Comments__c  From Outlet_Visit__c Where Last_Visit__c = true and Account__c = :record.Account__c limit 1];
+        //Query LAST outlet visit information
+        list<Outlet_Visit__c> ovs;
+        if(isNewRecord) 
+            ovs = [Select Id, Name, Met_With__c, Visit_Date__c, Visit_Comments__c, OwnerId  From Outlet_Visit__c Where Last_Visit__c = true and Account__c = :record.Account__c limit 1];
+        else
+            ovs = [Select Id, Name, Met_With__c, Visit_Date__c, Visit_Comments__c, OwnerId  From Outlet_Visit__c Where Id = :record.Last_Outlet_Visit__c limit 1];
+        
         if(ovs.size() > 0) {
             lastVisitedOutletVisit = ovs.get(0);
+            if(isNewRecord) {
+                record.Last_Outlet_Visit__c = lastVisitedOutletVisit.Id;
+                record.SR__c = lastVisitedOutletVisit.OwnerId;
+                record.Last_Visit_SR__c = lastVisitedOutletVisit.Visit_Date__c;
+            }
             lastOVIs = [Select Id, Available__c, Bottle_Price_Special__c, Bottle_Price__c, Facing__c, Shelf__c, Custom_Product__c, Product__r.Name From Outlet_Visit_Item__c Where Available__c = true and Outlet_Visit__c = :lastVisitedOutletVisit.ID];
         }   
-            
+        
+ 		//Filling list for pageblocktable of outlet visit items
         sci_header = new list<Store_Check_Item__c>();
         if(recordID != null)
-            selected_sci = [Select Product__c, Price__c, Special_Price__c, Facings_shelf__c, OOS_with__c, Shelf_from_bottom__c, Store_Check__c From Store_Check_Item__c Where Store_Check__c = :recordID];
-        else
+            selected_sci = [Select Product__c, Product__r.Name, Price__c, Special_Price__c, Facings_shelf__c, OOS_with__c, Shelf_from_bottom__c, Store_Check__c From Store_Check_Item__c Where Store_Check__c = :recordID];
+        else {
             selected_sci = new list<Store_Check_Item__c>();
-            
+            for(Outlet_Visit_Item__c ovi : [Select Id, Available__c, Bottle_Price_Special__c, Bottle_Price__c, Facing__c, Shelf__c, Custom_Product__c, Product__r.Name, Product__c From Outlet_Visit_Item__c Where Outlet_Visit__c = :record.Last_Outlet_Visit__c AND Available__c = true]) {
+                selected_sci.add(new Store_Check_Item__c(Product__c = ovi.Custom_Product__c, Outlet_Visit_Item__c = ovi.Id));
+            }
+        }
+        
         if (!Schema.sObjectType.Store_Check_Item__c.fields.Facings_GAM__c.isUpdateable() && !Schema.sObjectType.Store_Check_Item__c.fields.Facings_shelf__c.isUpdateable() && !Schema.sObjectType.Store_Check_Item__c.fields.OOS_with__c.isUpdateable() && !Schema.sObjectType.Store_Check_Item__c.fields.Shelf_from_bottom__c.isUpdateable()){
               isReadOnly = true;
         }
@@ -86,12 +121,13 @@ public with sharing class StoreCheckController {
             if(!selectedProductIDs.contains(sci.Product__c))
                 selectedProductIDs.add(sci.Product__c);
                 
-        products = [Select ID, Name From Product__c Where RecordType.Name = 'Wet Goods' AND ID NOT IN :selectedProductIDs order by Name asc];
+        products = [Select ID, Name From Product__c Where RecordType.Name = 'Wet Goods' AND ID NOT IN :selectedProductIDs AND Market__c = :a.Market__c order by Name asc];
         
         if(selected_sci == null)
             selected_sci = new list<Store_Check_Item__c>();
     }
     
+
     public PageReference selectItem() {
         String id = ApexPages.currentPage().getParameters().get('productID');
         
@@ -104,13 +140,21 @@ public with sharing class StoreCheckController {
         }
         
         products.remove(i);
+        Outlet_Visit_Item__c ovi;
         
+        for(Outlet_Visit_Item__c o : [Select Id, Available__c, Bottle_Price_Special__c, Bottle_Price__c, Facing__c, Shelf__c, Custom_Product__c, Product__r.Name, Product__c From Outlet_Visit_Item__c Where Product__c = :id AND  Outlet_Visit__c = :record.Last_Outlet_Visit__c limit 1])
+            ovi = o;
+            
         if(id != null && id != '') {
-            selected_sci.add(new Store_Check_Item__c(Product__c = id, Store_Check__c = recordID));
+            Store_Check_Item__c sci = new Store_Check_Item__c(Product__c = id, Store_Check__c = recordID);
+            if(ovi != null)
+                sci.Outlet_Visit_item__c = ovi.Id;
+            selected_sci.add(sci);
         }
         
         return null;
     }
+    
     
     public PageReference deselectItem() {
         String id = ApexPages.currentPage().getParameters().get('productID');
@@ -138,6 +182,7 @@ public with sharing class StoreCheckController {
         return null;
     }
     
+    
     public PageReference save() {
         
         try{
@@ -164,15 +209,36 @@ public with sharing class StoreCheckController {
         return cancel();
     }
     
+    
     public PageReference cancel() {
         return new PageReference('/'+record.Account__c);
     }
     
+    
+    
+    
     public static testMethod void MainTest() {
-        UnitTestUtilities mgr = new UnitTestUtilities();
-        mgr.init();
+    	RecordType rt = [Select ID From RecordType Where sObjectType = 'Product__c' AND DeveloperName = 'Wet_Goods' limit 1]; 
+    	
+        Market__c market = new Market__c(Market_Code__c = 'GER', Name = 'Germany', Off_Channel__c = '2', On_Channel__c = '3');
+        insert market;
         
-        Store_Check__c obj = new Store_Check__c(Account__c = mgr.account1.Id);
+    	Account account1 = new Account(Name = 'Test Account 1', Market__c = market.Id, Channel__c = 'Off', BillingCountry = 'DE');
+        insert account1;
+    
+    	Brand__c brand1 = new Brand__c(Name = 'Jack Daniel\'s');
+    	insert brand1;
+    	
+        Brand__c brand2 = new Brand__c(Name = 'Herradura');
+        insert brand2;
+        
+        Product__c product1 = new Product__c(Brand__c = brand1.ID, RecordTypeID = rt.ID, Market__c = market.Id);
+        insert product1;
+                
+        Product__c product2 = new Product__c(Brand__c = brand2.ID, RecordTypeID = rt.ID, Market__c = market.Id);
+        insert product2; 
+        
+        Store_Check__c obj = new Store_Check__c(Account__c = account1.Id);
         insert obj;
         
         ApexPages.StandardController stdCtrl = new ApexPages.StandardController(obj);
@@ -189,5 +255,10 @@ public with sharing class StoreCheckController {
         ctrl.deselectItem();
         
         ctrl.cancel();
+        
+        obj = new Store_Check__c(Account__c = account1.Id);
+        
+        stdCtrl = new ApexPages.StandardController(obj);
+        ctrl = new StoreCheckController(stdCtrl);
     }
 }

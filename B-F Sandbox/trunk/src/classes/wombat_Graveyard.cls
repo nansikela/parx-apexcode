@@ -2,8 +2,8 @@
 global class wombat_Graveyard {
 	
 	@HttpPost
-	global static List<wombat_Graveyard_Item> getGraveyardItems(String objectName, String userId, String lastSyncDate) {
-		List<wombat_Graveyard_Item> wgi;
+	global static wombat_Graveyard_Object getGraveyardItems(String objectName, String userId, String lastSyncDate) {
+		wombat_Graveyard_Object wgo = new wombat_Graveyard_Object();
 		
 			DateTime syncDate;
 			System.debug('lastSyncDate: ' + lastSyncDate);
@@ -20,14 +20,14 @@ global class wombat_Graveyard {
 			List<wombat_Mobile_Config__c> wombatObjects = [SELECT Object_API_Name__c FROM wombat_Mobile_Config__c WHERE IsActive__c = true AND IsGraveyardable__c = true];
 			if (wombatObjects.size() > 0) {
 				for (wombat_Mobile_Config__c wmc: wombatObjects) {
-					wgi = getObjectGraveyardItems(wmc.Object_API_Name__c, userId, syncDate, wgi);
+					wgo.Items = getObjectGraveyardItems(wmc.Object_API_Name__c, userId, syncDate, wgo.Items);
 				}				
 			}
 		} else {
-			wgi = getObjectGraveyardItems(objectName, userId, syncDate, wgi);
+			wgo.Items = getObjectGraveyardItems(objectName, userId, syncDate, wgo.Items);
 		}
 		
-		return wgi;
+		return wgo;
 	}
 	
 	private static List<wombat_Graveyard_Item> getObjectGraveyardItems(String objectName, String userId, DateTime lastSyncDate, List<wombat_Graveyard_Item> graveyardItems) {

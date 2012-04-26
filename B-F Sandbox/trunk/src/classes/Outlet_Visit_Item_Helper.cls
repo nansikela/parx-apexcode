@@ -148,6 +148,7 @@ public with sharing class Outlet_Visit_Item_Helper {
 	        if(newAccountProducts.size() > 0){
 	        	insert newAccountProducts;
 	        }
+	        runIt=true;
         }
         
     }

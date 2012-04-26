@@ -36,6 +36,7 @@ trigger onOutlet_Visit on Outlet_Visit__c (before delete, after delete, after un
 			Outlet_Visit_Helper.hasAlreadyRun = true; 
 	
 			for(Outlet_Visit__c OV:trigger.new) {
+				system.debug(ov.ID+': '+ov.Visit_Date__c);
 				if(OV.Status__c == COMPLETESTATE && OV.Account__c != null) {
 					//we have to make the update.
 					if (!AccountIds.contains(OV.Account__c)) AccountIds.add(OV.Account__c);

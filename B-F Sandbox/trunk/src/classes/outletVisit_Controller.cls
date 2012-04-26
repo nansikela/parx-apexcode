@@ -112,6 +112,20 @@ public with sharing class outletVisit_Controller {
         }
         return optionList;
     }     
+    
+   public List<SelectOption> getVenues() 
+    {
+        List<SelectOption> optionList = new List<SelectOption>();
+        // Add a null option to force the user to make a selection. //
+        //optionList.add(new SelectOption('None','--Please Choose--'));
+        if(ov.Account__c!=null)
+        {
+            for(Venue__c y :[Select r.Name, r.Id From Venue__c r where Account__c = :ov.Account__c order by r.Name]) {
+                    optionList.add(new SelectOption(y.Id,y.Name));
+            }
+        }
+        return optionList;
+    } 
 
     public List<SelectOption> getspiritTypeList() {
         List<SelectOption> spiritTypeList = new List<SelectOption>();
@@ -164,6 +178,7 @@ public with sharing class outletVisit_Controller {
     }            
     public PageReference redirect(){
         system.debug(ov.Status__c);
+
         if(ov.Status__c=='New'){
             system.debug('inside');
             PageReference p1 = Page.outletVisit;

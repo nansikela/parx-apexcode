@@ -1,4 +1,4 @@
-public with sharing class Outlet_Visit_Helper {
+public class Outlet_Visit_Helper {
     public static boolean hasAlreadyRun = false;
     
     public static void main(set<Id> AccountIds) {
@@ -17,9 +17,9 @@ public with sharing class Outlet_Visit_Helper {
          * @author  Christophe Vidal
         **/
         map<Id, list<Outlet_Visit__c>> Outlets_Visit = new map<Id, list<Outlet_Visit__c>>();
-
-       // Commented by Sandeep Gadicherla 2/13 - for(Outlet_Visit__c OV:[select Account__c, Last_Visit__c, Next_to_Last_Visit__c from Outlet_Visit__c where Status__c = 'Complete' AND Account__c IN: AccountIds AND (Account__r.RecordType.developerName = 'EUR_Outlets' OR Account__r.RecordType.developerName = 'DEU_Outlets' OR Account__r.RecordType.developerName = 'CAD_Outlets') order by Visit_Date__c desc]) {
-          for(Outlet_Visit__c OV:[select Account__c, Last_Visit__c, Next_to_Last_Visit__c from Outlet_Visit__c where Status__c = 'Complete' AND Account__c IN: AccountIds AND (Account__r.RecordType.developerName = 'EUR_Outlets' OR Account__r.RecordType.developerName = 'DEU_Outlets' OR Account__r.RecordType.developerName = 'CAD_Outlets') order by Name desc]) {    
+		system.debug('Account IDs: '+AccountIds);
+// Commented by Sandeep Gadicherla 2/13 - 	for(Outlet_Visit__c OV:[select Account__c, Last_Visit__c, Next_to_Last_Visit__c from Outlet_Visit__c where Status__c = 'Complete' AND Account__c IN: AccountIds AND (Account__r.RecordType.developerName = 'EUR_Outlets' OR Account__r.RecordType.developerName = 'DEU_Outlets' OR Account__r.RecordType.developerName = 'CAD_Outlets') order by Visit_Date__c desc]) {
+        for(Outlet_Visit__c OV:[select Account__c, Last_Visit__c, Next_to_Last_Visit__c, Visit_Date__c from Outlet_Visit__c where Status__c = 'Complete' AND Account__c IN: AccountIds AND (Account__r.RecordType.developerName = 'EUR_Outlets' OR Account__r.RecordType.developerName = 'DEU_Outlets' OR Account__r.RecordType.developerName = 'CAD_Outlets') order by Visit_Date__c desc]) {    
             if(!Outlets_Visit.containsKey(OV.Account__c))
                 Outlets_Visit.put(OV.Account__c, new list<Outlet_Visit__c>());
             Outlets_Visit.get(OV.Account__c).add(OV);
@@ -31,6 +31,7 @@ public with sharing class Outlet_Visit_Helper {
             for(Id AccountId:Outlets_Visit.keySet()) {
             //  if(Outlets_Visit.containsKey(OV.Account__c)) {
                     i = 0;
+                    system.debug('------------ BEFORE: Account '+AccountID+' has following items: '+Outlets_Visit.get(AccountId));
                     for(Outlet_Visit__c OVHelper:Outlets_Visit.get(AccountId)) {
                         if(i == 0) {
                             //first element
@@ -49,6 +50,7 @@ public with sharing class Outlet_Visit_Helper {
                         }
                         i++;
                     }
+                    system.debug('------------ AFTER: Account '+AccountID+' has following items: '+Outlets_Visit.get(AccountId));
             //  } 
             }
             list<Outlet_Visit__c> Outlets_Visit_2_Update = new list<Outlet_Visit__c>();

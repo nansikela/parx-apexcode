@@ -24,9 +24,10 @@ private class Test_BF_UsersMustFollowManagerJob {
     delete [select id from EntitySubscription where Subscriberid = :testuser1.Id and parentID = :testuser2[0].Id];   
     
     Database.executeBatch(new BF_UsersMustFollowManagerJob(testuser1.Id)); 
+
     Test.stopTest();
    
     EntitySubscription entitySubscription = [select id,ParentId,Subscriberid from EntitySubscription where Subscriberid = :testuser1.Id AND ParentId = :testuser2[0].Id];   
-    system.assert(entitySubscription.id != null);
+    system.assert(entitySubscription.id != null);    
   }
 }

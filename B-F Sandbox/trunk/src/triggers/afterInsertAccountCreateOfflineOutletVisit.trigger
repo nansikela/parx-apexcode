@@ -34,10 +34,10 @@ Jishad P A (DC)     15-Jun-2011 Modified to add record type check to exclude
             mapOwnerAccount.put(y.OwnerId,temp);
         }
     }
-    Map<ID,User> mapUsers = new  Map<ID,User>([Select u.UserPermissionsOfflineUser, u.UserPermissionsMobileUser From User u where u.Id =: mapOwnerAccount.keyset()]);   
+    Map<ID,User> mapUsers = new  Map<ID,User>([Select u.UserPermissionsOfflineUser From User u where u.Id =: mapOwnerAccount.keyset()]);   
     for(string x : mapOwnerAccount.keyset()){
         //if the OwnerId is mobile, then create an Outlet Visit, then process OfflineOVI.
-        if(mapUsers.get(x)!=null && (mapUsers.get(x).UserPermissionsOfflineUser || mapUsers.get(x).UserPermissionsMobileUser)){
+        if(mapUsers.get(x)!=null && (mapUsers.get(x).UserPermissionsOfflineUser)){
             for(Account a: mapOwnerAccount.get(x)){
                 Outlet_Visit__c ov = new Outlet_Visit__c(Create_Offline_OVIs__c=true, OwnerId = a.OwnerId, Account__c = a.Id, Visit_Date__c = date.today().addmonths(-1), Status__c = 'New');
                 lstInsertOutletVisits.add(ov);
