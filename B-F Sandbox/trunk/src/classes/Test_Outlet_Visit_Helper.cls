@@ -24,8 +24,10 @@ private class Test_Outlet_Visit_Helper {
         Contact con = new Contact(LastName = 'Roger', AccountId = acc.Id);
         insert con;
         
+        Date visit_date = Date.newInstance( system.today().year(), system.today().month()-2, system.today().day());
+        
         test.startTest();
-	        Outlet_Visit__c outlet = new Outlet_Visit__c(Visit_Date__c = system.today());
+	        Outlet_Visit__c outlet = new Outlet_Visit__c(Visit_Date__c = visit_date);
 	        outlet.Account__c = acc.Id;
 	        outlet.Met_With__c = con.Id;
 	        insert outlet;
@@ -39,21 +41,29 @@ private class Test_Outlet_Visit_Helper {
 	        system.assertEquals(true, outlet.Last_Visit__c);
 	        system.assertEquals(false, outlet.Next_to_Last_Visit__c);
 	        
+	        system.debug('BEFORE: '+visit_date);
+	        visit_date = Date.newInstance( system.today().year(), system.today().month()-1, system.today().day());
+	        system.debug('AFTER: '+visit_date);
 	        Outlet_Visit_Helper.hasAlreadyRun = false;
-	        Outlet_Visit__c outlet2 = new Outlet_Visit__c(Visit_Date__c = system.today().addMonths(1));
+	        Outlet_Visit__c outlet2 = new Outlet_Visit__c(Visit_Date__c = visit_date);
 	        outlet2.Account__c = acc.Id;
 	        outlet2.Met_With__c = con.Id;
 	        outlet2.Status__c = 'Complete';
 	        insert outlet2;
-	        outlet = [select Last_Visit__c, Next_to_Last_Visit__c from Outlet_Visit__c where Id =: outlet.Id];
-	        outlet2 = [select Last_Visit__c, Next_to_Last_Visit__c from Outlet_Visit__c where Id =: outlet2.Id];
+	        outlet = [select Last_Visit__c, Next_to_Last_Visit__c, Visit_Date__c from Outlet_Visit__c where Id =: outlet.Id];
+	        outlet2 = [select Last_Visit__c, Next_to_Last_Visit__c, Visit_Date__c from Outlet_Visit__c where Id =: outlet2.Id];
+	        system.debug(outlet.ID+': '+outlet.Visit_Date__c);
+	        system.debug(outlet2.ID+': '+outlet2.Visit_Date__c);
 	        system.assertEquals(false, outlet.Last_Visit__c);
 	        system.assertEquals(true, outlet.Next_to_Last_Visit__c);
 	        system.assertEquals(true, outlet2.Last_Visit__c);
 	        system.assertEquals(false, outlet2.Next_to_Last_Visit__c);
 	        
+	        system.debug('BEFORE: '+visit_date);
+	        visit_date = Date.newInstance( system.today().year(), system.today().month(), system.today().day());
+	        system.debug('AFTER: '+visit_date);
 	        Outlet_Visit_Helper.hasAlreadyRun = false;
-	        Outlet_Visit__c outlet3 = new Outlet_Visit__c(Visit_Date__c = system.today().addMonths(2));
+	        Outlet_Visit__c outlet3 = new Outlet_Visit__c(Visit_Date__c = visit_date);
 	        outlet3.Account__c = acc.Id;
 	        outlet3.Met_With__c = con.Id;
 	        outlet3.Status__c = 'Complete';

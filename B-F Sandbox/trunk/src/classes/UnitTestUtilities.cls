@@ -69,9 +69,9 @@ public class UnitTestUtilities {
         insert contact2;
         insert contact3;
         
-        promotion1 = new Promotion__c(Name = 'Test Promotion 1', Account__c = account1.ID); //No material item children
-        promotion2 = new Promotion__c(Name = 'Test Promotion 2', Account__c = account2.ID); //One material item children
-        promotion3 = new Promotion__c(Name = 'Test Promotion 3', Account__c = account3.ID); //Two material item children
+        promotion1 = new Promotion__c(Name = 'Test Promotion 1', Account__c = account1.ID, Contact__c = contact1.ID); //No material item children
+        promotion2 = new Promotion__c(Name = 'Test Promotion 2', Account__c = account2.ID, Contact__c = contact2.ID); //One material item children
+        promotion3 = new Promotion__c(Name = 'Test Promotion 3', Account__c = account3.ID, Contact__c = contact3.ID); //Two material item children
         
         insert promotion1;
         insert promotion2;

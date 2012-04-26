@@ -106,6 +106,20 @@
 				}
 			}
 		}
+		
+		$div = $n('#eightthDiv');
+		if($div != null) {
+			var position = $div.offset().top;
+			if(position+$div.height() > pageH*page) {
+				$div.css('page-break-before', 'always');
+				
+				var i = position+$div.height() / pageH*page;
+				while(i>=1) {
+					page++;
+					i--;
+				}
+			}
+		}
 	});
 </script>
 
@@ -122,6 +136,11 @@
 	
 	.even {background: #eeeeee; }
 	.odd {} 
+	
+	.activityClass {
+		background: #aaaaaa;
+		color: #FFFFFF;
+	}
 </style>
 
 <div style="width:19cm; font-size:12px; position:relative; ">
@@ -209,6 +228,28 @@
     <br />
     
     <div id="secDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
+    	<apex:pageblock title="{!$Label.Factsheet_openedAcitivites}">
+    		<apex:dataTable value="{!opened_activities}" cellspacing="5" var="oa" headerClass="activityClass" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
+   				<apex:column style="vertical-align: top;" > 
+   					<apex:facet name="header">{!$ObjectType.Task.Fields.Subject.Label}</apex:facet>
+   					<apex:outputField value="{!oa.Subject}"/>
+   				</apex:column>  
+   				<apex:column style="vertical-align: top;" >
+   					<apex:facet name="header">{!$ObjectType.Task.Fields.ActivityDate.Label}</apex:facet>
+   					<apex:outputField value="{!oa.ActivityDate}"/>
+   				</apex:column>
+   				<apex:column style="vertical-align: top;" >
+   					<apex:facet name="header">{!$ObjectType.Task.Fields.Description.Label}</apex:facet>
+   					<apex:outputField value="{!oa.Description}"/>
+   				</apex:column>
+   			</apex:dataTable>
+    	</apex:pageblock>
+    </div>
+    
+    <br />
+    <br />
+    
+    <div id="thirdDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
     	<apex:pageblock title="{!$Label.Factsheet_LastVisitComments}">
     		<apex:dataTable value="{!Outlet_Visit}" cellspacing="5" var="OV" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
    				<apex:column style="vertical-align: top;" >
@@ -231,7 +272,7 @@
     <br />
     
     <apex:outputPanel rendered="{!NOT(isChannelOff)}">
-    <div id="thirdDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
+    <div id="fourthDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
     	<apex:pageBlock title="{!$Label.Factsheet_KeyTask}">
     		<apex:dataTable value="{!Key_Task}" var="KT" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
    				<apex:column >
@@ -249,7 +290,7 @@
 	<br />
 	</apex:outputPanel>
 	
-	<div id="fourthDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
+	<div id="fivthDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
 		<apex:pageBlock title="{!$Label.Factsheet_AccountProduct}">
 			<apex:dataTable value="{!Account_Product}" var="AP" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
    				<apex:column >
@@ -267,7 +308,7 @@
     <br/>
     <br />
     
-    <div id="fivthDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
+    <div id="sixthDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
 		<apex:pageBlock title="{!$Label.Factsheet_MandatoryProducts}" >
 			<apex:dataTable value="{!Mandatory_Products}" var="MP" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
    				<apex:column >
@@ -288,7 +329,7 @@
    	<br/>
    	<br />
    
-   	<div id="sixthDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
+   	<div id="seventhDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
    		<apex:pageBlock title="{!$Label.Factsheet_Promotions}">
    			<table style="table-layout: fixed; width:692px; height:100%;" class="odd,even">
    			<tbody>
@@ -384,7 +425,7 @@
 	<br/>
    	<br />
    
-	<div id="seventhDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
+	<div id="eightthDiv" style="{!IF($CurrentPage.parameters.renderas != 'pdf','','border-top-style: solid; border-top-width:1px;')}">
 		<apex:pageBlock title="{!$Label.Factsheet_PromotionActivities}">
 			<apex:dataTable value="{!Promotion_Activity}" var="PA" style="width:100%; height:100%;" rowClasses="odd,even" styleClass="tableClass">
    				<apex:column >

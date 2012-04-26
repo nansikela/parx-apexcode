@@ -39,6 +39,7 @@ public without sharing class AccountFactsheet {
     public list<Outlet_Visit__c> Outlet_Visit{get;set;}
     public list<Account_Product__c> Account_Product {get;set;}
     public list<Mandatory_Product> Mandatory_Products{get;set;}
+    public list<Task> opened_activities {get;set;}
     public String Currenc {get;set;} 
     public Double Total_Margin{get;set;}
     public Double Total_Promotion_Cost{get;set;}
@@ -60,7 +61,7 @@ public without sharing class AccountFactsheet {
             Account_Product = new list<Account_Product__c>([select Brand__c, Product__c from Account_Product__c where Account__c =: AccountId order by Brand__c asc]);
             list<Mandatory_Products__c> mps = new list<Mandatory_Products__c>([select Custom_Product__r.Name, Custom_Product__r.Brand__r.Name, Product_Status__c from Mandatory_Products__c where Account__c =: AccountId order by Custom_Product__r.Brand__r.Name asc]);
             list<Id> PromotionActivityIds = new list<Id>();
-            
+            opened_activities = [Select t.Subject, t.ActivityDate, t.Description From Task t Where IsClosed = false AND AccountID =: AccountID];
             //To query all promotions it is necessary to define the timeslot of every outlet visit, 
             //because only promotions within this timeslot have to be queried.
             Total_Margin = Total_Promotion_Cost = Total_Brand_Profit = 0;

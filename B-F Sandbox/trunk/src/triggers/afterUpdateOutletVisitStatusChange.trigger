@@ -29,5 +29,5 @@ Mike Shroyer		24-Aug-2011  	Changed the if logic to not process OVI's if the Off
         }       
     }
     if(!myIds.isempty())// && (u.UserPermissionsOfflineUser || u.UserPermissionsMobileUser))
-        offlineOutletVisit.processOVI(myIds,INFW_Stateful.hasAlreadyCreated(),(u.UserPermissionsOfflineUser || u.UserPermissionsMobileUser));
+        offlineOutletVisit.processOVI(myIds,INFW_Stateful.hasAlreadyCreated(),u.UserPermissionsOfflineUser);
 }

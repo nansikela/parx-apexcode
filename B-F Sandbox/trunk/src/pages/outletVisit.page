@@ -259,12 +259,13 @@ function makeTableScrollable() {
             <apex:pageBlockSection id="s1" columns="3" rendered="{!showDetails!=true}">          
                 <apex:pageBlockSectionItem id="cAccount" labelStyleClass="requiredBlock">
                     <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Account__c.label}" for="Account"/>
-                    <apex:actionRegion >
+                    <apex:actionRegion > 
                     <apex:inputfield required="true" id="Account" value="{!Outlet_Visit__c.Account__c}">
                         <apex:actionSupport action="{!nullAction}" event="onblur" rerender="pb"/>
                     </apex:inputfield>
                     </apex:actionRegion>
                 </apex:pageBlockSectionItem>
+                
                 <apex:inputfield required="true" id="Date" value="{!Outlet_Visit__c.Visit_Date__c}"/>
                  <apex:pageBlockSectionItem id="cContact" labelStyleClass="requiredBlock">
                      <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Met_With__c.label}" for="Contact"/>
@@ -273,11 +274,22 @@ function makeTableScrollable() {
                      </apex:selectList>
                  </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
+            
             <apex:pageBlockSection id="s2" columns="2" rendered="{!showDetails}">
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Account__c.label}" for="Account1"/>
                     <apex:outputfield id="Account1" value="{!Outlet_Visit__c.Account__c}"/>
                 </apex:pageBlockSectionItem>
+                
+            <apex:pageBlockSectionItem rendered="{!marketName = 'Australia'}">
+                    <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Venue__c.label}" for="Venue"/>
+                    <apex:selectList value="{!Outlet_Visit__c.Venue__c}"  size="1" id="Venue" required="true">
+	                    <apex:selectOptions value="{!Venues}"/>
+	                </apex:selectList>     
+                                   
+                    <!-- <apex:inputfield id="Venue1" value="{!Outlet_Visit__c.Venue__c}"/>-->
+           </apex:pageBlockSectionItem>   
+            
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Visit_Date__c.label}" for="Date1"/>
                     <apex:outputfield id="Date1" value="{!Outlet_Visit__c.Visit_Date__c}"/>
