@@ -25,5 +25,5 @@ global class CRD_Landing_Controller {
 	public PageReference goToLogin(){
 		// TODO die Landingpage respektiert zur Zeit nicht die Deeplink Technik
 		return System_Settings.redirectToLogin();
-	}
+	} 
 }

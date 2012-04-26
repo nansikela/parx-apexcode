@@ -373,7 +373,7 @@
         <apex:outputField value="{!Survey__c.Survey_Header__c}"/>
         <h1><apex:outputField value="{!Survey__c.Name}" /></h1>
         <!-- <h1>{!surveyName}</h1> <br/> -->
-        Please answer the following survey<br/> 
+       
     </apex:outputPanel>
     
     <apex:pageBlock > 
@@ -420,7 +420,7 @@
             
     </apex:pageBlock>
     <apex:form >
-        <apex:commandButton value="Submit Survey" reRender="seeSurvey" onclick="getResults()" />
+        <apex:commandButton value="{!$Label.SubmitSurvey}" reRender="seeSurvey" onclick="getResults()" />
         <a href="#" rel="#thankYou" id="thankYouLink" style="visibility: hidden;" > &nbsp;</a>
     </apex:form>
 
@@ -429,6 +429,9 @@
     Please click <a href="{!surveyThankYouURL}" >here</a> to continue.
   </div>
   
+</div>
+<div id="labs_container" style="font-size:9px;text-align:center;color: #929292;"> 
+{!$Label.Survey_Fusszeile}
 </div>
 <script type="text/javascript">
   $(document).ready(function() {$("a[rel]").overlay({mask: {color: '#000',opacity: 0.9, zIndex:1000}, closeOnClick: false,

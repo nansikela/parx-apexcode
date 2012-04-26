@@ -189,7 +189,7 @@
 <!-- der "repeat" widerholt für die 5 linken (für jede Buch!) -->
                           <map name="Landkarte">
                            <apex:repeat value="{!Books}" var="book" id="Repeat2">
-
+ 
 <!-- der schiefe Text mit den link... ein Matrix sollte benutzt werden da es meines Wissens in IE die anzeige möglichkeit ist -->
                                  
                                  <div class="bookDiv" style="position:absolute; vertical-align: middle; text-align: right; width:250px; height:65px; top: {!book.Helfer4}px; left:{!book.Helfer3 - 15}px; -ms-filter:'progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, sizingMethod='auto expand')'; filter:progid:DXImageTransform.Microsoft.Matrix({!book.Helfer6}, Dx=100, Dy=100, sizingMethod='auto expand'); -moz-transform:  matrix({!book.Helfer5}, {!book.Helfer8}pt, 65pt); -moz-transform-origin:  -100px , 125px; -webkit-transform:  matrix({!book.Helfer5}, {!book.Helfer7 -65} , 85); -o-transform: matrix({!book.Helfer5}, {!book.Helfer7 -65}, 25);"> 

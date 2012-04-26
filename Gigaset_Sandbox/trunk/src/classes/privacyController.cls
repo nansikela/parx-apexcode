@@ -1,12 +1,12 @@
 public class privacyController {
 	public Boolean isAuthenticated { get; set; }
 	
-	public Transient User u { get; set; }
+	public User u { get; set; }
 	
 	public Transient String labelPrivacy { get; set; }
 	public Integer step { get; set; }
 	public Transient String goHomeUrl { get; set; }
-	public Transient PageReference goHome=System_Settings.goHome();
+	public PageReference goHome=System_Settings.goHome();
 	public Transient String privacypageurl { get; set; }
 	public Transient String portal { get; set; }
 	
@@ -20,6 +20,7 @@ public class privacyController {
 			labelPrivacy=f.getLabel();
 			privacypageurl=Site.getCurrentSiteUrl()+'page' + '?pageid=' + System_Settings.privacyprotectionid;
 			getCurrentUser();
+			
 		}
 	}
 	

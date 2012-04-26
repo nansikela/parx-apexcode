@@ -7,7 +7,7 @@
         <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP2, 'css/main_ie.css')}" />
     </apex:outputPanel>
     
-<!--	<apex:stylesheet value="{!$Resource.divbutt}" />-->
+<!--    <apex:stylesheet value="{!$Resource.divbutt}" />-->
 
     <script src="http://maps.google.com/maps?file=api&v=2&key={!$Label.GeoApiKey}" type="text/javascript"></script>
     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
@@ -15,17 +15,22 @@
     <script type="text/javascript" src="http://labs.thesedays.com/projects/jquery/clearfield/jquery.clearfield.js"></script>
  
     
-<apex:define name="body">
+<apex:define name="body"> 
 
 <script type="text/javascript">
+
+
+    
     $(document).ready(function() {
         $('.clearField').clearField();
+       // document.getElementById('city1').value = '{!$CurrentPage.parameters.city1}';
+        document.getElementById('UmkreisId').value = '{!$CurrentPage.parameters.UmkreisId}';
     });
 
 function search(e) {
-	if(e.keyCode == 13) {
-		Search();
-	}
+    if(e.keyCode == 13) {
+        Search();
+    }
 }
     
             
@@ -53,25 +58,27 @@ function search(e) {
             var table = new google.visualization.Table(document.getElementById('{!$Component.dTable}'));
            
             var data = new google.visualization.DataTable();
-            data.addColumn('string', '&nbsp;&nbsp;&nbsp;&nbsp;{!$Label.Point}');
-            data.addColumn('string', '{!$Label.Address}', 'column2');          
+            //&nbsp;&nbsp;&nbsp;&nbsp;
+            data.addColumn('string', '{!$Label.Point}', {style:'font-size:50px;'});
+            data.addColumn('string', '{!$Label.Address}');
+            data.addColumn('string', '{!$Label.Details}');
             data.addColumn('string', '{!$Label.Distance}'); 
 
             var allMs =new Array();
             var allMsgs= new Array();
 
             <apex:repeat value="{!locations}" var="l" id="theRepeat" >
-
+ 
                 var mk;
                 var msg; 
                 data.addRows(1); 
             
                 var latlng = new GLatLng({!l.lat}, {!l.Lon}); 
            
-                var abcd = "{!l.Name}<br/><a target=\'_blank\' href=\'http://www.maps.google.com?q={!l.URLCleanAddress}\'>{!l.Street}<br/>{!l.Zip} {!l.City}</a><br/>{!l.phone}";
+                var abcd = "<b>{!l.Name}</b><br/><a target=\'_blank\' href=\'http://www.maps.google.com?q={!l.URLCleanAddress}\'>{!l.Street}<br/>{!l.Zip} {!l.City}</a>{!if(l.phone != '', '<br/>' +l.phone , '')}{!if(l.website != '', '<br/><a target=\'_blank\' href=\'' + if(left(l.website,4) != 'http', 'http://', '') +l.website + '\'>' + l.website + '</a>', '')} {!if(l.ProduktFocus!='','<br/>' + $ObjectType.Account.Fields.Produktfokus__c.Label + ': ' + l.ProduktFocus,'')}";
                     mk = createMarker(latlng, x,table,abcd);
             
-                bounds.extend(mk.getPoint());
+                bounds.extend(mk.getPoint()); 
                 map.addOverlay(mk); 
             
                 allMs[x]= mk; 
@@ -80,15 +87,18 @@ function search(e) {
                 var alphabet = x % 26; 
                 var letter = String.fromCharCode("A".charCodeAt(0) + alphabet);
               
-                data.setCell(x, 0, letter, letter, {style:'margin: 0px;padding: 0px;color: orange; font-weight:bold; width:78px;'});       
-                data.setCell(x, 1, "<b>{!l.Name}</b> <br/> {!l.Street} <br/> {!l.Zip} {!l.City}", "<b>{!l.Name}</b> <br/> {!l.Street} <br/> {!l.Zip} {!l.City}",  {style: 'text-align:left;padding-left:6px;font-family: arial;font-size: 12px;padding-right: 5px;'});
-            data.setCell(x, 2, "{!ROUND(l.Distance,2)} km", "{!ROUND(l.Distance,2)} km", {style:'width:110px;text-align:left;padding-left: 6px; font-size:12px;'});
+                data.setCell(x, 0, "0", letter, {style:'margin: 0px;padding: 0px;color: orange; font-weight:bold;text-align:left;padding-left:14px;'});       
+                data.setCell(x, 1, "1", "<b>{!l.Name}</b> <br/> {!l.Street} <br/> {!l.Zip} {!l.City} <br/> {!l.Website}", {style: 'text-align:left;font-family: arial;font-size: 11px;'});
+                data.setCell(x, 2, "2", "{!if(l.PartnerTyp!='',$ObjectType.Account.Fields.Pro_Partner_Typ__c.Label + ': ' + l.PartnerTyp,'')}  <br/>  {!if(l.Einzugsgebiet!='',$ObjectType.Account.Fields.Einzugsgebiet__c.Label + ': ' + l.Einzugsgebiet,'')} <br/> {!if(l.Partnerstatus!='',$ObjectType.Account.Fields.Pro_Partner_Status__c.Label + ': ' + l.Partnerstatus,'')}", {style: 'text-align:left;font-family: arial;font-size: 11px;'});
+                data.setCell(x, 3, "3", "{!ROUND(l.Distance,2)} km", {style:'text-align:left;font-size:11px;padding-left: 7px;'});
                 x+=1;
             </apex:repeat>
             
-            table.draw(data, {showRowNumber: false, allowHtml:true, frame:"border"});
-            
-            map.setZoom(map.getBoundsZoomLevel(bounds));
+            table.draw(data, {showRowNumber: false, allowHtml:true,/* page:'enable', pageSize:5,*/ height:'390px', frame:"border"});
+            var ZoomCustom = map.getBoundsZoomLevel(bounds);
+            if(ZoomCustom > 14)
+                ZoomCustom = 14;
+            map.setZoom(ZoomCustom);
             map.setCenter(bounds.getCenter());
             map.setUIToDefault();
             map.removeMapType(G_SATELLITE_MAP );
@@ -143,7 +153,7 @@ function search(e) {
 </script>
 
 
-<table cellspacing="0" column="2" style="position: relative;left: 20%;">
+<table cellspacing="0" column="2" >
 <!--<apex:form > -->
 <!--<tr>-->
 <!--    <td colspan="2" align="center"><apex:commandButton action="{!goBack}" value="Back to {!mainAccount.name} record"/></td>-->
@@ -152,11 +162,23 @@ function search(e) {
 <tr>
 <td valign="top">
 <apex:form id="formId1" style="width:100%;">
-   <apex:actionFunction action="{!Search}" name="Search"  />	            
-<div >
+   <apex:actionFunction action="{!Search}" name="Search"/>              
+<div>
     <apex:pageBlock id="pb_Id1">
-        <apex:pageBlockSection columns="2"  collapsible="false" id="pbSec">
-            <input onkeyup="search(event);return false;" name="city1" id="city1" value="{!$Label.PartnerFinder_Placeholder}" style="margin-top:10px;font-size:12px;width: 235px;position:relative;" class="clearField"/>
+        <apex:pageBlockSection columns="2"  collapsible="false" id="pbSec" >
+            <input onkeyup="search(event);return false;" name="city1" id="city1" value="{!$Label.PartnerFinder_Placeholder}" style="margin-top:0px;font-size:12px;width: 235px;position:relative;" class="clearField"/>
+            <br/>
+            {!$Label.PartnerFinder_Umkreis} 
+            <select id="UmkreisId" name="UmkreisId">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option selected="true" value="50">50</option>
+                <option value="100">100</option>
+            </select> 
+            km
+
 <!--          <apex:commandButton id="buttText" action="{!Search}" value="{!$Label.PartnerFinder_Find}" onfocus="this.style.padding='3px 10px 5px 20px';" style="font-size: 12px;font-family:Arial,Verdana,Helvetica,sans-serif;width: auto !important;  overflow: visible; margin-top: 7px; margin-left:5px; height:25px; padding:3px 10px 5px 20px; background:url({!$Resource.partnerfinderButton}) no-repeat left top;color:white; border:0;">-->
 <!--                <div id="butt">-->
 <!--                    <apex:commandButton action="{!Search}" value="" style="height:24px;width:11px;position: relative;background:url({!$Resource.partnerfinderButton2});border:0;"/>-->
@@ -172,9 +194,9 @@ function search(e) {
 <!--                    <apex:commandButton action="{!Search}" value="" style="height:24px;width:11px;position: relative;background:url({!$Resource.partnerfinderButton2});border:0;"/>-->
 <!--                </div>-->
                 
-                <a href="" onclick="Search()" onkeyup="search(event);return false;" class="btn rght" style="text-decoration:none;margin-top: 7px;position: relative;margin-left: 15px;">
-			   <span>{!$Label.PartnerFinder_Find}</span>
-		    </a>
+                <a href="" onclick="Search()" onkeyup="search(event);return false;" class="btn rght" style="text-decoration:none;margin-top: -1px;position: relative;margin-left: 15px;">
+               <span>{!$Label.PartnerFinder_Find}</span>
+            </a>
 <!--            </apex:commandButton>  -->
 <!--            -->
             </apex:outputPanel>
@@ -184,7 +206,7 @@ function search(e) {
    </div>
 </apex:form>
 <br/>
-<apex:outputPanel id="dTable" rendered="{!showTable}"  layout="block" style="width:400px; align:top; text-align:center;margin-top:5px;"></apex:outputPanel>
+<apex:outputPanel id="dTable" rendered="{!showTable}"  layout="block" style="width:400px;  vertical-align:top; text-align:center;margin-top:5px;"></apex:outputPanel>
 
 </td>
 <td valign="top"> 
@@ -198,34 +220,7 @@ function search(e) {
 
 
 <style type="text/css">
-/*
-     a.butt {
-        background:url("{!$Resource.partnerfinderButton}") no-repeat scroll 0 0 transparent !important;
-        border:0 none;
-        color:#FFFFFF !important;
-        cursor:pointer !important;
-        float:left;
-        font-size:12px;
-        font-weight:bold !important;
-        height:30px;
-        margin:5px 0;
-        overflow:visible;
-        padding:0 0 0 24px !important;
-        position:relative;
-        white-space:nowrap;
-        width:auto;
-    }
-    
-    a.butt span {
-        background:url("{!$Resource.partnerfinderButton2}") no-repeat scroll 100% 0 transparent;
-        border:0 none;
-        color:#FFFFFF !important;
-        display:inline-block;
-        height:30px;
-        overflow:hidden;
-        padding:4px 20px 0 5px !important;
-        position:relative;
-    }*/
+
     
     body {
         background:url();
@@ -279,6 +274,16 @@ function search(e) {
     }
     .bPageBlock .pbBody {
         background-color: transparent;
+    }
+    .google-visualization-table-th {
+        padding-right: 0px;
+        padding-left: 3px;
+        font-size:11px;
+        text-align:center;
+    }
+    
+    .gmnoprint {
+        text-align:left;
     }
 </style>
 </apex:page>

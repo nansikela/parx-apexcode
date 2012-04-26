@@ -16,7 +16,7 @@
             
           //  $(document).ready(function(){
                 //if('{!TrainingActivation}' == true)
-                //	$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540,  href:"{!Modules_URLPage}"});
+                //	$(".example9").colorbox({iframe:true,scrolling:false, overlayClose:false, innerWidth:960,  innerHeight:540,  href:"{!$Page.page}?pageid={!trainingpageid}"});
                 //  onOpen:function(){ alert('onOpen: colorbox is about to open'); },
                 //  onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
                 //  onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },

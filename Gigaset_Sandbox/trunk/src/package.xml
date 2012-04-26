@@ -1,69 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>CRD_LogoPortletController</members>
-        <members>CRD_MarketingController</members>
-        <members>CRD_pageTemplatesController</members>
-        <members>CRD_pageTemplatesControllerTest</members>
-        <members>ClearingController</members>
-        <members>CustomerPortalWelcomeController</members>
-        <members>LoginMenuComponentController</members>
-        <members>MetanaviController</members>
-        <members>ScheduleContacttoUserTest</members>
-        <members>System_Settings</members>
-        <members>TemplateController</members>
-        <members>TrainingController</members>
-        <members>kontaktController</members>
-        <members>loginPageController</members>
-        <members>loginpageControllerTest</members>
-        <members>navigationController</members>
-        <members>newsreader</members>
-        <members>newsreaderControllerTest</members>
-        <members>pageController</members>
-        <members>privacyController</members>
-        <members>registerController</members>
-        <members>topnews</members>
-        <members>userdataController</members>
-        <members>userprofileportletController</members>
-        <members>userprofileportletControllerTest</members>
-        <members>werbemittelController</members>
+        <members>*</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>CRD_Login</members>
-        <members>CRD_LoginMenu</members>
-        <members>CRD_Logo</members>
-        <members>CRD_breadcrump</members>
-        <members>CRD_extranetnavigation</members>
-        <members>CRD_footer</members>
-        <members>CRD_footercopy</members>
-        <members>CRD_headerStylesBottom</members>
-        <members>CRD_headerStylesTop</members>
-        <members>CRD_metanavi</members>
-        <members>CRD_newscontent</members>
-        <members>CRD_newsreader</members>
-        <members>CRD_topnews</members>
-        <members>CRD_userprofileportlet</members>
-        <members>CRD_werbemittel</members>
+        <members>*</members>
         <name>ApexComponent</name>
     </types>
     <types>
-        <members>CRD_Home</members>
-        <members>CRD_Imprint</members>
-        <members>CRD_Kontaktformular</members>
-        <members>CRD_Landing_Page</members>
-        <members>CRD_Login</members>
-        <members>CRD_Marketing</members>
-        <members>CRD_NewsReader</members>
-        <members>CRD_OneColumnTemplate</members>
-        <members>CRD_Register</members>
-        <members>CRD_Rueckrufservice</members>
-        <members>CRD_SiteTemplate</members>
-        <members>CRD_Training</members>
-        <members>CRD_TwoColumnTemplate</members>
-        <members>CRD_Userdata</members>
-        <members>page</members>
+        <members>*</members>
         <name>ApexPage</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApexTrigger</name>
     </types>
     <version>20.0</version>
 </Package>

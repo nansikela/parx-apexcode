@@ -3,102 +3,103 @@
 <style type="text/css">
 /' fuer die texte */
 div {
-	font-family: Arial, sans-serif ! important;
-	font-size: 12px;
+    font-family: Arial, sans-serif ! important;
+    font-size: 12px;
 }
 
 p {
-	font-family: Arial, sans-serif ! important;
-	font-size: 12px;
+    font-family: Arial, sans-serif ! important;
+    font-size: 12px;
 }
 
 span {
-	font-family: Arial, sans-serif ! important;
-	font-size: 12px;
+    font-family: Arial, sans-serif ! important;
+    font-size: 12px;
 }
 
 .textbold {
-	font-weight: bold ! important;
+    font-weight: bold ! important;
 }
 
 .text10pt {
-	font-size: 10pt ! important;
+    font-size: 10pt ! important;
 }
 
 .text12pt {
-	font-size: 12pt ! important;
+    font-size: 12pt ! important;
 }
 
 .text17pt {
-	font-size: 17pt ! important;
+    font-size: 17pt ! important;
 }
 
 .text18pt {
-	font-size: 18pt ! important;
+    font-size: 18pt ! important;
 }
 
 #custom_popup_bg {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0px;
-	z-index: 9990;
-	text-align: center;
-	display: none;
-	background-repeat: repeat;
-	background-attachment: scroll; 
-	background-image: url({!URLFOR($Resource.popup, 'popup_bg.png')});
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    z-index: 9990;
+    text-align: center;
+    display: none;
+    background-repeat: repeat;
+    background-attachment: scroll; 
+    background-image: url({!URLFOR($Resource.popup, 'popup_bg.png')});
 }
 
 #custom_popup_close {
-	position: absolute;
-	z-index: 9999;
-	width: 25px;
-	height: 24px;
-	top:-10px;
-	left:950px;	
-	display: none;
+    position: absolute;
+    z-index: 9999;
+    width: 25px;
+    height: 24px;
+    top:-10px;
+    left:950px; 
+    display: none;
 }
 
 #custom_popup.custom_popup {
-	width: 960px;
-	height: 545px;
-	overflow: auto;
-	text-align: justify;
-	position: relative;
-	z-index: 9995;
-	display: inline-block;
-	overflow: visible;
-	top: 130px;
-	display: none;
-	background-color: white;
+    width: 960px;
+    height: 545px;
+    overflow: auto;
+    text-align: justify;
+    position: relative;
+    z-index: 9995;
+    display: inline-block;
+    overflow: visible;
+    top: 130px;
+    display: none;
+    background-color: white;
 }
 
 #custom_popup.custom_popup iframe {
-	border-width: 0px;
-	overflow-x: hidden; 
-	overflow-y: hidden; 
-	width:939px;
-	height:530px;
-	position: relative;
-	display: block;
-	top: 10px;
-	left: 10px;
+    border-width: 0px;
+    overflow-x: hidden; 
+    overflow-y: hidden; 
+    width:939px;
+    height:530px;
+    position: relative;
+    display: block;
+    top: 10px;
+    left: 10px;
 }
 
 .tblNavigationTop {
-	position:relative; 
-	height:30px; 
-	top:10px; 
-	width: 100%;
+    position:relative; 
+    height:30px; 
+    top:10px; 
+    width: 100%;
 }
 
 .navigationTop {
-	padding: 0px;
-	width:150px;
-	font-size: 12px!important;
-	text-align: left;	
-	color: white;
+    padding: 0px;
+    /*width:150px;*/
+    font-size: 12px!important;
+    margin-left: 15px;
+    text-align: left;   
+    color: white;
 }
 
 .navigationTop a {
@@ -117,86 +118,86 @@ span {
 }
 
 .welcomeheadline {
-	font-size:20pt;
-	width: 380px; 
-	color: white; /*white; #474c54 */ 
-	padding:10px 0 0 0;
-	position: relative; 
-	bottom: 25px;	
+    font-size:20pt;
+    width: 380px; 
+    color: white; /*white; #474c54 */ 
+    padding:10px 0 0 0;
+    position: relative; 
+    bottom: 25px;   
 }
 
 .description {
-	position:relative;
-	width: 380px;  
-	color:white;
+    position:relative;
+    width: 380px;  
+    color:white;
 }
 
 .bookDiv{
-	line-height: 20px;
-	-ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotate=1)';
-	/*filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */         
-	/*-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* IE8 */ 
-	/*
-	-ms-filter:"progid:DXImageTransform.Microsoft.Matrix(M11=0.00000000, M12=-1.00000000, M21=1.00000000, M22=0.00000000, Dx=100, Dy=100, sizingMethod='auto expand')"; 
-	filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.00000000, M12=-1.00000000, M21=1.00000000, M22=0.00000000, Dx=100, Dy=100, sizingMethod='auto expand');
-	-moz-transform:  matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -70pt, 65pt);
-	-moz-transform-origin:  -100px , 125px; 
-	-webkit-transform:  matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -95 , 85);
-	-o-transform: matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -95, 25);
-	*/
+    line-height: 20px;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.BasicImage(rotate=1)';
+    /*filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=3);  /* IE6,IE7 */         
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)"; /* IE8 */ 
+    /*
+    -ms-filter:"progid:DXImageTransform.Microsoft.Matrix(M11=0.00000000, M12=-1.00000000, M21=1.00000000, M22=0.00000000, Dx=100, Dy=100, sizingMethod='auto expand')"; 
+    filter:progid:DXImageTransform.Microsoft.Matrix(M11=0.00000000, M12=-1.00000000, M21=1.00000000, M22=0.00000000, Dx=100, Dy=100, sizingMethod='auto expand');
+    -moz-transform:  matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -70pt, 65pt);
+    -moz-transform-origin:  -100px , 125px; 
+    -webkit-transform:  matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -95 , 85);
+    -o-transform: matrix('0.00000000, 1.00000000, -1.00000000, 0.00000000', -95, 25);
+    */
 }
 
 .bookmarknumber {
-	width:25px; 
-	text-align:center; 
-	color:#ffffff; 
-	font-family: Arial, Helvetica, Geneva, sans-serif; 
-	font-weight: bold; 
-	font-size:17px;
+    width:25px; 
+    text-align:center; 
+    color:#ffffff; 
+    font-family: Arial, Helvetica, Geneva, sans-serif; 
+    font-weight: bold; 
+    font-size:17px;
 }
 
 .undertitle {
-	font-size: 17px; 
-	font-weight: normal; 
-	color:white;
+    font-size: 17px; 
+    font-weight: normal; 
+    color:white;
 }
 
 .bookHeading {
-	width:130px;
-	font-size:10px; 
-	font-weight:bold; 
-	text-transform: uppercase;
-	position:relative;
-	top:14px;
+    width:130px;
+    font-size:10px; 
+    font-weight:bold; 
+    text-transform: uppercase;
+    position:relative;
+    top:14px;
 }
 
 .innerBookHeading {
-	position:absolute;
-	bottom:0px;
+    position:absolute;
+    bottom:0px;
 }
 
 .moduleName {
-	color:#ef7c00; 
-	font-size:10px;
+    color:#ef7c00; 
+    font-size:10px;
 }
 
 .vNav {
-	 width:416px; 
-	 height:361px; 
-	 position:absolute; 
-	 left:48px; 
-	 top:102px;
+     width:416px; 
+     height:361px; 
+     position:absolute; 
+     left:48px; 
+     top:102px;
 }
 
 .background {
-	height: 523px;
-	width: 940px;
-	background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite.jpg')}) repeat-x 0 0;
+    height: 523px;
+    width: 940px;
+    background: url({!URLFOR($Resource.lektora_grafik, 'LektoraGrafiken/online/hg_startseite_np.jpg')}) repeat-x 0 0;
 }
 
 /*für den colorbox*/
 #cboxLoadingGraphic,#cboxLoadingOverlay {
-	background-image: url();
+    background-image: url();
 }
  
 #cboxContent {
@@ -222,18 +223,18 @@ a.hover {
     
 /*mein progressbar der ganz gut läuft...*/
 .progressHeading{
- 	font-size:12px !important; 
- 	font-weight: bold !important;   
- 	padding: 0px 0px 0px 5px; 
- 	width: 130px; 
+    font-size:12px !important; 
+    font-weight: bold !important;   
+    padding: 0px 0px 0px 5px; 
+    width: 130px; 
 }
  
 .progressDesc{
-	font-size:10px !important; 
-	font-weight: normal !important; 
-	padding:3px 0px 0px 5px; 
-	position:relative; 
-	bottom:5px;
+    font-size:10px !important; 
+    font-weight: normal !important; 
+    padding:3px 0px 0px 5px; 
+    position:relative; 
+    bottom:5px;
 }
 
 .progressBar {
@@ -264,18 +265,18 @@ a.hover {
 }
 
 .progressStat{
-	color:white; 
-	font-size:11px !important; 
-	font-weight: bold !important; 
-	padding:2px 0px 0px 5px; 
-	position:relative; 
-	bottom:12px;
+    color:white; 
+    font-size:11px !important; 
+    font-weight: bold !important; 
+    padding:2px 0px 0px 5px; 
+    position:relative; 
+    bottom:12px;
 }
 
 .progressStatResult{
-	color:#FF8600; 
-	font-size:11px !important; 
-	font-weight: bold !important;
+    color:#FF8600; 
+    font-size:11px !important; 
+    font-weight: bold !important;
 }
 
 <!-- Allgemeine Angaben -->
@@ -576,10 +577,10 @@ a:-webkit-any-link {
 }    
 
 .scndPageTitle{
-	font-size: 25px; 
-	font-weight:normal; 
-	width:356px; 
-	margin: 26px 0px 0px 17px;
+    font-size: 25px; 
+    font-weight:normal; 
+    width:356px; 
+    margin: 26px 0px 0px 17px;
 }
 
 
@@ -621,8 +622,8 @@ background-position:0px 0px;
 #cboxBottomCenter,
 #cboxBottomLeft,
 #cboxBottomRight  {
-	position:relative;
-	bottom:5px;
+    position:relative;
+    bottom:5px;
 }
 
 #cboxTopCenter,
@@ -808,10 +809,6 @@ background-position:0px 0px;
 }
 
 
-.bookTexts {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-1.8369701987210297e-16, M12=-1, M21=1, M22=-1.8369701987210297e-16, SizingMethod='auto expand')";
-    filter: progid:DXImageTransform.Microsoft.Matrix(M11=-1.8369701987210297e-16, M12=-1,M21=1, M22=-1.8369701987210297e-16, SizingMethod='auto expand');
-}
 
 <!-- Zusätzliche CSS Angaben für die Colorbox -->
 

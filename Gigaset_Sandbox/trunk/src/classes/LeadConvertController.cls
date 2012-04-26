@@ -3,20 +3,12 @@ public class LeadConvertController {
   public class ConvertException extends Exception {}
   
   public class AccountItem{
-    private String Id;
-    private String Name;
+    public String Id {get;set;}
+    public String Name {get;set;}
     
     public AccountItem(String Id, String Name){
       this.Id = Id;
       this.Name = Name;
-    }
-    
-    public String getId(){
-      return Id;
-    }
-    
-    public String getName(){
-      return Name;
     }
   }
   
@@ -115,7 +107,7 @@ public class LeadConvertController {
     notifyEmail = true;
     
     	try{
-    		selectedLead = [SELECT Id, Name, FirstName, LastName, Status, Company, OwnerId, RecordType.Name FROM Lead WHERE Id = :ApexPages.currentPage().getParameters().get('id') AND isConverted = false];
+    		selectedLead = [SELECT Id, Name, FirstName, LastName, Status, Company, OwnerId, RecordType.Name, RecordType.DeveloperName FROM Lead WHERE Id = :ApexPages.currentPage().getParameters().get('id') AND isConverted = false];
     		
     		if(selectedLead != null){
     			convertStatus = [Select Id, MasterLabel from LeadStatus where IsConverted = true limit 1];
@@ -134,8 +126,13 @@ public class LeadConvertController {
       			t = new Task(Priority = 'Normal', Status = 'Nicht begonnen');
       
       			overwriteContact = false;
-
-      			if(selectedLead.RecordTypeId == '012D0000000JEeV'){
+				
+				RecordType rt;
+				try {
+					rt = [SELECT Id, DeveloperName, sObjectType FROM RecordType Where sObjectType = 'Lead' AND DeveloperName LIKE 'DIST_VAR' limit 1];
+				} catch(Exception e) { system.debug('ERROR: RecordType DIST_VAR for Lead not found'); }
+				 
+      			if(selectedLead.RecordTypeId == (rt==null?'012D0000000JEeV':rt.ID)){
         			deactivateOpportunities = true;
         			isAbleCreateOpps = false;
       			}else{
@@ -185,7 +182,7 @@ public class LeadConvertController {
     }
    
     for(AccountItem item : options)
-           if(item.getId() == selectedAccId){
+           if(item.Id == selectedAccId){
              if(temp.size() > 0)  
                temp.add(0, item);
              else
@@ -285,9 +282,9 @@ public class LeadConvertController {
         
         for(AccountItem item : options)
         {
-        	System.debug('item ID: '+item.getId() + ' / selectedAcc ID: '+selectedAcc.Id);
+        	System.debug('item ID: '+item.ID + ' / selectedAcc ID: '+selectedAcc.Id);
         	
-        	if(item.getId().equals(selectedAcc.Id))
+        	if(item.ID.equals(selectedAcc.Id))
         	{
             	isKnown = true;
             	System.debug('isKnown');
@@ -315,10 +312,13 @@ public class LeadConvertController {
   }
   
   public PageReference convert() { 
+  		Savepoint sp = Database.setSavepoint();
+  		
   		System.debug('forceAccMerging: ' + forceAccMerging);   
-       	if(!checkLeadID())
+       	if(!checkLeadID()) {
           	return null;
-        
+       	}
+       	
         debugger();
         
         lc = new database.LeadConvert();
@@ -403,15 +403,27 @@ public class LeadConvertController {
     	}
     
     	System.debug(lc);
+    	
       	Database.LeadConvertResult lcr = Database.convertLead(lc);
-      
-      	if(lcr.isSuccess()){
+    	
+      	if(lcr.isSuccess()){ 
         	Account acc = [SELECT Id, RecordTypeId FROM Account WHERE Id = :lcr.getAccountId()];
         
         	if((selectedLead.RecordTypeId != null || selectedLead.RecordTypeId != '') && (selectedAccId == null || selectedAccId == '' || selectedAccId == '-')){
-           		RecordType rType = [SELECT Id FROM RecordType WHERE SobjectType = 'Account' AND Name = :selectedLead.RecordType.Name];
-        		acc.RecordTypeId = rType.Id;  
-        		update acc;
+           		RecordType rType = null;
+           		try {
+           			if(selectedLead.RecordType.DeveloperName == 'Promotion' || selectedLead.RecordType.DeveloperName == 'DIST_VAR')
+           				rType = [SELECT Id FROM RecordType WHERE SobjectType = 'Account' AND DeveloperName = 'DistributorVAR' limit 1];
+        			else
+        				rType = [SELECT Id FROM RecordType WHERE SobjectType = 'Account' AND DeveloperName = :selectedLead.RecordType.DeveloperName limit 1];
+        			
+        			acc.RecordTypeId = rType.Id;  
+        			update acc;
+           		} catch(Exception e) {
+           			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, System.Label.lead_convert_account_recordType_missing));
+           			Database.rollback(sp);
+           			return null;
+           		}
         	}
         
         	if(t.Subject != null && t.Subject != ''){  
@@ -425,6 +437,7 @@ public class LeadConvertController {
         
       		return new ApexPages.Standardcontroller(acc).view();
       	}
+      	Database.rollback(sp);
       	return null;  
 	}
     

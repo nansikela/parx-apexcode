@@ -13,6 +13,7 @@ public class DETemplateController {
 	public Id kontaktpageid { get; set; }
 	public Id loginpageid { get; set; }
 	public Id registrationpageid { get; set; }
+	public Id trainingpageid {get; set; }
 	public String label_menu_home { get; set; }
 	public String defaultlanguage { get; set; }
 	public Boolean showpresetcomp { get; set; }
@@ -31,6 +32,7 @@ public class DETemplateController {
 	public String lastName {get;set;}
 	public String salutation {get;set;}
 	public Boolean showNextTopShop { get; set; }
+	public Boolean GewinnSpiel { get; set; }
 	public Integer Modules_currentSuccess {get;set;}
 	public String Modules_Param {get;set;}
 	public Integer Modules_total {get;set;}
@@ -51,9 +53,40 @@ public class DETemplateController {
 	
 	public boolean ProAuthorizationSwitch {get;set;}
 	public boolean ProAuthorisiert {get;set;}
+	public CustomLabel__c menuImpressum {get;set;}
 	
 	public Boolean getShowNextTopShop(){
 		return SystemSettings.showNextTopShop;
+	} 
+	   
+    public String getTarget(){
+        return 'pdf_logo.pdf';
+    }
+    
+    public String getBaseTopNaviUrl() {
+        if(isPro)
+            return SystemSettings.baseurl+'pro/'+portal.substring(0,2)+'/'+String.valueOf(SystemSettings.setLanguage()).substring(0,2)+'/';
+        else
+            return SystemSettings.baseurl+portal.substring(0,2)+'/'+String.valueOf(SystemSettings.setLanguage()).substring(0,2)+'/';
+    }
+    
+	public Boolean getGewinnSpiel(){
+		User u = [select Contact.Keine_Teilnahme_Campus_Incentiv__c from User where Id=:UserInfo.getUserId()];
+		if(u.Contact.Keine_Teilnahme_Campus_Incentiv__c) //user already clicked on "ich möchte nicht teilnehmen"
+			return false;
+		
+		map<String, Cookie> Cookies = ApexPages.currentPage().getCookies();
+		if(Cookies.containsKey('HideGewinnSpiel')) //user clicked during the current session on "jetzt nicht teilnehmen"
+			return false;
+			
+		try {
+			Campaign camp = [select id from Campaign where RecordType.developerName = 'Campus_Incentive' AND Portal__c =: SystemSettings.portal and isActive = true and StartDate <=: system.today() and EndDate >=: system.today() limit 1];
+		}
+		catch(exception e) {
+			return false;
+		}
+		
+		return true;
 	} 
 	
 	public String getModules_URLPage(){
@@ -62,9 +95,13 @@ public class DETemplateController {
 	
 	// constructor
 	public DETemplateController() {	
+		
+	try{
+
+		isAuthenticated=SystemSettings.isPortalUser();
+		system.debug('loginpageid: '+SystemSettings.loginpageid+ ' / homepageid:'+SystemSettings.homepageid);
 		if (isPro==null) isPro=SystemSettings.isPro;
 		portal=SystemSettings.portal;
-			
 		styleSelector=isPro?'pro':'normal';
 		isDone = ApexPages.currentPage().getParameters().containsKey('isDone');
 		callback_imgurl=SystemSettings.getLabel('callback_imgurl');
@@ -76,11 +113,16 @@ public class DETemplateController {
 		if (showclearingcomp) showpresetcomp=false;
 		showothercomp=showpresetcomp || showclearingcomp || showprivacy;
 		defaultlanguage=SystemSettings.setLanguage();
+		
 		label_menu_home=getCurrentNavigationPointLabel(SystemSettings.getPageId('Home',portal,isPro));
 		kontaktpageid=SystemSettings.kontaktpageid;
 		loginpageid=SystemSettings.loginpageid;
-		isAuthenticated=SystemSettings.isPortalUser();
 		currentNavigationPoint='';
+		try {
+          menuImpressum = [SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :portal AND LanguageCode__c = :SystemSettings.setLanguage() AND CommonCode__c = 'extranet_topNavi_Impressum' ];
+        }
+        catch(exception e) {}
+        
 		u0 = [select Contact.Id, Contact.firstname, Contact.lastname, Contact.Account.Pro_Authorisiert__c, Contact.Salutation from User where Id=:UserInfo.getUserId()];
 	      
 	      ProAuthorisiert = false;
@@ -101,9 +143,15 @@ public class DETemplateController {
 		}
 	    
 	    try {
-	    	c0 = [select firstname, lastname, toLabel(Salutation) from Contact where Id =: u0.Contact.Id];
-	    } catch(exception e) {}
+	    	system.debug('UserID: '+u0.ID+' / ContactID: '+u0.ContactId);
+	    	for(Contact c : [select firstname, lastname, toLabel(Salutation) from Contact where Id =: u0.Contact.Id])
+	    		c0 = c;
+	    } catch(exception e) {
+	    	system.debug(e.getMessage());
+	    }
 	    System.debug('#################################################### Begrüßung: '+u0.Contact.lastname);
+	  //  system.debug('DebugGewinnSpiel:' + getGewinnSpiel());
+	    GewinnSpiel = getGewinnSpiel();
 	    firstName = u0.Contact.firstName;
 	    lastName = u0.Contact.lastName;
 	    if(c0 != null)
@@ -124,8 +172,14 @@ public class DETemplateController {
 			}	
 		}
 		homeurl=SystemSettings.goHome().getUrl();
+		if(Site.getName() == 'Knowledge_Base')
+           homeurl = '/pkb_Home?l=' + SystemSettings.setLanguage();
 			
 		//System.debug('******* Zustand: showprivacy: ' + showprivacy + ' / showpresetcomp: '+ showpresetcomp + ' / showclearingcomp: ' +showclearingcomp + ' / showothercomp: ' + showothercomp + ' / shownexttopshop: ' + showNextTopShop + ' / isAuthenticated: ' + isAuthenticated + ' / isPro: ' + isPro +  ' / Portal: ' + portal + ' / UserId: ' + UserInfo.getUserId() );
+	}catch(Exception e){
+		system.debug(e.getMessage());
+	}
+		trainingpageid=SystemSettings.TrainingId;
 	}
 	
 	public String getCurrentNavigationPointLabel(String pid) {
@@ -344,6 +398,7 @@ public class DETemplateController {
 	 
 	public list<Booken> getBooks(){
 		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c,New_Modules__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		system.debug('Amount of books: '+TB.size() + ' for '+Portal+ '/' + isPro);
 		Integer i = 0;
 		Books = new list<Booken>(); 
 		Booken book;
@@ -684,7 +739,16 @@ public class DETemplateController {
 		
 		if(results.size() == 0){
 			System.debug('No result found. Needed to create new one with init values!');
+			Campaign camp;
+            try {
+                //we try to find a corresponding campaign.
+               camp = [select id from Campaign where Portal__c =: SystemSettings.portal and isActive = true and StartDate <=: system.today() and EndDate >=: system.today() limit 1];
+            }catch(exception e) {}
+            
 			item = new Training_Ergebnis__c(Training_Modul__c = moduleID, Kontakt__c = contactID, ErgebnisID__c = moduleID+''+contactID, Last_Click__c = actualDate, Tries__c = 0);
+			if(camp != null) {
+                item.Kampagne__c = camp.Id;
+            }
 			insert item;
 		}else{
 			item = results.get(0);
@@ -738,7 +802,7 @@ public class DETemplateController {
 			if(NTS == null && u != null) {
 				Campaign camp;
 		    		try{
-		    			camp = [select id, EndDate, StartDate, isActive from Campaign where RecordType.Name = 'Top Shop' AND Portal__c =: Portal AND isPro__c =: isPro AND EndDate >= TODAY AND StartDate <= TODAY AND isActive = True limit 1]; 
+		    			camp = [select id, EndDate, StartDate, isActive from Campaign where RecordType.developerName = 'Top_Shop' AND Portal__c =: Portal AND isPro__c =: isPro AND EndDate >= TODAY AND StartDate <= TODAY AND isActive = True limit 1]; 
 		    		}
 		    		catch(exception e){}
 		    		if(camp != null)

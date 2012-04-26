@@ -71,16 +71,13 @@ private class FNA_MapConTest {
     	 	ctrl.findMax();
     	 	ctrl.getError();
     	 	ctrl.getItems();
-    	 	ctrl.getLocations();
+    	 	ctrl.getLocations(); 
     	 	ctrl.getmainAccount();
     	 	ctrl.getMsg();
     	 	ctrl.getMsg2();
     	 	ctrl.goBack();
     	 	ctrl.goBackMap();
     	 	//ctrl.googleRequest();
-    	 	ctrl.isSourceAccountGood();
-    	 	ctrl.makeList();
-    	 	ctrl.makeQuery();
     	 	//ctrl.Search();
     	 	//ctrl.init();
     	 	test.stopTest();

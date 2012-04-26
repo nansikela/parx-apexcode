@@ -69,60 +69,15 @@ private class TemplateTest {
 	 ctrl.getCopyright();
 	 ctrl.getShowNextTopShop();
 	 ctrl.initHome();
-	 ctrl.getModules_URLPage();
-	 ctrl.getCampus_1_Title(); 
-        ctrl.getCampus_2_Title();
-        ctrl.getCampus_3_Title();
-        ctrl.getCampus_4_Title();
-        ctrl.getCampus_lastPage1();
-        ctrl.getCampus_lastPage2();
-        ctrl.getCampus_main_Description1();
-        ctrl.getCampus_main_Description2();
-        ctrl.getCampus_otherPage1();
-        ctrl.getCampus_otherPage2();
-        ctrl.getCampus_otherPage3();
-        ctrl.getCampus_otherPage4();
-        ctrl.getCampus_otherPage5();
-        ctrl.getCampus_otherPage6();
-        ctrl.getCampus_smallBox1();
-        ctrl.getCampus_smallBox2();
-        ctrl.getCampus_smallBox3();
-        ctrl.getCampus_smallBox4();
-        ctrl.getCampus_Title_1();
-        ctrl.getCampus_underTitle();
-        ctrl.getCampus_Welcome();
-        
-        TrainingController.Modulen mods =new TrainingController.Modulen();
+
+       TrainingController.Modulen mods =new TrainingController.Modulen();
         TrainingController.Booken bbooks = new TrainingController.Booken();
-        ctrl.firstPage();
+
 	 ctrl.getCurrentNavigationPointLabel(System_Settings.loginpageid);
        System.assert(ctrl.isAuthenticated!=null);
        System_Settings.logError('test', 'test', 'test', '', 'error');
        ctrl.redirectTologin();
-       	ctrl.getBooks();
-       	ApexPages.currentPage().getParameters().put('moduleId',tms.get(0).id);
-       	ctrl.showModule();
-       	ctrl.getModules();
-       	ctrl.initModuleResult();
-       	ctrl.getFirstName();
-       	ctrl.getLastName();
-       	ctrl.getSalutation();
-       	ctrl.getModules_currentSuccess();
-       	ctrl.getModules_Param();
-       	ctrl.getModules_total();
-       	ctrl.getModules_currentpoint();
-       	ctrl.getModules_currentbar();
-       	ctrl.getModules_showFirstpage();
-       	ctrl.getModules_showThirdpage();
-       	ctrl.getModules_LektoraURL();
-       	ctrl.getNewsid();
-       	ctrl.getModules_book();
-       	ctrl.getModules_modulesSecondPage1();
-       	ctrl.getModules_SingleModule();
-       	ctrl.Poller();
-       	ctrl.secondPage();
-       	ctrl.getModules_modulesSecondPage2();
-       	ctrl.getNTS();
+
        	ctrl.getTarget();
        	ctrl.getPopupurl();
        	ctrl.getIsPDF();
@@ -135,7 +90,6 @@ private class TemplateTest {
     	PageReference pageRef = Page.CRD_Home;
         Test.setCurrentPage(pageRef);
         TemplateController ctrl = new TemplateController();
-        TrainingController ctrlTrain = new TrainingController(ctrl);
         
         /* create books */
        list<Training_Book__c> books = new list<Training_Book__c>();
@@ -174,39 +128,7 @@ private class TemplateTest {
        	tes.add(te);
        }
        insert tes;
-	 	System.runAs(u) {
-	 	test.startTest();
-        TrainingController.Modules_Param = tms.get(0).Id;
-        ApexPages.currentPage().getParameters().put('moduleId',  TrainingController.Modules_Param);
-        TrainingController.getBooks();
-        TrainingController.getModules();
-        TrainingController.firstPage();
-        TrainingController.Poller();
-        TrainingController.secondPage();
-        TrainingController.showModule();
-        TrainingController.getCampus_1_Title(); 
-        TrainingController.getCampus_2_Title();
-        TrainingController.getCampus_3_Title();
-        TrainingController.getCampus_4_Title();
-        TrainingController.getCampus_lastPage1();
-        TrainingController.getCampus_lastPage2();
-        TrainingController.getCampus_main_Description1();
-        TrainingController.getCampus_main_Description2();
-        TrainingController.getCampus_otherPage1();
-        TrainingController.getCampus_otherPage2();
-        TrainingController.getCampus_otherPage3();
-        TrainingController.getCampus_otherPage4();
-        TrainingController.getCampus_otherPage5();
-        TrainingController.getCampus_otherPage6();
-        TrainingController.getCampus_smallBox1();
-        TrainingController.getCampus_smallBox2();
-        TrainingController.getCampus_smallBox3();
-        TrainingController.getCampus_smallBox4();
-        TrainingController.getCampus_Title_1();
-        TrainingController.getCampus_underTitle();
-        TrainingController.getCampus_Welcome();
-        test.stopTest();
-	 	}
+	 	
        //end of trainig 
     }
 }

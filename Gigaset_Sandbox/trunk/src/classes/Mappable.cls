@@ -12,6 +12,11 @@ public class Mappable{
     String City='';
     String State ='';
     String Country ='';
+    String Website ='';
+    String PartnerTyp ='';
+    String ProduktFocus ='';
+    String Einzugsgebiet ='';
+    String Partnerstatus ='';
     String Tp = '';
     String Zip = '';
     Double Distance = 0;
@@ -35,24 +40,18 @@ public class Mappable{
         Status = A.FN__Mapping_Status__c;
         Tp = A.Type;
         Distance = A.Distance__c;
-        if(A.FN__Which_Address__c == 'Shipping')
-        {    
-            Street = A.ShippingStreet;
-            City = A.ShippingCity;
-            State = A.ShippingState; 
-            Country = A.ShippingCountry;
-            Zip = A.ShippingPostalCode; 
-        }
-        else if(A.FN__Which_Address__c == 'Billing' || A.FN__Which_Address__c != null)
-        {    
-            Street = A.BillingStreet;
-            City = A.BillingCity;
-            State = A.BillingState; 
-            Country = A.BillingCountry;
-            Zip = A.BillingPostalCode; 
-        }
+        Street = A.BillingStreet;
+        City = A.BillingCity;
+        State = A.BillingState; 
+        Country = A.BillingCountry;
+        Zip = A.BillingPostalCode; 
+        Website = A.Website;
+        PartnerTyp = A.Pro_Partner_Typ__c;
+        ProduktFocus = A.Produktfokus__c;
+        Einzugsgebiet = A.Einzugsgebiet__c;
+        Partnerstatus = A.Pro_Partner_Status__c;
             
-    }
+    } 
 
        public String getCleanAddress(){
         String theAddress='';
@@ -65,7 +64,7 @@ public class Mappable{
      //   if(street != null && city != null && Country != null){
             theAddress += street+',' + zip + ',' + city + ',' + Country; 
    //     }
-    //    else{ 
+    //    else{  
     //        mappable = false; 
     ////        Status = 'Problem with Address'; 
     //        theAddress='';
@@ -179,7 +178,12 @@ public class Mappable{
     public Double getDistance(){return Distance;}
     public String getState(){return State;}
     public String getCity(){return City;}
+    public String getWebsite(){return Website;}
     public String getZip(){return Zip;}
+    public String getPartnerTyp(){return PartnerTyp;}
+    public String getProduktFocus(){return ProduktFocus;}
+    public String getEinzugsgebiet(){return Einzugsgebiet;}
+    public String getPartnerstatus(){return Partnerstatus;}
 
     public Double getLat(){return Lat;}
     public Double getLon(){return Lon;}

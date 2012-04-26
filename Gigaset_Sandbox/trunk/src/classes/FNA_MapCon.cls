@@ -34,7 +34,6 @@ public class FNA_MapCon {
 	}
 	
 		public void getParams() {
-			 //   error = !isSourceAccountGood();
      		if(ApexPages.currentPage().getParameters().get('Lang') != null && ApexPages.currentPage().getParameters().get('Lang') != '')
       		Param_Lang =  ApexPages.currentPage().getParameters().get('Lang');
       	if(ApexPages.currentPage().getParameters().get('Portal') != null && ApexPages.currentPage().getParameters().get('Portal') != '')
@@ -52,12 +51,12 @@ public class FNA_MapCon {
    //     	city = '';
 		}
 	
-    	public FNA_MapCon(){
+    	public void init(){
     		getParams();
         //If there is no error, let's populate the map. 
-        	if(!error){Search();}
         	system.debug('debug param ' +  Param_Lang + ' ' + Param_portal);
-        	Rmax= 50;
+        //	Rmax= 50;
+        //	if(!error){Search();}
     	} 
    
     /*To do the search, I Find the Dimensions of my bounding box (serach area), Generate the list of accounts, and refresh the page. */ 
@@ -65,7 +64,11 @@ public class FNA_MapCon {
 		system.debug('debug param 2 ' +  Param_Lang + ' ' + Param_portal);
 		Error = false;
 		String Status;
-		if(ApexPages.currentPage().getParameters().get('city1') != null && ApexPages.currentPage().getParameters().get('city1') != '')
+		if(ApexPages.currentPage().getParameters().get('UmkreisId') != null && ApexPages.currentPage().getParameters().get('UmkreisId') != '')
+		    Rmax = Integer.valueOf(ApexPages.currentPage().getParameters().get('UmkreisId'));
+		system.debug('Umkreis:' + Rmax);
+		
+		if(ApexPages.currentPage().getParameters().get('city1') != null && ApexPages.currentPage().getParameters().get('city') != '')
 			city = ApexPages.currentPage().getParameters().get('city1');
 		
 		if(city == null || city == '') {
@@ -80,46 +83,25 @@ public class FNA_MapCon {
 	    	}
       	if(Status == 'OK') {
       		findMax();
-        		makeList();
+        	makeList(false);
       	}
       	else {
-	      	msg = System.Label.PartnerFinder_Error;
-	        Error = true;
+      		Locations =  new List<Account>();
+	      	//msg = System.Label.PartnerFinder_Error;
+	       // Error = true;
       	}
-      	Rmax= 50;
+      	
+      	if(Locations.isEmpty()) {
+      		Double temp = Rmax;
+      		Rmax = 5000;
+      		//findMax();
+      		makeList(true);
+      		Rmax= temp;
+      	}
+//      	Rmax= 50;
       	return null;
 	}
 
-    	public Boolean isSourceAccountGood(){
-    /*    Mappable m;
-        string bla;
-        try{
-  //      system.debug('test ID retrieved ' + ApexPages.currentPage().getParameters().get('id'));
-            mainAccount = [Select Id,Name,FN__Lat__c,FN__Lon__c, Type, BillingStreet,BillingCity,BillingPostalCode,BillingState, ShippingStreet,
-                           ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, Phone, FN__Which_Address__c 
-                           from Account where/* Id  = :ApexPages.currentPage().getParameters().get('id')*//* BillingCity bla limit = 1 ]; 
-            
-            m = new Mappable(mainAccount); // Make a "Mappable" object off of the account 
-            //If it hasn't been located it... TRY! If it has... we're already in business!
-             
-            if(mainAccount.FN__Mapping_Status__c != 'Located'){
-                
-                m.geoTag();
-                
-                mainAccount.FN__Lat__c = m.getLat();
-                mainAccount.FN__Lon__c = m.getLon();
-                mainAccount.FN__Mapping_Status__c = m.getStatus(); // The Status will tell us if it worked.  
-                update mainAccount; 
-            }
-        }catch(Exception e){
-                //something crazy went down. 
-                error = true;  
-                Msg = 'We encountered issues while attempting to locate the account, here is the system generated Error:' + e;
-                return false;  // definately not mappable. 
-        }
-        return m.getMappable();  */
-        	return true;     
-    	}
 	public String getCleanAddress(String theAddress){
 	        
 	        theAddress = theAddress.replace('#','');
@@ -189,7 +171,7 @@ public class FNA_MapCon {
     
     	}
 
-    	public void makeList(){
+    	public void makeList(Boolean wholeSearch){
         	Locations = new List<Account>(); //Clear the list. 
         	try{
             	boolean lookforaccounts = false;
@@ -198,7 +180,10 @@ public class FNA_MapCon {
             			lookforaccounts = true;
             	}
             	if(lookforaccounts){
-            		Locations = Database.query(makeQuery()); 
+            		if(wholeSearch == false)
+            		   Locations = Database.query(makeQueryNormal()); 
+            	    else
+            	       Locations = Database.query(makeQueryWhole()); 
             		msg2 = String.valueOf( Locations.size());
             		Locations = OrderSource(Locations); // Make sure the Original Account is in the list and only at the top.  
             	}
@@ -231,8 +216,10 @@ public class FNA_MapCon {
         			j++;
         		}
         	}
-		system.debug('ordering1 ' + Ordering);
-		system.debug('locationTemp  ' + LocationsTemp);
+        	
+		    system.debug('ordering1 ' + Ordering);
+		    system.debug('locationTemp  ' + LocationsTemp);
+		    
         	Ordering.sort();
         	system.debug('ordering2 ' + Ordering);
         	Locations = new list<Account>();
@@ -241,35 +228,69 @@ public class FNA_MapCon {
             	for(Integer i=0; i<LocationsTemp.size(); i++) {
             		system.debug('ordering3 ' + LocationsTemp.get(i));
            			system.debug('ordering4 ' + k + ' ' + Ordering.get(k));
-                		if(LocationsTemp.get(i) != null && LocationsTemp.get(i).Distance__c == Ordering.get(k)) {
-                    		Locations.add(LocationsTemp.get(i));
-                    		//LocationsTemp.remove(i);
-                    		//k=0;
-                    		break;
-                		}
-                		if(locations.size() == 7)
-                			return Locations;
+            		if(LocationsTemp.get(i) != null && LocationsTemp.get(i).Distance__c == Ordering.get(k)) {
+                		Locations.add(LocationsTemp.get(i));
+                		//LocationsTemp.remove(i);
+                		//k=0;
+                		break;
+            		}
+            		if(locations.size() == 15) {
+            			k = 100000;
+            			break;
+            		}	
             	}   
-       	}
+       	    }
+       	    list<Account> LocationsTemp1 = new list<Account>();
+       	    list<Account> LocationsTemp2 = new list<Account>();
+       	    list<Account> LocationsTemp3 = new list<Account>();
+       	    for(Account acc:Locations) {
+       	    	if(acc.Pro_Partner_Status__c != null && acc.Pro_Partner_Status__c != '') {
+       	    		if(acc.Sort_Pro_Partner_Status__c == 1)
+       	    		   LocationsTemp1.add(acc);
+       	    		else
+       	    		   LocationsTemp2.add(acc);
+       	    	}
+       	    	   
+       	    	else
+       	    	   LocationsTemp3.add(acc);
+       	    }
+       	    Locations = new list<Account>();
+       	    Locations.addAll(LocationsTemp1);
+       	    Locations.addAll(LocationsTemp2);
+       	    Locations.addAll(LocationsTemp3);
+       	   
         	return Locations;
     	}
 
-    	public String makeQuery(){
-        	String searchQ = 'Select Id,Name,FN__Lat__c,FN__Lon__c, Type, BillingStreet,BillingCity,BillingPostalCode,BillingState, ShippingStreet,';
-            searchQ+='ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, Phone, FN__Which_Address__c, BillingCountry, ShippingCountry from Account';
+    	public String makeQueryNormal(){
+
+        	String searchQ = 'Select Distance__c,Id,Sort_Pro_Partner_Status__c,Name,FN__Lat__c,FN__Lon__c, Type, BillingStreet,BillingCity,BillingPostalCode,BillingState, ShippingStreet,Pro_Partner_Typ__c,Produktfokus__c,Einzugsgebiet__c,Pro_Partner_Status__c,';
+            searchQ+='ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, Phone, FN__Which_Address__c, BillingCountry, ShippingCountry, Website from Account';
 
             searchQ+=' where (( FN__Lat__c <= :latMax and FN__Lat__c >=:latMin ';
-            searchQ+=' and FN__Lon__c <= :lonMax and FN__Lon__c >=:lonMin and FN__Mapping_Status__c = \'Located\' and FN__Which_Address__c !=\'Do Not Map\''; 
+            searchQ+=' and FN__Lon__c <= :lonMax and FN__Lon__c >=:lonMin and FN__Mapping_Status__c = \'Located\' and FN__Which_Address__c !=\'Do Not Map\' and Partner_Locator__c = true'; 
           	searchQ+=' and Portal__c =: Param_Portal';
           	if(Param_Pro)
           		searchQ+=' and Gigaset_Pro__c =: Param_Pro';
-          	searchQ+='))  limit 30';
-      
-    //   String searchQ = 'select id from account limit 31';
+          	searchQ+='))  limit 60';
       
         	return searchQ; 
     	}
-    
+    	
+        public String makeQueryWhole(){
+
+            String searchQ = 'Select Distance__c,Id,Sort_Pro_Partner_Status__c,Name,FN__Lat__c,FN__Lon__c, Type, BillingStreet,BillingCity,BillingPostalCode,BillingState, ShippingStreet,Pro_Partner_Typ__c,Produktfokus__c,Einzugsgebiet__c,Pro_Partner_Status__c,';
+            searchQ+='ShippingCity,ShippingState,ShippingPostalCode, FN__Mapping_Status__c, Phone, FN__Which_Address__c, BillingCountry, ShippingCountry, Website from Account';
+
+            searchQ+=' where FN__Mapping_Status__c = \'Located\' and FN__Which_Address__c !=\'Do Not Map\' and Partner_Locator__c = true'; 
+            searchQ+=' and Portal__c =: Param_Portal';
+            if(Param_Pro)
+                searchQ+=' and Gigaset_Pro__c =: Param_Pro';
+            searchQ+=' and Einzugsgebiet__c includes (\'Überregional\')';
+            searchQ+=' limit 60';
+      
+            return searchQ; 
+        }
     
     
     

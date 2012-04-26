@@ -2,12 +2,12 @@ public class userdataController {
 
 	public String step { get; set; }
 	public Request__c rq { get; set; }
-	public Transient Contact c { get; set; }
-	public Transient User u { get; set; }
-	public Transient Boolean isPro {get; set; }
+	public Contact c { get; set; }
+	public User u { get; set; }
+	public Boolean isPro {get; set; }
 	public Boolean hasError { get; set; }
 	public string messages { get; set; }
-	public Transient String portal {get; set; }
+	public String portal {get; set; }
 	public Boolean showPhoneErr { get; set; }
 	public Boolean showMobileErr { get; set; }
 	public Boolean showHotlineErr { get; set; }

@@ -10,20 +10,20 @@ global class System_Settings {
     //global static final Boolean isPro=isPro();
     // beeing only in Cordless area this defaults to false
     global static final Boolean isPro=false;
+    global static final Boolean isMobile = isMobileActivated();
     global static String contactid='';
-    static String language='de';
+    static String language='de'; 
     global static String baseurl='http://gigaset.com/';
     global static User currentuser;
     global static Contact currentusercontact;
     global static Account currentuseraccount;
     global static GlobalSettings__c landing_config;
 	global static Cookie cookie = null;
-	global static String remindPageId;
+	global static String remindPageId; 
 	global static String popupPageId;
 	global static Boolean popupIsPDF = true;
 	global static Boolean popupIsFlash = false;
 	global static Boolean popupIsNative = false;
-	
     // pageids
     global static final Id userdatapageid=getPageId('Benutzerdaten');
     global static final Id servicehotlineinfopageid=getPageid('ServiceHotline');
@@ -32,6 +32,8 @@ global class System_Settings {
     global static final Id forgotpasswordpageid=getPageid('PasswortVergessen');
     global static final Id registrationpageid=getPageid('Registrierung');
     global static final Id homepageid=getPageid('Home');
+    global static final Id loginmobileid=getPageid('Login Mobile');
+    global static final Id homemobileid=getPageid('Home Mobile');
     global static final Id imprintpageid=getPageid('Imprint');
     global static Id privacyprotectionid=getPageId('PrivacyProtection');
     global static final Id landing_page = getPageId('Landing'); 
@@ -47,6 +49,7 @@ global class System_Settings {
     global static final Id link06pageid=getPageid('Link06');
     
     global static final Id TrainingId=getPageid('training');
+    global static final Id ProgressId=getPageid('Progress');
     
     // interface
     global static final String picturemanagementLink = 'https://dam.gigaset.com/index.php?extra_login=';
@@ -59,13 +62,33 @@ global class System_Settings {
     // System_Settings private methods
     private static Id getPageid(String name) {
 		Id pid;
-		for (Pages__c p: Pages__c.getAll().values()) {
-			if (p.IsActive__c && p.Portal__c==portal && p.Label__c==name && p.isPro__c==isPro) pid=Id.valueOf(p.PageId__c);
+		if (portal==null || portal=='00') portal=getPortalSign();
+		String original = portal;
+		
+		if((name == 'Home Mobile' || name == 'Login Mobile') && System_Settings.isMobile) {
+			system.debug('Mobile is true');
+			original = portal;
+			portal = 'mobi';
+			if(name == 'Home Mobile')
+				name = 'Home';
+			if(name == 'Login Mobile')
+				name = 'Login';
 		}
 		
+		System.debug('getpageid portal: ' + portal + ' / name: '+name);
+		//try {
+		//	pid=Id.valueOf([SELECT PageId__c FROM Pages__c WHERE Label__c=:name AND IsActive__c=true AND Portal__c=:portal AND isPro__c=:isPro].PageId__c);
+		//} catch (System.Exception e) {}
+		//if (pid==null) {
+			for (Pages__c p: Pages__c.getAll().values()) {
+				if (p.IsActive__c && p.Portal__c==portal && p.Label__c==name && p.isPro__c==isPro) pid=Id.valueOf(p.PageId__c);
+			}
+		//}
+		
+		portal = original; 
 		return pid;
 	}
-    
+	
     public static String getPortalByPageId() {
     	if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid')) {
 			for (Pages__c p: Pages__c.getAll().values()) {
@@ -89,7 +112,16 @@ global class System_Settings {
         }
         if (currentusercontact!=null && currentusercontact.Portal__c!=null) sign=currentusercontact.Portal__c;
        
-        
+        // get portal from parameter ONLY if page type of mobi 
+        //IS NECESSARY BECAUSE MOBILE VERSION DISCARD THE ORIGINAL PORTAL SIGN AFTER REDIRECT FROM LANDING PAGE TO MOBILE_LOGIN!
+        if (ApexPages.currentPage()!=null && ApexPages.currentPage().getParameters().containsKey('pageid') && ApexPages.currentPage().getParameters().get('portal') != null && sign=='00') {
+			for (Pages__c p: Pages__c.getAll().values()) {
+				if (Id.ValueOf(p.PageId__c)==Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))) 
+					if(p.Portal__c == 'mobi')
+						sign = ApexPages.currentPage().getParameters().get('portal');
+			}
+		}
+		
 		// get portal from page
 		if (System.currentPageReference()!=null && System.currentPageReference().getParameters().containsKey('pageid') && sign=='00') {
 			for (Pages__c p: Pages__c.getAll().values()) {
@@ -119,18 +151,43 @@ global class System_Settings {
 			return Site.getCustomWebAddress().substring(7,11);
 		System.debug('Found Portal 3: ' + sign);
 		
-		// get portal form site name
-		if (Site.getName()!=null && sign=='00')
+		// get portal from site name
+		if (Site.getName()!=null && sign=='00') {
 			if (Site.getName().toLowerCase().contains('pro'))
 				return Site.getName().substring(0,Site.getName().toLowerCase().indexOf('pro')).toLowerCase();
 			else
 				return Site.getName().toLowerCase();
-		System.debug('Found Portal 4: ' + sign);
-		
+		}
+		System.debug('Found Portal 4: ' + sign + ' / SiteName: '+Site.getName());
+		 
 		// get portal form existing url
 		if ((sign==null || sign=='00') && ApexPages.currentPage()!=null && ApexPages.currentPage().getUrl()!=null) sign=ApexPages.currentPage().getUrl().substring(ApexPages.currentPage().getUrl().length()-2);
 		System.debug('Found Portal 5: ' + sign);
+		
 		return sign;
+    }
+    
+    public static Boolean isMobileActivated() {
+		Boolean isActive = false;
+		String userAgent = '';
+		Boolean m = false;
+		try {
+			userAgent = ApexPages.currentPage().getHeaders().get('User-Agent');
+			String device = ApexPages.currentPage().getParameters().get('device');
+		
+			if(userAgent == null || Site.getName() != 'Mobi')
+				return m;
+		  
+			m = (userAgent.contains('iPhone') || device == 'mobile');
+			if(!m)
+				m = (userAgent.contains('iPad') && device != 'mobile');
+			if(!m)
+				m = (userAgent.contains('Android') || device == 'mobile');
+		}catch(Exception e) {
+			system.debug(e);
+		}
+		system.debug('Is mobile active: '+m);
+		return m;
     }
     
     private static Boolean isPro() {
@@ -138,7 +195,6 @@ global class System_Settings {
             return true;
         else
             return false;
-
     }
     
     private static User getCurrentUser() {
@@ -197,9 +253,9 @@ global class System_Settings {
     
     // systemwide methods
     global static Boolean isPortalUser() {
-        User u = getCurrentUser();
-        if (u!=null) {
-            return u.IsPortalEnabled;
+        currentuser = getCurrentUser();
+        if (currentuser!=null) {
+            return currentuser.IsPortalEnabled;
         }
         else return false;
     }
@@ -276,9 +332,7 @@ global class System_Settings {
     
     global static PageReference goHome() {
         PageReference homepage = null;
-        
-        homepage = new PageReference(Page.page.getUrl() + '?pageid=' + homepageid);
-		
+		homepage = new PageReference(Page.page.getUrl() + '?pageid=' + homepageid);	
         homepage.setRedirect(true);
         return homepage;
     }
@@ -291,37 +345,50 @@ global class System_Settings {
     }
     
     public static PageReference redirectToLogin() {
-        
+        try {
+        System.debug('redirectToLogin start: mobile? '+isMobile + ' language? '+language);
 		Boolean isAlreadyLoginPage=false;
         
         PageReference login = null;
         PageReference basispage=Page.page;
-        
-		if (cookie != null) {
-        	if(System_Settings.landing_config == null){
-        		List<GlobalSettings__c> res = [SELECT Name, Landing_Page_Aktivierung__c, Portal__c, isPro__c FROM GlobalSettings__c WHERE Portal__c = :portal AND IsPro__c = :isPro LIMIT 1];
-        		if(res.size() > 0)
-        			System_Settings.landing_config = res.get(0);
-        	}
- 			if (System_Settings.landing_config != null && cookie.getValue().equals('1') && System_Settings.landing_config.Landing_Page_Aktivierung__c){
-				login = new PageReference( basispage.getUrl() + '?pageid=' + getPageid('Landing')+ addParam);
-       	 		CRD_Landing_Controller.landingpage_already_visited();
-       	 	}
-       	 	
-    	} else {
-        	isAlreadyLoginPage=true;
-    	}
-	
-       	if(login == null){
-        	login = new PageReference( basispage.getUrl() + '?pageid=' + loginpageid + addParam);
+        if(!isMobile) {
+			if (cookie != null) {	
+        		if(System_Settings.landing_config == null){
+        			List<GlobalSettings__c> res = [SELECT Name, Landing_Page_Aktivierung__c, Portal__c, isPro__c FROM GlobalSettings__c WHERE Portal__c = :portal AND IsPro__c = :isPro LIMIT 1];
+        			if(res.size() > 0)
+        				System_Settings.landing_config = res.get(0);
+        		}
+ 				if (System_Settings.landing_config != null && cookie.getValue().equals('1') && System_Settings.landing_config.Landing_Page_Aktivierung__c){
+					login = new PageReference( basispage.getUrl() + '?pageid=' + getPageid('Landing')+ addParam);
+       		 		CRD_Landing_Controller.landingpage_already_visited();
+       		 	}
+       		 	
+    		} else {
+        		isAlreadyLoginPage=true;
+    		}
+        } else {
+        	addParam += '&portal='+portal;	
         }
-        
+            
+       	if(login == null){
+        	login = new PageReference( basispage.getUrl() + '?pageid=' + (isMobile?loginmobileid:loginpageid) + addParam);
+        }
+        System.debug('loginpageid: ' + loginpageid);
         login.setRedirect(true);
-        if (ApexPages.currentPage()==login) isAlreadyLoginPage=true;
-        if (ApexPages.currentPage().getParameters().containsKey('pageid') && loginpageid!=null && (Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))==loginpageid || Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))==getPageid('Landing'))) isAlreadyLoginPage=true;
-        
+        if (ApexPages.currentPage()==login) { isAlreadyLoginPage=true; system.debug('ApexPages.currentPage()==login : true');}
+        if (ApexPages.currentPage().getParameters().containsKey('pageid') 
+        	&& (isMobile?loginmobileid:loginpageid)!=null 
+        	&& (Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))==(isMobile?loginmobileid:loginpageid) 
+        	|| (Id.ValueOf(ApexPages.currentPage().getParameters().get('pageid'))==getPageid('Landing') && !isMobile))
+        	) { isAlreadyLoginPage=true; system.debug('long IF condition = true'); }
+        	
+        System.debug('redirectToLogin return: isAlreadyLoginPage ' + isAlreadyLoginPage + ' login is ' + login);
         if (isAlreadyLoginPage) return null;
         else return login;
+        }catch(Exception e) {
+        	system.debug(e.getStackTraceString());
+        	return null;
+        }
     }
     
     public static PageReference redirectDirectlyToLogin() {

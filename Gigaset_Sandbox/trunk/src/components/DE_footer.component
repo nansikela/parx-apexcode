@@ -8,8 +8,8 @@
 
 	<div id="footer">
 		<div id="footerlogos">
-			<apex:image value="{!IF(isPro,URLFOR($Resource.gigasetextranetZIP, 'img/gigasetpro_logo.png'),URLFOR($Resource.gigasetextranetZIP, 'img/made_in_germany_logo.png'))}" alt="{!IF(isPro,'Gigaset Pro','Made in Germany')}" styleClass="lft" />
-			<apex:image value="{!IF(isPro,URLFOR($Resource.gigasetextranetZIP, 'img/inspiring_conversation_logo_pro.png'),URLFOR($Resource.gigasetextranetZIP, 'img/siemens_logo.png'))}" alt="{!IF(isPro,'Inspiring Conversation','Logo Siemens')}" styleClass="rght" height="18" width="108" />
+			<apex:image rendered="{!isPro}" value="{!URLFOR($Resource.gigasetextranetZIP, 'img/gigasetpro_logo.png')}" alt="Gigaset Pro" styleClass="lft" />
+			<apex:image value="{!IF(isPro,URLFOR($Resource.gigasetextranetZIP, 'img/inspiring_conversation_logo_pro.png'),URLFOR($Resource.gigasetextranetZIP, 'img/gigalogo.png'))}" alt="{!IF(isPro,'Inspiring Conversation','Logo Gigaset')}" styleClass="rght" height="{!IF(isPro,'18','30')}" width="{!IF(isPro,'108','238')}" />
 		</div>
 	</div>
 </apex:component>

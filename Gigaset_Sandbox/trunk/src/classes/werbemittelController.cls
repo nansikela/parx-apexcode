@@ -173,7 +173,7 @@ public class werbemittelController extends ComponentControllerBase {
     public List<myterm> getTerms() {    //we retrieve the datas from salesforce which have to be displayed in the webshop
       	//List<myterm> Terms = new List<myterm>();
 		if (Terms.isEmpty()) {
-	      	for (Werbemittel__c wm: [Select Id, Bild__c, Titel__c, Beschreibung__c, Artikelnummer__c, Verpackungseinheit__c, Name From Werbemittel__c where Aktiv__c = true and isPro__c=:isPro and Portal__c =: portal order by Titel__c desc]) {
+	      	for (Werbemittel__c wm: [Select Id, Bild__c, Titel__c, Beschreibung__c, Artikelnummer__c, Verpackungseinheit__c, Name From Werbemittel__c where Aktiv__c = true and isPro__c=:isPro and Portal__c =: portal order by Artikelnummer__c desc]) {
 	        		myterm t=new myterm();
 	        		t.term=wm;
 	        		terms.add(t); 

@@ -12,7 +12,7 @@
 		        			</div>
 	        				<span id="end" />
 	        			</div>
-	        		<!--  </div> --> 
+	        		<!--  </div> -->
         			<!--End LeftSide Content -->
         			 
         			<c:contentblock name="sidebarimage" rendered="{!NOT(isAuthenticated)}"/>

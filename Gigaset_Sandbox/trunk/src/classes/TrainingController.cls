@@ -1,33 +1,44 @@
 global class TrainingController {
 	
-	global static Integer Modules_currentSuccess;
-	global static String Modules_URLPage;
-	global static String Modules_Param;
-	global static Integer Modules_total;
-	global static Integer Modules_currentpoint;
-	global static Double Modules_currentbar;
-	global static boolean Modules_showFirstpage;
-	global static boolean Modules_showThirdpage;
-	global static String Modules_LektoraURL;
-	global static Training_Book__c Modules_book;
-	global static list<Training_Module__c> Modules_modulesSecondPage1;
-	global static Training_Module__c Modules_SingleModule;
-   	global static List<Modulen> Modules = new list<Modulen>(); 
-    global static List<Modulen> Modules_modulesSecondPage2;
-	global static List<Booken> Books = new list<Booken>(); 
-	global static String newsid;
-	  
-	global static User u0{get;set;}
-	global static Contact c0 {get;set;}
-	global static String firstName {get;set;}
-	global static String lastName {get;set;}
-	global static String salutation {get;set;}
+	public  Integer Modules_currentSuccess {get;set;}
+	public  String Modules_URLPage {get;set;}
+	public  String Modules_Param {get;set;}
+	public  Integer Modules_total {get;set;}
+	public  Integer Modules_currentpoint {get;set;}
+	public  Double Modules_currentbar {get;set;}
+	public  Boolean Modules_showFirstpage {get;set;}
+	public  boolean Modules_showThirdpage {get;set;}
+	public  Boolean Modules_showProcesspage {get;set;}
+	public  String  Modules_LektoraURL {get;set;}
+	public  String  Mobile_LektoraURL {get;set;}
+	public  Boolean isLektoraLoaded {get;set;}
+	public  Training_Book__c Modules_book {get;set;}
+	public  list<Training_Module__c> Modules_modulesSecondPage1 {get;set;}
+	public  Training_Module__c Modules_SingleModule {get;set;}
+   	//public  List<Modulen> Modules {get;set;}
+   	list<Modulen> modules=new list<Modulen>();
+    public  List<Modulen> Modules_modulesSecondPage2 {get;set;}
+	//public  List<Booken> Books {get;set;} 
+	public  String newsid {get;set;}
+	public Boolean isPro { get; private set; }
+	public final Boolean isMobile { get; private set; }
+	public String portal { get; private set; }
+	public String defaultlanguage { get; private set; }
 	
-	global static NextTopShop__c NTS;
-	global static transient PageReference CMSpage = Page.page;
+	public  User u0{get;set;}
+	public  Contact c0 {get;set;}
+	
+	public  String firstName {get;set;}
+	public  String lastName {get;set;}
+	public  String salutation {get;set;}
+	
+	public String progressURL {get;set;}
+	
+	public NextTopShop__c NTS {get;set;}
+	//public PageReference CMSpage = Page.page;
 	 
 	
-	global class Modulen {
+	public class Modulen {
 		public list<Training_Module__c> Module {get; set;}
 		public integer ModuleNumber {get;set;}
 		public boolean renderScroller {get;set;}
@@ -36,7 +47,7 @@ global class TrainingController {
   		}
 	}
 
-	global class Booken {
+	public class Booken {
 		public Training_Book__c Book {get; set;}
 		public Double Helfer {get;set;}
 		public Double Helfer2 {get;set;}
@@ -63,20 +74,73 @@ global class TrainingController {
   		} 
 	}
 	
-	public TrainingController(TemplateController templateCtrl){
-
-		u0 = templateCtrl.u0;
-		c0 = templateCtrl.c0;
-	}
-	
 	public TrainingController(CRD_pageTemplatesController templateCtrl){
-
+		portal=System_Settings.portal;
+		progressURL = Page.page.getUrl() + '?pageid=' + System_Settings.ProgressId;
+		isPro=isPro;
+		isMobile = System_Settings.isMobileActivated();
+		defaultlanguage=System_Settings.setLanguage();
+		//Books=getBooksForBooks();
+		system.debug(isMobile);
+		u0 = System_Settings.currentuser;
+		c0 = System_Settings.currentusercontact;
+		
+		Modules_showFirstpage = true;
+		Modules_showProcesspage = false;
+		Modules_showThirdpage = false;
 	}
 	
-	global static list<Booken> getBooks(){
-		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c,New_Modules__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: SystemSettings.isPro AND Portal__c =:SystemSettings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+	//NEEDED FOR MOBILE VERSION! -----------------------------------------------------------------
+	public TrainingController(TemplateController templateCtrl){
+		
+		String bookID;
+		PageReference pageRef = ApexPages.currentPage();
+		if (pageRef.getParameters().containsKey('bookID')) bookID = pageRef.getParameters().get('bookID');
+		
+		portal=System_Settings.portal;
+		progressURL = Page.page.getUrl() + '?pageid=' + System_Settings.ProgressId;
+		isPro=isPro;
+		defaultlanguage=System_Settings.setLanguage();
+		isMobile = System_Settings.isMobileActivated();
+		//Books=getBooksForBooks();
+		
+		u0 = System_Settings.currentuser;
+		c0 = System_Settings.currentusercontact;
+		
+		if(!backToBook(bookID)) {
+			Modules_showFirstpage = true;
+			Modules_showProcesspage = false;
+			Modules_showThirdpage = false;
+			
+			initMobileHome();
+		}
+	}
+	//END ----------------------------------------------------------------------------------------
+	
+	public TrainingController(){
+		isLektoraLoaded = false;
+		portal=System_Settings.portal;
+		progressURL = Page.page.getUrl() + '?pageid=' + System_Settings.ProgressId;
+		isPro=isPro;
+		defaultlanguage=System_Settings.setLanguage();
+		isMobile = System_Settings.isMobileActivated();
+		//Books=getBooksForBooks();
+		
+		u0 = System_Settings.currentuser;
+		c0 = System_Settings.currentusercontact;
+		
+		Modules_showFirstpage = true;
+		Modules_showProcesspage = false;
+		Modules_showThirdpage = false;
+	}		
+	
+
+	public list<Booken> getBooks(){
+		system.debug('page ref: '+system.currentPageReference());
+		System.debug('Training getBooks Start');
+		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c,New_Modules__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:portal AND Aktiv__c = true ORDER by Sortierung__c]);
 		Integer i = 0;
-		Books = new list<Booken>(); 
+		list<Booken> Books = new list<Booken>(); 
 		Booken book;
 		for(Training_Book__c b:TB) {
 			book = new Booken();
@@ -139,17 +203,22 @@ global class TrainingController {
 				b.function = 'buchrand'+i; 
 			i++;
 		}
-
+		System.debug('Training getBooks End');
 		return Books;
 	}
-	
-	global static PageReference firstPage(){
+
+	public PageReference firstPage(){
+		if(UserInfo.getOrganizationId() == '00D20000000M2NzEAK') //liveId
+			Modules_URLPage = Page.page.getUrl() + '?pageid=' + System_Settings.TrainingId;
+		else
+			Modules_URLPage = '/np/' + Page.page.getUrl() + '?pageid=' + System_Settings.TrainingId;
 		Modules_showFirstpage = true;
+		Modules_showProcesspage = false;
 		Modules_showThirdpage = false;
 		return null;
 	}
 	
-	global static PageReference Poller(){
+	public PageReference Poller(){
 		String param = Modules_Param;
 	
 		Modules_SingleModule = [select id, Bild_URL__c, Titel__c, Beschreibung__c, Dauer__c, URL__c, Punkte__c, Sortierung__c, Training_Book__c, Verwandtes_Modul_1__c, Verwandtes_Modul_2__c, Verwandtes_Modul_3__c, Verwandtes_Modul_4__c, Verwandtes_Modul_Name_1__c, Verwandtes_Modul_Name_2__c, Verwandtes_Modul_Name_3__c, Verwandtes_Modul_Name_4__c from Training_Module__c where Id =: param];
@@ -165,7 +234,7 @@ global class TrainingController {
 			Modules_SingleModule.Bild_URL__c = '/servlet/servlet.FileDownload?file='+Bild_Attachment.Id;
 			update Modules_SingleModule;
 		}
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: SystemSettings.isPro AND Training_Book__r.Portal__c =:SystemSettings.Portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
 		
 		list<String> TMIds = new list<String>();
 		for(Training_Module__c TM:TMlist) {
@@ -188,7 +257,6 @@ global class TrainingController {
 		
 		Modules_LektoraURL = 'https://training.gigaset.com/relay/open_lectora_course.php?Closed='+ Code +'&modulId='+moduleId+'&ContactId='+contactId+'&timestamp='+nowTime+'&target='+Modules_SingleModule.URL__c ;
 		
-		
 		list<Training_Ergebnis__c> TElist= new list<Training_Ergebnis__c>([select id, Training_Modul__c, Completion_Status__c from Training_Ergebnis__c where Training_Modul__c IN:TMIds AND Kontakt__c =: u.ContactId]);
 		
 		for(Training_Module__c TM:TMlist) {
@@ -224,20 +292,36 @@ global class TrainingController {
 		
 	}
 	
-	global static PageReference secondPage(){
-		String param = ApexPages.currentPage().getParameters().get('param');
+	//NEEDED FOR MOBILE VERSION --------------------------------------------------------------------
+	public PageReference processPage() {
+		getModules();
 		Modules_showFirstpage = false;
+		Modules_showProcesspage = true;
 		Modules_showThirdpage = false;
-		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Titel__c, Subtitel__c, Beschreibung__c from Training_Book__c where Gigaset_Pro__c =: System_Settings.isPro AND Portal__c =:System_Settings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		
+		return null;
+	}
+	
+	private Boolean backToBook(String bookID){
+		String param;
+		
+		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Titel__c, Subtitel__c, Beschreibung__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:portal AND Aktiv__c = true ORDER by Sortierung__c]);
 		
 		for(Training_Book__c b:TB) {
-			if(b.Titel__c == param) {
+			if(b.ID == bookID) {
 				Modules_book = b;
 				break;
 			}
-
 		}
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: System_Settings.isPro AND Training_Book__r.Portal__c =:System_Settings.Portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
+		
+		if(Modules_book == null)
+			return false;
+			
+		Modules_showFirstpage = false;
+		Modules_showProcesspage = false; 
+		Modules_showThirdpage = false;
+		
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Beschreibung__c, Training_Book__c, showTick__c, showCoins__c, Dauer__c, Punkte__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
 
 		
 		list<String> TMIds = new list<String>();
@@ -261,15 +345,89 @@ global class TrainingController {
 		Modules_modulesSecondPage2 = new list<Modulen>();
 		Modules_modulesSecondPage1 = new list<Training_Module__c>();
 		Modulen modul = new Modulen();
+		system.debug('TrainingController Debug: isMobile '+isMobile);
 		for(Training_Module__c TM:TMlist) {
-			if(i<5)
-				Modules_modulesSecondPage1.add(TM);
-			else {
-				modul.Module.add(TM);
-				if(modul.Module.size()==5) {
-					Modules_modulesSecondPage2.add(modul);
-					modul = new Modulen();
-				}			
+			if(isMobile) {
+				Modules_modulesSecondPage1.add(TM);	
+			}else{
+				if(i<5)
+					Modules_modulesSecondPage1.add(TM);
+				else {
+					modul.Module.add(TM);
+					if(modul.Module.size()==5) {
+						Modules_modulesSecondPage2.add(modul);
+						modul = new Modulen();
+					}			
+				}
+			}
+			i++;
+		}
+		if(modul.Module.size()>0) {
+			Modules_modulesSecondPage2.add(modul);
+			modul = new Modulen();
+		}
+		
+		return true;
+	}
+	//END -----------------------------------------------------------------------------------------
+	
+	public PageReference secondPage(){
+		String param;
+		//PageReference pageRef = Page.page;
+		PageReference pageRef = ApexPages.currentPage();
+		
+		if (pageRef.getParameters().containsKey('param')) param = pageRef.getParameters().get('param');
+		system.debug('Param: '+param+ ' / pageRef:'+ ApexPages.currentPage());
+		Modules_showFirstpage = false;
+		Modules_showProcesspage = false; 
+		Modules_showThirdpage = false;
+		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Titel__c, Subtitel__c, Beschreibung__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		
+		for(Training_Book__c b:TB) {
+			if(b.Titel__c == param) {
+				Modules_book = b;
+				break;
+			}
+
+		}
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Beschreibung__c, Training_Book__c, showTick__c, showCoins__c, Dauer__c, Punkte__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
+
+		
+		list<String> TMIds = new list<String>();
+		for(Training_Module__c TM:TMlist) {
+			TMIds.add(TM.Id);
+		}
+		User u = [select id, ContactId from User where Id=:UserInfo.getUserId()];
+		
+		list<Training_Ergebnis__c> TElist= new list<Training_Ergebnis__c>([select id, Training_Modul__c, Completion_Status__c from Training_Ergebnis__c where Training_Modul__c IN:TMIds AND Kontakt__c =: u.ContactId]);
+		
+		for(Training_Module__c TM:TMlist) {
+			for(Training_Ergebnis__c TE:TElist) {
+				if(TE.Training_Modul__c == TM.Id) {
+					TM.showTick__c = true;
+					if(TE.Completion_Status__c == 'Success')
+						TM.showCoins__c = true;
+				}		
+			}
+		}
+		Integer i=0;
+		Modules_modulesSecondPage2 = new list<Modulen>();
+		Modules_modulesSecondPage1 = new list<Training_Module__c>();
+		Modulen modul = new Modulen();
+		system.debug('TrainingController Debug: isMobile '+isMobile);
+		for(Training_Module__c TM:TMlist) {
+			if(isMobile) {
+				Modules_modulesSecondPage1.add(TM);	
+			}else{
+				if(i<5)
+					Modules_modulesSecondPage1.add(TM);
+				else {
+					modul.Module.add(TM);
+					if(modul.Module.size()==5) {
+						Modules_modulesSecondPage2.add(modul);
+						modul = new Modulen();
+					}			
+				}
 			}
 			i++;
 		}
@@ -281,13 +439,33 @@ global class TrainingController {
 		return null;
 	}
 	
-	global static PageReference showModule(){
+	public PageReference showMobileModule() {
+		PageReference ref;
+		try {
+			ref = initModuleResult();
+			ref = showModule();
+			isLektoraLoaded = true;
+		} catch(Exception e) {
+			isLektoraLoaded = false;
+		}
+		ref = new PageReference(Mobile_LektoraURL);
+		
+		system.debug('Native URL: '+Modules_LektoraURL);
+		system.debug('Mobile URL: '+Mobile_LektoraURL);
+		system.debug('REF URL: '+ref.getURL());
+		
+		return ref;
+	}
+	
+	public PageReference showModule(){
 		String param = ApexPages.currentPage().getParameters().get('moduleId');
+		system.debug(param);
+		system.debug('isMobile: '+isMobile);
 		Modules_Param = param;
 		
 		Modules_showFirstpage = false;
 	
-		Modules_SingleModule = [select id, Bild_URL__c, Titel__c, Beschreibung__c, Dauer__c, URL__c, Punkte__c, Sortierung__c, Training_Book__c, Verwandtes_Modul_1__c, Verwandtes_Modul_2__c, Verwandtes_Modul_3__c, Verwandtes_Modul_4__c, Verwandtes_Modul_Name_1__c, Verwandtes_Modul_Name_2__c, Verwandtes_Modul_Name_3__c, Verwandtes_Modul_Name_4__c from Training_Module__c where Id =: param];
+		Modules_SingleModule = [select id, Bild_URL__c, Titel__c, Beschreibung__c, Dauer__c, URL__c, Mobile_URL__c, Punkte__c, Sortierung__c, Training_Book__c, Verwandtes_Modul_1__c, Verwandtes_Modul_2__c, Verwandtes_Modul_3__c, Verwandtes_Modul_4__c, Verwandtes_Modul_Name_1__c, Verwandtes_Modul_Name_2__c, Verwandtes_Modul_Name_3__c, Verwandtes_Modul_Name_4__c from Training_Module__c where Id =: param];
 		
 		Modules_book = [select id, Titel__c, Subtitel__c, Beschreibung__c from Training_Book__c where Id =: Modules_SingleModule.Training_Book__c ];
 		
@@ -300,7 +478,7 @@ global class TrainingController {
 			Modules_SingleModule.Bild_URL__c = '/servlet/servlet.FileDownload?file='+Bild_Attachment.Id;
 			update Modules_SingleModule;
 		}
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: System_Settings.isPro AND Training_Book__r.Portal__c =:System_Settings.Portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Beschreibung__c, Training_Book__c, showTick__c, showCoins__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Training_Book__c =: Modules_SingleModule.Training_Book__c AND Aktiv__c = true ORDER by Sortierung__c]);
 
 		
 		list<String> TMIds = new list<String>();
@@ -319,11 +497,14 @@ global class TrainingController {
 		Long nowTime = system.now().getTime();
 		
 		String secrettext = moduleId + '-' + contactId + '-' + nowTime + '-' + Modules_SingleModule.URL__c + '-' + SECRET;
+		if(isMobile)
+			secrettext = moduleId + '-' + contactId + '-' + nowTime + '-' + Modules_SingleModule.Mobile_URL__c + '-' + SECRET;
+		
 		String Code = DEInterfaceLinks.generateStringTestTraining(secrettext);
 
 		
 		Modules_LektoraURL = 'https://training.gigaset.com/relay/open_lectora_course.php?Closed='+ Code +'&modulId='+moduleId+'&ContactId='+contactId+'&timestamp='+nowTime+'&target='+Modules_SingleModule.URL__c ;
-		
+		Mobile_LektoraURL  = 'https://training.gigaset.com/relay/open_lectora_course.php?Closed='+ Code +'&modulId='+moduleId+'&ContactId='+contactId+'&timestamp='+nowTime+'&target='+Modules_SingleModule.Mobile_URL__c ;
 		
 		list<Training_Ergebnis__c> TElist= new list<Training_Ergebnis__c>([select id, Training_Modul__c, Completion_Status__c from Training_Ergebnis__c where Training_Modul__c IN:TMIds AND Kontakt__c =: u.ContactId]);
 		
@@ -362,14 +543,16 @@ global class TrainingController {
 		return null;
 	}
 	
-	global static list<Modulen> getModules(){
+	public list<Modulen> getModules(){
+		//if (modules==null) modules=new list<Modulen>();
+		
 		modules.clear();
 		User u = [select id, Contact.Erfolgreiche_Ergebnisse__c, Contact.Gesamt_Ergebnis__c from User where Id=:UserInfo.getUserId()];
 		Modules_currentSuccess = u.Contact.Erfolgreiche_Ergebnisse__c.intValue();
 		Modules_currentpoint = u.Contact.Gesamt_Ergebnis__c.intValue();
-		list<Training_Book__c> TBlist= new list<Training_Book__c>([select id, Titel__c from Training_Book__c where Gigaset_Pro__c =: System_Settings.isPro AND Portal__c =:System_Settings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c from Training_Module__c where neues_modul__c = true AND Training_Book__r.Gigaset_Pro__c =: System_Settings.isPro AND Training_Book__r.Portal__c =:System_Settings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
-		list<Training_Module__c> TMlist_full= new list<Training_Module__c>([select id from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: System_Settings.isPro AND Training_Book__r.Portal__c =:System_Settings.Portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Book__c> TBlist= new list<Training_Book__c>([select id, Titel__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Training_Book__c from Training_Module__c where neues_modul__c = true AND Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist_full= new list<Training_Module__c>([select id from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Aktiv__c = true ORDER by Sortierung__c]);
 		Modules_total = TMlist_full.size();
 		if(Modules_total != 0)
 			Modules_currentbar = u.Contact.Erfolgreiche_Ergebnisse__c * 100 / Modules_total  ;
@@ -401,11 +584,18 @@ global class TrainingController {
 		return modules;
 	}
 	
-	global static PageReference initModuleResult(){
+	public PageReference initModuleResult(){
+		String browser = ApexPages.currentPage().getParameters().get('browser');
+		String os = ApexPages.currentPage().getParameters().get('os');
+		System.debug('##################### Browser: '+browser+' ##########################');
+		System.debug('##################### OS: '+os+' ##########################');
 		System.debug('##################### Method: initModuleResult ##########################');
 		User u = [select id, ContactId from User where Id=:UserInfo.getUserId()];
 		String contactID = u.ContactId;
 		contactID = contactID.substring(0,15);
+		Modules_Param = Modules_Param==null?ApexPages.currentPage().getParameters().get('moduleId'):Modules_Param;
+		
+		if (Modules_SingleModule==null) Modules_SingleModule = [select id, Bild_URL__c, Titel__c, Beschreibung__c, Dauer__c, URL__c, Punkte__c, Sortierung__c, Training_Book__c, Verwandtes_Modul_1__c, Verwandtes_Modul_2__c, Verwandtes_Modul_3__c, Verwandtes_Modul_4__c, Verwandtes_Modul_Name_1__c, Verwandtes_Modul_Name_2__c, Verwandtes_Modul_Name_3__c, Verwandtes_Modul_Name_4__c from Training_Module__c where Id =: Modules_Param];
 		String moduleID = Modules_SingleModule.ID;
 		moduleID = moduleID.substring(0,15);
 		Date actualDate = system.now().date();
@@ -415,7 +605,7 @@ global class TrainingController {
 		
 		if(results.size() == 0){
 			System.debug('No result found. Needed to create new one with init values!');
-			item = new Training_Ergebnis__c(Training_Modul__c = moduleID, Kontakt__c = contactID, ErgebnisID__c = moduleID+''+contactID, Last_Click__c = actualDate, Tries__c = 0);
+			item = new Training_Ergebnis__c(Training_Modul__c = moduleID, Kontakt__c = contactID, Browser__c = (browser!=null?browser:''), Operation_System__c = (os!=null?os:''), ErgebnisID__c = moduleID+''+contactID, Last_Click__c = actualDate, Tries__c = 0);
 			insert item;
 		}else{
 			item = results.get(0);
@@ -431,13 +621,14 @@ global class TrainingController {
 		return null;	
 	}
 	
-	global static PageReference initHome() {
-	 	Modules_showThirdpage = false;
+	public PageReference initMobileHome() {
+		Modules_showThirdpage = false;
+	 	Modules_showProcesspage = false;
 		Modules_showFirstpage = true;
 		if(UserInfo.getOrganizationId() == '00D20000000M2NzEAK') //liveId
-			Modules_URLPage = CMSpage.getUrl() + '?pageid=' + SystemSettings.TrainingId;
+			Modules_URLPage = Page.page.getUrl() + '?pageid=' + System_Settings.TrainingId;
 		else
-			Modules_URLPage = '/np/' + CMSpage.getUrl() + '?pageid=' + System_Settings.TrainingId;
+			Modules_URLPage = '/np/' + Page.page.getUrl() + '?pageid=' + System_Settings.TrainingId;
 		Cookie TopShop;
 		u0 = [select Contact.Id, Contact.firstname, Contact.lastname, Contact.Salutation from User where Id=:UserInfo.getUserId()];
 	    try {
@@ -467,7 +658,58 @@ global class TrainingController {
 			if(NTS == null && u != null) {
 				Campaign camp;
 		    		try{
-		    			camp = [select id, EndDate, StartDate, isActive from Campaign where RecordType.Name = 'Top Shop' AND Portal__c =: System_Settings.Portal AND isPro__c =: System_Settings.isPro AND EndDate >= TODAY AND StartDate <= TODAY AND isActive = True limit 1]; 
+		    			camp = [select id, EndDate, StartDate, isActive from Campaign where RecordType.Name = 'Top Shop' AND Portal__c =: portal AND isPro__c =: isPro AND EndDate >= TODAY AND StartDate <= TODAY AND isActive = True limit 1]; 
+		    		}
+		    		catch(exception e){}
+		    		if(camp != null)
+		    			System_Settings.showNextTopShop=true;
+		    		else
+		    			System_Settings.showNextTopShop=false;
+			}		
+	 	}
+	 	
+	 	if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
+	 	return null;
+	}
+	
+	public PageReference initHome() {
+	 	Modules_showThirdpage = false;
+	 	Modules_showProcesspage = false;
+		Modules_showFirstpage = true;
+		if(UserInfo.getOrganizationId() == '00D20000000M2NzEAK') //liveId
+			Modules_URLPage = Page.page.getUrl() + '?pageid=' + System_Settings.TrainingId;
+		else
+			Modules_URLPage = '/np/' + Page.page.getUrl() + '?pageid=' + System_Settings.TrainingId;
+		Cookie TopShop;
+		u0 = [select Contact.Id, Contact.firstname, Contact.lastname, Contact.Salutation from User where Id=:UserInfo.getUserId()];
+	    try {
+	    	c0 = [select firstname, lastname, toLabel(Salutation) from Contact where Id =: u0.Contact.Id];
+	    } catch(exception e) {}
+	    
+	    firstName = u0.Contact.firstName;
+	    lastName = u0.Contact.lastName;
+	    salutation = u0.Contact.salutation;
+		
+	 	if (NTS==null) {
+		 	try{
+		 		NTS = [select Status_der_Teilnahme__c, Kampagne__c from NextTopShop__c where Benutzer__c=:UserInfo.getUserId() limit 1];
+		 	}
+		 	catch(exception e){}
+	 	}
+	 	if(NTS != null && (NTS.Status_der_Teilnahme__c == 'Abgesendet' || NTS.Status_der_Teilnahme__c == 'keine Teilnahme'))
+	 		System_Settings.showNextTopShop=false;
+	 	else{
+		 	if (ApexPages.currentPage().getCookies() != null)
+		 		TopShop = ApexPages.currentPage().getCookies().get('HideTopShop');
+			User u;
+			try {
+				u = [select id, Contact.Gigaset_Pro__c from User where Id=:UserInfo.getUserId()];
+			} catch(exception e){}
+			
+			if(NTS == null && u != null) {
+				Campaign camp;
+		    		try{
+		    			camp = [select id, EndDate, StartDate, isActive from Campaign where RecordType.Name = 'Top Shop' AND Portal__c =: portal AND isPro__c =: isPro AND EndDate >= TODAY AND StartDate <= TODAY AND isActive = True limit 1]; 
 		    		}
 		    		catch(exception e){}
 		    		if(camp != null)
@@ -479,45 +721,45 @@ global class TrainingController {
 	 	
 	 	if (!System_Settings.isPortalUser()) return System_Settings.redirectToLogin();
 	 	if (!ApexPages.currentPage().getParameters().containsKey('pageid')) return System_Settings.goHome();
-	 	if (System_Settings.isPortalUser() && System_Settings.portal!=System_Settings.getPortalByPageId()) return System_Settings.goHome();
+	 	if (System_Settings.isPortalUser() && portal!=System_Settings.getPortalByPageId()) return System_Settings.goHome();
 	 	return null; 
 	 }
 	 
-	global static String ModulesURLPage(){
+	public String ModulesURLPage(){
 		return Modules_URLPage;
 	}
 	
-	global static pageReference getRecentNewsId() {
+	public pageReference getRecentNewsId() {
 	 	newsid=ApexPages.currentPage().getParameters().get('newsid');
 	 	return null;
 	}
 	 
 	 	
-	global static String getCampus_Title_1() {
+	public String getCampus_Title_1() {
 		return System_Settings.getLabel('Campus_Title_1');
 	}
 	
-	global static String getCampus_Welcome() {
+	public String getCampus_Welcome() {
 		return System_Settings.getLabel('Campus_Welcome');
 	}
 	
-	global static String getCampus_main_Description1() {
+	public String getCampus_main_Description1() {
 		return System_Settings.getLabel('Campus_main_Description1');
 	}
 	
-	global static String getCampus_main_Description2() {
+	public String getCampus_main_Description2() {
 		return System_Settings.getLabel('Campus_main_Description2');
 	}
 	
-	global static String getCampus_1_Title() {
+	public String getCampus_1_Title() {
 		return System_Settings.getLabel('Campus_1_Title');
 	}
 	
-	global static String getCampus_2_Title() {
+	public String getCampus_2_Title() {
 		return System_Settings.getLabel('Campus_2_Title');
 	}
 	
-	global static String getCampus_3_Title() {
+	public String getCampus_3_Title() {
 		return System_Settings.getLabel('Campus_3_Title');
 	}
 	

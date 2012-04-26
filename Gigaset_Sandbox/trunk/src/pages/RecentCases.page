@@ -10,7 +10,7 @@ var date3 = '{!TODAY() + 24}';
 <apex:form >   
     
    <!-- This section shows the customer's recent cases in a table -->
-    <apex:pageBlock title="{!$Label.RecentCase}">
+    <apex:pageBlock >
       <apex:pageBlockTable value="{!MyRecentCases}" var="currentCase" id="caseTable">
          <apex:column >
             <apex:facet name="header">
@@ -18,7 +18,7 @@ var date3 = '{!TODAY() + 24}';
                      <apex:param name="sortField2" value="CaseNumber" assignTo="{!sortField2}"/>
                  </apex:commandLink>
             </apex:facet>
-            <a href="/{!currentCase.id}" target="_top">{!currentCase.CaseNumber}</a>
+            <a href="/{!currentCase.id}" target="_parent">{!currentCase.CaseNumber}</a>
          </apex:column>
          <apex:column >
             <apex:facet name="header"> 
@@ -26,7 +26,7 @@ var date3 = '{!TODAY() + 24}';
                      <apex:param name="sortField2" value="Subject" assignTo="{!sortField2}"/>
                  </apex:commandLink>
             </apex:facet>
-            <a href="/{!currentCase.id}" target="_top">{!currentCase.Subject}</a>
+            <a href="/{!currentCase.id}" target="_parent">{!currentCase.Subject}</a>
          </apex:column>
          <apex:column >
             <apex:facet name="header">

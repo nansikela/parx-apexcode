@@ -18,7 +18,7 @@ public class pageController {
 	public Page__c page {get;set;}
 	public Transient Integer expires {get;set;}
 	public String pagetemplatename {get;set;}
-	public Transient String defaultlanguage {get;set;}
+	public String defaultlanguage {get;set;}
 
 	public pageController() {
 		//if (SystemSettings.isPro)
@@ -31,20 +31,24 @@ public class pageController {
 		String portal='de';
 		defaultlanguage='de';
 		Boolean isPro=false;
+		Id homepageid;
 		
-		if (pageid!=null) {
+		if (pageid!=null && pageid!='null') {
 			for (Pages__c p: Pages__c.getAll().values()) {
 					if (p.PageId__c!=null && Id.ValueOf(p.PageId__c)==Id.ValueOf(pageid)) {
 						portal=p.Portal__c;
 						isPro=p.isPro__c;
 					}
+					if (p.Portal__c==portal && p.IsActive__c && p.isPro__c==isPro && p.Label__c=='Home')
+						homepageid=p.PageId__c;
 			}
 				
 			for (GlobalSettings__c gs:GlobalSettings__c.getAll().values()) {
 				if (gs!=null && gs.Portal__c==portal && gs.isPro__c==isPro && gs.Sprache__c!=null) defaultlanguage=gs.Sprache__c;
 			}
 		}
-		
+		System.debug('pageController pageid: ' + pageid);
+		if (pageid==null || pageid=='null' ) pageid=homepageid;
 		try {
 			page = [Select  p.PageTemplate__r.VisualForce_Page_Name__c, p.PageTemplate__c, p.PageTemplate__r.Name, p.Name, p.Cache_expires__c, p.Id
 				From Page__c p where id =:pageid];
@@ -57,12 +61,14 @@ public class pageController {
 			else {
 				expires = 600;
 			}
+			system.debug(pagetemplatename);
 			//workaround for bug #W-638516
 			System.currentPageReference().getParameters().put('pagetemplatename', pagetemplatename);
 		}
 		catch(QueryException qe) {
 			pagetemplatename = 'Id error :';
 			Apexpages.addMessage(new ApexPages.Message(Apexpages.Severity.ERROR, 'No page found for page id ' + pageid));
+			system.debug('No page found for page id ' + pageid);
 		}
 	}
 	

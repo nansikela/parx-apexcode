@@ -1,58 +1,69 @@
-<apex:page showHeader="false" id="DE_SiteTemplate" controller="DETemplateController" language="{!defaultlanguage}" action="{!initSiteTemplate}">
-	<c:DE_header_style id="stylesheets" styleSelector="{!styleSelector}" />
-	<div id="wrapper">
-		<div id="content_area">
-			<div id="header">
-				<!-- 
-				<apex:insert name="dropDown">
-					<c:DE_Dropdown id="DE_Dropdowncomp" />	
-				</apex:insert>
-				-->
-				<apex:insert name="metanavi">
-					<!--  Portalabh. - portal sets "lang=fr" and translations are necessary -->
-					<c:DE_metanavi id="metanavicomp" portal="{!portal}" isPro="{!isPro}" />
-				</apex:insert>
-				<div id="logo">
-					<apex:insert name="logo">
-						<c:DE_Logo id="DE_Logocomp" />
-					</apex:insert>
-				</div>
-				<!--  Portalabh. -->
-				<c:DE_navigation id="DE_navigationcomp" portal="{!portal}" isPro="{!isPro}" />
-				<!-- 
-				<div id="search"> 
-				</div>
-				-->
-			</div>
-			<!--  END header -->
-			<div id="content_wrapper">
-			
-			<div id="content">
-				
-				<apex:insert name="breadcrump">
-					<c:DE_breadcrump id="DE_breadcrumpcomp" />
-				</apex:insert>
-				<apex:insert name="extranetnavigation">
-					<!--  Portalabh. -->
-					<!-- AND(isAuthenticated,NOT($Site.IsPasswordExpired))  -->
-					<c:DE_extranetnavigation rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showclearingcomp),NOT(showNextTopShop))}" id="DE_extranetnavigationcomp" />
-				</apex:insert>
-				<apex:insert name="body" />
-			
-			</div>
-			
-			</div>
-			<div id="content_wrapperBtm"></div>
-			<!-- END content -->
-		</div>
-		<!-- END content_area -->
-		<apex:insert name="footer">
-			<c:DE_footer id="DE_footercomp" isPro="{!isPro}" />
-		</apex:insert>
-	</div>
-	<!-- END wrapper -->
-		<c:DE_footercopy id="DE_footercopycomp" isPro="{!isPro}" portal="{!portal}" />
-	
-	
-	<site:previewAsAdmin />
+<apex:page showHeader="false" id="DE_SiteTemplate" 
+    controller="DETemplateController" 
+    language="{!defaultlanguage}" 
+    cache="false"
+    action="{!initSiteTemplate}">
+    <c:DE_header_style id="stylesheets" styleSelector="{!styleSelector}" />
+    <div id="wrapper">
+        <div id="content_area">
+            <div id="header">
+                <!-- 
+                <apex:insert name="dropDown">
+                    <c:DE_Dropdown id="DE_Dropdowncomp" />  
+                </apex:insert>
+                -->
+                <apex:insert name="metanavi">
+                    <!--  Portalabh. - portal sets "lang=fr" and translations are necessary -->
+                    <c:DE_metanavi id="metanavicomp" portal="{!portal}" isPro="{!isPro}" 
+                        BaseTopNaviUrl="{!BaseTopNaviUrl}"
+                        menuImpressum="{!menuImpressum.ExternalUrl__c}"
+                    />
+                </apex:insert>
+                <div id="logo">
+                    <apex:insert name="logo">
+                        <c:DE_Logo id="DE_Logocomp" />
+                    </apex:insert>
+                </div>
+                <!--  Portalabh. -->
+                <c:DE_navigation id="DE_navigationcomp" portal="{!portal}" isPro="{!isPro}" />
+                <!-- 
+                <div id="search"> 
+                </div>
+                -->
+            </div>
+            <!--  END header -->
+            <div id="content_wrapper">
+            
+            <div id="content">
+                
+                <apex:insert name="breadcrump">
+                    <c:DE_breadcrump id="DE_breadcrumpcomp" />
+                </apex:insert>
+                <apex:insert name="extranetnavigation">
+                    <!--  Portalabh. -->
+                    <!-- AND(isAuthenticated,NOT($Site.IsPasswordExpired))  -->
+                    <c:DE_extranetnavigation rendered="{!AND(isAuthenticated,NOT($Site.IsPasswordExpired),NOT(showclearingcomp),NOT(showNextTopShop))}" id="DE_extranetnavigationcomp" />
+                </apex:insert>
+                <apex:outputPanel rendered="{!$Site.Name = 'Knowledge_Base'}">
+                    <apex:insert name="MainTemplatebody" />
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!NOT($Site.Name = 'Knowledge_Base')}">
+                    <apex:insert name="body"/>
+                </apex:outputPanel>
+            </div>
+            
+            </div>
+            <div id="content_wrapperBtm"></div>
+            <!-- END content -->
+        </div>
+        <!-- END content_area -->
+        <apex:insert name="footer">
+            <c:DE_footer id="DE_footercomp" isPro="{!isPro}" />
+        </apex:insert>
+    </div>
+    <!-- END wrapper -->
+        <c:DE_footercopy id="DE_footercopycomp" isPro="{!isPro}" portal="{!portal}" />
+    
+    
+    <site:previewAsAdmin /> 
 </apex:page>

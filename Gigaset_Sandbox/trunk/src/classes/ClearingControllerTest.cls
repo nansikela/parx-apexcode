@@ -37,8 +37,9 @@ private class ClearingControllerTest {
 		 	ctrl.getItems();
 		 	ctrl.relationshipSelectionAction();
 		 	ctrl.saveData();
+		 	ctrl.step=1;
 		 	ctrl.previousStep();
-		 	
+		 	ctrl.selectedDistribution=new list<String>();
 		 	ctrl.selectedDistribution.add('Warenhaus');
 		 	ctrl.showDistribution=true;
 		 	ctrl.getCurrentUser();
@@ -52,10 +53,12 @@ private class ClearingControllerTest {
 	 	ClearingController ctrl = new ClearingController();
 	 	ctrl.isAuthenticated=true;
 	 	ctrl.getCurrentUser();
+	 	ctrl.step=1;
 	 	ctrl.previousStep();
 	 	ctrl.saveData();
 	 	ctrl.getItems();
 	 	ctrl.relationshipSelectionAction();
+	 	ctrl.selectedDistribution=new list<String>();
 	 	ctrl.selectedDistribution.add('Warenhaus');
 	 	ctrl.showDistribution=true;
 	 	ctrl.getCurrentUser();

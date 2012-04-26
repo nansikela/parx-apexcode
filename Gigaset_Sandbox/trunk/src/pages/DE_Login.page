@@ -1,11 +1,15 @@
-<apex:page showheader="false" id="de_login" sidebar="false" title="{!$Label.de_title}"  controller="DETemplateController" language="{!defaultlanguage}" >
+<apex:page showheader="false" id="de_login" sidebar="false" 
+	title="{!$Label.de_title}"  controller="DETemplateController" 
+	language="{!defaultlanguage}" 
+	cache="false"
+	>
 <!--  action="{!init}" > -->
 
 <apex:composition template="{!$Site.Template}">
 
 		<apex:define name="body">
 		 	<c:contentblock name="willkommen" />
-		 	<c:contentblock name="Teaser" />
+		 	<c:contentblock name="Teaser" /> 
 		 	
         		<div class="contactBox" id="cbox" >
         			<div id="contact">
@@ -31,6 +35,9 @@
 		        	</div>
 	        	</div>
         		<!-- <img class="lft" src="{!URLFOR($Resource.gigasetciZip, 'img/kontakt.png')}" alt="kontakt" /> -->
+        		<div  style="float: left;">
+                    <c:contentblock name="footer"/>
+                </div>
         		<c:contentblock name="system" id="system" />
 	</apex:define>
 </apex:composition>

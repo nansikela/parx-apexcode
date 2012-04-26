@@ -1,345 +1,345 @@
 <apex:page controller="KontaktFormularController" language="{!Param_Lang}" id="Kontaktregistration" showHeader="false"  sidebar="false" title="Kontaktformular" >
-<!--	<apex:composition template="{!$Site.Template}">-->
-	<apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP2, 'css/main.css')}" />
-<!--	<apex:stylesheet value="{!$Resource.divbutt}" />-->
+<!--    <apex:composition template="{!$Site.Template}">-->
+    <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP2, 'css/main.css')}" />
+<!--    <apex:stylesheet value="{!$Resource.divbutt}" />-->
       <apex:outputPanel layout="none" rendered="{!browserName = 'IE'}">
            <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP2, 'css/main_ie.css')}" />
       </apex:outputPanel>
-	<apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/parx.css')}" />	
-	
-<!--	<apex:stylesheet value="{!$Resource.maincss}" />-->
+    <apex:stylesheet value="{!URLFOR($Resource.gigasetextranetZIP, 'css/parx.css')}" /> 
+    
+<!--    <apex:stylesheet value="{!$Resource.maincss}" />-->
 <!--[if IE]>
-	<apex:stylesheet value="{!$Resource.ButtonGigacss}" />
+    <apex:stylesheet value="{!$Resource.ButtonGigacss}" />
 <![endif]-->
-	<script>
+    <script>
 
-		function callPopUp() {
-			
+        function callPopUp() {
+            
                    window.open('{!$Label.KontaktFormular_CustomerPortalLink}');    
-			
-			return false;
-		}
+            
+            return false;
+        }
 
-	
-	</script>
+    
+    </script>
 
-	 <apex:outputPanel rendered="{!firstPage}" layout="block" >
-	<apex:form id="step0form" rendered="{!firstPage}" >  
-<!--		rendered="{!firstPage}"-->
-<!--		<apex:outputPanel rendered="{!firstPage}" >-->
+     <apex:outputPanel rendered="{!firstPage}" layout="block" >
+    <apex:form id="step0form" rendered="{!firstPage}" >  
+<!--        rendered="{!firstPage}"-->
+<!--        <apex:outputPanel rendered="{!firstPage}" >-->
            
-		<div style="left:0px;position:relative;" id="divinit">	
-			<apex:outputPanel id="firststep" >
-				
-					<apex:actionFunction action="{!ChangeDisplay}" name="ChangeDisplay" immediate="true"/>
-		    			<p style="width:600px">{!$Label.KontaktFormular_Intro}</p>
-		    			
-		    			<br/>
-		    			<br/>
-					<table width="600px;">
-						<tr>
-							<td style="width: 240px;">
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Ihre_Anfrage_bitte_w_hlen_Sie_aus__c.label}" for="Ihre_Anfrage_bitte_w_hlen_Sie_aus" />
-							</td>
-							<td style="width: 340px;">	
-								<apex:inputField id="Ihre_Anfrage_bitte_w_hlen_Sie_aus" value="{!l.Ihre_Anfrage_bitte_w_hlen_Sie_aus__c}" onchange="ChangeDisplay()" styleClass="FieldRequiredSelect"/>
-							</td>
-							
-						</tr>
-					</table> 
-		
-			</apex:outputPanel>
-			
-			<apex:outputPanel id="out1" rendered="{!out1}" >
-					<table width="600px;">
-						<tr>
-							<td style="width: 240px;">
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Company.label}*" for="company" />
-							</td>
-							<td style="width:340px">	
-								<apex:inputField id="company" value="{!l.Company}" required="true" styleClass="FieldRequired" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Salutation.label}*" for="Salutation" />
-							</td>
-							<td>	
-								<apex:inputField id="Salutation" value="{!l.Salutation}" required="true" styleClass="FieldRequiredSelect" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.FirstName.label}*" for="FirstName" />
-							</td>
-							<td>	
-								<apex:inputField id="FirstName" value="{!l.FirstName}" required="true" styleClass="FieldRequired" />
-							</td>
-						</tr>	
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.LastName.label}*" for="LastName" />
-							</td>
-							<td>	
-								<apex:inputField id="LastName" value="{!l.LastName}" required="true" styleClass="FieldRequired" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Funktion__c.label}*" for="Funktion" />
-							</td>
-							<td>	
-								<apex:inputField id="Funktion" value="{!l.Funktion__c}" required="true" styleClass="FieldRequiredSelect" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Email.label}*" for="Email" />
-							</td>
-							<td>	
-								<apex:inputField id="Email" value="{!l.Email}" required="true" styleClass="FieldRequired" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Phone.label}*" for="phone" />
-							</td>
-							<td>	
-								<apex:inputField id="phone" value="{!l.Phone}" required="true" styleClass="FieldRequired" />
-								<apex:outputPanel id="errorc1" rendered="{!showPhoneErr}">
-									<div class="errorMsg" >
-										<apex:outputText escape="false" value="{!errorText}" />
-									</div>
-								</apex:outputPanel>
-							</td> 
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Street.label}" for="street" />
-							</td>
-							<td>	
-								<apex:inputField id="street" value="{!l.Street}" styleClass="FieldRequiredStreet" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.PostalCode.label}*" for="plz" />
-							</td>
-							<td>	
-								<apex:inputField id="plz" value="{!l.PostalCode}" required="true" styleClass="FieldRequired" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.City.label}*" for="city" />
-							</td>
-							<td>	
-								<apex:inputField id="city" value="{!l.City}" required="true" styleClass="FieldRequired" />
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Land_Auswahl__c.label}*" for="country" />
-							</td>
-							<td>	
-								<apex:inputField id="country" value="{!l.Land_Auswahl__c}" required="true" styleClass="FieldRequiredSelect" />
-							</td>
-						</tr>
-					</table> 
-							
-		
-			</apex:outputPanel>
-			
-			<apex:outputPanel id="out2" rendered="{!out2}">
-		
-					<table width="600px;">
-						<tr>
-							<td style="width: 240px;vertical-align:top;">
-								<apex:outputLabel value="{!$ObjectType.Lead.fields.Nachricht__c.label}" for="Nachricht" />
-							</td>
-							<td style="width: 340px;">	
-								<apex:inputField id="Nachricht" value="{!l.Nachricht__c}" styleClass="FieldRequiredStreet" />
-							</td>
-						</tr>
-					</table>
-		
-		      </apex:outputPanel> 
-			
-			<apex:outputPanel id="out5" rendered="{!out5}">
-						<br/>
-					      
-						<table width="600px;">
-							<tr>
-								<td>
-									<p style="font-weight: bolder;position: relative;">{!$Label.KontaktFormular_Details1}</p>
-								</td>
-								<td></td>
-					      	</tr>
-							<tr>
-								<td style="width: 240px;">
-									<apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_ANZ_Tischger_te__c.label}*" /> 
-								</td>
-								<td style="width: 340px;">	
-									<apex:inputField id="Number_of_telefon_system" value="{!l.PRO_ANZ_Tischger_te__c}" required="true" styleClass="FieldRequiredSelect" />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_ANZ_Handsets__c.label}*" /> 
-								</td>
-								<td>	
-									<apex:inputField id="Number_of_DECT_Mobil_phone" value="{!l.PRO_ANZ_Handsets__c}" required="true" styleClass="FieldRequiredSelect" />
-								</td>
-							</tr>
-							
-<!--						</table>-->
-					       
-					      	<tr>
-								<td>
-									<p style="font-weight: bolder;position: relative;margin-bottom: 0;margin-top: 0;">{!$Label.KontaktFormular_Details2}</p>
-								</td>
-								<td></td>
-					      	</tr>
-<!--						<table width="600px;">-->
-							<tr>
-								<td style="width: 240px;"> 
-									<apex:outputLabel value="{!$ObjectType.Lead.fields.No_phone_system__c.label}*" /> 
-								</td>
-								<td style="width: 340px;">	
-									<apex:inputField style="position: relative;" id="No_phone_system" value="{!l.No_phone_system__c}" required="true" />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<apex:outputLabel value="{!$ObjectType.Lead.fields.Anzahl_Standorte__c.label}*" /> 
-								</td>
-								
-								<td>	
-									<apex:inputField id="Number_of_linked_places" value="{!l.Anzahl_Standorte__c}" required="true" styleClass="FieldRequiredSelect" />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<apex:outputLabel value="{!$ObjectType.Lead.fields.Anzahl_Telefone__c.label}*" /> 
-								</td>
-								<td>	
-									<apex:inputField id="Number_of_phones_to_plug_in" value="{!l.Anzahl_Telefone__c}" required="true" styleClass="FieldRequiredSelect" />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<apex:outputLabel value="{!$ObjectType.Lead.fields.Anzahl_Amtsleitungen__c.label}*" /> 
-								</td>
-								<td>	
-									<apex:inputField id="Amtsleitungen" value="{!l.Anzahl_Amtsleitungen__c}" required="true" styleClass="FieldRequiredSelect" />
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<apex:outputLabel value="{!$ObjectType.Lead.fields.Anzahl_Faxger_te__c.label}*" /> 
-								</td>
-								<td>	
-									<apex:inputField id="Fax_Number" value="{!l.Anzahl_Faxger_te__c}" required="true" styleClass="FieldRequiredSelect" />
-								</td>
-							</tr>
-<!--						</table>-->
-<!--						<table>-->
-							
-							<tr>
-								<td style="vertical-align:top;">	
-									<apex:outputLabel style="font-weight: bolder;" value="{!$ObjectType.Lead.fields.PRO_AMTSANSCHLUSS__c.label}*" /> 
-								</td>
-								<td>	
-									<apex:inputField style="position: relative;font-family: Arial, Verdana, Helvetica, sans-serif; font-size:11px; border: 1px solid #b2b2b2;" id="Art_Amtsanschluss" value="{!l.PRO_AMTSANSCHLUSS__c}" required="true"  />
-								</td>
-							</tr>
-<!--						</table>-->
-<!--						<table >-->
-							
-							<tr>
-								<td >	
-									<apex:outputLabel style="font-weight: bolder;" value="{!$ObjectType.Lead.fields.PRO_NUTZUNG_TK_HW__c.label}*" /> 
-								</td>
-								<td >	
-									<apex:inputField style="position: relative;" id="TK_Hardware_weiterbenutzt" value="{!l.PRO_NUTZUNG_TK_HW__c}" required="true"  />
-								</td>
-							</tr>
-<!--						</table>-->
-<!--						<table width="600px;">-->
-							
-							<tr>
-								<td>	
-									<apex:outputLabel style="font-weight: bolder;" value="{!$ObjectType.Lead.fields.PRO_SMB_PROJEKT_TERMIN__c.label}*" /> 
-								</td>
-								<td>	
-									<apex:inputField id="wann_umstellen" value="{!l.PRO_SMB_PROJEKT_TERMIN__c}" required="true" styleClass="FieldRequiredSelect" />
-								</td>
-							</tr>
-						</table>
-		
-			</apex:outputPanel> 
-		</div>   	
-		<apex:iframe src="{!DatenschutzLink}" scrolling="true" id="out3" rendered="{!out3}" width="595" height="250"/>
-		<div style="left:0px;position:relative;width: 608px;" id="divinit2">
-		      <apex:outputPanel rendered="{!out4}" id="lastoutputpanel" style="right:0;position:relative;">
-		      	
-		      	<br/>
-		      	<input type="checkbox" name="AGBs" id="checkbox" style="position: relative;top: 2px;"/>
-		      	{!$Label.KontaktFormular_AGB}
-		      	<div style="float: right!important;margin-right: 14px!important;position:relative;top:-10px;">
-<!--			      	-->
-<!--			      	<apex:commandButton id="buttText" onclick="if(document.getElementById('checkbox').checked){return true;}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');return false;}" action="{!insertLead}" value="{!$Label.KontaktFormular_Insert}" onfocus="this.style.padding='3px 10px 5px 20px';" style="font-size: 11px;font-family: Arial, Helvetica, sans-serif;width: auto !important;  overflow: visible; margin-top: 7px; margin-left:5px; height:25px; padding:3px 10px 5px 20px; background:url({!$Resource.partnerfinderButton}) no-repeat left top;color:white; display:inline;border:0;">-->
-<!--				            <div id="butt" style="display:inline;">-->
-<!--				                <apex:commandButton onclick="if(document.getElementById('checkbox').checked){return true;}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');return false;}" action="{!insertLead}" value="" styleClass="customStyleButton" style="height:24px;width:11px;left: -10px;position: relative;background:url({!$Resource.partnerfinderButton2});border:0;"/>-->
-<!--				            </div>-->
-<!--				       </apex:commandButton>  -->
-					<apex:commandLink onclick="if(document.getElementById('checkbox').checked){return true;}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');return false;}" action="{!insertLead}" value="" styleClass="btn rght" style="text-decoration:none;" >
-<!--					<a href="" onclick="if(document.getElementById('checkbox').checked){beforeInsertLead();}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');}" class="btn rght" style="text-decoration:none;">-->
-						<span>{!$Label.KontaktFormular_Insert}</span>
-<!--				 	</a>-->
-					</apex:commandLink>
-					
-					
-<!--					<apex:commandButton onclick="if(document.getElementById('checkbox').checked){return true;}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');return false;}" action="{!insertLead}" value="blabla" styleClass="btn rght" style="text-decoration:none;"/>-->
-				
-		          	 </div> 
-		          	 
-				
-			       <p style="top: 15px;position: relative;">{!$Label.registration_required_fields}</p>	 			
-			</apex:outputPanel>
-		
-			<apex:outputPanel id="customportal" rendered="{!out6}">
-	      		<a href="javascript: void(0)" onclick="callPopUp()">{!$Label.KontaktFormular_Customer_Portal}</a>		
-			</apex:outputPanel>
-		</div>  
-<!--		</apex:outputPanel>-->
+        <div style="left:0px;position:relative;" id="divinit">  
+            <apex:outputPanel id="firststep" >
+                
+                    <apex:actionFunction action="{!ChangeDisplay}" name="ChangeDisplay" immediate="true"/>
+                        <p style="width:600px">{!$Label.KontaktFormular_Intro}</p>
+                        
+                        <br/>
+                        <br/>
+                    <table width="600px;">
+                        <tr>
+                            <td style="width: 240px;">
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Ihre_Anfrage_bitte_w_hlen_Sie_aus__c.label}" for="Ihre_Anfrage_bitte_w_hlen_Sie_aus" />
+                            </td>
+                            <td style="width: 340px;">  
+                                <apex:inputField id="Ihre_Anfrage_bitte_w_hlen_Sie_aus" value="{!l.Ihre_Anfrage_bitte_w_hlen_Sie_aus__c}" onchange="ChangeDisplay()" styleClass="FieldRequiredSelect"/>
+                            </td>
+                            
+                        </tr>
+                    </table> 
+        
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="out1" rendered="{!out1}" >
+                    <table width="600px;">
+                        <tr>
+                            <td style="width: 240px;">
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Company.label}*" for="company" />
+                            </td>
+                            <td style="width:340px">    
+                                <apex:inputField id="company" value="{!l.Company}" required="true" styleClass="FieldRequired" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Salutation.label}*" for="Salutation" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="Salutation" value="{!l.Salutation}" required="true" styleClass="FieldRequiredSelect" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.FirstName.label}*" for="FirstName" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="FirstName" value="{!l.FirstName}" required="true" styleClass="FieldRequired" />
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.LastName.label}*" for="LastName" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="LastName" value="{!l.LastName}" required="true" styleClass="FieldRequired" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Funktion__c.label}*" for="Funktion" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="Funktion" value="{!l.Funktion__c}" required="true" styleClass="FieldRequired" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Email.label}*" for="Email" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="Email" value="{!l.Email}" required="true" styleClass="FieldRequired" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Phone.label}*" for="phone" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="phone" value="{!l.Phone}" required="true" styleClass="FieldRequired" />
+                                <apex:outputPanel id="errorc1" rendered="{!showPhoneErr}">
+                                    <div class="errorMsg" >
+                                        <apex:outputText escape="false" value="{!errorText}" />
+                                    </div>
+                                </apex:outputPanel>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Street.label}" for="street" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="street" value="{!l.Street}" styleClass="FieldRequiredStreet" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.PostalCode.label}*" for="plz" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="plz" value="{!l.PostalCode}" required="true" styleClass="FieldRequired" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.City.label}*" for="city" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="city" value="{!l.City}" required="true" styleClass="FieldRequired" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Land_Auswahl__c.label}*" for="country" />
+                            </td>
+                            <td>    
+                                <apex:inputField id="country" value="{!l.Land_Auswahl__c}" required="true" styleClass="FieldRequiredSelect" />
+                            </td>
+                        </tr>
+                    </table> 
+                            
+        
+            </apex:outputPanel>
+            
+            <apex:outputPanel id="out2" rendered="{!out2}">
+        
+                    <table width="600px;">
+                        <tr>
+                            <td style="width: 240px;vertical-align:top;">
+                                <apex:outputLabel value="{!$ObjectType.Lead.fields.Nachricht__c.label}" for="Nachricht" />
+                            </td>
+                            <td style="width: 340px;">  
+                                <apex:inputField id="Nachricht" value="{!l.Nachricht__c}" styleClass="FieldRequiredStreet" />
+                            </td>
+                        </tr>
+                    </table>
+        
+              </apex:outputPanel> 
+            
+            <apex:outputPanel id="out5" rendered="{!out5}">
+                        <br/>
+                          
+                        <table width="600px;">
+                            <tr>
+                                <td>
+                                    <p style="font-weight: bolder;position: relative;">{!$Label.KontaktFormular_Details1}</p>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 240px;">
+                                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_ANZ_Tischger_te__c.label}*" /> 
+                                </td>
+                                <td style="width: 340px;">  
+                                    <apex:inputField id="Number_of_telefon_system" value="{!l.PRO_ANZ_Tischger_te__c}" required="true" styleClass="FieldRequiredSelect" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <apex:outputLabel value="{!$ObjectType.Lead.fields.PRO_ANZ_Handsets__c.label}*" /> 
+                                </td>
+                                <td>    
+                                    <apex:inputField id="Number_of_DECT_Mobil_phone" value="{!l.PRO_ANZ_Handsets__c}" required="true" styleClass="FieldRequiredSelect" />
+                                </td>
+                            </tr>
+                            
+<!--                        </table>-->
+                           
+                            <tr>
+                                <td>
+                                    <p style="font-weight: bolder;position: relative;margin-bottom: 0;margin-top: 0;">{!$Label.KontaktFormular_Details2}</p>
+                                </td>
+                                <td></td>
+                            </tr>
+<!--                        <table width="600px;">-->
+                            <tr>
+                                <td style="width: 240px;"> 
+                                    <apex:outputLabel value="{!$ObjectType.Lead.fields.No_phone_system__c.label}*" /> 
+                                </td>
+                                <td style="width: 340px;">  
+                                    <apex:inputField style="position: relative;" id="No_phone_system" value="{!l.No_phone_system__c}" required="true" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <apex:outputLabel value="{!$ObjectType.Lead.fields.Anzahl_Standorte__c.label}*" /> 
+                                </td>
+                                
+                                <td>    
+                                    <apex:inputField id="Number_of_linked_places" value="{!l.Anzahl_Standorte__c}" required="true" styleClass="FieldRequiredSelect" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <apex:outputLabel value="{!$ObjectType.Lead.fields.Anzahl_Telefone__c.label}*" /> 
+                                </td>
+                                <td>    
+                                    <apex:inputField id="Number_of_phones_to_plug_in" value="{!l.Anzahl_Telefone__c}" required="true" styleClass="FieldRequiredSelect" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <apex:outputLabel value="{!$ObjectType.Lead.fields.Anzahl_Amtsleitungen__c.label}*" /> 
+                                </td>
+                                <td>    
+                                    <apex:inputField id="Amtsleitungen" value="{!l.Anzahl_Amtsleitungen__c}" required="true" styleClass="FieldRequiredSelect" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <apex:outputLabel value="{!$ObjectType.Lead.fields.Anzahl_Faxger_te__c.label}*" /> 
+                                </td>
+                                <td>    
+                                    <apex:inputField id="Fax_Number" value="{!l.Anzahl_Faxger_te__c}" required="true" styleClass="FieldRequiredSelect" />
+                                </td>
+                            </tr>
+<!--                        </table>-->
+<!--                        <table>-->
+                            
+                            <tr>
+                                <td style="vertical-align:top;">    
+                                    <apex:outputLabel style="font-weight: bolder;" value="{!$ObjectType.Lead.fields.PRO_AMTSANSCHLUSS__c.label}*" /> 
+                                </td>
+                                <td>    
+                                    <apex:inputField style="position: relative;font-family: Arial, Verdana, Helvetica, sans-serif; font-size:11px; border: 1px solid #b2b2b2;" id="Art_Amtsanschluss" value="{!l.PRO_AMTSANSCHLUSS__c}" required="true"  />
+                                </td>
+                            </tr>
+<!--                        </table>-->
+<!--                        <table >-->
+                            
+                            <tr>
+                                <td >   
+                                    <apex:outputLabel style="font-weight: bolder;" value="{!$ObjectType.Lead.fields.PRO_NUTZUNG_TK_HW__c.label}*" /> 
+                                </td>
+                                <td >   
+                                    <apex:inputField style="position: relative;" id="TK_Hardware_weiterbenutzt" value="{!l.PRO_NUTZUNG_TK_HW__c}" required="true"  />
+                                </td>
+                            </tr>
+<!--                        </table>-->
+<!--                        <table width="600px;">-->
+                            
+                            <tr>
+                                <td>    
+                                    <apex:outputLabel style="font-weight: bolder;" value="{!$ObjectType.Lead.fields.PRO_SMB_PROJEKT_TERMIN__c.label}*" /> 
+                                </td>
+                                <td>    
+                                    <apex:inputField id="wann_umstellen" value="{!l.PRO_SMB_PROJEKT_TERMIN__c}" required="true" styleClass="FieldRequiredSelect" />
+                                </td>
+                            </tr>
+                        </table>
+        
+            </apex:outputPanel> 
+        </div>      
+        <apex:iframe src="{!DatenschutzLink}" scrolling="true" id="out3" rendered="{!out3}" width="595" height="250"/>
+        <div style="left:0px;position:relative;width: 608px;" id="divinit2">
+              <apex:outputPanel rendered="{!out4}" id="lastoutputpanel" style="right:0;position:relative;">
+                
+                <br/>
+                <input type="checkbox" name="AGBs" id="checkbox" style="position: relative;top: 2px;"/>
+                {!$Label.KontaktFormular_AGB}
+                <div style="float: right!important;margin-right: 14px!important;position:relative;top:-10px;">
+<!--                    -->
+<!--                    <apex:commandButton id="buttText" onclick="if(document.getElementById('checkbox').checked){return true;}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');return false;}" action="{!insertLead}" value="{!$Label.KontaktFormular_Insert}" onfocus="this.style.padding='3px 10px 5px 20px';" style="font-size: 11px;font-family: Arial, Helvetica, sans-serif;width: auto !important;  overflow: visible; margin-top: 7px; margin-left:5px; height:25px; padding:3px 10px 5px 20px; background:url({!$Resource.partnerfinderButton}) no-repeat left top;color:white; display:inline;border:0;">-->
+<!--                            <div id="butt" style="display:inline;">-->
+<!--                                <apex:commandButton onclick="if(document.getElementById('checkbox').checked){return true;}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');return false;}" action="{!insertLead}" value="" styleClass="customStyleButton" style="height:24px;width:11px;left: -10px;position: relative;background:url({!$Resource.partnerfinderButton2});border:0;"/>-->
+<!--                            </div>-->
+<!--                       </apex:commandButton>  -->
+                    <apex:commandLink onclick="if(document.getElementById('checkbox').checked){return true;}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}'); return false;}" action="{!insertLead}" value="" styleClass="btn rght" style="text-decoration:none;" >
+<!--                    <a href="" onclick="if(document.getElementById('checkbox').checked){beforeInsertLead();}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');}" class="btn rght" style="text-decoration:none;">-->
+                        <span>{!$Label.KontaktFormular_Insert}</span>
+<!--                    </a>-->
+                    </apex:commandLink>
+                    
+                    
+<!--                    <apex:commandButton onclick="if(document.getElementById('checkbox').checked){return true;}else{alert('{!$Label.KontaktFormular_AGBBest_tigen}');return false;}" action="{!insertLead}" value="blabla" styleClass="btn rght" style="text-decoration:none;"/>-->
+                
+                     </div> 
+                     
+                
+                   <p style="top: 15px;position: relative;">{!$Label.registration_required_fields}</p>              
+            </apex:outputPanel>
+        
+            <apex:outputPanel id="customportal" rendered="{!out6}">
+                <a href="javascript: void(0)" onclick="callPopUp()">{!$Label.KontaktFormular_Customer_Portal}</a>       
+            </apex:outputPanel>
+        </div>  
+<!--        </apex:outputPanel>-->
 
-	</apex:form>
+    </apex:form>
 </apex:outputPanel>
-	
-<!--	</apex:define>--> 
-<!--	</apex:composition>-->
-	<apex:outputPanel id="step1form" rendered="{!NOT(firstPage)}" layout="block" >
-			
-			<apex:form id="bla121">
-			<apex:actionRegion renderRegionOnly="true">
-			<p style="font-family: Arial;font-size: 12px;">{!$Label.KontaktFormular_Success}</p>
-			</apex:actionRegion>
-			</apex:form>
-			
-	</apex:outputPanel>
-	
-	<style>
-		
+    
+<!--    </apex:define>--> 
+<!--    </apex:composition>-->
+    <apex:outputPanel id="step1form" rendered="{!NOT(firstPage)}" layout="block" >
+            
+            <apex:form id="bla121">
+            <apex:actionRegion renderRegionOnly="true">
+            <p style="font-family: Arial;font-size: 12px;">{!$Label.KontaktFormular_Success}</p>
+            </apex:actionRegion>
+            </apex:form>
+            
+    </apex:outputPanel>
+    
+    <style>
+        
 
-		.errorMsg {
-			margin-left:0px;
-		}
-		
-		h1 {
-			font-size:20px;
-		}
-	/*	.btn, .button, .formulaButton, .btnWhatsNew {
+        .errorMsg {
+            margin-left:0px;
+        }
+        
+        h1 {
+            font-size:20px;
+        }
+    /*  .btn, .button, .formulaButton, .btnWhatsNew {
 font-family: 'Verdana', 'Geneva', sans-serif;
 
 }
@@ -348,74 +348,74 @@ a.btn {
 font-size: .9em;
 
 }*/
-		.FieldRequired {
-		    font-family: Arial, Verdana, Helvetica, sans-serif;
-		    border: 1px solid #b2b2b2;
-		    width:346px;
-		    margin-bottom:6px;
-		    font-size:11px;
-		}
-		
-		.FieldRequiredStreet {
-		    font-family: Arial, Verdana, Helvetica, sans-serif;
-		    font-size:11px;
-		    width:346px;
-		    border: 1px solid #b2b2b2;
-		    margin-bottom:6px;
-		}
-		
-		.FieldRequiredSelect {
-		    font-family: Arial, Verdana, Helvetica, sans-serif;
-		    font-size:11px;
-		    width:350px;
-		    border: 1px solid #b2b2b2;
-		    margin-bottom:6px;
-		}
-		a:hover{
-			text-decoration:none;
-		}
-	/*	a.butt {
-	        background:url("{!$Resource.partnerfinderButton}") no-repeat scroll 0 0 transparent !important;
-	        border:0 none;
-	        color:#FFFFFF !important;
-	        cursor:pointer !important;
-	        float:left;
-	        font-size:12px;
-	        font-weight:bold !important;
-	        height:30px;
-	        margin:5px 0;
-	        overflow:visible;
-	        padding:0 0 0 24px !important;
-	        position:relative;
-	        white-space:nowrap;
-	        width:auto;
-	    }*/
-	    .errorMsg {
-		  font-size:11px;
-	    }
-	    .multiSelectPicklistRow select {
-	    	  height:70px;
-	    }
-	    
-	    .datePicker{
-	    	display:none;
-	    }
+        .FieldRequired {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            border: 1px solid #b2b2b2;
+            width:346px;
+            margin-bottom:6px;
+            font-size:11px;
+        }
+        
+        .FieldRequiredStreet {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size:11px;
+            width:346px;
+            border: 1px solid #b2b2b2;
+            margin-bottom:6px;
+        }
+        
+        .FieldRequiredSelect {
+            font-family: Arial, Verdana, Helvetica, sans-serif;
+            font-size:11px;
+            width:350px;
+            border: 1px solid #b2b2b2;
+            margin-bottom:6px;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+    /*  a.butt {
+            background:url("{!$Resource.partnerfinderButton}") no-repeat scroll 0 0 transparent !important;
+            border:0 none;
+            color:#FFFFFF !important;
+            cursor:pointer !important;
+            float:left;
+            font-size:12px;
+            font-weight:bold !important;
+            height:30px;
+            margin:5px 0;
+            overflow:visible;
+            padding:0 0 0 24px !important;
+            position:relative;
+            white-space:nowrap;
+            width:auto;
+        }*/
+        .errorMsg {
+          font-size:11px;
+        }
+        .multiSelectPicklistRow select {
+              height:70px;
+        }
+        
+        .datePicker{
+            display:none;
+        }
 
-	    td {
-	    	vertical-align: top;
-	    }
-	    body {
-		  background: none;	
-	    }
-	 /*   a.butt span {
-	        background:url("{!$Resource.partnerfinderButton2}") no-repeat scroll 100% 0 transparent;
-	        border:0 none;
-	        color:#FFFFFF !important;
-	        display:inline-block;
-	        height:30px;
-	        overflow:hidden;
-	        padding:4px 20px 0 5px !important;
-	        position:relative;
-	    }*/
-	</style>
+        td {
+            vertical-align: top;
+        }
+        body {
+          background: none; 
+        }
+     /*   a.butt span {
+            background:url("{!$Resource.partnerfinderButton2}") no-repeat scroll 100% 0 transparent;
+            border:0 none;
+            color:#FFFFFF !important;
+            display:inline-block;
+            height:30px;
+            overflow:hidden;
+            padding:4px 20px 0 5px !important;
+            position:relative;
+        }*/
+    </style>
 </apex:page>

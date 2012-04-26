@@ -1,0 +1,138 @@
+<apex:page standardStylesheets="false" cache="true" expires="2592000" sidebar="false" showheader="false">
+	<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+	<meta content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport" id="viewport" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="format-detection" content="telephone=no" />
+
+	<apex:stylesheet value="{!URLFOR($Resource.gigaset_mobile_ressources, 'stylesheets/gigaset.css')}"/>
+	<apex:includeScript value="{!$Resource.jQuery171}" />
+	<script type="text/javascript">
+                $(document).ready(function () {
+                        $('.exex').each(function() {
+                                if($.trim($(this).find("span span").text()) ==  ''){
+                                        $(this).hide();
+                                }
+                        });
+                        
+                        $('.main').css('height',$(window).height()+'px');
+                });
+        </script>
+<table cellpadding="0" cellspacing="0" border="0" class="main">
+	<tr>
+		<td align="left" class="top-bar">
+			<div class="logo">
+			   <a href="javascript:void(0);">
+				<img src="images/info.png" alt="Info"/>
+			   </a>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td align="left" class="body">
+			<!-- main content -->
+			<table cellpadding="0" cellspacing="0" border="0" class="content">
+				<tr>
+					<td align="center" valign="middle">
+						<div class="bodyleft">
+							  <p class="welcome">
+							   <span class="welcome-text">WELCOME TO GIGASET CAMPUS.</span>
+							  </p>
+							   
+							  <p class="ppadding3">
+							   <span class="msg">Here you get all important Gigaset brand and product info in one place.</span>
+							  </p>	
+							  
+							   <p class="msgwhite">
+							   <span class="msg white">Choose your category:</span>
+							  </p>					    
+				 		  <div class="menu">
+								<!--menu item with red cycle for sub menues count indecates-->
+								<div class="menu-item">
+									<a class="ovalbutton" href="module.html" ><span class="label span-menu">Company &amp; Brand</span>
+										<div class="exex">
+											<span class="redbutton redfirst" >
+												<span class="labelredbutton">
+													<!--if there is no string here the red cycle will not be displayed-->
+													11
+												</span>
+											</span>
+										</div>
+									</a>
+								</div>
+				
+								<!--menu item with red cycle for sub menues count indecates-->
+								<div class="menu-item">
+									<a class="ovalbutton" href="index.html" ><span class="label span-menu">Voice Products</span>
+										<div class="exex">
+											<span class="redbutton redfirst" >
+												<span class="labelredbutton">
+													<!--if there is no string here the red cycle will not be displayed-->
+													579
+												</span>
+											</span>
+										</div>
+									</a>
+								</div>
+				
+				
+								<!--menu item with red cycle for sub menues count indecates-->
+								<div class="menu-item">
+									<a class="ovalbutton" href="index.html" ><span class="label span-menu">Smart Extras</span>
+										<div class="exex">
+											<span class="redbutton redfirst" >
+												<span class="labelredbutton">
+													<!--if there is no string here the red cycle will not be displayed-->
+												</span>
+											</span>
+										</div>
+									</a>
+								</div>
+				
+								<!--menu item with red cycle for sub menues count indecates-->
+								<div class="menu-item">
+									<a class="ovalbutton" href="index.html" ><span class="label span-menu">Accessoires</span>
+										<div class="exex">
+											<span class="redbutton redfirst" >
+												<span class="labelredbutton">
+													<!--if there is no string here the red cycle will not be displayed-->
+													2
+												</span>
+											</span>
+										</div>
+									</a>
+								</div>
+				
+								<!--menu item with red cycle for sub menues count indecates-->
+								<div class="menu-item">
+									<a class="ovalbutton" href="index.html" ><span class="label span-menu">Promotion &amp; Sales</span>
+										<div class="exex">
+											<span class="redbutton redfirst" >
+												<span class="labelredbutton">
+													<!--if there is no string here the red cycle will not be displayed-->
+												</span>
+											</span>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td align="left" class="bottom-bar">
+			<div class="navigation navigation-process">
+				<a class="ovalbutton button-progress" href="progress.html">
+					<span class="label">My Progress</span>
+				</a>
+			</div>
+			<div class="slogan-bar">
+				<span class="msg regular msg-slogan">SL910</span>
+			</div>
+		</td>
+	</tr>
+</table>
+</apex:page>

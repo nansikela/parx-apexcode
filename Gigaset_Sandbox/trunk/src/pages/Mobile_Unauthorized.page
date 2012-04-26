@@ -1,0 +1,18 @@
+<apex:page showheader="false" id="Mobile_login" sidebar="false" title="{!$Label.de_title}"  
+    cache="false" expires="2592000"
+    controller="loginPageController" standardStylesheets="false" language="{!defaultlanguage}" action="{!init}" >
+    
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<meta content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" name="viewport" id="viewport" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=no" />
+     
+<apex:stylesheet value="{!URLFOR($Resource.gigaset_mobile_ressources, 'stylesheets/gigaset.css')}"/>
+<apex:includeScript value="{!$Resource.jQuery171}" />
+
+	<apex:define name="body">
+    	<c:Mobile_Login id="login" showError="true" />
+    </apex:define>
+
+</apex:page>
