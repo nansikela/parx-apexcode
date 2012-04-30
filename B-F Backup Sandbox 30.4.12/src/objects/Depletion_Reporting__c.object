@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used for Brand Depletion Reporting
+
+Record Key = Region/Brand/Date (i.e. UKSOCO20110801) Date(YYYYMMDD)</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Brand_Minor__c</fullName>
+        <description>Brand Minor</description>
+        <externalId>false</externalId>
+        <label>Brand Minor</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <description>Brand Text</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Budget_Depletions_Month__c</fullName>
+        <description>Budget Depletion&apos;s (Month)</description>
+        <externalId>false</externalId>
+        <label>Budget Depletions (Month)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date__c</fullName>
+        <description>Date</description>
+        <externalId>false</externalId>
+        <label>Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DeplDate__c</fullName>
+        <externalId>false</externalId>
+        <formula>Date__c -1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DeplDate</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Depletion_Reporting_Name__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Depletion Reporting Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Estimated_Depletions_Month__c</fullName>
+        <description>Estimated Depletions (Month)</description>
+        <externalId>false</externalId>
+        <label>Estimated Depletions (Month)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MTD_Depletions__c</fullName>
+        <description>MTD Depletions - this should actually read Shipments (Sam 10-18-11)</description>
+        <externalId>false</externalId>
+        <label>MTD Shipments</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <description>Region</description>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Version__c</fullName>
+        <description>Version</description>
+        <externalId>false</externalId>
+        <label>Version</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X12_mo_MAT__c</fullName>
+        <externalId>false</externalId>
+        <label>12 mo MAT</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>X3_mo_MAT__c</fullName>
+        <externalId>false</externalId>
+        <label>3 mo MAT</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>X6_mo_MAT__c</fullName>
+        <externalId>false</externalId>
+        <label>6 mo MAT</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Percent</type>
+    </fields>
+    <label>Depletion Reporting</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Depletion_Reporting_Name__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Brand_Minor__c</columns>
+        <columns>Region__c</columns>
+        <columns>Version__c</columns>
+        <columns>Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>DR-{0}</displayFormat>
+        <label>Key</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Depletion Reporting</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Brand__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Brand_Minor__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>MTD_Depletions__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Estimated_Depletions_Month__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Budget_Depletions_Month__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>X3_mo_MAT__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>X6_mo_MAT__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>X12_mo_MAT__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

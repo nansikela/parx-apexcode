@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Calendar_Week__c</fullName>
+        <description>Formula to calculate the week number based on date entered</description>
+        <externalId>false</externalId>
+        <formula>Case( 
+MOD( DATE(YEAR(Calender_Week__c), 1, 1) - DATE (1900, 1, 7), 7),
+0, ( Calender_Week__c- DATE(YEAR(Calender_Week__c),1,1) + 3) /7,
+1, ( Calender_Week__c- DATE(YEAR(Calender_Week__c),1,1) + 4) /7,
+2, ( Calender_Week__c- DATE(YEAR(Calender_Week__c),1,1) + 5) /7,
+3, ( Calender_Week__c- DATE(YEAR(Calender_Week__c),1,1) + 6) /7,
+4, ( Calender_Week__c- DATE(YEAR(Calender_Week__c),1,1) + 7) /7,
+5, ( Calender_Week__c- DATE(YEAR(Calender_Week__c),1,1) + 1) /7,
+6, ( Calender_Week__c- DATE(YEAR(Calender_Week__c),1,1) + 2) /7,
+99)</formula>
+        <label>Calendar Week #</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Calender_Week__c</fullName>
+        <description>Calender Week - Are We going to do this via Apex?</description>
+        <externalId>false</externalId>
+        <label>Calender Week</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This flag will be used to indicate the survey has been completed by the Sales Rep - Unchecked values will be included in the Offline and indicate a new Survey available for Sales Rep to complete.</description>
+        <externalId>false</externalId>
+        <label>Complete</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Counter__c</fullName>
+        <externalId>false</externalId>
+        <label>Counter</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Placement__c</fullName>
+        <externalId>false</externalId>
+        <label>Placement</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product_Launch__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Launch</label>
+        <referenceTo>Product_Launch__c</referenceTo>
+        <relationshipLabel>Product Launch Details</relationshipLabel>
+        <relationshipName>Product_Launch_Details</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <externalId>false</externalId>
+        <formula>Product_Launch__r.Product__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Product</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promotion_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Price</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Remarks__c</fullName>
+        <externalId>false</externalId>
+        <label>Remarks</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shelf__c</fullName>
+        <externalId>false</externalId>
+        <label>Shelf</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Middle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bottom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Standard_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Standard Price</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Store_Main_Segement__c</fullName>
+        <externalId>false</externalId>
+        <label>Store Main Segement</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1st Segment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2nd Segment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3rd  Segment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Store_Sub_Segement__c</fullName>
+        <externalId>false</externalId>
+        <label>Store Sub-Segment</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Christmas Promotion Area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Punch Placement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf Header (Display)  - Spirit Dept</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf Header (Shelf)  - Spirit Dept</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf Header (Display)  - Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf Header (Shelf)  - Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Survey Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Volume__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Week__c</fullName>
+        <externalId>false</externalId>
+        <label>Week</label>
+        <length>7</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Goal__c</fullName>
+        <externalId>false</externalId>
+        <formula>Volume__c / Product_Launch__r.Estimated_Volume__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>% of Goal</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <label>Product Launch Detail</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PLD-{0}</displayFormat>
+        <label>Product Launch Detail Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Product Launch Details</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Germany_Off</fullName>
+        <active>true</active>
+        <description>Product Launch Detail For Germany</description>
+        <label>Germany Off</label>
+        <picklistValues>
+            <picklist>Placement__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Shelf__c</picklist>
+            <values>
+                <fullName>Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Middle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Store_Main_Segement__c</picklist>
+            <values>
+                <fullName>1st Segment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2nd Segment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3rd  Segment</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Store_Sub_Segement__c</picklist>
+            <values>
+                <fullName>Christmas Promotion Area</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Punch Placement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf Header %28Display%29  - Promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf Header %28Display%29  - Spirit Dept</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf Header %28Shelf%29  - Promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf Header %28Shelf%29  - Spirit Dept</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

@@ -1,0 +1,15 @@
+<apex:page title="Create Scheduled Apex Job" id="thePage" controller="createScheduledApexJobsController" showHeader="true"> 
+<apex:form >
+<p>
+<h1>This page is used to call the startScheduledJobs() and stopScheduledJobs() methods of createScheduledApexJobsController using buttons</h1><br></br>
+<h1>The Apex Job created is designed to call processDatedOfflineOutletVisits class on the 15th of each Month</h1><br></br>
+<h1>Use this page to stop and start the Apex jobs as needed for maintenance</h1><br></br>
+</p>
+<br></br>
+<br></br>
+<apex:commandButton action="{!startScheduledJobs}" value="Start Job"/> 
+<apex:commandButton action="{!stopScheduledJobs}" value="Stop Job"/> 
+</apex:form>
+<h1>Check the status of scheduled Apex Jobs here:</h1><br></br>
+<a href='/08e?retURL=/ui/setup/Setup%3Fsetupid%3DMonitoring&setupid=ScheduledJobs' >Scheduled Jobs Monitoring</a>
+</apex:page>

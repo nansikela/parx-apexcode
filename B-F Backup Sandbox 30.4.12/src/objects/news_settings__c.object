@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Article_List__c</fullName>
+        <description>The number of articles that will be returned on the News Home page</description>
+        <externalId>false</externalId>
+        <label>Article List</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand_News_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand News Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_News_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Company News Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_News_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Employee News Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EtQ_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>EtQ Chatter</label>
+        <length>18</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Expense_Legal_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Expense Legal Text</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Expenses_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Expenses Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Footer__c</fullName>
+        <externalId>false</externalId>
+        <label>Footer</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Industry_News_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Industry News Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Invoice_Processing_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Invoice Processing Chatter</label>
+        <length>18</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>News_Exchange_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>News Exchange Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Page_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Page Title</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Story_of_the_Day_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Story of the Day Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Travel_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Travel Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Video_of_the_Day_Chatter__c</fullName>
+        <externalId>false</externalId>
+        <label>Video of the Day Chatter</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>News Settings</label>
+</CustomObject>

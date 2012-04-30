@@ -1,0 +1,14 @@
+<apex:page sidebar="false" controller="SODFileUploader_New">
+   <apex:form >
+      <apex:sectionHeader title="Upload data ...."/>
+      <apex:pagemessages />
+      <apex:pageBlock >
+             <center>
+              <apex:inputFile value="{!contentFile}" filename="{!nameFile}" fileSize="{!fileSize}"/> 
+              <br/><br/>
+              <apex:commandButton action="{!insertRecord}" value="Upload File" id="theButton" style="width:70px;height:20px;"/>
+              <br/> <br/> 
+             </center>  
+      </apex:pageBlock>       
+   </apex:form>   
+</apex:page>

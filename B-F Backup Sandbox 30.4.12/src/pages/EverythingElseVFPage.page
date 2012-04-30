@@ -1,0 +1,241 @@
+<apex:page controller="EverythingElseController" id="linkpg">
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.NewsFiles, '/styles/quickLinks.css')}"/>
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.QuickLinkAssets,'context/css/jquery-ui.css')}"/>
+<script src="{!URLFOR($Resource.QuickLinkAssets,'context/jquery.min.js')}"></script>
+<script src="{!URLFOR($Resource.QuickLinkAssets,'context/jquery-ui.min.js')}"></script>
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.QuickLinkAssets,'context/css/vscontext.css')}"/>
+<style>
+
+
+</style>
+<script src="{!URLFOR($Resource.QuickLinkAssets,'context/vscontext.jquery.js')}"></script>
+    <script>
+ 
+    var linkID;
+    function jq(myid) { 
+      return '#' + myid.replace(/(:|\.)/g,'\\\\$1');
+    }
+     function myID(qid) {     
+       linkID = qid;     
+     }
+    
+    $(document).ready(function() {
+      $(".link").draggable({ cursor: 'pirate', revert: 'invalid', helper: "clone"  });
+      $(jq("linkpg:myfav")).droppable({
+        drop:function() { createUserLinks(linkID); }
+      });  
+      
+      $("body").click(function () {
+      $("#contextdiv").hide();
+      
+});
+          
+    });
+        
+    function showRemove() {          
+      document.getElementById('linkpg:myfav').style.display = 'none';  
+      $(".linkimg").vscontext({menuBlock: 'vs-context-menu'});
+    }
+    function showDrag() {
+      $(".link").draggable({ revert: 'invalid', helper: "clone"  });
+      $(jq("linkpg:myfav")).droppable({
+        drop:function() { createUserLinks(linkID); }
+      });  
+    }
+    
+    function showDeleteStatus() {
+      $("#deldialog").dialog({
+            modal: true,
+            draggable: false,
+            height:150,
+            width:350, 
+            resizable: false,
+            buttons: { "OK": function() { $(this).dialog("close"); } }
+      });
+    }
+   
+   
+   function changeCursor(th) {
+     th.style.cursor = 'pointer';
+   }
+   
+	function rollover()
+	{
+	  if(!document.getElementById || !document.createTextNode){return;}
+	  var n=document.getElementById('nav');
+	  if(!n){return;}
+	  var lis=n.getElementsByTagName('li');
+	  for (var i=0;i<lis.length;i++)
+	  {
+	    lis[i].onmouseover=function()
+	    {
+	      this.className=this.className?'cur':'over';
+	    }
+	    lis[i].onmouseout=function()
+	    {
+	       this.className=this.className=='cur'?'cur':'';
+	    }
+	  }
+	}
+	window.onload=rollover;   
+  </script>
+    <apex:form id="linkfrm">
+      <script>
+        function applyJquery() {      
+          if('{!Category}' == 'My Links') {
+            showRemove();
+          }
+          else {
+            showDrag();
+          }
+        }
+        function showStatus() {
+          if('{!statusMessage}' == 'Quick Link already exists in My Links') {
+            $("#showdialog").dialog({
+              modal: true,
+              draggable: false,
+              height:150,
+              width:300, 
+              resizable: false,           
+              buttons: { "OK": function() { $(this).dialog("close"); } }
+            });
+          }
+        }
+      </script>
+      <style>
+        .standardHeight{
+           Height:22px;
+        }       
+        .red{
+            background-color:#CC0000;
+            color:#000000;
+        }
+        .POP_LAYER {
+            background-color: #CCCCCC;
+            display: block;
+            height: 800px;
+            left: 0;
+            opacity: 0.1;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+             filter: alpha(opacity=10);
+        }
+
+        .POP_LAYER_NONE {
+            display:none;
+        }
+        .myLinksMsg {position:relative;top:-22px;left:170px;width:800px;} 
+    </style>
+    <script>
+        function lockScreen(doLock){
+          if(doLock) {
+            document.getElementById('hiddenLayer').className='POP_LAYER';
+            document.getElementById('imgdiv').style.display = 'block';
+          }
+          else {
+            document.getElementById('imgdiv').style.display = 'none';
+            document.getElementById('hiddenLayer').className='POP_LAYER_NONE';
+          }
+          return true;
+        }
+    </script>
+    <apex:pagemessages />
+    <apex:actionFunction name="createUserLinks" action="{!createUserLinks}" reRender="linkfrm" status="linkstatus" oncomplete="showStatus();">
+      <apex:param assignTo="{!selectedLink}" value="" name="selectLink"/>
+    </apex:actionFunction>  
+    <apex:actionFunction name="showFavourites" action="{!showFavourites}" reRender="linkfrm,alllinkpnl,myfav" oncomplete="showRemove();" status="linkstatus">
+      <apex:param assignTo="{!Category}" value="" name="fav"/>
+    </apex:actionFunction>   
+    <apex:actionFunction name="deleteFavourites" action="{!deleteFavourites}" reRender="linkfrm,alllinkpnl,myfav" oncomplete="showDeleteStatus();showRemove();" status="linkstatus">
+      <apex:param assignTo="{!selectedLink}" value="" name="delfav"/>
+    </apex:actionFunction> 
+    
+    <apex:outputPanel id="navPanel" layout="block">
+    	<ul id="nav">
+    		<apex:repeat value="{!items}" var="i" id="Categories">
+    			<li >
+   					<apex:commandLink value="{!i}" styleClass="cur" action="{!changeCategory}" reRender="linkfrm,alllinkpnl,myfav" oncomplete="applyJquery();" status="linkstatus" rendered="{!i==Category}">
+	    				<apex:param name="Category" value="{!i}"/>    	
+	   				</apex:commandLink>
+	   				
+					<apex:commandLink value="{!i}" action="{!changeCategory}" reRender="linkfrm,alllinkpnl,myfav" oncomplete="applyJquery();" status="linkstatus" rendered="{!i!=Category}">
+	    				<apex:param name="Category" value="{!i}"/>    	
+	   				</apex:commandLink>	   				
+	   			</li>
+			</apex:repeat>
+		</ul>		
+	</apex:outputPanel>
+
+     <apex:outputPanel layout="block" styleClass="myLinksMsg" rendered="{!if(Category == 'My Links' && myLinks == 'none',true,false)}">
+       <apex:outputText value="{!Instructions}" escape="false" />
+     </apex:outputPanel>   
+
+    <apex:actionStatus id="linkstatus" onstart="lockScreen(true);" onstop="lockScreen(false);">
+    <!--    <apex:facet name="start"><img src="/img/loading.gif" />&nbsp;&nbsp;Please wait...</apex:facet>           ---> 
+     </apex:actionStatus>
+     
+    <div id="showdialog" style="display:none;" title="Status">
+      <table><tr><td><img title="confirm" src="{!imagePath}" class="msgIcon" alt="confirm" /></td><td>{!statusMessage}</td></tr></table>
+      </div>
+    <div id="deldialog" style="display:none;" title="Status">
+    <table><tr><td><img title="confirm" src="/img/msg_icons/confirm24.png" class="msgIcon" alt="confirm" /></td><td>Quick Link has been removed from My Links</td></tr></table>
+    </div>
+    
+   </apex:form>
+   <br style="clear:both"/>
+   
+      <apex:outputPanel id="myfav" layout="block" styleClass="link" >
+        <apex:image height="75" width="75" url="{!URLFOR($Resource.NewsFiles, '/images/MyLinks.png')}" id="favimg" styleClass="{!linkClass}" onclick="showFavourites('My Links');" rendered="{!if(Category == 'My Links',false,true)}" onmouseover="changeCursor(this);"/>      
+      </apex:outputPanel>      
+      
+    <apex:outputPanel id="alllinkpnl" layout="block" >
+        <apex:repeat id="links" value="{!QuickLinks}" var="l" >
+    
+            <apex:outputPanel layout="block" styleClass="link" rendered="{!l.External__c}" id="linkpnl">
+                <apex:outputLink value="{!l.Link_Location__c}" target="_blank" id="weblink">
+                    <apex:image height="75" width="75" url="{!l.Image_Link__c}" id="linkimg" styleClass="{!linkClass}" onmouseover="myID('{!l.Id}');"/>        
+                    <div class="linkText">{!l.Name__c}</div>
+                </apex:outputLink>
+            </apex:outputPanel>
+            
+            <apex:outputPanel layout="block" styleClass="link" rendered="{!l.External__c = false}">
+                <apex:outputLink value="{!l.Link_Location__c}" >
+                    <apex:image height="75" width="75" url="{!l.Image_Link__c}" styleClass="{!linkClass}" onmouseover="myID('{!l.Id}');"/>        
+                    <div class="linkText">{!l.Name__c}</div>
+                </apex:outputLink>
+            </apex:outputPanel> 
+
+        </apex:repeat>  
+    </apex:outputPanel>
+    
+   <div class="vs-context-menu" id="contextdiv">
+        <ul>            
+            <li class="delete"><a href="javascript:deleteFavourites(linkID);" id="menu_5">Remove from My Links</a></li>
+        </ul>
+    </div>
+    
+    
+    <div id="hiddenLayer" class="POP_LAYER_NONE" >
+      </div>
+     <div id="imgdiv" style="display:none;position:absolute;height: 20%;margin-top: 20%;margin-bottom: 10%;text-align: center; width: 600px; vertical-align: bottom;">
+     <div style="padding-top:20px;border:1px solid black;height:40px;margin-left:40%;margin-right:40%;background-color:#ffc;">  <img src="/img/loading.gif" /><span style="color:red;"><b>&nbsp;Loading...</b></span></div>        
+    </div>
+<script>
+applyJquery();
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26701751-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</apex:page>

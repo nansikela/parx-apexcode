@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableFeeds>true</enableFeeds>
+    <fields>
+        <fullName>Brand_Manager__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Brand Manager</label>
+        <relationshipName>Users2</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <description>Additional Information if any can be entered here.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Additional Information here</inlineHelpText>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Create_Offline_Outlet_Visit_Records__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check this box to execute a trigger upon save that will create/update Offline Outlet Visit records for this user (requires user to be enabled for mobile or offline access).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box to execute a trigger upon save that will create/update Offline Outlet Visit records for this user (requires user to be enabled for mobile or offline access).</inlineHelpText>
+        <label>Create Offline Outlet Visit Records</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DB_Region__c</fullName>
+        <description>This is a field that is installed by and used with the Adoption Dashboard AppExchange package. If your org already has a similar field, you can change the reports that are part of the Adoption Dashboard package to use your custom field and then delete this field.</description>
+        <externalId>false</externalId>
+        <label>DB Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>NA</fullName>
+                <color>#009900</color>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EMEA</fullName>
+                <color>#3333FF</color>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>APAC</fullName>
+                <color>#CC6600</color>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LA</fullName>
+                <color>#990000</color>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Finance_Manager__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Finance Manager</label>
+        <relationshipName>Users1</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>LastTransactionStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>LastTransactionStatus</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manger_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>Manager.Email</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Manger Email</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>Market Manager</label>
+        <relationshipName>Users3</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <description>INFOWELDERS - These text values MUST match the Market Name records&apos; text values.
+NPA Rollout: Used to store the markets a user is allocated to. Multiple values can be used separated by semi-colon.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>CRM: Market at a Country level-  such as Germany, Korea, India, Japan etc.
+NPA: Market at a State level-  such as Illinois, Kentucky etc.</inlineHelpText>
+        <label>Market</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ALL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada General</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Owner_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>FirstName  &amp;  &apos; &apos;  &amp;   LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Owner Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductPromotionAllowance__c</fullName>
+        <description>Data loader</description>
+        <externalId>false</externalId>
+        <label>ProductPromotionAllowance</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductPromotionBalance__c</fullName>
+        <description>Command line Data Loader to update this field once a day</description>
+        <externalId>false</externalId>
+        <label>ProductPromotionBalance</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Manager__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Sales Manager</label>
+        <relationshipName>Users</relationshipName>
+        <restrictedAdminField>false</restrictedAdminField>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Hierarchy</type>
+    </fields>
+    <fields>
+        <fullName>TSID__c</fullName>
+        <description>Used by other applications to lookup user information such as User Name with the key value of TSID.</description>
+        <externalId>true</externalId>
+        <label>TSID</label>
+        <length>25</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wombat_Sync_Session_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Wombat_Sync_Session_ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>physicalDeliveryOfficeName__c</fullName>
+        <description>the field physicalDeliveryOfficeName from AD</description>
+        <externalId>false</externalId>
+        <label>Office Location</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <listViews>
+        <fullName>ActiveUsers</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>CORE.USERS.TITLE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Active Users</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>AdminUsers</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.PROFILE.NAME</field>
+            <operation>equals</operation>
+            <value>System Administrator,System Administrator (Level 1)</value>
+        </filters>
+        <label>Admin Users</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>AllUsers</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Users</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ChinaEast_User</fullName>
+        <columns>Market__c</columns>
+        <columns>CORE.USERS.DEPARTMENT</columns>
+        <columns>Sales_Manager__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.DIVISION</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>contains</operation>
+            <value>China</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.DEPARTMENT</field>
+            <operation>contains</operation>
+            <value>East</value>
+        </filters>
+        <label>China East Users</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>ChinaSouth_User</fullName>
+        <columns>Market__c</columns>
+        <columns>CORE.USERS.DEPARTMENT</columns>
+        <columns>Sales_Manager__c</columns>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.DIVISION</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>contains</operation>
+            <value>China</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.DEPARTMENT</field>
+            <operation>contains</operation>
+            <value>South</value>
+        </filters>
+        <label>China South Users</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>China_User</fullName>
+        <columns>CORE.USERS.DEPARTMENT</columns>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.DIVISION</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>Sales_Manager__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>contains</operation>
+            <value>China</value>
+        </filters>
+        <label>China Users</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>DEU_Active</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.PHONE</columns>
+        <columns>CORE.USERS.TITLE</columns>
+        <columns>CORE.USERS.COMPANY_NAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Germany</value>
+        </filters>
+        <label>DEU - Active</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>India_Users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>India Users</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>INR-Brand Manager</role>
+            <role>INR-Finance Manager</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>INR-Sales Manager</role>
+            <role>INR-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Japan_User</fullName>
+        <columns>Market__c</columns>
+        <columns>CORE.USERS.DIVISION</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>contains</operation>
+            <value>Japan</value>
+        </filters>
+        <label>Japan User</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Korea_Users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Korea Users</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>KOR-Finance Manager</role>
+            <role>KOR-Market Manager/Admin</role>
+            <role>KOR-Sales Manager</role>
+            <role>KOR-Sales Rep (On Premise)</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Korea_Users_Active</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Korea Users (Active)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>KOR-Finance Manager</role>
+            <role>KOR-Market Manager/Admin</role>
+            <role>KOR-Sales Manager</role>
+            <role>KOR-Sales Rep (On Premise)</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Sales_force_Licence_Type</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>Sales force Licence Type</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Taiwan_User</fullName>
+        <columns>Market__c</columns>
+        <columns>CORE.USERS.DIVISION</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </filters>
+        <label>Taiwan User</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Terminations</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>MANAGER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CORE.USERS.COMPANY_NAME</columns>
+        <columns>CORE.USERS.DEPARTMENT</columns>
+        <columns>CORE.USERS.DIVISION</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.PROFILE.NAME</field>
+            <operation>equals</operation>
+            <value>Terminations</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Terminations</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Thailand_Users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>MANAGER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </filters>
+        <label>Thailand Users</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>THI-Market Manager/Admin</role>
+            <role>THI-Sales Manager</role>
+            <role>THI-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <webLinks>
+        <fullName>Arrivo</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Arrivo</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.bf-pos.de</url>
+    </webLinks>
+</CustomObject>

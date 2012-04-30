@@ -1,0 +1,223 @@
+<apex:page sidebar="false" tabstyle="Timba_Surveys__tab">
+    <!-- DOJO Js -->  
+    <script type="text/javascript" src="{!URLFOR($Resource.timbasurveys_dojo_build, 'dojo/dojo.js')}" djConfig="parseOnLoad: true"></script>
+    <apex:stylesheet value="{!URLFOR($Resource.TIMBASURVEYS__dojotools, 'dojox/widget/Standby/Standby.css')}" />
+      
+    <style type="text/css">
+        
+        .helpdialogButton { 
+        height:22px;
+        position:absolute;
+        right:5px;
+        top:0;
+        width:50px;
+        }
+        
+        .helpdialogButton a {
+        background:url({!URLFOR($Resource.SurveyResources, 'imgs/icons/help.png')}) no-repeat center left;
+        padding-left:20px;
+        padding-top:3px;
+        height:20px;
+        text-decoration:none;
+        display:block;
+        }
+        
+        .helpdialogButton a:hover {
+        text-decoration:underline;
+        }
+        
+        #AppBodyHeader{
+            display: none;
+        }       
+                
+        .notcontact{
+        font-weight:bold;
+        text-align:center;
+        }   
+        .listwrapper {
+            height:300px;
+            width:500px;
+            border:1px solid black;
+            overflow-y:scroll;
+            margin:10px;            
+        }
+        
+        .listwrapper ul,.listwrapper ul li {
+            list-style:none;
+            margin:0;
+            padding:0;
+        }
+        #success {
+            margin:80px 10px;
+            text-align:center;      
+        }
+        
+        body.Custom27Tab .tabNavigation .tab .currentTab, body.Custom27Tab #motifCurve, body.Custom27Tab #motifCurve #mc_l, body.Custom27Tab #motifCurve #mc_r{
+            display: none;  
+        }
+        body.Custom27Tab {
+            margin: 0;
+        }
+        .listViewportWrapper .listViewport .topNav{
+            width:840px;
+        }
+        .x-panel{
+            width:840px;
+        }
+        .listViewport .x-panel-body{
+            width:840px;
+        }
+        .x-grid3{
+            width:840px;
+            height:268px;
+        }
+        body.Custom27Tab .listViewport .topNav .linkBar{
+            margin-top:0px;
+        }
+        listBody{
+            height:268px; 
+        }
+        x-panel-body x-panel-body-noheader{
+            height:268px; 
+        }
+        x-grid3-scroller{
+            height:268px; 
+        }
+        
+        .listButtons{
+            display: none !important;
+        }
+        #listContactError{
+            font-size:25px;
+            height:378px;
+            margin:50px;
+            text-align:center;
+            width:771px;
+            display: none;
+        }
+        
+    
+        
+    </style>
+    <script type="text/javascript">  
+    //---------------------------------------------
+    //          loading  on parent
+    //---------------------------------------------
+    function clickContact(){
+        var btn = dojo.query(".btn");
+        for (var i = 0 ; i < btn.length ; i++){
+            if(btn[i].value == 'Send Survey'){
+                btn[i].click();
+            }
+        }
+    }
+    
+    function A() {
+        window.top.window.loadingContact(this.window);
+    }
+    
+    
+    // onLoad methods of dojo 
+    var init = function () {
+
+        // Add the class to load the css styling
+        dojo.query('body').addClass('timbaSurveys');    
+        
+        
+        // Remove footer
+        if(typeof(dojo.query('.noTableFooter')[0]) != 'undefined'){
+            dojo.query('.noTableFooter')[0].style.display = 'none'; 
+        }
+        
+       A();
+    }
+    
+    function thereButtonSendSurvey(){
+        var btn = dojo.query(".btn");
+        var there = false;
+            for (var i = 0 ; i < btn.length ; i++){
+                if(btn[i].value == 'Send Survey'){
+                    there = true;
+                }
+            }
+        if(!there){
+            dojo.byId('contactCollectionContainer').style.display = 'none';
+            dojo.byId('listContactError').style.display = 'block';
+        }
+        
+    }
+    
+    dojo.addOnLoad(init);
+    
+    function hide_edit_delete(){
+    
+        thereButtonSendSurvey();
+        var t = dojo.query('table > thead > tr > td');
+        t[2].style.display = 'none';
+        var a = dojo.query('table.x-grid3-row-table > tbody > tr');
+        for (var i = 0 ; i < a.length ; i++){
+            a[i].childNodes[2].style.display='none';
+        }
+        
+        clear_data_links();
+        
+        hideOverlay_();
+        
+        // Disable visual effects to make the Firefox3 faster
+        if (dojo.isFF != 3){
+            // Add Overlay on page jumping:
+            dojo.query('.paginator .prevNextLinks span.prevNext a').onclick( showOverlay_ );
+            dojo.query('.linkBar .rolodex .listItem').onclick( showOverlay_ );
+            dojo.query('.paginator .pageInput').onchange( showOverlay_ );
+            dojo.query('table.selector tr.opt').onmousedown( showOverlay_ );
+            dojo.query('.controls select.title').onchange( showOverlay_ );
+            // ----
+        }
+        
+    }
+    
+    function clear_data_links(){
+        var links = dojo.query('#contactCollectionContainer table .x-grid3-cell a');
+        for(var i = 0; i < links.length; i++){
+            dojo.style(dojo.query(links[i])[0],'textDecoration','none');
+            dojo.attr(dojo.query(links[i])[0],'href','javascript:;');
+            dojo.style(dojo.query(links[i])[0],'cursor','default');
+            dojo.style(dojo.query(links[i])[0],'outline','none');
+        }
+        
+        var checkboxes = dojo.query('div > input.checkbox');
+        for (var x = 0; x < checkboxes.length; x++){
+            var accountId = checkboxes[x].id + "_Account";
+            var ac = dojo.query('#' + accountId)[0];
+            if(typeof(ac) != 'undefined' && ac.innerHTML == '&nbsp;'){
+                checkboxes[x].disabled = true;
+            }
+            
+            var emailId = checkboxes[x].id + "_Email";
+            var ac = dojo.query('#' + emailId)[0];
+            if(typeof(ac) != 'undefined' && ac.innerHTML == '&nbsp;'){
+                checkboxes[x].disabled = true;
+            }
+        }
+    }
+    
+    function showOverlay_(){
+            window.top.window.CollectionOverlay.show();
+    }
+    
+    function hideOverlay_(){
+            window.top.window.CollectionOverlay.hide(); 
+    }
+
+    </script>
+    <div id="contactCollectionContainer" style="overflow:hidden;position:relative;">
+        <apex:enhancedList id="listContact" type="Contact" height="409" rowsPerPage="10" customizable="False" oncomplete="hide_edit_delete();"/>
+    </div>
+    <div id="listContactError">
+        <img src="{!URLFOR($Resource.SurveyResources, 'imgs/icons/block_64.png')}" /><br />
+        <apex:outputText value="{!$Label.timbasurveys__timbasurveys_surveycollect_please_set_up}." /><br />
+        <apex:outputLink value="http://survey.timbasoftware.com/installation-configuration/overrides-and-integration" target="_blank">
+            <apex:outputText value="{!$Label.timbasurveys__timbasurveys_surveycollect_Setup_Standard_Lists}" />
+        </apex:outputLink>
+    </div>      
+</apex:page>

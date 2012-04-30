@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>NPA Rollout: Object used to store Allocation information.</description>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Brand_Id__c</fullName>
+        <description>NPA Rollout: Used to note the Id of the associated Brand. Used in allocations query on Allocations screen.</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Brand_NPA__c</formula>
+        <label>Brand Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <description>NPA Rollout: Brand Code for the promotion</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Brand_NPA__r.Brand_Code__c</formula>
+        <label>Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Break_Date__c</fullName>
+        <description>NPA Rollout: Promotion start date from the related promotion</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Promotion_Start_Date__c</formula>
+        <label>Break Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_Type__c</fullName>
+        <description>NPA Rollout: Set to &quot;Z001&quot; if  Promotion-&gt;RecordType Name= National Promotion - US
+NOTE: Change for Production</description>
+        <externalId>false</externalId>
+        <formula>IF( Promotion__r.RecordTypeId = &quot;0123000000132Rr&quot;, &quot;Z001&quot;, &quot;&quot;)</formula>
+        <label>Campaign Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>NPA Rollout: End date of the promotion</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Promotion_End_Date__c</formula>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fiscal_Year__c</fullName>
+        <description>NPA Rollout: Fiscal Year the promotion tied to allocations for created for</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Fiscal_Year__c</formula>
+        <label>Fiscal Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Freeze_Date__c</fullName>
+        <description>NPA Rollout: Freeze date from the related promotion</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Freeze_Date__c</formula>
+        <label>Freeze Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>GTM_Channel__c</fullName>
+        <description>NPA Rollout: GTM Channel code from the promotion</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.GTM_Channel_Code__c</formula>
+        <label>GTM Channel</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IO_Number__c</fullName>
+        <description>NPA Rollout: IO Number derived from Promotion associated to the Allocation record</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Internal_Order__r.Internal_Order_Number__c</formula>
+        <label>IO Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Item_Cost__c</fullName>
+        <description>NPA Rollout: Planned unit cost from promotion setup</description>
+        <externalId>false</externalId>
+        <formula>Promotion_Material_Item__r.Planned_Cost__c</formula>
+        <label>Item Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Item_Status__c</fullName>
+        <description>NPA Rollout: Item status from the related promotion material item</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Promotion_Material_Item__r.Status__c)</formula>
+        <label>Item Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market_Name__c</fullName>
+        <description>NPA Rollout: Used to note the Market name from the related Ship-to. Used in allocations query on Allocations screen.</description>
+        <externalId>false</externalId>
+        <formula>Ship_To__r.Market__r.Name</formula>
+        <label>Market Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <description>NPA Rollout: Used to derive the market of the related ship-to.</description>
+        <externalId>false</externalId>
+        <formula>Ship_To__r.Market__r.Market_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Market</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object_Deleted__c</fullName>
+        <description>Used for extract only.  Always blank.</description>
+        <externalId>false</externalId>
+        <formula>&apos;&apos;</formula>
+        <label>Object Deleted</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PMI_Status__c</fullName>
+        <description>NPA Rollout: Used to note the Status of the associated Promotion Material Item. Used in allocations query on Allocations screen.</description>
+        <externalId>false</externalId>
+        <formula>CASE(Promotion_Material_Item__r.Status__c, &apos;0&apos;, &apos;0&apos;, &apos;1&apos;, &apos;1&apos;,&apos;&apos;)</formula>
+        <label>PMI Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>POS_Item__c</fullName>
+        <description>NPA Rollout: POS Item# generated by Force.com</description>
+        <externalId>false</externalId>
+        <formula>Promotion_Material_Item__r.Product_Custom__r.Product__c</formula>
+        <label>POS Item</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Premise_Indicator__c</fullName>
+        <description>NPA Rollout: Premise Indicator Code from the promotion</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Promotion__r.Premise_Indicator_Code__c)</formula>
+        <label>Premise Indicator</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_ID__c</fullName>
+        <description>NPA Rollout: R/3 POS Items# or Code</description>
+        <externalId>false</externalId>
+        <formula>Promotion_Material_Item__r.Item__c</formula>
+        <label>Product ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promotion_ID__c</fullName>
+        <description>NPA Rollout: 18 digit Force.com generated record Id</description>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Id</formula>
+        <label>Promotion ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promotion_Material_Item__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Material Item</label>
+        <referenceTo>Promotion_Material_Item__c</referenceTo>
+        <relationshipLabel>Allocations</relationshipLabel>
+        <relationshipName>Allocations</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Promotion_Status__c</fullName>
+        <description>NPA Rollout: Derive from Promotion &gt; Promotions Status:  Created = &quot;E0001&quot;,  Active = &quot;E0002&quot;, Cancelled = &quot;E0003&quot;</description>
+        <externalId>false</externalId>
+        <formula>CASE( Promotion__r.Promotion_Status__c,
+&quot;Created&quot;, &quot;E0001&quot;,
+&quot;Active&quot;, &quot;E0002&quot;,
+&quot;Cancelled&quot;, &quot;E0003&quot;,
+&quot;&quot;)</formula>
+        <label>Promotion Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promotion_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(Promotion__r.Promotion_Status__c , &apos;Created&apos;, &apos;E00001&apos;, &apos;Active&apos;,  &apos;E0002&apos; ,&apos;Cancelled&apos;, &apos;E0003&apos;,&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Promotion Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promotion__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>NPA Rollout: Used to reference the related Promotion.</description>
+        <externalId>false</externalId>
+        <label>Promotion</label>
+        <referenceTo>Promotion__c</referenceTo>
+        <relationshipLabel>Allocations</relationshipLabel>
+        <relationshipName>Allocations</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Ship_To_ID__c</fullName>
+        <description>NPA Rollout: Customer ID of Ship-To derived from SAP</description>
+        <externalId>false</externalId>
+        <formula>Ship_To__r.Legacy_ID__c</formula>
+        <label>Ship-To ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ship_To_Qty__c</fullName>
+        <description>NPA Rollout: Used to store the allcoation quantity for the account.</description>
+        <externalId>false</externalId>
+        <label>Ship To Qty</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Ship_To__c</fullName>
+        <description>NPA Rollout: Used to reference the related Account.</description>
+        <externalId>false</externalId>
+        <label>Ship To</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Allocations</relationshipLabel>
+        <relationshipName>Allocations</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Status_Profile__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Promotion__r.RecordTypeId = &quot;0123000000132Rr&quot;, &quot;Z001&quot;, &quot;&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status Profile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tertile__c</fullName>
+        <description>NPA Rollout: Tertile for the promotion associated to the allocation record</description>
+        <externalId>false</externalId>
+        <formula>CASE(Promotion__r.Tertile__c,
+&apos;1st Tertile&apos;, &apos;001&apos;,
+&apos;2nd Tertile&apos;, &apos;002&apos;,
+&apos;3rd Tertile&apos;, &apos;003&apos;,
+&apos;&apos;)</formula>
+        <label>Tertile</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Spend__c</fullName>
+        <description>NPA Rollout: Extended cost of the allocation entry for the POS item</description>
+        <externalId>false</externalId>
+        <formula>Ship_To_Qty__c * Item_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Unique_Key__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <description>NPA Rollout: Serves as the unique key for upsert from the NPA_AllocationScreenController class. This is a purely technical field and is not visible to users. This field is not used for data upserts from data loader. It is populated once when the allocation record is being created and is used from the  NPA_AllocationScreenController class to make sure there are duplicates for allocation entry for a ship-to for a particular promotion material item included in a promotion.</description>
+        <externalId>true</externalId>
+        <label>Unique Key</label>
+        <length>36</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_of_Measure__c</fullName>
+        <externalId>false</externalId>
+        <formula>Promotion_Material_Item__r.Unit_of_Measure__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unit of Measure</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Allocations</label>
+    <nameField>
+        <displayFormat>{0000000000}</displayFormat>
+        <label>Allocations Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Allocations</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

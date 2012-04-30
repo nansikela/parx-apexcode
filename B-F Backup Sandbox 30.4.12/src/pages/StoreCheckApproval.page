@@ -1,0 +1,16 @@
+<apex:page controller="StoreCheckApproval" showHeader="false" sidebar="false">
+<style>
+	.progress {
+		background: url('/img/loading32.gif') no-repeat scroll 0 0 transparent; 
+		float: left; 
+		margin-top: 10px; 
+		margin-left: 10px;
+		height: 32px; 
+		width: 32px;
+	}
+</style>
+<apex:outputpanel layout="block" id="loading">
+	<div id="progressIcon" class="progress"></div>
+	<div style="padding-top:15px; margin-left:50px; font-size: 1.2em; font-weight: bold;">Loading...</div>
+</apex:outputpanel>
+</apex:page>

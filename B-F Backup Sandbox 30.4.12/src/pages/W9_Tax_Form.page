@@ -1,0 +1,27 @@
+<apex:page standardController="Vendor__c" sidebar="false" showHeader="false">
+  <style type="text/css">        
+    .w9_form {
+      border: 0px solid #333333;      
+      color: #4A4A56; 
+      margin: 5px; 
+      font-weight: bold; 
+      font-size: 105%; 
+      text-align: center;"
+    } 
+    .w9_btn #w9_btn{
+      border: 1px solid #333333;      
+      color: #4A4A56; 
+      margin: 5px; 
+      font-weight: bold; 
+      font-size: 105%; 
+      text-align: center;"
+    }               
+  </style>
+  <div class="w9_form"> 
+    <apex:form >          
+      A complete W9 tax form is required on all new US vendors. The button below will allow you to access the W9 tax form. It is your responsibility to get your vendor to complete this form and have it faxed to Strategic Sourcing at 502-774-6913. This request will not be processed until the complete W9 is received.
+      <br /><br />
+      <apex:commandButton id="w9_btn" id="btnW9Form2" onClick="window.open('http://www.irs.gov/pub/irs-pdf/fw9.pdf','mywindow','width=800,height=800')" value="W9 Form"/>
+    </apex:form>
+  </div>
+</apex:page>

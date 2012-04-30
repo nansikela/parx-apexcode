@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>AccountNumber__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.AccountNumber</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AccountNumber</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Venues</relationshipLabel>
+        <relationshipName>Venues</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Area_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Area Type</label>
+        <picklist>
+            <controllingField>Channel__c</controllingField>
+            <picklistValues>
+                <fullName>Back</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Beer Garden</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cocktail</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Down Stairs</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Front/Main</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level1</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lounge</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Middle</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Night Club</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurant</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sports</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T1 Convenience</fullName>
+                <controllingFieldValues>Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T2 Main Stream</fullName>
+                <controllingFieldValues>Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T3 Barn Big Box</fullName>
+                <controllingFieldValues>Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up Stairs</fullName>
+                <controllingFieldValues>On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Channel__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Is_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Code__c</fullName>
+        <description>Unique row identifier.</description>
+        <externalId>true</externalId>
+        <label>Legacy Code</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Segment__c</fullName>
+        <externalId>false</externalId>
+        <label>Segment</label>
+        <picklist>
+            <controllingField>Area_Type__c</controllingField>
+            <picklistValues>
+                <fullName>Q1</fullName>
+                <controllingFieldValues>Back</controllingFieldValues>
+                <controllingFieldValues>Beer Garden</controllingFieldValues>
+                <controllingFieldValues>Cocktail</controllingFieldValues>
+                <controllingFieldValues>Down Stairs</controllingFieldValues>
+                <controllingFieldValues>Front/Main</controllingFieldValues>
+                <controllingFieldValues>Level 2</controllingFieldValues>
+                <controllingFieldValues>Level 3</controllingFieldValues>
+                <controllingFieldValues>Level 4</controllingFieldValues>
+                <controllingFieldValues>Level1</controllingFieldValues>
+                <controllingFieldValues>Lounge</controllingFieldValues>
+                <controllingFieldValues>Middle</controllingFieldValues>
+                <controllingFieldValues>Night Club</controllingFieldValues>
+                <controllingFieldValues>Restaurant</controllingFieldValues>
+                <controllingFieldValues>Sports</controllingFieldValues>
+                <controllingFieldValues>Up Stairs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q2</fullName>
+                <controllingFieldValues>Back</controllingFieldValues>
+                <controllingFieldValues>Beer Garden</controllingFieldValues>
+                <controllingFieldValues>Cocktail</controllingFieldValues>
+                <controllingFieldValues>Down Stairs</controllingFieldValues>
+                <controllingFieldValues>Front/Main</controllingFieldValues>
+                <controllingFieldValues>Level 2</controllingFieldValues>
+                <controllingFieldValues>Level 3</controllingFieldValues>
+                <controllingFieldValues>Level 4</controllingFieldValues>
+                <controllingFieldValues>Level1</controllingFieldValues>
+                <controllingFieldValues>Lounge</controllingFieldValues>
+                <controllingFieldValues>Middle</controllingFieldValues>
+                <controllingFieldValues>Night Club</controllingFieldValues>
+                <controllingFieldValues>Restaurant</controllingFieldValues>
+                <controllingFieldValues>Sports</controllingFieldValues>
+                <controllingFieldValues>Up Stairs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q3</fullName>
+                <controllingFieldValues>Back</controllingFieldValues>
+                <controllingFieldValues>Beer Garden</controllingFieldValues>
+                <controllingFieldValues>Cocktail</controllingFieldValues>
+                <controllingFieldValues>Down Stairs</controllingFieldValues>
+                <controllingFieldValues>Front/Main</controllingFieldValues>
+                <controllingFieldValues>Level 2</controllingFieldValues>
+                <controllingFieldValues>Level 3</controllingFieldValues>
+                <controllingFieldValues>Level 4</controllingFieldValues>
+                <controllingFieldValues>Level1</controllingFieldValues>
+                <controllingFieldValues>Lounge</controllingFieldValues>
+                <controllingFieldValues>Middle</controllingFieldValues>
+                <controllingFieldValues>Night Club</controllingFieldValues>
+                <controllingFieldValues>Restaurant</controllingFieldValues>
+                <controllingFieldValues>Sports</controllingFieldValues>
+                <controllingFieldValues>Up Stairs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q4</fullName>
+                <controllingFieldValues>Back</controllingFieldValues>
+                <controllingFieldValues>Beer Garden</controllingFieldValues>
+                <controllingFieldValues>Cocktail</controllingFieldValues>
+                <controllingFieldValues>Down Stairs</controllingFieldValues>
+                <controllingFieldValues>Front/Main</controllingFieldValues>
+                <controllingFieldValues>Level 2</controllingFieldValues>
+                <controllingFieldValues>Level 3</controllingFieldValues>
+                <controllingFieldValues>Level 4</controllingFieldValues>
+                <controllingFieldValues>Level1</controllingFieldValues>
+                <controllingFieldValues>Lounge</controllingFieldValues>
+                <controllingFieldValues>Middle</controllingFieldValues>
+                <controllingFieldValues>Night Club</controllingFieldValues>
+                <controllingFieldValues>Restaurant</controllingFieldValues>
+                <controllingFieldValues>Sports</controllingFieldValues>
+                <controllingFieldValues>Up Stairs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NIL</fullName>
+                <controllingFieldValues>Back</controllingFieldValues>
+                <controllingFieldValues>Beer Garden</controllingFieldValues>
+                <controllingFieldValues>Cocktail</controllingFieldValues>
+                <controllingFieldValues>Down Stairs</controllingFieldValues>
+                <controllingFieldValues>Front/Main</controllingFieldValues>
+                <controllingFieldValues>Level 2</controllingFieldValues>
+                <controllingFieldValues>Level 3</controllingFieldValues>
+                <controllingFieldValues>Level 4</controllingFieldValues>
+                <controllingFieldValues>Level1</controllingFieldValues>
+                <controllingFieldValues>Lounge</controllingFieldValues>
+                <controllingFieldValues>Middle</controllingFieldValues>
+                <controllingFieldValues>Night Club</controllingFieldValues>
+                <controllingFieldValues>Restaurant</controllingFieldValues>
+                <controllingFieldValues>Sports</controllingFieldValues>
+                <controllingFieldValues>Up Stairs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UNC</fullName>
+                <controllingFieldValues>Back</controllingFieldValues>
+                <controllingFieldValues>Beer Garden</controllingFieldValues>
+                <controllingFieldValues>Cocktail</controllingFieldValues>
+                <controllingFieldValues>Down Stairs</controllingFieldValues>
+                <controllingFieldValues>Front/Main</controllingFieldValues>
+                <controllingFieldValues>Level 2</controllingFieldValues>
+                <controllingFieldValues>Level 3</controllingFieldValues>
+                <controllingFieldValues>Level 4</controllingFieldValues>
+                <controllingFieldValues>Level1</controllingFieldValues>
+                <controllingFieldValues>Lounge</controllingFieldValues>
+                <controllingFieldValues>Middle</controllingFieldValues>
+                <controllingFieldValues>Night Club</controllingFieldValues>
+                <controllingFieldValues>Restaurant</controllingFieldValues>
+                <controllingFieldValues>Sports</controllingFieldValues>
+                <controllingFieldValues>Up Stairs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T1</fullName>
+                <controllingFieldValues>T1 Convenience</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T2</fullName>
+                <controllingFieldValues>T2 Main Stream</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>T3</fullName>
+                <controllingFieldValues>T3 Barn Big Box</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Venue_Name__c</fullName>
+        <description>Venue Name</description>
+        <externalId>false</externalId>
+        <label>Venue Name</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Venue</label>
+    <nameField>
+        <label>Name</label>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>Contact_00NV0000000KhQIMA0</fullName>
+        <active>true</active>
+        <field>Contact.Venue__c</field>
+        <filterItems>
+            <field>Venue__c.Account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.AccountId</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Contact_Venue</name>
+        <sourceObject>Contact</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01I300000017Oj1EAE_00NQ0000000zqjyMAA</fullName>
+        <active>true</active>
+        <field>Promotion__c.Venue__c</field>
+        <filterItems>
+            <field>Venue__c.Account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Promotion_Venue</name>
+        <sourceObject>Promotion__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01I300000017yEbEAI_00NQ0000000zi6KMAQ</fullName>
+        <active>true</active>
+        <field>Outlet_Visit__c.Venue__c</field>
+        <filterItems>
+            <field>Venue__c.Account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Outlet Visit_Venue</name>
+        <sourceObject>Outlet_Visit__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PEqMAM_00NV0000000KhZZMA0</fullName>
+        <active>true</active>
+        <field>Asset__c.Venue__c</field>
+        <filterItems>
+            <field>Venue__c.Account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Asset_Venue</name>
+        <sourceObject>Asset__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PoZMAU_00NV0000000Llz1MAC</fullName>
+        <active>true</active>
+        <field>Asset_Move__c.New_Venue_Lookup__c</field>
+        <filterItems>
+            <field>Venue__c.Account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.New_Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Asset Move_Venue</name>
+        <sourceObject>Asset_Move__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PoZMAU_00NV0000000LlzaMAC</fullName>
+        <active>true</active>
+        <field>Asset_Move__c.Previous_Venue__c</field>
+        <filterItems>
+            <field>Venue__c.Account__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Fridge_Depot__c</valueField>
+        </filterItems>
+        <isOptional>true</isOptional>
+        <name>Asset Move_Previous Venue</name>
+        <sourceObject>Asset_Move__c</sourceObject>
+    </namedFilters>
+    <pluralLabel>Venues</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>AccountNumber__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Channel__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Venue_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Account__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

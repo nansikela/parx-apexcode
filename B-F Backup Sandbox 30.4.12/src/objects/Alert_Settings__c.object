@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <customSettingsVisibility>Public</customSettingsVisibility>
+    <description>Settings to manipualte &quot;AlertMessages&quot; in outlet visits</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Market_RecordType__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>The recordtype of the account to influence only the target group</description>
+        <externalId>false</externalId>
+        <label>Market RecordType</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>No_Visit_Dates_in_the_Future__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Handling of visit dates in the future</description>
+        <externalId>false</externalId>
+        <label>No Visit Dates in the Future</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>Alert Outlet Settings</label>
+</CustomObject>
