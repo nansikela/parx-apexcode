@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>FDC-PLFC database - created to view the SIC Code and Label on a record</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>A_D_Office__c</fullName>
+        <externalId>false</externalId>
+        <label>A/D Office</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Industry_Title__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of the 4-digit SIC Group Code</inlineHelpText>
+        <label>Industry Title</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>SIC Group</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Industry_Title__c</columns>
+        <columns>A_D_Office__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>SIC Group Code</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>SIC Groups</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Industry_Title__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>A_D_Office__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Industry_Title__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>A_D_Office__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Industry_Title__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>A_D_Office__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Industry_Title__c</searchFilterFields>
+        <searchFilterFields>A_D_Office__c</searchFilterFields>
+        <searchResultsAdditionalFields>Industry_Title__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>A_D_Office__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

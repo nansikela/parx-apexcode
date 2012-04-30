@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>promotionMaterialItemRedirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used by CRM.
+NPA Rollout: Used to store products added to Promotions (Promotion line items).</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Act_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Act_Payment2__c</fullName>
+        <externalId>false</externalId>
+        <formula>Act_Qty__c  *  Actual_Rebate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Act Payment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Act_Qty__c</fullName>
+        <externalId>false</externalId>
+        <label>Act Qty</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Actual_Payment__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual Payment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Rebate__c</fullName>
+        <externalId>false</externalId>
+        <label>Actual Rebate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>Product_Custom__r.Brand__r.Name</formula>
+        <label>Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delivery_From__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Delivery From</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Vendor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Extended_Cost__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <formula>Unit_Cost__c * Quantity__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Unit Cost * Quantity</inlineHelpText>
+        <label>Extended Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Item__c</fullName>
+        <externalId>false</externalId>
+        <formula>Product_Custom__r.ProductCode__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Product Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Legacy ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>POS_Item__c</fullName>
+        <description>NPA Rollout: Field created to allow users to see POS Item# from a promotion line item instead of the system generated Promotion line item#</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(  &quot;/&quot; &amp; Id, &quot;View&quot;)</formula>
+        <label>View Item</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payment_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Plan_Bottle__c</fullName>
+        <description>Plan Bottles for Agreemnts</description>
+        <externalId>false</externalId>
+        <label>Plan Bottle</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Plan_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Plan Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Plan_Payment__c</fullName>
+        <externalId>false</externalId>
+        <label>Plan Payment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Plan_Qty__c</fullName>
+        <externalId>false</externalId>
+        <label>Plan Bottles</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Plan_Rebate__c</fullName>
+        <externalId>false</externalId>
+        <label>Plan Rebate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Cost__c</fullName>
+        <description>NPA Rollout: Stores the planned cost of the product for this promotion</description>
+        <externalId>false</externalId>
+        <label>Planned Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Product_Custom__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>NPA Rollout: Used to store the related Product. /* API name need to be changed to Product__c after Product remediation*/</description>
+        <externalId>false</externalId>
+        <label>Product Name</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Promotion Material Items</relationshipLabel>
+        <relationshipName>Promotion_Material_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Product_Description__c</fullName>
+        <description>NPA Rollout: Used to fetch the product description</description>
+        <externalId>false</externalId>
+        <label>Product Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Promotion Material Items</relationshipLabel>
+        <relationshipName>Promotion_Material_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Promotion_Cost_w_o_VAT__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <formula>Extended_Cost__c /(1+ Product_Custom__r.VAT__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Promotion Cost w/o VAT (f)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Promotion__c</fullName>
+        <description>Infowelders: Used by CRM.
+		NPA Rollout: Used to refer to Promotion.</description>
+        <externalId>false</externalId>
+        <label>Promotion</label>
+        <referenceTo>Promotion__c</referenceTo>
+        <relationshipLabel>Promotion Material Items</relationshipLabel>
+        <relationshipName>Promotion_Material_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackHistory>true</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Remarks__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Remarks</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Request_Date__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Request Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Request_Time__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Request Time</label>
+        <picklist>
+            <picklistValues>
+                <fullName>00:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>01:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>02:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>03:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>04:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>05:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>06:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>07:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>08:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>09:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>10:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>11:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>12:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>13:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>14:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>15:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>16:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>17:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>18:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>19:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>20:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>21:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>22:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>23:00</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Shipped_Amount__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Quantity Shipped</inlineHelpText>
+        <label>Shipped Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shipped_Date__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Shipped Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>NPA Rollout: Field to store the status of product for the promotion</description>
+        <externalId>false</externalId>
+        <label>Item Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Submit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Submit?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Cost__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field will be set by Workflow</inlineHelpText>
+        <label>Unit Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Unit_of_Measure__c</fullName>
+        <description>NPA Rollout: Used to store the Unit of Measure for the product</description>
+        <externalId>false</externalId>
+        <label>UoM</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wet_Good_Use__c</fullName>
+        <description>Infowelders-</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this wet good being used as a give-away sample or are these &quot;free&quot;, i.e. a discount?</inlineHelpText>
+        <label>Wet Good Use</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sample</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Free</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <label>Promotion Material Item</label>
+    <nameField>
+        <displayFormat>PMI-{YYYY}{00000}</displayFormat>
+        <label>Promotion Material Item#</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Promotion Material Items</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <webLinks>
+        <fullName>Add_Edit_Custom_Products</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Add Products</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/NPA_PromoMaterialAddSearchPage?Id={!Promotion__c.Id}&amp;SalesOrg={!Promotion__c.Sales_Org__c}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Add_Edit_Products</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Add / Edit Products</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/promotionMaterialItem?Id={!Promotion__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Add_Edit_Products_DEU</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Add / Edit Products</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/promotionMaterialItem_deu?Id={!Promotion__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Cancel_Products</fullName>
+        <availability>online</availability>
+        <description>Used to cancel multiple products at once.</description>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Cancel Products</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/apex.js&quot;)}
+var promotionmaterials= {!GETRECORDIDS( $ObjectType.Promotion_Material_Item__c )};
+if(promotionmaterials.length &gt; 0) {
+	var promotionlines = new Array();
+	for(var i = 0;i&lt;promotionmaterials.length ; i++){
+		var promotionitem = new sforce.SObject(&quot;Promotion_Material_Item__c&quot;);
+		promotionitem.id = promotionmaterials[i];
+		promotionitem.Status__c = &quot;1&quot;;
+		promotionlines.push(promotionitem);
+	}
+	var callCompleted = false;
+	try {
+		var result = sforce.connection.update(promotionlines) ;
+		callCompleted = true;
+	} 
+	catch(error) {
+		alert(&quot;Failed to update Promotion Material Items with error: &quot; + error) ;
+	}
+}
+else{
+    alert(&quot;Please select atleast one item to process&quot;) ;
+}
+window.location.reload(true) ;</url>
+    </webLinks>
+</CustomObject>

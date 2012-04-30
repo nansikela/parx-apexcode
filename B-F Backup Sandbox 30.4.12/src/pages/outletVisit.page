@@ -1,0 +1,1254 @@
+<apex:page standardController="Outlet_Visit__c" extensions="outletVisit_Controller" tabstyle="Outlet_Visit__c" action="{!redirect}">
+    
+    <apex:includeScript value="{!URLFOR($Resource.jq_v1813, '/js/jquery-1.5.1.min.js')}"/>
+
+<style>
+.moneyInput {
+    width: 65px;
+}
+
+.depletionInput {
+    width: 65px;
+}
+
+.cmdButton {
+    width: 125px;
+}
+
+.SFDSRightAligned {
+    text-align:right;
+}
+.stationaryHeaderRow
+{
+        display:none;
+}
+.firstHeaderRow
+{
+        height:3px;
+}
+</style>
+<style>
+.trunc{
+    height:10px;
+}
+.container{
+    overflow:auto;
+    height:200px;
+}
+.container1{
+    overflow:auto;
+    height:76px;
+}
+.filtercontainer{
+    width:700px;
+}
+.prodcontainer{
+    overflow-y:scroll;
+    height:200px;
+}
+.hidden{
+    display:none;
+}
+</style>
+
+<style type="text/css">
+
+div.dimmer
+{
+    visibility: hidden;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    padding:5px;
+
+
+    background-image:url({!URLFOR($Resource.INFW_Resources, 'loading-bg.png')});
+    /* ieWin only stuff */
+    _background-image:none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='{!URLFOR($Resource.INFW_Resources, 'loading-bg.png')}');
+}
+div.spinner
+{
+position:absolute;
+top:5%;
+left:25%;
+
+
+opacity:1.0;
+backgroundColor:#CCC;
+
+}
+</style>
+
+<!-- 
+PARX --- Helper Style Classes to capture all marked html tags.
+ -->
+<style>
+.bFTablea_header {}
+.bFTablea_row {}
+.compTablec_header {}
+.compTablec_row {}
+</style>
+<!-- END -->
+
+
+<script type="text/javascript">
+//PARX --- Add init code to fit table columns
+window.onload = init();
+
+//Necessary to resize table headers if edit mode is used on record
+$ov(document).ready(function() {
+    setTimeout( 'test()', 500 );
+});
+
+function test() {
+    for(var i = 0; i < 10; i++)
+        makeTableScrollable();
+}
+
+function init(){
+    $ov = jQuery.noConflict();
+}
+
+$ov(function(){
+    $ov(window).resize(function(){
+        makeTableScrollable();
+    });
+});
+//PARX --- END
+
+function dimmer(){
+    if(document.getElementById('dimmer').style.visibility == "visible")
+    {
+        document.getElementById('dimmer').style.visibility = "hidden";
+    }else{
+    document.getElementById('dimmer').style.visibility = "visible";
+    //document.getElementById('dimmer').style.width = window.screen.width + "px";
+    //document.getElementById('dimmer').style.height = window.screen.height + "px";
+    document.getElementById('dimmer').style.width = "100%";
+    document.getElementById('dimmer').style.height = "100%";
+    }
+}
+function taskHistory(){
+    if(document.getElementById('taskHistory').style.visibility == "visible")
+    {
+        document.getElementById('taskHistory').style.visibility = "hidden";
+    }else{
+    document.getElementById('taskHistory').style.visibility = "visible";
+    document.getElementById('taskHistory').style.width = "100%";
+    document.getElementById('taskHistory').style.height = "100%";
+    }
+}
+function myPH(){
+    if(document.getElementById('myPH').style.visibility == "visible")
+    {
+        document.getElementById('myPH').style.visibility = "hidden";
+    }else{
+    document.getElementById('myPH').style.visibility = "visible";
+    document.getElementById('myPH').style.width = "100%";
+    document.getElementById('myPH').style.height = "100%";
+    }
+}
+function myDP(){
+    if(document.getElementById('myDP').style.visibility == "visible")
+    {
+        document.getElementById('myDP').style.visibility = "hidden";
+    }else{
+    document.getElementById('myDP').style.visibility = "visible";
+    document.getElementById('myDP').style.width = "100%";
+    document.getElementById('myDP').style.height = "100%";
+    }
+}
+
+/*  PARX  
+ *  Method captures and iterates over all marked html tags with target
+ *  css style classes. Then this method fits all columns in each table.
+ * 
+ *  @date 05.12.2011
+ *  @author Michael Mickiewicz
+ */
+function makeTableScrollable() {
+    
+    
+    var $thead = $ov('[id$=bFTablea]').find('.bFTablea_thead');
+    var $tbody = $ov('[id$=bFTableb]').find('tbody').find('tr').first().find('.bFTablea_row');
+    if($tbody.size() == 0) {
+       $thead = $ov('[id$=bFTable2a]').find('.bFTablea_thead');
+       $tbody = $ov('[id$=bFTable2b]').find('tbody').find('tr').first().find('.bFTablea_row');
+    }
+    if($tbody.size() == 0) {
+       $thead = $ov('[id$=bFTable3a]').find('.bFTablea_thead');
+       $tbody = $ov('[id$=bFTable3b]').find('tbody').find('tr').first().find('.bFTablea_row');
+    }
+    
+    if($tbody.size() > 0) {
+    
+        for(var i = 1; i < $thead.size()-1; i++) {
+            var w = $tbody.eq(i-1).css('width').substring(0, $tbody.eq(i-1).css('width').length-2);
+            $thead.eq(i).css('width', (w-1)+'px');
+        }
+    
+        for(var i = $thead.size()-1; i > 1; i--) {
+            var w = $thead.eq(i).css('width').substring(0, $thead.eq(i-1).css('width').length-2);
+            if($thead.size()-1 == i)
+                w -= 15;
+            $tbody.eq(i-1).css('width', (w-1)+'px');
+        }
+    }
+    
+    $thead = $ov('[id$=compTablea]').find('.compTablec_header');
+    $tbody = $ov('[id$=compTableb]').find('tbody').find('tr').first().find('.compTablec_row');
+    if($tbody.size() == 0) {
+       $thead = $ov('[id$=compTable2a]').find('.compTablec_header');
+       $tbody = $ov('[id$=compTable2]').find('tbody').find('tr').first().find('.compTablec_row');
+    }
+    if($tbody.size() == 0) {
+       $thead = $ov('[id$=compTablec]').find('.compTablec_header');
+       $tbody = $ov('[id$=compTablec2]').find('tbody').find('tr').first().find('.compTablec_row');
+    }
+    
+    if($tbody.size() > 0) {
+    
+        for(var i = 1; i < $thead.size()-1; i++) {
+            var w = $tbody.eq(i-1).css('width').substring(0, $tbody.eq(i-1).css('width').length-2);
+            $thead.eq(i).css('width', (w-1)+'px');
+        }
+     
+        for(var i = $thead.size()-1; i > 1; i--) {
+            var w = $thead.eq(i).css('width').substring(0, $thead.eq(i-1).css('width').length-2);
+            if($thead.size()-1 == i)
+                w -= 20;
+            $tbody.eq(i-1).css('width', (w-1)+'px');
+        }
+    }
+}
+</script>
+    <apex:form id="theform">
+
+<!-- These functions used to open AJAX "popup" windows -->
+    <apex:actionFunction action="{!nullAction}" name="methodOneInJavascript" status="status" rerender="divmyPH" oncomplete="javascript: myPH();">
+        <apex:param name="firstParam" assignTo="{!productLookup}" value="" />
+    </apex:actionFunction>
+    <apex:actionFunction action="{!nullAction}" name="methodTwoInJavascript" status="status" rerender="divmyDP" oncomplete="javascript: myDP();">
+        <apex:param name="firstParam1" assignTo="{!productLookup}" value="" />
+    </apex:actionFunction>
+<!-- END AJAX "popup" windows -->
+    
+    <!-- PARX - Add onstop attribute event to action status to correct tables -->
+    <apex:actionstatus id="status" startText="Requesting..." onstop="setTimeout( 'test()', 500 );">
+           <apex:facet name="start">
+               <c:INFW_ProgressInformation Message="{!$Label.INFW_Processing}" Width="104px" Height="470px"/>
+           </apex:facet>
+           <apex:facet name="stop">
+           </apex:facet>
+    </apex:actionstatus>
+
+    <apex:actionRegion >
+
+    <apex:pagemessages id="messages"/>
+
+      <apex:pageBlock id="pb" title="{!$ObjectType.Outlet_Visit__c.Label}" mode="Edit">
+        <apex:pageblockbuttons location="top"> 
+            <apex:commandButton styleClass="cmdButton" action="{!next}" oncomplete="if('{!AlertMessage}' != '')alert('{!AlertMessage}');" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_NextButtonLabel}" rendered="{!showDetails!=true}" />
+            <apex:commandButton styleClass="cmdButton" action="{!saveCommit}" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_SaveButtonLabel}" rendered="{!showDetails}" />
+            <apex:commandButton styleClass="cmdButton" action="{!saveCommitClose}" status="status" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_SaveCloseButtonLabel}" rendered="{!showDetails}" />
+            <apex:commandButton styleClass="cmdButton" action="{!cancel}" immediate="true" value="{!$Label.OutletVisitPage_CancelButtonLabel}" />
+        </apex:pageblockbuttons>
+            <apex:pageBlockSection id="s1" columns="3" rendered="{!showDetails!=true}">          
+                <apex:pageBlockSectionItem id="cAccount" labelStyleClass="requiredBlock">
+                    <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Account__c.label}" for="Account"/>
+                    <apex:actionRegion >
+                    <apex:inputfield required="true" id="Account" value="{!Outlet_Visit__c.Account__c}">
+                        <apex:actionSupport action="{!nullAction}" event="onblur" rerender="pb"/>
+                    </apex:inputfield>
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                <apex:inputfield required="true" id="Date" value="{!Outlet_Visit__c.Visit_Date__c}"/>
+                 <apex:pageBlockSectionItem id="cContact" labelStyleClass="requiredBlock">
+                     <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Met_With__c.label}" for="Contact"/>
+                         <apex:selectList value="{!Outlet_Visit__c.Met_With__c}"  size="1" id="Contact" required="true">
+                         <apex:selectOptions value="{!Contacts}"/>
+                     </apex:selectList>
+                 </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection id="s2" columns="2" rendered="{!showDetails}">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Account__c.label}" for="Account1"/>
+                    <apex:outputfield id="Account1" value="{!Outlet_Visit__c.Account__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Visit_Date__c.label}" for="Date1"/>
+                    <apex:outputfield id="Date1" value="{!Outlet_Visit__c.Visit_Date__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.CurrencyIsoCode.label}" for="CurrencyIsoCode1"/>
+                    <apex:outputfield id="CurrencyIsoCode1" value="{!Outlet_Visit__c.CurrencyIsoCode}"/>
+                </apex:pageBlockSectionItem>
+                 <apex:pageBlockSectionItem id="cContact" labelStyleClass="requiredBlock">
+                     <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Met_With__c.label}" for="Contact"/>
+                         <apex:selectList value="{!Outlet_Visit__c.Met_With__c}"  size="1" id="Contact" required="true">
+                         <apex:selectOptions value="{!Contacts}"/>
+                     </apex:selectList>
+                 </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+      </apex:pageBlock>
+<table width="100%">
+        <td width="60%">
+            <apex:pageBlock id="pbA" mode="Edit">
+                <apex:pageBlockSection id="s1" columns="1" >
+                
+                    <apex:pageBlockSectionItem id="cObjectives" rendered="{!marketName = 'Canada General'}">
+                        <apex:outputLabel value="{!$ObjectType.Account.fields.Objectives__c.label}" for="oObjectives"/>                    
+                       <apex:inputField style="width:99%" id="oObjectives" value="{!Outlet_Visit__c.Objectives__c}" />
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:pageBlockSectionItem id="cComments" >
+                        <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Visit_Comments__c.label}" for="oComments"/>
+                        <apex:inputfield style="width:99%" id="oComments" value="{!Outlet_Visit__c.Visit_Comments__c}"/>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem id="cFollow_Up" rendered="{!marketName = 'Canada General'}">
+                        <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Follow_Up__c.label}" for="oFollow_Up"/>
+                        <apex:inputfield style="width:99%" id="oFollow_Up" value="{!Outlet_Visit__c.Follow_Up__c}"/>
+                    </apex:pageBlockSectionItem>                    
+
+                    <apex:pageBlockSectionItem id="cCompetitorAct" >
+                        <apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.fields.Competitor_Activity__c.label}" for="oCompetitorAct"/>
+                        <apex:inputfield style="width:99%" id="oCompetitorAct" value="{!Outlet_Visit__c.Competitor_Activity__c}"/>
+                    </apex:pageBlockSectionItem>
+
+                                        
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </td>
+        <td width="40%">
+        <apex:outputpanel id="ktp">
+          <apex:pageBlock id="ktView" rendered="{!NOT ISNULL(myCompletedKTs)}" title="{!$ObjectType.Key_Task__c.LabelPlural}" mode="View">
+                  <apex:pageBlockButtons location="top">
+                        <input class="btn" name="ktButton" onclick="javascript: dimmer();" value="{!$Label.OutletVisitPage_New_Edit_ButtonLabel}" type="button" />
+                        <a href="#" onclick="javascript: taskHistory();" title="{!$Label.OutletVisitPage_Task_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Task_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Task_History_ButtonLabel}"/></a>
+                  </apex:pageBlockButtons>
+        <apex:outputPanel layout="block" styleclass="container1">
+            <apex:pageBlockTable id="bfTable" headerClass="hidden" cellpadding="1" value="{!myCompletedKTs}" var="p" columns="3" width="100%">
+               <apex:column width="35%">
+                <apex:outputfield value="{!p.Name}"/>
+              </apex:column>
+               <apex:column width="25%">
+                <apex:outputfield value="{!p.Met_With__c}"/>
+              </apex:column>
+               <apex:column width="40%">
+                <apex:outputtext value="{!IF(LEN(p.Comments__c)>47,LEFT(p.Comments__c,47)&'...',p.Comments__c)}"/>
+              </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputPanel>
+      </apex:pageBlock>
+      </apex:outputpanel>
+        </td>
+</table>
+
+<!-- START Filter Section -->
+<apex:outputpanel id="bottom1">
+      <apex:pageBlock id="f1" rendered="{!NOT ISNULL(myBFOvi)}" mode="Edit">
+      <apex:outputpanel layout="block" styleclass="filtercontainer">
+      <apex:pageBlockSection columns="4" >
+                 <apex:pageBlockSectionItem id="cSpiritType" >
+                     <apex:outputLabel value="{!$ObjectType.Brand__c.fields.Spirit_Type__c.label}" for="SpiritType"/>
+                         <apex:selectList value="{!SpiritType}"  size="1" id="SpiritType" >
+                         <apex:selectOptions value="{!SpiritTypeList}"/>
+                     </apex:selectList>
+                 </apex:pageBlockSectionItem>
+                 <apex:pageBlockSectionItem id="cBFBrand" >
+                     <apex:outputLabel value="B-F {!$ObjectType.Brand__c.labelplural}" for="BFBrand"/>
+                         <apex:selectList value="{!BFBrand}"  size="1" id="BFBrand" >
+                         <apex:selectOptions value="{!BFBrandsList}"/>
+                     </apex:selectList>
+                 </apex:pageBlockSectionItem>
+                 <apex:pageBlockSectionItem id="cCompBrand" >
+                     <apex:outputLabel value="Competitor {!$ObjectType.Brand__c.labelplural}" for="CompBrand"/>
+                         <apex:selectList value="{!CompBrand}"  size="1" id="CompBrand" >
+                         <apex:selectOptions value="{!CompBrandsList}"/>
+                     </apex:selectList>
+                 </apex:pageBlockSectionItem>
+                  <apex:pageBlockSectionItem >
+                                <apex:commandButton action="{!refresh}" status="status" rerender="bottom1" value="{!$Label.OutletVisitPage_FilterButtonLabel}" />
+                  </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:outputpanel>
+      </apex:pageBlock>
+<!-- END Filter Section -->
+
+<!-- B-F Brand Grid Section -->
+      <apex:pageBlock id="pb1" rendered="{!NOT ISNULL(myBFOvi)}" title="{!$Label.OutletVisitPage_B_FSectionLabel}" mode="Edit">
+    <!-- #1 HEADER Default Layout Section -->
+        <apex:outputpanel rendered="{!gridLayout='1'}" layout="block" >
+            <apex:pageBlockTable id="bFTablea" rows="0" value="{!myBFOvi_header}" headerClass="bFTablea_thead" rowClasses="firstHeaderRow" var="p">
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Product__c.fields.Name.label}"/>
+                <apex:column styleClass="bFTablea_header" headerValue=" "/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$Label.OutletVisitPage_SpecialLabel}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$Label.OutletVisitPage_SpecialLabel}"/>
+                <apex:column styleClass="bFTablea_header" style="border-left: 1px solid cyan;">
+                       <apex:facet name="header">
+                                        <apex:outputText value="{0,date,M/yyyy}">
+                                             <apex:param value="{!date1}" />
+                                         </apex:outputText>
+                        </apex:facet>
+               </apex:column>
+               <apex:column styleClass="bFTablea_header">
+                       <apex:facet name="header">
+                                        <apex:outputText value="{0,date,M/yyyy}">
+                                             <apex:param value="{!date2}" />
+                                         </apex:outputText>
+                        </apex:facet>
+               </apex:column>
+               <apex:column styleClass="bFTablea_header">
+                       <apex:facet name="header">
+                                        <apex:outputText value="{0,date,M/yyyy}">
+                                             <apex:param value="{!date3}" />
+                                         </apex:outputText>
+                        </apex:facet>
+               </apex:column>
+               <apex:column styleClass="bFTablea_header" headerValue=" "/>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END #1 HEADER Default Layout Section -->
+    <!-- #1 Default Layout Section -->
+        <apex:outputpanel rendered="{!gridLayout='1'}" layout="block" styleclass="prodcontainer">
+            <apex:pageBlockTable id="bFTableb" headerClass="stationaryHeaderRow" value="{!myBFOvi}" var="p" >
+              <apex:column styleClass="bFTablea_row">
+                    <apex:outputfield value="{!p.prod.Name}"/>
+                    &nbsp;
+                    <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                    <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                    <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+              </apex:column>
+              <apex:column styleClass="bFTablea_row">
+                    <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+               </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row" style="border-left: 1px solid cyan; padding: 5px;">
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+              </apex:column>
+              <apex:column styleClass="bFTablea_row">
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+               </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END #1 Default Layout Section -->
+
+    <!-- This Section for #2 HEADER Layout -->
+
+        <apex:outputpanel rendered="{!gridLayout='2'}" layout="block" >
+            <apex:pageBlockTable id="bFTable2a" rows="0" value="{!myBFOvi_header}" headerClass="bFTablea_thead" rowClasses="firstHeaderRow" var="p">
+               <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Product__c.fields.Name.label}"/>
+               <apex:column styleClass="bFTablea_header" headerValue=" "/> 
+               <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Available__c.label}"/>
+               <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Location_Off__c.label}" rendered="{!accountChannel = 'Off'}"/>
+               <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Location_On__c.label}" rendered="{!accountChannel = 'On'}"/>
+               <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Shelf__c.label}"/>
+               <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Facing__c.label}"/>
+               <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}"/>
+               <apex:column styleClass="bFTablea_header" headerValue="{!$Label.OutletVisitPage_SpecialLabel}"/>
+               <apex:column styleClass="bFTablea_header">
+                       <apex:facet name="header">
+                                        <apex:outputText value="{0,date,M/yyyy}">
+                                             <apex:param value="{!date1}" />
+                                         </apex:outputText>
+                        </apex:facet>
+               </apex:column>
+               <apex:column styleClass="bFTablea_header" >
+                       <apex:facet name="header">
+                                        <apex:outputText value="{0,date,M/yyyy}">
+                                             <apex:param value="{!date2}" />
+                                         </apex:outputText>
+                        </apex:facet>
+               </apex:column>
+               <apex:column styleClass="bFTablea_header">
+                       <apex:facet name="header">
+                                        <apex:outputText value="{0,date,M/yyyy}">
+                                             <apex:param value="{!date3}" />
+                                         </apex:outputText>
+                        </apex:facet>
+               </apex:column>
+               <apex:column styleClass="bFTablea_header" headerValue=" "/>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END This section for #2 HEADER Layout -->
+    <!-- This Section for #2 Layout -->
+        <apex:outputpanel rendered="{!gridLayout='2'}" layout="block" styleclass="prodcontainer">
+            <apex:pageBlockTable id="bFTable2b" value="{!myBFOvi}" headerClass="stationaryHeaderRow" var="p">
+              <apex:column styleClass="bFTablea_row">
+                    <apex:outputfield value="{!p.prod.Name}"/>
+                    &nbsp;
+                    <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                    <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                    <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+              </apex:column>
+              <apex:column styleClass="bFTablea_row">
+                    <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+               </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield style="width:50px" value="{!p.ovi.Available__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row" rendered="{!accountChannel = 'Off'}">
+               <apex:inputfield style="width:90px" value="{!p.ovi.Location_Off__c}"/>
+              </apex:column>
+              <apex:column styleClass="bFTablea_row" rendered="{!accountChannel = 'On'}">
+              <apex:inputfield style="width:90px" value="{!p.ovi.Location_On__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+               <apex:inputfield style="width:90px" value="{!p.ovi.Shelf__c}"/>
+               <!-- 
+                    <apex:selectList value="{!p.ovi.Shelf__c}" size="1">
+                        <apex:selectOptions value="{!shelfData}"/>
+                    </apex:selectList>
+                 -->
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield style="width:35px" value="{!p.ovi.Facing__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
+              </apex:column>
+              <apex:column style="border-left: 1px solid cyan; padding: 5px;" styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+              </apex:column>
+              <apex:column styleClass="bFTablea_row">
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+               </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+
+    <!-- END This section for #2 Layout -->
+    <!-- #3 HEADER Default Layout Section -->
+        <apex:outputpanel rendered="{!gridLayout='3'}" layout="block" >     
+            <apex:pageBlockTable id="bFTable3a" rows="0" value="{!myBFOvi_header}" headerClass="bFTablea_thead" rowClasses="firstHeaderRow" var="p" >
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Product__c.fields.Name.label}"/>
+                <apex:column styleClass="bFTablea_header" headerValue=" "/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Available__c.label}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Location_Off__c.label}" rendered="{!accountChannel = 'Off'}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Location_On__c.label}" rendered="{!accountChannel = 'On'}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Double_Price__c.label}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$Label.OutletVisitPage_SpecialLabel}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}"/>
+                <apex:column styleClass="bFTablea_header" headerValue="{!$Label.OutletVisitPage_SpecialLabel}"/>
+                <apex:column styleClass="bFTablea_header">
+                        <apex:facet name="header">
+                                    <apex:outputText value="{0,date,M/yyyy}">
+                                         <apex:param value="{!date1}" />
+                                     </apex:outputText>
+                       </apex:facet>
+                </apex:column>
+                <apex:column styleClass="bFTablea_header">
+                        <apex:facet name="header">
+                                    <apex:outputText value="{0,date,M/yyyy}">
+                                         <apex:param value="{!date2}" />
+                                     </apex:outputText>
+                         </apex:facet>
+                </apex:column>
+                 <apex:column styleClass="bFTablea_header">
+                        <apex:facet name="header">
+                                    <apex:outputText value="{0,date,M/yyyy}">
+                                         <apex:param value="{!date3}" />
+                                     </apex:outputText>
+                       </apex:facet>
+                 </apex:column>
+                 <apex:column styleClass="bFTablea_header" headerValue=" "/>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END #3 HEADER Default Layout Section -->
+    <!-- #3 Default Layout Section -->
+        <apex:outputpanel rendered="{!gridLayout='3'}" layout="block" styleclass="prodcontainer">
+            <apex:pageBlockTable id="bFTable3b" value="{!myBFOvi}" headerClass="stationaryHeaderRow" var="p">
+              <apex:column styleClass="bFTablea_row">
+                        <apex:outputfield value="{!p.prod.Name}"/>
+                        &nbsp;
+                        <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                        <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                        <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+              </apex:column>
+              <apex:column styleClass="bFTablea_row">
+                         <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+               </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                        <apex:inputfield style="width:50px" value="{!p.ovi.Available__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row" rendered="{!accountChannel = 'Off'}">
+               <apex:inputfield style="width:90px" value="{!p.ovi.Location_Off__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row" rendered="{!accountChannel = 'On'}">
+               <apex:inputfield style="width:90px" value="{!p.ovi.Location_On__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                        <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                        <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price_Special__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                        <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                        <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
+              </apex:column>
+               <apex:column style="border-left: 1px solid cyan; padding: 5px;" styleClass="bFTablea_row" >
+                        <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                        <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+              </apex:column>
+               <apex:column styleClass="bFTablea_row">
+                        <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+              </apex:column>
+              <apex:column styleClass="bFTablea_row">
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+               </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END #3 Default Layout Section -->
+      </apex:pageBlock>
+<!-- END B-F Grid Section -->
+
+    
+<!-- START Competitor Grid Section -->
+      <apex:pageBlock id="pb2" rendered="{!NOT ISNULL(myCompOvi)}" title="{!$Label.OutletVisitPage_CompSectionLabel}" mode="Edit">
+    <!-- #1 HEADER Default Layout Section -->
+        <apex:outputpanel rendered="{!gridLayout='1'}" layout="block" >
+            <apex:pageBlockTable id="compTablea" rows="0" value="{!myCompOvi_header}" headerClass="compTablec_header" rowClasses="firstHeaderRow" var="p" >
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+                    <apex:outputfield value="{!p.prod.Name}"/>
+                    &nbsp;
+                    <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                    <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                    <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+                </apex:column>
+                <apex:column >
+                    <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
+                </apex:column>
+                <apex:column style="border-left: 1px solid cyan; padding: 5px;">
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date1}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date2}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date3}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END #1 HEADER Default Layout Section -->
+
+    <!-- #1 Default Layout Section -->
+        <apex:outputpanel rendered="{!gridLayout='1'}" layout="block" styleclass="prodcontainer">
+            <apex:pageBlockTable id="compTableb" headerClass="stationaryHeaderRow" value="{!myCompOvi}" var="p">
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+                    <apex:outputfield value="{!p.prod.Name}"/>
+                    &nbsp;
+                    <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                    <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                    <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" style="border-left: 1px solid cyan; padding: 5px;">
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date1}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date2}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date3}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END #1 Default Layout Section -->
+
+    <!-- This Section for #2 HEADER Layout -->
+        <apex:outputpanel rendered="{!gridLayout='2'}" layout="block" >
+            <apex:pageBlockTable id="compTable2a" rows="0" value="{!myCompOvi_header}" headerClass="compTablec_header" rowClasses="firstHeaderRow" var="p" >
+               <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+                    <apex:outputfield value="{!p.prod.Name}"/>
+                    &nbsp;
+                    <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                    <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                    <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+                </apex:column>
+                <apex:column >
+                    <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Available__c.label}</apex:facet>
+                    <apex:inputfield style="width:50px" value="{!p.ovi.Available__c}"/>
+                </apex:column>
+                <apex:column rendered="{!accountChannel = 'Off'}">
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Location_Off__c.label}</apex:facet>
+                    <apex:inputfield style="width:90px" value="{!p.ovi.Location_Off__c}"/>
+                </apex:column>
+                <apex:column rendered="{!accountChannel = 'On'}">
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Location_On__c.label}</apex:facet>               
+                    <apex:inputfield style="width:90px" value="{!p.ovi.Location_On__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Shelf__c.label}</apex:facet>
+                    <apex:inputfield style="width:90px" value="{!p.ovi.Shelf__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Facing__c.label}</apex:facet>
+                    <apex:inputfield style="width:35px" value="{!p.ovi.Facing__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
+                </apex:column>
+                <apex:column style="border-left: 1px solid cyan; padding: 5px;">
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date1}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date2}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date3}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END This section for #2 HEADER Layout -->
+
+    <!-- This Section for #2 Layout -->
+        <apex:outputpanel rendered="{!gridLayout='2'}" layout="block" styleclass="prodcontainer">
+            <apex:pageBlockTable id="compTable2" value="{!myCompOvi}" headerClass="stationaryHeaderRow" var="p" >
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+                    <apex:outputfield value="{!p.prod.Name}"/>
+                    &nbsp;
+                    <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                    <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                    <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Available__c.label}</apex:facet>
+                    <apex:inputfield style="width:50px" value="{!p.ovi.Available__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" rendered="{!accountChannel = 'Off'}">
+                    <apex:inputfield style="width:90px" value="{!p.ovi.Location_Off__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" rendered="{!accountChannel = 'On'}">
+                    <apex:inputfield style="width:90px" value="{!p.ovi.Location_On__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Shelf__c.label}</apex:facet>
+                    <apex:inputfield style="width:90px" value="{!p.ovi.Shelf__c}"/>
+                    <!-- 
+                    <apex:selectList value="{!p.ovi.Shelf__c}" size="1">
+                        <apex:selectOptions value="{!shelfData}"/>
+                    </apex:selectList>
+                    -->
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Facing__c.label}</apex:facet>
+                    <apex:inputfield style="width:35px" value="{!p.ovi.Facing__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row">
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Bottle_Price_Special__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" style="border-left: 1px solid cyan; padding: 5px;">
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date1}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date2}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <apex:facet name="header">
+                                <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!date3}" />
+                                 </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+
+    <!-- END This section for #2 Layout -->
+
+    <!-- #3 HEADER Default Layout Section -->
+        <apex:outputpanel rendered="{!gridLayout='3'}" layout="block" >
+            <apex:pageBlockTable id="compTablec" rows="0" value="{!myCompOvi_header}" headerClass="compTablec_header" rowClasses="firstHeaderRow" var="p" >
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+                    <apex:outputfield value="{!p.prod.Name}"/>
+                    &nbsp;
+                    <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                    <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                    <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+                </apex:column>
+                <apex:column >
+                    <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Double_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price_Special__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
+                </apex:column>
+                <apex:column style="border-left: 1px solid cyan; padding: 5px;">
+                    <apex:facet name="header">
+                        <apex:outputText value="{0,date,M/yyyy}">
+                            <apex:param value="{!date1}" />
+                        </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                        <apex:outputText value="{0,date,M/yyyy}">
+                            <apex:param value="{!date2}" />
+                        </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                        <apex:outputText value="{0,date,M/yyyy}">
+                            <apex:param value="{!date3}" />
+                        </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+                </apex:column>
+                <apex:column >
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+            </apex:pageBlockTable> 
+        </apex:outputpanel>
+    <!-- END #3 HEADER Default Layout Section -->
+    
+    <!-- #3 Default Layout Section -->
+    
+        <apex:outputpanel rendered="{!gridLayout='3'}" layout="block" styleclass="prodcontainer">
+            <apex:pageBlockTable id="compTablec2" headerClass="stationaryHeaderRow" value="{!myCompOvi}" var="p" >
+                <apex:column styleClass="compTablec_row" >
+                    <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+                    <apex:outputfield value="{!p.prod.Name}"/>
+                    &nbsp;
+                    <apex:image rendered="{!p.requiredBrand=='Mandatory'}" value="{!URLFOR($Resource.INFW_Resources, 'exclamation.png')}" alt="{!$ObjectType.Mandatory_Products__c.label}" title="{!$ObjectType.Mandatory_Products__c.label}"/>
+                    <apex:image rendered="{!p.requiredBrand=='Optional'}" value="{!URLFOR($Resource.INFW_Resources, 'asterisk_yellow.png')}" alt="{!p.requiredBrand}" title="{!p.requiredBrand}"/>
+                    <apex:image rendered="{!p.keyBrand}" value="{!URLFOR($Resource.INFW_Resources, 'key.png')}" alt="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}" title="{!$ObjectType.Account_Brand__c.fields.Key_Brand__c.label}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <a href="#" onclick="javascript: methodOneInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="T{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Double_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row"  >
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Double_Price_Special__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row"  >
+                    <apex:facet name="header">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <apex:facet name="header">{!$Label.OutletVisitPage_SpecialLabel}</apex:facet>
+                    <apex:inputfield styleClass="moneyInput" value="{!p.ovi.Drink_Price_Special__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" style="border-left: 1px solid cyan; padding: 5px;">
+                    <apex:facet name="header">
+                        <apex:outputText value="{0,date,M/yyyy}">
+                            <apex:param value="{!date1}" />
+                        </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep1.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <apex:facet name="header">
+                        <apex:outputText value="{0,date,M/yyyy}">
+                            <apex:param value="{!date2}" />
+                        </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep2.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <apex:facet name="header">
+                        <apex:outputText value="{0,date,M/yyyy}">
+                            <apex:param value="{!date3}" />
+                        </apex:outputText>
+                    </apex:facet>
+                    <apex:inputfield styleClass="depletionInput" value="{!p.dep3.Bottles__c}"/>
+                </apex:column>
+                <apex:column styleClass="compTablec_row" >
+                    <a href="#" onclick="javascript: methodTwoInJavascript('{!p.prod.Id}');" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"><img src="{!URLFOR($Resource.INFW_Resources, 'magnifying.png')}" alt="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}" title="{!$Label.OutletVisitPage_Depletion_History_ButtonLabel}"/></a>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputpanel>
+    <!-- END #3 Default Layout Section -->
+      </apex:pageBlock>
+<!-- END Competitor Grid Section -->
+
+
+<!-- START Key Task New/Edit Section -->
+<div id="dimmer" class="dimmer">
+    <div id="spinner" class="spinner">
+        <table><tr>
+            <td valign="center" style="width:700px;">
+      <apex:pageBlock id="kt" rendered="{!NOT ISNULL(myKTs)}" title="{!$ObjectType.Key_Task__c.LabelPlural}" mode="Edit">
+            <apex:pageblockbuttons location="bottom">
+                    <apex:commandButton action="{!saveCommit}" status="status" onclick="javascript: dimmer();" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_SaveButtonLabel}" />
+                    <apex:commandButton action="{!cancelKT}" status="status" onclick="javascript: dimmer();" rerender="pb,messages,pbA,ktp,bottom1" value="{!$Label.OutletVisitPage_CancelButtonLabel}" />
+            </apex:pageblockbuttons>
+        <apex:outputPanel layout="block" styleclass="container">
+            <apex:pageBlockTable id="ktTable" value="{!myKTs}" var="p" >
+               <apex:column width="1%">
+                <apex:inputcheckbox value="{!p.selected}"/>
+              </apex:column>
+               <apex:column width="20%">
+                <apex:outputfield value="{!p.ktt.Name}"/>
+              </apex:column>
+               <apex:column width="20%">
+               <apex:facet name="header">{!$ObjectType.Key_Task__c.fields.Met_With__c.label}</apex:facet>
+                 <!-- apex:pageBlockSectionItem id="cktContact" labelStyleClass="requiredBlock"> -->
+                     <apex:selectList value="{!p.kt.Met_With__c}"  size="1" id="ktContact" required="true">
+                         <apex:selectOptions value="{!Contacts}"/>
+                     </apex:selectList>
+                 <!-- /apex:pageBlockSectionItem> -->
+              </apex:column>
+              <apex:column width="40%">
+               <apex:facet name="header">{!$ObjectType.Key_Task__c.fields.Comments__c.label}</apex:facet>
+                <apex:inputfield style="width:98%" value="{!p.kt.Comments__c}"/>
+              </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputPanel>
+      </apex:pageBlock>
+            </td>
+            </tr>
+        </table>
+</div></div>
+<!-- END Key Task New/Edit Section -->
+
+<!-- START Key Task History Section -->
+<apex:outputpanel >
+<div id="taskHistory" class="dimmer">
+    <div class="spinner">
+        <table><tr>
+            <td valign="center" style="width:700px;">
+      <apex:pageBlock id="ktHistory" rendered="{!NOT ISNULL(myKTHistory)}" title="{!$ObjectType.Key_Task__c.LabelPlural} - {!Outlet_Visit__c.Account__r.Name}" mode="View">
+            <apex:pageblockbuttons location="bottom">
+                <input class="btn" name="ktButtonHistory" onclick="window.open('/00OS0000000K5lp?pv0={!Outlet_Visit__c.Account__r.Name}',null,'status=yes,toolbar=no,menubar=no,location=no,resizable=1,scrollbars=1');" value="{!$Label.OutletVisitPage_View_History_ButtonLabel}" type="button" />
+                <input class="btn" name="ktButtonHistoryClose" onclick="javascript: taskHistory();" value="{!$Label.OutletVisitPage_CloseButtonLabel}" type="button" />
+            </apex:pageblockbuttons>
+        <apex:outputPanel layout="block" styleclass="container">
+            <apex:pageBlockTable id="ktHistoryTable" value="{!myKTHistory}" var="p" >
+               <apex:column width="20%">
+               <apex:facet name="header">{!$ObjectType.Key_Task__c.label}</apex:facet>
+                <apex:outputfield value="{!p.Name}"/>
+              </apex:column>
+               <apex:column width="20%">
+                <apex:facet name="header">{!$ObjectType.Key_Task__c.fields.Met_With__c.label}</apex:facet>
+                <apex:outputfield value="{!p.Met_With__c}"/>
+              </apex:column>
+               <apex:column width="40%">
+               <apex:facet name="header">{!$ObjectType.Key_Task__c.fields.Comments__c.label}</apex:facet>
+                <apex:outputfield value="{!p.Comments__c}"/>
+              </apex:column>
+               <apex:column width="20%">
+               <apex:facet name="header">{!$ObjectType.Outlet_Visit__c.fields.Visit_Date__c.label}</apex:facet>
+                <apex:outputfield value="{!p.Outlet_Visit__r.Visit_Date__c}"/>
+              </apex:column>
+               <apex:column width="20%">
+                <apex:facet name="header">{!$ObjectType.Key_Task__c.fields.LastModifiedById.label}</apex:facet>
+                <apex:outputfield value="{!p.LastModifiedById}"/>
+              </apex:column>
+            </apex:pageBlockTable>
+        </apex:outputPanel>
+      </apex:pageBlock>
+            </td>
+            </tr>
+        </table>
+
+</div></div>
+</apex:outputpanel>
+<!-- END Key Task History Section -->
+
+<!-- START Price History Section -->
+<apex:outputpanel id="divmyPH">
+<div id="myPH" class="dimmer">
+    <div class="spinner">
+        <table><tr>
+            <td style="width:700px;">
+      <apex:pageBlock id="myPHsHistory" rendered="{!NOT ISNULL(myPHs)}" title="{!Outlet_Visit__c.Account__r.Name} - {!productLookupName}" mode="View">
+
+            <apex:pageblockbuttons location="bottom">
+                <input class="btn" name="ktButtonPHHistory" onclick="window.open('/00OS0000000K5lu?pv0={!MID(productLookup,0,15)}',null,'status=yes,toolbar=no,menubar=no,location=no,resizable=1,scrollbars=1');" value="{!$Label.OutletVisitPage_View_History_ButtonLabel}" type="button" />
+                <input class="btn" name="ktButtonPHHistoryClose" onclick="javascript: myPH();" value="{!$Label.OutletVisitPage_CloseButtonLabel}" type="button" />
+            </apex:pageblockbuttons>
+
+        <apex:outputPanel layout="block" styleclass="container">
+            <table class="list " border="0" cellpadding="0" cellspacing="0">
+            <colgroup span="5"></colgroup>
+            <thead class="dr-table-thead">
+            <tr class="headerRow ">
+                <th class="headerRow  ">&nbsp;</th>
+                <apex:repeat var="h" value="{!myPHs}">
+                    <th class="headerRow  ">
+                                <apex:outputText value="{0,date,M/d/yyyy}">
+                                    <apex:param value="{!h.Outlet_Visit__r.Visit_Date__c}" />
+                                </apex:outputText>
+                    </th>
+                </apex:repeat>
+            </tr>
+            </thead>
+            <tr class="dataRow even  first ">
+            <td class="dataCell  ">{!$ObjectType.Outlet_Visit_Item__c.fields.Bottle_Price__c.label}</td>
+            <apex:repeat var="h" value="{!myPHs}">
+                <td class="dataCell  " style="{!IF(h.Bottle_Price_Special__c==true,'color:red','color:black')}">{!h.Bottle_Price__c}</td>
+            </apex:repeat>
+            </tr>
+
+            <tr class="dataRow even  first ">
+            <td class="dataCell  ">{!$ObjectType.Outlet_Visit_Item__c.fields.Drink_Price__c.label}</td>
+            <apex:repeat var="h" value="{!myPHs}">
+                <td class="dataCell  " style="{!IF(h.Drink_Price_Special__c==true,'color:red','color:black')}">{!h.Drink_Price__c}</td>
+            </apex:repeat>
+            </tr>
+            </table>
+        </apex:outputPanel>
+
+      </apex:pageBlock>
+            </td>
+            </tr>
+        </table>
+
+</div></div>
+</apex:outputpanel>
+<!-- END Price History Section -->
+
+<!-- START Depletion History Section -->
+<apex:outputpanel id="divmyDP">
+<div id="myDP" class="dimmer">
+    <div class="spinner">
+        <table><tr>
+            <td style="width:700px;">
+      <apex:pageBlock id="myDPsHistory" rendered="{!NOT ISNULL(myDPs)}" title="{!Outlet_Visit__c.Account__r.Name} - {!productLookupName}" mode="View">
+            <apex:pageblockbuttons location="bottom">
+                <input class="btn" name="ktButtonDPHistory" onclick="window.open('/00OS0000000K5m9?pv0={!Outlet_Visit__c.Account__r.Name}&pv1={!MID(productLookup,0,15)}',null,'status=yes,toolbar=no,menubar=no,location=no,resizable=1,scrollbars=1');" value="{!$Label.OutletVisitPage_View_History_ButtonLabel}" type="button" />
+                <input class="btn" name="ktButtonDPHistoryClose" onclick="javascript: myDP();" value="{!$Label.OutletVisitPage_CloseButtonLabel}" type="button" />
+            </apex:pageblockbuttons>
+        <apex:outputPanel layout="block" styleclass="container">
+            <table class="list " border="0" cellpadding="0" cellspacing="0">
+
+            <thead class="dr-table-thead">
+            <tr class="headerRow ">
+                <th class="headerRow  ">&nbsp;</th>
+                <apex:variable var="i" value="{!myDPs}">
+                    <apex:variable var="k" value="{!i.monthsDPs}">
+                        <apex:repeat var="h" value="{!k.months}">
+                            <th class="headerRow  ">
+                                 <apex:outputText value="{0,date,M/yyyy}">
+                                     <apex:param value="{!h.MonthOfDate}" />
+                                 </apex:outputText>
+                            </th>
+                        </apex:repeat>
+                    </apex:variable>
+                </apex:variable>
+            </tr>
+            </thead>
+            <apex:variable var="z" value="{!myDPs}">
+                <apex:repeat var="i" value="{!z.bfDPs}">
+                    <tr class="dataRow even  first ">
+                        <td class="dataCell  ">{!i.ProductName}</td>
+                        <apex:repeat var="h" value="{!i.months}">
+                            <td class="dataCell  ">{!h.Bottles}</td>
+                        </apex:repeat>
+                    </tr>
+                </apex:repeat>
+                <tr class="dataRow even  first ">
+                    <th class="headerRow  ">&nbsp;</th>
+                    <apex:variable var="i" value="{!myDPs}">
+                        <apex:variable var="k" value="{!i.monthsDPs}">
+                            <apex:repeat var="h" value="{!k.months}">
+                                <th class="headerRow  ">
+                                    &nbsp;
+                                </th>
+                            </apex:repeat>
+                        </apex:variable>
+                    </apex:variable>
+                </tr>
+                <apex:repeat var="i" value="{!z.compDPs}">
+                    <tr class="dataRow even  first ">
+                        <td class="dataCell  ">{!i.ProductName}</td>
+                        <apex:repeat var="h" value="{!i.months}">
+                            <td class="dataCell  ">{!h.Bottles}</td>
+                        </apex:repeat>
+                    </tr>
+                </apex:repeat>
+            </apex:variable>
+            </table>
+        </apex:outputPanel>
+      </apex:pageBlock>
+            </td>
+            </tr>
+        </table>
+
+</div></div>
+</apex:outputpanel>
+<!-- END Depletion History Section -->
+
+</apex:outputpanel>
+</apex:actionRegion>
+      </apex:form>
+   <apex:outputtext value="{!Outlet_Visit__c.Status__c}{!Outlet_Visit__c.Account__c}{!Outlet_Visit__c.Account__r.Name}" rendered="false" /> 
+<apex:relatedList list="NotesAndAttachments" />
+</apex:page>

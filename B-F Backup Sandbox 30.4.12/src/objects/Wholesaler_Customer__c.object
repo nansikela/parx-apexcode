@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Banner__c</fullName>
+        <description>Distributor assigned banner for retailer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Distributor assigned banner for retailer</inlineHelpText>
+        <label>Banner</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ECC_Retalier_Name__c</fullName>
+        <description>ECC Retailer / Banner Name</description>
+        <externalId>false</externalId>
+        <label>ECC Retalier Name</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ECC_Wholesaler_Name__c</fullName>
+        <description>ECC Distributor Name</description>
+        <externalId>false</externalId>
+        <label>ECC Wholesaler Name</label>
+        <length>40</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LMAA_Number__c</fullName>
+        <description>Retailer LMAA # from Distributor</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retailer LMAA # from Distributor</inlineHelpText>
+        <label>LMAA Number</label>
+        <length>8</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>License_Number__c</fullName>
+        <description>Retailer license # from Distributor</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retailer license # from Distributor</inlineHelpText>
+        <label>License Number</label>
+        <length>15</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Partner_Function__c</fullName>
+        <description>ECC partner Function</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ECC partner Function (i.e. ZE - Retailer, ZQ - Banner)</inlineHelpText>
+        <label>Partner Function</label>
+        <length>2</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Partner_Type__c</fullName>
+        <description>Distributor Partner type in ECC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Distributor Partner type in ECC (i.e. ZE - Retailer, ZQ - Banner)</inlineHelpText>
+        <label>Partner Type</label>
+        <length>2</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Retailer_Number__c</fullName>
+        <description>ECC Retailer / Banner #</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ECC Retailer / Banner #</inlineHelpText>
+        <label>Retailer Number</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <description>Retailer  address from Distributor</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retailer  address from Distributor</inlineHelpText>
+        <label>State</label>
+        <length>3</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Customer_Name__c</fullName>
+        <description>Retailer/ Banner Partner name from Distributor</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Retailer/ Banner Partner name from Distributor</inlineHelpText>
+        <label>Wholesaler Customer Name</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Wholesaler Customer</label>
+    <nameField>
+        <label>Wholesaler Customer Number</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Wholesaler Customers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

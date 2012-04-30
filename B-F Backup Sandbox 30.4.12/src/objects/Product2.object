@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Brand_Code__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Brand Code</label>
+        <length>3</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Case_Multiplier__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Case Multiplier</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>6</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Channel__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>On</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Competes_On_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>INFOWELDERS - Brand that a competitor product competes against.</description>
+        <externalId>false</externalId>
+        <label>Competes On (Brand)</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipLabel>Products (Competes On (Brand))</relationshipLabel>
+        <relationshipName>Products1</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Family</fullName>
+        <picklist>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Legacy ID</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <referenceTo>Market__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sort_Order__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This sort order will specify in which order products are listed in outlet visit screens.</inlineHelpText>
+        <label>Sort Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supplier__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <formula>Brand__r.Supplier__r.Name</formula>
+        <label>Supplier</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_Cost__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Unit Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>VAT__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <inlineHelpText>VAT for this product in this  market. Do not enter a value if VAT does not apply.</inlineHelpText>
+        <label>VAT</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Percent</type>
+    </fields>
+    <listViews>
+        <fullName>AllProducts</fullName>
+        <columns>Market__c</columns>
+        <columns>Brand__c</columns>
+        <columns>PRODUCT2.RECORD_TYPE</columns>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Products</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>China_Wet_Goods</fullName>
+        <columns>Market__c</columns>
+        <columns>PRODUCT2.RECORD_TYPE</columns>
+        <columns>PRODUCT2.ACTIVE</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>Brand__c</columns>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>Unit_Cost__c</columns>
+        <columns>Case_Multiplier__c</columns>
+        <columns>Competes_On_Brand__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>China</value>
+        </filters>
+        <label>China Products</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CHN-Mangers</group>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>DEU_Wet_Goods</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>PRODUCT2.ACTIVE</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>Market__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Brand_Code__c</columns>
+        <columns>Channel__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Germany</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Wet_Goods</value>
+        </filters>
+        <label>DEU - Wet Goods</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>India_Dry_Goods</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>Unit_Cost__c</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Dry_Goods</value>
+        </filters>
+        <label>India (Dry Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>INR-Brand Manager</role>
+            <role>INR-Finance Manager</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>INR-Sales Manager</role>
+            <role>INR-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>India_Wet_Goods</fullName>
+        <columns>Market__c</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.ACTIVE</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Wet_Goods</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>India (Wet Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>INR-Brand Manager</role>
+            <role>INR-Finance Manager</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>INR-Sales Manager</role>
+            <role>INR-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>JPN_Wet_Goods</fullName>
+        <columns>Sort_Order__c</columns>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <columns>Supplier__c</columns>
+        <columns>PRODUCT2.RECORD_TYPE</columns>
+        <columns>Competes_On_Brand__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Brand_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Wet_Goods</value>
+        </filters>
+        <label>JPN - Wet Goods</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>KOR_Products</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>KOR Products</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>KOR-Market Manager/Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>KOR_WET_BF</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>KOREA</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Wet_Goods</value>
+        </filters>
+        <filters>
+            <field>Supplier__c</field>
+            <operation>equals</operation>
+            <value>B-F</value>
+        </filters>
+        <label>KOR WET BF</label>
+        <language>ko</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>KOR-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Kor_Dry</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Dry_Goods</value>
+        </filters>
+        <label>Kor Dry</label>
+        <language>ko</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>KOR-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Kor_Wet</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Wet_Goods</value>
+        </filters>
+        <label>Kor Wet</label>
+        <language>ko</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>KOR-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Taiwan_Products</fullName>
+        <columns>PRODUCT2.RECORD_TYPE</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>Brand__c</columns>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>Competes_On_Brand__c</columns>
+        <columns>Unit_Cost__c</columns>
+        <columns>Case_Multiplier__c</columns>
+        <columns>PRODUCT2.ACTIVE</columns>
+        <columns>Market__c</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </filters>
+        <label>Taiwan Products</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>TWN-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Taiwan_Wet_Goods</fullName>
+        <columns>Market__c</columns>
+        <columns>PRODUCT2.RECORD_TYPE</columns>
+        <columns>Brand__c</columns>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>PRODUCT2.ACTIVE</columns>
+        <columns>Competes_On_Brand__c</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Wet_Goods</value>
+        </filters>
+        <label>Taiwan (Wet Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>TWN-all users</group>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Thailand_Dry_Goods</fullName>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Dry_Goods</value>
+        </filters>
+        <label>Thailand (Dry Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>THI-Finance Manager</role>
+            <role>THI-Market Manager/Admin</role>
+            <role>THI-Sales Manager</role>
+            <role>THI-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Thailand_Wet_Goods</fullName>
+        <columns>Market__c</columns>
+        <columns>PRODUCT2.RECORD_TYPE</columns>
+        <columns>Brand__c</columns>
+        <columns>PRODUCT2.NAME</columns>
+        <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>PRODUCT2.ACTIVE</columns>
+        <columns>PRODUCT2.DESCRIPTION</columns>
+        <columns>PRODUCT2.FAMILY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </filters>
+        <filters>
+            <field>PRODUCT2.RECORD_TYPE</field>
+            <operation>equals</operation>
+            <value>Product2.Wet_Goods</value>
+        </filters>
+        <label>Thailand (Wet Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>THI-Finance Manager</role>
+            <role>THI-Market Manager/Admin</role>
+            <role>THI-Sales Manager</role>
+            <role>THI-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <recordTypes>
+        <fullName>Dry_Goods</fullName>
+        <active>true</active>
+        <label>Dry Goods</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Wet_Goods</fullName>
+        <active>true</active>
+        <label>Wet Goods</label>
+        <picklistValues>
+            <picklist>Channel__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+</CustomObject>

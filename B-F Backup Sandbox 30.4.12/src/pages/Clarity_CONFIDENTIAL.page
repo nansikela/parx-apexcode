@@ -1,0 +1,11 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1 color="red">CONFIDENTIAL:</h1><p> <font size="1" color="red">
+  This Dashboard Data contains sensitive and forward-looking information that may not be disclosed to anyone outside Brown-Forman Corporation.    
+  </font></p><p><font size="1" color="red">
+  If you have questions about these restrictions, please consult with the Brown-Forman Securities Laws Compliance Officer at 502-774-7456.
+  See Brown-Forman's Code of Conduct section F (Proprietary Information and Insider Trading) and Management Guide policies 600 (Business Ethics) and 610 (Data Security).
+  </font></p>
+ 
+ 
+</apex:page>

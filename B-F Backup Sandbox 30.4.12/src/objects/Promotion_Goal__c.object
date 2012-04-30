@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Actual_Bottle_Quantity__c</fullName>
+        <description>Actual Bottle Quantity Sold/Used during promotion</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the actual bottle quantity used or sold during the promotion</inlineHelpText>
+        <label>Actual Bottle Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cost_Per_Bottle__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field will be entered by Workflow</inlineHelpText>
+        <label>Cost Per Bottle</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Custom_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is created for Product Remediation process</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Promotion Goals</relationshipLabel>
+        <relationshipName>Promotion_Goals</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Free_Bottle_Quantity__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Free Bottle Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Legacy ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Locked__c</fullName>
+        <description>Locked = 1 
+Unlocked = 0</description>
+        <externalId>false</externalId>
+        <formula>if( Promotion__r.Promotion_Goal_Lock__c = True, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Locked</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <externalId>false</externalId>
+        <formula>Promotion__r.Market__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Market</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Material_Cost__c</fullName>
+        <description>INFOWELDERS - (Plan Bottle Qty + Free Bottle Qty)*Cost per Bottle</description>
+        <externalId>false</externalId>
+        <formula>( Plan_Bottle_Quantity__c + Free_Bottle_Quantity__c ) *  Cost_Per_Bottle__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>(Plan Bottle Qty + Free Bottle Qty)*Cost per Bottle</inlineHelpText>
+        <label>Material Cost (f)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Material_Margin__c</fullName>
+        <description>INFOWELDERS - Material Revenue - Material Cost</description>
+        <externalId>false</externalId>
+        <formula>Material_Revenue__c - Material_Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Material Revenue - Material Cost</inlineHelpText>
+        <label>Material Margin (f)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Material_Revenue__c</fullName>
+        <description>INFOWELDERS - Plan Bottle Qty * Sales Price per Bottle</description>
+        <externalId>false</externalId>
+        <formula>Plan_Bottle_Quantity__c * Sale_Price_Per_Bottle__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Plan Bottle Qty * Sales Price per Bottle</inlineHelpText>
+        <label>Material Revenue (f)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Bottle_CHN_H__c</fullName>
+        <description>Monthly Bottle (H)</description>
+        <externalId>false</externalId>
+        <label>Monthly Bottle (H)</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Monthly_Bottle_L_CHN__c</fullName>
+        <description>Monthly Bottle (L)</description>
+        <externalId>false</externalId>
+        <label>Monthly Bottle (L)</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Sponsor_APAC__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Sponsor</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Per_Bottle_Rebate_CHN__c</fullName>
+        <description>Per Bottle Rebate (H)</description>
+        <externalId>false</externalId>
+        <label>Per Bottle Rebate (H)</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Per_Bottle_Rebate_L__c</fullName>
+        <description>Per Bottle Rebate(L)</description>
+        <externalId>false</externalId>
+        <label>Per Bottle Rebate(L)</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Per_Bottle_VDS__c</fullName>
+        <externalId>false</externalId>
+        <label>Per Bottle VDS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Plan_Bottle_Quantity__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Plan Bottle Quantity</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product2</referenceTo>
+        <relationshipLabel>Promotion Goals</relationshipLabel>
+        <relationshipName>Promotion_Goals</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Promotion__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Promotion</label>
+        <referenceTo>Promotion__c</referenceTo>
+        <relationshipLabel>Promotion Goals</relationshipLabel>
+        <relationshipName>Promotion_Goals</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackHistory>true</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Sale_Price_Per_Bottle__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Sale Price Per Bottle</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TTL_Vol_Target__c</fullName>
+        <description>TTL Vol Target</description>
+        <externalId>false</externalId>
+        <label>TTL Vol Target</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VDS_TTL_AP__c</fullName>
+        <description>VDS TTL A&amp;P</description>
+        <externalId>false</externalId>
+        <label>VDS TTL A&amp;P</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <label>Promotion Goal</label>
+    <nameField>
+        <displayFormat>PG-{YYYY}{000000}</displayFormat>
+        <label>Promotion Goal#</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Promotion Goals</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Agreement</fullName>
+        <active>true</active>
+        <description>Agreement</description>
+        <label>Agreement</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Locked</fullName>
+        <active>true</active>
+        <description>Locked - For Approved Promotions</description>
+        <label>Locked</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Locked_Agreement</fullName>
+        <active>true</active>
+        <description>Locked Agreement</description>
+        <label>Locked Agreement</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Sales_Promotion</fullName>
+        <active>true</active>
+        <description>Sales Promotion</description>
+        <label>Sales Promotion</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Locked_Agreement</fullName>
+        <active>false</active>
+        <description>Validation Rules to prevent the end users from creating new Promotion Goal&apos;s after the Promotion was &quot;Approved&quot;)</description>
+        <errorConditionFormula>And ( Locked__c  = 1, $Profile.Id  &lt;&gt; &quot;00e300000019nDA&quot;)</errorConditionFormula>
+        <errorMessage>Promotion Goals - Locked!!
+(Reason: Promotion already Approved)</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Add_New_Product</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Add New Product</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/promotionProductSelection?ID={!Promotion__c.Id}&amp;type=promotiongoal&amp;retURL=/{!Promotion__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Back_to_Promotion</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Back to Promotion</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>https://na1.salesforce.com/{!Promotion__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/promotionProductSelection?ID={!Promotion__c.Id}&amp;type=promotiongoal&amp;retURL=/{!Promotion__c.Id}</url>
+    </webLinks>
+</CustomObject>

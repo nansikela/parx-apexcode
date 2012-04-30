@@ -1,0 +1,2754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AccountNumber__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account.AccountNumber</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AccountNumber</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Additional_Information__c</fullName>
+        <description>FDC-GD</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Additional Information</inlineHelpText>
+        <label>Additional Information</label>
+        <length>32000</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(isblank( Birth_Year__c ),&quot;&quot;,TEXT(YEAR(TODAY())- VALUE(  Birth_Year__c  )))</formula>
+        <label>Age</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Birth_Year__c</fullName>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <label>Birth Year</label>
+        <length>4</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact_Type__c</fullName>
+        <description>FDC-GD: Used to evaluate and classify GD contact type</description>
+        <externalId>false</externalId>
+        <formula>CASE(RecordTypeId ,&quot;012S00000000Ta7&quot;, &quot;B-F Contact&quot;,
+&quot;012S00000000Ta8&quot;, &quot;Distributor Contact&quot;,&quot;NA&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Data_Quality_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Email ), 0,1) +
+IF(ISBLANK(Fax ), 0,1) +
+IF(ISBLANK(Phone ), 0,1) +
+IF(ISBLANK(MobilePhone ), 0,1) +
+IF(ISBLANK(Title ), 0,1)+
+IF(ISBLANK( LastName),0,1)+
+IF(ISBLANK( Birthdate  ), 0,1)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Data Quality Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Department__c</fullName>
+        <description>FDC-GD</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select Department</inlineHelpText>
+        <label>Department</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Accounting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Information Technology</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>International Accounting</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Logistics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing – Sales Off Premise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing Services</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Payroll</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Extension__c</fullName>
+        <description>FDC-GD</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Extension</inlineHelpText>
+        <label>Extension</label>
+        <length>6</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FN__Find_Nearby__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( FN__Mapping_Status__c , &apos;Located&apos;), HYPERLINK( &quot;apex/FN__FindNearbymap?cid=&quot; &amp; Id,&quot;Map it!&quot;,&quot;_parent&quot;) , HYPERLINK( &quot;apex/FN__CGeoCode?id=&quot; &amp; Id,&quot;Locate Contact&quot;,&quot;_parent&quot;) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Contact Find Nearby</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FN__Lat__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Contact Lat</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FN__Lon__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Contact Lon</label>
+        <precision>7</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FN__Mapping_Address__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Contact&apos;s Mapping Address</inlineHelpText>
+        <label>Contact Mapping Address</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Mailing</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>FN__Mapping_Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Contact&apos;s Mapping Status.</inlineHelpText>
+        <label>Contact Mapping Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bad Google Key</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Gender__c</fullName>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <label>Gender</label>
+        <picklist>
+            <picklistValues>
+                <fullName>M</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>F</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Group__c</fullName>
+        <description>FDC-GD</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select Group</inlineHelpText>
+        <label>Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Americas</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Asia Pacific</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Duty Free Americas</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EAE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global Marketing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WEA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Is_Board_Member__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <label>Is Board Member?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Family__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate if the Contact is also a member of the controlling family</inlineHelpText>
+        <label>Is Family?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Fridge_Contact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Fridge Contact</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Independent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate if the Contact is independent</inlineHelpText>
+        <label>Is Independent?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Management__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate if contact works in a management position</inlineHelpText>
+        <label>Is Management?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Other_Non_Independent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Other Non-Independent?</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>KAM_supervising_OPL__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>If the customer /contact is identified and marked  as a person who acts as Opinion leader and has impact on our business than this field stores information about responsible Key Account Manager from BF...</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select the Name of responsible Key Account Manager!</inlineHelpText>
+        <label>KAM supervising OPL</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Contacts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Languages__c</fullName>
+        <description>FDC-GD</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select Languages</inlineHelpText>
+        <label>Languages</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Arabic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bulgarian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Catalan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Czech</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Danish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dutch</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>English</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Estonian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finnish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>French</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>German</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Greek</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hungarian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Polish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Portuguese</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Romanian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Russian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Serbo-Croat</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slovak</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slovene</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Swedish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkish</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>LeadSource</fullName>
+        <picklist>
+            <picklistValues>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Code</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Full_Name__c</fullName>
+        <description>FDC-PLFC Db</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is used for reference to source data only</inlineHelpText>
+        <label>Legacy Full Name</label>
+        <length>150</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Legacy ID</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Middle_Name__c</fullName>
+        <description>FDC - PLFC Database</description>
+        <externalId>false</externalId>
+        <label>Middle Name</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Nickname__c</fullName>
+        <description>Nickname</description>
+        <externalId>false</externalId>
+        <label>Nickname</label>
+        <length>64</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Office__c</fullName>
+        <description>FDC-GD</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select Office</inlineHelpText>
+        <label>Office</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Australia Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brazil Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B-F Czech &amp; Slovak republics (Dist)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B-F Polska</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Caribbean &amp; DF – Vista</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>China Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dubai Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finlandia Vodka Worldwide Ltd.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>France Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Germany Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Greece Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hong Kong Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hungary Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy Office – Rome</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japan Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korea Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>London Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Louisville Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Miami Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Zealand Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Panama Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Prague Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Really Good Brands (Distributor)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Singapore Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spain Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thailand Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey Office</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Preferred_Contact_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Preferred Contact Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Phone</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Primary_Contact__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Primary Contact</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Suffix__c</fullName>
+        <externalId>false</externalId>
+        <label>Suffix</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tenure__c</fullName>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <formula>IF(isblank(   Year_Joined_Board__c   ),&quot;&quot;,TEXT(YEAR(TODAY())-  VALUE(Year_Joined_Board__c ) ))</formula>
+        <label>Tenure</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Territories__c</fullName>
+        <description>FDC-GD</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Territories</inlineHelpText>
+        <label>Territories</label>
+        <length>32000</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <picklist>
+            <picklistValues>
+                <fullName>AL Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AL GAM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AL Spirit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disponent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>INH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ML</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  AL Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  AL Spirit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  BL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  Disponent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  GL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv. HL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  MD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  ML</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  TL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>stellv.  VL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Substitut</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Venue__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Venue</label>
+        <referenceTo>Venue__c</referenceTo>
+        <relationshipLabel>Contacts</relationshipLabel>
+        <relationshipName>Contacts</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Year_Joined_Board__c</fullName>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <label>Year Joined Board</label>
+        <length>4</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <listViews>
+        <fullName>AllContacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>Legacy_ID__c</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Contacts</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All_Distributor_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.GD_DistributorContact</value>
+        </filters>
+        <label>All Distributor Contacts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>FDC-GD Managers</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>BirthdaysThisMonth</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.BIRTHDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.BIRTHDATE</field>
+            <operation>equals</operation>
+            <value>THIS_MONTH</value>
+        </filters>
+        <label>Birthdays This Month</label>
+    </listViews>
+    <listViews>
+        <fullName>China_Contact</fullName>
+        <columns>CONTACT.ADDRESS2_COUNTRY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.ADDRESS2_STATE</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.ADDRESS2_COUNTRY</field>
+            <operation>contains</operation>
+            <value>中国</value>
+        </filters>
+        <label>China Contact</label>
+        <language>zh_CN</language>
+        <sharedTo>
+            <group>CHN-All Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>NewThisWeek</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>New This Week</label>
+    </listViews>
+    <listViews>
+        <fullName>PLFC_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>Is_Board_Member__c</columns>
+        <columns>Age__c</columns>
+        <columns>Birth_Year__c</columns>
+        <columns>Year_Joined_Board__c</columns>
+        <columns>Tenure__c</columns>
+        <columns>Is_Family__c</columns>
+        <columns>Is_Independent__c</columns>
+        <columns>Is_Management__c</columns>
+        <columns>Is_Other_Non_Independent__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.PLFC_Contact</value>
+        </filters>
+        <label>PLFC Contacts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>FDC-PLFC Managers</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <namedFilters>
+        <fullName>nf_01I300000017Oj1EAE_00NQ0000000zqjtMAA</fullName>
+        <active>true</active>
+        <field>Promotion__c.Contact__c</field>
+        <filterItems>
+            <field>Contact.AccountId</field>
+            <operation>equals</operation>
+            <valueField>$Source.Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Promotion_Contact</name>
+        <sourceObject>Promotion__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PhxMAE_00NV0000000KoinMAC</fullName>
+        <active>true</active>
+        <field>Order__c.Contact__c</field>
+        <filterItems>
+            <field>Contact.AccountId</field>
+            <operation>equals</operation>
+            <valueField>$Source.Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Order_Contact</name>
+        <sourceObject>Order__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PoZMAU_00NV0000000LuGjMAK</fullName>
+        <active>true</active>
+        <field>Asset_Move__c.Contact__c</field>
+        <filterItems>
+            <field>Contact.AccountId</field>
+            <operation>equals</operation>
+            <valueField>$Source.New_Account__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Asset Move_Contact</name>
+        <sourceObject>Asset_Move__c</sourceObject>
+    </namedFilters>
+    <recordTypes>
+        <fullName>AUD_Contact_Roles</fullName>
+        <active>true</active>
+        <label>AUD - Contact Roles</label>
+        <picklistValues>
+            <picklist>Department__c</picklist>
+            <values>
+                <fullName>Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logistics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %E2%80%93 Sales Off Premise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Address__c</picklist>
+            <values>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mailing</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Status__c</picklist>
+            <values>
+                <fullName>Bad Google Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>F</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Americas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duty Free Americas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EAE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Languages__c</picklist>
+            <values>
+                <fullName>Arabic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Danish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dutch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finnish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greek</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Polish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portuguese</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romanian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbo-Croat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovak</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovene</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Swedish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkish</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Office__c</picklist>
+            <values>
+                <fullName>Australia Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B-F Czech %26 Slovak republics %28Dist%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B-F Polska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean %26 DF %E2%80%93 Vista</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dubai Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finlandia Vodka Worldwide Ltd%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy Office %E2%80%93 Rome</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Louisville Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prague Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Really Good Brands %28Distributor%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Title__c</picklist>
+            <values>
+                <fullName>AL Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AL GAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AL Spirit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disponent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ML</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Substitut</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  AL Food</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  AL Spirit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  BL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  Disponent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  GL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  MD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  ML</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  TL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E  VL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>stellv%2E HL</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>GD_DistributorContact</fullName>
+        <active>true</active>
+        <description>Used fwith Global Directory for Distributor Contacts</description>
+        <label>GD-DistributorContact</label>
+        <picklistValues>
+            <picklist>Department__c</picklist>
+            <values>
+                <fullName>Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logistics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %E2%80%93 Sales Off Premise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Address__c</picklist>
+            <values>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mailing</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Status__c</picklist>
+            <values>
+                <fullName>Bad Google Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Americas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duty Free Americas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EAE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Languages__c</picklist>
+            <values>
+                <fullName>Arabic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Danish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dutch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finnish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greek</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Polish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portuguese</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romanian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbo-Croat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovak</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovene</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Swedish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkish</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Office__c</picklist>
+            <values>
+                <fullName>Australia Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B-F Czech %26 Slovak republics %28Dist%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B-F Polska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean %26 DF %E2%80%93 Vista</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dubai Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finlandia Vodka Worldwide Ltd%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy Office %E2%80%93 Rome</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Louisville Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prague Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Really Good Brands %28Distributor%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>PLFC_Contact</fullName>
+        <active>true</active>
+        <description>Used for the PLFC database - officers and board members</description>
+        <label>PLFC-Contact</label>
+        <picklistValues>
+            <picklist>Department__c</picklist>
+            <values>
+                <fullName>Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administrative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information Technology</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>International Accounting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Logistics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Research</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %E2%80%93 Sales Off Premise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payroll</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Address__c</picklist>
+            <values>
+                <fullName>Do Not Map</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mailing</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FN__Mapping_Status__c</picklist>
+            <values>
+                <fullName>Bad Google Key</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Google Exhausted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Located</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Located Yet</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Problem with Address</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Gender__c</picklist>
+            <values>
+                <fullName>F</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Group__c</picklist>
+            <values>
+                <fullName>Americas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asia Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duty Free Americas</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EAE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GEA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Languages__c</picklist>
+            <values>
+                <fullName>Arabic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bulgarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Czech</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Danish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dutch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>English</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Estonian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finnish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>German</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greek</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungarian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japanese</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Latin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Polish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Portuguese</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romanian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Russian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Serbo-Croat</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovak</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Slovene</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spanish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Swedish</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkish</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>LeadSource</picklist>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Employee Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>External Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Relations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Internal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Seminar - Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Word of mouth</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Name</picklist>
+            <values>
+                <fullName>Dr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mr%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mrs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ms%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prof%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Office__c</picklist>
+            <values>
+                <fullName>Australia Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B-F Czech %26 Slovak republics %28Dist%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B-F Polska</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Brazil Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canada Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caribbean %26 DF %E2%80%93 Vista</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>China Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dubai Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finlandia Vodka Worldwide Ltd%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>France Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Germany Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Greece Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hong Kong Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hungary Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>India Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italy Office %E2%80%93 Rome</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japan Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korea Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>London Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Louisville Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mexico Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miami Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Panama Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Philippines Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prague Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Really Good Brands %28Distributor%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Singapore Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Spain Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Taiwan Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thailand Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Turkey Office</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ukraine</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <webLinks>
+        <fullName>FN__Map_Contacts</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Map Contacts</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)}
+var selecteditems={!GETRECORDIDS($ObjectType.Account)}; 
+window.location= &quot;/apex/FN__FindNearbymap?clids=&quot;+selecteditems;</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://maps.google.com/maps?f=q&amp;hl=en&amp;q={!Contact_MailingStreet}+{!Contact_MailingCity}+{!Contact_MailingState}&amp;om=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>GoogleSearch</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Google Search</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.google.com/search?q={!Contact_FirstName} {!Contact_LastName}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>SendGmail</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Send Gmail</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://mail.google.com/mail?view=cm&amp;tf=0&amp;to={!Contact_Email}&lt;{!Contact_LastName}, {!Contact_FirstName}&gt;&amp;tf=1</url>
+    </webLinks>
+    <webLinks>
+        <fullName>TIMBASURVEYS__Send_Survey_Contact_Detail</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send Survey</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.location = &quot;apex/timbasurveys__collectionhub?cIds={!URLENCODE(Contact.Id)}&amp;retURL=&quot; + encodeURIComponent(window.location);</url>
+    </webLinks>
+    <webLinks>
+        <fullName>TIMBASURVEYS__send_survey</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Send Survey</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)}
+
+var currentlocation_re = (window.location.pathname).toString() ;
+var records = {!GETRECORDIDS( $ObjectType.Contact )};
+
+if(records.length &gt; 0 ){
+if(currentlocation_re.indexOf(&apos;apex&apos;) &gt; -1){
+if(window.parent != null ){
+if(window.parent.records !=undefined){
+window.parent.records=records;
+} 
+}
+} else {
+if(records.length &lt;= 50){
+if(window.parent != null ) {
+if(window.parent.records !=undefined){
+window.parent.records=records;
+} else
+window.location = &quot;/apex/timbasurveys__collectionhub?cIds={!URLENCODE(Contact.Id)}&amp;retURL=&quot; + encodeURIComponent(window.location);
+}
+} else {
+alert(&apos;Only 50 invitations can be sent from standard Contact list&apos;);
+}
+}
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>WeatherdotCom</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Weather</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://www.weather.com/weather/today/{!Contact.MailingPostalCode}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>YahooMaps</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>true</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>true</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Yahoo! Maps</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>true</showsLocation>
+        <showsStatus>true</showsStatus>
+        <url>http://maps.yahoo.com/py/maps.py?cn={!Contact_MailingCountry}&amp;csz={!Contact_MailingCity}+{!Contact_MailingState}+{!Contact_MailingPostalCode}+&amp;addr={!Contact_MailingAddress}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>YahooWeather</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Yahoo! Weather</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>http://weather.yahoo.com/search/weather2?p={!Contact_MailingPostalCode}</url>
+    </webLinks>
+</CustomObject>

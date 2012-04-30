@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>FDC-Art Collection Database
+Created: 10/25/2010 - Mike Shroyer</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Appraised_Value__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <label>Appraised Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Art_Location__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Location where the Asset is stored</inlineHelpText>
+        <label>Art Location</label>
+        <referenceTo>Art_Location__c</referenceTo>
+        <relationshipLabel>Art Assets</relationshipLabel>
+        <relationshipName>Art_Assets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Artist__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the Artist that created the asset.</inlineHelpText>
+        <label>Artist</label>
+        <referenceTo>Artist__c</referenceTo>
+        <relationshipLabel>Art Assets</relationshipLabel>
+        <relationshipName>Art_Assets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Asset_Type__c</fullName>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <label>Asset Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Art</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Archives</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>BF_Number__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Legacy ID sometimes used for searches</inlineHelpText>
+        <label>B-F Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>B_F_Location__c</fullName>
+        <description>Location Field Used for Sorting</description>
+        <externalId>false</externalId>
+        <formula>Art_Location__r.Name &amp; &quot; - &quot; &amp; Floor__c  &amp;  &quot; - &quot; &amp; Office__c</formula>
+        <inlineHelpText>Location Field Used for Sorting</inlineHelpText>
+        <label>B-F Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Condition_Description__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <label>Condition Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Condition__c</fullName>
+        <externalId>false</externalId>
+        <label>Condition</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Excellent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Good</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Destroyed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Copyright__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <label>Copyright</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cost__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Purchase price</inlineHelpText>
+        <label>Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Depth_in__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Optional - Depth in inches, do not include quotes &quot;</inlineHelpText>
+        <label>Depth (in)</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Fixed_Asset_Number__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Managed by Accounting, this field is used for tracking assets</inlineHelpText>
+        <label>Fixed Asset Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Floor__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the floor where the art asset is located</inlineHelpText>
+        <label>Floor</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Framed__c</fullName>
+        <externalId>false</externalId>
+        <label>Framed</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Gallery__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Gallery that the asset was purchased from</inlineHelpText>
+        <label>Gallery</label>
+        <referenceTo>Gallery__c</referenceTo>
+        <relationshipLabel>Art Assets</relationshipLabel>
+        <relationshipName>Art_Assets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Height_in__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Height in inches, do not include quotes &quot;</inlineHelpText>
+        <label>Height (in)</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Insured_Value__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <label>Insured Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>LegacyID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>FDC-Art Collection DB</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Used to reference original record in source file</inlineHelpText>
+        <label>LegacyID</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Size__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>original text to indicate size</inlineHelpText>
+        <label>Legacy Size</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Medium_Description__c</fullName>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter details about all mediums used to create this art asset</inlineHelpText>
+        <label>Medium Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Office__c</fullName>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the office/room where the art asset is stored.</inlineHelpText>
+        <label>Office</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Primary_Medium__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used for reporting, enter the primary medium used to create this asset</inlineHelpText>
+        <label>Primary Medium</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Acrylic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ceramic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Charcoal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fabric</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gouache</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ink</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lithograph</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pastel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pencil</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Photograph</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Watercolor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Purchased_From_Details__c</fullName>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Temporary field used to build the Purchased From Gallery or Artist values.</inlineHelpText>
+        <label>Purchased From Details</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Purchased_From__c</fullName>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate whether this was purchased from an artist or a gallery</inlineHelpText>
+        <label>Purchased From</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Artist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gallery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Purchased_From_f__c</fullName>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL( Purchased_From__c,&quot;Artist&quot;) ,  Artist__r.First_Name__c &amp;&quot; &quot;&amp; Artist__r.Last_Name__c ,  Gallery__r.Name )</formula>
+        <inlineHelpText>Displays the Artist or Gallery Name</inlineHelpText>
+        <label>Purchased From (f)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Size_f__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <formula>IF(Height_in__c=&quot;&quot;,&quot;&quot;,IF( Depth_in__c = &quot;&quot;,Height_in__c  &amp;&quot;&apos;&apos; x &quot;&amp; Width_in__c&amp;&quot;&apos;&apos;&quot;,Height_in__c&amp;&quot;&apos;&apos; x &quot;&amp; Width_in__c&amp;&quot;&apos;&apos; x &quot;&amp;  Depth_in__c&amp;&quot;&apos;&apos;&quot; ))</formula>
+        <inlineHelpText>Calculates the size based on Width, Height and Depth entered.</inlineHelpText>
+        <label>Size (f)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Width_in__c</fullName>
+        <description>FDC-Art Collection Database</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Width in inches, do not include quotes &quot;</inlineHelpText>
+        <label>Width (in)</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Year__c</fullName>
+        <description>FDC-Art Collection</description>
+        <externalId>false</externalId>
+        <label>Year</label>
+        <length>4</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Art Asset</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Artist__c</columns>
+        <columns>Gallery__c</columns>
+        <columns>Art_Location__c</columns>
+        <columns>B_F_Location__c</columns>
+        <columns>Cost__c</columns>
+        <columns>Year__c</columns>
+        <columns>BF_Number__c</columns>
+        <columns>Fixed_Asset_Number__c</columns>
+        <columns>Primary_Medium__c</columns>
+        <columns>Medium_Description__c</columns>
+        <columns>Condition_Description__c</columns>
+        <columns>Description__c</columns>
+        <columns>Purchased_From_Details__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Missing_Fixed_Asset_Number</fullName>
+        <columns>NAME</columns>
+        <columns>Art_Location__c</columns>
+        <columns>Cost__c</columns>
+        <columns>Fixed_Asset_Number__c</columns>
+        <columns>Primary_Medium__c</columns>
+        <columns>Medium_Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Fixed_Asset_Number__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Cost__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>USD 500</value>
+        </filters>
+        <label>Missing Fixed Asset Number</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Art Asset Title</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Art Assets</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Artist__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Art_Location__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Gallery__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Year__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Cost__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>BF_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Fixed_Asset_Number__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Artist__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Gallery__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Art_Location__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Year__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>BF_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Fixed_Asset_Number__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Artist__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Gallery__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Year__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Art_Location__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>BF_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Fixed_Asset_Number__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Artist__c</searchFilterFields>
+        <searchFilterFields>Art_Location__c</searchFilterFields>
+        <searchFilterFields>Asset_Type__c</searchFilterFields>
+        <searchFilterFields>BF_Number__c</searchFilterFields>
+        <searchFilterFields>Condition_Description__c</searchFilterFields>
+        <searchFilterFields>Description__c</searchFilterFields>
+        <searchFilterFields>Fixed_Asset_Number__c</searchFilterFields>
+        <searchFilterFields>Gallery__c</searchFilterFields>
+        <searchFilterFields>Medium_Description__c</searchFilterFields>
+        <searchResultsAdditionalFields>Artist__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Gallery__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Year__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Art_Location__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>BF_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Fixed_Asset_Number__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>Select_Gallery_if_Purchased_From_a_Galle</fullName>
+        <active>false</active>
+        <description>User must select a gallery if they enter that the art asset was purchased from a gallery.</description>
+        <errorConditionFormula>AND( ISPICKVAL(Purchased_From__c,&quot;Gallery&quot;) , Gallery__c =NULL)</errorConditionFormula>
+        <errorDisplayField>Gallery__c</errorDisplayField>
+        <errorMessage>If you select the Purchased From value of &quot;Gallery&quot;, you must enter a Gallery.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Print_PDF</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Print PDF</masterLabel>
+        <openType>newWindow</openType>
+        <page>artPDF</page>
+        <position>fullScreen</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+    </webLinks>
+</CustomObject>

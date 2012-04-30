@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used in conjunction with Degree Declaration and Course Details objects to make up Tuition Reimbursement Application</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the amount of other tuition assistance you receive.</inlineHelpText>
+        <label>Amount</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Close_and_Lock__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Once checked the FinalApprovalStatus is set to Closed. The validation rule then prevents any edits to the user fields.</description>
+        <externalId>false</externalId>
+        <label>Close and Lock</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Current_Approver__c</fullName>
+        <externalId>false</externalId>
+        <label>Approved/Rejected By</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Degree_Declaration__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Select Degree Declaration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select Degree Declaration</inlineHelpText>
+        <label>Degree Declaration</label>
+        <referenceTo>Degree_Declaration__c</referenceTo>
+        <relationshipLabel>Tuition Refund</relationshipLabel>
+        <relationshipName>Tuition_Reimbursement</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Employee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Degree_Declaration__r.Employee_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Employee Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FinalApprovalStatus__c</fullName>
+        <externalId>false</externalId>
+        <label>FinalApprovalStatus</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>First_course_in_the_degree_program__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this your first course in the degree program?</inlineHelpText>
+        <label>First course in the degree program?</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Four_4__c</fullName>
+        <defaultValue>&quot;Is this coursework part of a program of study which will lead to qualifying you for a new trade or business?  (Generally the IRS has ruled that MBA programs do not qualify individuals for a new trade or business.)&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>4.</label>
+        <length>1000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>HR_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>HR Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Tuition_Refund1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Have_you_changed_majors__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Have you changed majors since last attending school</inlineHelpText>
+        <label>Have you changed majors?</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Have_you_changed_positions__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Have you changed positions since last attending school?</inlineHelpText>
+        <label>Have you changed positions?</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IRS_Rules__c</fullName>
+        <defaultValue>&quot;If questions 1 and/or 2 are answered &apos;yes&apos; and both questions 3 and 4 are answered &apos;no&apos;, the reimbursement of these educational expenses will not be subject to payroll tax withholding.&quot; &amp; BR() &amp; BR() &amp; &quot;IRS rules permit the deduction of educational expense only if the coursework is needed to maintain or improve current job skills, or to retain current employment relationships, status or rate of compensation.  The IRS does not permit the deduction of educational expenses to meet the minimum educational requirements for qualifications in the current job or in a new position or trade.  Please complete each of the following questions.&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>IRS Rules</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Instructions__c</fullName>
+        <defaultValue>&quot;Enter Tuition Refund Details and save &gt;&gt; Enter Course Detail(s) and save &gt;&gt; Submit for Approval.&quot; &amp; BR() &amp; 
+&quot;On completion of your semester, Upload Invoice(s) and Grades(s). Go to the Google Notes and Attachments section &gt;&gt; Click on Attach File to upload. &gt;&gt; Check the Invoice(s) and Grades(s) Attached checkbox on the Tuition Refund form when done.&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Instructions</label>
+        <length>20000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Invoice_s_Grades_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Scroll below to the Google Doc, Notes and Attachments section --&gt; Click on Attach File --&gt; Upload your Invoice(s) and Grades.</inlineHelpText>
+        <label>Invoice(s) / Grades Attached</label>
+        <trackHistory>true</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>LinkPrefix__c</fullName>
+        <externalId>false</externalId>
+        <label>LinkPrefix</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Major__c</fullName>
+        <description>Enter Major</description>
+        <externalId>false</externalId>
+        <formula>Degree_Declaration__r.Major__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Enter Major</inlineHelpText>
+        <label>Major</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Tuition_Refund2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Next_Approver__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Current_Approver__c = &quot;Submitted for Approval&quot;, Manager__r.FirstName &amp;&quot; &quot;&amp; Manager__r.LastName, IF(AND(Current_Approver__c = Manager__r.FirstName &amp;&quot; &quot;&amp; Manager__r.LastName , ProgramAdminStatus__c = &quot;Rejected&quot;),&quot;Rejected&quot;,
+IF(AND(Current_Approver__c = Manager__r.FirstName &amp;&quot; &quot;&amp; Manager__r.LastName, ProgramAdminStatus__c &lt;&gt; &quot;Rejected&quot;),HR_Manager__r.FirstName &amp;&quot; &quot;&amp; HR_Manager__r.LastName, 
+IF(AND(Current_Approver__c = HR_Manager__r.FirstName &amp;&quot; &quot;&amp; HR_Manager__r.LastName, ProgramAdminStatus__c = &quot;Rejected&quot;),Manager__r.FirstName &amp;&quot; &quot;&amp; Manager__r.LastName,
+IF(AND(Current_Approver__c = HR_Manager__r.FirstName &amp;&quot; &quot;&amp; HR_Manager__r.LastName, ProgramAdminStatus__c &lt;&gt; &quot;Rejected&quot;),Program_Admin_Name__c ,
+IF(AND(Current_Approver__c = Program_Admin_Name__c , ProgramAdminStatus__c = &quot;Rejected&quot;), HR_Manager__r.FirstName &amp;&quot; &quot;&amp; HR_Manager__r.LastName,
+IF(ProgramAdminStatus__c = &quot;Closed&quot;, &quot;Approvals Completed&quot; ,
+ &quot;Not Submitted for Approval&quot;)))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Next Approver</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Courses__c</fullName>
+        <description>Roll-up summary field used within the workflow to determine if the user has created atleast one course detail record</description>
+        <externalId>false</externalId>
+        <label>Number of Courses</label>
+        <summaryForeignKey>Course_Details__c.Tuition_Refund__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>One_1__c</fullName>
+        <defaultValue>&quot;Is this coursework required by your employer or by law to maintain your current job?&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>1.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ProgramAdminStatus__c</fullName>
+        <defaultValue>&quot;Open&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>ProgramAdminStatus</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Admin_Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is populated by the trigger beforeinsertupdateManagerNameforTuition_Refund</description>
+        <externalId>false</externalId>
+        <label>Program Admin Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Tuition_Refund</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Program_Admin_Name__c</fullName>
+        <description>This field is populated by the trigger beforeinsertUpdateManagerNameforTuition_Refund</description>
+        <externalId>false</externalId>
+        <label>Program Admin Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Required_to_maintain_current_position__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this coursework required by your employer to maintain your current position or required by law or regulation to maintain your current position?</inlineHelpText>
+        <label>Required to maintain current  position?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>School__c</fullName>
+        <externalId>false</externalId>
+        <formula>Degree_Declaration__r.School_To_Be_Attended__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>School</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source_of_other_tuition_assistance__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the source of other tuition assistance you receive. Enter none if you do not receive any other tuition assistance.</inlineHelpText>
+        <label>Source of other tuition assistance</label>
+        <length>255</length>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( CASE( ProgramAdminStatus__c , 
+&quot;Open&quot;, &quot;/img/samples/light_red.gif&quot;, 
+&quot;Rejected&quot;, &quot;/img/samples/light_red.gif&quot;, 
+&quot;Closed&quot;, &quot;/img/samples/light_green.gif&quot;, &quot;/img/samples/light_yellow.gif&quot;),&quot;Status&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubmitforApproval__c</fullName>
+        <defaultValue>&quot;True&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>SubmitforApproval</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Taken_to_maintain_or_improve_skills__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this coursework taken to maintain or improve skills necessary to perform your current duties as an employee of Brown-Forman?</inlineHelpText>
+        <label>Taken to maintain or improve skills?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Taken_to_qualify_for_current_position__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this coursework taken to attain the minimum educational requirements to qualify for your current position?</inlineHelpText>
+        <label>Taken to qualify for current position?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Taken_to_qulaify_for_new_trade_business__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this coursework part of a program of study which will lead to qualifying you for a new trade or business?  (Generally the IRS has ruled that MBA programs do not qualify individuals for a new trade or business.)</inlineHelpText>
+        <label>Taken to qulaify for new trade/business?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Three_3__c</fullName>
+        <defaultValue>&quot;Is this coursework taken to attain the minimum educational requirements to qualify for your current job?&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>3.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Two_2__c</fullName>
+        <defaultValue>&quot;Is this coursework taken to maintain or improve skills required to perform your current duties as an employee of Brown-Forman?&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>2.</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <label>Tuition Refund</label>
+    <listViews>
+        <fullName>All_Approved</fullName>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School__c</columns>
+        <columns>Major__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <filters>
+            <field>Close_and_Lock__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>All Approved</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>FDC-Tuition Reimbursement Admins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Closed</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School__c</columns>
+        <columns>Major__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FinalApprovalStatus__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <label>All Closed</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>FDC-Tuition Reimbursement Admins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Open</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School__c</columns>
+        <columns>Major__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>All Open</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>FDC-Tuition Reimbursement Admins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Approved</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School__c</columns>
+        <columns>Major__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <label>My Approved</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School__c</columns>
+        <columns>Major__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>My Open</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Rejected</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School__c</columns>
+        <columns>Major__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>My Rejected</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Semester</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Tuition Refund</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <sharingReasons>
+        <fullName>Share_record_with_Manager_and_HR_Manager__c</fullName>
+        <label>Share record with Manager and HR Manager</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>PreventEdits_FinalApprovalStatusClosed</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(OR( ISCHANGED( Name),
+ISCHANGED(First_course_in_the_degree_program__c ),
+ISCHANGED(Have_you_changed_positions__c ),
+ISCHANGED(Manager__c ),
+ISCHANGED(Degree_Declaration__c ),
+ISCHANGED(Have_you_changed_majors__c ),
+ISCHANGED(Source_of_other_tuition_assistance__c ),
+ISCHANGED(Amount__c ),
+ISCHANGED(Required_to_maintain_current_position__c),
+ISCHANGED(Taken_to_maintain_or_improve_skills__c),
+ISCHANGED(Taken_to_qualify_for_current_position__c),
+ISCHANGED(Taken_to_qulaify_for_new_trade_business__c),
+ISCHANGED( Invoice_s_Grades_Attached__c)), 
+CONTAINS(FinalApprovalStatus__c, &quot;Closed&quot;), Close_and_Lock__c, NOT( ISNEW() ))</errorConditionFormula>
+        <errorMessage>This record is closed and cannot be edited.</errorMessage>
+    </validationRules>
+</CustomObject>

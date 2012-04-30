@@ -1,0 +1,104 @@
+<apex:page standardcontroller="Promotion__c" extensions="promotionProductSelection_Controller">
+
+    <apex:actionstatus id="status" startText="Requesting...">
+           <apex:facet name="start">
+               <c:INFW_ProgressInformation Message="{!$Label.INFW_Processing}" Width="104px" Height="470px"/>
+           </apex:facet>
+           <apex:facet name="stop">
+           </apex:facet>
+    </apex:actionstatus>    
+    <apex:outputpanel id="messages">
+        <apex:pageMessages id="mymessages"/> 
+    </apex:outputpanel>
+    
+    <apex:outputpanel >
+        <apex:actionRegion > 
+        <apex:form id="myForm">
+
+                <apex:outputpanel >
+                                  
+                      <apex:pageBlock id="pbProds" title="{!$ObjectType.Product__c.labelplural}" >            
+                      <apex:pageBlockButtons location="top">
+                             <!--  apex:commandButton action="{!addProducts}" rerender="mymessages,pbProds" status="status" value="{!$Label.PromotionPage_AddProductButtonLabel}"/>-->
+                             <input class="btn" name="inputClose" onclick="javascript: window.parent.location = '{!$CurrentPage.parameters.retURL}';" value="{!$Label.OutletVisitPage_CancelButtonLabel}" type="button" />                                         
+                      </apex:pageBlockButtons>      
+
+
+                          <apex:outputpanel layout="block" styleclass="filtercontainer">
+                          <apex:pageBlockSection columns="3" >
+                                     <!-- apex:pageBlockSectionItem id="cRecordType" >
+                                         <apex:outputLabel value="{!$ObjectType.Product__c.fields.RecordTypeId.label}" for="RecordType"/>
+                                             <apex:selectList value="{!RecordTypeValue}"  size="1" id="RecordType" >
+                                             <apex:selectOptions value="{!RecordTypeList}"/>
+                                         </apex:selectList>                            
+                                     </apex:pageBlockSectionItem>-->   
+                                     <apex:pageBlockSectionItem id="cBFBrand" >
+                                         <apex:outputLabel value="{!$ObjectType.Brand__c.labelplural}" for="BFBrand"/>
+                                             <apex:selectList value="{!BFBrandValue}"  size="1" id="BFBrand" >
+                                             <apex:selectOptions value="{!BFBrandsList}"/>
+                                         </apex:selectList>                            
+                                     </apex:pageBlockSectionItem>    
+                                 <apex:pageBlockSectionItem id="cProdNameText" >
+                                     <apex:outputLabel value="{!$Label.PromotionPage_SearchLabel}" for="ProdNameText"/>
+                                     <apex:inputtext value="{!ProductNameTextValue}" size="30" id="ProdNameText" />                            
+                                 </apex:pageBlockSectionItem>                                           
+                                  <apex:pageBlockSectionItem >        
+                                        <apex:commandButton action="{!filterAction}" style="width:125px;" status="status" rerender="selProducts" value="{!$Label.OutletVisitPage_FilterButtonLabel}" />
+                                  </apex:pageBlockSectionItem>                                                            
+                            </apex:pageBlockSection> 
+                            <!-- <apex:pageBlockSection columns="4" >
+                                 <apex:pageBlockSectionItem id="cProdNameText" >
+                                     <apex:outputLabel value="{!$ObjectType.Product__c.fields.Name.label}" for="ProdNameText"/>
+                                      
+                                     <apex:inputtext value="{!ProductNameTextValue}" size="10" id="ProdNameText" />                            
+                                 </apex:pageBlockSectionItem>   
+                                 <apex:pageBlockSectionItem id="cProdCodeText" >
+                                     <apex:outputLabel value="{!$ObjectType.Product__c.fields.ProductCode.label}" for="ProdCodeText"/>
+                                 
+                                     
+                                     <apex:inputtext value="{!ProductCodeTextValue}" size="10" id="ProdCodeText" />                            
+                                 </apex:pageBlockSectionItem>   
+                                 <apex:pageBlockSectionItem id="cBrandNameText" >
+                                     <apex:outputLabel value="{!$ObjectType.Brand__c.fields.Name.label}" for="BrandNameText"/>
+                                     <apex:inputtext value="{!bfBrandTextValue}" size="10" id="BrandNameText" />                            
+                                 </apex:pageBlockSectionItem>                   
+                                 <apex:pageBlockSectionItem id="cDescText" >
+                                     <apex:outputLabel value="{!$ObjectType.Product__c.fields.Description.label}" for="DescText"/>
+                                     <apex:inputtext value="{!DescriptionTextValue}" size="10" id="DescText" />                            
+                                 </apex:pageBlockSectionItem>                                                                                                            
+ 
+                            </apex:pageBlockSection>    -->                                 
+                        </apex:outputpanel>         
+ 
+                        <apex:outputpanel id="selProducts" layout="block" styleclass="prodcontainer" >                
+                            <apex:pageBlockTable id="prodSelectionTable" value="{!ProdSelection}" var="p" columns="4" >                    
+                               <apex:column style="width:100px">
+                                <apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+                                <apex:outputLink rendered="{!pageType=='promotiongoal'}" value="/a0D/e?RecordType={!MyId}&CF00N300000084WlC_lkid={!p.Id}&CF00N300000084WlC={!p.Name}&CF00N30000005GiCPlk_id={!Promotion__c.Id}&CF00N30000005GiCP={!Promotion__c.Name}&retURL={!Promotion__c.Id}">{!p.Name}</apex:outputLink>
+                                <apex:outputLink rendered="{!pageType!='promotiongoal'}" value="{!URLFOR($Action.Promotion_Result__c.New,null, [retURL=Promotion__c.Id], true)}?CF00N300000084WlF_lkid={!p.Id}&CF00N300000084WlF={!p.Name}&CF00N30000005Gh7Plk_id={!Promotion__c.Id}&CF00N30000005Gh7P={!Promotion__c.Name}">{!p.Name}</apex:outputLink>        
+                              </apex:column>                                
+                              <apex:column style="width:50px">
+                               <apex:facet name="header">{!$ObjectType.Product__c.fields.ProductCode__c.label}</apex:facet>
+                                <apex:outputfield style="width:50px" value="{!p.ProductCode__c}"/>
+                              </apex:column>    
+                              <apex:column style="width:50px">
+                               <apex:facet name="header">{!$ObjectType.Product__c.fields.Brand__c.label}</apex:facet>
+                                <apex:outputfield style="width:55px" value="{!p.Brand__r.Name}"/>
+                              </apex:column>    
+                              <apex:column style="width:50px">
+                               <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Unit_Cost__c.label}</apex:facet>
+                                <apex:outputfield style="width:55px" value="{!p.Unit_Cost__c}"/>
+                              </apex:column>                    
+                            </apex:pageBlockTable>
+                            
+                            
+                            
+                        </apex:outputpanel>
+                    </apex:pageBlock>   
+
+                </apex:outputpanel>                     
+
+        </apex:form>
+        </apex:actionRegion>
+    </apex:outputpanel>                    
+</apex:page>

@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used within the Tuition Reimbursement Application</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Acknowledgement__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( I_have_read_the_Repayment_Agreement__c = true,  &quot;Repayment Agreement Acknowledged by &quot; &amp; CreatedBy.FirstName &amp; &quot; &quot; &amp; CreatedBy.LastName &amp; &quot; on &quot; &amp;  TEXT(MONTH(DATEVALUE(CreatedDate))) &amp; &quot;/&quot; &amp; TEXT(DAY(DATEVALUE(CreatedDate))) &amp; &quot;/&quot; &amp; TEXT(YEAR(DATEVALUE(CreatedDate))), &quot; &quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Acknowledgement</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approximate_Completion_Date__c</fullName>
+        <description>Enter Approximate Completion Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Approximate Completion Date</inlineHelpText>
+        <label>Approximate Completion Date</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Current_Approver__c</fullName>
+        <externalId>false</externalId>
+        <label>Approved/Rejected By</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_Cost_Per_Credit_Hour__c</fullName>
+        <description>Enter Current Cost Per Credit Hour</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Current Cost Per Credit Hour (currency will default to USD)</inlineHelpText>
+        <label>Current Cost Per Credit Hour</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Degree_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Select Degree Type</inlineHelpText>
+        <label>Degree Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Undergraduate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Graduate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Disclaimer__c</fullName>
+        <defaultValue>&quot;This form is for U.S and Canada use only&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>&lt;font color=&quot;red&quot;&gt;Disclaimer:</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedBy.FirstName &amp;&quot; &quot; &amp; CreatedBy.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Employee Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HR_Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Select HR Manager</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select HR Manager</inlineHelpText>
+        <label>HR Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Degree_Declaration1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>I_have_read_the_Repayment_Agreement__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>By Checking this box you acknowledge that you have read the Repayment Agreement</description>
+        <externalId>false</externalId>
+        <inlineHelpText>By Checking this box you acknowledge that you have read the Repayment Agreement</inlineHelpText>
+        <label>I have read the Repayment Agreement</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>LinkPrefix__c</fullName>
+        <externalId>false</externalId>
+        <label>LinkPrefix</label>
+        <length>200</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Major__c</fullName>
+        <description>Enter Major</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Major</inlineHelpText>
+        <label>Major</label>
+        <length>100</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manager__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Select Manager</inlineHelpText>
+        <label>Manager</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Degree_Declaration2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Next_Approver__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Current_Approver__c = &quot;Submitted for Approval&quot;, Manager__r.FirstName &amp;&quot; &quot;&amp; Manager__r.LastName, IF(AND(Current_Approver__c = Manager__r.FirstName &amp;&quot; &quot;&amp; Manager__r.LastName , ProgramAdminStatus__c = &quot;Rejected&quot;),&quot;Rejected&quot;,
+IF(AND(Current_Approver__c = Manager__r.FirstName &amp;&quot; &quot;&amp; Manager__r.LastName, ProgramAdminStatus__c &lt;&gt; &quot;Rejected&quot;),HR_Manager__r.FirstName &amp;&quot; &quot;&amp; HR_Manager__r.LastName, 
+IF(AND(Current_Approver__c = HR_Manager__r.FirstName &amp;&quot; &quot;&amp; HR_Manager__r.LastName, ProgramAdminStatus__c = &quot;Rejected&quot;),Manager__r.FirstName &amp;&quot; &quot;&amp; Manager__r.LastName,
+IF(AND(Current_Approver__c = HR_Manager__r.FirstName &amp;&quot; &quot;&amp; HR_Manager__r.LastName, ProgramAdminStatus__c &lt;&gt; &quot;Rejected&quot;),Program_Admin_Name__c ,
+IF(AND(Current_Approver__c = Program_Admin_Name__c , ProgramAdminStatus__c = &quot;Rejected&quot;), HR_Manager__r.FirstName &amp;&quot; &quot;&amp; HR_Manager__r.LastName,
+IF(ProgramAdminStatus__c = &quot;Closed&quot;, &quot;Approvals Completed&quot; ,
+ &quot;Not Submitted for Approval&quot;)))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Next Approver</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Credit_Hours_Required__c</fullName>
+        <description>Enter The Approximate Number Of Credit Hours Required To Complete This Degree</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter The Approximate Number Of Credit Hours Required To Complete This Degree</inlineHelpText>
+        <label>Number of Credit Hours Required</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProgramAdminStatus__c</fullName>
+        <defaultValue>&quot;Open&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>ProgramAdminStatus</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Admin_Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is populated by the trigger beforeinsertupdateManagerName</description>
+        <externalId>false</externalId>
+        <label>Program Admin Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Degree_Declaration</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Program_Admin_Name__c</fullName>
+        <description>This field is populated by the trigger beforeinsertUpdateManagerName</description>
+        <externalId>false</externalId>
+        <label>Program Admin Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reason_You_Wish_To_Pursue_This_Degree__c</fullName>
+        <description>Enter The Reason You Wish To Pursue This Degree</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter The Reason You Wish To Pursue This Degree</inlineHelpText>
+        <label>Reason You Wish To Pursue This Degree</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Repayment_Agreement__c</fullName>
+        <defaultValue>&quot;As an employee of Brown-Forman participating in the Tuition Reimbursement program, I understand that if I am enrolled in a post-graduate level degree program and I decide to terminate my employment with Brown-Forman within two (2) years of the final disbursement of funds by Brown-Forman for school related expenses, I agree to reimburse Brown-Forman for all expenses according to the following terms:&quot;
+&amp; BR()  &amp; BR() &amp; 
+&quot;SCHEDULE OF PAYMENT&quot; &amp; BR() &amp; BR() &amp;
+&quot;0-1	YEAR – 100% OF TOTAL EXPENSE PAID BY THE COMPANY&quot;
+&amp; BR()  &amp; BR() &amp;
+&quot;1-2 YEARS – 50% OF TOTAL EXPENSE PAID BY THE COMPANY&quot;
+&amp; BR()  &amp; BR() &amp;
+&quot;I further agree to permit Brown-Forman to offset any tuition reimbursement against salary and benefits payments due me at the time I decide to leave Brown-Forman.&quot;
+&amp; BR()  &amp; BR() &amp;
+&quot;I understand that the repayment agreement does not apply if I am enrolled in an undergraduate level degree program.&quot;
+&amp; BR()  &amp; BR() &amp;
+&quot;The terms of this agreement have been fully explained to me and I voluntarily accept the conditions of Brown-Forman’s payment of my tuition expenses.&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Repayment Agreement</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>School_Address__c</fullName>
+        <description>Enter School Address</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter School Address</inlineHelpText>
+        <label>School Address</label>
+        <length>100</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>School_To_Be_Attended__c</fullName>
+        <description>School To Be Attended</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter School To Be Attended</inlineHelpText>
+        <label>School To Be Attended</label>
+        <length>100</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <description>Enter Start Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Start Date</inlineHelpText>
+        <label>Start Date</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( CASE(  ProgramAdminStatus__c  ,
+&quot;Open&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;Rejected&quot;, &quot;/img/samples/light_red.gif&quot;,
+&quot;Closed&quot;, &quot;/img/samples/light_green.gif&quot;, &quot;/img/samples/light_yellow.gif&quot;),&quot;Status&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SubmitforApproval__c</fullName>
+        <defaultValue>&quot;True&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>SubmitforApproval</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Degree Declaration</label>
+    <listViews>
+        <fullName>All_Aproved</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School_To_Be_Attended__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Approximate_Completion_Date__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <label>All Approved</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>FDC-Tuition Reimbursement Admins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Open</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School_To_Be_Attended__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Approximate_Completion_Date__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>All Open</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>FDC-Tuition Reimbursement Admins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Rejected</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School_To_Be_Attended__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Approximate_Completion_Date__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>All Rejected</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>FDC-Tuition Reimbursement Admins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Approved</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School_To_Be_Attended__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Approximate_Completion_Date__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <label>My Approved</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Open</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School_To_Be_Attended__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Approximate_Completion_Date__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>notEqual</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>My Open</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_Rejected</fullName>
+        <columns>NAME</columns>
+        <columns>Employee_Name__c</columns>
+        <columns>School_To_Be_Attended__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>Approximate_Completion_Date__c</columns>
+        <columns>Current_Approver__c</columns>
+        <columns>Next_Approver__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ProgramAdminStatus__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </filters>
+        <label>My Rejected</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Degree</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01IV0000000Ckk4MAC_00NV0000000SfVQMA0</fullName>
+        <active>true</active>
+        <field>Tuition_Refund__c.Degree_Declaration__c</field>
+        <filterItems>
+            <field>Degree_Declaration__c.ProgramAdminStatus__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filterItems>
+        <filterItems>
+            <field>Degree_Declaration__c.OwnerId</field>
+            <operation>equals</operation>
+            <valueField>$Source.OwnerId</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Tuition Refund_Degree Declaration</name>
+        <sourceObject>Tuition_Refund__c</sourceObject>
+    </namedFilters>
+    <pluralLabel>Degree Declaration</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <sharingReasons>
+        <fullName>Share_record_with_Manager_and_HR_Manager__c</fullName>
+        <label>Share record with Manager and HR Manager</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>AcknowledgeRepaymentAgreement</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( I_have_read_the_Repayment_Agreement__c = false)</errorConditionFormula>
+        <errorDisplayField>I_have_read_the_Repayment_Agreement__c</errorDisplayField>
+        <errorMessage>Please read and acknowledge Repayment Agreement.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>IsHR_ManagerSameAsRequester</fullName>
+        <active>true</active>
+        <errorConditionFormula>HR_Manager__c=OwnerId</errorConditionFormula>
+        <errorDisplayField>HR_Manager__c</errorDisplayField>
+        <errorMessage>HR Manager cannot be same as Requester.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>IsManagerSameAsRequester</fullName>
+        <active>true</active>
+        <errorConditionFormula>Manager__c=OwnerId</errorConditionFormula>
+        <errorDisplayField>Manager__c</errorDisplayField>
+        <errorMessage>Manager cannot be same as Requester.</errorMessage>
+    </validationRules>
+</CustomObject>

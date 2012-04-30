@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DashboardFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>SAManage</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <role>FDC-Force.com Administrators</role>
+        <role>FDC-OneApp</role>
+        <role>Global Administrator</role>
+    </sharedTo>
+</DashboardFolder>
