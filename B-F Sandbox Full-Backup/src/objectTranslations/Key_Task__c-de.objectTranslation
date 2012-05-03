@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Key Task --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Key Task --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Key Task --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Key Task --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Key Task --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Key Task --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Key Task --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Key Task --></value>
+    </caseValues>
+    <fields>
+        <label>Kommentarfeld</label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label>vollständig</label>
+        <name>Complete__c</name>
+    </fields>
+    <fields>
+        <label>qualitativ</label>
+        <name>IsQualitative__c</name>
+    </fields>
+    <fields>
+        <label>quantitativ</label>
+        <name>IsQuantitative__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Task Template --></label>
+        <name>Key_Task_Template__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Treffen/Termin mit..</label>
+        <name>Met_With__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Besuch</label>
+        <name>Outlet_Visit__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Key Task Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Key Task Name --></nameFieldLabel>
+</CustomObjectTranslation>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <referenceTo>Market__c</referenceTo>
+        <relationshipLabel>Outlet Classes</relationshipLabel>
+        <relationshipName>Outlet_Classes</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Visit_Goal__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Monthly Visit Goal</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Outlet_Class_Description__c</fullName>
+        <description>Outlet Class Description</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <label>Outlet Class</label>
+    <listViews>
+        <fullName>India_Outlet_Class</fullName>
+        <columns>NAME</columns>
+        <columns>Monthly_Visit_Goal__c</columns>
+        <columns>Market__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <label>India - Outlet Class</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>INR-Brand Manager</role>
+            <role>INR-Finance Manager</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>INR-Sales Manager</role>
+            <role>INR-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Japan_Class</fullName>
+        <columns>Market__c</columns>
+        <columns>NAME</columns>
+        <columns>Monthly_Visit_Goal__c</columns>
+        <columns>CURRENCY_ISO_CODE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </filters>
+        <label>Japan Class</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Kor_Outlet_class</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>korea</value>
+        </filters>
+        <label>Kor Outlet class</label>
+        <language>ko</language>
+    </listViews>
+    <listViews>
+        <fullName>Thailand</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>Thailand</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>THI-Finance Manager</role>
+            <role>THI-Market Manager/Admin</role>
+            <role>THI-Sales Manager</role>
+            <role>THI-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Outlet Class Name</label>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>Account_00N30000005PvL2EAK</fullName>
+        <active>true</active>
+        <errorMessage>You may only select Class values for your market.</errorMessage>
+        <field>Account.Outlet_Class__c</field>
+        <filterItems>
+            <field>$Source.Market__c</field>
+            <operation>equals</operation>
+            <valueField>Outlet_Class__c.Market__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Account_Outlet Class</name>
+        <sourceObject>Account</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01I300000017yEWEAY_00N30000005PvLIEA0</fullName>
+        <active>true</active>
+        <errorMessage>You may only associate Key Task Templates to Classes in the same market.</errorMessage>
+        <field>Key_Task_Template__c.Outlet_Class__c</field>
+        <filterItems>
+            <field>$Source.Market__c</field>
+            <operation>equals</operation>
+            <valueField>Outlet_Class__c.Market__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Key Task Template_Outlet Class</name>
+        <sourceObject>Key_Task_Template__c</sourceObject>
+    </namedFilters>
+    <pluralLabel>Outlet Classes</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Outlet_Class_Description__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Outlet_Class_Description__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

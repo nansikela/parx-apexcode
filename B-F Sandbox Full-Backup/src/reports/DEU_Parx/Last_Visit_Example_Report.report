@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account$Owner</field>
+    </columns>
+    <columns>
+        <field>Account.Outlet_Visits__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Custom_Product__c</field>
+    </columns>
+    <columns>
+        <field>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Brand__c</field>
+    </columns>
+    <columns>
+        <field>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Facing__c</field>
+    </columns>
+    <columns>
+        <field>Account.Outlet_Visits__r$Last_Visit__c</field>
+    </columns>
+    <columns>
+        <field>Account.Outlet_Visits__r$Next_to_Last_Visit__c</field>
+    </columns>
+    <currency>EUR</currency>
+    <description>P00001 - Shows how Accounts and Visits could be selected</description>
+    <filter>
+        <booleanFilter>((1 OR 2) AND 3)</booleanFilter>
+        <criteriaItems>
+            <column>Account.Outlet_Visits__r$Last_Visit__c</column>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Outlet_Visits__r$Next_to_Last_Visit__c</column>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$RecordType</column>
+            <operator>equals</operator>
+            <value>Account.EUR_Outlets</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>P - Last Visit Example Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Account_Details_OuletVisit_Items__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>Account.Outlet_Visits__r$Name</sortColumn>
+    <sortOrder>Desc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Account.Outlet_Visits__r$Last_Visit_Date__c</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

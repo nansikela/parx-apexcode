@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A Test Case Step is the incremental actions that, when joined in sequence, make up a Test Case.</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Expected_Result__c</fullName>
+        <externalId>false</externalId>
+        <label>Expected Result</label>
+        <length>32000</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Step_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Step Description</label>
+        <length>32000</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Step_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Step Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Test_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Test Case</label>
+        <referenceTo>Test_Case__c</referenceTo>
+        <relationshipLabel>Test Case Steps</relationshipLabel>
+        <relationshipName>Test_Case_Steps_old</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <label>Test Case Step</label>
+    <nameField>
+        <displayFormat>TCS-{0000}</displayFormat>
+        <label>Test Case Steps Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test Case Steps</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Step_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Step_Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Expected_Result__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Test_Case__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Step_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Step_Description__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Expected_Result__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Test_Case__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Step_Number__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Step_Description__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Expected_Result__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Test_Case__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Step_Number__c</searchFilterFields>
+        <searchFilterFields>Test_Case__c</searchFilterFields>
+        <searchResultsAdditionalFields>Step_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Step_Description__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Expected_Result__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Test_Case__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

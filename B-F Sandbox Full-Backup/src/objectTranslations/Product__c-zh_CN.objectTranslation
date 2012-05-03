@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Product --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Bar Code --></label>
+        <name>Bar_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Code --></label>
+        <name>Brand_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Products (Brand) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Carton Qty --></label>
+        <name>Carton_Qty__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Multiplier --></label>
+        <name>Case_Multiplier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>00-Non-Taxable</masterLabel>
+            <translation><!-- 00-Non-Taxable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1015</masterLabel>
+            <translation><!-- 1015 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B0-Beer/Malt Based</masterLabel>
+            <translation><!-- B0-Beer/Malt Based --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT-In-Transit Material</masterLabel>
+            <translation><!-- IT-In-Transit Material --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S0</masterLabel>
+            <translation><!-- S0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S0-Spirits x&gt;24%</masterLabel>
+            <translation><!-- S0-Spirits x&gt;24% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S1-Spirits 10&lt;x&lt;=24%</masterLabel>
+            <translation><!-- S1-Spirits 10&lt;x&lt;=24% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S2</masterLabel>
+            <translation><!-- S2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S2-Spirits 6&lt;x&lt;=10%</masterLabel>
+            <translation><!-- S2-Spirits 6&lt;x&lt;=10% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S3-Spirits x=6%</masterLabel>
+            <translation><!-- S3-Spirits x=6% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S4-Spirits 2&lt;x&lt;6%</masterLabel>
+            <translation><!-- S4-Spirits 2&lt;x&lt;6% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>S5-Spirits x&lt;=2%</masterLabel>
+            <translation><!-- S5-Spirits x&lt;=2% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W0-Wines x&gt;24%</masterLabel>
+            <translation><!-- W0-Wines x&gt;24% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W1-Wines 21&lt;x&lt;=24%</masterLabel>
+            <translation><!-- W1-Wines 21&lt;x&lt;=24% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W2-Wines 16&lt;x&lt;=21%</masterLabel>
+            <translation><!-- W2-Wines 16&lt;x&lt;=21% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W3-Wines 14&lt;x&lt;=16%</masterLabel>
+            <translation><!-- W3-Wines 14&lt;x&lt;=16% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W4-Wines 7&lt;x&lt;=14%</masterLabel>
+            <translation><!-- W4-Wines 7&lt;x&lt;=14% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W5-Wines x&lt;=7%</masterLabel>
+            <translation><!-- W5-Wines x&lt;=7% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W6-Wines Art. Sparkling</masterLabel>
+            <translation><!-- W6-Wines Art. Sparkling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W7-Wines Nat. Sparkling</masterLabel>
+            <translation><!-- W7-Wines Nat. Sparkling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X0</masterLabel>
+            <translation><!-- X0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X0-Cognac</masterLabel>
+            <translation><!-- X0-Cognac --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X1-Gin</masterLabel>
+            <translation><!-- X1-Gin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X2</masterLabel>
+            <translation><!-- X2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X2-Liqueur</masterLabel>
+            <translation><!-- X2-Liqueur --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X3-Raki</masterLabel>
+            <translation><!-- X3-Raki --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X4-Rum</masterLabel>
+            <translation><!-- X4-Rum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X5-Tequila</masterLabel>
+            <translation><!-- X5-Tequila --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X6-Vodka</masterLabel>
+            <translation><!-- X6-Vodka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X7</masterLabel>
+            <translation><!-- X7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X7-Whiskey</masterLabel>
+            <translation><!-- X7-Whiskey --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X8-Champagne</masterLabel>
+            <translation><!-- X8-Champagne --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>X9-Pre-Mix</masterLabel>
+            <translation><!-- X9-Pre-Mix --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>XA-Wines</masterLabel>
+            <translation><!-- XA-Wines --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>Both</masterLabel>
+            <translation><!-- Both --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off</masterLabel>
+            <translation><!-- Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On</masterLabel>
+            <translation><!-- On --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Classification --></label>
+        <name>Classification__c</name>
+        <picklistValues>
+            <masterLabel>00 - Non-Alcoholic</masterLabel>
+            <translation><!-- 00 - Non-Alcoholic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>01 - Distilled Spirits</masterLabel>
+            <translation><!-- 01 - Distilled Spirits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02 - Wines &lt;=14%</masterLabel>
+            <translation><!-- 02 - Wines &lt;=14% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>03 - Wines 14 &lt; x &lt;= 21%</masterLabel>
+            <translation><!-- 03 - Wines 14 &lt; x &lt;= 21% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>04 - Wines 21 &lt; x &lt;= 24%</masterLabel>
+            <translation><!-- 04 - Wines 21 &lt; x &lt;= 24% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>05 - Wines x &gt; 24%</masterLabel>
+            <translation><!-- 05 - Wines x &gt; 24% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>06 - Wines (Artif Carb)</masterLabel>
+            <translation><!-- 06 - Wines (Artif Carb) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>07 - Wines (Sparkling)</masterLabel>
+            <translation><!-- 07 - Wines (Sparkling) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>08 - Beer/Malt Based</masterLabel>
+            <translation><!-- 08 - Beer/Malt Based --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>09 - Pre-Mix (BFA)</masterLabel>
+            <translation><!-- 09 - Pre-Mix (BFA) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT - In-Transit Material</masterLabel>
+            <translation><!-- IT - In-Transit Material --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRE-MIX</masterLabel>
+            <translation><!-- PRE-MIX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spirit</masterLabel>
+            <translation><!-- Spirit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wines</masterLabel>
+            <translation><!-- Wines --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Competes On (Brand) --></label>
+        <name>Competes_On_Brand__c</name>
+        <relationshipLabel><!-- Products (Competes On (Brand)) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Family --></label>
+        <name>Family__c</name>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPL Family --></label>
+        <name>IPL_Family__c</name>
+    </fields>
+    <fields>
+        <label><!-- Active --></label>
+        <name>IsActive__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Wombat Product --></label>
+        <name>Is_Wombat_Product__c</name>
+    </fields>
+    <fields>
+        <label><!-- Layer Per Pallet --></label>
+        <name>Layer_Per_Pallet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Layer Qty --></label>
+        <name>Layer_Qty__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Brand Code --></label>
+        <name>Legacy_Brand_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mark for Deletion --></label>
+        <name>Mark_for_Deletion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Name --></label>
+        <name>Market_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Products --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Material Type --></label>
+        <name>Material_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pack Quantity --></label>
+        <name>Pack_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pallet Quantity --></label>
+        <name>Pallet_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planned Cost --></label>
+        <name>Planned_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Material Group --></label>
+        <name>Price_Material_Group__c</name>
+        <relationshipLabel><!-- Products --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Price --></label>
+        <name>Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Ref Material --></label>
+        <name>Pricing_Reference_Material__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Code --></label>
+        <name>ProductCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Category --></label>
+        <name>Product_Category__c</name>
+        <picklistValues>
+            <masterLabel>BOURBON</masterLabel>
+            <translation><!-- BOURBON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BRANDY</masterLabel>
+            <translation><!-- BRANDY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHAMPAGNE</masterLabel>
+            <translation><!-- CHAMPAGNE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COGNAC</masterLabel>
+            <translation><!-- COGNAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GIN</masterLabel>
+            <translation><!-- GIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUEURS</masterLabel>
+            <translation><!-- LIQUEURS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MERCHANDISING</masterLabel>
+            <translation><!-- MERCHANDISING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTHERS</masterLabel>
+            <translation><!-- OTHERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OUZO</masterLabel>
+            <translation><!-- OUZO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRE-MIX</masterLabel>
+            <translation><!-- PRE-MIX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RUM</masterLabel>
+            <translation><!-- RUM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SPARKLING</masterLabel>
+            <translation><!-- SPARKLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SPIRITS</masterLabel>
+            <translation><!-- SPIRITS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TEQUILA</masterLabel>
+            <translation><!-- TEQUILA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TIA LUSSO</masterLabel>
+            <translation><!-- TIA LUSSO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VERMOUTH</masterLabel>
+            <translation><!-- VERMOUTH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VODKA</masterLabel>
+            <translation><!-- VODKA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WHISKY</masterLabel>
+            <translation><!-- WHISKY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WINE</masterLabel>
+            <translation><!-- WINE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Unique Key --></label>
+        <name>Product__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Material Number --></label>
+        <name>SAP_Material_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Org --></label>
+        <name>Sales_Org__c</name>
+        <picklistValues>
+            <masterLabel>1000</masterLabel>
+            <translation><!-- 1000 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This sort order will specify in which order products are listed in outlet visit screens. --></help>
+        <label><!-- Sort Order --></label>
+        <name>Sort_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Supplier --></label>
+        <name>Supplier__c</name>
+    </fields>
+    <fields>
+        <label><!-- UOM --></label>
+        <name>UOM__c</name>
+        <picklistValues>
+            <masterLabel>BAG - Bag</masterLabel>
+            <translation><!-- BAG - Bag --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAR - Carton</masterLabel>
+            <translation><!-- CAR - Carton --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DZ - Dozen</masterLabel>
+            <translation><!-- DZ - Dozen --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EA - Each</masterLabel>
+            <translation><!-- EA - Each --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KIT - Kit</masterLabel>
+            <translation><!-- KIT - Kit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PAA - Pair</masterLabel>
+            <translation><!-- PAA - Pair --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PAC	 - Pack</masterLabel>
+            <translation><!-- PAC	 - Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PAD - Pad</masterLabel>
+            <translation><!-- PAD - Pad --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PAK - Pack</masterLabel>
+            <translation><!-- PAK - Pack --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROL - Role</masterLabel>
+            <translation><!-- ROL - Role --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SET	 - Set</masterLabel>
+            <translation><!-- SET	 - Set --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHT - Sheet</masterLabel>
+            <translation><!-- SHT - Sheet --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unit/Actual Cost --></label>
+        <name>Unit_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit Size --></label>
+        <name>Unit_Size__c</name>
+    </fields>
+    <fields>
+        <help><!-- VAT for this product in this  market. Do not enter a value if VAT does not apply. --></help>
+        <label><!-- VAT --></label>
+        <name>VAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesale Price --></label>
+        <name>Wholesale_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Number --></label>
+        <name>Wholesaler_Number__c</name>
+    </fields>
+    <layouts>
+        <layout>Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Product NPA Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Product Name --></nameFieldLabel>
+    <recordTypes>
+        <label>促销推广活动</label>
+        <name>Dry_Goods</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- POS - US --></label>
+        <name>POS_US</name>
+    </recordTypes>
+    <recordTypes>
+        <label>百富门产品</label>
+        <name>Wet_Goods</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Mark_Delete --></label>
+        <name>Mark_Delete</name>
+    </webLinks>
+</CustomObjectTranslation>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- External Contact --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- External Contact --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- External Contact --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- External Contact --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- External Contact --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- External Contact --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- External Contact --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- External Contact --></value>
+    </caseValues>
+    <fields>
+        <help><!-- Select Account --></help>
+        <label>Account/Kunde</label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- External Contacts --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Select Contact --></help>
+        <label>Kontakt</label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- External Contacts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>E-Mail Adresse</label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label>Telefonnummer</label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Distributor</masterLabel>
+            <translation><!-- Distributor --></translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>External Contact Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- External Contact Name --></nameFieldLabel>
+</CustomObjectTranslation>

@@ -1,0 +1,2371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Budget__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Activity Budget</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Activity__c</fullName>
+        <description>AUD -  Promotion Type Picklist</description>
+        <externalId>false</externalId>
+        <label>Activity</label>
+        <picklist>
+            <controllingField>Promotion_Type__c</controllingField>
+            <picklistValues>
+                <fullName>Sales Promotion Activity</fullName>
+                <controllingFieldValues>Sales Promo</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Marketing Activity</fullName>
+                <controllingFieldValues>Sales Promo</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Agreements</fullName>
+                <controllingFieldValues>Agreement</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Begin_Date__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Begin Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipLabel>Promotion Activities</relationshipLabel>
+        <relationshipName>Promotion_Activities</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Budget_Cost_Center__c</fullName>
+        <description>Budget Cost Center - BFA Marketing Requirement</description>
+        <externalId>false</externalId>
+        <label>Budget Cost Center</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Channel__c</fullName>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>On</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Management_Group__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Management Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Coles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Woolworths</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IBA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LMG</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NLA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>State Managed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non Customer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Evaluation Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Evaluation_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Evaluation Rating</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Field_Resource__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Field Resource</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Group_by_Workflow__c</fullName>
+        <description>PARX - Jochen Schrader: Group Information has to be calculated by workflow because formula was too big</description>
+        <externalId>false</externalId>
+        <label>Group by Workflow</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Group_calculated__c</fullName>
+        <description>PARX - Jochen Schrader: P00013 To track Goals on Promotions</description>
+        <externalId>false</externalId>
+        <formula>Group_by_Workflow__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Infowelders</description>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <referenceTo>Market__c</referenceTo>
+        <relationshipLabel>Promotion Activities</relationshipLabel>
+        <relationshipName>Promotion_Activities</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Mechanics__c</fullName>
+        <externalId>false</externalId>
+        <label>Mechanics</label>
+        <picklist>
+            <controllingField>Sub_Type__c</controllingField>
+            <picklistValues>
+                <fullName>All Other Media</fullName>
+                <controllingFieldValues>Above The Line</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>AMP Brand Building</fullName>
+                <controllingFieldValues>BF Agreement</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BF Promo Partnership</fullName>
+                <controllingFieldValues>BF Agreement</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chilled Product Delivery</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cocktail List</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitor Trading</fullName>
+                <controllingFieldValues>Competitor Trading</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Diageo Trading Terms</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Drink Offer</fullName>
+                <controllingFieldValues>Staffed Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Drink Ware</fullName>
+                <controllingFieldValues>Self Run Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Educational</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Event</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>First Pour</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift on Product</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift With Purchase</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <controllingFieldValues>Self Run Promotion</controllingFieldValues>
+                <controllingFieldValues>Staffed Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Product Development</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Non Fridge Asset</fullName>
+                <controllingFieldValues>BF Agreement</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Premise RTD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Premise RTD Restriction</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OPAL</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Outdoor</fullName>
+                <controllingFieldValues>Above The Line</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Point Of Sale</fullName>
+                <controllingFieldValues>Self Run Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sampling</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <controllingFieldValues>Self Run Promotion</controllingFieldValues>
+                <controllingFieldValues>Staffed Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Secondary Location</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <controllingFieldValues>Self Run Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shared Prize</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <controllingFieldValues>Self Run Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Staff Only</fullName>
+                <controllingFieldValues>Staffed Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tailor Made</fullName>
+                <controllingFieldValues>Self Run Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Theatre</fullName>
+                <controllingFieldValues>Staffed Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Trade Press</fullName>
+                <controllingFieldValues>Below The Line</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Win In Store</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <controllingFieldValues>Win In Store Promotion</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Xmas Lines</fullName>
+                <controllingFieldValues>All Other SPAs</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>NSW__c</fullName>
+        <externalId>false</externalId>
+        <label>NSW</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Team__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Team</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CMD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Promotion_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Staffed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Win in Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gift with Purchase</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sampling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Educational</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Promotion_Code__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Promotion Code</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promotion_Goal__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>PARX - Jochen Schrader - P00013: Number of Promotions each Sales Rep should do with this Promotion Activity and the selected Subgroup. Groups are calculated automatically</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of Promotions each Sales Rep should do with this Promotion Activity and the selected Subgroup</inlineHelpText>
+        <label>Promotion Goal</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Promotion_Subtype__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Subtype</label>
+        <picklist>
+            <controllingField>Promotion_Type__c</controllingField>
+            <picklistValues>
+                <fullName>Cold box</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Drink Menu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Retail Sampling</fullName>
+                <controllingFieldValues>Sales Promo</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Staff Training</fullName>
+                <controllingFieldValues>Sales Promo</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Promotion_Type__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Promotion Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Agreement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Theme Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sales Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>QLD__c</fullName>
+        <externalId>false</externalId>
+        <label>QLD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SA_NT__c</fullName>
+        <externalId>false</externalId>
+        <label>SA &amp; NT</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Preliminary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Live</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Type__c</fullName>
+        <description>AUD - Promotion Activity Subtype</description>
+        <externalId>false</externalId>
+        <label>Sub Type</label>
+        <picklist>
+            <controllingField>Activity__c</controllingField>
+            <picklistValues>
+                <fullName>Above The Line</fullName>
+                <controllingFieldValues>Marketing Activity</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>All Other SPAs</fullName>
+                <controllingFieldValues>Sales Promotion Activity</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Below The Line</fullName>
+                <controllingFieldValues>Marketing Activity</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BF Agreement</fullName>
+                <controllingFieldValues>Agreements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Competitor Trading</fullName>
+                <controllingFieldValues>Agreements</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Self Run Promotion</fullName>
+                <controllingFieldValues>Sales Promotion Activity</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Staffed Promotion</fullName>
+                <controllingFieldValues>Sales Promotion Activity</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Win In Store Promotion</fullName>
+                <controllingFieldValues>Sales Promotion Activity</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Subgroup_Germany__c</fullName>
+        <description>PARX - Jochen Schrader - P00013: The subgroup the goal has to be achieved in.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The subgroup the goal has to be achieved in.</inlineHelpText>
+        <label>Subgroup</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Adult Entertainment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Agency/Vendor Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>American Res.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Authentic Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bar/Pub</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Basic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Beach Club</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Beer Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cabacra Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cafe/Deli</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Casino / Gambling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Casual Dining</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Casual Night Club / Roadhouse</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Caterer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chinese</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Coffee Shop</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Conventional Liquor Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Country Western</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CVS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Darts Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Day</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Depart</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dinning Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disco Club</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Discount Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Duty Free</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ethnic Res.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Event/ Live Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Event Location</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Family KTV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Family Res.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fine Dining</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>French Res</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Girls Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Golf / Country Club</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HeadOffice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hookah</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Host Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hostess Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel/ Resort</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hyper Market</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Independent Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Irish Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italian Res.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Izakaya Res.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japanese Club / KTV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japanese Restaurant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Karaoke</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kette</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Korean Restaurant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KTV</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Licensee Only Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Liquor Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Live Band Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Live Music Venue</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lodging / Hotel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lounge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lounge Club/ Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Luxus / Design</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Massage Salon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mediterranean</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Modern Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Neighbourhood Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Night</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nightclub</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Off</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pan Asian</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pocha</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pool Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Premium Lounge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Premium Night Club</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pub</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Room Salon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Saisonbetrieb</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Salon Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shot Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Snack/Lounge</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sousaku Dining</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sports Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SSM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Stadium / Arena / Theme Park</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sub Wholesaler</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supermarket</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tachinomiya/Barr</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Theme Res.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Western Bar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Western Restaurant</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>YACS Dance (Hip-hop)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yakiniku Res.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Target_Demographic__c</fullName>
+        <externalId>false</externalId>
+        <label>Target Demographic</label>
+        <picklist>
+            <picklistValues>
+                <fullName>LDA-24</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>24-32</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>32-40</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Over 40</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Target_Depletion__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Target Depletion</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Target_Outlets__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Target Outlets</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Allocations__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Allocations</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Trade_Presenter__c</fullName>
+        <externalId>false</externalId>
+        <label>Trade Presenter</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>VIC_TAS__c</fullName>
+        <externalId>false</externalId>
+        <label>VIC &amp; TAS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WA__c</fullName>
+        <externalId>false</externalId>
+        <label>WA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wombat_Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>If &quot;True&quot; Bring this field into Wombat</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select to bring down to &apos;Wombat&apos;</inlineHelpText>
+        <label>Wombat Active</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <label>Promotion Activity</label>
+    <listViews>
+        <fullName>AUD_All_Activites_for_this_Market</fullName>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Market__c</columns>
+        <columns>Promotion_Code__c</columns>
+        <columns>Promotion_Type__c</columns>
+        <columns>Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Australia</value>
+        </filters>
+        <label>AUD - All Activites for this Market</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Promotion_Type__c</columns>
+        <columns>Brand__c</columns>
+        <columns>NAME</columns>
+        <columns>Begin_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Promotion_Code__c</columns>
+        <columns>Target_Depletion__c</columns>
+        <columns>Target_Outlets__c</columns>
+        <columns>Activity_Budget__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Active__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>APAC KJ / Admin</role>
+            <role>APAC MD / Admin</role>
+            <role>APAC SE / Admin</role>
+            <role>CAD-Market Manager/Admin</role>
+            <role>CHN-Market Manager/Admin</role>
+            <role>DEU-Market Manager/Admin</role>
+            <role>Global Administrator</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>JPN-Market Manager/Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Canada_Promo_Activities</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Promotion_Type__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Begin_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>contains</operation>
+            <value>Canada</value>
+        </filters>
+        <label>Canada - Promo Activities</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>CAD-Bus Dev East(BF)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Bus Dev West(BF)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Market Manager/Admin</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Marketing Director</roleAndSubordinates>
+            <roleAndSubordinates>CAD-National Level (BF)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-National Level (Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Manager Alberta(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Manager BC(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Manager Ontario(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Manager Quebec(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Rep Alberta(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Rep BC(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Rep Manitoba(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Rep Ontario(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Rep Quebec(Hive)</roleAndSubordinates>
+            <roleAndSubordinates>CAD-Sales Rep Saskatchewan(Hive)</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Chn_All_Activities_for_this_Market</fullName>
+        <columns>NAME</columns>
+        <columns>Description__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Promotion_Type__c</columns>
+        <columns>Begin_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Active__c</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Market__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>China</value>
+        </filters>
+        <label>China - All Activities for this Market</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>CHN-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>DEU_All_Activities_for_this_Market</fullName>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Promotion_Type__c</columns>
+        <columns>Promotion_Code__c</columns>
+        <columns>Active__c</columns>
+        <columns>Target_Outlets__c</columns>
+        <columns>Target_Depletion__c</columns>
+        <columns>Begin_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Germany</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>DEU - All Activities for this Market</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>DEU-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>India_Promotions</fullName>
+        <columns>Market__c</columns>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Promotion_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>India Promotions</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>INR-Brand Manager</role>
+            <role>INR-Finance Manager</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>INR-Sales Manager</role>
+            <role>INR-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>JPN_All_Activities_for_this_Market</fullName>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Promotion_Type__c</columns>
+        <columns>Promotion_Code__c</columns>
+        <columns>Active__c</columns>
+        <columns>Target_Outlets__c</columns>
+        <columns>Target_Depletion__c</columns>
+        <columns>Begin_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <label>JPN - All Activities for this Market</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>JPN-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>JPN_All_Activities_for_this_Market2</fullName>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Promotion_Type__c</columns>
+        <columns>Promotion_Code__c</columns>
+        <columns>Active__c</columns>
+        <columns>Target_Outlets__c</columns>
+        <columns>Target_Depletion__c</columns>
+        <columns>Begin_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>JPN - All Activities for this Market2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>JPN-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Thailand_Promotions</fullName>
+        <columns>NAME</columns>
+        <columns>Active__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Begin_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Market__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </filters>
+        <label>Thailand Promotions</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>THI-Finance Manager</role>
+            <role>THI-Market Manager/Admin</role>
+            <role>THI-Sales Manager</role>
+            <role>THI-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Twn_All_Activities_for_this_Market</fullName>
+        <columns>Market__c</columns>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Promotion_Type__c</columns>
+        <columns>Promotion_Code__c</columns>
+        <columns>Begin_Date__c</columns>
+        <columns>End_Date__c</columns>
+        <columns>Description__c</columns>
+        <columns>Active__c</columns>
+        <columns>OBJECT_ID</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </filters>
+        <filters>
+            <field>Active__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Taiwan - All Activities for this Market</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>TWN-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Promotion Activity Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01I300000017Oj1EAE_00N30000005GhY6EAK</fullName>
+        <active>true</active>
+        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+        <field>Promotion__c.Promotion_Activity__c</field>
+        <filterItems>
+            <field>Promotion_Activity__c.Market__r.Name</field>
+            <operation>equals</operation>
+            <valueField>$User.Market__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>$User.Market__c</field>
+            <operation>equals</operation>
+            <value>ALL</value>
+        </filterItems>
+        <filterItems>
+            <field>Promotion_Activity__c.Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <infoMessage>Displaying only Active Promotion Activities in your Market</infoMessage>
+        <isOptional>true</isOptional>
+        <name>Promotion_Promotion Activity</name>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01I300000017Oj1EAE_00NQ0000000zsHSMAY</fullName>
+        <active>true</active>
+        <booleanFilter>(1 AND 2 AND 3 AND 6) OR (4 AND 5 AND 2 AND 6)</booleanFilter>
+        <field>Promotion__c.Promotion_Activity_AUD__c</field>
+        <filterItems>
+            <field>Promotion_Activity__c.Promotion_Type__c</field>
+            <operation>equals</operation>
+            <value>Agreement</value>
+        </filterItems>
+        <filterItems>
+            <field>Promotion_Activity__c.Wombat_Active__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Agreement</value>
+        </filterItems>
+        <filterItems>
+            <field>Promotion_Activity__c.Promotion_Type__c</field>
+            <operation>equals</operation>
+            <value>Sales Promo</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Sales Promotion</value>
+        </filterItems>
+        <filterItems>
+            <field>$Source.AUD_Channel__c</field>
+            <operation>equals</operation>
+            <valueField>Promotion_Activity__c.Channel__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Promotion_Promotion Activity</name>
+        <sourceObject>Promotion__c</sourceObject>
+    </namedFilters>
+    <pluralLabel>Promotion Activities</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Promotion_Layout</fullName>
+        <active>true</active>
+        <description>Standard Promotion Layout</description>
+        <label>Promotion Layout</label>
+        <picklistValues>
+            <picklist>Activity__c</picklist>
+            <values>
+                <fullName>Agreements</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing Activity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Promotion Activity</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Channel__c</picklist>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Customer_Management_Group__c</picklist>
+            <values>
+                <fullName>Coles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IBA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LMG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NLA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>State Managed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Woolworths</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Evaluation_Rating__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Mechanics__c</picklist>
+            <values>
+                <fullName>AMP Brand Building</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All Other Media</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BF Promo Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chilled Product Delivery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocktail List</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Diageo Trading Terms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Offer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Ware</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Educational</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>First Pour</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift With Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift on Product</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Product Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Fridge Asset</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OPAL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Premise RTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Premise RTD Restriction</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Outdoor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Point Of Sale</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sampling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Location</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shared Prize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staff Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tailor Made</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Theatre</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Press</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win In Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Xmas Lines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Project_Team__c</picklist>
+            <values>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CMD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Category__c</picklist>
+            <values>
+                <fullName>Educational</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Gift with Purchase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sampling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staffed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win in Store</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Subtype__c</picklist>
+            <values>
+                <fullName>Cold box</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drink Menu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retail Sampling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staff Training</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Type__c</picklist>
+            <values>
+                <fullName>Agreement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Local Promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Promo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Theme Promo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Preliminary</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Type__c</picklist>
+            <values>
+                <fullName>Above The Line</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>All Other SPAs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BF Agreement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Below The Line</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Competitor Trading</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self Run Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Staffed Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win In Store Promotion</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subgroup_Germany__c</picklist>
+            <values>
+                <fullName>Adult Entertainment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Agency%2FVendor Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>American Res%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Authentic Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bar%2FPub</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Basic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beach Club</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Beer Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CVS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cabacra Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cafe%2FDeli</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Casino %2F Gambling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Casual Dining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Casual Night Club %2F Roadhouse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Caterer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chinese</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Coffee Shop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conventional Liquor Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Country Western</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Darts Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Depart</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dinning Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disco</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disco Club</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discount Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duty Free</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ethnic Res%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event Location</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event%2F Live Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Family KTV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Family Res%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fine Dining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>French Res</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Girls Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Golf %2F Country Club</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HeadOffice</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hookah</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Host Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hostess Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotel Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotel%2F Resort</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hyper Market</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Independent Chain</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Indian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Irish Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Italian Res%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Izakaya Res%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japanese Club %2F KTV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Japanese Restaurant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KTV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Karaoke</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Kette</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Korean Restaurant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Licensee Only Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Liquor Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live Band Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Live Music Venue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lodging %2F Hotel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lounge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lounge Club%2F Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Luxus %2F Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Massage Salon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mediterranean</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Modern Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neighbourhood Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Night</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Nightclub</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Others</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pan Asian</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pocha</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pool Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Premium Lounge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Premium Night Club</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pub</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Restaurant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Room Salon</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SSM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saisonbetrieb</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Salon Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shot Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Snack%2FLounge</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sousaku Dining</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sports Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stadium %2F Arena %2F Theme Park</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sub Wholesaler</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supermarket</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tachinomiya%2FBarr</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Theme Res%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Western Bar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Western Restaurant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>YACS Dance %28Hip-hop%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yakiniku Res%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Target_Demographic__c</picklist>
+            <values>
+                <fullName>24-32</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>32-40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Female</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LDA-24</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Male</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Over 40</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Trade_Presenter__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Brand__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Market__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Promotion_Code__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Promotion_Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Active__c</customTabListAdditionalFields>
+        <listViewButtons>My_Gantt</listViewButtons>
+        <lookupDialogsAdditionalFields>Brand__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Market__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Promotion_Code__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Promotion_Type__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Active__c</searchFilterFields>
+        <searchFilterFields>Market__c</searchFilterFields>
+        <searchFilterFields>Promotion_Code__c</searchFilterFields>
+        <searchFilterFields>Promotion_Type__c</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <validationRules>
+        <fullName>Promotions_Not_To_Wombat</fullName>
+        <active>true</active>
+        <description>Promotions that cannot be assigned to wombat.</description>
+        <errorConditionFormula>ISPICKVAL(Activity__c , &apos;Marketing Activity&apos;)  || 
+ISPICKVAL(Sub_Type__c , &apos;All Other SPAs&apos;)
+&amp;&amp;  Wombat_Active__c  = TRUE</errorConditionFormula>
+        <errorDisplayField>Wombat_Active__c</errorDisplayField>
+        <errorMessage>This promotion is not valid to be assigned to Wombat.  Please uncheck and save again.</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>My_Gantt</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Promotion Activity Calendar</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/PromotionActivityGantt</url>
+    </webLinks>
+</CustomObject>

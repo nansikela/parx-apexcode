@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Promotion Activity --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Promotion Activity --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Promotion Activity --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Promotion Activity --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Promotion Activity --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Promotion Activity --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Promotion Activity --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Promotion Activity --></value>
+    </caseValues>
+    <fields>
+        <label>Aktiv [ja/nein]</label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label>Budget</label>
+        <name>Activity_Budget__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity --></label>
+        <name>Activity__c</name>
+        <picklistValues>
+            <masterLabel>Agreements</masterLabel>
+            <translation><!-- Agreements --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing Activity</masterLabel>
+            <translation><!-- Marketing Activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Promotion Activity</masterLabel>
+            <translation><!-- Sales Promotion Activity --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Start Datum</label>
+        <name>Begin_Date__c</name>
+    </fields>
+    <fields>
+        <label>Brand/Marke</label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Promotion Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Budget Cost Center --></label>
+        <name>Budget_Cost_Center__c</name>
+    </fields>
+    <fields>
+        <label>Vertriebskanal</label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>Off</masterLabel>
+            <translation><!-- Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On</masterLabel>
+            <translation><!-- On --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Management Group --></label>
+        <name>Customer_Management_Group__c</name>
+        <picklistValues>
+            <masterLabel>Coles</masterLabel>
+            <translation><!-- Coles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IBA</masterLabel>
+            <translation><!-- IBA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LMG</masterLabel>
+            <translation><!-- LMG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NLA</masterLabel>
+            <translation><!-- NLA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Customer</masterLabel>
+            <translation><!-- Non Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>State Managed</masterLabel>
+            <translation><!-- State Managed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Woolworths</masterLabel>
+            <translation><!-- Woolworths --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Beschreibung</label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label>Ende Datum</label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Evaluation Comments --></label>
+        <name>Evaluation_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Evaluation Rating --></label>
+        <name>Evaluation_Rating__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Field Resource --></label>
+        <name>Field_Resource__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group by Workflow --></label>
+        <name>Group_by_Workflow__c</name>
+    </fields>
+    <fields>
+        <label>Gruppierung</label>
+        <name>Group_calculated__c</name>
+    </fields>
+    <fields>
+        <label>Markt/territorium</label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Promotion Activities --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Mechanics --></label>
+        <name>Mechanics__c</name>
+        <picklistValues>
+            <masterLabel>AMP Brand Building</masterLabel>
+            <translation><!-- AMP Brand Building --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All Other Media</masterLabel>
+            <translation><!-- All Other Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BF Promo Partnership</masterLabel>
+            <translation><!-- BF Promo Partnership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chilled Product Delivery</masterLabel>
+            <translation><!-- Chilled Product Delivery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cocktail List</masterLabel>
+            <translation><!-- Cocktail List --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competitor Trading</masterLabel>
+            <translation><!-- Competitor Trading --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diageo Trading Terms</masterLabel>
+            <translation><!-- Diageo Trading Terms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drink Offer</masterLabel>
+            <translation><!-- Drink Offer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drink Ware</masterLabel>
+            <translation><!-- Drink Ware --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Educational</masterLabel>
+            <translation><!-- Educational --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Event</masterLabel>
+            <translation><!-- Event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>First Pour</masterLabel>
+            <translation><!-- First Pour --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gift With Purchase</masterLabel>
+            <translation><!-- Gift With Purchase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gift on Product</masterLabel>
+            <translation><!-- Gift on Product --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Product Development</masterLabel>
+            <translation><!-- New Product Development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non Fridge Asset</masterLabel>
+            <translation><!-- Non Fridge Asset --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OPAL</masterLabel>
+            <translation><!-- OPAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Premise RTD</masterLabel>
+            <translation><!-- On Premise RTD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Premise RTD Restriction</masterLabel>
+            <translation><!-- On Premise RTD Restriction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outdoor</masterLabel>
+            <translation><!-- Outdoor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Point Of Sale</masterLabel>
+            <translation><!-- Point Of Sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sampling</masterLabel>
+            <translation><!-- Sampling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Secondary Location</masterLabel>
+            <translation><!-- Secondary Location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shared Prize</masterLabel>
+            <translation><!-- Shared Prize --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staff Only</masterLabel>
+            <translation><!-- Staff Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tailor Made</masterLabel>
+            <translation><!-- Tailor Made --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Theatre</masterLabel>
+            <translation><!-- Theatre --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Press</masterLabel>
+            <translation><!-- Trade Press --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win In Store</masterLabel>
+            <translation><!-- Win In Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Xmas Lines</masterLabel>
+            <translation><!-- Xmas Lines --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- NSW --></label>
+        <name>NSW__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Team --></label>
+        <name>Project_Team__c</name>
+        <picklistValues>
+            <masterLabel>Brand</masterLabel>
+            <translation><!-- Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMD</masterLabel>
+            <translation><!-- CMD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales</masterLabel>
+            <translation><!-- Sales --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Promotion Category --></label>
+        <name>Promotion_Category__c</name>
+        <picklistValues>
+            <masterLabel>Educational</masterLabel>
+            <translation><!-- Educational --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gift with Purchase</masterLabel>
+            <translation><!-- Gift with Purchase --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sampling</masterLabel>
+            <translation><!-- Sampling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staffed</masterLabel>
+            <translation><!-- Staffed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win in Store</masterLabel>
+            <translation><!-- Win in Store --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Promotion Code</label>
+        <name>Promotion_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Number of Promotions each Sales Rep should do with this Promotion Activity and the selected Subgroup --></help>
+        <label>Ziel der Promotion</label>
+        <name>Promotion_Goal__c</name>
+    </fields>
+    <fields>
+        <label>Promotion - Untergruppierung</label>
+        <name>Promotion_Subtype__c</name>
+        <picklistValues>
+            <masterLabel>Cold box</masterLabel>
+            <translation><!-- Cold box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drink Menu</masterLabel>
+            <translation><!-- Drink Menu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retail Sampling</masterLabel>
+            <translation><!-- Retail Sampling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staff Training</masterLabel>
+            <translation><!-- Staff Training --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Art/Type  der Promotion</label>
+        <name>Promotion_Type__c</name>
+        <picklistValues>
+            <masterLabel>Agreement</masterLabel>
+            <translation><!-- Agreement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local Promo</masterLabel>
+            <translation><!-- Local Promo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Promo</masterLabel>
+            <translation><!-- Sales Promo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Theme Promo</masterLabel>
+            <translation><!-- Theme Promo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- QLD --></label>
+        <name>QLD__c</name>
+    </fields>
+    <fields>
+        <label><!-- SA &amp; NT --></label>
+        <name>SA_NT__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Live</masterLabel>
+            <translation><!-- Live --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preliminary</masterLabel>
+            <translation><!-- Preliminary --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sub Type --></label>
+        <name>Sub_Type__c</name>
+        <picklistValues>
+            <masterLabel>Above The Line</masterLabel>
+            <translation><!-- Above The Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All Other SPAs</masterLabel>
+            <translation><!-- All Other SPAs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BF Agreement</masterLabel>
+            <translation><!-- BF Agreement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Below The Line</masterLabel>
+            <translation><!-- Below The Line --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competitor Trading</masterLabel>
+            <translation><!-- Competitor Trading --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Self Run Promotion</masterLabel>
+            <translation><!-- Self Run Promotion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staffed Promotion</masterLabel>
+            <translation><!-- Staffed Promotion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win In Store Promotion</masterLabel>
+            <translation><!-- Win In Store Promotion --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The subgroup the goal has to be achieved in. --></help>
+        <label>Untergruppierung</label>
+        <name>Subgroup_Germany__c</name>
+        <picklistValues>
+            <masterLabel>Adult Entertainment</masterLabel>
+            <translation><!-- Adult Entertainment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agency/Vendor Store</masterLabel>
+            <translation><!-- Agency/Vendor Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>American Res.</masterLabel>
+            <translation><!-- American Res. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Authentic Bar</masterLabel>
+            <translation><!-- Authentic Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bar</masterLabel>
+            <translation><!-- Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bar/Pub</masterLabel>
+            <translation><!-- Bar/Pub --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Basic</masterLabel>
+            <translation><!-- Basic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Beach Club</masterLabel>
+            <translation><!-- Beach Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Beer Bar</masterLabel>
+            <translation><!-- Beer Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CVS</masterLabel>
+            <translation><!-- CVS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cabacra Bar</masterLabel>
+            <translation><!-- Cabacra Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cafe/Deli</masterLabel>
+            <translation><!-- Cafe/Deli --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Casino / Gambling</masterLabel>
+            <translation><!-- Casino / Gambling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Casual Dining</masterLabel>
+            <translation><!-- Casual Dining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Casual Night Club / Roadhouse</masterLabel>
+            <translation><!-- Casual Night Club / Roadhouse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Caterer</masterLabel>
+            <translation><!-- Caterer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chinese</masterLabel>
+            <translation><!-- Chinese --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coffee Shop</masterLabel>
+            <translation><!-- Coffee Shop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conventional Liquor Store</masterLabel>
+            <translation><!-- Conventional Liquor Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Country Western</masterLabel>
+            <translation><!-- Country Western --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Darts Bar</masterLabel>
+            <translation><!-- Darts Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Day</masterLabel>
+            <translation><!-- Day --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Depart</masterLabel>
+            <translation><!-- Depart --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dinning Bar</masterLabel>
+            <translation><!-- Dinning Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disco</masterLabel>
+            <translation><!-- Disco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disco Club</masterLabel>
+            <translation><!-- Disco Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Discount Store</masterLabel>
+            <translation><!-- Discount Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Duty Free</masterLabel>
+            <translation><!-- Duty Free --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ethnic Res.</masterLabel>
+            <translation><!-- Ethnic Res. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Event</masterLabel>
+            <translation><!-- Event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Event Location</masterLabel>
+            <translation><!-- Event Location --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Event/ Live Bar</masterLabel>
+            <translation><!-- Event/ Live Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Family KTV</masterLabel>
+            <translation><!-- Family KTV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Family Res.</masterLabel>
+            <translation><!-- Family Res. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fine Dining</masterLabel>
+            <translation><!-- Fine Dining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>French Res</masterLabel>
+            <translation><!-- French Res --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Girls Bar</masterLabel>
+            <translation><!-- Girls Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Golf / Country Club</masterLabel>
+            <translation><!-- Golf / Country Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HeadOffice</masterLabel>
+            <translation><!-- HeadOffice --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hookah</masterLabel>
+            <translation><!-- Hookah --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Host Bar</masterLabel>
+            <translation><!-- Host Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hostess Bar</masterLabel>
+            <translation><!-- Hostess Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel</masterLabel>
+            <translation><!-- Hotel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel Bar</masterLabel>
+            <translation><!-- Hotel Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel/ Resort</masterLabel>
+            <translation><!-- Hotel/ Resort --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyper Market</masterLabel>
+            <translation><!-- Hyper Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent Chain</masterLabel>
+            <translation><!-- Independent Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Indian</masterLabel>
+            <translation><!-- Indian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Irish Bar</masterLabel>
+            <translation><!-- Irish Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italian</masterLabel>
+            <translation><!-- Italian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Italian Res.</masterLabel>
+            <translation><!-- Italian Res. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Izakaya Res.</masterLabel>
+            <translation><!-- Izakaya Res. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japanese Club / KTV</masterLabel>
+            <translation><!-- Japanese Club / KTV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japanese Restaurant</masterLabel>
+            <translation><!-- Japanese Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KTV</masterLabel>
+            <translation><!-- KTV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Karaoke</masterLabel>
+            <translation><!-- Karaoke --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kette</masterLabel>
+            <translation><!-- Kette --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korean Restaurant</masterLabel>
+            <translation><!-- Korean Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Licensee Only Store</masterLabel>
+            <translation><!-- Licensee Only Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Liquor Store</masterLabel>
+            <translation><!-- Liquor Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Live Band Bar</masterLabel>
+            <translation><!-- Live Band Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Live Music Venue</masterLabel>
+            <translation><!-- Live Music Venue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lodging / Hotel</masterLabel>
+            <translation><!-- Lodging / Hotel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lounge</masterLabel>
+            <translation><!-- Lounge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lounge Club/ Bar</masterLabel>
+            <translation><!-- Lounge Club/ Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Luxus / Design</masterLabel>
+            <translation><!-- Luxus / Design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Massage Salon</masterLabel>
+            <translation><!-- Massage Salon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mediterranean</masterLabel>
+            <translation><!-- Mediterranean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Modern Bar</masterLabel>
+            <translation><!-- Modern Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Neighbourhood Bar</masterLabel>
+            <translation><!-- Neighbourhood Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Night</masterLabel>
+            <translation><!-- Night --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nightclub</masterLabel>
+            <translation><!-- Nightclub --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Bar</masterLabel>
+            <translation><!-- Other Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Off</masterLabel>
+            <translation><!-- Other Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others</masterLabel>
+            <translation><!-- Others --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pan Asian</masterLabel>
+            <translation><!-- Pan Asian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pocha</masterLabel>
+            <translation><!-- Pocha --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pool Bar</masterLabel>
+            <translation><!-- Pool Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Premium Lounge</masterLabel>
+            <translation><!-- Premium Lounge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Premium Night Club</masterLabel>
+            <translation><!-- Premium Night Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pub</masterLabel>
+            <translation><!-- Pub --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant</masterLabel>
+            <translation><!-- Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Room Salon</masterLabel>
+            <translation><!-- Room Salon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SSM</masterLabel>
+            <translation><!-- SSM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saisonbetrieb</masterLabel>
+            <translation><!-- Saisonbetrieb --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Salon Bar</masterLabel>
+            <translation><!-- Salon Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shot Bar</masterLabel>
+            <translation><!-- Shot Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Snack/Lounge</masterLabel>
+            <translation><!-- Snack/Lounge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sousaku Dining</masterLabel>
+            <translation><!-- Sousaku Dining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sports Bar</masterLabel>
+            <translation><!-- Sports Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stadium / Arena / Theme Park</masterLabel>
+            <translation><!-- Stadium / Arena / Theme Park --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sub Wholesaler</masterLabel>
+            <translation><!-- Sub Wholesaler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supermarket</masterLabel>
+            <translation><!-- Supermarket --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tachinomiya/Barr</masterLabel>
+            <translation><!-- Tachinomiya/Barr --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Theme Res.</masterLabel>
+            <translation><!-- Theme Res. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Western Bar</masterLabel>
+            <translation><!-- Western Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Western Restaurant</masterLabel>
+            <translation><!-- Western Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesalers</masterLabel>
+            <translation><!-- Wholesalers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YACS Dance (Hip-hop)</masterLabel>
+            <translation><!-- YACS Dance (Hip-hop) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yakiniku Res.</masterLabel>
+            <translation><!-- Yakiniku Res. --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Target Demographic --></label>
+        <name>Target_Demographic__c</name>
+        <picklistValues>
+            <masterLabel>24-32</masterLabel>
+            <translation><!-- 24-32 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32-40</masterLabel>
+            <translation><!-- 32-40 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Female</masterLabel>
+            <translation><!-- Female --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LDA-24</masterLabel>
+            <translation><!-- LDA-24 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Male</masterLabel>
+            <translation><!-- Male --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Over 40</masterLabel>
+            <translation><!-- Over 40 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Ziel [Menge]  Depletion</label>
+        <name>Target_Depletion__c</name>
+    </fields>
+    <fields>
+        <label>Ziel Outlet/Account/Kunden</label>
+        <name>Target_Outlets__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Allocations --></label>
+        <name>Total_Allocations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trade Presenter --></label>
+        <name>Trade_Presenter__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- VIC &amp; TAS --></label>
+        <name>VIC_TAS__c</name>
+    </fields>
+    <fields>
+        <label><!-- WA --></label>
+        <name>WA__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select to bring down to &apos;Wombat&apos; --></help>
+        <label><!-- Wombat Active --></label>
+        <name>Wombat_Active__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>AUD - Promotion Activity Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Goal --></label>
+            <section>Promotion Goal</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Management --></label>
+            <section>Promotion Management</section>
+        </sections>
+        <sections>
+            <label><!-- State Allocations --></label>
+            <section>State Allocations</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Promotion Activity Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Goal --></label>
+            <section>Promotion Goal</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Management --></label>
+            <section>Promotion Management</section>
+        </sections>
+        <sections>
+            <label><!-- State Allocations --></label>
+            <section>State Allocations</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Promotion Activity Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- Promotion Layout --></label>
+        <name>Promotion_Layout</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- This promotion is not valid to be assigned to Wombat.  Please uncheck and save again. --></errorMessage>
+        <name>Promotions_Not_To_Wombat</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- My_Gantt --></label>
+        <name>My_Gantt</name>
+    </webLinks>
+</CustomObjectTranslation>

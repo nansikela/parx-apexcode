@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Listing</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Listings</value>
+    </caseValues>
+    <fields>
+        <help><!-- Account Number from SAP --></help>
+        <label><!-- Account Number --></label>
+        <name>Account_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Party Responsible --></label>
+        <name>Party_Responsible__c</name>
+        <relationshipLabel><!-- Account Listings (Party Responsible) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reviewer --></label>
+        <name>Reviewer__c</name>
+        <relationshipLabel><!-- Account Listings (Reviewer) --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Reconciliation Accounts Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <workflowTasks>
+        <description><!-- This task is to notify the Reconciliation Admin role that new accounts have been loaded.  They then need to update the responsible party and reviewer fields. --></description>
+        <name>New_Account_Has_Been_Loaded</name>
+        <subject><!-- New Account Has Been Loaded --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

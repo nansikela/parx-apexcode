@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Denominator_for_conversion__c</fullName>
+        <description>UOM Conversion Denominator (From Vistex)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>UOM Conversion Denominator (From Vistex)</inlineHelpText>
+        <label>Denominator for conversion</label>
+        <length>20</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description_of_the_Material_Provided__c</fullName>
+        <description>Distributor&apos;s Material description (From Vistex)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Distributor&apos;s Material description (From Vistex)</inlineHelpText>
+        <label>Description of the Material Provided</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Material_Description__c</fullName>
+        <description>ECC Material Description (From Vistex via ECC)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>ECC Material Description (From Vistex via ECC)</inlineHelpText>
+        <label>Material Description</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Numerator_for_conversion__c</fullName>
+        <description>UOM Conversion Numerator (From Vistex)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>UOM Conversion Numerator (From Vistex)</inlineHelpText>
+        <label>Numerator for conversion</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Partner_Type__c</fullName>
+        <description>Distributor Partner type in ECC</description>
+        <externalId>false</externalId>
+        <label>Partner Type</label>
+        <length>2</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Wholesaler Products</relationshipLabel>
+        <relationshipName>Wholesaler_Products</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SAP_Material_Number__c</fullName>
+        <description>SAP Material Number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>SAP Material Number</inlineHelpText>
+        <label>SAP Material Number</label>
+        <length>18</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_of_Measure_Provided__c</fullName>
+        <description>UOM provided by Distributor (Coming in from Vistex)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>UOM provided by Distributor (Coming in from Vistex)</inlineHelpText>
+        <label>Unit of Measure Provided</label>
+        <length>6</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_of_measure_determined__c</fullName>
+        <description>Unit of measure determined (From Vistex)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Unit of measure determined (From Vistex)</inlineHelpText>
+        <label>Unit of measure determined</label>
+        <length>3</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Valid_From__c</fullName>
+        <description>Valid From (Feed From Vistex)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Valid From (Feed From Vistex)</inlineHelpText>
+        <label>Valid From</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Valid_To__c</fullName>
+        <description>Valid To (Feed From Vistex)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Valid To (Feed From Vistex)</inlineHelpText>
+        <label>Valid To</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Number__c</fullName>
+        <description>The ECC Wholesaler  Account Number - From the Wholesaler (Object)</description>
+        <externalId>false</externalId>
+        <formula>Wholesaler__r.SAP_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The ECC Wholesaler  Account Number - From the Wholesaler (Object)</inlineHelpText>
+        <label>Wholesaler Number</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Product_Number__c</fullName>
+        <externalId>true</externalId>
+        <label>Wholesaler Product Number</label>
+        <length>60</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler__c</fullName>
+        <description>This the Account Wholesaler &quot;Key&quot; number</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This the Account Wholesaler &quot;Key&quot; number</inlineHelpText>
+        <label>Wholesaler</label>
+        <referenceTo>Wholesaler__c</referenceTo>
+        <relationshipLabel>Wholesaler Product&apos;s</relationshipLabel>
+        <relationshipName>Wholesaler_Product_s</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Wholesaler Product</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Material_Description__c</columns>
+        <columns>SAP_Material_Number__c</columns>
+        <columns>Wholesaler__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Wholesaler Product Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Wholesaler Products</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Material_Description__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>SAP_Material_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Wholesaler__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

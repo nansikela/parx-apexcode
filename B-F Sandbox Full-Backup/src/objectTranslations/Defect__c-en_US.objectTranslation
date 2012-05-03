@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Defect</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Defects</value>
+    </caseValues>
+    <fields>
+        <label><!-- Age --></label>
+        <name>Age__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Work Package Name --></label>
+        <name>Application_Work_Package_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assigned to --></label>
+        <name>Assigned_to__c</name>
+        <relationshipLabel><!-- Defects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Bug Fix Environment Name --></label>
+        <name>Bug_Fix_Environment_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Closed Date --></label>
+        <name>Closed_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Defect_Status__c</name>
+        <picklistValues>
+            <masterLabel>Assigned for debugging</masterLabel>
+            <translation><!-- Assigned for debugging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Converted to Change Request</masterLabel>
+            <translation><!-- Converted to Change Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deployed</masterLabel>
+            <translation><!-- Deployed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fixed, ready for re-test</masterLabel>
+            <translation><!-- Fixed, ready for re-test --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Resolved</masterLabel>
+            <translation><!-- Not Resolved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not applicable</masterLabel>
+            <translation><!-- Not applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected, not an issue</masterLabel>
+            <translation><!-- Rejected, not an issue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected, standard Force.com feature</masterLabel>
+            <translation><!-- Rejected, standard Force.com feature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resolved, ready for deployment</masterLabel>
+            <translation><!-- Resolved, ready for deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under review</masterLabel>
+            <translation><!-- Under review --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the type of UAT feedback being entered. --></help>
+        <label><!-- Type --></label>
+        <name>Defect_Type__c</name>
+        <picklistValues>
+            <masterLabel>Defect</masterLabel>
+            <translation><!-- Defect --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enhancement</masterLabel>
+            <translation><!-- Enhancement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feedback</masterLabel>
+            <translation><!-- Feedback --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training</masterLabel>
+            <translation><!-- Training --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Detailed Description --></label>
+        <name>Detailed_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Impacted Object --></label>
+        <name>Impacted_Object__c</name>
+        <picklistValues>
+            <masterLabel>Accounts</masterLabel>
+            <translation><!-- Accounts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brands</masterLabel>
+            <translation><!-- Brands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contacts</masterLabel>
+            <translation><!-- Contacts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Orders</masterLabel>
+            <translation><!-- Internal Orders --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Master Data</masterLabel>
+            <translation><!-- Master Data --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Opportunities</masterLabel>
+            <translation><!-- Opportunities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Products</masterLabel>
+            <translation><!-- Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion Line Items</masterLabel>
+            <translation><!-- Promotion Line Items --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotions</masterLabel>
+            <translation><!-- Promotions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tasks/ Events</masterLabel>
+            <translation><!-- Tasks/ Events --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Open Date --></label>
+        <name>Open_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profile(s) Applicable --></label>
+        <name>Profile_s_Applicable__c</name>
+    </fields>
+    <fields>
+        <label><!-- Re-test Environment Name --></label>
+        <name>Re_test_Environment_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Application Work Package --></label>
+        <name>Related_Application_Work_Package__c</name>
+        <relationshipLabel><!-- Defects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Resolution --></label>
+        <name>Resolution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Severity --></label>
+        <name>Severity__c</name>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Please enter &lt;First Name&gt; &lt;Last Name&gt; without middle initial e.g. &quot;John Smith&quot;. Avoid just first or last names and nicknames --></help>
+        <label><!-- Submitted By --></label>
+        <name>Submitted_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Submitted Date --></label>
+        <name>Submitted_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summary --></label>
+        <name>Summary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test Case Step --></label>
+        <name>Test_Case_Step__c</name>
+        <relationshipLabel><!-- Defects --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Project Defect Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

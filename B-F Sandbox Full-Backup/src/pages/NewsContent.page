@@ -1,0 +1,36 @@
+<apex:page controller="displayNewsController" sidebar="false" showHeader="false">
+<link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.NewsFiles, '/styles/news.css')}"/>
+    <table style="width:95%;padding-left:10px;padding-top:10px;" class="" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="mruText" colspan="2">
+            <span style="font-weight:bold;" class="mruText">{!NewsPost.Name__c}</span>
+            <br/>
+            <apex:outputField value="{!NewsPost.Source__c}"/>
+            <br/>
+            <apex:outputField value="{!NewsPost.CreatedDate}"/>
+            
+            </td>
+        </tr>    
+            <tr>
+                <td style="width:75%">
+                <br/>{!NewsPost.Content__c}
+                <br/><apex:outputText escape="false" value="{!NewsPost.Body__c}"/>
+                </td> 
+                <td style="vertical-align:text-top;width:25%"><chatter:feed entityID="{!NewsPost.id}" /></td>
+            </tr>
+    </table>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26701751-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+	    
+</apex:page>

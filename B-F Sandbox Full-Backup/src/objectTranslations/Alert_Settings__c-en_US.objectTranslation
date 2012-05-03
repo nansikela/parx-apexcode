@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Alert Outlet Settings</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Alert Outlet Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Market RecordType --></label>
+        <name>Market_RecordType__c</name>
+    </fields>
+    <fields>
+        <label><!-- No Visit Dates in the Future --></label>
+        <name>No_Visit_Dates_in_the_Future__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

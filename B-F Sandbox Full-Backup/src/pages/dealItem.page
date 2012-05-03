@@ -1,0 +1,201 @@
+<apex:page standardController="Group_Promotions__c"
+    extensions="DealItem_Controller"
+    tabStyle="Group_Promotion_Item__c"
+    showHeader="true" sidebar="false">
+    
+    
+<style>
+.headerRow .numericStyle {
+    text-align: right;
+} 
+</style> 
+    
+    
+    <style>
+        .container{
+            overflow:auto;
+            height:250px;
+        }
+        .container1{
+            overflow:auto;
+            height:73px;
+        }       
+        .filtercontainer{
+            width:700px;
+        }
+        .prodcontainer{
+            overflow:auto;
+            height:250px;
+        }       
+    </style>  
+    
+<style type="text/css">
+div.dimmer 
+{
+    visibility: hidden;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    padding:5px;
+
+    
+    background-image:url({!URLFOR($Resource.INFW_Resources, 'loading-bg.png')});
+    /* ieWin only stuff */
+    _background-image:none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='{!URLFOR($Resource.INFW_Resources, 'loading-bg.png')}');
+}
+div.spinner
+{
+position:absolute;
+top:25%;
+left:25%;
+
+
+opacity:1.0;
+backgroundColor:#CCC;
+
+}
+</style>  
+
+   <script type="text/javascript">
+    window.onbeforeunload = askConfirm;
+    var myhelper='true';
+    function sethelper(){
+        if(myhelper){myhelper=null;}else{myhelper=true;}
+    }
+    function setConfirmSave(){
+        myhelper=null
+    }    
+    function askConfirm(){
+        if(myhelper==null){
+            return '{!$Label.PromotionPage_SaveConfirmation}';
+        }else{
+            myhelper=null;
+        }
+    }    
+        var previousOnload = window.onload;        
+    window.onload = function() { 
+        if (previousOnload) { 
+            previousOnload();
+        }else{
+        }
+    }
+    function showProdSelection(){
+        if(document.getElementById('myProdSelection').style.visibility == "visible")
+        {
+            document.getElementById('myProdSelection').style.visibility = "hidden";
+        }else{
+        document.getElementById('myProdSelection').style.visibility = "visible";
+        document.getElementById('myProdSelection').style.width = "100%";
+        document.getElementById('myProdSelection').style.height = "100%";
+         document.getElementById('{!$Component.myForm.pbProds.ProdNameText}').focus();
+        }
+    }    
+    </script>       
+   
+  <apex:actionstatus id="status" startText="Requesting...">
+           <apex:facet name="start">
+               <c:INFW_ProgressInformation Message="{!$Label.INFW_Processing}" Width="104px" Height="470px"/>
+           </apex:facet>
+           <apex:facet name="stop">
+           </apex:facet>
+  </apex:actionstatus>    
+  
+  <apex:outputpanel id="messages">
+        <apex:pageMessages id="mymessages"/> 
+ </apex:outputpanel>      
+ 
+ <apex:outputpanel >
+    <apex:actionRegion > 
+    <apex:form id="myForm">
+
+		<apex:pageBlock id="pbHeaderInfo" title="{!$ObjectType.Group_Promotions__c.label}">
+ 			<apex:pageBlockSection columns="2">
+ 				<apex:outputText label="{!$ObjectType.Group_Promotions__c.label}">
+ 					<apex:outputLink value="{!URLFOR($Action.Group_Promotions__c.View,myDeal.Id)}">{!myDeal.Name}</apex:outputLink>
+ 				</apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.Account.label}" rendered="{!myDeal.RecordTypeName__c='Outlet Deal'}">
+ 					<apex:outputLink value="{!URLFOR($Action.Account.View,myDeal.Account__c)}">{!myDeal.AccountName__c}</apex:outputLink>
+ 				</apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.Banner_Groups__c.label}" rendered="{!myDeal.RecordTypeName__c='Group Deal'}">
+ 					<apex:outputLink value="{!URLFOR($Action.Banner_Groups__c.View,myDeal.Banner_Group__c)}">{!myDeal.Banner_Group_Name__c}</apex:outputLink>
+ 				</apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.Group_Promotions__c.Fields.Buy_Period_Start_Date__c.label}" value="{0,date,MMM d, yyyy}">
+ 					<apex:param value="{!myDeal.Buy_Period_Start_Date__c}" />
+ 				</apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.Wholesaler__c.label}" rendered="{!myDeal.RecordTypeName__c='Group Deal'}">
+ 					<apex:outputLink value="{!URLFOR($Action.Wholesaler__c.View,myDeal.Wholesaler__c)}">{!myDeal.Wholesaler_Name__c}</apex:outputLink>
+ 				</apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.Wholesaler__c.label}" rendered="{!myDeal.RecordTypeName__c='Outlet Deal'}">
+ 					<apex:outputLink value="{!URLFOR($Action.Account_Wholesaler__c.View,myDeal.Account_Wholesaler__c)}">{!myDeal.Wholesaler_Name__c}</apex:outputLink>
+ 				</apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.RecordType.label}" value="{!myDeal.RecordTypeName__c}"></apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.Group_Promotions__c.Fields.Deal_Type__c.label}" rendered="{!myDeal.RecordTypeName__c='Group Deal'}">{!myDeal.Deal_Type__c}</apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.Group_Promotions__c.Fields.Deal_Method__c.label}">{!myDeal.Deal_Method__c}</apex:outputText>
+ 				<apex:outputText label="{!$ObjectType.Group_Promotions__c.Fields.Deal_Channel__c.label}" rendered="{!myDeal.RecordTypeName__c='Group Deal' && (myDeal.Deal_Method__c='Rate Per Case' || myDeal.Deal_Method__c='Rate per Case Off')}">{!myDeal.Deal_Method__c}</apex:outputText>
+ 			</apex:pageBlockSection>
+ 		</apex:pageBlock>  
+ 
+	
+		<apex:pageBlock id="pbSelection" title="{!$ObjectType.Group_Promotion_Item__c.labelplural}" mode="Edit">
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!addLine}" onClick="sethelper();" rerender="mymessages,pbSelection" status="status" value="{!$Label.Add_Item}" />
+    			<apex:commandButton action="{!saveAction}" onClick="sethelper();" rerender="mymessages,pbSelection" status="status" value="{!$Label.OutletVisitPage_SaveButtonLabel}"/>
+    			<apex:commandButton action="{!saveAndClose}" rerender="mymessages,pbSelection" status="status" value="{!$Label.Save_and_Close}" />                        
+        		<apex:commandButton action="{!removeDealItems}" onClick="sethelper();" rerender="mymessages,pbSelection" rendered="{!myDeal.RecordTypeName__c != 'Locked'}" status="status" value="{!$Label.Remove_Items}"/>
+        		<apex:commandButton action="{!close}" value="{!$Label.OutletVisitPage_CloseButtonLabel}"/>                    
+    		</apex:pageBlockButtons>
+   
+   			<apex:outputpanel onclick="setConfirmSave();" layout="block" styleclass="container">                
+    			<apex:pageBlockTable id="myDealItems" value="{!myDealItems}" var="y" columns="14" >
+        			<apex:column width="1%">
+   		         		<apex:facet name="header">&nbsp;</apex:facet>
+ 		            	<apex:inputCheckbox value="{!y.selected}" id="checked">
+   		             	</apex:inputCheckbox>                
+   		         	</apex:column>
+                         
+    		        <apex:column style="width:200px">
+     		       		<apex:facet name="header">{!$ObjectType.Group_Promotion_Item__c.fields.Reference_Material_Group__c.label}</apex:facet>
+     		           	<apex:inputfield id="materialgroup" style="width:150px" value="{!y.dealItem.Reference_Material_Group__c}"/>
+      		      	</apex:column>  
+
+      		      	<apex:column style="width:100px" rendered="{!myDeal.Deal_Type__c == 'On Promotion'}">
+        		    	<apex:facet name="header">{!$ObjectType.Group_Promotion_Item__c.fields.Ongoing__c.label}</apex:facet>
+      		         	<apex:inputfield id="ongoing" style="width:150px" value="{!y.dealItem.Ongoing__c}" />
+       		     	</apex:column>
+					<apex:column style="width:100px" rendered="{!myDeal.Deal_Display_Helper_Type__c == 'Rate per Case'}">    
+        		    	<apex:facet name="header">{!$ObjectType.Group_Promotion_Item__c.fields.Discount_Amount__c.label}</apex:facet>
+        		        <apex:inputfield id="discount" style="width:100px" value="{!y.dealItem.Discount_Amount__c}" />
+         		   	</apex:column> 
+      		      	<apex:column style="width:100px" rendered="{!myDeal.Deal_Display_Helper_Type__c == 'Lump Sum'}">
+        		    	<apex:facet name="header">{!$ObjectType.Group_Promotion_Item__c.fields.LumpSum__c.label}</apex:facet>
+      		         	<apex:inputfield id="lumpsum" style="width:150px" value="{!y.dealItem.LumpSum__c}" />
+       		     	</apex:column>
+            
+            		<!-- 
+      		      	<apex:column style="width:100px" rendered="{!myDeal.RecordTypeName__c == 'Group Deal'}">    
+     		       		<apex:facet name="header">{!$ObjectType.Group_Promotion_Item__c.fields.Condition_Types__c.label}</apex:facet>
+      		          	<apex:inputfield id="conditiontype" style="width:100px" value="{!y.dealItem.Condition_Types__c}" />
+    		        </apex:column>
+            		-->
+            		
+    		        <apex:column style="width:100px" rendered="{!myDeal.Deal_Type__c == 'On Promotion'}">    
+   		         		<apex:facet name="header">{!$ObjectType.Group_Promotion_Item__c.fields.Price_Vision__c.label}</apex:facet>
+ 		               	<apex:inputfield id="pricevision" style="width:100px" value="{!y.dealItem.Price_Vision__c}" />
+         		   	</apex:column> 
+            
+            		<!-- 
+          		  	<apex:column style="width:100px">    
+            			<apex:facet name="header">{!$ObjectType.Group_Promotion_Item__c.fields.Price_Vision_Type__c.label}</apex:facet>
+             		  	<apex:inputfield id="pricevisiontype" style="width:100px" value="{!y.dealItem.Price_Vision_Type__c}" />
+            		</apex:column>
+ 					-->                      
+				</apex:pageBlockTable>
+			</apex:outputpanel>                   
+		</apex:pageBlock> 
+	</apex:form> 
+	</apex:actionRegion> 
+</apex:outputpanel>     
+</apex:page>

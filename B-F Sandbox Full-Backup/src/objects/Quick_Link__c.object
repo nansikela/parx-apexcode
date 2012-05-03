@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Tab to help maintain all links surfaced by Quick Links tab</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Category__c</fullName>
+        <description>Used to filter Quick Links</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Where should this Quick Link appear?</inlineHelpText>
+        <label>Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>About Me</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Analytics</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Anywhere Access</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Building Brands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Business Center</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Collaboration</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Diversity</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Google</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Louisville</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Clicks__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Stores how many clicks each Quick Link has.</inlineHelpText>
+        <label>Clicks</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If this is an external link, add target=&quot;_blank&quot; to the link</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Does this link need to open in a new tab?</inlineHelpText>
+        <label>External?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Image_Link__c</fullName>
+        <description>Stores link to image on Salesforce</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please upload an image to the Documents tab for this Quick Link</inlineHelpText>
+        <label>Image Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Link_Location__c</fullName>
+        <description>Where does this Quick Link go?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Where does this Quick Link go?</inlineHelpText>
+        <label>Link Location</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Name__c</fullName>
+        <description>Text to appear below image</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Text to appear below link image</inlineHelpText>
+        <label>Name</label>
+        <length>50</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Quick Link</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>Category__c</columns>
+        <columns>Clicks__c</columns>
+        <columns>External__c</columns>
+        <columns>Link_Location__c</columns>
+        <columns>Image_Link__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>QL-{00000}</displayFormat>
+        <label>Quick Link Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Manage Quick Links</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Category__c</customTabListAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchResultsAdditionalFields>Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Link_Location__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Category__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

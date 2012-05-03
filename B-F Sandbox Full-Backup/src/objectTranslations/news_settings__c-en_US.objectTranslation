@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>News Settings</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>News Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Article List --></label>
+        <name>Article_List__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand News Chatter --></label>
+        <name>Brand_News_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company News Chatter --></label>
+        <name>Company_News_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee News Chatter --></label>
+        <name>Employee_News_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- EtQ Chatter --></label>
+        <name>EtQ_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expense Legal Text --></label>
+        <name>Expense_Legal_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expenses Chatter --></label>
+        <name>Expenses_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Footer --></label>
+        <name>Footer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Industry News Chatter --></label>
+        <name>Industry_News_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice Processing Chatter --></label>
+        <name>Invoice_Processing_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- News Exchange Chatter --></label>
+        <name>News_Exchange_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page Title --></label>
+        <name>Page_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Story of the Day Chatter --></label>
+        <name>Story_of_the_Day_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Travel Chatter --></label>
+        <name>Travel_Chatter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Video of the Day Chatter --></label>
+        <name>Video_of_the_Day_Chatter__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

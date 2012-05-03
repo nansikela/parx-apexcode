@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Tuition Reimbursement</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Tuition Reimbursement</value>
+    </caseValues>
+    <fields>
+        <label><!-- Linkprefix --></label>
+        <name>Linkprefix__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Program Admin&apos;s UserName. This is the email address of the Program Admin with the instance name appended at the end. In Production this is the b-f email addres --></help>
+        <label><!-- Program Admin UserName --></label>
+        <name>Program_Admin_UserName__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>wombat_Sync_Session</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>wombat_Sync_Sessions</value>
+    </caseValues>
+    <fields>
+        <label><!-- App_Version --></label>
+        <name>App_Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- DateModified --></label>
+        <name>DateModified__c</name>
+    </fields>
+    <fields>
+        <label><!-- Device_Unique_ID --></label>
+        <name>Device_Unique_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finalised On Client --></label>
+        <name>Finalised_On_Client__c</name>
+    </fields>
+    <fields>
+        <label><!-- IP_Address --></label>
+        <name>IP_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- InProgress --></label>
+        <name>InProgress__c</name>
+    </fields>
+    <fields>
+        <label><!-- Model --></label>
+        <name>Model__c</name>
+    </fields>
+    <fields>
+        <label><!-- SessionFinish --></label>
+        <name>SessionFinish__c</name>
+    </fields>
+    <fields>
+        <label><!-- SessionStart --></label>
+        <name>SessionStart__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation><!-- Fail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- wombat_Sync_Sessions --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>wombat_Sync_Session Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

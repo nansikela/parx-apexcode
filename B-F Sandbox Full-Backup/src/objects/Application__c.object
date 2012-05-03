@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Force.com Application(s) that is either proposed or slated to be developed on the the Force.com platform</description>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Another_cloud_provider_that_meets_needs__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is there another cloud provider that meets the needs?</inlineHelpText>
+        <label>Another cloud provider that meets needs</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>App_Good_Fit_fr_PaaS_infrastrture_per_ab__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is application (or set or redundant applications) a ‘Good Fit’ for PaaS infrastructure given criteria defined above?</inlineHelpText>
+        <label>App Good Fit fr PaaS infrstr per above</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>App_redundant_with_other_existng_systems__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is the application redundant with other existing systems?</inlineHelpText>
+        <label>App redundant with other existng systems</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Application_Administration_by_Business_U__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Administration by Users</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Application_ID__c</fullName>
+        <displayFormat>{0}</displayFormat>
+        <externalId>false</externalId>
+        <label>Application ID</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Application_Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Platform</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approx_LOE__c</fullName>
+        <externalId>false</externalId>
+        <label>Approx LOE</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Are_there_regulatory_or_contractual_obli__c</fullName>
+        <externalId>false</externalId>
+        <label>Regulatory or Contractual Obligations</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Assumptions__c</fullName>
+        <externalId>false</externalId>
+        <label>Assumptions</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Auditing_Compliance_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>Auditing &amp; Compliance Check?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Business_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Unit/Department?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>All BPOs</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Corporate  Security</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Field Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Purchasing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SPA and Field Sales</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Southern Comfort Brand Team</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Can_app_be_developed_on_Force_com__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Can the application be developed on the Force.com platform?</inlineHelpText>
+        <label>Can app be developed on Force.com</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Conforms_to_current_future_arch_stds__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Does the application conform to current and future architectural standards?</inlineHelpText>
+        <label>Conforms to current/future arch stds</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Content__c</fullName>
+        <externalId>false</externalId>
+        <label>Content-only websites?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Current_Database_Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Database Platform?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>MS Access</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MS Excel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Notes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>R/3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Current_Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Platform</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Current_Technology_Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Technology/Platform</label>
+        <picklist>
+            <picklistValues>
+                <fullName>MS Access</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Notes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MS Excel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MS Access/Notes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SAP Business Explorer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Data_Entry_Complete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Data Entry Complete</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Data_Migration__c</fullName>
+        <externalId>false</externalId>
+        <label>Data Migration</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Date_Required__c</fullName>
+        <externalId>false</externalId>
+        <label>Date Required</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Email_Capabilities__c</fullName>
+        <externalId>false</externalId>
+        <label>Email Capabilities?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Outbound Emails</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Expected__c</fullName>
+        <externalId>false</externalId>
+        <label>Expected Quarter for Go-Live(per B-F)</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Q1 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q2 2012</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q4 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Q2 2011</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Global__c</fullName>
+        <externalId>false</externalId>
+        <label>Global Vs Regional?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>High__c</fullName>
+        <externalId>false</externalId>
+        <label>High Level Use Case</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>High_cost_to_maintain_or_upgrade_App__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Is there a high cost to maintain  and/or upgrade the application?</inlineHelpText>
+        <label>High cost to maintain  &amp;/or upgrade App</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Hosted_or_On_Premise__c</fullName>
+        <externalId>false</externalId>
+        <label>Hosted or On-Premise?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Hosted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On-Premise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>If_Private_how_can_data_be_shared_acros__c</fullName>
+        <externalId>false</externalId>
+        <label>If Private,how data is shared to users</label>
+        <picklist>
+            <picklistValues>
+                <fullName>By Ownership</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>By Role</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>If_Yes__c</fullName>
+        <externalId>false</externalId>
+        <label>If Yes,list Potential systems</label>
+        <length>150</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Implement_Third_Party__c</fullName>
+        <externalId>false</externalId>
+        <label>Implement Third Party Services?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Key_Contacts__c</fullName>
+        <externalId>false</externalId>
+        <label>Key Contacts</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mission_of_the_Application__c</fullName>
+        <externalId>false</externalId>
+        <label>Mission of the Application</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Mobile_Interface__c</fullName>
+        <externalId>false</externalId>
+        <label>Mobile Interface</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Multiple</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Multi_Currency_Support__c</fullName>
+        <externalId>false</externalId>
+        <label>Multi-Currency Support?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Multi_Language__c</fullName>
+        <externalId>false</externalId>
+        <label>Multi-Language Support?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>No_of_Users__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Users</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Offline__c</fullName>
+        <externalId>false</externalId>
+        <label>Offline Access</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Not Required</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>On_going_Data_Transfer_with_Other_system__c</fullName>
+        <externalId>false</externalId>
+        <label>On-going Data Transfer with Other system</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes- real time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yes- real time/batch ok</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Per_biz_risk_tolerance_app_be_on_cloud__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Based on the Organization’s tolerance for risk , can the application be in the cloud?</inlineHelpText>
+        <label>Per biz risk tolerance, app be on cloud</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>Priority</label>
+        <length>5</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Private_Public_Read_Only_or_Public_Read__c</fullName>
+        <externalId>false</externalId>
+        <label>Private/Public Read Only or Public Read</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Public Read-Only</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Public Read-Write</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Questions__c</fullName>
+        <externalId>false</externalId>
+        <label>Questions</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Reports__c</fullName>
+        <externalId>false</externalId>
+        <label>Reports and Analytics?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Basic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sample__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;https://c.na1.content.force.com/servlet/servlet.FileDownload?file=01530000001sLew&quot;, &quot;Cloud Decision Matrix&quot;,170, 770)</formula>
+        <label>Sample</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Scope__c</fullName>
+        <externalId>false</externalId>
+        <label>Scope (Screen/Objects)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Scope_of_Data_Cleansing__c</fullName>
+        <externalId>false</externalId>
+        <label>Scope of Data Cleansing?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Scope_of_automation_of_business_logic__c</fullName>
+        <externalId>false</externalId>
+        <label>Scope of automation of business logic?</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Low(&lt;5 Rules)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium(5-15)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Very High(30-50)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>In Process</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Under Assessment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved, Awaiting Sponsor Approval</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sponsor Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Release Date Assigned</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Application Development In-Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed, Awaiting Deployment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed, Deployed to Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected, Not a Fit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected, Not Enough Budget</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected, AppExchange Product Exists</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Supports_active_biz_fns_provides_value__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Does the application support active business functions, and provide value?</inlineHelpText>
+        <label>Supports active biz fns &amp; provides value</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Supports_revenue_generating_activities__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Does the application support revenue generating activities (billing, A/R, etc)</inlineHelpText>
+        <label>Supports revenue generating activities</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Technical_Design__c</fullName>
+        <description>This field is used to enter the sum of Technical Design hours from all requirements associated to this application work package.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is used to enter the sum of Technical Design hours from all requirements associated to this application work package.</inlineHelpText>
+        <label>Technical Design</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type_Of_Data_Content__c</fullName>
+        <externalId>false</externalId>
+        <label>Type Of Data / Content</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Structured</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Unstructured</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Type_of__c</fullName>
+        <externalId>false</externalId>
+        <label>Type of User Interface</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Browser</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rich Client</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Volume_of_Data__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume of Data</label>
+        <picklist>
+            <picklistValues>
+                <fullName>&lt;50k</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>50k-100k</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>&gt;100k</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>current_user_acceptance__c</fullName>
+        <externalId>false</externalId>
+        <label>Current User Acceptance of Application</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>need_for_Business_Process_Imp__c</fullName>
+        <externalId>false</externalId>
+        <label>Need for Business Process Improvement?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>need_to_handle_Sensitive_Secu__c</fullName>
+        <externalId>false</externalId>
+        <label>Need to Handle Sensitive/Secure Data</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <label>Application</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Priority__c</columns>
+        <columns>NAME</columns>
+        <columns>Mission_of_the_Application__c</columns>
+        <columns>Key_Contacts__c</columns>
+        <columns>No_of_Users__c</columns>
+        <columns>Status__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Application Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Applications</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

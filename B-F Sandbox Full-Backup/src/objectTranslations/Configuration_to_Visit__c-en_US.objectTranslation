@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Configuration to Visit</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Configuration to Visits</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outlet Visit Date --></label>
+        <name>Outlet_Visit_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outlet Visit Item --></label>
+        <name>Outlet_Visit_Item__c</name>
+        <relationshipLabel><!-- Configuration to Visits --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Outlet Visit --></label>
+        <name>Outlet_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Visit Report Configuration --></label>
+        <name>Visit_Report_Configuration__c</name>
+        <relationshipLabel><!-- Configuration to Visits --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

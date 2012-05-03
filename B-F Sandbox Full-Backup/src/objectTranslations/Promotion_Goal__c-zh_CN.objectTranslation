@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>推广合同 Contract Terms</value>
+    </caseValues>
+    <fields>
+        <help><!-- Enter the actual bottle quantity used or sold during the promotion --></help>
+        <label><!-- Actual Bottle Quantity --></label>
+        <name>Actual_Bottle_Quantity__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field will be entered by Workflow --></help>
+        <label><!-- Cost Per Bottle --></label>
+        <name>Cost_Per_Bottle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Custom_Product__c</name>
+        <relationshipLabel><!-- Promotion Goals --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Free Bottle Quantity --></label>
+        <name>Free_Bottle_Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Locked --></label>
+        <name>Locked__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+    </fields>
+    <fields>
+        <help><!-- (Plan Bottle Qty + Free Bottle Qty)*Cost per Bottle --></help>
+        <label><!-- Material Cost (f) --></label>
+        <name>Material_Cost__c</name>
+    </fields>
+    <fields>
+        <help><!-- Material Revenue - Material Cost --></help>
+        <label><!-- Material Margin (f) --></label>
+        <name>Material_Margin__c</name>
+    </fields>
+    <fields>
+        <help><!-- Plan Bottle Qty * Sales Price per Bottle --></help>
+        <label><!-- Material Revenue (f) --></label>
+        <name>Material_Revenue__c</name>
+    </fields>
+    <fields>
+        <label>月目标销量(高)</label>
+        <name>Monthly_Bottle_CHN_H__c</name>
+    </fields>
+    <fields>
+        <label>月目标销量(低)</label>
+        <name>Monthly_Bottle_L_CHN__c</name>
+    </fields>
+    <fields>
+        <label>其他赞助</label>
+        <name>Other_Sponsor_APAC__c</name>
+    </fields>
+    <fields>
+        <label>单瓶折扣(高)</label>
+        <name>Per_Bottle_Rebate_CHN__c</name>
+    </fields>
+    <fields>
+        <label>单瓶折扣(低)</label>
+        <name>Per_Bottle_Rebate_L__c</name>
+    </fields>
+    <fields>
+        <label>单瓶推广费用</label>
+        <name>Per_Bottle_VDS__c</name>
+    </fields>
+    <fields>
+        <label>总合约目标销量</label>
+        <name>Plan_Bottle_Quantity__c</name>
+    </fields>
+    <fields>
+        <label>品牌</label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Promotion Goals --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Promotion --></label>
+        <name>Promotion__c</name>
+        <relationshipLabel><!-- Promotion Goals --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sale Price Per Bottle --></label>
+        <name>Sale_Price_Per_Bottle__c</name>
+    </fields>
+    <fields>
+        <label>总合约目标销量X</label>
+        <name>TTL_Vol_Target__c</name>
+    </fields>
+    <fields>
+        <label>总合约推广费用</label>
+        <name>VDS_TTL_AP__c</name>
+    </fields>
+    <layouts>
+        <layout>Agreement Goal</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Agreement Goal (Locked)</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Promotion Goal Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Promotion Goal#</nameFieldLabel>
+    <recordTypes>
+        <label><!-- Agreement --></label>
+        <name>Agreement</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Locked --></label>
+        <name>Locked</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Locked Agreement --></label>
+        <name>Locked_Agreement</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Sales Promotion --></label>
+        <name>Sales_Promotion</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Promotion Goals - Locked!!
+(Reason: Promotion already Approved) --></errorMessage>
+        <name>Locked_Agreement</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Add_New_Product --></label>
+        <name>Add_New_Product</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Back_to_Promotion --></label>
+        <name>Back_to_Promotion</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New --></label>
+        <name>New</name>
+    </webLinks>
+</CustomObjectTranslation>

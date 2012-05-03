@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DashboardFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>JPN Dashboards</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <group>JPN-All Users</group>
+        <group>System Admins</group>
+        <role>Global Administrator</role>
+    </sharedTo>
+</DashboardFolder>

@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Store Check</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Store Checks</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Store Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Addit. notes/comments about cust./acc. --></label>
+        <name>Addit_notes_comments_about_cust_acc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- All pricing labels available? --></label>
+        <name>All_pricing_labels_available__c</name>
+    </fields>
+    <fields>
+        <label><!-- B-F listing complete realized/practiced? --></label>
+        <name>B_F_listing_complete_realized_practiced__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data maintenance in SF complete/correct? --></label>
+        <name>Data_maintenance_in_SF_complete_correct__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discussed with --></label>
+        <name>Discussed_with__c</name>
+        <picklistValues>
+            <masterLabel>Food area manager</masterLabel>
+            <translation><!-- Food area manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Store manager</masterLabel>
+            <translation><!-- Store manager --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Gaps in shelf closed..? --></label>
+        <name>Gaps_in_shelf_closed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gift/promo packs addit. avail. in shelf? --></label>
+        <name>Gift_promo_packs_addit_avail_in_shelf__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gift/promo packs in shelf available? --></label>
+        <name>Gift_promo_packs_in_shelf_available__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ground Area --></label>
+        <name>Ground_Area_Second_SCP__c</name>
+        <picklistValues>
+            <masterLabel>cash area/point of sale</masterLabel>
+            <translation><!-- cash area/point of sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>display refrigerator</masterLabel>
+            <translation><!-- display refrigerator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>end cap spirit department</masterLabel>
+            <translation><!-- end cap spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>food area</masterLabel>
+            <translation><!-- food area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>main corridor</masterLabel>
+            <translation><!-- main corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other place</masterLabel>
+            <translation><!-- other place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>promotion end cap</masterLabel>
+            <translation><!-- promotion end cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>side corridor</masterLabel>
+            <translation><!-- side corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>turn stile area</masterLabel>
+            <translation><!-- turn stile area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Ground Area --></label>
+        <name>Ground_Area_Third_SCP__c</name>
+        <picklistValues>
+            <masterLabel>cash area/point of sale</masterLabel>
+            <translation><!-- cash area/point of sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>display refrigerator</masterLabel>
+            <translation><!-- display refrigerator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>end cap spirit department</masterLabel>
+            <translation><!-- end cap spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>food area</masterLabel>
+            <translation><!-- food area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>main corridor</masterLabel>
+            <translation><!-- main corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other place</masterLabel>
+            <translation><!-- other place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>promotion end cap</masterLabel>
+            <translation><!-- promotion end cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>side corridor</masterLabel>
+            <translation><!-- side corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>turn stile area</masterLabel>
+            <translation><!-- turn stile area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Ground Area --></label>
+        <name>Ground_Area_first_SCP__c</name>
+        <picklistValues>
+            <masterLabel>cash area/point of sale</masterLabel>
+            <translation><!-- cash area/point of sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>display refrigerator</masterLabel>
+            <translation><!-- display refrigerator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>end cap spirit department</masterLabel>
+            <translation><!-- end cap spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>food area</masterLabel>
+            <translation><!-- food area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>main corridor</masterLabel>
+            <translation><!-- main corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other place</masterLabel>
+            <translation><!-- other place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>promotion end cap</masterLabel>
+            <translation><!-- promotion end cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>side corridor</masterLabel>
+            <translation><!-- side corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>turn stile area</masterLabel>
+            <translation><!-- turn stile area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- JD&amp;Cola/Ginger avail. as/in multi pack? --></label>
+        <name>JD_Cola_Ginger_avail_as_in_multi_pack__c</name>
+    </fields>
+    <fields>
+        <label><!-- JD &amp; Cola/Ginger avail. as single can? --></label>
+        <name>JD_Cola_Ginger_avail_as_single_can__c</name>
+    </fields>
+    <fields>
+        <label><!-- JD &amp; Cola/Ginger avail. in chiller cab.? --></label>
+        <name>JD_Cola_Ginger_avail_in_chiller_cab__c</name>
+    </fields>
+    <fields>
+        <label><!-- JD &amp; Cola/Ginger available in shelf? --></label>
+        <name>JD_Cola_Ginger_available_in_shelf__c</name>
+    </fields>
+    <fields>
+        <label><!-- JD &amp; Cola/Ginger available in tray? --></label>
+        <name>JD_Cola_Ginger_available_in_tray__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Outlet Visit --></label>
+        <name>Last_Outlet_Visit__c</name>
+        <relationshipLabel><!-- Store Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Last Visit SR --></label>
+        <name>Last_Visit_SR__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_first_SCP__c</name>
+        <picklistValues>
+            <masterLabel>(shelf) End cap</masterLabel>
+            <translation><!-- (shelf) End cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check out area</masterLabel>
+            <translation><!-- Check out area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chiller cabinet</masterLabel>
+            <translation><!-- Chiller cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food section</masterLabel>
+            <translation><!-- Food section --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Isle</masterLabel>
+            <translation><!-- Isle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spirit department</masterLabel>
+            <translation><!-- Spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Store front</masterLabel>
+            <translation><!-- Store front --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_second_SCP__c</name>
+        <picklistValues>
+            <masterLabel>(shelf) End cap</masterLabel>
+            <translation><!-- (shelf) End cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check out area</masterLabel>
+            <translation><!-- Check out area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chiller cabinet</masterLabel>
+            <translation><!-- Chiller cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food section</masterLabel>
+            <translation><!-- Food section --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Isle</masterLabel>
+            <translation><!-- Isle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spirit department</masterLabel>
+            <translation><!-- Spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Store front</masterLabel>
+            <translation><!-- Store front --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_third_SCP__c</name>
+        <picklistValues>
+            <masterLabel>(shelf) End cap</masterLabel>
+            <translation><!-- (shelf) End cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check out area</masterLabel>
+            <translation><!-- Check out area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chiller cabinet</masterLabel>
+            <translation><!-- Chiller cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food section</masterLabel>
+            <translation><!-- Food section --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Isle</masterLabel>
+            <translation><!-- Isle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spirit department</masterLabel>
+            <translation><!-- Spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Store front</masterLabel>
+            <translation><!-- Store front --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Store Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Notes/Comment about shelf situation --></label>
+        <name>Notes_Comment_about_shelf_situation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notes/comments about secondary placement --></label>
+        <name>Notes_comments_about_secondary_placement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of bottles/display --></label>
+        <name>Number_of_bottles_display_First_SCP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of bottles/display --></label>
+        <name>Number_of_bottles_display_Second_SCP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of bottles/display --></label>
+        <name>Number_of_bottles_display_Third_SCP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product_first_SCP__c</name>
+        <relationshipLabel><!-- Store Checks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product_second_SCP__c</name>
+        <relationshipLabel><!-- Store Checks (Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product_third_SCP__c</name>
+        <relationshipLabel><!-- Store Checks (Product) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Rating/Grade --></label>
+        <name>Rating_Grade__c</name>
+        <picklistValues>
+            <masterLabel>0</masterLabel>
+            <translation><!-- 0 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Remarks after discussion --></label>
+        <name>Remarks_after_discussion__c</name>
+    </fields>
+    <fields>
+        <label><!-- SC By --></label>
+        <name>SC_By__c</name>
+        <relationshipLabel><!-- Store Checks (SC By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- SC Date --></label>
+        <name>SC_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- SR --></label>
+        <name>SR__c</name>
+        <relationshipLabel><!-- Store Checks (SR) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales campaign labels tended? --></label>
+        <name>Sales_campaign_labels_tended__c</name>
+    </fields>
+    <fields>
+        <label><!-- Space --></label>
+        <name>Space_First_SCP__c</name>
+        <picklistValues>
+            <masterLabel>cash area/point of sale</masterLabel>
+            <translation><!-- cash area/point of sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>display refrigerator</masterLabel>
+            <translation><!-- display refrigerator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>end cap spirit department</masterLabel>
+            <translation><!-- end cap spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>food area</masterLabel>
+            <translation><!-- food area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>main corridor</masterLabel>
+            <translation><!-- main corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other place</masterLabel>
+            <translation><!-- other place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>promotion end cap</masterLabel>
+            <translation><!-- promotion end cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>side corridor</masterLabel>
+            <translation><!-- side corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>turn stile area</masterLabel>
+            <translation><!-- turn stile area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Space --></label>
+        <name>Space_Second_SCP__c</name>
+        <picklistValues>
+            <masterLabel>cash area/point of sale</masterLabel>
+            <translation><!-- cash area/point of sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>display refrigerator</masterLabel>
+            <translation><!-- display refrigerator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>end cap spirit department</masterLabel>
+            <translation><!-- end cap spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>food area</masterLabel>
+            <translation><!-- food area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>main corridor</masterLabel>
+            <translation><!-- main corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other place</masterLabel>
+            <translation><!-- other place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>promotion end cap</masterLabel>
+            <translation><!-- promotion end cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>side corridor</masterLabel>
+            <translation><!-- side corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>turn stile area</masterLabel>
+            <translation><!-- turn stile area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Space --></label>
+        <name>Space_Third_SCP__c</name>
+        <picklistValues>
+            <masterLabel>cash area/point of sale</masterLabel>
+            <translation><!-- cash area/point of sale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>display refrigerator</masterLabel>
+            <translation><!-- display refrigerator --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>end cap spirit department</masterLabel>
+            <translation><!-- end cap spirit department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>food area</masterLabel>
+            <translation><!-- food area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>main corridor</masterLabel>
+            <translation><!-- main corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>other place</masterLabel>
+            <translation><!-- other place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>promotion end cap</masterLabel>
+            <translation><!-- promotion end cap --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>side corridor</masterLabel>
+            <translation><!-- side corridor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>turn stile area</masterLabel>
+            <translation><!-- turn stile area --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Targ. for follow up visit maintained/SF? --></label>
+        <name>Targ_for_follow_up_visit_maintained_SF__c</name>
+    </fields>
+    <fields>
+        <label><!-- enough products in the shelf available? --></label>
+        <name>enough_products_in_the_shelf_available__c</name>
+    </fields>
+    <fields>
+        <label><!-- sales campaign with 2. pl. realized? --></label>
+        <name>sales_campaign_with_2_pl_realized__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Share --></label>
+        <name>Share</name>
+    </webLinks>
+</CustomObjectTranslation>

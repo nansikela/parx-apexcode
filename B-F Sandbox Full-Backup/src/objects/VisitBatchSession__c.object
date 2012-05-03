@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <customSettingsVisibility>Protected</customSettingsVisibility>
+    <description>Contains a valid session id that is used to start batch jobs to update Visit Report Configurations</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>BatchSize__c</fullName>
+        <externalId>false</externalId>
+        <label>BatchSize</label>
+        <precision>10</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SessionId__c</fullName>
+        <externalId>false</externalId>
+        <label>SessionId</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>VisitBatchSession</label>
+</CustomObject>

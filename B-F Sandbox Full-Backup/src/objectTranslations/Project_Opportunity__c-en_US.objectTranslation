@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Project</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Projects</value>
+    </caseValues>
+    <fields>
+        <label><!-- Achievement Chart --></label>
+        <name>Achievement_Chart__c</name>
+    </fields>
+    <fields>
+        <label><!-- Achievement Sum --></label>
+        <name>Achievement_Sum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Achievement --></label>
+        <name>Achievement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attractiveness Chart --></label>
+        <name>Attractiveness_Chart__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attractiveness Sum --></label>
+        <name>Attractiveness_Sum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attractiveness --></label>
+        <name>Attractiveness__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Branded Line Extension (Full &amp; Mid Proof)</masterLabel>
+            <translation><!-- Branded Line Extension (Full &amp; Mid Proof) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Serve</masterLabel>
+            <translation><!-- Multi-Serve --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NtW  Full-Proof</masterLabel>
+            <translation><!-- NtW  Full-Proof --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NtW Mid-Proof</masterLabel>
+            <translation><!-- NtW Mid-Proof --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Single Serve</masterLabel>
+            <translation><!-- Single Serve --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 1 --></label>
+        <name>Evaluator_1__c</name>
+        <relationshipLabel><!-- Projects (Evaluator 1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 2 --></label>
+        <name>Evaluator_2__c</name>
+        <relationshipLabel><!-- Projects (Evaluator 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 3 --></label>
+        <name>Evaluator_3__c</name>
+        <relationshipLabel><!-- Projects (Evaluator 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 4 --></label>
+        <name>Evaluator_4__c</name>
+        <relationshipLabel><!-- Projects (Evaluator 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 5 --></label>
+        <name>Evaluator_5__c</name>
+        <relationshipLabel><!-- Projects (Evaluator 5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 6 --></label>
+        <name>Evaluator_6__c</name>
+        <relationshipLabel><!-- Projects (Evaluator 6) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 7 --></label>
+        <name>Evaluator_7__c</name>
+        <relationshipLabel><!-- Projects (Evaluator 7) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 8 --></label>
+        <name>Evaluator_8__c</name>
+        <relationshipLabel><!-- Projects (Evaluator 8) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Projects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- ROI --></label>
+        <name>ROI__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ratings Submitted --></label>
+        <name>Ratings_Submitted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Spend Amount --></label>
+        <name>Spend_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- 5 Yr NPV --></label>
+        <name>X5_Yr_NPV__c</name>
+    </fields>
+    <layouts>
+        <layout>PM - New/In Eval</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evaluators --></label>
+            <section>Evaluators</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Project Prioritization</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Evaluators --></label>
+            <section>Evaluators</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- PM - Closed --></label>
+        <name>PM_Closed</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PM - Evaluated --></label>
+        <name>PM_Evaluated</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PM - In Evaluation --></label>
+        <name>PM_In_Evaluation</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- PM - New --></label>
+        <name>Prioritization_Model</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

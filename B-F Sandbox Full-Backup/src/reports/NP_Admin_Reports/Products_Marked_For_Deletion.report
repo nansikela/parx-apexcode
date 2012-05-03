@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Product__c.Mark_for_Deletion__c</field>
+    </columns>
+    <columns>
+        <field>Product__c.Product__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Product__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>Product__c.UOM__c</field>
+    </columns>
+    <columns>
+        <field>Product__c.Unit_Cost__c</field>
+    </columns>
+    <columns>
+        <field>Product__c.Planned_Cost__c</field>
+    </columns>
+    <columns>
+        <field>Product__c.Sales_Org__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>This report displays all the Products that have been marked to be deleted.</description>
+    <filter>
+        <criteriaItems>
+            <column>Product__c.Mark_for_Deletion__c</column>
+            <operator>equals</operator>
+            <value>1</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Products Marked For Deletion</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Product__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

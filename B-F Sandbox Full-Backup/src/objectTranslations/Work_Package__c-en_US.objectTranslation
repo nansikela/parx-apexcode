@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Application Work Package</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Application Work Packages</value>
+    </caseValues>
+    <fields>
+        <label><!-- Application Google Site Link --></label>
+        <name>Application_Google_Site_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- BF Task --></label>
+        <name>BF_Task__c</name>
+        <relationshipLabel><!-- Application Work Packages --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Biz Process Design Hrs Remaining --></label>
+        <name>Biz_Process_Design_Hrs_Remaining__c</name>
+    </fields>
+    <fields>
+        <label><!-- Biz Process Design Resource --></label>
+        <name>Biz_Process_Design_Resource__c</name>
+        <relationshipLabel><!-- Application Work Packages (Biz Process Design Resource) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field is used to enter the sum of Business Design hours from all requirements associated to this application work package. --></help>
+        <label><!-- Business Design Hours --></label>
+        <name>Business_Design_Hours_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Owner --></label>
+        <name>Business_Owner__c</name>
+        <relationshipLabel><!-- Application Work Packages (Business Owner) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- % Business Process Design Completed --></label>
+        <name>Business_Process_Design_Completed__c</name>
+        <picklistValues>
+            <masterLabel>0%</masterLabel>
+            <translation><!-- 0% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100%</masterLabel>
+            <translation><!-- 100% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25%</masterLabel>
+            <translation><!-- 25% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50%</masterLabel>
+            <translation><!-- 50% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75%</masterLabel>
+            <translation><!-- 75% --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- % Configuration Completed --></label>
+        <name>Configuration_Completed__c</name>
+        <picklistValues>
+            <masterLabel>0%</masterLabel>
+            <translation><!-- 0% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100%</masterLabel>
+            <translation><!-- 100% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25%</masterLabel>
+            <translation><!-- 25% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50%</masterLabel>
+            <translation><!-- 50% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75%</masterLabel>
+            <translation><!-- 75% --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field is used to enter the sum of Configuration hours from all requirements associated to this application work package. --></help>
+        <label><!-- Configuration Hours --></label>
+        <name>Configuration_Hours_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Configuration Hrs Remaining --></label>
+        <name>Configuration_Hrs_Remaining__c</name>
+    </fields>
+    <fields>
+        <label><!-- Configuration Resource --></label>
+        <name>Configuration_Resource__c</name>
+        <relationshipLabel><!-- Application Work Packages (Configuration Resource) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- % Development Completed --></label>
+        <name>Development_Completed__c</name>
+        <picklistValues>
+            <masterLabel>0%</masterLabel>
+            <translation><!-- 0% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100%</masterLabel>
+            <translation><!-- 100% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25%</masterLabel>
+            <translation><!-- 25% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50%</masterLabel>
+            <translation><!-- 50% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75%</masterLabel>
+            <translation><!-- 75% --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Development Environment(s) --></label>
+        <name>Development_Environment__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is used to enter the sum of Development hours from all requirements associated to this application work package. --></help>
+        <label><!-- Development Hours --></label>
+        <name>Development_Hours_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Development Hrs Remaining --></label>
+        <name>Development_Hrs_Remaining__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please Enter Primary --></help>
+        <label><!-- Development Resource --></label>
+        <name>Development_Resource__c</name>
+        <relationshipLabel><!-- Application Work Packages (Development Resource) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Estimated Completion Date --></label>
+        <name>Estimated_Completion_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Estimated Start Date --></label>
+        <name>Estimated_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected Functional Review Date --></label>
+        <name>Expected_Functional_Review_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected JAD Date --></label>
+        <name>Expected_JAD_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected Technical Review Date --></label>
+        <name>Expected_Technical_Review_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Expected User Acceptance Test Date --></label>
+        <name>Expected_User_Acceptance_Test_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Force.com Application --></label>
+        <name>Force_com_Application__c</name>
+        <relationshipLabel><!-- Application Work Packages --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Functional Review Completed? --></label>
+        <name>Functional_Review_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- % Requirements Completed --></label>
+        <name>Info_Requirements_Completed__c</name>
+        <picklistValues>
+            <masterLabel>0%</masterLabel>
+            <translation><!-- 0% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100%</masterLabel>
+            <translation><!-- 100% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25%</masterLabel>
+            <translation><!-- 25% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50%</masterLabel>
+            <translation><!-- 50% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75%</masterLabel>
+            <translation><!-- 75% --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Interface Systems --></label>
+        <name>Interface_Systems__c</name>
+        <picklistValues>
+            <masterLabel>Business Warehouse</masterLabel>
+            <translation><!-- Business Warehouse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP R/3</masterLabel>
+            <translation><!-- SAP R/3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- JAD Session(s) Conducted? --></label>
+        <name>JAD_Session_s_Conducted__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select potential objects that may be used. Field to be kept up-to-date by Data Architect --></help>
+        <label><!-- Key Objects --></label>
+        <name>Key_Objects__c</name>
+        <picklistValues>
+            <masterLabel>Account</masterLabel>
+            <translation><!-- Account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Brand</masterLabel>
+            <translation><!-- Account Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand</masterLabel>
+            <translation><!-- Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contact</masterLabel>
+            <translation><!-- Contact --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Depletion</masterLabel>
+            <translation><!-- Depletion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Order</masterLabel>
+            <translation><!-- Internal Order --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Key Task</masterLabel>
+            <translation><!-- Key Task --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Key Task Template</masterLabel>
+            <translation><!-- Key Task Template --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mandatory Product</masterLabel>
+            <translation><!-- Mandatory Product --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market</masterLabel>
+            <translation><!-- Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Offline Outlet Visit Item</masterLabel>
+            <translation><!-- Offline Outlet Visit Item --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Opportunity</masterLabel>
+            <translation><!-- Opportunity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outlet Class</masterLabel>
+            <translation><!-- Outlet Class --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outlet Class Market Definition</masterLabel>
+            <translation><!-- Outlet Class Market Definition --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outlet Visit</masterLabel>
+            <translation><!-- Outlet Visit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outlet Visit Item</masterLabel>
+            <translation><!-- Outlet Visit Item --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Preferred Visit Time</masterLabel>
+            <translation><!-- Preferred Visit Time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product</masterLabel>
+            <translation><!-- Product --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion</masterLabel>
+            <translation><!-- Promotion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion Activity</masterLabel>
+            <translation><!-- Promotion Activity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion Goal</masterLabel>
+            <translation><!-- Promotion Goal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion Material Item</masterLabel>
+            <translation><!-- Promotion Material Item --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion Result</masterLabel>
+            <translation><!-- Promotion Result --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supplier</masterLabel>
+            <translation><!-- Supplier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Task/ Event</masterLabel>
+            <translation><!-- Task/ Event --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Offshore Developer Resource --></label>
+        <name>Offshore_Developer_Resource__c</name>
+        <relationshipLabel><!-- Application Work Packages (Offshore Developer Resource) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Priority --></label>
+        <name>Priority__c</name>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Release__c</name>
+        <relationshipLabel><!-- Application Work Packages --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Requirements Hours --></label>
+        <name>Requirements_Hours_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requirements Hrs Remaining --></label>
+        <name>Requirements_Hrs_Remaining__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requirements Resource --></label>
+        <name>Requirements_Resource__c</name>
+        <relationshipLabel><!-- Application Work Packages (Requirements Resource) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Build</masterLabel>
+            <translation><!-- Build --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deployed</masterLabel>
+            <translation><!-- Deployed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deployed, In Production</masterLabel>
+            <translation><!-- Deployed, In Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Design</masterLabel>
+            <translation><!-- Design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Production</masterLabel>
+            <translation><!-- In Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Planning</masterLabel>
+            <translation><!-- Planning --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ready to be deployed</masterLabel>
+            <translation><!-- Ready to be deployed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Requirements Gathering</masterLabel>
+            <translation><!-- Requirements Gathering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Testing/ QA</masterLabel>
+            <translation><!-- Testing/ QA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- % Tech Design Completed --></label>
+        <name>Tech_Design_Completed__c</name>
+        <picklistValues>
+            <masterLabel>0%</masterLabel>
+            <translation><!-- 0% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100%</masterLabel>
+            <translation><!-- 100% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25%</masterLabel>
+            <translation><!-- 25% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50%</masterLabel>
+            <translation><!-- 50% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75%</masterLabel>
+            <translation><!-- 75% --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Tech Design Hrs Remaining --></label>
+        <name>Tech_Design_Hrs_Remaining__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tech Design Resource --></label>
+        <name>Tech_Design_Resource__c</name>
+        <relationshipLabel><!-- Application Work Packages (Tech Design Resource) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This field is used to enter the sum of Technical Design hours from all requirements associated to this application work package. --></help>
+        <label><!-- Technical Design Hours --></label>
+        <name>Technical_Design_Hours_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Technical Review Completed? --></label>
+        <name>Technical_Review_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- % Testing Completed --></label>
+        <name>Testing_Completed__c</name>
+        <picklistValues>
+            <masterLabel>0%</masterLabel>
+            <translation><!-- 0% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100%</masterLabel>
+            <translation><!-- 100% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25%</masterLabel>
+            <translation><!-- 25% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50%</masterLabel>
+            <translation><!-- 50% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75%</masterLabel>
+            <translation><!-- 75% --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field is used to enter the sum of Testing (System / UAT) hours from all requirements associated to this application work package. --></help>
+        <label><!-- Testing Hours --></label>
+        <name>Testing_Hours_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Level of Effort --></label>
+        <name>Total_Level_of_Effort__c</name>
+    </fields>
+    <fields>
+        <label><!-- Training &amp; Deployment Hours --></label>
+        <name>Training_Deployment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Data Request</masterLabel>
+            <translation><!-- Data Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Enhancement</masterLabel>
+            <translation><!-- Enhancement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Application</masterLabel>
+            <translation><!-- New Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production Issue</masterLabel>
+            <translation><!-- Production Issue --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Use Cases Completed? --></label>
+        <name>Use_Cases_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Acceptance Testing Complete? --></label>
+        <name>User_Acceptance_Testing_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wireframes Included? --></label>
+        <name>Wireframes_included__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Package Name --></label>
+        <name>Work_Package_Name__c</name>
+    </fields>
+    <layouts>
+        <layout>High Deployed</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Level of Effort Information --></label>
+            <section>Level of Effort Information</section>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <section>Milestones</section>
+        </sections>
+        <sections>
+            <label><!-- Work Package Details --></label>
+            <section>Work Package Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Low Deployed</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <section>Milestones</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Medium Deployed</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Level of Effort Information --></label>
+            <section>Level of Effort Information</section>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <section>Milestones</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Work Package Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Level of Effort Information --></label>
+            <section>Level of Effort Information</section>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <section>Milestones</section>
+        </sections>
+        <sections>
+            <label><!-- Work Package Details --></label>
+            <section>Work Package Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Work Package Layout (High)</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Level of Effort Information --></label>
+            <section>Level of Effort Information</section>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <section>Milestones</section>
+        </sections>
+        <sections>
+            <label><!-- Work Package Details --></label>
+            <section>Work Package Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Work Package Layout (Low)</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <section>Milestones</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Work Package Layout (Med)</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Level of Effort Information --></label>
+            <section>Level of Effort Information</section>
+        </sections>
+        <sections>
+            <label><!-- Milestones --></label>
+            <section>Milestones</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- High --></label>
+        <name>High</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- High Deployed --></label>
+        <name>High_Deployed</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Low --></label>
+        <name>Low</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Low Deployed --></label>
+        <name>Low_Deployed</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Medium --></label>
+        <name>Medium</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Medium Deployed --></label>
+        <name>Medium_Deployed</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Work Package is already deployed. --></errorMessage>
+        <name>Deployed_Locked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure all Milestones are completed --></errorMessage>
+        <name>Milestones_Checked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Busted....put it back to Deployed. --></errorMessage>
+        <name>Status_Deployed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Technical Review must be checked - Please contact the COE to ensure the Technical Review has been performed --></errorMessage>
+        <name>Technical_Review</name>
+    </validationRules>
+    <workflowTasks>
+        <description><!-- Please Note:
+
+An application has completed requirements gathering and is available for you to review for any compliance needs. Click on &quot;Related To&quot; field on the task to access the application details.
+
+Thank you. --></description>
+        <name>BME_PLEASE_REVIEW_An_Application_has_completed_Requirements_Gathering</name>
+        <subject><!-- PLEASE REVIEW: An Application has completed Requirements Gathering --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

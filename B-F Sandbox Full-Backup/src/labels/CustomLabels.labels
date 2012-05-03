@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Accounts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Accounts</shortDescription>
+        <value>Accounts</value>
+    </labels>
+    <labels>
+        <fullName>Add</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>Add_Item</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Item</shortDescription>
+        <value>Add Item</value>
+    </labels>
+    <labels>
+        <fullName>Contacts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contacts</shortDescription>
+        <value>Contacts</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_AccountInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_AccountInfo</shortDescription>
+        <value>Account Information</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_AccountProduct</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_AccountProduct</shortDescription>
+        <value>Account Product</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Contact_Function</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Contact_Function</shortDescription>
+        <value>Function</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Contract</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Contract</shortDescription>
+        <value>Pouring contracts</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Enddate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Enddate</shortDescription>
+        <value>Enddate</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_KeyTask</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_KeyTask</shortDescription>
+        <value>Key Tasks</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_LastVisitComments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_LastVisitComments</shortDescription>
+        <value>Last visit comments</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_MandatoryProducts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_MandatoryProducts</shortDescription>
+        <value>Mandatory Products</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_PDF</fullName>
+        <categories>Factsheet, AccountFactsheet</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_PDF</shortDescription>
+        <value>PDF</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Print</fullName>
+        <categories>Factsheet, AccountFactsheet</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Print</shortDescription>
+        <value>Print</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Promotion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Promotion</shortDescription>
+        <value>Promotion</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_PromotionActivities</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_PromotionActivities</shortDescription>
+        <value>Promotion Activities</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Promotion_Activity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Promotion_Activity</shortDescription>
+        <value>Promotion Activity</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Promotions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Promotions</shortDescription>
+        <value>Promotions</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Runtime</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Runtime</shortDescription>
+        <value>Runtime</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_Startdate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_Startdate</shortDescription>
+        <value>Startdate</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_comparison</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_comparison</shortDescription>
+        <value>Target-actual comparison</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_mandatory_products</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_mandatory_products</shortDescription>
+        <value>Mandatory products</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_openedAcitivites</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_openedAcitivites</shortDescription>
+        <value>Opened Activities</value>
+    </labels>
+    <labels>
+        <fullName>Factsheet_rv</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Factsheet_rv_value</shortDescription>
+        <value>RV Value</value>
+    </labels>
+    <labels>
+        <fullName>GMI_BackTo</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back To used in Google Maps</shortDescription>
+        <value>Zurück</value>
+    </labels>
+    <labels>
+        <fullName>GMI_GenerateKey</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please generate a Google maps API key used in Google Maps</shortDescription>
+        <value>Please generate a Google maps API key</value>
+    </labels>
+    <labels>
+        <fullName>GMI_GoogleLanguageCode</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Google Maps Language Code</shortDescription>
+        <value>en</value>
+    </labels>
+    <labels>
+        <fullName>GMI_LocalAddressFound</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Location displayed using address used in Google Maps</shortDescription>
+        <value>Location displayed using address</value>
+    </labels>
+    <labels>
+        <fullName>GMI_LocalAddressNotFound</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Address not found by Google used in Google Maps</shortDescription>
+        <value>Address not found by Google</value>
+    </labels>
+    <labels>
+        <fullName>GMI_LocalShowMap</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Show in Google used in Google Maps</shortDescription>
+        <value>Show in Google</value>
+    </labels>
+    <labels>
+        <fullName>GMI_UpdateComponent</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please update the GoogleMapsInternational component used in Google Maps</shortDescription>
+        <value>Please update the GoogleMapsInternational component with a new key which can be generated from</value>
+    </labels>
+    <labels>
+        <fullName>GMI_WebsiteNeeded</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The website URL needed is used in Google Maps</shortDescription>
+        <value>The website URL needed is</value>
+    </labels>
+    <labels>
+        <fullName>GMI_googleMapURL</fullName>
+        <categories>Google, Maps, Google Maps, Google Maps International</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Google Maps URL</shortDescription>
+        <value>http://maps.google.com</value>
+    </labels>
+    <labels>
+        <fullName>GeoApiKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GeoApiKey</shortDescription>
+        <value>ABQIAAAA6l7kjQ7Z-0DlN4azVo7MKxQHLyK_yU20NLrFZsmEKLzK0iRO6BTJWcJK0iHmyTnjZtyxrwxxCsbN4g</value>
+    </labels>
+    <labels>
+        <fullName>INFW_Processing</fullName>
+        <categories>Processing</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>INFW_Processing</shortDescription>
+        <value>Processing......</value>
+    </labels>
+    <labels>
+        <fullName>MandatoryVisits_DateformatError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MandatoryVisits_DateformatError</shortDescription>
+        <value>Dateformats of parameters are not valid!</value>
+    </labels>
+    <labels>
+        <fullName>MandatoryVisits_Timeframe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MandatoryVisits_Timeframe</shortDescription>
+        <value>Status Visits this month</value>
+    </labels>
+    <labels>
+        <fullName>MasterDataVerification</fullName>
+        <categories>Account, Master Data Verification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MasterDataVerification</shortDescription>
+        <value>Please maintain master data and check the checkbox &apos;Master data verified&apos;</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_B_FSectionLabel</fullName>
+        <categories>OutletVisitPage,SectionLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_B_FSectionLabel</shortDescription>
+        <value>Brown-Forman Brands</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_CancelButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_CancelButtonLabel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_CloseButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_CloseButtonLabel</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_CompSectionLabel</fullName>
+        <categories>OutletVisitPage,SectionLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_CompSectionLabel</shortDescription>
+        <value>Competitor Brands</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_CurrentMonthLabel</fullName>
+        <categories>OutletVisitPage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_CurrentMonthLabel</shortDescription>
+        <value>Current Month</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_Depletion_History_ButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_Depletion_History_ButtonLabel</shortDescription>
+        <value>Depletion History</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_FilterButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_FilterButtonLabel</shortDescription>
+        <value>Find</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_New_Edit_ButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_New_Edit_ButtonLabel</shortDescription>
+        <value>New / Edit</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_NextButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_NextButtonLabel</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_NextMonthLabel</fullName>
+        <categories>OutletVisitPage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_NextMonthLabel</shortDescription>
+        <value>Next Month</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_PreviousMonthLabel</fullName>
+        <categories>OutletVisitPage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_PreviousMonthLabel</shortDescription>
+        <value>Previous Month</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_SaveButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_SaveButtonLabel</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_SaveCloseButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_SaveCloseButtonLabel</shortDescription>
+        <value>Save &amp; Close</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_SpecialLabel</fullName>
+        <categories>OutletVisitPage</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_SpecialLabel</shortDescription>
+        <value>Spcl</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_Task_History_ButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_Task_History_ButtonLabel</shortDescription>
+        <value>Task History</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_View_History_ButtonLabel</fullName>
+        <categories>OutletVisitPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_View_History_ButtonLabel}</shortDescription>
+        <value>View History</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_missingAccountMarket</fullName>
+        <categories>OutletVisitPage,adderror</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_missingAccountMarket</shortDescription>
+        <value>Selected Outlet (Account) has invalid Market value. Edit the Account and try again.</value>
+    </labels>
+    <labels>
+        <fullName>OutletVisitPage_missingAccountOutletClass</fullName>
+        <categories>OutletVisitPage,adderror</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutletVisitPage_missingAccountOutletClass</shortDescription>
+        <value>Selected Outlet (Account) has invalid Outlet Class value. Edit the Account and try again.</value>
+    </labels>
+    <labels>
+        <fullName>OutlookVisitReporting_concurrentPersonalRecalulation</fullName>
+        <categories>OutlookVisitReporting,Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutlookVisitReporting_concurrentPersonalRecalulation</shortDescription>
+        <value>There is a recalculation running. Please try again later.</value>
+    </labels>
+    <labels>
+        <fullName>OutlookVisitReporting_tooManyRecalculations</fullName>
+        <categories>OutlookVisitReporting,Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OutlookVisitReporting_tooManyRecalculations</shortDescription>
+        <value>Too many jobs running. Please try again later.</value>
+    </labels>
+    <labels>
+        <fullName>Please_notice_that_the_visit_date_is_not_from_today</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please notice that the visit date is not from today</shortDescription>
+        <value>Please notice that the visit date is not from today</value>
+    </labels>
+    <labels>
+        <fullName>PromotionPage_AddProductButtonLabel</fullName>
+        <categories>PromotionPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PromotionPage_AddProductButtonLabel</shortDescription>
+        <value>Add Products</value>
+    </labels>
+    <labels>
+        <fullName>PromotionPage_DeleteProductsButtonLabel</fullName>
+        <categories>PromotionPage,ButtonLabel</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PromotionPage_DeleteProductsButtonLabel</shortDescription>
+        <value>Delete Products</value>
+    </labels>
+    <labels>
+        <fullName>PromotionPage_SaveConfirmation</fullName>
+        <categories>PromotionPage,Confirmation</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PromotionPage_SaveConfirmation</shortDescription>
+        <value>All unsaved changes will be lost. Would you like to proceed?</value>
+    </labels>
+    <labels>
+        <fullName>PromotionPage_SearchLabel</fullName>
+        <categories>PromotionPage,Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PromotionPage_SearchLabel</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>Remove_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Items</shortDescription>
+        <value>Remove Items</value>
+    </labels>
+    <labels>
+        <fullName>Remove_Rows</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Rows</shortDescription>
+        <value>Remove Rows</value>
+    </labels>
+    <labels>
+        <fullName>Save_and_Close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save and Close</shortDescription>
+        <value>Save &amp; Close</value>
+    </labels>
+    <labels>
+        <fullName>Saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Saved</shortDescription>
+        <value>Saved!</value>
+    </labels>
+    <labels>
+        <fullName>You_cannot_have_a_visit_date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You cannot have a visit date</shortDescription>
+        <value>You cannot have a visit date in the future!</value>
+    </labels>
+    <labels>
+        <fullName>You_did_not_review_the_account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You did not review the account</shortDescription>
+        <value>You did not review the account since more than</value>
+    </labels>
+    <labels>
+        <fullName>clonePromotion_record_not_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>clonePromotion_record_not_found</shortDescription>
+        <value>Record not found!</value>
+    </labels>
+    <labels>
+        <fullName>clonePromotion_successful</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>clonePromotion_successful</shortDescription>
+        <value>Cloning process completed!</value>
+    </labels>
+    <labels>
+        <fullName>days</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>days</shortDescription>
+        <value>days</value>
+    </labels>
+    <labels>
+        <fullName>sc_account_address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_account_address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
+        <fullName>sc_approval_no_selection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_approval_no_selection</shortDescription>
+        <value>Select at least one store check record, please!</value>
+    </labels>
+    <labels>
+        <fullName>sc_approval_sharing_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_approval_sharing_error</shortDescription>
+        <value>An error occurs during creating manual sharing rules!</value>
+    </labels>
+    <labels>
+        <fullName>sc_approval_sr_inconsistency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_approval_sr_inconsistency</shortDescription>
+        <value>Some owners differ from sales rep field!</value>
+    </labels>
+    <labels>
+        <fullName>sc_error_sc_cannot_be_updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_error_sc_cannot_be_updated</shortDescription>
+        <value>Store Check cannot be updated!</value>
+    </labels>
+    <labels>
+        <fullName>sc_error_sc_not_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_error_sc_not_found</shortDescription>
+        <value>Store Check Item not found!</value>
+    </labels>
+    <labels>
+        <fullName>sc_error_sci_cannot_be_saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_error_sci_cannot_be_saved</shortDescription>
+        <value>Store Check Items cannot be saved!</value>
+    </labels>
+    <labels>
+        <fullName>sc_first_scp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_first_scp</shortDescription>
+        <value>First SCP</value>
+    </labels>
+    <labels>
+        <fullName>sc_headerSubTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_headerSubTitle</shortDescription>
+        <value>Outlet Visit Information</value>
+    </labels>
+    <labels>
+        <fullName>sc_headerTitle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_headerTitle</shortDescription>
+        <value>Outlet Data</value>
+    </labels>
+    <labels>
+        <fullName>sc_info_saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_info_saved</shortDescription>
+        <value>Successfully saved!</value>
+    </labels>
+    <labels>
+        <fullName>sc_item_selection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_item_selection</shortDescription>
+        <value>Store Check Item Selection</value>
+    </labels>
+    <labels>
+        <fullName>sc_second_scp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_second_scp</shortDescription>
+        <value>Second SCP</value>
+    </labels>
+    <labels>
+        <fullName>sc_ssc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_ssc</shortDescription>
+        <value>Situation Secondary placement</value>
+    </labels>
+    <labels>
+        <fullName>sc_third_scp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>sc_third_scp</shortDescription>
+        <value>Third SCP</value>
+    </labels>
+</CustomLabels>

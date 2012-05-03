@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Diagram Settings</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Diagram Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Breakpoint --></label>
+        <name>Breakpoint__c</name>
+    </fields>
+    <fields>
+        <label><!-- acceptableColor --></label>
+        <name>acceptableColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- inacceptableColor --></label>
+        <name>inacceptableColor__c</name>
+    </fields>
+    <fields>
+        <label><!-- reportID --></label>
+        <name>reportID__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

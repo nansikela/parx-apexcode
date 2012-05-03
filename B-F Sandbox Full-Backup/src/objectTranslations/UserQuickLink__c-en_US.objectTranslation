@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>UserQuickLink</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>UserQuickLinks</value>
+    </caseValues>
+    <fields>
+        <label><!-- Quick Link ID --></label>
+        <name>Quick_Link_ID__c</name>
+        <relationshipLabel><!-- UserQuickLinks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- UserId --></label>
+        <name>UserId__c</name>
+        <relationshipLabel><!-- UserQuickLinks --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

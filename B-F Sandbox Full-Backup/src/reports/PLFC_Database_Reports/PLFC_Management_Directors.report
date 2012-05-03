@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>Account.Management_Directors__c:SUM / Account.Board_Number_of_Directors__c:SUM</calculatedFormula>
+        <datatype>percent</datatype>
+        <description>Percent of Management Directors</description>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <masterLabel>% Management Directors</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Board_Number_of_Directors__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Management_Directors__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Management Directors</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Status__c</column>
+            <operator>equals</operator>
+            <value>Active</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Board_Number_of_Directors__c</column>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Management_Directors__c</column>
+            <operator>notEqual</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>ACCOUNT.NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>PLFC: % Management Directors</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Post News</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Body__c</fullName>
+        <externalId>false</externalId>
+        <label>Body</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Breaking_News__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>When you check this field, it will place a banner across the top with a link to this story.</inlineHelpText>
+        <label>Breaking News</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Content__c</fullName>
+        <description>Enter content</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter content</inlineHelpText>
+        <label>Content</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>LongTextArea</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>External_URL__c</fullName>
+        <description>Enter External URL.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter External URL. No entry required if pointing to this document.</inlineHelpText>
+        <label>External URL</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Featured__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>criteria for Featured section of NewsHome VF Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this field if you wish this article to show in the Featured section of the News Page</inlineHelpText>
+        <label>Featured</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Group__c</fullName>
+        <description>Select the Category of the news article.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the Category of the news article.</inlineHelpText>
+        <label>Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Company</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Employee</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Industry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Story of the Day</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Video of the Day</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Travel Alert</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Name</label>
+        <length>255</length>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Source</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Thumbnail_URL__c</fullName>
+        <externalId>false</externalId>
+        <label>Thumbnail URL</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Url</type>
+    </fields>
+    <label>Manage News</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>Group__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Brand_News</fullName>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Group__c</field>
+            <operation>equals</operation>
+            <value>Brands</value>
+        </filters>
+        <label>Brand News</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Breaking_News</fullName>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>Group__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Breaking_News__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Breaking News</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Company_News</fullName>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Group__c</field>
+            <operation>equals</operation>
+            <value>Company</value>
+        </filters>
+        <label>Company News</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Employee_News</fullName>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Group__c</field>
+            <operation>equals</operation>
+            <value>Employee</value>
+        </filters>
+        <label>Employee News</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Featured</fullName>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>Group__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Featured__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Featured</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Story_of_the_Day</fullName>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Group__c</field>
+            <operation>equals</operation>
+            <value>Story of the Day</value>
+        </filters>
+        <label>Story of the Day</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Video_of_the_Day</fullName>
+        <columns>NAME</columns>
+        <columns>Name__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Group__c</field>
+            <operation>equals</operation>
+            <value>Video of the Day</value>
+        </filters>
+        <label>Video of the Day</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>News-{000000}</displayFormat>
+        <label>Id</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Manage News</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Group__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Name__c</customTabListAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

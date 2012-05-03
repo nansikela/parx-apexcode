@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>主要任務</value>
+    </caseValues>
+    <fields>
+        <label>付注</label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complete --></label>
+        <name>Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsQualitative --></label>
+        <name>IsQualitative__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsQuantitative --></label>
+        <name>IsQuantitative__c</name>
+    </fields>
+    <fields>
+        <label>主要任務テンプレート</label>
+        <name>Key_Task_Template__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>面会者</label>
+        <name>Met_With__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>訪問記録</label>
+        <name>Outlet_Visit__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Key Task Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Key Task Name</nameFieldLabel>
+</CustomObjectTranslation>

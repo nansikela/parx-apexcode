@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used by CRM.
+NPA Rollout: Used to store Markets at State Level.</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Evaluator_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 1</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets4</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets5</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 5</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets6</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 6</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets7</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_7__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 7</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets8</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_8__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 8</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets9</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Innovation_Director__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Innovation Director</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Markets1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Market_Code__c</fullName>
+        <description>Used to store technical code for respective markets</description>
+        <externalId>true</externalId>
+        <label>Market Code</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Off_Channel__c</fullName>
+        <description>This field is used by the Outlet Visit page to determine what grid-layout to use in the B-F and Competitor Brands sections. This Off Channel references the value selected in the related Account.Channel__c field value.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used by the Outlet Visit page to determine what grid-layout to use in the B-F and Competitor Brands sections. This &quot;Off Channel&quot; references the value in the related Account.Channel__c field value.
+1-Standard Layout
+2-Euro Off
+3-Euro On</inlineHelpText>
+        <label>Off Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>On_Channel__c</fullName>
+        <description>This field is used by the Outlet Visit page to determine what grid-layout to use in the B-F and Competitor Brands sections. This On Channel references the value selected in the related Account.Channel__c field value.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used by the Outlet Visit page to determine what grid-layout to use in the B-F and Competitor Brands sections. This &quot;On Channel&quot; references the value in the related Account.Channel__c field value.
+1-Standard Layout
+2-Euro Off
+3-Euro On</inlineHelpText>
+        <label>On Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Market_Code__c</fullName>
+        <description>Used to display the code for the parent market</description>
+        <externalId>false</externalId>
+        <formula>Parent_Market__r.Market_Code__c</formula>
+        <label>Parent Market Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used to store the immediate parent of the market e.g. California will have Unites States as the parent</description>
+        <externalId>false</externalId>
+        <label>Parent Market</label>
+        <referenceTo>Market__c</referenceTo>
+        <relationshipLabel>Markets</relationshipLabel>
+        <relationshipName>Markets</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <label>Market</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Market_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Market Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Markets</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Read</sharingModel>
+</CustomObject>

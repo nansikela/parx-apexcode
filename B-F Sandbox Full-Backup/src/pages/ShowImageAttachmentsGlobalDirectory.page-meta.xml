@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>20.0</apiVersion>
+    <description>FDC-GD: Created by Raj on 11/11/2010. USed to display the Contact Image.  Images must always be saved with the name mugshot.jpg</description>
+    <label>ShowImageAttachmentsGlobalDirectory</label>
+</ApexPage>

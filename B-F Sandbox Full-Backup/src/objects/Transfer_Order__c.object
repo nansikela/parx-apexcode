@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A transfer order is an order of products captured offline by one sales rep (user)
+for one customer or outlet (account)
+which will be delivered by one supplier (account).
+In German &quot;Überweisungsauftrag&quot;</description>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Customer_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Customer Contact Person</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The contact person which ordered the products</inlineHelpText>
+        <label>Customer Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Placed Transfer Orders</relationshipLabel>
+        <relationshipName>Placed_Transfer_Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Customer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Recipient of the ordered products</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The customer (account) which will receive the ordered products</inlineHelpText>
+        <label>Customer</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Placed Transfer Orders</relationshipLabel>
+        <relationshipName>Placed_Transfer_Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Delivery_Date__c</fullName>
+        <description>Scheduled Delivery Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the delivery is scheduled for.</inlineHelpText>
+        <label>Delivery Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Order_Date__c</fullName>
+        <description>Date of Order</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The date on which the order was captured</inlineHelpText>
+        <label>Order Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SR__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Sales Rep</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The sales rep of Brown-Forman which captured the transfer order</inlineHelpText>
+        <label>SR</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Captured_Transfer_Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Supplier_Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Supplier Contact Person</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The contact person of the supplier which is responsible for the incoming transfer order.</inlineHelpText>
+        <label>Supplier Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Incoming Transfer Orders</relationshipLabel>
+        <relationshipName>Incoming_Transfer_Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Supplier__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Supplier Partner</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The supplier partner (account) which will deliver the ordered products to the customer (account)</inlineHelpText>
+        <label>Supplier</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Incoming Transfer Orders</relationshipLabel>
+        <relationshipName>Incoming_Transfer_Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <label>Transfer Order</label>
+    <nameField>
+        <displayFormat>TO-{YYYYMM}-{00000}</displayFormat>
+        <label>Transfer Order Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Transfer Orders</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

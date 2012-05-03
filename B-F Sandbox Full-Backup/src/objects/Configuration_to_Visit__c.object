@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>InDevelopment</deploymentStatus>
+    <description>Test object to show a way to report on visits</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot;&amp; Outlet_Visit_Item__r.Outlet_Visit__r.Account__r.Id ,  Outlet_Visit_Item__r.Outlet_Visit__r.Account__r.Name )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Outlet_Visit_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Outlet_Visit_Item__r.Outlet_Visit__r.Visit_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Outlet Visit Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Outlet_Visit_Item__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Visit Item</label>
+        <referenceTo>Outlet_Visit_Item__c</referenceTo>
+        <relationshipLabel>Configuration to Visits</relationshipLabel>
+        <relationshipName>Configuration_to_Visits</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Outlet_Visit__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;/&quot;&amp; Outlet_Visit_Item__r.Outlet_Visit__r.Id , Outlet_Visit_Item__r.Outlet_Visit__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Outlet Visit</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Visit_Report_Configuration__c</fullName>
+        <externalId>false</externalId>
+        <label>Visit Report Configuration</label>
+        <referenceTo>Visit_Report_Configuration__c</referenceTo>
+        <relationshipLabel>Configuration to Visits</relationshipLabel>
+        <relationshipName>Configuration_to_Visits</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Configuration to Visit</label>
+    <nameField>
+        <displayFormat>{00000}</displayFormat>
+        <label>#</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Configuration to Visits</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

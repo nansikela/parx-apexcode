@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>主要ブランド</value>
+    </caseValues>
+    <fields>
+        <label>得意先</label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Account Brands --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>ブランド名</label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Account Brands --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Depletion actuals for this brand at this outlet for this fiscal year --></help>
+        <label>販売推移</label>
+        <name>Depletion_Actuals__c</name>
+    </fields>
+    <fields>
+        <help><!-- The end date of the Fiscal Year for this Account Brand Record --></help>
+        <label>会計年度</label>
+        <name>FY_End__c</name>
+    </fields>
+    <fields>
+        <help><!-- The start date of the Fiscal Year for this Account Brand Record --></help>
+        <label>会計年度開始</label>
+        <name>FY_Start__c</name>
+    </fields>
+    <fields>
+        <label>会計年度</label>
+        <name>Fiscal_Year__c</name>
+    </fields>
+    <fields>
+        <help><!-- Percent to Forecast based on actual depletions recorded. --></help>
+        <label><!-- Forecast Gauge --></label>
+        <name>Forecast_Gauge__c</name>
+    </fields>
+    <fields>
+        <label>販売予測</label>
+        <name>Forecast__c</name>
+    </fields>
+    <fields>
+        <help><!-- Percent to Goal based on actual depletions recorded. --></help>
+        <label><!-- Goal Gauge --></label>
+        <name>Goal_Gauge__c</name>
+    </fields>
+    <fields>
+        <label>販売目標</label>
+        <name>Goal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Brand Icon --></label>
+        <name>Key_Brand_Icon__c</name>
+    </fields>
+    <fields>
+        <label>主要ブランド名</label>
+        <name>Key_Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required Brand Icon --></label>
+        <name>Required_Brand_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mandatory Brand --></label>
+        <name>Required_Brand__c</name>
+    </fields>
+    <fields>
+        <label>酒販店</label>
+        <name>Supplier__c</name>
+    </fields>
+    <fields>
+        <label><!-- % of Forecast --></label>
+        <name>of_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- % of Goal --></label>
+        <name>of_Goal__c</name>
+    </fields>
+    <layouts>
+        <layout>Account Brand Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Account Brands Number</nameFieldLabel>
+</CustomObjectTranslation>

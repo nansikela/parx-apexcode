@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>InDevelopment</deploymentStatus>
+    <description>Test Object to show a possible way to report over visits</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>All_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Default: Only the Last Visit per Account per Period is selected!</inlineHelpText>
+        <label>All Data</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Channel__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>With &quot;On&quot; only the &quot;Group&quot; Picklist will be taken into account. With &quot;Off&quot; only the Outlet Class will be used. With &quot;Both&quot; you can choose both of them.
+&quot;Wholeseller&quot; will only select Visits of &quot;Wholeseller&quot; Accounts ignoring Group and Class.</inlineHelpText>
+        <label>Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>On</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Group__c</fullName>
+        <externalId>false</externalId>
+        <label>Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Convenience Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Department Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Duty Free</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hyper Market</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Liquor Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Supermarket</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sub Wholesalers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wholesalers</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bar / Pub</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Disco / Hip Hop</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hotel / Resort</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Karaoke</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Night Club / Salon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Restaurant / Cafe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sports / Darts</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Drink</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lodging</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slow Food</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Small Food / Bistro</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Life</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dance Club</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Room Salon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Government</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Independent</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Independent Group</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>National Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional Chain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IsRecurrence__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Recurrence</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>LastRecalculation__c</fullName>
+        <externalId>false</externalId>
+        <label>LastRecalculation</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <referenceTo>Market__c</referenceTo>
+        <relationshipLabel>Visit Report Configurations</relationshipLabel>
+        <relationshipName>Visit_Report_Configurations</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Outlet_Class__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Outlet Class</label>
+        <referenceTo>Outlet_Class__c</referenceTo>
+        <relationshipLabel>Visit Report Configurations</relationshipLabel>
+        <relationshipName>Visit_Report_Configurations</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Period1_From__c</fullName>
+        <externalId>false</externalId>
+        <label>Period1_From</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Period1_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Period1 To</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Period2_From__c</fullName>
+        <externalId>false</externalId>
+        <label>Period2_From</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Period2_To__c</fullName>
+        <externalId>false</externalId>
+        <label>Period2_To</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Recurrence_Int__c</fullName>
+        <externalId>false</externalId>
+        <label>Recurrence Interval</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Quarterly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Yearly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Weekly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Free Selection</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Recurrence_Number__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Number for free recurrence interval</inlineHelpText>
+        <label>Recurrence Number</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Recurrence_Unit__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Unit of Recurrence</inlineHelpText>
+        <label>Recurrence Unit</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Day(s)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Week(s)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Month(s)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Year(s)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <label>Visit Report Configuration</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Visit_Report_Configuration Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Visit Report Configurations</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>RecurrenceFreeSelection</fullName>
+        <active>true</active>
+        <description>If free selection is set, this rule forces input of number and period</description>
+        <errorConditionFormula>AND( 
+ ISPICKVAL(Recurrence_Int__c,&quot;Free Selection&quot;),
+OR(
+ISNULL( Recurrence_Number__c ),
+ISBLANK(TEXT( Recurrence_Unit__c) )
+)
+)</errorConditionFormula>
+        <errorDisplayField>Recurrence_Number__c</errorDisplayField>
+        <errorMessage>With free selection you have to give number and unit!</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RecurrenceIntervalHasToBeSet</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+ IsRecurrence__c ,
+ISBLANK(TEXT( Recurrence_Int__c ))
+)</errorConditionFormula>
+        <errorMessage>If recurrence is selected you have to choose an interval!</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>GetData2</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Get Data</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)} 
+
+var rid=&quot;{!Visit_Report_Configuration__c.Id}&quot;; 
+
+var result = sforce.apex.execute( 
+&quot;VisitReportGeneratorBatchable&quot;,&quot;collectVisitItems&quot;,{visitreportconfigurationid: rid}); 
+
+alert(result);</url>
+    </webLinks>
+</CustomObject>

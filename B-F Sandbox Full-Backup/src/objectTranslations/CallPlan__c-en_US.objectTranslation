@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CallPlan</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CallPlans</value>
+    </caseValues>
+    <fields>
+        <label><!-- Cycle --></label>
+        <name>Cycle__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- ScheduleDate --></label>
+        <name>ScheduleDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week --></label>
+        <name>Week__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- bf_CallPlan_Code --></label>
+        <name>bf_CallPlan_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- bf_CallType_Code --></label>
+        <name>bf_CallType_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- bf_Outlet_Number --></label>
+        <name>bf_Outlet_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- bf_Rep_Code --></label>
+        <name>bf_Rep_Code__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

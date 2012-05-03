@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_OWNER_NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_RECORDTYPE</field>
+    </columns>
+    <columns>
+        <field>Promotion__c.Promotion_Sub_Type__c</field>
+    </columns>
+    <columns>
+        <field>Promotion__c.Account__c</field>
+    </columns>
+    <columns>
+        <field>Promotion__c.Promotion_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Promotion__c.Promotion_End_Date__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Promotion_Result__c.Promotion_Comments__c</field>
+    </columns>
+    <columns>
+        <field>Promotion_Result__c.Promotion_Volume_Results__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Promo Summary by Type and Sub-Type</description>
+    <filter>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <column>Promotion__c.Market__c</column>
+            <operator>contains</operator>
+            <value>Canada</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Promotion__c.Account__c</column>
+            <operator>contains</operator>
+            <value></value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Promotion Summary by Type/Sub-Type</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntityCustomEntity$Promotion__c$Promotion_Result__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>CUST_OWNER_NAME</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>Promotion__c.Promotion_End_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

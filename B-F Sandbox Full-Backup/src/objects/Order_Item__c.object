@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>OrderItem_Redirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>OrderItem_Redirect</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account_id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Order__r.Account__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Banner_PA__c</fullName>
+        <externalId>false</externalId>
+        <label>Banner PA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Banner_Partner__c</fullName>
+        <externalId>false</externalId>
+        <formula>Order__r.Banner_Partner__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Banner Partner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>BF - Brand</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipLabel>Order Items</relationshipLabel>
+        <relationshipName>Order_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Carton_Bonus__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Case - (Bonus)</inlineHelpText>
+        <label>Carton (Bonus)</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Carton__c</fullName>
+        <description>Case</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Case</inlineHelpText>
+        <label>Carton</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Discount__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Create a validation rule, has to be greater than the discount or less/equal to the tolerance</inlineHelpText>
+        <label>Discount - ($)</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Code</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Max_PA_Per_Case__c</fullName>
+        <description>Max PA Per Case</description>
+        <externalId>false</externalId>
+        <label>Max PA Per Case</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Missing_Material__c</fullName>
+        <externalId>false</externalId>
+        <label>Missing Material</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Order__c</fullName>
+        <externalId>false</externalId>
+        <label>Order</label>
+        <referenceTo>Order__c</referenceTo>
+        <relationshipLabel>Order Items</relationshipLabel>
+        <relationshipName>Order_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Outlet_PA__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet PA</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PRM_Units_Per_Case__c</fullName>
+        <externalId>false</externalId>
+        <label>PRM Units Per Case</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Price_Ref_Material__c</fullName>
+        <externalId>false</externalId>
+        <formula>Product__r.Pricing_Reference_Material__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Price Ref Material</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>Product__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Product Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>BF - Product</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Order Items</relationshipLabel>
+        <relationshipName>Order_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>RecordTypeName__c</fullName>
+        <externalId>false</externalId>
+        <formula>$RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RecordTypeName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAP_Material_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesaler_Product__r.Product__r.ProductCode__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SAP Material Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Bonus_Units__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Carton_Bonus__c  *  Product__r.Carton_Qty__c)  +  Unit_Bonus__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Bonus Units</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Units__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Carton__c  *  Product__r.Carton_Qty__c)  +  Unit__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Units</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit_Bonus__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Bottles - (Bonus)</inlineHelpText>
+        <label>Unit (Bonus)</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unit__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Bottle</inlineHelpText>
+        <label>Unit</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Product_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesaler_Product__r.Wholesaler_Product_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler Product Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Wholesaler Product</label>
+        <referenceTo>Wholesaler_Product__c</referenceTo>
+        <relationshipLabel>Order Items</relationshipLabel>
+        <relationshipName>Order_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Wholesaler__c</fullName>
+        <description>Wholesaler (Link to the Wholesaler Product) Object</description>
+        <externalId>false</externalId>
+        <formula>Order__r.Wholesaler_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Wholesaler (Link to the Wholesaler Product) Object</inlineHelpText>
+        <label>ECC - Wholesaler</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Order Item</label>
+    <nameField>
+        <displayFormat>ORD_ITM-{0}</displayFormat>
+        <label>Order Item</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Order Items</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Locked</fullName>
+        <active>true</active>
+        <description>Locked</description>
+        <label>Locked</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>New</fullName>
+        <active>true</active>
+        <description>New</description>
+        <label>New</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>Free_Stock_Discount_Check</fullName>
+        <active>true</active>
+        <description>Purpose: To ensure we don&apos;t have both Free Stock and Discount on the Same Item Level</description>
+        <errorConditionFormula>AND((Carton_Bonus__c   &gt; 0  ||   Unit_Bonus__c  &gt; 0) &amp;&amp;  Discount__c &gt; 0)</errorConditionFormula>
+        <errorMessage>Free Stock &amp; Discounts can NOT be applied to the same item level!</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Order_Item_Locked</fullName>
+        <active>true</active>
+        <description>If status is set to processed order then order items cannot be edited.</description>
+        <errorConditionFormula>ISPICKVAL(Order__r.Status__c , &apos;Process Order&apos;)  || ISPICKVAL(Order__r.Status__c , &apos;Complete&apos;)</errorConditionFormula>
+        <errorMessage>Order has already been processed. Changes cannot be made.  Please contact customer service.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Price_Tolerance_Check</fullName>
+        <active>true</active>
+        <description>Validation to see if Price Override will work</description>
+        <errorConditionFormula>Discount__c   &gt;  Max_PA_Per_Case__c</errorConditionFormula>
+        <errorDisplayField>Discount__c</errorDisplayField>
+        <errorMessage>Price Tolerance Reached - Please Enter a Lower Amount</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>Add_Products</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Add / Edit Products</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/orderItem?id={!Order__c.Id}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Apac China - Reports</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>CHN-All Users</group>
+        <group>System Admins</group>
+    </sharedTo>
+</ReportFolder>

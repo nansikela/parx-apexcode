@@ -1,0 +1,1882 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Group Promotion (Banner Group)</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>AccountName__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AccountName</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AccountNumber__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.AccountNumber</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AccountNumber</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Wholesaler__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Account Wholesaler</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Account Wholesaler</inlineHelpText>
+        <label>Account Wholesaler</label>
+        <referenceTo>Account_Wholesaler__c</referenceTo>
+        <relationshipLabel>Deals</relationshipLabel>
+        <relationshipName>Deals</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Group_Promotions</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Activity Code</label>
+        <picklist>
+            <controllingField>Application__c</controllingField>
+            <picklistValues>
+                <fullName>Catalogue</fullName>
+                <controllingFieldValues>Rebate Customer - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Lump Sum On</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price Support</fullName>
+                <controllingFieldValues>On Retailer&apos;s Invoice - Rate per Case On</controllingFieldValues>
+                <controllingFieldValues>On Retailers Invoice - Rate per Case Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Rate per Case Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Rate per Case On</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Rate Per Case Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Rate Per Case On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pouring</fullName>
+                <controllingFieldValues>On Retailer&apos;s Invoice - Rate per Case On</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Rate per Case On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Incentives</fullName>
+                <controllingFieldValues>On Retailer&apos;s Invoice - Rate per Case On</controllingFieldValues>
+                <controllingFieldValues>On Retailers Invoice - Rate per Case Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Rate per Case Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Rate per Case On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ranging</fullName>
+                <controllingFieldValues>On Retailer&apos;s Invoice - Rate per Case On</controllingFieldValues>
+                <controllingFieldValues>On Retailers Invoice - Rate per Case Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Rate per Case Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Rate per Case On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Xmas Catalogue</fullName>
+                <controllingFieldValues>Rebate Customer - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Lump Sum On</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advertising</fullName>
+                <controllingFieldValues>Rebate Customer - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Lump Sum On</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum On</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Rate Per Case Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Rate Per Case On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cocktail Listings</fullName>
+                <controllingFieldValues>Rebate Customer - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Lump Sum On</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Secondary Display</fullName>
+                <controllingFieldValues>Rebate Customer - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Lump Sum On</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Uniforms</fullName>
+                <controllingFieldValues>Rebate Customer - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Customer - Lump Sum On</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Group - Lump Sum On</controllingFieldValues>
+                <controllingFieldValues>Rebate Third Party - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Third Party - Lump Sum On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Printing</fullName>
+                <controllingFieldValues>Rebate Third Party - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Third Party - Lump Sum On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Signage</fullName>
+                <controllingFieldValues>Rebate Third Party - Lump Sum Off</controllingFieldValues>
+                <controllingFieldValues>Rebate Third Party - Lump Sum On</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Activity_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Activity Comment</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Application__c</fullName>
+        <externalId>false</externalId>
+        <label>Application</label>
+        <picklist>
+            <controllingField>Deal_Method__c</controllingField>
+            <picklistValues>
+                <fullName>On Retailer&apos;s Invoice - Rate per Case On</fullName>
+                <controllingFieldValues>Rate Per Case</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Retailers Invoice - Rate per Case Off</fullName>
+                <controllingFieldValues>Rate per Case Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Customer - Lump Sum On</fullName>
+                <controllingFieldValues>Lump Sum</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Customer - Lump Sum Off</fullName>
+                <controllingFieldValues>Lump Sum Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Group - Lump Sum On</fullName>
+                <controllingFieldValues>Lump Sum</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Group - Lump Sum Off</fullName>
+                <controllingFieldValues>Lump Sum Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Third Party - Lump Sum On</fullName>
+                <controllingFieldValues>Lump Sum</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Third Party - Lump Sum Off</fullName>
+                <controllingFieldValues>Lump Sum Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Customer - Rate per Case On</fullName>
+                <controllingFieldValues>Rate Per Case</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Customer - Rate per Case Off</fullName>
+                <controllingFieldValues>Rate per Case Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Group - Rate Per Case On</fullName>
+                <controllingFieldValues>Rate Per Case</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rebate Group - Rate Per Case Off</fullName>
+                <controllingFieldValues>Rate per Case Off</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Approx_LUC_exc_GST__c</fullName>
+        <externalId>false</externalId>
+        <label>Approx LUC (exc GST)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Banner_Group_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Banner_Group__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Banner Group Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Banner_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Banner Group</label>
+        <referenceTo>Banner_Groups__c</referenceTo>
+        <relationshipName>Group_Promotions</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>Should be done at the Brand Level</inlineHelpText>
+        <label>Brand</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipName>Group_Promotions</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Buy_Period_End_Date__c</fullName>
+        <description>Buy Period End Date</description>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Buy_Period_Start_Date__c</fullName>
+        <description>The period that the Account can purchase the product.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The period that the Account can purchase the product.</inlineHelpText>
+        <label>Buy Period Start Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Co_Op_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Co Op Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Case Rate (Rebate)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lump Sum (Rebate)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Customer_Level__c</fullName>
+        <externalId>false</externalId>
+        <label>Customer Level</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Banner</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Retailer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Promotion_ID__c</fullName>
+        <description>Promotion Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Manual named field</inlineHelpText>
+        <label>Customer Promotion ID</label>
+        <length>30</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Deal_Channel__c</fullName>
+        <description>Vistex - Tactic</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Vistex - Tactic</inlineHelpText>
+        <label>Deal Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>ON</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OFF</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integrated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Deal_Display_Helper_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  ISPICKVAL(Deal_Method__c, &apos;Rate Per Case&apos; ) ||  ISPICKVAL(Deal_Method__c, &apos;Rate per Case Off&apos; ), &apos;Rate per Case&apos;, &apos;Lump Sum&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Deal Display Helper Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Deal_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Deal Method</label>
+        <picklist>
+            <controllingField>Deal_Channel__c</controllingField>
+            <picklistValues>
+                <fullName>Rate Per Case</fullName>
+                <controllingFieldValues>Integrated</controllingFieldValues>
+                <controllingFieldValues>ON</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lump Sum</fullName>
+                <controllingFieldValues>Integrated</controllingFieldValues>
+                <controllingFieldValues>ON</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rate per Case Off</fullName>
+                <controllingFieldValues>Integrated</controllingFieldValues>
+                <controllingFieldValues>OFF</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lump Sum Off</fullName>
+                <controllingFieldValues>Integrated</controllingFieldValues>
+                <controllingFieldValues>OFF</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Deal_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Deal Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Ongoing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Promotion</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Extra_Co_Op_per_Case__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Dollar per Case - Trade Allowance Discount Amount</inlineHelpText>
+        <label>Extra Co-Op per Case</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Extra_Unit_PA__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>In Addition to the existing PA</inlineHelpText>
+        <label>Extra PA ($)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Id__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>System Generated Key</inlineHelpText>
+        <label>Id</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LUC_GST_INC__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Landed Unit Cost - What the retailer pays.</inlineHelpText>
+        <label>LUC (GST INC) ($)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Code</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lump_Sum_Co_OP__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Lumps Sum of Trade Allowance allocated to a Pay Date (Either one or the other Co-op value)</inlineHelpText>
+        <label>Lump Sum Co-Op</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lump_Sum__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Lump Sum</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Margin__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Sell - LUC / Sell</inlineHelpText>
+        <label>Margin %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Material_Product_Group__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This will be the old product group.</inlineHelpText>
+        <label>Material Product Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Note_to_Approver__c</fullName>
+        <externalId>false</externalId>
+        <label>Note to Approver</label>
+        <length>32768</length>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Objective__c</fullName>
+        <description>Vistex Needed</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Defined by Vistex</inlineHelpText>
+        <label>Objective</label>
+        <picklist>
+            <picklistValues>
+                <fullName>001 Price Allowance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>003 Compliance</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>004 Route to Market - Recovery</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>005 Visibility</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>009 Bonus</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Ongoing_PA__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This number should come from Vistex - Sum of all PA Promotions
+
+Off Invoice from the Wholesaler</inlineHelpText>
+        <label>Ongoing PA ($)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PA_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>PA Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>$ Loaded</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>$ Rebated</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>$ Scan Deal (Rebated)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Price_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Price Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Max Shelf</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Exact Promoted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDVP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product_Class__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Class</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Pre-Mix</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Full Strength</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Promotion_Group__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Product Group - This will be a drill down from brand to product class, to material product group.(Old product group) And allow multiple selection.  Note the rule is one promotion per equally priced and discounted material product group. CD</inlineHelpText>
+        <label>Promotion Group</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Example 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Example 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Example 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Promotion_Mechanics__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Mechanics</label>
+        <picklist>
+            <picklistValues>
+                <fullName>GWP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WIS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bundle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price &amp; GWP</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Price &amp; WIS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Major Prize</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Promotion_Period_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>(End Date)</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Promotion_Period_Start_Date__c</fullName>
+        <description>The Date the Promotion runs in the store.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Date the Promotion runs in the store.</inlineHelpText>
+        <label>Promotion (Start Date)</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Promotion_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Promotion Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>In-Store</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Advertised</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Rate_Per_Case__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Rate Per Case</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>RecordTypeName__c</fullName>
+        <externalId>false</externalId>
+        <formula>$RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RecordTypeName</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>South</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South West</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sell_Price__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>(1) This is the Sell Price of the Promoted Pack</inlineHelpText>
+        <label>Sell Price (GST INC) ($)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <externalId>false</externalId>
+        <label>State</label>
+        <picklist>
+            <picklistValues>
+                <fullName>QLD</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NSW</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ACT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VIC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TAS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NT</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Initial</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Tatic__c</fullName>
+        <description>Defined by Vistex</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Defined by Vistex</inlineHelpText>
+        <label>Tatic</label>
+        <picklist>
+            <picklistValues>
+                <fullName>On Premise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Off Premise</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Cases</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bottles</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Need Unit Examples</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Vistex_Agreement_Number__c</fullName>
+        <description>Vistex Agreement Number</description>
+        <externalId>true</externalId>
+        <inlineHelpText>Vistex Agreement Number</inlineHelpText>
+        <label>Vistex Agreement Number</label>
+        <length>18</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vistex_Agreement_Type__c</fullName>
+        <description>Defined by Vistex</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Defined by Vistex</inlineHelpText>
+        <label>Vistex Agreement Type</label>
+        <length>30</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vistex_Condition_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Vistex Condition Type</label>
+        <length>12</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Volume_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume Source</label>
+        <picklist>
+            <picklistValues>
+                <fullName>W/S Loaded</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W/S Rebate</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( $RecordType.Name == &apos;Group Deal&apos;,  Wholesaler__r.Name,  Account_Wholesaler__r.Wholesaler__r.Name )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler Name</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the individual wholesaler shed (ie, ALM NSW)</inlineHelpText>
+        <label>Wholesaler</label>
+        <referenceTo>Wholesaler__c</referenceTo>
+        <relationshipLabel>Deals</relationshipLabel>
+        <relationshipName>Group_Promotions</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <label>Deal</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Customer_Promotion_ID__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Promotion_Period_Start_Date__c</columns>
+        <columns>Buy_Period_Start_Date__c</columns>
+        <columns>Banner_Group__c</columns>
+        <columns>Activity_Comment__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Approved_Deals</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>LAST_ACTIVITY</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <label>Approved Deals</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>Deal-{0}</displayFormat>
+        <label>Deal Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Deals</pluralLabel>
+    <recordTypes>
+        <fullName>Group_Deal</fullName>
+        <active>true</active>
+        <description>Deal form to be used for banner groups</description>
+        <label>Group Deal</label>
+        <picklistValues>
+            <picklist>Activity_Code__c</picklist>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalogue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocktail Listings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incentives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pouring</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Printing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ranging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Display</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uniforms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Xmas Catalogue</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Application__c</picklist>
+            <values>
+                <fullName>On Retailer%27s Invoice - Rate per Case On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Retailers Invoice - Rate per Case Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Customer - Lump Sum Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Customer - Lump Sum On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Customer - Rate per Case Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Customer - Rate per Case On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Group - Lump Sum Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Group - Lump Sum On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Group - Rate Per Case Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Group - Rate Per Case On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Third Party - Lump Sum Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Third Party - Lump Sum On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Co_Op_Type__c</picklist>
+            <values>
+                <fullName>Case Rate %28Rebate%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum %28Rebate%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Customer_Level__c</picklist>
+            <values>
+                <fullName>Banner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retailer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Channel__c</picklist>
+            <values>
+                <fullName>OFF</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>ON</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Method__c</picklist>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rate Per Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rate per Case Off</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Type__c</picklist>
+            <values>
+                <fullName>On Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ongoing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Material_Product_Group__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Objective__c</picklist>
+            <values>
+                <fullName>001 Price Allowance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>003 Compliance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>004 Route to Market - Recovery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>005 Visibility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>009 Bonus</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PA_Type__c</picklist>
+            <values>
+                <fullName>%24 Loaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%24 Rebated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%24 Scan Deal %28Rebated%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Price_Type__c</picklist>
+            <values>
+                <fullName>EDVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exact Promoted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Max Shelf</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Class__c</picklist>
+            <values>
+                <fullName>Full Strength</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre-Mix</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Group__c</picklist>
+            <values>
+                <fullName>Example 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Example 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Example 3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Mechanics__c</picklist>
+            <values>
+                <fullName>Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GWP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Major Prize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price %26 GWP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price %26 WIS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WIS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Type__c</picklist>
+            <values>
+                <fullName>Advertised</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South West</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>State__c</picklist>
+            <values>
+                <fullName>ACT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NSW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QLD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Initial</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tatic__c</picklist>
+            <values>
+                <fullName>Off Premise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Premise</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unit__c</picklist>
+            <values>
+                <fullName>Bottles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cases</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need Unit Examples</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Volume_Source__c</picklist>
+            <values>
+                <fullName>W%2FS Loaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W%2FS Rebate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Outlet_Deal</fullName>
+        <active>true</active>
+        <description>Deal Sheet for sales rep to be used for outlets.</description>
+        <label>Outlet Deal</label>
+        <picklistValues>
+            <picklist>Activity_Code__c</picklist>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Catalogue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cocktail Listings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incentives</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pouring</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price Support</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Printing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ranging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Secondary Display</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Uniforms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Xmas Catalogue</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Application__c</picklist>
+            <values>
+                <fullName>On Retailer%27s Invoice - Rate per Case On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Retailers Invoice - Rate per Case Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Customer - Lump Sum Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Customer - Lump Sum On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Customer - Rate per Case Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Customer - Rate per Case On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Group - Lump Sum Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Group - Lump Sum On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Group - Rate Per Case Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Group - Rate Per Case On</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Third Party - Lump Sum Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Third Party - Lump Sum On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Co_Op_Type__c</picklist>
+            <values>
+                <fullName>Case Rate %28Rebate%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum %28Rebate%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Customer_Level__c</picklist>
+            <values>
+                <fullName>Banner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retailer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Channel__c</picklist>
+            <values>
+                <fullName>OFF</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ON</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Method__c</picklist>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rate Per Case</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rate per Case Off</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Deal_Type__c</picklist>
+            <values>
+                <fullName>On Promotion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ongoing</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Material_Product_Group__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Objective__c</picklist>
+            <values>
+                <fullName>001 Price Allowance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>003 Compliance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>004 Route to Market - Recovery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>005 Visibility</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>009 Bonus</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PA_Type__c</picklist>
+            <values>
+                <fullName>%24 Loaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%24 Rebated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>%24 Scan Deal %28Rebated%29</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Price_Type__c</picklist>
+            <values>
+                <fullName>EDVP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Exact Promoted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Max Shelf</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Class__c</picklist>
+            <values>
+                <fullName>Full Strength</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pre-Mix</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Group__c</picklist>
+            <values>
+                <fullName>Example 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Example 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Example 3</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Mechanics__c</picklist>
+            <values>
+                <fullName>Bundle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GWP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Major Prize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price %26 GWP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Price %26 WIS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WIS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Promotion_Type__c</picklist>
+            <values>
+                <fullName>Advertised</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Store</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>South</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>South West</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>State__c</picklist>
+            <values>
+                <fullName>ACT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NSW</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>QLD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VIC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WA</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Initial</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tatic__c</picklist>
+            <values>
+                <fullName>Off Premise</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Premise</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unit__c</picklist>
+            <values>
+                <fullName>Bottles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cases</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Need Unit Examples</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Volume_Source__c</picklist>
+            <values>
+                <fullName>W%2FS Loaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W%2FS Rebate</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>RECORDTYPE</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Customer_Promotion_ID__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Banner_Group__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Buy_Period_Start_Date__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Promotion_Period_Start_Date__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Buy_Period_End_Date</fullName>
+        <active>true</active>
+        <description>Buy period end date can not be lower than buy period start date.</description>
+        <errorConditionFormula>Buy_Period_End_Date__c  &lt; Buy_Period_Start_Date__c</errorConditionFormula>
+        <errorDisplayField>Buy_Period_End_Date__c</errorDisplayField>
+        <errorMessage>Buy period end date can not be lower than buy period start date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Promotion_Period_End_Date</fullName>
+        <active>true</active>
+        <description>Promotion period end date cannot be lower than promotion period start date.</description>
+        <errorConditionFormula>Promotion_Period_End_Date__c &lt;  Promotion_Period_Start_Date__c</errorConditionFormula>
+        <errorDisplayField>Promotion_Period_End_Date__c</errorDisplayField>
+        <errorMessage>Promotion period end date cannot be lower than promotion period start date.</errorMessage>
+    </validationRules>
+</CustomObject>

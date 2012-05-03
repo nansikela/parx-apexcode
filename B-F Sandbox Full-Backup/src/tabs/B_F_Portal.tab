@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>INFOWELDERS - Access to the Brown-Forman portal</description>
+    <frameHeight>600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>B-F Portal</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom16: Bank</motif>
+    <url>http://portal.b-f.com/irj/servlet/prt/portal/prtroot/pcd!3aportal_content!2fcom.b-f.folder.bfContent!2fcom.b-f.Roles!2fcom.b-f.myReports!2fcom.b-f.myReports!2fanalytics!2fcom.b-f.myReports!2fcom.b-f.myReports</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

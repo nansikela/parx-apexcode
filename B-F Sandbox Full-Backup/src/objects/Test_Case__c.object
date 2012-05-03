@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A Test Case represents a repeatable business scenario which will allow application functionality to be tested. Test Cases are associated to Use Cases, as they should reflect a business scenario.</description>
+    <enableActivities>true</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Actor_s__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Add user profiles or type here for which the scripts are relevant</inlineHelpText>
+        <label>Actor(s)</label>
+        <length>250</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Application_Work_Package__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Application Work Package</label>
+        <referenceTo>Work_Package__c</referenceTo>
+        <relationshipLabel>Test Cases</relationshipLabel>
+        <relationshipName>Test_Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_To__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Assigned To</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Test_Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Related_Requirement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The requirement the test case is related to and covers from a traceability perspective.</description>
+        <externalId>false</externalId>
+        <label>Related Requirement</label>
+        <referenceTo>Requirement__c</referenceTo>
+        <relationshipLabel>Related Test Cases</relationshipLabel>
+        <relationshipName>Test_Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Passed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Summary__c</fullName>
+        <externalId>false</externalId>
+        <label>Summary</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Test_Case_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Test Case Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Test_Case_No__c</fullName>
+        <displayFormat>TC-{0000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Test Case No</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Unit Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Integration Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>User Acceptance Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>System Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Data Test</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Use_Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Use Case</label>
+        <referenceTo>Use_Case__c</referenceTo>
+        <relationshipLabel>Related Test Cases</relationshipLabel>
+        <relationshipName>Test_Cases</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Work_Package_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Application_Work_Package__r.Work_Package_Name__c</formula>
+        <label>Work Package Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Test Case</label>
+    <listViews>
+        <fullName>AllTestCases</fullName>
+        <columns>Application_Work_Package__c</columns>
+        <columns>Work_Package_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>Test_Case_Name__c</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Use_Case__c</columns>
+        <columns>Assigned_To__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Test Cases</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Test_Cases_Failed</fullName>
+        <columns>NAME</columns>
+        <columns>Test_Case_Name__c</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Use_Case__c</columns>
+        <columns>Assigned_To__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Failed</value>
+        </filters>
+        <label>Test Cases Failed</label>
+    </listViews>
+    <listViews>
+        <fullName>Test_Cases_In_Progress</fullName>
+        <columns>NAME</columns>
+        <columns>Test_Case_Name__c</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Use_Case__c</columns>
+        <columns>Assigned_To__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </filters>
+        <label>Test Cases In Progress</label>
+    </listViews>
+    <listViews>
+        <fullName>Test_Cases_Passed</fullName>
+        <columns>NAME</columns>
+        <columns>Test_Case_Name__c</columns>
+        <columns>Status__c</columns>
+        <columns>Type__c</columns>
+        <columns>Use_Case__c</columns>
+        <columns>Assigned_To__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Passed</value>
+        </filters>
+        <label>Test Cases Passed</label>
+    </listViews>
+    <nameField>
+        <displayFormat>TC-{00000}</displayFormat>
+        <label>Test Case ID</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test Cases</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Test_Case_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Summary__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Use_Case__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Assigned_To__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Test_Case_Name__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Summary__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Type__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Use_Case__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Assigned_To__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Test_Case_Name__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Summary__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Type__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Use_Case__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Assigned_To__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>Test_Case_Name__c</searchFilterFields>
+        <searchFilterFields>Summary__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchFilterFields>Type__c</searchFilterFields>
+        <searchFilterFields>Use_Case__c</searchFilterFields>
+        <searchFilterFields>Assigned_To__c</searchFilterFields>
+        <searchResultsAdditionalFields>Test_Case_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Summary__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Use_Case__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Assigned_To__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Add_Test_Step_Results</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Track Results</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/addtestcasestepResults?id={!Test_Case__c.Id}</url>
+    </webLinks>
+</CustomObject>

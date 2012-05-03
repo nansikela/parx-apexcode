@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Open Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Open Items</value>
+    </caseValues>
+    <fields>
+        <label><!-- Approver --></label>
+        <name>Approver__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>Adoption and Org Readiness</masterLabel>
+            <translation><!-- Adoption and Org Readiness --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business</masterLabel>
+            <translation><!-- Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Governance</masterLabel>
+            <translation><!-- Governance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technology</masterLabel>
+            <translation><!-- Technology --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Close Date --></label>
+        <name>Close_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complexity --></label>
+        <name>Complexity__c</name>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Date Submitted --></label>
+        <name>Date_Submitted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Detailed Description --></label>
+        <name>Detailed_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>Due_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select user who you would like to escalate this issue to. The user should be atleast a OneApp user. --></help>
+        <label><!-- Escalate To? --></label>
+        <name>Escalate_To__c</name>
+        <relationshipLabel><!-- Open Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Escalation Required? --></label>
+        <name>Escalation_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Resolution --></label>
+        <name>Final_Resolution__c</name>
+    </fields>
+    <fields>
+        <label><!-- Meeting --></label>
+        <name>Meeting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Priority --></label>
+        <name>Priority__c</name>
+        <picklistValues>
+            <masterLabel>Critical</masterLabel>
+            <translation><!-- Critical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Related Requirement --></label>
+        <name>Related_Requirement__c</name>
+        <relationshipLabel><!-- Open Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Resolution Options --></label>
+        <name>Resolution_Options__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deferred</masterLabel>
+            <translation><!-- Deferred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Resolved</masterLabel>
+            <translation><!-- Resolved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sub Category --></label>
+        <name>Sub_Category__c</name>
+        <picklistValues>
+            <masterLabel>Adoption</masterLabel>
+            <translation><!-- Adoption --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Application</masterLabel>
+            <translation><!-- Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Application Design</masterLabel>
+            <translation><!-- Application Design --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Communications</masterLabel>
+            <translation><!-- Communications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Cleansing</masterLabel>
+            <translation><!-- Data Cleansing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Migration</masterLabel>
+            <translation><!-- Data Migration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integration</masterLabel>
+            <translation><!-- Integration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process</masterLabel>
+            <translation><!-- Process --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Requirements</masterLabel>
+            <translation><!-- Requirements --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Testing</masterLabel>
+            <translation><!-- Testing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training</masterLabel>
+            <translation><!-- Training --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Submitted By --></label>
+        <name>Submitted_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Summary --></label>
+        <name>Summary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Action Item</masterLabel>
+            <translation><!-- Action Item --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Decision</masterLabel>
+            <translation><!-- Decision --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deliverable</masterLabel>
+            <translation><!-- Deliverable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Issue</masterLabel>
+            <translation><!-- Issue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risk</masterLabel>
+            <translation><!-- Risk --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Work Package --></label>
+        <name>Work_Package__c</name>
+        <relationshipLabel><!-- Open Items --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Open Item Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Escalation Information --></label>
+            <section>Escalation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

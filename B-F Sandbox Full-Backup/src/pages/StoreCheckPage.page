@@ -1,0 +1,433 @@
+<apex:page standardController="Store_Check__c"
+	extensions="StoreCheckController" sidebar="true" showHeader="true">
+	<style>
+.headersOfBodyTable {
+	display: none;
+}
+
+.cHeaderRow {
+	
+}
+
+.bodyRow {
+	
+}
+	</style> 
+	<script>
+		window.onload = init();
+
+		function init() {
+			$ov = jQuery.noConflict();
+		}
+
+		//Necessary to resize table headers if edit mode is used on record
+		$ov(document).ready(function() {
+			setTimeout('makeTableScrollable()', 500);
+		});
+
+		$ov(function() {
+			$ov(window).resize(function() {
+				makeTableScrollable();
+			});
+		});
+
+		function makeTableScrollable() {
+			var $thead = $ov('[id$=headerTable_selected]').find('.cHeaderRow');
+			var $tbody = $ov('[id$=bodyTable_selected]').find('tbody').find(
+					'tr').first().find('.bodyRow');
+
+			for ( var i = 0; i < $thead.size() - 1; i++) {
+				var w = $tbody.eq(i).css('width').substring(0,
+						$tbody.eq(i).css('width').length - 2);
+				$thead.eq(i).css('width', (w - 1) + 'px');
+			}
+		}
+	</script>
+	<apex:includeScript value="{!URLFOR($Resource.jq_v1813, '/js/jquery-1.5.1.min.js')}" />
+	<apex:form >
+		<apex:pageMessages />
+		<apex:pageBlock title="Store Check">
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton action="{!save}" id="saveButton" value="Save" />
+				<apex:commandButton action="{!cancel}" id="cancelButton"
+					value="Cancel" />
+			</apex:pageBlockButtons>
+			<apex:pageBlockSection title="{!$Label.sc_headerTitle}" columns="2">
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Account__c.Label}"
+						for="account" />
+					<apex:outputField value="{!record.Account__c}" id="account" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.SR__c.Label}" for="sr" />
+					<apex:outputField value="{!record.SR__c}" id="sr" />
+				</apex:pageBlockSectionItem>
+
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$Label.sc_account_address}"
+						for="account_address" />
+					<apex:outputText value="{!a.Billingstreet}, {!a.BillingCity}"
+						id="account_address" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.SC_By__c.Label}"
+						for="sc_by" />
+					<apex:inputField value="{!record.SC_By__c}" id="sc_by" />
+				</apex:pageBlockSectionItem>
+
+				<apex:pageBlockSectionItem />
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.SC_Date__c.Label}"
+						for="sc_date" />
+					<apex:inputField value="{!record.SC_Date__c}" id="sc_date" />
+				</apex:pageBlockSectionItem>
+
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Last_Visit_SR__c.Label}"
+						for="last_visit_sr" />
+					<apex:outputField value="{!record.Last_Visit_SR__c}"
+						id="last_visit_sr" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Rating_Grade__c.Label}"
+						for="rating_grade" />
+					<apex:inputField value="{!record.Rating_Grade__c}"
+						id="rating_grade" />
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+
+			<br /> 
+ 
+			<apex:pageBlockSection title="{!$Label.sc_headerSubTitle}"
+				columns="2">
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.Fields.Name.Label}"
+						for="outlet_name" />
+					<apex:outputField value="{!lastVisitedOutletVisit.Name}"
+						id="outlet_name" />
+				</apex:pageBlockSectionItem>
+
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.Fields.Met_With__c.Label}"
+						for="mw" />
+					<apex:outputField value="{!lastVisitedOutletVisit.Met_With__c}"
+						id="mw" />
+				</apex:pageBlockSectionItem>
+
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.Fields.Visit_Date__c.Label}"
+						for="vd" />
+					<apex:outputField value="{!lastVisitedOutletVisit.Visit_Date__c}"
+						id="vd" />
+				</apex:pageBlockSectionItem>
+
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Outlet_Visit__c.Fields.Visit_Comments__c.Label}"
+						for="vc" />
+					<apex:outputField value="{!lastVisitedOutletVisit.Visit_Comments__c}" id="vc" />
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+
+			<apex:pageBlockTable value="{!lastOVIs}" var="ovi">
+				<apex:column headerValue="{!$ObjectType.Outlet_Visit_Item__c.Fields.Custom_Product__c.Label}">
+					<apex:outputField value="{!ovi.Custom_Product__c}" />
+				</apex:column>
+				<apex:column headerValue="{!$ObjectType.Outlet_Visit_Item__c.Fields.Available__c.Label}">
+					<apex:outputField value="{!ovi.Available__c}" />
+				</apex:column>
+				<apex:column headerValue="{!$ObjectType.Outlet_Visit_Item__c.Fields.Bottle_Price_Special__c.Label}">
+					<apex:outputField value="{!ovi.Bottle_Price_Special__c}" />
+				</apex:column>
+				<apex:column headerValue="{!$ObjectType.Outlet_Visit_Item__c.Fields.Bottle_Price__c.Label}">
+					<apex:outputField value="{!ovi.Bottle_Price__c}" />
+				</apex:column>
+				<apex:column headerValue="{!$ObjectType.Outlet_Visit_Item__c.Fields.Facing__c.Label}">
+					<apex:outputField value="{!ovi.Facing__c}" />
+				</apex:column>
+				<apex:column headerValue="{!$ObjectType.Outlet_Visit_Item__c.Fields.Shelf__c.Label}">
+					<apex:outputField value="{!ovi.Shelf__c}" />
+				</apex:column>
+			</apex:pageBlockTable>
+
+			<br />
+
+			<apex:actionFunction name="selectItem" action="{!selectItem}"
+				oncomplete="makeTableScrollable(); return false;"
+				rerender="allProducts, selectedItems">
+				<apex:param name="productID" value="" />
+			</apex:actionFunction>
+
+			<apex:actionFunction name="deselectItem" action="{!deselectItem}"
+				oncomplete="makeTableScrollable(); return false;"
+				rerender="allProducts, selectedItems">
+				<apex:param name="productID" value="" />
+			</apex:actionFunction>
+
+			<apex:pageBlockSection title="{!$Label.sc_item_selection}"
+				columns="1">
+				<apex:pageblockSectionItem >
+					<apex:outputPanel style="width:100%" layout="block">
+						<table style="width: 100%;">
+							<thead>
+								<tr>
+									<apex:outputPanel rendered="{!NOT(isReadOnly)}">
+										<th>Available Items</th>
+										<th></th>
+									</apex:outputPanel>
+									<th>Selected Items</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<apex:outputPanel rendered="{!NOT(isReadOnly)}">
+										<td style="width: 30%"><apex:outputPanel id="allProducts">
+												<apex:pageBlockTable value="{!sci_header}" var="i" rows="0"
+													id="headerTable_all">
+													<apex:column headerValue="{!$ObjectType.Store_Check_Item__c.Fields.Product__c.Label}" />
+												</apex:pageBlockTable>
+												<div style="max-height: 120px; overflow-y: scroll;">
+													<apex:pageBlockTable value="{!products}" var="i"
+														headerClass="headersOfBodyTable" id="bodyTable_all">
+														<apex:column value="{!i.Name}" />
+														<apex:column >
+															<a href="#" onclick="selectItem('{!i.ID}');"><img
+																src="{!$Resource.ArrowRight}" /></a>
+														</apex:column>
+													</apex:pageBlockTable>
+												</div>
+											</apex:outputPanel></td>
+										<td style="width: 3%"></td>
+									</apex:outputPanel>
+									<td style="width: 67%"><apex:actionRegion id="actionRegion_selectedItems">
+											<apex:outputPanel id="selectedItems">
+												<apex:pageBlockTable value="{!sci_header}" var="i" rows="0"
+													id="headerTable_selected">
+													<apex:column headerClass="cHeaderRow" style="width:25px;"
+														rendered="{!NOT(isReadOnly)}" />
+													<apex:column headerClass="cHeaderRow"
+														headerValue="{!$ObjectType.Store_Check_Item__c.Fields.Product__c.Label}" />
+													<apex:column headerClass="cHeaderRow"
+														style="min-width: 85px;"
+														headerValue="{!$ObjectType.Store_Check_Item__c.Fields.Special_Price__c.Label}" />
+													<apex:column headerClass="cHeaderRow"
+														style="min-width: 85px;"
+														headerValue="{!$ObjectType.Store_Check_Item__c.Fields.Price__c.Label}" />
+													<apex:column headerClass="cHeaderRow"
+														style="min-width: 85px;"
+														headerValue="{!$ObjectType.Store_Check_Item__c.Fields.Facings_shelf__c.Label}" />
+													<apex:column headerClass="cHeaderRow"
+														headerValue="{!$ObjectType.Store_Check_Item__c.Fields.Shelf_from_bottom__c.Label}" />
+													<apex:column headerClass="cHeaderRow"
+														headerValue="{!$ObjectType.Store_Check_Item__c.Fields.OOS_with__c.Label}" />
+												</apex:pageBlockTable>
+												<div id="selectedScrollbar"
+													style="max-height: 120px; overflow-y: scroll;">
+													<apex:pageBlockTable value="{!selected_sci}" var="i"
+														headerClass="headersOfBodyTable" id="bodyTable_selected">
+														<apex:column style="width:23px;" styleClass="bodyRow"
+															rendered="{!NOT(isReadOnly)}">
+															<a href="#" onclick="deselectItem('{!i.Product__c}');"><img
+																src="{!$Resource.remove}" /></a>
+														</apex:column>
+														<apex:column styleClass="bodyRow" value="{!i.Product__c}" />
+														<apex:column style="min-width: 85px;" styleClass="bodyRow">
+															<apex:inputField value="{!i.Special_Price__c}" />
+														</apex:column>
+														<apex:column style="min-width: 85px;" styleClass="bodyRow">
+															<apex:inputField style="max-width: 100px;" value="{!i.Price__c}" />
+														</apex:column>
+														<apex:column style="min-width: 85px;" styleClass="bodyRow">
+															<apex:inputField value="{!i.Facings_shelf__c}" />
+														</apex:column>
+														<apex:column styleClass="bodyRow">
+															<apex:inputField value="{!i.Shelf_from_bottom__c}" />
+														</apex:column>
+														<apex:column styleClass="bodyRow">
+															<apex:inputField value="{!i.OOS_with__c}" />
+														</apex:column>
+													</apex:pageBlockTable>
+												</div>
+											</apex:outputPanel>
+										</apex:actionRegion></td>
+								</tr>
+							</tbody>
+						</table>
+					</apex:outputPanel>
+				</apex:pageblockSectionItem>
+			</apex:pageBlockSection>
+
+			<br />
+
+			<apex:pageBlockSection columns="4">
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.All_pricing_labels_available__c.Label}"
+						for="q1" />
+					<apex:inputField value="{!record.All_pricing_labels_available__c}"
+						id="q1" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.sales_campaign_with_2_pl_realized__c.Label}"
+						for="q2" />
+					<apex:inputField value="{!record.sales_campaign_with_2_pl_realized__c}" id="q2" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Sales_campaign_labels_tended__c.Label}"
+						for="q3" />
+					<apex:inputField value="{!record.Sales_campaign_labels_tended__c}"
+						id="q3" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Gaps_in_shelf_closed__c.Label}"
+						for="q4" />
+					<apex:inputField value="{!record.Gaps_in_shelf_closed__c}" id="q4" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.enough_products_in_the_shelf_available__c.Label}"
+						for="q5" />
+					<apex:inputField value="{!record.enough_products_in_the_shelf_available__c}"
+						id="q5" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Gift_promo_packs_in_shelf_available__c.Label}"
+						for="q6" />
+					<apex:inputField value="{!record.Gift_promo_packs_in_shelf_available__c}" id="q6" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Gift_promo_packs_addit_avail_in_shelf__c.Label}"
+						for="q7" />
+					<apex:inputField value="{!record.Gift_promo_packs_addit_avail_in_shelf__c}" id="q7" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.JD_Cola_Ginger_available_in_shelf__c.Label}"
+						for="q8" />
+					<apex:inputField value="{!record.JD_Cola_Ginger_available_in_shelf__c}" id="q8" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.JD_Cola_Ginger_avail_in_chiller_cab__c.Label}"
+						for="q9" />
+					<apex:inputField value="{!record.JD_Cola_Ginger_avail_in_chiller_cab__c}" id="q9" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.JD_Cola_Ginger_available_in_tray__c.Label}"
+						for="q10" />
+					<apex:inputField value="{!record.JD_Cola_Ginger_available_in_tray__c}" id="q10" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.JD_Cola_Ginger_avail_as_single_can__c.Label}"
+						for="q11" />
+					<apex:inputField value="{!record.JD_Cola_Ginger_avail_as_single_can__c}" id="q11" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.JD_Cola_Ginger_avail_as_in_multi_pack__c.Label}"
+						for="q12" />
+					<apex:inputField value="{!record.JD_Cola_Ginger_avail_as_in_multi_pack__c}"
+						id="q12" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.B_F_listing_complete_realized_practiced__c.Label}"
+						for="q13" />
+					<apex:inputField value="{!record.B_F_listing_complete_realized_practiced__c}"
+						id="q13" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Data_maintenance_in_SF_complete_correct__c.Label}"
+						for="q14" />
+					<apex:inputField value="{!record.Data_maintenance_in_SF_complete_correct__c}"
+						id="q14" />
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					<apex:outputLabel value="{!$ObjectType.Store_Check__c.Fields.Targ_for_follow_up_visit_maintained_SF__c.Label}"
+						for="q15" />
+					<apex:inputField value="{!record.Targ_for_follow_up_visit_maintained_SF__c}"
+						id="q15" />
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+
+			<apex:pageBlockSection title="{!$ObjectType.Store_Check__c.Fields.Notes_Comment_about_shelf_situation__c.Label}"
+				columns="1">
+				<apex:pageBlockSectionItem >
+					<apex:inputField style="width:98.5%"
+						value="{!record.Notes_Comment_about_shelf_situation__c}"
+						id="notesAboutShelf" />
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+
+		<br />
+
+		<apex:pageBlock >
+			<table style="width: 100%;">
+				<tbody>
+					<tr>
+						<td style="width: 60%; vertical-align: text-top;">
+							<div>
+								<table>
+									<thead>
+										<tr>
+											<th>{!$Label.sc_ssc}</th>
+											<th>{!$Label.sc_first_scp}</th>
+											<th>{!$Label.sc_second_scp}</th>
+											<th>{!$Label.sc_third_scp}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>{!$ObjectType.Store_Check__c.Fields.Product_first_SCP__c.Label}</td>
+											<td><apex:inputField value="{!record.Product_first_SCP__c}" /></td>
+											<td><apex:inputField value="{!record.Product_second_SCP__c}" /></td>
+											<td><apex:inputField value="{!record.Product_third_SCP__c}" /></td>
+										</tr>
+										<tr> 
+											<td>{!$ObjectType.Store_Check__c.Fields.Location_first_SCP__c.Label}</td>
+											<td><apex:inputField value="{!record.Location_first_SCP__c}" style="width:97%" /></td>
+											<td><apex:inputField value="{!record.Location_second_SCP__c}" style="width:97%" /></td>
+											<td><apex:inputField value="{!record.Location_third_SCP__c}" style="width:97%" /></td>
+										</tr>
+										<tr>
+											<td>{!$ObjectType.Store_Check__c.Fields.Ground_Area_first_SCP__c.Label}</td>
+											<td><apex:inputField value="{!record.Ground_Area_first_SCP__c}" /></td>
+											<td><apex:inputField value="{!record.Ground_Area_Second_SCP__c}" /></td>
+											<td><apex:inputField value="{!record.Ground_Area_Third_SCP__c}" /></td>
+										</tr>
+										<tr>
+											<td>{!$ObjectType.Store_Check__c.Fields.Space_First_SCP__c.Label}</td>
+											<td><apex:inputField value="{!record.Space_First_SCP__c}" /></td>
+											<td><apex:inputField value="{!record.Space_Second_SCP__c}" /></td>
+											<td><apex:inputField value="{!record.Space_Third_SCP__c}" /></td>
+										</tr>
+										<tr>
+											<td>{!$ObjectType.Store_Check__c.Fields.Number_of_bottles_display_First_SCP__c.Label}</td>
+											<td><apex:inputField value="{!record.Number_of_bottles_display_First_SCP__c}" /></td>
+											<td><apex:inputField value="{!record.Number_of_bottles_display_Second_SCP__c}" /></td>
+											<td><apex:inputField value="{!record.Number_of_bottles_display_Third_SCP__c}" /></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</td>
+						<td style="width: 40%"><label style="font-weight: bold;">{!$ObjectType.Store_Check__c.Fields.Notes_comments_about_secondary_placement__c.Label}</label>
+							<apex:inputField style="height:98%; width:98.5%;"
+								value="{!record.Notes_comments_about_secondary_placement__c}" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br />
+			<apex:pageBlockSection title="{!$ObjectType.Store_Check__c.Fields.Remarks_after_discussion__c.Label}"
+				columns="1">
+				<apex:pageBlockSectionItem >
+					<apex:inputField style="width:98.5%"
+						value="{!record.Remarks_after_discussion__c}" id="remarks" />
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="{!$ObjectType.Store_Check__c.Fields.Addit_notes_comments_about_cust_acc__c.Label}"
+				columns="1">
+				<apex:pageBlockSectionItem >
+					<apex:inputField style="width:98.5%"
+						value="{!record.Addit_notes_comments_about_cust_acc__c}"
+						id="notesAboutAcc" />
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

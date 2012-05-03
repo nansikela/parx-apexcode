@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ブランド名</value>
+    </caseValues>
+    <fields>
+        <help><!-- Brand Major code --></help>
+        <label>ﾌﾞﾗﾝﾄﾞｺｰﾄﾞ</label>
+        <name>Brand_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Brand Code --></label>
+        <name>Legacy_Brand_Code_AU__c</name>
+    </fields>
+    <fields>
+        <label><!-- Spirit Type --></label>
+        <name>Spirit_Type__c</name>
+        <picklistValues>
+            <masterLabel>Bourbon</masterLabel>
+            <translation><!-- Bourbon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canadian / Blend</masterLabel>
+            <translation><!-- Canadian / Blend --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Liquers / Cordials</masterLabel>
+            <translation><!-- Liquers / Cordials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rum / Gin</masterLabel>
+            <translation><!-- Rum / Gin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scotch / Irish</masterLabel>
+            <translation><!-- Scotch / Irish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tequila</masterLabel>
+            <translation><!-- Tequila --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vodka</masterLabel>
+            <translation><!-- Vodka --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wine</masterLabel>
+            <translation><!-- Wine --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>酒販店ﾘｽﾄ</label>
+        <name>Supplier__c</name>
+        <relationshipLabel><!-- Brands --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Brand Admin Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Brand Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Brand NPA Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Brand Name</nameFieldLabel>
+</CustomObjectTranslation>

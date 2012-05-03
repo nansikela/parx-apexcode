@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used in conjunction with Degree Declaration and Tuition Reimbursement Objects to make up the Tuition Reimbursement Application.</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Course__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Course #</inlineHelpText>
+        <label>Course#</label>
+        <length>255</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cumulative_Hrs__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Cumulative Hours</inlineHelpText>
+        <label>Cumulative Hrs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hrs__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Hours</inlineHelpText>
+        <label>Hrs</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>1</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tuition_Refund__c</fullName>
+        <externalId>false</externalId>
+        <label>Tuition Refund</label>
+        <referenceTo>Tuition_Refund__c</referenceTo>
+        <relationshipLabel>Course Details</relationshipLabel>
+        <relationshipName>Course_Details</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Tuition__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter Tuition Amount</inlineHelpText>
+        <label>Tuition</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <label>Course Details</label>
+    <nameField>
+        <label>Course Title</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Course Details</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

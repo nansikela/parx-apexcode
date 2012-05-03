@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Visit Count</description>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <masterLabel>Visit Count</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>Time_Tracking__c.Number_of_possible_Visits__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Maximum Visits</description>
+        <developerName>FORMULA2</developerName>
+        <isActive>true</isActive>
+        <masterLabel>Maximum Visits</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>Time_Tracking__c.Number_of_possible_Visits__c:SUM-Outlet_Visit__c.Visit_Counts__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Delta Value</description>
+        <developerName>FORMULA3</developerName>
+        <isActive>true</isActive>
+        <masterLabel>Delta Value</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <columns>
+        <field>Time_Tracking__c.Outlet_Visits__r$Name</field>
+    </columns>
+    <columns>
+        <field>Time_Tracking__c.Outlet_Visits__r$Account__c.Name</field>
+    </columns>
+    <columns>
+        <field>Time_Tracking__c$Working_Days_left__c</field>
+    </columns>
+    <columns>
+        <field>Time_Tracking__c$Number_of_possible_Visits__c</field>
+    </columns>
+    <currency>EUR</currency>
+    <description>Monthly Report for Sales Rep Outlet Visit - OnTrade</description>
+    <filter>
+        <criteriaItems>
+            <column>Time_Tracking__c.Outlet_Visits__r$Account__c.Market__c</column>
+            <operator>equals</operator>
+            <value>Germany</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Time_Tracking__c.Outlet_Visits__r$Status__c</column>
+            <operator>notEqual</operator>
+            <value>New</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Time_Tracking__c.Outlet_Visits__r$Account__c.Channel__c</column>
+            <operator>notEqual</operator>
+            <value>Off,Non-Sellable</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Time_Tracking__c$Staff_Account__c</column>
+            <operator>notContain</operator>
+            <value>Ciulla,Hochreiter,Hoffmann,Kammerer,Pöllath,Schneider,Test,Veltzke,Zwengauer,Zimmer</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Time_Tracking__c$Staff_Account__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>MonthInYear</dateGranularity>
+        <field>Time_Tracking__c.Outlet_Visits__r$Visit_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>OnTrade13: Target/Actual Comparison</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Outlet_Visits_with_Time_Tracking__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Time_Tracking__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

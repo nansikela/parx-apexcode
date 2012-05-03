@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>DEU - On Channel Sales Person Reports</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <group>DEU-OnTrade North (Leased) Reps</group>
+        <group>DEU-OnTrade South (Leased) Reps</group>
+        <role>DEU-ON Trade Leased Rep(North)</role>
+        <role>DEU-ON Trade Leased Rep(Ressourcenreich)</role>
+        <role>DEU-ON Trade Leased Rep(South)</role>
+        <role>DEU-On-Trade Mgr</role>
+        <role>DEU-On-Trade Sls Rep (North)</role>
+        <role>DEU-On-Trade Sls Rep (South)</role>
+    </sharedTo>
+</ReportFolder>

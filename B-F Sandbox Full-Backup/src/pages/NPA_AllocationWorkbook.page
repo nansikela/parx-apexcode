@@ -1,0 +1,587 @@
+<apex:page tabstyle="Allocations__c" showHeader="true"
+    standardcontroller="Allocations__c"
+    extensions="NPA_AllocationScreenController" sidebar="false"
+    id="thePage" tabStyle="Allocations__tab" title="NPA Allocations">
+    <script language="javascript">
+        //Function to avoid automatic focus of date field
+        function setFocusOnLoad() {}
+        /*
+        // This block has been commented out as the users now want to see the account section expanded by default.
+        // This block can be un commented to have the functionality to collapse the section on page load. 
+        function addLoadEvent(func) {
+            var oldonload = window.onload;
+            if (typeof window.onload != 'function') {
+                window.onload = func;
+            } else {
+                window.onload = function() {
+                    //if (oldonload) {
+                        oldonload();
+                    //}
+                    func();
+                }
+            }
+        }
+        
+        function dotest() {
+            twistSection(document
+                    .getElementById('thePage:theForm:theBlock:theSection').childNodes[0].childNodes[0]);
+        }
+        addLoadEvent(dotest);
+        */
+
+        //JS function called to call Save on Enter key press      
+        function saveEnterKey(e) {
+            var key;
+            if (window.event)
+                key = window.event.keyCode; //IE
+            else
+                key = e.which; //firefox
+            if (key == 13) {
+                document.getElementById('thePage:theForm:theBlock:allocSec:saveButton').click();
+                return false;
+            } else{
+                return true;
+            }
+        }
+    </script>
+    <apex:form id="theForm">
+        <style>
+.myLabelClass {
+    color: #4A4A56;
+    font-size: 91%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+#thePage:theForm:theBlock:allocSec:errMsg {
+    display: none;
+}
+</style>
+        <apex:sectionHeader title="Allocation Workbook" id="theHeader" />
+        <apex:pageBlock tabStyle="Allocations__c" id="theBlock">
+            <apex:pageBlockSection title="Address Details" id="theSection">
+                <apex:repeat value="{!accounts}" var="acc">
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel >{!acc.Name}</apex:outputLabel>
+                        <apex:outputText >{!acc.Legacy_Id__c}<br />{!acc.ShippingStreet}<br />
+                            {!acc.ShippingCity}<br />{!acc.ShippingState}</apex:outputText>
+                    </apex:pageBlockSectionItem>
+                </apex:repeat>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection title="Allocation Section" columns="1"
+                id="allocSec">
+                <apex:outputPanel id="panelOne">
+                    <h3 style="text-decoration: underline;">Promotion Search</h3>
+                    <apex:pageMessages rendered="{!searchError}" />
+                    <div></div>
+                    <table width="100%" id="tableOne">
+                        <tr>
+                            <td colspan="8">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td width="10%" align="right"><apex:outputLabel styleClass="myLabelClass">Fiscal Year</apex:outputLabel></td>
+                            <td width="10%">
+                                <div
+                                    style="background-color: #CC0000; width: 3px; display: inline;">&nbsp;</div>
+                                <apex:selectList size="1" value="{!FiscalYear}" id="fiscYr">
+                                    <apex:selectOptions value="{!FiscalValues}" />
+                                </apex:selectList></td>
+                            <td width="10%"></td>
+                            <td width="10%" align="right"><apex:outputLabel styleClass="myLabelClass">Tertile</apex:outputLabel></td>
+                            <td width="10%"><apex:selectList size="1" value="{!tertile}">
+                                    <apex:selectOptions value="{!TertileValues}" />
+                                </apex:selectList>
+                            </td>
+                            <td width="10%"></td>
+                            <td width="10%" align="right"><apex:outputLabel styleClass="myLabelClass">Break/Start Date</apex:outputLabel></td>
+                            <td width="10%"><apex:inputField value="{!taskOne.ActivityDate}" /></td>
+                        </tr>
+                        <tr>
+                            <td width="10%" align="right"><apex:outputLabel styleClass="myLabelClass">Brand</apex:outputLabel></td>
+                            <td width="10%">
+                                <div
+                                    style="background-color: #CC0000; width: 3px; display: inline;">&nbsp;</div>
+                                <apex:selectList size="1" value="{!selectedbrand}">
+                                    <apex:selectOptions value="{!Brands}" />
+                                </apex:selectList></td>
+                            <td width="10%"></td>
+                            <td width="10%" align="right"><apex:outputLabel styleClass="myLabelClass">Internal Order #</apex:outputLabel></td>
+                            <td width="10%"><apex:inputText value="{!io}" /></td>
+                            <td width="10%"></td>
+                            <td width="10%" align="right"><apex:outputLabel styleClass="myLabelClass">Freeze Date</apex:outputLabel></td>
+                            <td width="10%"><apex:inputField value="{!taskTwo.ActivityDate}" /></td>
+                        </tr>
+                        <tr>
+                            <td width="10%" align="right"><apex:outputLabel styleClass="myLabelClass">Premise</apex:outputLabel></td>
+                            <td width="10%"><apex:selectList size="1" value="{!premise}">
+                                    <apex:selectOptions value="{!premiseList}" />
+                                </apex:selectList></td>
+                            <td colspan="6"></td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                    <div align="center">
+                        <apex:commandButton id="searchButton" value="Search Promotions"
+                            action="{!BrandInfo}" reRender="allocSec" status="status"
+                            onclick="disableMe(this)" oncomplete="calTotals()" />
+                        <apex:commandButton value="Cancel" action="{!Cancel}" />
+                    </div>
+                    <br />
+                </apex:outputPanel>
+                <apex:variable var="listSize" value="{!accounts.size}" />
+                <apex:actionStatus id="status" startText="Searching...">
+                    <apex:facet name="start">
+                        <center>
+                            <img src="/img/waiting_dots.gif" border="0" />
+                        </center>
+                    </apex:facet>
+                </apex:actionStatus>
+                <apex:pageMessage rendered="{!AND(hasSearched,wrapper.size<1)}"
+                    summary="No Promotions Found. Please select a different search criteria."
+                    strength="3" severity="info" />
+                <apex:pageMessages rendered="{!NOT(searchError)}" />
+                <apex:outputPanel id="allocationsPanel" rendered="{!wrapper.size>0}">
+                    <a name="allData"></a>
+                    <apex:outputPanel id="panelFour">
+                        <table width="100%">
+                            <tr>
+                                <td align="left"><apex:outputLink value="#allData"
+                                        styleClass="myLabelClass" id="expAllLink"
+                                        onclick="expandAll({!wrapper.size})">Expand All</apex:outputLink>
+                                    &nbsp;<apex:outputText value=" | " styleClass="myLabelClass" />&nbsp;
+                                    <apex:outputLink value="#allData" styleClass="myLabelClass"
+                                        id="collAllLink"
+                                        onclick="document.getElementById('thePage:theForm:theBlock:allocSec:saveButton').click()">Collapse All</apex:outputLink>
+                                        </td>
+                                <td align="right"><b><apex:outputText value="{!selectedMarket} - Total Market Cost - " /> </b> <apex:outputText value="0.00" id="totalCost" /></td>
+                            </tr>
+                        </table>
+                    </apex:outputPanel>
+
+                    <apex:actionStatus id="searchStatus" startText="Searching...">
+                        <apex:facet name="start">
+                            <center>
+                                <img src="/img/waiting_dots.gif" border="0" />
+                            </center>
+                        </apex:facet>
+                    </apex:actionStatus>
+
+
+                    <apex:outputPanel id="MainTable">
+                        <table cols="14" width="100%" id="testTable">
+                            <tr>
+                                <td colspan="8" align="right" bgcolor="#5B75A8"
+                                    style="color: white"><b> <apex:outputText value="Total # of Items Ordered" /> </b></td>
+                                <td bgcolor="#5B75A8" style="color: white; text-align: center">
+                                    <b> <apex:outputText value="0.00" id="subCount" /> </b></td>
+
+                                <apex:variable var="countOne" value="{!0}" />
+                                <apex:variable var="countTwo" value="{!0}"
+                                    rendered="{!listSize>1}" />
+                                <apex:variable var="countThree" value="{!0}"
+                                    rendered="{!listSize>2}" />
+                                <apex:variable var="countFour" value="{!0}"
+                                    rendered="{!listSize>3}" />
+                                <apex:variable var="countFive" value="{!0}"
+                                    rendered="{!listSize>4}" />
+
+                                <apex:variable value="{!0}" var="idxOne" />
+
+                                <apex:repeat value="{!dummyAccounts}" var="acc">
+                                    <td bgcolor="#FFFF9A"
+                                        style="border: 1px solid white; text-align: center;"
+                                        id="numTot{!FLOOR(idxOne)}"></td>
+                                    <apex:variable var="idxOne" value="{!idxOne + 1}" />
+                                </apex:repeat>
+                            </tr>
+
+                            <tr>
+                                <td colspan="8" align="right" bgcolor="#5B75A8"
+                                    style="color: white"><b> <apex:outputText value="Total Cost of Items Ordered" /> </b></td>
+                                <td bgcolor="#5B75A8" style="color: white; text-align: center">
+                                    <b> <apex:outputText value="0.00" id="subCost" /> </b></td>
+                                <apex:variable var="costOne" value="{!0}" />
+                                <apex:variable var="costTwo" value="{!0}" />
+                                <apex:variable var="costThree" value="{!0}" />
+                                <apex:variable var="costFour" value="{!0}" />
+                                <apex:variable var="costFive" value="{!0}" />
+
+                                <apex:variable var="idxTwo" value="{!0}" />
+                                <apex:repeat value="{!dummyAccounts}" var="acc">
+                                    <td bgcolor="#FFFF9A"
+                                        style="border: 1px solid white; text-align: center;"
+                                        id="costTot{!FLOOR(idxTwo)}"></td>
+                                    <apex:variable var="idxTwo" value="{!idxTwo + 1}" />
+                                </apex:repeat>
+                            </tr>
+
+                            <font color="black">
+                                <tr class="headerRow" bgcolor="#C2D5FA">
+                                    <td width="1%">&nbsp;</td>
+                                    <td width="8%" align="center"
+                                        style="border: 0px solid white; vertical-align: middle;"><b>Promotion
+                                            Name</b>
+                                    </td>
+                                    <td width="6%" align="center"
+                                        style="border: 0px solid white; vertical-align: middle;"><b>Internal
+                                            Order</b>
+                                    </td>
+                                    <td width="6%" align="center"
+                                        style="border: 0px solid white; vertical-align: middle;"><b>Break/Start
+                                            Date</b>
+                                    </td>
+                                    <td width="6%" align="center"
+                                        style="border: 0px solid white; vertical-align: middle;"><b>Premise</b>
+                                    </td>
+                                    <td width="9%" align="center"
+                                        style="border: 0px solid white; vertical-align: middle;"><b>Product
+                                            Code</b></td>
+                                    <td width="10%" align="center"
+                                        style="border: 0px solid white; vertical-align: middle;"><b>Product
+                                            Name</b></td>
+                                    <td width="6%" align="center"
+                                        style="border: 0px solid white; vertical-align: middle;"><b>UOM</b>
+                                    </td>
+                                    <td width="6%" align="center"
+                                        style="border: 0px solid white; vertical-align: middle;"><b>$/Unit</b>
+                                    </td>
+                                    <apex:variable value="{!0}" var="repOne" />
+                                    <apex:repeat value="{!dummyAccounts}" var="acc">
+                                        <td width="8%"
+                                            style="border: 0px solid white; vertical-align: middle;"
+                                            bgcolor="#CCCCCC">{!acc.Legacy_Id__c}<br /> {!acc.Name}
+                                            <br /> {!acc.ShippingCity}</td>
+                                        <apex:variable var="repOne" value="{!repOne + 1}" />
+                                    </apex:repeat>
+                                </tr> </font>
+                        </table>
+
+                        <apex:outputPanel id="thePanel">
+                            <table id="testTable3" colspan="14" width="100%">
+                                <apex:variable value="{!0}" var="repTwo" />
+                                <apex:repeat var="x" value="{!wrapper}" id="dataTab">
+
+                                    <apex:variable var="sTotOne" value="{!0}" />
+                                    <apex:variable var="sTotTwo" value="{!0}"
+                                        rendered="{!listSize>1}" />
+                                    <apex:variable var="sTotThree" value="{!0}"
+                                        rendered="{!listSize>2}" />
+                                    <apex:variable var="sTotFour" value="{!0}"
+                                        rendered="{!listSize>3}" />
+                                    <apex:variable var="sTotFive" value="{!0}"
+                                        rendered="{!listSize>4}" />
+
+                                    <tr
+                                        style="border-bottom: 2px solid #6B6BFF; border-bottom: 2px solid black; background-color: yellow; background-color: #E6EEFC"
+                                        id="row{!FLOOR(repTwo)}">
+                                        <td width="1%"><apex:outputPanel id="expand">
+                                                <apex:outputLink value="#"
+                                                    onclick="toggleThis('{!$Component.expand}', '{!$Component.collapse}', '{!$Component.panelTwo}', '{!$Component.panelThree}')"
+                                                    id="expandLink">
+                                                    <apex:image id="expImg" value="{!$Resource.Expand}"
+                                                        ismap="true" width="12" height="12" title="Show Items" />
+                                                </apex:outputLink>
+                                            </apex:outputPanel> <apex:outputPanel id="collapse" style="display: none">
+
+                                                <apex:commandLink action="{!hideAllocations}"
+                                                    reRender="allocSec" status="status"
+                                                    onclick="toggleThis('{!$Component.expand}', '{!$Component.collapse}', '{!$Component.panelTwo}', '{!$Component.panelThree}')"
+                                                    oncomplete="calTotals()">
+                                                    <apex:image id="expandImage" value="{!$Resource.Collapse}"
+                                                        ismap="true" width="12" height="12"
+                                                        title="Hide Line Items" />
+                                                    <apex:param name="q" value="{!x.Promotions.Id}"
+                                                        assignTo="{!PromoId}" />
+                                                </apex:commandLink>
+                                            </apex:outputPanel>
+                                        </td>
+                                        <td width="8%" align="left">{!x.promotions.Name}</td>
+                                        <td width="6%" align="center">{!x.promotions.Internal_Order__r.Name}</td>
+                                        <td width="6%" align="center"><apex:outputField value="{!x.promotions.Promotion_Start_Date__c}" />
+                                        </td>
+                                        <td width="6%" align="center">{!x.promotions.Promotion_Premise__c}</td>
+                                        <td colspan="9" width="69%" align="left" border="1"><apex:outputPanel id="LineItemsTable">
+                                                <apex:outputPanel style="display:none;" id="panelTwo">
+                                                    <table width="100%" id="testTable:{!repTwo}" border="0">
+                                                        <apex:variable value="{!0}" var="repThree" />
+                                                        <apex:repeat var="y" value="{!x.allocList}">
+                                                            <tr bgcolor="#E6E6E6">
+                                                                <td width="8%" valign="center" align="center"
+                                                                    style="border: 1px solid #B4B4B4">{!y.PLI.Product_Custom__r.ProductCode__c}</td>
+                                                                <td width="10%" align="center"
+                                                                    style="border: 1px solid #B4B4B4">{!y.PLI.Product_Custom__r.Name}</td>
+                                                                <td width="6%" align="center"
+                                                                    style="border: 1px solid #B4B4B4">{!y.PLI.Unit_of_Measure__c}</td>
+                                                                <td width="6%" align="center"
+                                                                    style="border: 1px solid #B4B4B4"><apex:outputText value="{0,number,###,##0.00}">
+                                                                        <apex:param value="{!y.PLI.Planned_Cost__c}" />
+                                                                    </apex:outputText></td>
+                                                                <apex:variable value="{!0}" var="repFour" />
+                                                                <apex:repeat var="z" value="{!y.Allocs}">
+                                                                    <td width="8%" align="center"
+                                                                        style="border: 1px solid #B4B4B4"
+                                                                        id="cell:{!FLOOR(repTwo)}:{!FLOOR(repThree)}:{!FLOOR(repFour)}">
+                                                                        <apex:inputField value="{!z.Ship_To_Qty__c}"
+                                                                            onkeypress="return saveEnterKey(event);"
+                                                                            style="{!IF(repFour<listSize, 'display: block; width:90%; text-align:center;', 'display:none')}" />
+                                                                    </td>
+
+                                                                    <apex:variable var="countOne"
+                                                                        value="{!countOne + z.Ship_To_Qty__c}"
+                                                                        rendered="{!AND(repFour==0.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="countTwo"
+                                                                        value="{!countTwo + z.Ship_To_Qty__c}"
+                                                                        rendered="{!AND(repFour==1.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="countThree"
+                                                                        value="{!countThree + z.Ship_To_Qty__c}"
+                                                                        rendered="{!AND(repFour==2.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="countFour"
+                                                                        value="{!countFour + z.Ship_To_Qty__c}"
+                                                                        rendered="{!AND(repFour==3.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="countFive"
+                                                                        value="{!countFive + z.Ship_To_Qty__c}"
+                                                                        rendered="{!AND(repFour==4.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+
+                                                                    <apex:variable var="sTotOne"
+                                                                        value="{!sTotOne + (y.PLI.Planned_Cost__c * z.Ship_To_Qty__c)}"
+                                                                        rendered="{!AND(repFour==0.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="sTotTwo"
+                                                                        value="{!sTotTwo + (y.PLI.Planned_Cost__c * z.Ship_To_Qty__c)}"
+                                                                        rendered="{!AND(repFour==1.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="sTotThree"
+                                                                        value="{!sTotThree + (y.PLI.Planned_Cost__c * z.Ship_To_Qty__c)}"
+                                                                        rendered="{!AND(repFour==2.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="sTotFour"
+                                                                        value="{!sTotFour + (y.PLI.Planned_Cost__c * z.Ship_To_Qty__c)}"
+                                                                        rendered="{!AND(repFour==3.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="sTotFive"
+                                                                        value="{!sTotFive + (y.PLI.Planned_Cost__c * z.Ship_To_Qty__c)}"
+                                                                        rendered="{!AND(repFour==4.0,NOT(ISNULL(z.Ship_To_Qty__c)))}" />
+                                                                    <apex:variable var="repFour" value="{!repFour + 1}" />
+                                                                </apex:repeat>
+                                                            </tr>
+                                                            <apex:variable var="repThree" value="{!repThree + 1}" />
+                                                        </apex:repeat>
+                                                    </table>
+                                                </apex:outputPanel>
+                                                <apex:outputPanel id="panelThree">
+                                                    <table width="100%" id="testTab:{!FLOOR(repTwo)}"
+                                                        style="display: block;">
+                                                        <tr>
+                                                            <td width="25%">&nbsp;</td>
+                                                            <td width="7%" align="center"
+                                                                id="subTot:{!FLOOR(repTwo)}:0"><apex:outputText value="USD {0,number,###,###,###,##0.00}">
+                                                                    <apex:param value="{!sTotOne}" />
+                                                                </apex:outputText></td>
+                                                            <td width="7%" align="center"
+                                                                id="subTot:{!FLOOR(repTwo)}:1"><apex:outputText value="USD {0,number,###,###,###,##0.00}"
+                                                                    rendered="{!listSize>1}">
+                                                                    <apex:param value="{!sTotTwo}" />
+                                                                </apex:outputText></td>
+                                                            <td width="7%" align="center"
+                                                                id="subTot:{!FLOOR(repTwo)}:2"><apex:outputText value="USD {0,number,###,###,###,##0.00}"
+                                                                    rendered="{!listSize>2}">
+                                                                    <apex:param value="{!sTotThree}" />
+                                                                </apex:outputText></td>
+                                                            <td width="7%" align="center"
+                                                                id="subTot:{!FLOOR(repTwo)}:3"><apex:outputText value="USD {0,number,###,###,###,##0.00}"
+                                                                    rendered="{!listSize>3}">
+                                                                    <apex:param value="{!sTotFour}" />
+                                                                </apex:outputText></td>
+                                                            <td width="7%" align="center"
+                                                                id="subTot:{!FLOOR(repTwo)}:4"><apex:outputText value="USD {0,number,###,###,###,##0.00}"
+                                                                    rendered="{!listSize>4}">
+                                                                    <apex:param value="{!sTotFive}" />
+                                                                </apex:outputText></td>
+                                                        </tr>
+                                                        <apex:variable var="costOne" value="{!costOne+sTotOne}" />
+                                                        <apex:variable var="costTwo" value="{!costTwo+sTotTwo}"
+                                                            rendered="{!listSize>1}" />
+                                                        <apex:variable var="costThree"
+                                                            value="{!costThree+sTotThree}" rendered="{!listSize>2}" />
+                                                        <apex:variable var="costFour" value="{!costFour+sTotFour}"
+                                                            rendered="{!listSize>3}" />
+                                                        <apex:variable var="costFive" value="{!costFive+sTotFive}"
+                                                            rendered="{!listSize>4}" />
+                                                    </table>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel></td>
+                                    </tr>
+
+                                    <apex:variable var="repTwo" value="{!repTwo + 1}" />
+
+                                </apex:repeat>
+                                <apex:variable var="costTot" value="{!costOne}" />
+                                <apex:variable var="costTot" value="{!costTot+costTwo}"
+                                    rendered="{!listSize>1}" />
+                                <apex:variable var="costTot" value="{!costTot+costThree}"
+                                    rendered="{!listSize>2}" />
+                                <apex:variable var="costTot" value="{!costTot+costFour}"
+                                    rendered="{!listSize>3}" />
+                                <apex:variable var="costTot" value="{!costTot+costFive}"
+                                    rendered="{!listSize>4}" />
+                                <apex:variable var="countTot" value="{!countOne}" />
+                                <apex:variable var="countTot" value="{!countTot+countTwo}"
+                                    rendered="{!listSize>1}" />
+                                <apex:variable var="countTot" value="{!countTot+countThree}"
+                                    rendered="{!listSize>2}" />
+                                <apex:variable var="countTot" value="{!countTot+countFour}"
+                                    rendered="{!listSize>3}" />
+                                <apex:variable var="countTot" value="{!countTot+countFive}"
+                                    rendered="{!listSize>4}" />
+                            </table>
+                            <table style="display: none;">
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td><apex:outputText value="{!FLOOR(countOne)}" id="num0" />
+                                    </td>
+                                    <td><apex:outputText value="{!FLOOR(countTwo)}" id="num1" />
+                                    </td>
+                                    <td><apex:outputText value="{!FLOOR(countThree)}"
+                                            id="num2" />
+                                    </td>
+                                    <td><apex:outputText value="{!FLOOR(countFour)}" id="num3" />
+                                    </td>
+                                    <td><apex:outputText value="{!FLOOR(countFive)}" id="num4" />
+                                    </td>
+                                    <td><apex:outputText value="{!FLOOR(countTot)}"
+                                            id="numAll" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8"></td>
+                                    <td><apex:outputText value="USD {0,number,###,###,###,##0.00}" id="cost0">
+                                            <apex:param value="{!costOne}" />
+                                        </apex:outputText></td>
+                                    <td><apex:outputText value="USD {0,number,###,###,###,##0.00}" id="cost1">
+                                            <apex:param value="{!costTwo}" />
+                                        </apex:outputText></td>
+                                    <td><apex:outputText value="USD {0,number,###,###,###,##0.00}" id="cost2">
+                                            <apex:param value="{!costThree}" />
+                                        </apex:outputText></td>
+                                    <td><apex:outputText value="USD {0,number,###,###,###,##0.00}" id="cost3">
+                                            <apex:param value="{!costFour}" />
+                                        </apex:outputText></td>
+                                    <td><apex:outputText value="USD {0,number,###,###,###,##0.00}" id="cost4">
+                                            <apex:param value="{!costFive}" />
+                                        </apex:outputText></td>
+                                    <td><apex:outputText value="USD {0,number,###,###,###,##0.00}" id="costAll">
+                                            <apex:param value="{!costTot}" />
+                                        </apex:outputText></td>
+                                </tr>
+                                <apex:variable var="thisMarketTot" value="{!subMarketCost}" />
+                                <apex:variable var="thisMarketTot"
+                                    value="{!thisMarketTot+costOne}" rendered="{!costOne!=0}" />
+                                <apex:variable var="thisMarketTot"
+                                    value="{!thisMarketTot+costTwo}" rendered="{!costTwo!=0}" />
+                                <apex:variable var="thisMarketTot"
+                                    value="{!thisMarketTot+costThree}" rendered="{!costThree!=0}" />
+                                <apex:variable var="thisMarketTot"
+                                    value="{!thisMarketTot+costFour}" rendered="{!costFour!=0}" />
+                                <apex:variable var="thisMarketTot"
+                                    value="{!thisMarketTot+costFive}" rendered="{!costFive!=0}" />
+                                <tr>
+                                    <td colspan="14"><apex:outputText value="USD {0,number,###,###,###,##0.00}" id="hiddenTotal">
+                                            <apex:param value="{!thisMarketTot}" />
+                                        </apex:outputText></td>
+                                </tr>
+                            </table>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!wrapper.size>0}">
+                    <center>
+                        <apex:commandButton value="Save" action="{!SaveAllocs}"
+                            reRender="allocSec" status="status" oncomplete="calTotals()"
+                            onclick="disableMe(this)" id="saveButton" />
+                        <apex:commandButton value="Cancel" action="{!Cancel}" />
+                    </center>
+                </apex:outputPanel>
+                </apex:pageblocksection>
+        </apex:pageBlock>
+    </apex:form>
+    <script>
+        function calTotals() {
+            var cols = parseInt("{!accounts.size}");
+            for ( var j = 0; j < cols; j++) {
+                var testVar = document.getElementById("numTot" + j);
+                var testVar1 = document.getElementById("costTot" + j);
+                testVar.innerHTML = document
+                        .getElementById("thePage:theForm:theBlock:allocSec:num"
+                                + j).innerHTML;
+                testVar1.innerHTML = document
+                        .getElementById("thePage:theForm:theBlock:allocSec:cost"
+                                + j).innerHTML;
+            }
+            document
+                    .getElementById("thePage:theForm:theBlock:allocSec:subCount").innerHTML = '<b>'
+                    + document
+                            .getElementById("thePage:theForm:theBlock:allocSec:numAll").innerHTML
+                    + '</b>';
+            document
+                    .getElementById("thePage:theForm:theBlock:allocSec:subCost").innerHTML = '<b>'
+                    + document
+                            .getElementById("thePage:theForm:theBlock:allocSec:costAll").innerHTML
+                    + '</b>';
+            
+            document
+                    .getElementById("thePage:theForm:theBlock:allocSec:totalCost").innerHTML = '<b>'
+                    + document
+                            .getElementById("thePage:theForm:theBlock:allocSec:hiddenTotal").innerHTML
+                    + '</b>';
+        }
+
+        function toggleThis(obj1, obj2, obj3, obj4) {
+            var e1 = document.getElementById(obj1);
+            if (e1.style.display != 'none') {
+                e1.style.display = 'none';
+            } else {
+                e1.style.display = 'block';
+            }
+            var e2 = document.getElementById(obj2);
+            if (e2.style.display != 'none') {
+                e2.style.display = 'none';
+            } else {
+                e2.style.display = 'block';
+            }
+            var e3 = document.getElementById(obj3);
+            if (e3.style.display != 'none') {
+                e3.style.display = 'none';
+            } else {
+                e3.style.display = 'block';
+            }
+            var e4 = document.getElementById(obj4);
+            if (e4.style.display != 'none') {
+                e4.style.display = 'none';
+            } else {
+                e4.style.display = 'block';
+            }
+        }
+
+        function disableMe(element) {
+            element.className = 'btnDisabled';
+        }
+        
+        function expandAll(obj) {
+            var e1, e2, e3, e4;
+            var i=0;
+            while(i<obj){
+                e1 = document.getElementById("thePage:theForm:theBlock:allocSec:dataTab:"+i+":expand");
+                e2 = document.getElementById("thePage:theForm:theBlock:allocSec:dataTab:"+i+":collapse");
+                e3 = document.getElementById("thePage:theForm:theBlock:allocSec:dataTab:"+i+":panelTwo");
+                e4 = document.getElementById("thePage:theForm:theBlock:allocSec:dataTab:"+i+":panelThree");
+                
+                e1.style.display = 'none';
+                e2.style.display = 'block';
+                e3.style.display = 'block';
+                e4.style.display = 'none';
+                i++;
+            }
+        }
+    </script>
+</apex:page>

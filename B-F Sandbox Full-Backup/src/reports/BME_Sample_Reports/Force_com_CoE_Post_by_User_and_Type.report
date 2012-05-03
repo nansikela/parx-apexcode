@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CollaborationGroup$Name</field>
+    </columns>
+    <columns>
+        <field>CollaborationGroup.FeedItems$CreatedBy</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Force.com CoE Post by User and Type</description>
+    <filter>
+        <criteriaItems>
+            <column>CollaborationGroup$Name</column>
+            <operator>equals</operator>
+            <value>Force.com Center of Excellence</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CollaborationGroup.FeedItems.Comments$CreatedBy</column>
+            <operator>notContain</operator>
+            <value>Aditi</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CollaborationGroup.FeedItems.Comments$CreatedBy</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CollaborationGroup.FeedItems$Type</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Force.com CoE Post by User and Type</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Chatter_Groups_with_Group_Feed_and_Comments__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CollaborationGroup.FeedItems$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

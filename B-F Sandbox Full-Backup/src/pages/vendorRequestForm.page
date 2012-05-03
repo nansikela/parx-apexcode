@@ -1,0 +1,485 @@
+<apex:page id="vendorPage" standardController="Vendor__c" extensions="vendorClass" action="{!autoRun}" showHeader="true" sidebar="false">
+  
+  <apex:includeScript value="{!URLFOR($Resource.jq_v1813, 'js/jquery-1.5.1.min.js')}" />
+  <apex:includeScript value="{!URLFOR($Resource.jq_v1813, 'js/jquery-ui-1.8.13.custom.min.js')}" />
+
+  <script type="text/javascript">   
+    $(document).ready(function(){ 
+      $("#chkBusAddrToPayment").click(function(){ 
+        if ($("#chkBusAddrToPayment").is(':checked')) {
+          $("input[id$='chkBusAddrToTax']").attr('checked', false); 
+          $("input[id$='chkPayAddrToTax']").attr('checked', false);
+          // Checked, copy values 
+          $("input[id$='txtPaymentAddress']").val($("input[id$='txtBusinessAddress']").val()); 
+          $("input[id$='txtPaymentCity']").val($("input[id$='txtBusinessCity']").val());
+          $("select[id$='txtPaymentRegion']").val($("select[id$='txtBusinessRegion']").val());
+          $("input[id$='txtNonUSPaymentRegion']").val($("input[id$='txtNonUSBusinessRegion']").val());
+          $("input[id$='txtPaymentPostalCode']").val($("input[id$='txtBusinessPostalCode']").val());         
+        } 
+        else { 
+          // Clear on uncheck 
+          $("input[id$='txtPaymentAddress']").val(""); 
+          $("input[id$='txtPaymentCity']").val("");
+          $("select[id$='txtPaymentRegion']").val("");
+          $("input[id$='txtPaymentPostalCode']").val("");
+        } 
+      }); 
+      
+      $("#chkBusAddrToTax").click(function(){ 
+        if ($("#chkBusAddrToTax").is(':checked')) { 
+          $("input[id$='chkBusAddrToPayment']").attr('checked', false); 
+          $("input[id$='chkPayAddrToTax']").attr('checked', false);        
+          $("input[id$='txtTaxAddress']").val($("input[id$='txtBusinessAddress']").val()); 
+          $("input[id$='txtTaxCity']").val($("input[id$='txtBusinessCity']").val());
+          $("select[id$='txtTaxRegion']").val($("select[id$='txtBusinessRegion']").val());
+          $("input[id$='txtTaxPostalCode']").val($("input[id$='txtBusinessPostalCode']").val());         
+        } 
+        else { 
+          $("input[id$='txtTaxAddress']").val(""); 
+          $("input[id$='txtTaxCity']").val("");
+          $("select[id$='txtTaxRegion']").val("");
+          $("input[id$='txtTaxPostalCode']").val("");
+        } 
+      });      
+      
+      $("#chkPayAddrToTax").click(function(){ 
+        if ($("#chkPayAddrToTax").is(':checked')) { 
+          $("input[id$='chkBusAddrToPayment']").attr('checked', false); 
+          $("input[id$='chkBusAddrToTax']").attr('checked', false);         
+          $("input[id$='txtTaxAddress']").val($("input[id$='txtPaymentAddress']").val()); 
+          $("input[id$='txtTaxCity']").val($("input[id$='txtPaymentCity']").val());
+          $("select[id$='txtTaxRegion']").val($("select[id$='txtPaymentRegion']").val());
+          $("input[id$='txtTaxPostalCode']").val($("input[id$='txtPaymentPostalCode']").val());         
+        } 
+        else { 
+          $("input[id$='txtTaxAddress']").val(""); 
+          $("input[id$='txtTaxCity']").val("");
+          $("select[id$='txtTaxRegion']").val("");
+          $("input[id$='txtTaxPostalCode']").val("");
+        } 
+      });
+ 
+      $("#chkBusNameToTaxName").click(function(){ 
+        if ($("#chkBusNameToTaxName").is(':checked')) { 
+          $("textarea[id$='txtBusLegalName']").val($("input[id$='txtBusinessName']").val());          
+        } 
+        else { 
+          $("textarea[id$='txtBusLegalName']").val(""); 
+        } 
+      });               
+    });
+    
+    $(document).ready(function(){	
+      $("select[id$='ddlCountry']").val('US - USA');               
+	  $("label[class$='renderUS']").css("display","block");
+	  $("input[class$='renderUS']").css("display","block");
+	  $("select[class$='renderUS']").css("display","block");
+      $("div[id$='taxUS']").css("display","block");
+      	   
+	  $("label[class$='renderNonUS']").css("display","none");
+	  $("input[class$='renderNonUS']").css("display","none");
+	  $("select[class$='renderNonUS']").css("display","none");	             
+	  $("label[class$='lblEmpty']").css("display","none");
+	  $("input[class$='txtEmpty']").css("display","none"); 
+      $("div[id$='taxNonUS']").css("display","none");	  	      
+ 
+      $("input[id$='chkBusAddrToPayment']").attr('checked', false); 
+      $("input[id$='chkBusAddrToTax']").attr('checked', false);
+      $("input[id$='chkPayAddrToTax']").attr('checked', false);   
+      $("input[id$='chkBusNameToTaxName']").attr('checked', false); 
+	  	  	    	                          
+      $("select[id$='ddlCountry']").change(function(){    
+        if ($.trim($("select[id$='ddlCountry']").val()) == "US - USA") {
+          $("div[id$='busType']").css("display","block");
+          $("div[id$='diverOwnBus']").css("display","block");
+          $("div[id$='taxAddress']").css("display","block");             
+	      $("label[class$='renderUS']").css("display","block");
+	      $("input[class$='renderUS']").css("display","block");
+	      $("select[class$='renderUS']").css("display","block");
+          $("div[id$='taxUS']").css("display","block");
+          $("div[id$='w9_form']").css("display","block");
+          	      
+	      $("label[class$='renderNonUS']").css("display","none");
+	      $("input[class$='renderNonUS']").css("display","none");
+	      $("select[class$='renderNonUS']").css("display","none");	    
+	      $("label[class$='lblEmpty']").css("display","none");
+	      $("input[class$='txtEmpty']").css("display","none");  
+          $("div[id$='taxNonUS']").css("display","none");        
+        } 
+        else {  
+          $("div[id$='busType']").css("display","none");
+          $("div[id$='diverOwnBus']").css("display","none");        
+          $("div[id$='taxAddress']").css("display","none");    
+	      $("label[class$='renderUS']").css("display","none");
+	      $("input[class$='renderUS']").css("display","none");
+	      $("select[class$='renderUS']").css("display","none");   	    	    
+	      $("label[class$='lblEmpty']").css("display","none");
+	      $("input[class$='txtEmpty']").css("display","none");
+          $("div[id$='taxUS']").css("display","none");
+          $("div[id$='w9_form']").css("display","none"); 
+           
+	      $("label[class$='renderNonUS']").css("display","block");
+	      $("input[class$='renderNonUS']").css("display","block");
+	      $("select[class$='renderNonUS']").css("display","block");
+          $("div[id$='taxNonUS']").css("display","block");         	                               
+        } 
+      });      
+    });   
+    
+    $(window).load(function () {
+      $("select[id$='ddlCountry']").focus();
+    });   
+    
+      function getParamVal() {
+        var trueFalse;
+        if ($.trim($("select[id$='ddlCountry']").val()) == "US - USA") {
+          trueFalse = 'true';
+        }
+        else {
+          trueFalse = 'false';
+        }
+        return trueFalse;
+      }     
+  </script>
+   
+  <style type="text/css">       
+    .copyTo {
+      color: #4A4A56;
+      font-weight: bold;     
+    }  
+    #w9_form_2, #bankInfo {
+      border: 0px solid #333333;      
+      color: #4A4A56; 
+      margin: 5px; 
+      font-weight: bold; 
+      font-size: 105%; 
+      text-align: center;"
+    }            
+  </style>
+            
+  <apex:form id="vendorForm">    
+    <apex:pageBlock id="vendorBlock" title="Vendor Request Form" mode="Edit">  
+      <!-- Vendor Information -->
+      <apex:pageBlockSection id="vendorBusInfo" title="Vendor Information" columns="2">
+        <!-- Row 1 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Country_LAND1__c.label}" for="ddlCountry"/>
+          
+          <apex:actionRegion >
+            <apex:selectList id="ddlCountry" value="{!selectedCountry}" size="1" >
+              <apex:selectOptions value="{!countries}"/>                   
+            </apex:selectList>    
+            <apex:actionSupport event="onchange" rerender="vendorForm, vendorBlock">            
+            </apex:actionSupport> 
+          </apex:actionRegion>                                
+          <!-- <apex:inputfield value="{!Vendor__c.Country_LAND1__c}" id="ddlCountry"/>  -->
+                   
+        </apex:pageBlockSectionItem>               
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Time_Zone__c.label}" for="txtTimeZone"/>
+          <apex:inputField required="{!reqTrueFalse}" value="{!Vendor__c.Time_Zone__c}" id="txtTimeZone" />
+        </apex:pageBlockSectionItem>               
+        <!-- Row 2 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Business_Name_NAME1__c.label}" for="txtBusinessName"/>
+          <apex:inputField value="{!Vendor__c.Business_Name_NAME1__c}" id="txtBusinessName"/>  
+        </apex:pageBlockSectionItem> 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Business_Phone_TELF1__c.label}" for="txtBusinessPhone"/>                
+          <apex:inputField value="{!Vendor__c.Business_Phone_TELF1__c}" id="txtBusinessPhone"/>                  
+        </apex:pageBlockSectionItem>
+        <!-- Row 3 -->          
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Business_Address_STRAS__c.label}" for="txtBusinessAddress"/>                 
+          <apex:inputField value="{!Vendor__c.Business_Address_STRAS__c}" id="txtBusinessAddress"/>
+        </apex:pageBlockSectionItem>                                         
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Business_Fax_TELFX__c.label}" for="txtBusinessFax"/>                
+          <apex:inputField value="{!Vendor__c.Business_Fax_TELFX__c}" id="txtBusinessFax"/> 
+        </apex:pageBlockSectionItem>
+        <!-- Row 4 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Business_City_ORT01__c.label}" for="txtBusinessCity"/>                
+          <apex:inputField value="{!Vendor__c.Business_City_ORT01__c}" id="txtBusinessCity"/>                 
+        </apex:pageBlockSectionItem>                     
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Business_Email_1__c.label}" for="txtBusinessEmail"/>                
+          <apex:inputField value="{!Vendor__c.Business_Email_1__c}" id="txtBusinessEmail"/>                       
+        </apex:pageBlockSectionItem>
+        <!-- Row 5 -->   
+        <apex:pageBlockSectionItem >  
+          <apex:outputLabel styleClass="renderUS" value="{!$ObjectType.Vendor__c.fields.Business_Region__c.label}" id="lblBusinessRegion" for="txtBusinessRegion"/>    
+          <apex:inputField styleClass="renderUS" required="{!reqTrueFalse}" value="{!Vendor__c.Business_Region__c}" id="txtBusinessRegion"/>
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >           
+          <apex:outputLabel styleClass="renderUS" value="{!$ObjectType.Vendor__c.fields.Internet_Address__c.label}" for="txtInternetAddress"/>                
+          <apex:inputField styleClass="renderUS" value="{!Vendor__c.Internet_Address__c}" id="txtInternetAddress"/>                       
+        </apex:pageBlockSectionItem>
+        <!-- Row 6 -->                       
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel styleClass="renderNonUS" value="{!$ObjectType.Vendor__c.fields.NON_US_Business_Region__c.label}" id="lblNonUSBusinessRegion" for="txtNonUSBusinessRegion"/>    
+          <apex:inputField styleClass="renderNonUS" value="{!Vendor__c.NON_US_Business_Region__c}" id="txtNonUSBusinessRegion"/>        
+        </apex:pageBlockSectionItem>                        
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel styleClass="renderNonUS" value="{!$ObjectType.Vendor__c.fields.Internet_Address__c.label}" for="txtInternetAddressTwo"/>                
+          <apex:inputField styleClass="renderNonUS" value="{!Vendor__c.Internet_Address__c}" id="txtInternetAddressTwo"/>                  
+        </apex:pageBlockSectionItem>                 
+        <!-- Row 7 -->                 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Business_Postal_Code_PSTLZ__c.label}" for="txtBusinessPostalCode"/>                
+          <apex:inputField value="{!Vendor__c.Business_Postal_Code_PSTLZ__c}" id="txtBusinessPostalCode"/>                             
+        </apex:pageBlockSectionItem>                                                                              
+      </apex:pageBlockSection> 
+
+      <!-- Shipping Information -->               
+      <apex:pageBlockSection id="vendorBS" title="Shipping Information" columns="2"> 
+        <!-- Row 1 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Incoterms_FOB_Terms__c.label}" for="txtIncoterms"/>                
+          <apex:inputField value="{!Vendor__c.Incoterms_FOB_Terms__c}" id="txtIncoterms"/>                    
+        </apex:pageBlockSectionItem> 
+        <apex:pageBlockSectionItem > 
+          <!-- Blank cell -->                   
+        </apex:pageBlockSectionItem>
+        <!-- Row 2 -->        
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Company_Code__c.label}" for="txtCompanyCode"/>                
+          <apex:inputField value="{!Vendor__c.Company_Code__c}" id="txtCompanyCode"/>                  
+        </apex:pageBlockSectionItem>               
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Purchasing_Org__c.label}" for="txtPurchaseOrg"/>                
+          <apex:inputField value="{!Vendor__c.Purchasing_Org__c}" id="txtPurchaseOrg"/>    
+        </apex:pageBlockSectionItem>  
+      </apex:pageBlockSection>
+                  
+      <!-- Payment Data -->               
+      <apex:pageBlockSection id="paymentSection" title="Payment Information" columns="2">
+        <apex:pageBlockSectionItem > 
+          <div class="copyTo"><input type="checkbox" id="chkBusAddrToPayment" name="chkBusAddrToPayment" value="BustoPay" />Copy Business Address to Payment Address</div>         
+        </apex:pageBlockSectionItem>              
+        <apex:pageBlockSectionItem > 
+          <!-- Blank cell -->          
+        </apex:pageBlockSectionItem>        
+        <!-- Row 1 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Name_on_Bank_Account__c.label}" for="txtNameOnBankAcc"/>
+          <apex:inputField value="{!Vendor__c.Name_on_Bank_Account__c}" id="txtNameOnBankAcc"/>          
+        </apex:pageBlockSectionItem>                
+        <apex:pageBlockSectionItem >  
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Evaluated_Receipt_Settlement__c.label}" for="txtEvalReceiptSett"/>                 
+          <apex:inputField value="{!Vendor__c.Evaluated_Receipt_Settlement__c}" id="txtEvalReceiptSett"/> 
+        </apex:pageBlockSectionItem>   
+        <!-- Row 2 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Payment_Address_STRAS__c.label}" for="txtPaymentAddress"/>                 
+          <apex:inputField value="{!Vendor__c.Payment_Address_STRAS__c}" id="txtPaymentAddress"/> 
+        </apex:pageBlockSectionItem>                 
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Accepts_Credit_Card__c.label}" for="txtAccCredCards"/>                
+          <apex:inputField value="{!Vendor__c.Accepts_Credit_Card__c}" id="txtAccCredCards"/>                         
+        </apex:pageBlockSectionItem>                               
+        <!-- Row 3 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Payment_City_ORT01__c.label}" for="txtPaymentCity"/>                
+          <apex:inputField value="{!Vendor__c.Payment_City_ORT01__c}" id="txtPaymentCity"/> 
+        </apex:pageBlockSectionItem>                
+        <apex:pageBlockSectionItem >
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Method_of_Payment__c.label}" for="txtMethodPayment"/>
+          <apex:inputField value="{!Vendor__c.Method_of_Payment__c}" id="txtMethodPayment"/>               
+        </apex:pageBlockSectionItem>         
+        <!-- Row 4 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel styleClass="renderUS" value="{!$ObjectType.Vendor__c.fields.Payment_Region__c.label}" id="lblPaymentRegion" for="txtPaymentRegion"/>                
+          <apex:inputField styleClass="renderUS" value="{!Vendor__c.Payment_Region__c}" id="txtPaymentRegion"/>  
+        </apex:pageBlockSectionItem>                 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel styleClass="renderUS" value="{!$ObjectType.Vendor__c.fields.Payment_Terms__c.label}" id="lblPaymentTerms" for="txtPaymentTerms"/>
+          <apex:inputField styleClass="renderUS" value="{!Vendor__c.Payment_Terms__c}" id="txtPaymentTerms"/>   
+        </apex:pageBlockSectionItem>              
+        <!-- Row 5 IF (NON US) --> 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel styleClass="renderNonUS" value="{!$ObjectType.Vendor__c.fields.NON_US_Payment_Region__c.label}" id="lblNonUSPaymentRegion" for="txtNonUSPaymentRegion"/>                
+          <apex:inputField styleClass="renderNonUS" value="{!Vendor__c.NON_US_Payment_Region__c}" id="txtNonUSPaymentRegion"/>  
+        </apex:pageBlockSectionItem>        
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel styleClass="renderNonUS" value="{!$ObjectType.Vendor__c.fields.Payment_Terms__c.label}" id="lblPaymentTermsTwo" for="txtPaymentTermsTwo"/>
+          <apex:inputField styleClass="renderNonUS" value="{!Vendor__c.Payment_Terms__c}" id="txtPaymentTermsTwo"/>  
+        </apex:pageBlockSectionItem>        
+        <!-- Row 6 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Payment_Postal_Code_PSTLZ__c.label}" for="txtPaymentPostalCode"/>                
+          <apex:inputField value="{!Vendor__c.Payment_Postal_Code_PSTLZ__c}" id="txtPaymentPostalCode"/>                             
+        </apex:pageBlockSectionItem> 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Currency__c.label}" for="txtCurrency"/>
+          <apex:inputField value="{!Vendor__c.Currency__c}" id="txtCurrency"/>          
+        </apex:pageBlockSectionItem>  
+        <!-- Row 7 -->                       
+        <apex:pageBlockSectionItem > 
+          <!-- Blank cell -->          
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Estimate_Annual_Purchase__c.label}" for="txtEstAnnualPurchase"/>
+          <apex:inputField value="{!Vendor__c.Estimate_Annual_Purchase__c}" id="txtEstAnnualPurchase"/>          
+        </apex:pageBlockSectionItem>                                              
+      </apex:pageBlockSection>
+
+      <!-- Bank Information -->               
+      <apex:pageBlockSection title="Bank Information" columns="2">     
+      </apex:pageBlockSection>
+      <div id="bankInfo">
+        It is required that the banking information provided be faxed on the company's letterhead to the Accounts Payable Department of Brown-Forman for verification at 502-774-7183.
+      </div>       
+            
+      <!-- Tax Information --> 
+      <div id="taxWrapper">
+      <div id="taxUS">          
+      <apex:pageBlockSection title="Tax Information" columns="2">
+        <!-- Row 1 -->
+        <apex:pageBlockSectionItem > 
+          <div class="copyTo"><input type="checkbox" id="chkBusNameToTaxName" name="chkBusNameToTaxName" value="BusNameToTaxName" />Copy Business Name to 1099 Business/Legal Name</div>         
+        </apex:pageBlockSectionItem> 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Taxpayer_Identification_Number__c.label}" for="txtTaxIdNum"/>
+          <apex:inputField value="{!Vendor__c.Taxpayer_Identification_Number__c}" id="txtTaxIdNum"/>         
+        </apex:pageBlockSectionItem>        
+        <!-- Row 2 -->  
+        <apex:pageBlockSectionItem >       
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.X1099_Business_Legal_Name__c.label}" for="txtBusLegalName"/>
+          <apex:inputField value="{!Vendor__c.X1099_Business_Legal_Name__c}" id="txtBusLegalName"/>         
+        </apex:pageBlockSectionItem>  
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.SSN__c.label}" for="txtSSN"/>
+          <apex:inputField value="{!Vendor__c.SSN__c}" id="txtSSN"/>  
+        </apex:pageBlockSectionItem>        
+      </apex:pageBlockSection>
+      </div>
+      
+      <div id="taxNonUS">
+      <apex:pageBlockSection title="Tax Information"  columns="2">
+        <!-- Row 1 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Vat_Registration_Number__c.label}" for="txtVatRegNum"/>
+          <apex:inputField value="{!Vendor__c.Vat_Registration_Number__c}" id="txtVatRegNum"/>         
+        </apex:pageBlockSectionItem> 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Tax_Number__c.label}" for="txtTaxNum"/>
+          <apex:inputField value="{!Vendor__c.Tax_Number__c}" id="txtTaxNum"/>         
+        </apex:pageBlockSectionItem>               
+      </apex:pageBlockSection>
+      </div>
+      
+      <div id="taxAddress">
+      <apex:pageBlockSection columns="2">                    
+        <!-- Row 3 -->
+        <apex:pageBlockSectionItem > 
+          <div class="copyTo"><input type="checkbox" id="chkBusAddrToTax" name="chkBusAddrToTax" value="BusToTax" />Copy Business Address to Tax Address</div>         
+        </apex:pageBlockSectionItem> 
+        <apex:pageBlockSectionItem > 
+          <div class="copyTo"><input type="checkbox" id="chkPayAddrToTax" name="chkPayAddrToTax" value="PayToTax" />Copy Payment Address to Tax Address</div>         
+        </apex:pageBlockSectionItem>                                                                 
+        <!-- Row 4 -->                 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Tax_Address_STRAS__c.label}" id="lblTaxAddress" for="txtTaxAddress"/>
+          <apex:inputField value="{!Vendor__c.Tax_Address_STRAS__c}" id="txtTaxAddress"/>  
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem id="tax1">
+          <!-- Blank cell -->
+        </apex:pageBlockSectionItem>              
+        <!-- Row 5 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Tax_City_ORT01__c.label}" id="lblTaxCity" for="txtTaxCity"/>
+          <apex:inputField value="{!Vendor__c.Tax_City_ORT01__c}" id="txtTaxCity"/>  
+        </apex:pageBlockSectionItem>        
+        <apex:pageBlockSectionItem id="tax2">
+          <!-- Blank cell -->
+        </apex:pageBlockSectionItem>
+        <!-- Row 6 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Tax_Region__c.label}" id="lblTaxRegion" for="txtTaxRegion"/>
+          <apex:inputField value="{!Vendor__c.Tax_Region__c}" id="txtTaxRegion"/>  
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem id="tax3">
+          <!-- Blank cell -->
+        </apex:pageBlockSectionItem>
+        <!-- Row 7 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Tax_Postal_Code_PSTLZ__c.label}" id="lblTaxPostalCode" for="txtTaxPostalCode"/>
+          <apex:inputField value="{!Vendor__c.Tax_Postal_Code_PSTLZ__c}" id="txtTaxPostalCode"/>  
+        </apex:pageBlockSectionItem>        
+        <apex:pageBlockSectionItem id="tax4">
+          <!-- Blank cell -->
+        </apex:pageBlockSectionItem>       
+      </apex:pageBlockSection>
+      </div>
+      </div>
+      
+      <!-- Business Type -->    
+      <div id="busType">           
+      <apex:pageBlockSection title="Business Type" columns="2">
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Business_Type__c.label}" for="txtBusType"/>
+          <apex:inputField value="{!Vendor__c.Business_Type__c}" id="txtBusType"/>  
+        </apex:pageBlockSectionItem>             
+      </apex:pageBlockSection>
+      </div>
+    
+      <div id="diverOwnBus"> 
+      <!-- Minority Indicator -->               
+      <apex:pageBlockSection title="Minority Indicator" columns="2">
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Minority_Indicator__c.label}" for="txtDivOwnedBus"/>
+          <apex:inputField value="{!Vendor__c.Minority_Indicator__c}" id="txtDivOwnedBus"/>  
+        </apex:pageBlockSectionItem>             
+      </apex:pageBlockSection>
+      </div>
+      
+      <!-- Description of Purchase or Service Provided -->               
+      <apex:pageBlockSection title="Description of Purchase or Service Provided" columns="2">
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Purchase_or_Service__c.label}" for="txtPurchService"/>
+          <apex:inputField value="{!Vendor__c.Purchase_or_Service__c}" id="txtPurchService"/>  
+        </apex:pageBlockSectionItem>    
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Customer_Number__c.label}" for="txtCustNum"/>
+          <apex:inputField value="{!Vendor__c.Customer_Number__c}" id="txtCustNum"/>  
+        </apex:pageBlockSectionItem>                  
+      </apex:pageBlockSection>      
+
+      <!-- Sign-off -->               
+      <apex:pageBlockSection title="Sign-off" columns="2">
+        <!-- Row 2 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Your_Name__c.label}" for="txtYourName"/>
+          <apex:inputField value="{!Vendor__c.Your_Name__c}" id="txtYourName"/>  
+        </apex:pageBlockSectionItem> 
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Your_Manager_s_Name__c.label}" for="txtYourMgrName"/>
+          <apex:inputField value="{!Vendor__c.Your_Manager_s_Name__c}" id="txtYourMgrName"/>  
+        </apex:pageBlockSectionItem> 
+        <!-- Row 2 -->
+        <apex:pageBlockSectionItem > 
+          <apex:outputLabel value="{!$ObjectType.Vendor__c.fields.Comments__c.label}" for="txtComments"/>
+          <apex:inputField value="{!Vendor__c.Comments__c}" id="txtComments"/>  
+        </apex:pageBlockSectionItem>                             
+      </apex:pageBlockSection>
+                        
+      <div id="w9_form">
+        <apex:pageBlockSection title="W9 Tax Form" columns="2">
+        </apex:pageBlockSection>   
+        <div id="w9_form_2">           
+          A complete W9 tax form is required on all new US vendors. The button below will allow you to access the W9 tax form. It is your responsibility to get your vendor to complete this form and have it faxed to Strategic Sourcing at 502-774-6913. This request will not be processed until the complete W9 is received.
+          <br /><br />
+          <input style="color: #333333; font-size: 90%; font-weight: bold" type="button" id="btnW9Form" value="W9 Form" onClick="window.open('http://www.irs.gov/pub/irs-pdf/fw9.pdf','mywindow','width=800,height=800')"/> 
+        </div>
+      </div>      
+                
+      <!-- Save and Cancel buttons -->
+      <apex:pageBlockButtons location="both">
+        <apex:commandButton action="{!save}" value="Save"/>
+        <apex:commandButton action="{!cancel}" value="Cancel"/>
+      </apex:pageBlockButtons>
+                                                                                                         
+    </apex:pageBlock>             
+  </apex:form>         
+</apex:page>

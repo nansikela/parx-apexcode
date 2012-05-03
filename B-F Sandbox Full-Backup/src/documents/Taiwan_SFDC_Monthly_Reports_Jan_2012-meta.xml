@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DocumentFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Taiwan SFDC Monthly Reports (Jan 2012)</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <group>TWN-all users</group>
+    </sharedTo>
+</DocumentFolder>

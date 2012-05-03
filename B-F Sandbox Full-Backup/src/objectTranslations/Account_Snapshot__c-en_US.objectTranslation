@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Snapshot</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Snapshots</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Account Snapshots --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Agg shares of 5% shareholders in family --></label>
+        <name>Agg_shares_of_5_shareholders_in_family__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average 3m Volume --></label>
+        <name>Average_3m_Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average Tenures of Directors --></label>
+        <name>Average_Tenures_of_Directors__c</name>
+    </fields>
+    <fields>
+        <label><!-- Average age of Directors --></label>
+        <name>Average_age_of_Directors__c</name>
+    </fields>
+    <fields>
+        <label><!-- Board: Number of Directors --></label>
+        <name>Board_Number_of_Directors__c</name>
+    </fields>
+    <fields>
+        <label><!-- CEO and COB split? --></label>
+        <name>CEO_and_COB_split__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- CEO family member? --></label>
+        <name>CEO_family_member__c</name>
+    </fields>
+    <fields>
+        <label><!-- COB Independent Director? --></label>
+        <name>COB_Independent_Director__c</name>
+    </fields>
+    <fields>
+        <label><!-- COB family member? --></label>
+        <name>COB_family_member__c</name>
+    </fields>
+    <fields>
+        <label><!-- # Controlled Company Exemptions --></label>
+        <name>Controlled_Company_Exemptions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dual Class? --></label>
+        <name>Dual_Class__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Earnings Per Share --></label>
+        <name>Earnings_Per_Share__c</name>
+    </fields>
+    <fields>
+        <label><!-- # Family Directors --></label>
+        <name>Family_Directors__c</name>
+    </fields>
+    <fields>
+        <label><!-- # Independent Directors --></label>
+        <name>Independent_Directors__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Trade Price --></label>
+        <name>Last_Trade_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Majority Independent? --></label>
+        <name>Majority_Independent__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- # Management Directors --></label>
+        <name>Management_Directors__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Capitalization --></label>
+        <name>Market_Capitalization__c</name>
+    </fields>
+    <fields>
+        <label><!-- # Other Non-Independent Directors --></label>
+        <name>Other_Non_Independent_Directors__c</name>
+    </fields>
+    <fields>
+        <label><!-- P/E Ratio --></label>
+        <name>P_E_Ratio__c</name>
+    </fields>
+    <fields>
+        <label><!-- Profit Margin % --></label>
+        <name>Profit_Margin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revenue --></label>
+        <name>Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shares Outstanding --></label>
+        <name>Shares_Outstanding__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Former</masterLabel>
+            <translation><!-- Former --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Volume --></label>
+        <name>Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- # 5% shareholders that are family --></label>
+        <name>X5_shareholders_that_are_family__c</name>
+    </fields>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

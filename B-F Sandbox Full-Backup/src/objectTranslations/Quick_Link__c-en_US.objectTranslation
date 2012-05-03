@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Quick Link</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Manage Quick Links</value>
+    </caseValues>
+    <fields>
+        <help><!-- Where should this Quick Link appear? --></help>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>About Me</masterLabel>
+            <translation><!-- About Me --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Analytics</masterLabel>
+            <translation><!-- Analytics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Anywhere Access</masterLabel>
+            <translation><!-- Anywhere Access --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building Brands</masterLabel>
+            <translation><!-- Building Brands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Business Center</masterLabel>
+            <translation><!-- Business Center --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Collaboration</masterLabel>
+            <translation><!-- Collaboration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diversity</masterLabel>
+            <translation><!-- Diversity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Google</masterLabel>
+            <translation><!-- Google --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Louisville</masterLabel>
+            <translation><!-- Louisville --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Stores how many clicks each Quick Link has. --></help>
+        <label><!-- Clicks --></label>
+        <name>Clicks__c</name>
+    </fields>
+    <fields>
+        <help><!-- Does this link need to open in a new tab? --></help>
+        <label><!-- External? --></label>
+        <name>External__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please upload an image to the Documents tab for this Quick Link --></help>
+        <label><!-- Image Link --></label>
+        <name>Image_Link__c</name>
+    </fields>
+    <fields>
+        <help><!-- Where does this Quick Link go? --></help>
+        <label><!-- Link Location --></label>
+        <name>Link_Location__c</name>
+    </fields>
+    <fields>
+        <help><!-- Text to appear below link image --></help>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <layouts>
+        <layout>Quick Link Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

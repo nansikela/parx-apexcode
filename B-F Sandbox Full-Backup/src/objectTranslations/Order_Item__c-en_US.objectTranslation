@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Order Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Order Items</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account id --></label>
+        <name>Account_id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Banner PA --></label>
+        <name>Banner_PA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Banner Partner --></label>
+        <name>Banner_Partner__c</name>
+    </fields>
+    <fields>
+        <label><!-- BF - Brand --></label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Order Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Case - (Bonus) --></help>
+        <label><!-- Carton (Bonus) --></label>
+        <name>Carton_Bonus__c</name>
+    </fields>
+    <fields>
+        <help><!-- Case --></help>
+        <label><!-- Carton --></label>
+        <name>Carton__c</name>
+    </fields>
+    <fields>
+        <help><!-- Create a validation rule, has to be greater than the discount or less/equal to the tolerance --></help>
+        <label><!-- Discount - ($) --></label>
+        <name>Discount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Max PA Per Case --></label>
+        <name>Max_PA_Per_Case__c</name>
+    </fields>
+    <fields>
+        <label><!-- Missing Material --></label>
+        <name>Missing_Material__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+        <relationshipLabel><!-- Order Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Outlet PA --></label>
+        <name>Outlet_PA__c</name>
+    </fields>
+    <fields>
+        <label><!-- PRM Units Per Case --></label>
+        <name>PRM_Units_Per_Case__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Ref Material --></label>
+        <name>Price_Ref_Material__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Description --></label>
+        <name>Product_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- BF - Product --></label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Order Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- RecordTypeName --></label>
+        <name>RecordTypeName__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Material Number --></label>
+        <name>SAP_Material_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Bonus Units --></label>
+        <name>Total_Bonus_Units__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Units --></label>
+        <name>Total_Units__c</name>
+    </fields>
+    <fields>
+        <help><!-- Bottles - (Bonus) --></help>
+        <label><!-- Unit (Bonus) --></label>
+        <name>Unit_Bonus__c</name>
+    </fields>
+    <fields>
+        <help><!-- Bottle --></help>
+        <label><!-- Unit --></label>
+        <name>Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Product Number --></label>
+        <name>Wholesaler_Product_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Product --></label>
+        <name>Wholesaler_Product__c</name>
+        <relationshipLabel><!-- Order Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Wholesaler (Link to the Wholesaler Product) Object --></help>
+        <label><!-- ECC - Wholesaler --></label>
+        <name>Wholesaler__c</name>
+    </fields>
+    <layouts>
+        <layout>Locked Items</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Order Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Discounts/Bonus --></label>
+            <section>Discounts/Bonus</section>
+        </sections>
+        <sections>
+            <label><!-- Price Tolerance --></label>
+            <section>Price Tolerance</section>
+        </sections>
+        <sections>
+            <label><!-- Product --></label>
+            <section>Product</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity --></label>
+            <section>Quantity</section>
+        </sections>
+        <sections>
+            <label><!-- Wholesaler --></label>
+            <section>Wholesaler</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Locked --></label>
+        <name>Locked</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- New --></label>
+        <name>New</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Free Stock &amp; Discounts can NOT be applied to the same item level! --></errorMessage>
+        <name>Free_Stock_Discount_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Order has already been processed. Changes cannot be made.  Please contact customer service. --></errorMessage>
+        <name>Order_Item_Locked</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Price Tolerance Reached - Please Enter a Lower Amount --></errorMessage>
+        <name>Price_Tolerance_Check</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Add_Products --></label>
+        <name>Add_Products</name>
+    </webLinks>
+</CustomObjectTranslation>

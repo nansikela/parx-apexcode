@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CollaborationGroup.GroupMembers$Member</field>
+    </columns>
+    <columns>
+        <field>CollaborationGroup.GroupMembers$Member.Id</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Names and Id&apos;s of Account Recon users (from Account Recon group)</description>
+    <filter>
+        <criteriaItems>
+            <column>CollaborationGroup$Name</column>
+            <operator>equals</operator>
+            <value>Account Recon</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Account Recon Users</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Chatter_Groups_with_Users_BEN__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <sortColumn>CollaborationGroup.GroupMembers$Member</sortColumn>
+    <sortOrder>Asc</sortOrder>
+    <timeFrameFilter>
+        <dateColumn>CollaborationGroup$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

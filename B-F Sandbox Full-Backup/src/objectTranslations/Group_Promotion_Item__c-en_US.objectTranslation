@@ -1,0 +1,2561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Deal Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Deal Items</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Deal Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Banner --></label>
+        <name>Banner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Major --></label>
+        <name>Brand_Major__c</name>
+        <picklistValues>
+            <masterLabel>327 - EMERILS CLASSIC</masterLabel>
+            <translation><!-- 327 - EMERILS CLASSIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328 - FETZER</masterLabel>
+            <translation><!-- 328 - FETZER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329 - BONTERRA</masterLabel>
+            <translation><!-- 329 - BONTERRA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330 - FONTANA CANDIDA</masterLabel>
+            <translation><!-- 330 - FONTANA CANDIDA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>331 - PACIFIC BAY</masterLabel>
+            <translation><!-- 331 - PACIFIC BAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>332 - MARIAH</masterLabel>
+            <translation><!-- 332 - MARIAH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>333 - Hopland Ranch</masterLabel>
+            <translation><!-- 333 - Hopland Ranch --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>334 - OBLIO</masterLabel>
+            <translation><!-- 334 - OBLIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>335 - BOXING ROO</masterLabel>
+            <translation><!-- 335 - BOXING ROO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>336 - TUACA LIQUEUR</masterLabel>
+            <translation><!-- 336 - TUACA LIQUEUR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>337 - DIDGERIDOO</masterLabel>
+            <translation><!-- 337 - DIDGERIDOO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338 - LITTLE BLACK DRESS</masterLabel>
+            <translation><!-- 338 - LITTLE BLACK DRESS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339 - WAKEFIELD</masterLabel>
+            <translation><!-- 339 - WAKEFIELD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340 - FONTANA FREDDA</masterLabel>
+            <translation><!-- 340 - FONTANA FREDDA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>341 - VIRGIN VINES</masterLabel>
+            <translation><!-- 341 - VIRGIN VINES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>342 - GALA ROUGE</masterLabel>
+            <translation><!-- 342 - GALA ROUGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>344 - SUNDIAL</masterLabel>
+            <translation><!-- 344 - SUNDIAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345 - FETZER COLDWATER CREEK</masterLabel>
+            <translation><!-- 345 - FETZER COLDWATER CREEK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>347 - STONYBROOK</masterLabel>
+            <translation><!-- 347 - STONYBROOK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>348 - LOW CARB ONE.X</masterLabel>
+            <translation><!-- 348 - LOW CARB ONE.X --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>349 - FETZER PV PROMO</masterLabel>
+            <translation><!-- 349 - FETZER PV PROMO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>350 - ICY VODKA</masterLabel>
+            <translation><!-- 350 - ICY VODKA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>351 - LBD VODKA</masterLabel>
+            <translation><!-- 351 - LBD VODKA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360 - GLENMORANGIE SCOTCH</masterLabel>
+            <translation><!-- 360 - GLENMORANGIE SCOTCH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>361 - GLEN MORAY</masterLabel>
+            <translation><!-- 361 - GLEN MORAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>363 - ARDBEG</masterLabel>
+            <translation><!-- 363 - ARDBEG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>370 - L.LEMONADE MIX</masterLabel>
+            <translation><!-- 370 - L.LEMONADE MIX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>371 - JD,GJ,SNGB FAMILY PK</masterLabel>
+            <translation><!-- 371 - JD,GJ,SNGB FAMILY PK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>377 - GENTLEMAN JACK</masterLabel>
+            <translation><!-- 377 - GENTLEMAN JACK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>379 - JD &amp; COLA - GLASS</masterLabel>
+            <translation><!-- 379 - JD &amp; COLA - GLASS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>380 - JACK DANIELS TENNESSEE WHISKEY</masterLabel>
+            <translation><!-- 380 - JACK DANIELS TENNESSEE WHISKEY --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Brand Minor --></label>
+        <name>Brand_Minor__c</name>
+        <picklistValues>
+            <masterLabel>327001 - EMERILS CLASSIC WHT</masterLabel>
+            <translation><!-- 327001 - EMERILS CLASSIC WHT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327002 - EMERILS CLASSIC RED</masterLabel>
+            <translation><!-- 327002 - EMERILS CLASSIC RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327064 - EMERILS CLASSIC CAB SAUV RSV</masterLabel>
+            <translation><!-- 327064 - EMERILS CLASSIC CAB SAUV RSV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327071 - EMERILS CLASSIC RED</masterLabel>
+            <translation><!-- 327071 - EMERILS CLASSIC RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327072 - EMERILS CLASSIC WHITE</masterLabel>
+            <translation><!-- 327072 - EMERILS CLASSIC WHITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327073 - EMERILS CLASSIC BLUSH</masterLabel>
+            <translation><!-- 327073 - EMERILS CLASSIC BLUSH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327081 - EMERILS CLASSIC CHARDONNAY</masterLabel>
+            <translation><!-- 327081 - EMERILS CLASSIC CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327082 - EMERILS CLASSIC CAB SAUV</masterLabel>
+            <translation><!-- 327082 - EMERILS CLASSIC CAB SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327XXX - UNDEFINED</masterLabel>
+            <translation><!-- 327XXX - UNDEFINED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328007 - FTZ CAB ORGNC</masterLabel>
+            <translation><!-- 328007 - FTZ CAB ORGNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328008 - FTZ CHARD ORGNC</masterLabel>
+            <translation><!-- 328008 - FTZ CHARD ORGNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328009 - FTZ MERL ORGNC</masterLabel>
+            <translation><!-- 328009 - FTZ MERL ORGNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328010 - FETZER MALBEC</masterLabel>
+            <translation><!-- 328010 - FETZER MALBEC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328011 - FTZ PINOT GRIGIO</masterLabel>
+            <translation><!-- 328011 - FTZ PINOT GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328014 - FTZ CAB/CHRD/MERL/PG</masterLabel>
+            <translation><!-- 328014 - FTZ CAB/CHRD/MERL/PG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328015 - FTZ CAB/CHARD/MERL</masterLabel>
+            <translation><!-- 328015 - FTZ CAB/CHARD/MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328081 - FTZ  CHARD</masterLabel>
+            <translation><!-- 328081 - FTZ  CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328082 - FTZ  CABERNET SAUV</masterLabel>
+            <translation><!-- 328082 - FTZ  CABERNET SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328083 - FTZ  MERLOT</masterLabel>
+            <translation><!-- 328083 - FTZ  MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328084 - FTZ   PINOT NOIR</masterLabel>
+            <translation><!-- 328084 - FTZ   PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328085 - FTZ  VIOGNIER</masterLabel>
+            <translation><!-- 328085 - FTZ  VIOGNIER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328086 - FTZ  FUME BLANC</masterLabel>
+            <translation><!-- 328086 - FTZ  FUME BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328087 - FTZ  GEWURZTRAMINER</masterLabel>
+            <translation><!-- 328087 - FTZ  GEWURZTRAMINER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328088 - FTZ  WHITE ZINFANDEL</masterLabel>
+            <translation><!-- 328088 - FTZ  WHITE ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328089 - FTZ  J REISLING</masterLabel>
+            <translation><!-- 328089 - FTZ  J REISLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808A - FTZ  GAMAY BEAUJOLAIS</masterLabel>
+            <translation><!-- 32808A - FTZ  GAMAY BEAUJOLAIS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808B - FTZ  ZINFANDEL</masterLabel>
+            <translation><!-- 32808B - FTZ  ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808C - FTZ  ZIN ROSE</masterLabel>
+            <translation><!-- 32808C - FTZ  ZIN ROSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808D - FTZ  CHARD</masterLabel>
+            <translation><!-- 32808D - FTZ  CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808E - FTZ  CHENIN BLANC</masterLabel>
+            <translation><!-- 32808E - FTZ  CHENIN BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808G - FTZ  SHIRAZ</masterLabel>
+            <translation><!-- 32808G - FTZ  SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808H - FTZ  DRY GEWURZ</masterLabel>
+            <translation><!-- 32808H - FTZ  DRY GEWURZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808I - FTZ  FETZ SYRAH ROSE</masterLabel>
+            <translation><!-- 32808I - FTZ  FETZ SYRAH ROSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808J - FTZ  CHARD/VIOGNER</masterLabel>
+            <translation><!-- 32808J - FTZ  CHARD/VIOGNER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808K - FTZ  ZINF/CABERNET</masterLabel>
+            <translation><!-- 32808K - FTZ  ZINF/CABERNET --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808L - FTZ  ZINF/SHIRAZ</masterLabel>
+            <translation><!-- 32808L - FTZ  ZINF/SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808M - FTZ  CHARD/VIOG HOPL RNC</masterLabel>
+            <translation><!-- 32808M - FTZ  CHARD/VIOG HOPL RNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808N - FTZ  ZINF/SHRZ HOP RNC</masterLabel>
+            <translation><!-- 32808N - FTZ  ZINF/SHRZ HOP RNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808P - FTZ  SHIRAZ PV</masterLabel>
+            <translation><!-- 32808P - FTZ  SHIRAZ PV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808Q - FTZ  6/2 BTL CHRD/MERL</masterLabel>
+            <translation><!-- 32808Q - FTZ  6/2 BTL CHRD/MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808R - FTZ   VIN GRIS</masterLabel>
+            <translation><!-- 32808R - FTZ   VIN GRIS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808S - FTZ  SHIRAZ UNOAKED</masterLabel>
+            <translation><!-- 32808S - FTZ  SHIRAZ UNOAKED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328090 - FTZ   REISLING GERMAN</masterLabel>
+            <translation><!-- 328090 - FTZ   REISLING GERMAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328091 - FETZER MOSCATO</masterLabel>
+            <translation><!-- 328091 - FETZER MOSCATO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328XXX - UNDEFINED</masterLabel>
+            <translation><!-- 328XXX - UNDEFINED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329001 - BON TABLE WHITE</masterLabel>
+            <translation><!-- 329001 - BON TABLE WHITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329002 - BON TABLE RED</masterLabel>
+            <translation><!-- 329002 - BON TABLE RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329003 - BONTERRA PINOT NOIR</masterLabel>
+            <translation><!-- 329003 - BONTERRA PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329004 - BONTERRA REISLING</masterLabel>
+            <translation><!-- 329004 - BONTERRA REISLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329017 - BON CHARD MCNAB</masterLabel>
+            <translation><!-- 329017 - BON CHARD MCNAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329018 - BON ROSE</masterLabel>
+            <translation><!-- 329018 - BON ROSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329086 - BON SAUV BLANC</masterLabel>
+            <translation><!-- 329086 - BON SAUV BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329091 - BON CAB SAUV</masterLabel>
+            <translation><!-- 329091 - BON CAB SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329092 - BON CHARDONNAY</masterLabel>
+            <translation><!-- 329092 - BON CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329093 - BON VIOGNIER</masterLabel>
+            <translation><!-- 329093 - BON VIOGNIER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329094 - BON SYRAH</masterLabel>
+            <translation><!-- 329094 - BON SYRAH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329095 - BON SANGIOVESE</masterLabel>
+            <translation><!-- 329095 - BON SANGIOVESE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329096 - BON ZINFANDEL</masterLabel>
+            <translation><!-- 329096 - BON ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329097 - BON MERLOT</masterLabel>
+            <translation><!-- 329097 - BON MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329098 - BON RED</masterLabel>
+            <translation><!-- 329098 - BON RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329099 - BON ROUSANNE</masterLabel>
+            <translation><!-- 329099 - BON ROUSANNE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329100 - BON MUSCAT</masterLabel>
+            <translation><!-- 329100 - BON MUSCAT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329101 - BON B/T</masterLabel>
+            <translation><!-- 329101 - BON B/T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329102 - BON MULTI VAR WHITE</masterLabel>
+            <translation><!-- 329102 - BON MULTI VAR WHITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329103 - BON MULTI VAR RED</masterLabel>
+            <translation><!-- 329103 - BON MULTI VAR RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329104 - BON BIO RED</masterLabel>
+            <translation><!-- 329104 - BON BIO RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329105 - BONT MCNAB PETITE SIRAH ZIN</masterLabel>
+            <translation><!-- 329105 - BONT MCNAB PETITE SIRAH ZIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329106 - BON LOS PAROS BIO WHT BLND</masterLabel>
+            <translation><!-- 329106 - BON LOS PAROS BIO WHT BLND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329107 - BON BUTLER ZIN</masterLabel>
+            <translation><!-- 329107 - BON BUTLER ZIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329108 - BON BUTLER BIO RED BLND</masterLabel>
+            <translation><!-- 329108 - BON BUTLER BIO RED BLND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329XXX - UNDEFINED</masterLabel>
+            <translation><!-- 329XXX - UNDEFINED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330001 - FC FRASCATI</masterLabel>
+            <translation><!-- 330001 - FC FRASCATI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330002 - FC ORVIETO</masterLabel>
+            <translation><!-- 330002 - FC ORVIETO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330003 - FC SANGIOVESE</masterLabel>
+            <translation><!-- 330003 - FC SANGIOVESE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330004 - FC GIFT</masterLabel>
+            <translation><!-- 330004 - FC GIFT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330005 - FC VILLA FONTANA</masterLabel>
+            <translation><!-- 330005 - FC VILLA FONTANA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330006 - FC PINOT GRIGIO</masterLabel>
+            <translation><!-- 330006 - FC PINOT GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330008 - FC CHARDONNAY</masterLabel>
+            <translation><!-- 330008 - FC CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330009 - FC MERLOT</masterLabel>
+            <translation><!-- 330009 - FC MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330010 - FC CABERNET SAUVIGNON</masterLabel>
+            <translation><!-- 330010 - FC CABERNET SAUVIGNON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330XXX - UNDEFINED</masterLabel>
+            <translation><!-- 330XXX - UNDEFINED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>331051 - PAC BAY MERL</masterLabel>
+            <translation><!-- 331051 - PAC BAY MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>331052 - PAC BAY CHARD</masterLabel>
+            <translation><!-- 331052 - PAC BAY CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>331053 - PAC BAY CHARD/PINOT GRIGIO</masterLabel>
+            <translation><!-- 331053 - PAC BAY CHARD/PINOT GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>331054 - PAC BAY CAB SAUV</masterLabel>
+            <translation><!-- 331054 - PAC BAY CAB SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>331055 - PAC BAY WHT ZINF</masterLabel>
+            <translation><!-- 331055 - PAC BAY WHT ZINF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>332001 - MARIAH ZINFANDEL</masterLabel>
+            <translation><!-- 332001 - MARIAH ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>332002 - MARIAH SYRAH</masterLabel>
+            <translation><!-- 332002 - MARIAH SYRAH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>332003 - MARIAH MERLOT</masterLabel>
+            <translation><!-- 332003 - MARIAH MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>332004 - MARIAH ZIN POOR RN</masterLabel>
+            <translation><!-- 332004 - MARIAH ZIN POOR RN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>332005 - MARIAH ZINF TAST ROOM</masterLabel>
+            <translation><!-- 332005 - MARIAH ZINF TAST ROOM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>333001 - HOP RANCH Cab Sauv</masterLabel>
+            <translation><!-- 333001 - HOP RANCH Cab Sauv --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>333002 - HOP RANCH CHARD</masterLabel>
+            <translation><!-- 333002 - HOP RANCH CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>333003 - HOP RANCH MERL</masterLabel>
+            <translation><!-- 333003 - HOP RANCH MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>333005 - HOP RANCH WHT ZINF</masterLabel>
+            <translation><!-- 333005 - HOP RANCH WHT ZINF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>334334 - OBLIO</masterLabel>
+            <translation><!-- 334334 - OBLIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>335002 - BOX ROO CAB/SHRZ/MERL</masterLabel>
+            <translation><!-- 335002 - BOX ROO CAB/SHRZ/MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>335003 - BOX ROO SHRZ</masterLabel>
+            <translation><!-- 335003 - BOX ROO SHRZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>336336 - TUACA LIQUEUR</masterLabel>
+            <translation><!-- 336336 - TUACA LIQUEUR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>337001 - DIDGERIDOO CAB/SHRZ</masterLabel>
+            <translation><!-- 337001 - DIDGERIDOO CAB/SHRZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>337002 - DIDGERIDOO CAB/SHRZ/MERL</masterLabel>
+            <translation><!-- 337002 - DIDGERIDOO CAB/SHRZ/MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>337003 - DIDGERIDOO SHRZ</masterLabel>
+            <translation><!-- 337003 - DIDGERIDOO SHRZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338011 - LBD PINOT GRIGIO</masterLabel>
+            <translation><!-- 338011 - LBD PINOT GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338012 - LBD MOSCATO</masterLabel>
+            <translation><!-- 338012 - LBD MOSCATO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338081 - LBD CHARD</masterLabel>
+            <translation><!-- 338081 - LBD CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338082 - LBD CABERNET</masterLabel>
+            <translation><!-- 338082 - LBD CABERNET --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338083 - LBD MERLOT</masterLabel>
+            <translation><!-- 338083 - LBD MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338084 - LBD PINOT NOIR</masterLabel>
+            <translation><!-- 338084 - LBD PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338085 - LBD SAUV BLANC</masterLabel>
+            <translation><!-- 338085 - LBD SAUV BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>338086 - LBD WHITE RIESLING</masterLabel>
+            <translation><!-- 338086 - LBD WHITE RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33808I - LBD SYRAH ROSE</masterLabel>
+            <translation><!-- 33808I - LBD SYRAH ROSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339001 - WKFL PRM LND RIESLING</masterLabel>
+            <translation><!-- 339001 - WKFL PRM LND RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339002 - WKFL PRM LND UNWD CHARD</masterLabel>
+            <translation><!-- 339002 - WKFL PRM LND UNWD CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339003 - WKFL PRM LND SHRZ CAB</masterLabel>
+            <translation><!-- 339003 - WKFL PRM LND SHRZ CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339004 - WKFL SHIRAZ</masterLabel>
+            <translation><!-- 339004 - WKFL SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339005 - WKFL CHARDONNAY</masterLabel>
+            <translation><!-- 339005 - WKFL CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339006 - WKFL JARM RIESLING</masterLabel>
+            <translation><!-- 339006 - WKFL JARM RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339007 - WKFL ST ANDRW CAB</masterLabel>
+            <translation><!-- 339007 - WKFL ST ANDRW CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339008 - WKFL RIESLING</masterLabel>
+            <translation><!-- 339008 - WKFL RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339009 - WKFL CABERNET SAUVIGNON</masterLabel>
+            <translation><!-- 339009 - WKFL CABERNET SAUVIGNON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339010 - WKFL ST ANDRW RIESLING</masterLabel>
+            <translation><!-- 339010 - WKFL ST ANDRW RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339011 - WKFL ST ANDRW SHIRAZ</masterLabel>
+            <translation><!-- 339011 - WKFL ST ANDRW SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339012 - WKFL SAUV BLANC</masterLabel>
+            <translation><!-- 339012 - WKFL SAUV BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>339013 - WKFL PINOT NOIR</masterLabel>
+            <translation><!-- 339013 - WKFL PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340001 - FF BAROLO</masterLabel>
+            <translation><!-- 340001 - FF BAROLO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340002 - FF BARBERA</masterLabel>
+            <translation><!-- 340002 - FF BARBERA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340003 - FF BARBARESCO</masterLabel>
+            <translation><!-- 340003 - FF BARBARESCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340004 - FF DOLCETTO D&apos;ALBA</masterLabel>
+            <translation><!-- 340004 - FF DOLCETTO D&apos;ALBA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340005 - FF SERRALUNGA</masterLabel>
+            <translation><!-- 340005 - FF SERRALUNGA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340006 - FF GAVI</masterLabel>
+            <translation><!-- 340006 - FF GAVI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340008 - FF DOLCETTO D&apos;TREISO</masterLabel>
+            <translation><!-- 340008 - FF DOLCETTO D&apos;TREISO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340009 - FF LANGHE</masterLabel>
+            <translation><!-- 340009 - FF LANGHE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340010 - FF ASTI</masterLabel>
+            <translation><!-- 340010 - FF ASTI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340012 - FF BAROLO OTHER</masterLabel>
+            <translation><!-- 340012 - FF BAROLO OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340013 - FF GIFT</masterLabel>
+            <translation><!-- 340013 - FF GIFT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340014 - FF BAROLO GALAREY</masterLabel>
+            <translation><!-- 340014 - FF BAROLO GALAREY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340015 - FF CHARDONNAY AMPELIO</masterLabel>
+            <translation><!-- 340015 - FF CHARDONNAY AMPELIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340016 - FF BARBARESCO RUBIN</masterLabel>
+            <translation><!-- 340016 - FF BARBARESCO RUBIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340XXX - UNDEFINED</masterLabel>
+            <translation><!-- 340XXX - UNDEFINED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>341081 - VIRGIN VN CHARD</masterLabel>
+            <translation><!-- 341081 - VIRGIN VN CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34108P - VIRGIN VN SHIRAZ</masterLabel>
+            <translation><!-- 34108P - VIRGIN VN SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>342081 - GALA ROUGE  CHARDONNAY</masterLabel>
+            <translation><!-- 342081 - GALA ROUGE  CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>342084 - GALA ROUGE PINOT NOIR</masterLabel>
+            <translation><!-- 342084 - GALA ROUGE PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>344081 - SUNDIAL CHARD</masterLabel>
+            <translation><!-- 344081 - SUNDIAL CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>344082 - SUNDIAL CAB</masterLabel>
+            <translation><!-- 344082 - SUNDIAL CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>344083 - SUNDIAL MERLOT</masterLabel>
+            <translation><!-- 344083 - SUNDIAL MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345011 - CWC PINOT GRIGIO</masterLabel>
+            <translation><!-- 345011 - CWC PINOT GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345018 - CWC WHITE ZINFANDEL</masterLabel>
+            <translation><!-- 345018 - CWC WHITE ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345051 - CWC RED</masterLabel>
+            <translation><!-- 345051 - CWC RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345052 - CWC WHITE</masterLabel>
+            <translation><!-- 345052 - CWC WHITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345081 - CWC CHARD</masterLabel>
+            <translation><!-- 345081 - CWC CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345082 - CWC CHENIN BLANC</masterLabel>
+            <translation><!-- 345082 - CWC CHENIN BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345083 - CWC MERL</masterLabel>
+            <translation><!-- 345083 - CWC MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345084 - CWC PINOT NOIR</masterLabel>
+            <translation><!-- 345084 - CWC PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>345086 - CWC SAUV BLANC</masterLabel>
+            <translation><!-- 345086 - CWC SAUV BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>348002 - LOW CARB ONE.X CHARD</masterLabel>
+            <translation><!-- 348002 - LOW CARB ONE.X CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>348003 - LOW CARB ONE.X MERL</masterLabel>
+            <translation><!-- 348003 - LOW CARB ONE.X MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>348004 - LOW CARB ONE.X CAB</masterLabel>
+            <translation><!-- 348004 - LOW CARB ONE.X CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>349081 - FETZER PV PROMO CHARD SUNDIAL</masterLabel>
+            <translation><!-- 349081 - FETZER PV PROMO CHARD SUNDIAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>349082 - FETZER PV PROMO CAB SUNDIAL</masterLabel>
+            <translation><!-- 349082 - FETZER PV PROMO CAB SUNDIAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>349083 - FETZER PV PROMO CAB VO</masterLabel>
+            <translation><!-- 349083 - FETZER PV PROMO CAB VO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>349084 - MERL SUNDIAL</masterLabel>
+            <translation><!-- 349084 - MERL SUNDIAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>350350 - ICY VODKA</masterLabel>
+            <translation><!-- 350350 - ICY VODKA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>351352 - CLASSIC</masterLabel>
+            <translation><!-- 351352 - CLASSIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>351353 - LBDV BLACK CHERRY VANILLA</masterLabel>
+            <translation><!-- 351353 - LBDV BLACK CHERRY VANILLA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>351354 - LBDV BLUEBERRY POMEGRANATE</masterLabel>
+            <translation><!-- 351354 - LBDV BLUEBERRY POMEGRANATE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>351355 - LBDV PINEAPPLE HONEY</masterLabel>
+            <translation><!-- 351355 - LBDV PINEAPPLE HONEY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>351356 - LBDV RAINBOW PACKS</masterLabel>
+            <translation><!-- 351356 - LBDV RAINBOW PACKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360360 - GLENMORANGIE 10 YR</masterLabel>
+            <translation><!-- 360360 - GLENMORANGIE 10 YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360361 - GLENMORANGIE 18YR</masterLabel>
+            <translation><!-- 360361 - GLENMORANGIE 18YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360362 - GLENMORANGIE VINTAGE</masterLabel>
+            <translation><!-- 360362 - GLENMORANGIE VINTAGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360363 - GLENMORANGIE TRADITIONAL</masterLabel>
+            <translation><!-- 360363 - GLENMORANGIE TRADITIONAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360364 - GLEN MACANDREWS</masterLabel>
+            <translation><!-- 360364 - GLEN MACANDREWS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360365 - GLENMORANGIE PORTWOOD</masterLabel>
+            <translation><!-- 360365 - GLENMORANGIE PORTWOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360366 - GLENMORANGIE MADEIRAWOOD</masterLabel>
+            <translation><!-- 360366 - GLENMORANGIE MADEIRAWOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360367 - GLEN SAUTERNES FINISH</masterLabel>
+            <translation><!-- 360367 - GLEN SAUTERNES FINISH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360368 - GLENMORANGIE SHERRYWOOD</masterLabel>
+            <translation><!-- 360368 - GLENMORANGIE SHERRYWOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360369 - GLENMORANGIE MIXED</masterLabel>
+            <translation><!-- 360369 - GLENMORANGIE MIXED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360371 - GLENMORANGIE 15YR</masterLabel>
+            <translation><!-- 360371 - GLENMORANGIE 15YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360372 - GLENMORANGIE CLARETWOOD</masterLabel>
+            <translation><!-- 360372 - GLENMORANGIE CLARETWOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360373 - GLENMORANGIE CELLAR 13</masterLabel>
+            <translation><!-- 360373 - GLENMORANGIE CELLAR 13 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360375 - GLENMORANGIE ELEGANCE</masterLabel>
+            <translation><!-- 360375 - GLENMORANGIE ELEGANCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360376 - GLENMORANGIE FINO</masterLabel>
+            <translation><!-- 360376 - GLENMORANGIE FINO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360377 - GLENMORANGIE COTE DE NUIT</masterLabel>
+            <translation><!-- 360377 - GLENMORANGIE COTE DE NUIT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360378 - GLEN BURGUNDY WOOD</masterLabel>
+            <translation><!-- 360378 - GLEN BURGUNDY WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360379 - GLEN TAIN HERMITAGE</masterLabel>
+            <translation><!-- 360379 - GLEN TAIN HERMITAGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>360380 - GLEN 12 Yr</masterLabel>
+            <translation><!-- 360380 - GLEN 12 Yr --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>361361 - GLEN MORAY</masterLabel>
+            <translation><!-- 361361 - GLEN MORAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>363363 - ARDBEG  17YR</masterLabel>
+            <translation><!-- 363363 - ARDBEG  17YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>363365 - Ardbeg Vintage 70s</masterLabel>
+            <translation><!-- 363365 - Ardbeg Vintage 70s --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>363366 - Ardbeg Provenance</masterLabel>
+            <translation><!-- 363366 - Ardbeg Provenance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>363367 - Ardbeg 10yr</masterLabel>
+            <translation><!-- 363367 - Ardbeg 10yr --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>363368 - ARDBEG ULGEADALL</masterLabel>
+            <translation><!-- 363368 - ARDBEG ULGEADALL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>370371 - L.LEMONADE MIX 1%</masterLabel>
+            <translation><!-- 370371 - L.LEMONADE MIX 1% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>370372 - L.LEMONADE MIX N/A</masterLabel>
+            <translation><!-- 370372 - L.LEMONADE MIX N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>371371 - JD,GJ,SNGB FAMILY PK</masterLabel>
+            <translation><!-- 371371 - JD,GJ,SNGB FAMILY PK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>377377 - GENTLEMAN JACK</masterLabel>
+            <translation><!-- 377377 - GENTLEMAN JACK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>379379 - JD &amp; COLA - GLASS</masterLabel>
+            <translation><!-- 379379 - JD &amp; COLA - GLASS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>380381 - JD BLACK LBL</masterLabel>
+            <translation><!-- 380381 - JD BLACK LBL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>380382 - JD GREEN LBL</masterLabel>
+            <translation><!-- 380382 - JD GREEN LBL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>380383 - LEM MOTLOW</masterLabel>
+            <translation><!-- 380383 - LEM MOTLOW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>380384 - JD BLACK LBL</masterLabel>
+            <translation><!-- 380384 - JD BLACK LBL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>380386 - JD MASTER DISTILLER</masterLabel>
+            <translation><!-- 380386 - JD MASTER DISTILLER --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Condition Types --></label>
+        <name>Condition_Types__c</name>
+        <picklistValues>
+            <masterLabel>Bonus Quantity	ZB30</masterLabel>
+            <translation><!-- Bonus Quantity	ZB30 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compliance Off Premise $	ZB15</masterLabel>
+            <translation><!-- Compliance Off Premise $	ZB15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compliance Off Premise %	ZB16</masterLabel>
+            <translation><!-- Compliance Off Premise %	ZB16 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compliance On Premise $	ZB17</masterLabel>
+            <translation><!-- Compliance On Premise $	ZB17 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Compliance On Premise %	ZB18</masterLabel>
+            <translation><!-- Compliance On Premise %	ZB18 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eligible Banner / Mgmt Grp	ZB05</masterLabel>
+            <translation><!-- Eligible Banner / Mgmt Grp	ZB05 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eligible Distributor	ZB06</masterLabel>
+            <translation><!-- Eligible Distributor	ZB06 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eligible Distributor Banner	ZB05</masterLabel>
+            <translation><!-- Eligible Distributor Banner	ZB05 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eligible Group    ZB05</masterLabel>
+            <translation><!-- Eligible Group    ZB05 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exclusion Material	ZB71</masterLabel>
+            <translation><!-- Exclusion Material	ZB71 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exclusion Retailer	ZB72</masterLabel>
+            <translation><!-- Exclusion Retailer	ZB72 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA Off Premise $	ZB11</masterLabel>
+            <translation><!-- PA Off Premise $	ZB11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA Off Premise %	ZB12</masterLabel>
+            <translation><!-- PA Off Premise %	ZB12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA On Premise $	ZB13</masterLabel>
+            <translation><!-- PA On Premise $	ZB13 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA On Premise %	ZB14</masterLabel>
+            <translation><!-- PA On Premise %	ZB14 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Route to Mkt - Recovery $	ZB23</masterLabel>
+            <translation><!-- Route to Mkt - Recovery $	ZB23 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Route to Mkt - Recovery %	ZB24</masterLabel>
+            <translation><!-- Route to Mkt - Recovery %	ZB24 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visibility Off Premise $	ZB19</masterLabel>
+            <translation><!-- Visibility Off Premise $	ZB19 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visibility Off Premise %	ZB20</masterLabel>
+            <translation><!-- Visibility Off Premise %	ZB20 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visibility On Premise $	ZB21</masterLabel>
+            <translation><!-- Visibility On Premise $	ZB21 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visibility On Premise %	ZB22</masterLabel>
+            <translation><!-- Visibility On Premise %	ZB22 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Discount Amount per Case --></help>
+        <label><!-- Discount per Case --></label>
+        <name>Discount_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Discount Percent --></label>
+        <name>Discount_Percent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distributor --></label>
+        <name>Distributor__c</name>
+    </fields>
+    <fields>
+        <label><!-- FE --></label>
+        <name>FE__c</name>
+        <picklistValues>
+            <masterLabel>Need Values from R/3...</masterLabel>
+            <translation><!-- Need Values from R/3... --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RTD</masterLabel>
+            <translation><!-- RTD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spirits</masterLabel>
+            <translation><!-- Spirits --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wines</masterLabel>
+            <translation><!-- Wines --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Deal --></label>
+        <name>Group_Promotion__c</name>
+        <relationshipLabel><!-- Deal Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Vistex Item Number --></help>
+        <label><!-- Item Number --></label>
+        <name>Item_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- LumpSum --></label>
+        <name>LumpSum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manufacturing Brand --></label>
+        <name>Manufacturing_Brand__c</name>
+        <picklistValues>
+            <masterLabel>32700148606 - EMERILS CLASSIC WHT</masterLabel>
+            <translation><!-- 32700148606 - EMERILS CLASSIC WHT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32700248607 - EMERILS CLASSIC RED</masterLabel>
+            <translation><!-- 32700248607 - EMERILS CLASSIC RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32706447402 - CAB SAUV RSV</masterLabel>
+            <translation><!-- 32706447402 - CAB SAUV RSV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32707146102 - FETZER PREMIUM RE</masterLabel>
+            <translation><!-- 32707146102 - FETZER PREMIUM RE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32707146105 - FETZER VINTAGE RE</masterLabel>
+            <translation><!-- 32707146105 - FETZER VINTAGE RE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32707246103 - FETZER PREMIUM WH</masterLabel>
+            <translation><!-- 32707246103 - FETZER PREMIUM WH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32707246106 - FETZER VINTAGE WH</masterLabel>
+            <translation><!-- 32707246106 - FETZER VINTAGE WH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32707346136 - FETZ PREMIUM BLUSH</masterLabel>
+            <translation><!-- 32707346136 - FETZ PREMIUM BLUSH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32708147404 - CHARDONNAY</masterLabel>
+            <translation><!-- 32708147404 - CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32708247403 - CAB SAUV</masterLabel>
+            <translation><!-- 32708247403 - CAB SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327XXX46104 - FETZ VINTAGE ROSE</masterLabel>
+            <translation><!-- 327XXX46104 - FETZ VINTAGE ROSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327XXX46138 - FETZ BURGUNDY</masterLabel>
+            <translation><!-- 327XXX46138 - FETZ BURGUNDY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327XXX46139 - FETZ CHABLIS</masterLabel>
+            <translation><!-- 327XXX46139 - FETZ CHABLIS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>327XXX46157 - FETZER MIXED LABW</masterLabel>
+            <translation><!-- 327XXX46157 - FETZER MIXED LABW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32800746911 - CAB ORGNC</masterLabel>
+            <translation><!-- 32800746911 - CAB ORGNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32800846912 - CHARD ORGNC</masterLabel>
+            <translation><!-- 32800846912 - CHARD ORGNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32800946913 - MERL ORGNC</masterLabel>
+            <translation><!-- 32800946913 - MERL ORGNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32801046235 - MALBEC 27º</masterLabel>
+            <translation><!-- 32801046235 - MALBEC 27º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32801146215 - PINOT GRIG</masterLabel>
+            <translation><!-- 32801146215 - PINOT GRIG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32801446223 - CAB/CHRD/MERL/PG</masterLabel>
+            <translation><!-- 32801446223 - CAB/CHRD/MERL/PG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32801546200 - CAB/CHARD/MERL</masterLabel>
+            <translation><!-- 32801546200 - CAB/CHARD/MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808146113 - CHARD</masterLabel>
+            <translation><!-- 32808146113 - CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808146907 - HARVEST CHARD</masterLabel>
+            <translation><!-- 32808146907 - HARVEST CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808246112 - FTZ  CAB SAUV</masterLabel>
+            <translation><!-- 32808246112 - FTZ  CAB SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808246909 - HARVEST  CAB</masterLabel>
+            <translation><!-- 32808246909 - HARVEST  CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808346114 - MERLOT</masterLabel>
+            <translation><!-- 32808346114 - MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808346908 - HARVEST MERLOT</masterLabel>
+            <translation><!-- 32808346908 - HARVEST MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808446151 - PINOT NOIR</masterLabel>
+            <translation><!-- 32808446151 - PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808546154 - VIOGNIER</masterLabel>
+            <translation><!-- 32808546154 - VIOGNIER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808646107 - FUME BLANC</masterLabel>
+            <translation><!-- 32808646107 - FUME BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808646175 - SAUV BLANC</masterLabel>
+            <translation><!-- 32808646175 - SAUV BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808646910 - Harvest Echo Ridge S</masterLabel>
+            <translation><!-- 32808646910 - Harvest Echo Ridge S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808746109 - FTZ  GEWURZTRAMINER</masterLabel>
+            <translation><!-- 32808746109 - FTZ  GEWURZTRAMINER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808846111 - WHITE ZINFANDEL</masterLabel>
+            <translation><!-- 32808846111 - WHITE ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808846162 - FTZ  1/1GFT WHT ZINF</masterLabel>
+            <translation><!-- 32808846162 - FTZ  1/1GFT WHT ZINF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808946110 - JOHANN RIES</masterLabel>
+            <translation><!-- 32808946110 - JOHANN RIES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808A46108 - GAMAY BEAU</masterLabel>
+            <translation><!-- 32808A46108 - GAMAY BEAU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808B46122 - ZINFANDEL</masterLabel>
+            <translation><!-- 32808B46122 - ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808B46173 - FTZ  ZINFANDEL</masterLabel>
+            <translation><!-- 32808B46173 - FTZ  ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808C46129 - FETZER ZINFANDL R</masterLabel>
+            <translation><!-- 32808C46129 - FETZER ZINFANDL R --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808D46146 - PREM RED P</masterLabel>
+            <translation><!-- 32808D46146 - PREM RED P --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808D46183 - CHARD</masterLabel>
+            <translation><!-- 32808D46183 - CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808E46132 - CHENIN BLA</masterLabel>
+            <translation><!-- 32808E46132 - CHENIN BLA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808G46176 - SHIRAZ</masterLabel>
+            <translation><!-- 32808G46176 - SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808G46192 - SHIRAZ</masterLabel>
+            <translation><!-- 32808G46192 - SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808H46169 - DRY GEWURZ</masterLabel>
+            <translation><!-- 32808H46169 - DRY GEWURZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808I46185 - FETZ SYRAH ROSE</masterLabel>
+            <translation><!-- 32808I46185 - FETZ SYRAH ROSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808J46187 - CHARD/VIOGNER</masterLabel>
+            <translation><!-- 32808J46187 - CHARD/VIOGNER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808K46188 - ZINF/CABERNET</masterLabel>
+            <translation><!-- 32808K46188 - ZINF/CABERNET --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808L46189 - FTZ ZINF/SHIRAZ</masterLabel>
+            <translation><!-- 32808L46189 - FTZ ZINF/SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808M46190 - FTZ CHARD/VIOG HOPL RNC</masterLabel>
+            <translation><!-- 32808M46190 - FTZ CHARD/VIOG HOPL RNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808N46191 - ZINF/SHRZ HOP RNC</masterLabel>
+            <translation><!-- 32808N46191 - ZINF/SHRZ HOP RNC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808P46192 - FETZER SHIRAZ PV</masterLabel>
+            <translation><!-- 32808P46192 - FETZER SHIRAZ PV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808Q46197 - FTZ 6/2 BTL CHRD/MERLOLYM</masterLabel>
+            <translation><!-- 32808Q46197 - FTZ 6/2 BTL CHRD/MERLOLYM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808R46198 - FETZER VIN GRIS</masterLabel>
+            <translation><!-- 32808R46198 - FETZER VIN GRIS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32808S46914 - SHIRAZ UNOAKED</masterLabel>
+            <translation><!-- 32808S46914 - SHIRAZ UNOAKED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32809046224 - RIESLING GERMAN</masterLabel>
+            <translation><!-- 32809046224 - RIESLING GERMAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32809146100 - FETZER MOSCATO</masterLabel>
+            <translation><!-- 32809146100 - FETZER MOSCATO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328XXX46137 - FETZ TWIN ZINFANDEL</masterLabel>
+            <translation><!-- 328XXX46137 - FETZ TWIN ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>328XXX46160 - FETZER 4/2GFT SUN</masterLabel>
+            <translation><!-- 328XXX46160 - FETZER 4/2GFT SUN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32900146413 - TABLE WHITE</masterLabel>
+            <translation><!-- 32900146413 - TABLE WHITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32900246414 - TABLE RED</masterLabel>
+            <translation><!-- 32900246414 - TABLE RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32900346233 - BONTERRA PINOT NOIR</masterLabel>
+            <translation><!-- 32900346233 - BONTERRA PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32900446234 - BONTERRA RIESLING</masterLabel>
+            <translation><!-- 32900446234 - BONTERRA RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32901746228 - CHARD MCNAB</masterLabel>
+            <translation><!-- 32901746228 - CHARD MCNAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32901846227 - ROSE</masterLabel>
+            <translation><!-- 32901846227 - ROSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32908646226 - SAUV BLANC</masterLabel>
+            <translation><!-- 32908646226 - SAUV BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909146149 - BONTERRA CAB SAUV</masterLabel>
+            <translation><!-- 32909146149 - BONTERRA CAB SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909246128 - BONTERRA CHARDONNAY</masterLabel>
+            <translation><!-- 32909246128 - BONTERRA CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909346165 - VIOGNIER</masterLabel>
+            <translation><!-- 32909346165 - VIOGNIER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909446166 - FETZER BONTERRA SY</masterLabel>
+            <translation><!-- 32909446166 - FETZER BONTERRA SY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909546167 - FETZER BONTERRA SA</masterLabel>
+            <translation><!-- 32909546167 - FETZER BONTERRA SA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909646178 - BONTERRA ZINFANDE</masterLabel>
+            <translation><!-- 32909646178 - BONTERRA ZINFANDE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909746180 - BONTERRA MERLOT</masterLabel>
+            <translation><!-- 32909746180 - BONTERRA MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909846127 - FETZER BONTERRA R</masterLabel>
+            <translation><!-- 32909846127 - FETZER BONTERRA R --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909946158 - FETZER REDWOOD VALLEY</masterLabel>
+            <translation><!-- 32909946158 - FETZER REDWOOD VALLEY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32909946181 - ROUSANNE</masterLabel>
+            <translation><!-- 32909946181 - ROUSANNE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910046182 - MUSCAT</masterLabel>
+            <translation><!-- 32910046182 - MUSCAT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910146184 - B/T</masterLabel>
+            <translation><!-- 32910146184 - B/T --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910246410 - MULTI VAR WHITE</masterLabel>
+            <translation><!-- 32910246410 - MULTI VAR WHITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910346411 - MULTI VAR RED</masterLabel>
+            <translation><!-- 32910346411 - MULTI VAR RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910348627 - MULTI VAR RED</masterLabel>
+            <translation><!-- 32910348627 - MULTI VAR RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910446412 - BIO RED</masterLabel>
+            <translation><!-- 32910446412 - BIO RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910546229 - MCNAB PETITE SIRAH ZIN</masterLabel>
+            <translation><!-- 32910546229 - MCNAB PETITE SIRAH ZIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910646230 - LOS PAROS BIO WHT BLND</masterLabel>
+            <translation><!-- 32910646230 - LOS PAROS BIO WHT BLND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910746231 - BUTLER ZIN</masterLabel>
+            <translation><!-- 32910746231 - BUTLER ZIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32910846232 - BUTLER BIO RED BLND</masterLabel>
+            <translation><!-- 32910846232 - BUTLER BIO RED BLND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>329XXX46158 - FETZER REDWD VAL</masterLabel>
+            <translation><!-- 329XXX46158 - FETZER REDWD VAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000135101 - FC FRASCATI</masterLabel>
+            <translation><!-- 33000135101 - FC FRASCATI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000235102 - FC ORVIETO CLASSI</masterLabel>
+            <translation><!-- 33000235102 - FC ORVIETO CLASSI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000335113 - FC SANGIOVESE</masterLabel>
+            <translation><!-- 33000335113 - FC SANGIOVESE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000435103 - FC FRASCATI 6/2 W</masterLabel>
+            <translation><!-- 33000435103 - FC FRASCATI 6/2 W --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000435104 - FC FRASCATI 4/3</masterLabel>
+            <translation><!-- 33000435104 - FC FRASCATI 4/3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000535105 - FONTANA VILLA MOR</masterLabel>
+            <translation><!-- 33000535105 - FONTANA VILLA MOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000535107 - FC VILLA FONTANA</masterLabel>
+            <translation><!-- 33000535107 - FC VILLA FONTANA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000535109 - FC VILLA FONTANA</masterLabel>
+            <translation><!-- 33000535109 - FC VILLA FONTANA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000635108 - FC PINOT GRIGIO</masterLabel>
+            <translation><!-- 33000635108 - FC PINOT GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000835111 - FC CHARDONNAY</masterLabel>
+            <translation><!-- 33000835111 - FC CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33000935110 - FC MERLOT</masterLabel>
+            <translation><!-- 33000935110 - FC MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33001035112 - FC CABERNET SAUV</masterLabel>
+            <translation><!-- 33001035112 - FC CABERNET SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33001043903 - ARMST BRUT CHMPG</masterLabel>
+            <translation><!-- 33001043903 - ARMST BRUT CHMPG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>330XXX35106 - FC LAVINIO</masterLabel>
+            <translation><!-- 330XXX35106 - FC LAVINIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33105149113 - MERL</masterLabel>
+            <translation><!-- 33105149113 - MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33105249112 - CHARD</masterLabel>
+            <translation><!-- 33105249112 - CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33105249113 - PACIFIC BAY RED</masterLabel>
+            <translation><!-- 33105249113 - PACIFIC BAY RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33105349114 - PACIFIC BAY CHARD/PN GRIGIO</masterLabel>
+            <translation><!-- 33105349114 - PACIFIC BAY CHARD/PN GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33105449117 - CAB SAUV</masterLabel>
+            <translation><!-- 33105449117 - CAB SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33105549118 - WHT ZINF</masterLabel>
+            <translation><!-- 33105549118 - WHT ZINF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33200149001 - MARIAH ZINFANDEL</masterLabel>
+            <translation><!-- 33200149001 - MARIAH ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33200249002 - MARIAH SYRAH</masterLabel>
+            <translation><!-- 33200249002 - MARIAH SYRAH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33200349003 - MARIAH MERLOT</masterLabel>
+            <translation><!-- 33200349003 - MARIAH MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33200449004 - MRH ZIN PRRNCH</masterLabel>
+            <translation><!-- 33200449004 - MRH ZIN PRRNCH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33200549004 - ZINF POOR RNCH</masterLabel>
+            <translation><!-- 33200549004 - ZINF POOR RNCH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33200549005 - ZINF TAST ROOM</masterLabel>
+            <translation><!-- 33200549005 - ZINF TAST ROOM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33300146704 - CAB SAUV</masterLabel>
+            <translation><!-- 33300146704 - CAB SAUV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33300246705 - CHARDONNAY</masterLabel>
+            <translation><!-- 33300246705 - CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33300346706 - MERLOT</masterLabel>
+            <translation><!-- 33300346706 - MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33300546707 - WHT ZINF</masterLabel>
+            <translation><!-- 33300546707 - WHT ZINF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33433450101 - OBLIO SAMBUCA 12/</masterLabel>
+            <translation><!-- 33433450101 - OBLIO SAMBUCA 12/ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33433450102 - OBLIO CAFFE SAMBU</masterLabel>
+            <translation><!-- 33433450102 - OBLIO CAFFE SAMBU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33433450103 - OBLIO SAM/CAFFE C</masterLabel>
+            <translation><!-- 33433450103 - OBLIO SAM/CAFFE C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33500230552 - CAB/SHRZ/MERL</masterLabel>
+            <translation><!-- 33500230552 - CAB/SHRZ/MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33500330553 - SHRZ</masterLabel>
+            <translation><!-- 33500330553 - SHRZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33633623305 - TUACA LIQUEUR</masterLabel>
+            <translation><!-- 33633623305 - TUACA LIQUEUR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33633623306 - TUACA LIQUEUR 24%</masterLabel>
+            <translation><!-- 33633623306 - TUACA LIQUEUR 24% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33633623307 - TUACA 70º</masterLabel>
+            <translation><!-- 33633623307 - TUACA 70º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33633623308 - TUACA 48º</masterLabel>
+            <translation><!-- 33633623308 - TUACA 48º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33633623309 - Tuaca 70º INTL FORMULA</masterLabel>
+            <translation><!-- 33633623309 - Tuaca 70º INTL FORMULA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33700130554 - CAB/SHRZ</masterLabel>
+            <translation><!-- 33700130554 - CAB/SHRZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33700230555 - CAB/SHRZ/MERL</masterLabel>
+            <translation><!-- 33700230555 - CAB/SHRZ/MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33700330556 - SHRZ</masterLabel>
+            <translation><!-- 33700330556 - SHRZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33801146310 - PINOT GRIGIO</masterLabel>
+            <translation><!-- 33801146310 - PINOT GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33801246316 - MOSCATO</masterLabel>
+            <translation><!-- 33801246316 - MOSCATO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33808146308 - CHARD</masterLabel>
+            <translation><!-- 33808146308 - CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33808246313 - CABERNET</masterLabel>
+            <translation><!-- 33808246313 - CABERNET --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33808346309 - MERLOT</masterLabel>
+            <translation><!-- 33808346309 - MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33808446312 - PINOT NOIR</masterLabel>
+            <translation><!-- 33808446312 - PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33808546314 - SAUB BLANC</masterLabel>
+            <translation><!-- 33808546314 - SAUB BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33808646315 - LBD WHITE RIESLING</masterLabel>
+            <translation><!-- 33808646315 - LBD WHITE RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33808I46311 - SYRAH ROSE</masterLabel>
+            <translation><!-- 33808I46311 - SYRAH ROSE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900148634 - PRM LND RIESLING</masterLabel>
+            <translation><!-- 33900148634 - PRM LND RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900248635 - PRM LND UNWD CHARD</masterLabel>
+            <translation><!-- 33900248635 - PRM LND UNWD CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900348636 - PRM LND SHRZ CAB</masterLabel>
+            <translation><!-- 33900348636 - PRM LND SHRZ CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900448637 - SHIRAZ</masterLabel>
+            <translation><!-- 33900448637 - SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900548638 - CHARDONNAY</masterLabel>
+            <translation><!-- 33900548638 - CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900648639 - JARM RIESLING</masterLabel>
+            <translation><!-- 33900648639 - JARM RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900748640 - ST ANDRW CAB</masterLabel>
+            <translation><!-- 33900748640 - ST ANDRW CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900848641 - RIESLING</masterLabel>
+            <translation><!-- 33900848641 - RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33900948643 - CABERNET SAUVIGNON</masterLabel>
+            <translation><!-- 33900948643 - CABERNET SAUVIGNON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33901048644 - ST ANDRW RIESLING</masterLabel>
+            <translation><!-- 33901048644 - ST ANDRW RIESLING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33901148645 - ST ANDRW SHIRAZ</masterLabel>
+            <translation><!-- 33901148645 - ST ANDRW SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33901248646 - SAUV BLANC</masterLabel>
+            <translation><!-- 33901248646 - SAUV BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33901348647 - PINOT NOIR</masterLabel>
+            <translation><!-- 33901348647 - PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000137102 - FF BAROLO</masterLabel>
+            <translation><!-- 34000137102 - FF BAROLO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000237104 - FF BARBERA RAIMON</masterLabel>
+            <translation><!-- 34000237104 - FF BARBERA RAIMON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000237116 - FF BARBERA RAIMON</masterLabel>
+            <translation><!-- 34000237116 - FF BARBERA RAIMON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000237126 - FF BARBERA RAIMON</masterLabel>
+            <translation><!-- 34000237126 - FF BARBERA RAIMON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000337103 - FF BARBARESCO</masterLabel>
+            <translation><!-- 34000337103 - FF BARBARESCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000437105 - FF DOLCETTO D&apos;ALB</masterLabel>
+            <translation><!-- 34000437105 - FF DOLCETTO D&apos;ALB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000537111 - FF BAROLO SERRALU</masterLabel>
+            <translation><!-- 34000537111 - FF BAROLO SERRALU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000637106 - FF GAVI</masterLabel>
+            <translation><!-- 34000637106 - FF GAVI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000637121 - FF GAVI DI GAVI</masterLabel>
+            <translation><!-- 34000637121 - FF GAVI DI GAVI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000837112 - FF DOLCETTO D&apos;TRE</masterLabel>
+            <translation><!-- 34000837112 - FF DOLCETTO D&apos;TRE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34000937124 - FF CHARDONNAY LAN</masterLabel>
+            <translation><!-- 34000937124 - FF CHARDONNAY LAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001037107 - FF ASTI</masterLabel>
+            <translation><!-- 34001037107 - FF ASTI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001037122 - FF CONTESSAROSA B</masterLabel>
+            <translation><!-- 34001037122 - FF CONTESSAROSA B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001237100 - FF BAROLO LA ROSA</masterLabel>
+            <translation><!-- 34001237100 - FF BAROLO LA ROSA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001237101 - FF BAROLO SAN PIE</masterLabel>
+            <translation><!-- 34001237101 - FF BAROLO SAN PIE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001237110 - FF BAROLO RISERVA</masterLabel>
+            <translation><!-- 34001237110 - FF BAROLO RISERVA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001237113 - FF BAROLO VINTG S</masterLabel>
+            <translation><!-- 34001237113 - FF BAROLO VINTG S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001237114 - FF BAROLO LAZZARI</masterLabel>
+            <translation><!-- 34001237114 - FF BAROLO LAZZARI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001237115 - FF BAROLO LA DELI</masterLabel>
+            <translation><!-- 34001237115 - FF BAROLO LA DELI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001237120 - FF PARPAN LANGHE</masterLabel>
+            <translation><!-- 34001237120 - FF PARPAN LANGHE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001337109 - FF 6/2 TIN BL/BRB</masterLabel>
+            <translation><!-- 34001337109 - FF 6/2 TIN BL/BRB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001437125 - FF BAROLO GALAREY</masterLabel>
+            <translation><!-- 34001437125 - FF BAROLO GALAREY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001537127 - FF CHARDONNAY AMP</masterLabel>
+            <translation><!-- 34001537127 - FF CHARDONNAY AMP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34001637128 - FF BARBARESCO RUB</masterLabel>
+            <translation><!-- 34001637128 - FF BARBARESCO RUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340XXX37108 - FF GRAPPA 5 YR</masterLabel>
+            <translation><!-- 340XXX37108 - FF GRAPPA 5 YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340XXX37117 - FF MOSCATO D&apos;ASTI</masterLabel>
+            <translation><!-- 340XXX37117 - FF MOSCATO D&apos;ASTI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340XXX37119 - FF BAROLO GATTINE</masterLabel>
+            <translation><!-- 340XXX37119 - FF BAROLO GATTINE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>340XXX37123 - FF CHARDONNAY BRU</masterLabel>
+            <translation><!-- 340XXX37123 - FF CHARDONNAY BRU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34108134319 - CHARD</masterLabel>
+            <translation><!-- 34108134319 - CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34108P34320 - SHIRAZ</masterLabel>
+            <translation><!-- 34108P34320 - SHIRAZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34208134321 - CHARDONNAY</masterLabel>
+            <translation><!-- 34208134321 - CHARDONNAY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34208434322 - PINOT NOIR</masterLabel>
+            <translation><!-- 34208434322 - PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34408149119 - CHARD</masterLabel>
+            <translation><!-- 34408149119 - CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34408249120 - CAB</masterLabel>
+            <translation><!-- 34408249120 - CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34408349121 - MERLOT</masterLabel>
+            <translation><!-- 34408349121 - MERLOT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34501148007 - PINOT GRIGIO</masterLabel>
+            <translation><!-- 34501148007 - PINOT GRIGIO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34501848005 - WHITE ZINFANDEL</masterLabel>
+            <translation><!-- 34501848005 - WHITE ZINFANDEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34505148001 - COLDWATER CREEK RED</masterLabel>
+            <translation><!-- 34505148001 - COLDWATER CREEK RED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34505248002 - COLDWATER CREEK WHITE</masterLabel>
+            <translation><!-- 34505248002 - COLDWATER CREEK WHITE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34508148003 - CHARD</masterLabel>
+            <translation><!-- 34508148003 - CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34508248008 - CHENIN BLANC</masterLabel>
+            <translation><!-- 34508248008 - CHENIN BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34508348004 - MERL</masterLabel>
+            <translation><!-- 34508348004 - MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34508448007 - PINOT NOIR</masterLabel>
+            <translation><!-- 34508448007 - PINOT NOIR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34508648006 - SAUV BLANC</masterLabel>
+            <translation><!-- 34508648006 - SAUV BLANC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34800230557 - CHARD</masterLabel>
+            <translation><!-- 34800230557 - CHARD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34800330558 - MERL</masterLabel>
+            <translation><!-- 34800330558 - MERL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34800430559 - CAB</masterLabel>
+            <translation><!-- 34800430559 - CAB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34908130562 - CHARD SUNDIAL</masterLabel>
+            <translation><!-- 34908130562 - CHARD SUNDIAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34908230561 - CAB SUNDIAL</masterLabel>
+            <translation><!-- 34908230561 - CAB SUNDIAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34908330563 - CAB VO</masterLabel>
+            <translation><!-- 34908330563 - CAB VO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34908430571 - MERL SUNDIAL</masterLabel>
+            <translation><!-- 34908430571 - MERL SUNDIAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>35035053000 - ICY VODKA</masterLabel>
+            <translation><!-- 35035053000 - ICY VODKA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>35135265000 - LBDV CLASSIC 80º</masterLabel>
+            <translation><!-- 35135265000 - LBDV CLASSIC 80º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>35135365001 - LBDV BLK CHERRY VANILLA 65º</masterLabel>
+            <translation><!-- 35135365001 - LBDV BLK CHERRY VANILLA 65º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>35135465002 - LBDV BLUEBERRY POMEGRANATE 65º</masterLabel>
+            <translation><!-- 35135465002 - LBDV BLUEBERRY POMEGRANATE 65º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>35135565003 - LBDV PINEAPPLE HONEY 65º</masterLabel>
+            <translation><!-- 35135565003 - LBDV PINEAPPLE HONEY 65º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>35135665004 - LBDV RAINBOW PACKS</masterLabel>
+            <translation><!-- 35135665004 - LBDV RAINBOW PACKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050000 - GLENMORANGIE 10 YR</masterLabel>
+            <translation><!-- 36036050000 - GLENMORANGIE 10 YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050001 - GLENMORANGIE 18 Y</masterLabel>
+            <translation><!-- 36036050001 - GLENMORANGIE 18 Y --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050002 - GLENMORANGIE VINT</masterLabel>
+            <translation><!-- 36036050002 - GLENMORANGIE VINT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050003 - GLENMORNGIE VIN 1</masterLabel>
+            <translation><!-- 36036050003 - GLENMORNGIE VIN 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050004 - GLENMORANGIE 21 Y</masterLabel>
+            <translation><!-- 36036050004 - GLENMORANGIE 21 Y --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050005 - GLENMORNGE PORT W</masterLabel>
+            <translation><!-- 36036050005 - GLENMORNGE PORT W --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050006 - GLEN BAILIE NICL</masterLabel>
+            <translation><!-- 36036050006 - GLEN BAILIE NICL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050007 - GLEN 10YR,18YR,PR</masterLabel>
+            <translation><!-- 36036050007 - GLEN 10YR,18YR,PR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050008 - GLNMRNGE 10 YR NA</masterLabel>
+            <translation><!-- 36036050008 - GLNMRNGE 10 YR NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050010 - GLNMRNGE 18 YR NA</masterLabel>
+            <translation><!-- 36036050010 - GLNMRNGE 18 YR NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050011 - GLNMRNGE PRTWD NA</masterLabel>
+            <translation><!-- 36036050011 - GLNMRNGE PRTWD NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050012 - GLEN MADIERA WOOD</masterLabel>
+            <translation><!-- 36036050012 - GLEN MADIERA WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050013 - GLEN SHERRY WOOD</masterLabel>
+            <translation><!-- 36036050013 - GLEN SHERRY WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050014 - GLEN MADIERA WOOD</masterLabel>
+            <translation><!-- 36036050014 - GLEN MADIERA WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050015 - GLEN SHERRY WOOD</masterLabel>
+            <translation><!-- 36036050015 - GLEN SHERRY WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050018 - GLENMORNGIE VIN 1</masterLabel>
+            <translation><!-- 36036050018 - GLENMORNGIE VIN 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050019 - GLEN 10,PT,SH,MDW</masterLabel>
+            <translation><!-- 36036050019 - GLEN 10,PT,SH,MDW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050020 - GLEN PRT,MAD,SHRY</masterLabel>
+            <translation><!-- 36036050020 - GLEN PRT,MAD,SHRY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050024 - GLEN PTWD,SHWD,MD</masterLabel>
+            <translation><!-- 36036050024 - GLEN PTWD,SHWD,MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050025 - GLEN PTWD,SHWD,MDRW</masterLabel>
+            <translation><!-- 36036050025 - GLEN PTWD,SHWD,MDRW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050030 - GLEN CLARET WOOD</masterLabel>
+            <translation><!-- 36036050030 - GLEN CLARET WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050035 - GLEN COTE DE NUIT</masterLabel>
+            <translation><!-- 36036050035 - GLEN COTE DE NUIT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050057 - GLNMRNGE 10 YR MXCO</masterLabel>
+            <translation><!-- 36036050057 - GLNMRNGE 10 YR MXCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050058 - GLNMRNGE 18 YR M</masterLabel>
+            <translation><!-- 36036050058 - GLNMRNGE 18 YR M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050059 - GLNMRNGE PRTWD MXCO</masterLabel>
+            <translation><!-- 36036050059 - GLNMRNGE PRTWD MXCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050060 - GLENMRNGE SHRWD MXCO</masterLabel>
+            <translation><!-- 36036050060 - GLENMRNGE SHRWD MXCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050061 - GLNMRNGE MDRWD M</masterLabel>
+            <translation><!-- 36036050061 - GLNMRNGE MDRWD M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050062 - GLEN FINO SHERRY FIN</masterLabel>
+            <translation><!-- 36036050062 - GLEN FINO SHERRY FIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050063 - GLENMORANGIE 15YR</masterLabel>
+            <translation><!-- 36036050063 - GLENMORANGIE 15YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050064 - GLEN TRAD</masterLabel>
+            <translation><!-- 36036050064 - GLEN TRAD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050065 - GLEN CELLAR &quot;13&quot;</masterLabel>
+            <translation><!-- 36036050065 - GLEN CELLAR &quot;13&quot; --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050066 - GLEN 1977</masterLabel>
+            <translation><!-- 36036050066 - GLEN 1977 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036050067 - GLEN ELEGANCE</masterLabel>
+            <translation><!-- 36036050067 - GLEN ELEGANCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036150001 - GLENMORANGIE 18 Y</masterLabel>
+            <translation><!-- 36036150001 - GLENMORANGIE 18 Y --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036150010 - GLNMRNGE 18 YR NA</masterLabel>
+            <translation><!-- 36036150010 - GLNMRNGE 18 YR NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036150058 - GLNMRNGE 18 YR M</masterLabel>
+            <translation><!-- 36036150058 - GLNMRNGE 18 YR M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036250003 - GLENMORNGIE VIN 1</masterLabel>
+            <translation><!-- 36036250003 - GLENMORNGIE VIN 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036250018 - GLENMORNGIE VIN 1</masterLabel>
+            <translation><!-- 36036250018 - GLENMORNGIE VIN 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036250066 - GLEN 1977</masterLabel>
+            <translation><!-- 36036250066 - GLEN 1977 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036350016 - GLEN HIGHLAND QUEEN</masterLabel>
+            <translation><!-- 36036350016 - GLEN HIGHLAND QUEEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036350064 - GLEN HIGHLAND QUEEN</masterLabel>
+            <translation><!-- 36036350064 - GLEN HIGHLAND QUEEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036450017 - GLEN MACANDREWS</masterLabel>
+            <translation><!-- 36036450017 - GLEN MACANDREWS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036550005 - GLENMORNGE PORT W</masterLabel>
+            <translation><!-- 36036550005 - GLENMORNGE PORT W --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036550011 - GLNMRNGE PRTWD NA</masterLabel>
+            <translation><!-- 36036550011 - GLNMRNGE PRTWD NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036550059 - GLNMRNGE PRTWD MXCO</masterLabel>
+            <translation><!-- 36036550059 - GLNMRNGE PRTWD MXCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036650012 - GLEN MADIERA WOOD</masterLabel>
+            <translation><!-- 36036650012 - GLEN MADIERA WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036650014 - GLEN MADIERA WOOD</masterLabel>
+            <translation><!-- 36036650014 - GLEN MADIERA WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036650061 - GLNMRNGE MDRWD M</masterLabel>
+            <translation><!-- 36036650061 - GLNMRNGE MDRWD M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036750068 - GLEN SAUTERNES FINISH</masterLabel>
+            <translation><!-- 36036750068 - GLEN SAUTERNES FINISH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036850013 - GLEN SHERRY WOOD</masterLabel>
+            <translation><!-- 36036850013 - GLEN SHERRY WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036850015 - GLEN SHERRY WOOD</masterLabel>
+            <translation><!-- 36036850015 - GLEN SHERRY WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036850060 - GLENMRNGE SHRWD MXCO</masterLabel>
+            <translation><!-- 36036850060 - GLENMRNGE SHRWD MXCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036950007 - &quot;GLEN 10YR,18YR,PR&quot;</masterLabel>
+            <translation><!-- 36036950007 - &quot;GLEN 10YR,18YR,PR&quot; --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036950019 - &quot;GLEN 10,PT,SH,MDW&quot;</masterLabel>
+            <translation><!-- 36036950019 - &quot;GLEN 10,PT,SH,MDW&quot; --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036950020 - &quot;GLEN PRT,MAD,SHRY&quot;</masterLabel>
+            <translation><!-- 36036950020 - &quot;GLEN PRT,MAD,SHRY&quot; --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036950024 - &quot;GLEN PTWD,SHWD,MD&quot;</masterLabel>
+            <translation><!-- 36036950024 - &quot;GLEN PTWD,SHWD,MD&quot; --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36036950025 - &quot;GLEN PTWD,SHWD,MDRW&quot;</masterLabel>
+            <translation><!-- 36036950025 - &quot;GLEN PTWD,SHWD,MDRW&quot; --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36037150063 - GLENMORANGIE 15YR</masterLabel>
+            <translation><!-- 36037150063 - GLENMORANGIE 15YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36037250030 - GLEN CLARET WOOD</masterLabel>
+            <translation><!-- 36037250030 - GLEN CLARET WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36037350065 - &quot;GLEN CELLAR &quot;&quot;13&quot;&quot;&quot;</masterLabel>
+            <translation><!-- 36037350065 - &quot;GLEN CELLAR &quot;&quot;13&quot;&quot;&quot; --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36037550067 - GLEN ELEGANCE</masterLabel>
+            <translation><!-- 36037550067 - GLEN ELEGANCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36037650062 - GLEN FINO SHERRY FIN</masterLabel>
+            <translation><!-- 36037650062 - GLEN FINO SHERRY FIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36037750035 - GLEN COTE DE NUIT</masterLabel>
+            <translation><!-- 36037750035 - GLEN COTE DE NUIT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36037850036 - GLEN BURGUNDY WOOD</masterLabel>
+            <translation><!-- 36037850036 - GLEN BURGUNDY WOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36037950069 - GLEN TAIN HERMITAGE</masterLabel>
+            <translation><!-- 36037950069 - GLEN TAIN HERMITAGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36038050070 - GLEN 12 Yr</masterLabel>
+            <translation><!-- 36038050070 - GLEN 12 Yr --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36136150022 - GLEN MORAY 12 YR</masterLabel>
+            <translation><!-- 36136150022 - GLEN MORAY 12 YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36136150023 - GLEN MORAY 16 YR</masterLabel>
+            <translation><!-- 36136150023 - GLEN MORAY 16 YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36136150026 - GLEN MORAY 15 YR</masterLabel>
+            <translation><!-- 36136150026 - GLEN MORAY 15 YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36136150027 - GLEN MORAY &apos;64 VI</masterLabel>
+            <translation><!-- 36136150027 - GLEN MORAY &apos;64 VI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36136150034 - GLEN MORAY (NO-AGE)</masterLabel>
+            <translation><!-- 36136150034 - GLEN MORAY (NO-AGE) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336350028 - ARDBEG SNG ISMLT</masterLabel>
+            <translation><!-- 36336350028 - ARDBEG SNG ISMLT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336350029 - ARDBEG VINTAGE &apos;7</masterLabel>
+            <translation><!-- 36336350029 - ARDBEG VINTAGE &apos;7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336350031 - ARDBEG PROVENANCE</masterLabel>
+            <translation><!-- 36336350031 - ARDBEG PROVENANCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336350032 - ARDBEG 77</masterLabel>
+            <translation><!-- 36336350032 - ARDBEG 77 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336350033 - ARDBEG 10 YR</masterLabel>
+            <translation><!-- 36336350033 - ARDBEG 10 YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336550029 - ARDBEG VINTAGE &apos;7</masterLabel>
+            <translation><!-- 36336550029 - ARDBEG VINTAGE &apos;7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336550032 - ARDBEG 77</masterLabel>
+            <translation><!-- 36336550032 - ARDBEG 77 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336650031 - ARDBEG PROVENANCE</masterLabel>
+            <translation><!-- 36336650031 - ARDBEG PROVENANCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336750033 - ARDBEG 10 YR</masterLabel>
+            <translation><!-- 36336750033 - ARDBEG 10 YR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36336850037 - ARDBEG ULGEADALL</masterLabel>
+            <translation><!-- 36336850037 - ARDBEG ULGEADALL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37037141602 - LYNCH LEMONADE MI</masterLabel>
+            <translation><!-- 37037141602 - LYNCH LEMONADE MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37037299997 - LYNCH LEMONADE MI</masterLabel>
+            <translation><!-- 37037299997 - LYNCH LEMONADE MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37137141260 - JD,GJ,SNGB FAMILY PK</masterLabel>
+            <translation><!-- 37137141260 - JD,GJ,SNGB FAMILY PK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37737741213 - G JACK POUCH W/GIFT</masterLabel>
+            <translation><!-- 37737741213 - G JACK POUCH W/GIFT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37737741222 - GENTLEMAN JACK</masterLabel>
+            <translation><!-- 37737741222 - GENTLEMAN JACK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37737741224 - GJ/NP</masterLabel>
+            <translation><!-- 37737741224 - GJ/NP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37737787105 - GENTLEMAN JACK - EXPORT</masterLabel>
+            <translation><!-- 37737787105 - GENTLEMAN JACK - EXPORT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37937941241 - JD &amp; COLA - GLASS</masterLabel>
+            <translation><!-- 37937941241 - JD &amp; COLA - GLASS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141201 - JD BLACK 86 / 48</masterLabel>
+            <translation><!-- 38038141201 - JD BLACK 86 / 48 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141205 - JD BLACK 86 / 56</masterLabel>
+            <translation><!-- 38038141205 - JD BLACK 86 / 56 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141206 - JD BLACK 86 / 48</masterLabel>
+            <translation><!-- 38038141206 - JD BLACK 86 / 48 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141207 - JD BLACK 86 / 48</masterLabel>
+            <translation><!-- 38038141207 - JD BLACK 86 / 48 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141208 - JD BLACK 86 / 52</masterLabel>
+            <translation><!-- 38038141208 - JD BLACK 86 / 52 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141209 - JDB SLVR CORNT  86/56</masterLabel>
+            <translation><!-- 38038141209 - JDB SLVR CORNT  86/56 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141210 - JD BLACK LABEL 52 - obs</masterLabel>
+            <translation><!-- 38038141210 - JD BLACK LABEL 52 - obs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141212 - JD BLACK 80 / 52</masterLabel>
+            <translation><!-- 38038141212 - JD BLACK 80 / 52 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141217 - JDB BARRELHOUSE 1 94PRF</masterLabel>
+            <translation><!-- 38038141217 - JDB BARRELHOUSE 1 94PRF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141218 - JD BLACK 80 / 48</masterLabel>
+            <translation><!-- 38038141218 - JD BLACK 80 / 48 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141220 - JDB BICENTENNIAL 96 PRF</masterLabel>
+            <translation><!-- 38038141220 - JDB BICENTENNIAL 96 PRF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141223 - JDB 1904 GD MEDL 90 PRF</masterLabel>
+            <translation><!-- 38038141223 - JDB 1904 GD MEDL 90 PRF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141225 - JDB MAXWELL DECAN</masterLabel>
+            <translation><!-- 38038141225 - JDB MAXWELL DECAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141226 - JACK DANIEL BEFORE 86 / 48</masterLabel>
+            <translation><!-- 38038141226 - JACK DANIEL BEFORE 86 / 48 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141227 - JACK DANIEL AFTER</masterLabel>
+            <translation><!-- 38038141227 - JACK DANIEL AFTER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141228 - JDB ANNIV DECANTE</masterLabel>
+            <translation><!-- 38038141228 - JDB ANNIV DECANTE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141235 - JDB MONOGRAM 94 PRF</masterLabel>
+            <translation><!-- 38038141235 - JDB MONOGRAM 94 PRF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141237 - JDB 90º &amp; 86º</masterLabel>
+            <translation><!-- 38038141237 - JDB 90º &amp; 86º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141239 - JD &amp; GJ 80º</masterLabel>
+            <translation><!-- 38038141239 - JD &amp; GJ 80º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141240 - JDB MONOGRAM 94 PRF</masterLabel>
+            <translation><!-- 38038141240 - JDB MONOGRAM 94 PRF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141242 - JD &amp; SC</masterLabel>
+            <translation><!-- 38038141242 - JD &amp; SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141243 - JDB 86º</masterLabel>
+            <translation><!-- 38038141243 - JDB 86º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141244 - JDB 90º &amp; 86º</masterLabel>
+            <translation><!-- 38038141244 - JDB 90º &amp; 86º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141245 - JDB 90º</masterLabel>
+            <translation><!-- 38038141245 - JDB 90º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141246 - JDB 90º</masterLabel>
+            <translation><!-- 38038141246 - JDB 90º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141247 - JDB 90º</masterLabel>
+            <translation><!-- 38038141247 - JDB 90º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141250 - JDB 90º &amp; 86º</masterLabel>
+            <translation><!-- 38038141250 - JDB 90º &amp; 86º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141251 - JD GD MDL</masterLabel>
+            <translation><!-- 38038141251 - JD GD MDL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141252 - JD/SC COMBO</masterLabel>
+            <translation><!-- 38038141252 - JD/SC COMBO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141260 - JD FAMILY PACK</masterLabel>
+            <translation><!-- 38038141260 - JD FAMILY PACK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141266 - JDB 100º</masterLabel>
+            <translation><!-- 38038141266 - JDB 100º --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141301 - UNCLE JACK&apos;S</masterLabel>
+            <translation><!-- 38038141301 - UNCLE JACK&apos;S --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141302 - BLACK JACK  - obs</masterLabel>
+            <translation><!-- 38038141302 - BLACK JACK  - obs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038141475 - JD &amp; JD TN HONEY (79º)</masterLabel>
+            <translation><!-- 38038141475 - JD &amp; JD TN HONEY (79º) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038241202 - JACK DANIEL GREEN</masterLabel>
+            <translation><!-- 38038241202 - JACK DANIEL GREEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038241211 - JD GREEN LABEL</masterLabel>
+            <translation><!-- 38038241211 - JD GREEN LABEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038341203 - LEM MOTLOW</masterLabel>
+            <translation><!-- 38038341203 - LEM MOTLOW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038441204 - JACK DANIEL&apos;S OTHER</masterLabel>
+            <translation><!-- 38038441204 - JACK DANIEL&apos;S OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038441205 - JD BLACK LABEL 56</masterLabel>
+            <translation><!-- 38038441205 - JD BLACK LABEL 56 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038641225 - JDB MAXWELL DECAN</masterLabel>
+            <translation><!-- 38038641225 - JDB MAXWELL DECAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038641228 - JDB ANNIV DECANTE</masterLabel>
+            <translation><!-- 38038641228 - JDB ANNIV DECANTE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38038641229 - JDB MSTER DSTILLR</masterLabel>
+            <translation><!-- 38038641229 - JDB MSTER DSTILLR --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Ongoing Per Case --></help>
+        <label><!-- Ongoing --></label>
+        <name>Ongoing__c</name>
+    </fields>
+    <fields>
+        <help><!-- Units per Price --></help>
+        <label><!-- Units per Price --></label>
+        <name>Price_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Vision Type --></label>
+        <name>Price_Vision_Type__c</name>
+        <picklistValues>
+            <masterLabel>Everyday</masterLabel>
+            <translation><!-- Everyday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Maximum</masterLabel>
+            <translation><!-- Maximum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion</masterLabel>
+            <translation><!-- Promotion --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Price Vision --></label>
+        <name>Price_Vision__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Deal Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reference Material Group Number --></label>
+        <name>Reference_Material_Group_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reference Material Group --></label>
+        <name>Reference_Material_Group__c</name>
+        <relationshipLabel><!-- Deal Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Value Type --></label>
+        <name>Value_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vistex Agreement Number --></label>
+        <name>Vistex_Agreement_Number__c</name>
+    </fields>
+    <layouts>
+        <layout>Group Deal Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Group Promotion Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Outlet Deal Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Group Deal Item --></label>
+        <name>Group_Deal_Item</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Group Promotion Item Layout --></label>
+        <name>Group_Promotion_Item_Layout</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Outlet Deal Item --></label>
+        <name>Outlet_Deal_Item</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Add_Deal_Items --></label>
+        <name>Add_Deal_Items</name>
+    </webLinks>
+</CustomObjectTranslation>

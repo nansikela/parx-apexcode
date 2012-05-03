@@ -1,0 +1,314 @@
+<apex:page standardController="Order__c"
+    extensions="OrderItem_Controller"
+    tabStyle="Order_Item__c"
+    showHeader="true" sidebar="false">
+    
+    
+<style>
+.headerRow .numericStyle {
+    text-align: right;
+} 
+</style> 
+    
+    
+    <style>
+        .container{
+            overflow:auto;
+            height:250px;
+        }
+        .container1{
+            overflow:auto;
+            height:73px;
+        }       
+        .filtercontainer{
+            width:700px;
+        }
+        .prodcontainer{
+            overflow:auto;
+            height:250px;
+        }       
+    </style>  
+    
+<style type="text/css">
+div.dimmer 
+{
+    visibility: hidden;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    padding:5px;
+
+    
+    background-image:url({!URLFOR($Resource.INFW_Resources, 'loading-bg.png')});
+    /* ieWin only stuff */
+    _background-image:none;
+    _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='{!URLFOR($Resource.INFW_Resources, 'loading-bg.png')}');
+}
+div.spinner
+{
+position:absolute;
+top:25%;
+left:25%;
+
+
+opacity:1.0;
+backgroundColor:#CCC;
+
+}
+</style>  
+
+   <script type="text/javascript">
+    window.onbeforeunload = askConfirm;
+    var myhelper='true';
+    function sethelper(){
+        if(myhelper){myhelper=null;}else{myhelper=true;}
+    }
+    function setConfirmSave(){
+        myhelper=null
+    }    
+    function askConfirm(){
+        if(myhelper==null){
+            return '{!$Label.PromotionPage_SaveConfirmation}';
+        }else{
+            myhelper=null;
+        }
+    }    
+        var previousOnload = window.onload;        
+    window.onload = function() { 
+        if (previousOnload) { 
+            previousOnload();
+        }else{
+        }
+    }
+    function showProdSelection(){
+        if(document.getElementById('myProdSelection').style.visibility == "visible")
+        {
+            document.getElementById('myProdSelection').style.visibility = "hidden";
+        }else{
+        document.getElementById('myProdSelection').style.visibility = "visible";
+        document.getElementById('myProdSelection').style.width = "100%";
+        document.getElementById('myProdSelection').style.height = "100%";
+         document.getElementById('{!$Component.myForm.pbProds.ProdNameText}').focus();
+        }
+    }    
+    function validateDiscount(oi) {
+    	alert('validatediscount: discount: ' + oi.Discount__c);
+    	if (oi.Discount__c > 0) {
+    		alert('You cannot enter Bonus stock on the same line as a discount.');
+    		oi.Carton_Bonus__c = 0;
+    		oi.Unit_Bonus__c = 0;
+    	}
+    }
+    function validateBonusStock(oi) {
+    	if (oi.Carton_Bonus__c + oi.Unit_Bonus__c > 0) {
+    		alert('You cannot enter Bonus stock on the same line as a discount.');
+    		oi.Discount__c = 0;    		
+    	}
+    }
+    </script>       
+   
+  <apex:actionstatus id="status" startText="Requesting...">
+           <apex:facet name="start">
+               <c:INFW_ProgressInformation Message="{!$Label.INFW_Processing}" Width="104px" Height="470px"/>
+           </apex:facet>
+           <apex:facet name="stop">
+           </apex:facet>
+  </apex:actionstatus>    
+  
+  <apex:outputpanel id="messages">
+        <apex:pageMessages id="mymessages"/> 
+ </apex:outputpanel>      
+ 
+ <apex:outputpanel >
+        <apex:actionRegion > 
+        <apex:form id="myForm">
+ <!-- OLD      
+ <apex:pageBlock id="pbSelection_top" title="{!$ObjectType.Product__c.labelplural}" mode="Edit" rendered="{!Order_Item__c.RecordType.Name = 'New'}" > 
+ -->
+ <apex:pageBlock id="pbHeaderInfo" title="{!$ObjectType.Order__c.label}">
+ 	<apex:pageBlockSection columns="2">
+ 		<apex:outputText label="{!$ObjectType.Order__c.label}">
+ 			<apex:outputLink value="{!URLFOR($Action.Order__c.View,myOrder.Id)}">{!myOrder.Name}</apex:outputLink>
+ 		</apex:outputText>
+ 		<apex:outputText label="{!$ObjectType.Account.label}">
+ 			<apex:outputLink value="{!URLFOR($Action.Account.View,myOrder.Account__c)}">{!myOrder.Account_Name__c}</apex:outputLink>
+ 		</apex:outputText>
+ 		
+ 		<apex:outputText label="{!$ObjectType.Order__c.Fields.Order_Date__c.label}" value="{0,date,MMM d, yyyy}">
+ 			<apex:param value="{!myOrder.Order_Date__c}" />
+ 		</apex:outputText>
+ 		<apex:outputText label="{!$ObjectType.Wholesaler__c.label}">
+ 			<apex:outputLink value="{!URLFOR($Action.Wholesaler__c.View,myOrder.Wholesaler_Code__c)}">{!myOrder.Wholesaler_Name__c}</apex:outputLink>
+ 		</apex:outputText>
+ 		<apex:outputText label="recordtype" value="{!myOrder.RecordTypeName__c}"></apex:outputText>
+ 	</apex:pageBlockSection>
+ </apex:pageBlock>  
+ 
+ <!-- <apex:pageBlock id="pbSelection_top" title="{!$ObjectType.Product__c.labelplural}" mode="Edit"> -->     
+ 
+ <!-- 
+                 <apex:pageBlockButtons location="top">
+ <apex:commandButton action="{!close}" value="{!$Label.OutletVisitPage_CloseButtonLabel}"/>
+                 </apex:pageBlockButtons>             
+  -->
+  
+  	<table style="width:75%;">
+  		<tr>
+    	<td style="width:7%;"></td>  
+        <td style="width:93%;">                                   
+        	<apex:pageBlock id="pbProds" title="{!$ObjectType.Product__c.labelplural}" rendered="{!myOrder.RecordTypeName__c != 'Locked'}" >            
+            	<apex:pageBlockButtons >
+                	<apex:commandButton action="{!addProducts}" onclick="setConfirmSave();" rerender="mymessages,pb1,pbSelection,pbProds" status="status" value="{!$Label.PromotionPage_AddProductButtonLabel}"/>
+                    <!--<input class="btn" name="ktButtonDPHistoryClose" onclick="javascript: showProdSelection();" value="Cancel" type="button" />-->
+                </apex:pageBlockButtons>      
+
+
+                <apex:outputpanel layout="block" styleclass="filtercontainer">
+                	<apex:pageBlockSection columns="2" >
+                		<apex:pageBlockSectionItem id="cBFBrand" > 
+                    		<apex:outputLabel value="{!$ObjectType.Brand__c.labelplural}" for="BFBrand"/>
+                        	<apex:selectList value="{!BFBrandValue}"  size="1" id="BFBrand" >
+                        		<apex:selectOptions value="{!BFBrandsList}"/>
+                        	</apex:selectList>                            
+                    	</apex:pageBlockSectionItem>
+                    	<apex:pageBlockSectionItem id="cProdNameText" >
+                    		<apex:outputLabel value="{!$Label.PromotionPage_SearchLabel}" for="ProdNameText"/>
+                        	<apex:inputtext value="{!ProductNameTextValue}" size="30" id="ProdNameText" />                            
+                    	</apex:pageBlockSectionItem>                                              
+                    	<apex:pageBlockSectionItem >        
+                    		<apex:commandButton action="{!filterAction}" style="width:125px;" status="status" rerender="selProducts" value="{!$Label.OutletVisitPage_FilterButtonLabel}" />
+                     	</apex:pageBlockSectionItem>                                                          
+                	</apex:pageBlockSection>
+                </apex:outputpanel>
+                          
+               	<apex:outputpanel id="selProducts" layout="block" styleclass="prodcontainer" >                
+               		<apex:pageBlockTable id="prodSelectionTable" value="{!ProdSelection}" var="p" columns="5" >
+                    	<apex:column width="1%">
+                        	<apex:facet name="header">&nbsp;</apex:facet>
+                            <apex:inputCheckbox value="{!p.selected}" id="checked1"/>
+                        </apex:column>
+                                       
+                        <apex:column style="width:33%">
+                        	<apex:facet name="header">
+                        		<apex:commandLink action="{!filterAction}" value="" rerender="prodSelectionTable" status="nameStatus">
+                        			<apex:param value="Name" name="column" assignTo="{!sortExpression}" />
+                        			<apex:actionStatus id="nameStatus" startStyle="color:green;" startText="sorting..." stopText="{!$ObjectType.Product__c.fields.Name.label}" />
+                        		</apex:commandLink>
+                        	</apex:facet>
+                            <apex:outputfield style="width:100px" value="{!p.prod.Name}"/>
+                        </apex:column>  
+                                                     
+                       
+                        <apex:column style="width:15%">
+                        	<apex:facet name="header">
+                        		<apex:commandLink action="{!filterAction}" value="" rerender="prodSelectionTable" status="productcodeStatus">
+                        			<apex:param value="ProductCode__c" name="column" assignTo="{!sortExpression}" />
+                        			<apex:actionStatus id="productcodeStatus" startStyle="color:green;" startText="sorting..." stopText="{!$ObjectType.Product__c.fields.ProductCode__c.label}" />
+                        		</apex:commandLink>                        	
+                        	</apex:facet>
+                            <apex:outputfield style="width:50px" value="{!p.prod.ProductCode__c}"/>
+                        </apex:column>    
+                              
+                        <apex:column style="width:15%">
+                        	<apex:facet name="header">
+                        		<apex:commandLink action="{!filterAction}" value="" rerender="prodSelectionTable" status="brandStatus">
+                        			<apex:param value="Brand__c" name="column" assignTo="{!sortExpression}" />
+	                        		<apex:actionStatus id="brandStatus" startStyle="color:green;" startText="sorting..." stopText="{!$ObjectType.Product__c.fields.Brand__c.label}" />
+                        		</apex:commandLink>                        	
+                        	</apex:facet>
+                            <apex:outputfield style="width:55px" value="{!p.prod.Brand__r.Name}"/>
+                        </apex:column>
+                                  
+<!--                          <apex:column style="width:15%">
+                               <apex:facet name="header">{!$ObjectType.Promotion_Material_Item__c.fields.Unit_Cost__c.label}</apex:facet>
+                               <apex:outputfield style="width:55px" value="{!p.prod.Unit_Cost__c}"/>
+                              </apex:column> -->
+                                                  
+                    </apex:pageBlockTable>
+                </apex:outputpanel>
+            </apex:pageBlock>   
+        </td>
+        </tr>
+	</table>
+<!--</apex:pageBlock>  -->
+
+
+	
+<apex:pageBlock id="pbSelection" title="{!$ObjectType.Order_Item__c.labelplural}" mode="Edit">
+	<apex:pageBlockButtons >
+    	<apex:commandButton action="{!saveAction}" onClick="sethelper();" rerender="mymessages,pbSelection" status="status" value="{!$Label.OutletVisitPage_SaveButtonLabel}"/>
+    	<apex:commandButton action="{!saveAndClose}" rerender="mymessages,pbSelection" status="status" value="{!$Label.Save_and_Close}" />                        
+        <apex:commandButton action="{!removeOrderItems}" onClick="sethelper();" rerender="mymessages,pbSelection" rendered="{!myOrder.RecordTypeName__c != 'Locked'}" status="status" value="{!$Label.PromotionPage_DeleteProductsButtonLabel}"/>
+        <apex:commandButton action="{!close}" value="{!$Label.OutletVisitPage_CloseButtonLabel}"/>                    
+    </apex:pageBlockButtons>
+   
+   	<apex:outputpanel onclick="setConfirmSave();" layout="block" styleclass="container">                
+    	<apex:pageBlockTable id="myOrderItems" value="{!myOrderItems}" var="y" columns="14" >
+        	<apex:column width="1%">
+            	<apex:facet name="header">&nbsp;</apex:facet>
+                <apex:inputCheckbox value="{!y.selected}" id="checked">
+                </apex:inputCheckbox>                
+            </apex:column>
+                         
+            <apex:column style="width:200px">
+            	<apex:facet name="header">{!$ObjectType.Product__c.fields.Name.label}</apex:facet>
+                <apex:outputfield id="product" style="width:150px" value="{!y.prod.Name}"/>
+            </apex:column>  
+
+            <apex:column style="width:100px">
+            	<apex:facet name="header">{!$ObjectType.Brand__c.fields.name.label}</apex:facet>
+                <apex:outputfield id="brand" style="width:150px" value="{!y.brand.name}"/>
+            </apex:column>
+            <!-- 
+            <apex:column style="width:100px">
+            	<apex:facet name="header">{!$ObjectType.RecordType.label}</apex:facet>
+                <apex:outputfield id="recordtype" style="width:150px" value="{!y.orderItem.RecordTypeName__c}"/>
+            </apex:column>
+        	-->
+			<apex:column style="width:100px">    
+            	<apex:facet name="header">{!$ObjectType.Order_Item__c.fields.Carton__c.label}</apex:facet>
+                <apex:inputfield id="carton" style="width:100px" value="{!y.orderItem.Carton__c}"   rendered="{!myOrder.RecordTypeName__c != 'Locked'}" />
+                <apex:outputText id="carton_ro" style="width:100px" value="{!y.orderItem.Carton__c}" rendered="{!myOrder.RecordTypeName__c == 'Locked'}" />
+            </apex:column> 
+            
+            <apex:column style="width:100px">    
+            	<apex:facet name="header">{!$ObjectType.Order_Item__c.fields.Unit__c.label}</apex:facet>
+                <apex:inputfield id="unit" style="width:100px" value="{!y.orderItem.Unit__c}" rendered="{!myOrder.RecordTypeName__c != 'Locked'}"/>
+                <apex:outputText id="unit_ro" style="width:100px" value="{!y.orderItem.Unit__c}" rendered="{!myOrder.RecordTypeName__c == 'Locked'}" />
+            </apex:column>
+            
+            <apex:column style="width:100px">    
+            	<apex:facet name="header">{!$ObjectType.Order_Item__c.fields.Discount__c.label}</apex:facet>
+                <apex:inputfield id="discount" style="width:100px" value="{!y.orderItem.Discount__c}" rendered="{!myOrder.RecordTypeName__c != 'Locked'}" />
+                <!-- 
+                	<apex:actionSupport event="onchange"
+                						action="{!validateBonusStock(y.OrderItem)}"
+                						status="status"
+                						rerender="myOrderItems"
+                						immediate="false" />
+                	<apex:actionStatus />
+                </apex:inputfield>
+                -->
+                <apex:outputText id="discount_ro" style="width:100px" value="{!y.orderItem.Discount__c}" rendered="{!myOrder.RecordTypeName__c == 'Locked'}" />
+            </apex:column> 
+            
+            <apex:column style="width:100px">    
+            	<apex:facet name="header">{!$ObjectType.Order_Item__c.fields.Carton_Bonus__c.label}</apex:facet>
+               	<apex:inputfield id="cartonbonus" style="width:100px" value="{!y.orderItem.Carton_Bonus__c}" rendered="{!myOrder.RecordTypeName__c != 'Locked'}"  onchange="validateDiscount({!y.orderItem})"/>
+                <apex:outputText id="cartonbonus_ro" style="width:100px" value="{!y.orderItem.Carton_Bonus__c}" rendered="{!myOrder.RecordTypeName__c == 'Locked'}" />
+            </apex:column>
+                      
+            <apex:column style="width:100px">    
+            	<apex:facet name="header">{!$ObjectType.Order_Item__c.fields.Unit_Bonus__c.label}</apex:facet>
+                <apex:inputfield id="unitbonus" style="width:100px" value="{!y.orderItem.Unit_Bonus__c}" rendered="{!myOrder.RecordTypeName__c != 'Locked'}"  onchange="validateDiscount({!y.orderItem})"/>
+                <apex:outputText id="unitbonus_ro" style="width:100px" value="{!y.orderItem.Unit_Bonus__c}" rendered="{!myOrder.RecordTypeName__c == 'Locked'}" />
+            </apex:column>
+		</apex:pageBlockTable>
+	</apex:outputpanel>                   
+</apex:pageBlock> 
+</apex:form> 
+</apex:actionRegion> 
+</apex:outputpanel>     
+</apex:page>

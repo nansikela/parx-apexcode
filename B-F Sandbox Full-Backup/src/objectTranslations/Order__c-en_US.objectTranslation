@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Order</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Orders</value>
+    </caseValues>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Name --></label>
+        <name>Account_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Banner Partner --></label>
+        <name>Banner_Partner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bonus Cartons --></label>
+        <name>Bonus_Cartons__c</name>
+    </fields>
+    <fields>
+        <help><!-- Bonus Unit --></help>
+        <label><!-- Bonus Unit --></label>
+        <name>Bonus_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- CreatedBy Name --></label>
+        <name>CreatedBy_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Delivery Instructions Only.  These will be sent to the wholesaler. --></help>
+        <label><!-- Delivery Instructions --></label>
+        <name>Delivery_Instructions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Material Errors --></label>
+        <name>Material_Errors__c</name>
+    </fields>
+    <fields>
+        <help><!-- Customer Service Instructions --></help>
+        <label><!-- Notes: --></label>
+        <name>Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Date --></label>
+        <name>Order_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Order Processed (Time Stamp) --></help>
+        <label><!-- Order Processed (Time Stamp) --></label>
+        <name>Order_Processed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Type --></label>
+        <name>Order_Type__c</name>
+        <picklistValues>
+            <masterLabel>Direct</masterLabel>
+            <translation><!-- Direct --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In-Direct</masterLabel>
+            <translation><!-- In-Direct --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- OwnerName --></label>
+        <name>OwnerName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>Postal_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Price Override Processed (Time Stamp) --></help>
+        <label><!-- Price Override (Time Stamp) --></label>
+        <name>Price_Override_Processed_Time_Stamp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Override Relevant --></label>
+        <name>Price_Override_Relevant__c</name>
+    </fields>
+    <fields>
+        <label><!-- RecordTypeName --></label>
+        <name>RecordTypeName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rep Name --></label>
+        <name>Rep_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Customer Number --></label>
+        <name>SAP_Customer_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Service</masterLabel>
+            <translation><!-- Customer Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Order</masterLabel>
+            <translation><!-- Process Order --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>Street_del__c</name>
+    </fields>
+    <fields>
+        <label><!-- Suburb --></label>
+        <name>Suburb__c</name>
+    </fields>
+    <fields>
+        <help><!-- Total Discount --></help>
+        <label><!-- Total Discount --></label>
+        <name>Total_Discount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler ACN --></label>
+        <name>Wholesaler_ACN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Customer Name --></label>
+        <name>Wholesaler_Account_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is need for the trigger --></help>
+        <label><!-- Wholesaler_Code --></label>
+        <name>Wholesaler_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the &quot;Customer&quot; number that will be sent to the Wholesaler. --></help>
+        <label><!-- Wholesaler Customer Number --></label>
+        <name>Wholesaler_Customer_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Email --></label>
+        <name>Wholesaler_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Fax --></label>
+        <name>Wholesaler_Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Name (ECC) --></label>
+        <name>Wholesaler_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the ECC Retail Account Number --></help>
+        <label><!-- Wholesaler Number (ECC) --></label>
+        <name>Wholesaler_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler State Code --></label>
+        <name>Wholesaler_State_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Transmission Type --></label>
+        <name>Wholesaler_Transmission_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Transmission --></label>
+        <name>Wholesaler_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler - Look Up --></label>
+        <name>Wholesalers__c</name>
+        <relationshipLabel><!-- Orders --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Order Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping Address --></label>
+            <section>Shipping Address</section>
+        </sections>
+        <sections>
+            <label><!-- Wholesaler Specific --></label>
+            <section>Wholesaler Specific</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Order Locked</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Shipping Address --></label>
+            <section>Shipping Address</section>
+        </sections>
+        <sections>
+            <label><!-- Wholesaler Specific --></label>
+            <section>Wholesaler Specific</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Locked --></label>
+        <name>Locked</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- New --></label>
+        <name>New</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- An in-direct order requires a wholesaler. --></errorMessage>
+        <name>InDirect_Order_Must_Have_WS</name>
+    </validationRules>
+</CustomObjectTranslation>

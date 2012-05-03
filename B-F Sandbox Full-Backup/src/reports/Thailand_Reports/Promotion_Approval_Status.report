@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_OWNER_NAME</field>
+    </columns>
+    <columns>
+        <field>Promotion__c.Approval_Status__c</field>
+    </columns>
+    <columns>
+        <field>Promotion__c.Account__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Promotion__c.Total_Promotion_Cost__c</field>
+    </columns>
+    <columns>
+        <field>CUST_CREATED_DATE</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Shows status of all promotions</description>
+    <filter>
+        <criteriaItems>
+            <column>Promotion__c.Account_Market__c</column>
+            <operator>equals</operator>
+            <value>Thailand</value>
+        </criteriaItems>
+        <language>en_GB</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Promotion Approval Status</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Promotion__c@Promotion__c.Promotion_Activity__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Promotion__c.Promotion_End_Date__c</dateColumn>
+        <interval>INTERVAL_THISMONTH</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Mandatory Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Mandatory Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Mandatory Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Mandatory Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Mandatory Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Mandatory Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Mandatory Product --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Mandatory Product --></value>
+    </caseValues>
+    <fields>
+        <label>Account/Kunde</label>
+        <name>Account__c</name>
+        <relationshipLabel>unbedingt erforderliche Produkte</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Custom_Product__c</name>
+        <relationshipLabel><!-- Mandatory Products --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Produkt Status</label>
+        <name>Product_Status__c</name>
+        <picklistValues>
+            <masterLabel>Mandatory</masterLabel>
+            <translation><!-- Mandatory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Optional</masterLabel>
+            <translation><!-- Optional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Produkt</label>
+        <name>Product__c</name>
+        <relationshipLabel>unbedingt erforderliche Produkte</relationshipLabel>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Mandatory Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Mandatory Products Number --></nameFieldLabel>
+</CustomObjectTranslation>

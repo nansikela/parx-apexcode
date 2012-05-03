@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Fridge In Fills</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Fridge In Fills</value>
+    </caseValues>
+    <fields>
+        <label><!-- Asset Model --></label>
+        <name>Asset_Model__c</name>
+        <relationshipLabel><!-- Fridge In Fills --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fridge In Fill Type --></label>
+        <name>Fridge_In_Fill_Type__c</name>
+        <picklistValues>
+            <masterLabel>External Branding</masterLabel>
+            <translation><!-- External Branding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fridge In Fill</masterLabel>
+            <translation><!-- Fridge In Fill --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Branding</masterLabel>
+            <translation><!-- Internal Branding --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Fridge In Fills Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

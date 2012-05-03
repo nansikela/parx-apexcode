@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label>Marken-Code</label>
+        <name>Brand_Code__c</name>
+    </fields>
+    <fields>
+        <label>Brand/marke</label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Products --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case Multiplier --></label>
+        <name>Case_Multiplier__c</name>
+    </fields>
+    <fields>
+        <label>Vertriebskanal</label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>Both</masterLabel>
+            <translation><!-- Both --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off</masterLabel>
+            <translation><!-- Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On</masterLabel>
+            <translation><!-- On --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>in Wettbewerb mit ....</label>
+        <name>Competes_On_Brand__c</name>
+        <relationshipLabel><!-- Products (Competes On (Brand)) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label>Markt/Territorium</label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Products --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- This sort order will specify in which order products are listed in outlet visit screens. --></help>
+        <label><!-- Sort Order --></label>
+        <name>Sort_Order__c</name>
+    </fields>
+    <fields>
+        <label>Grosshändler</label>
+        <name>Supplier__c</name>
+    </fields>
+    <fields>
+        <label>Kosten pro Einheit</label>
+        <name>Unit_Cost__c</name>
+    </fields>
+    <fields>
+        <help><!-- VAT for this product in this  market. Do not enter a value if VAT does not apply. --></help>
+        <label>Mehrwertsteuer</label>
+        <name>VAT__c</name>
+    </fields>
+    <layouts>
+        <layout>Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Dry Goods --></label>
+        <name>Dry_Goods</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Wet Goods --></label>
+        <name>Wet_Goods</name>
+    </recordTypes>
+</CustomObjectTranslation>

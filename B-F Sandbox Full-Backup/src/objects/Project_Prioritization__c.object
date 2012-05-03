@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>Project_Prioritization</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>Project_Prioritization</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Achievement__c</fullName>
+        <externalId>false</externalId>
+        <formula>Fit_with_Trademark__c  * 0.143 +  Development_Required__c  * 0.143 +  Production_Capability__c  * 0.143 +  Sales_Capacity__c  * 0.143 +  Customer_Fit__c * 0.143 +  Category_Segment_Outlook__c  * 0.143 +  Management_Support__c  * 0.143</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Achievement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attractiveness__c</fullName>
+        <externalId>false</externalId>
+        <formula>Operating_Profit_Margin_5yr__c  * 0.143 +  Payback_Timing__c  * 0.143 +  Capital_Expenditure__c  * 0.143 +  Strategic_Alignment__c  * 0.143 +  Consumer_Occasion_Fit__c  * 0.143 +  Market_Trend_Alignment__c  * 0.143 +  Competitor_Defensibility__c  * 0.143</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Attractiveness</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Capital_Expenditure__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Level of capital expenditure required as a % of average 5yr brand profit</description>
+        <externalId>false</externalId>
+        <label>Capital Expenditure</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Segment_Outlook__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Does the project fit into a category which has forecast strong growth potential</description>
+        <externalId>false</externalId>
+        <label>Category Segment / Outlook</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Competitor_Defensibility__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Competitor reaction and whether it is defensible by the project</description>
+        <externalId>false</externalId>
+        <label>Competitor Defensibility</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Occasion_Fit__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Level of correlation with consumer or occasion growth segment</description>
+        <externalId>false</externalId>
+        <label>Consumer / Occasion Fit</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_Fit__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Project fit with retail requirement and demand</description>
+        <externalId>false</externalId>
+        <label>Customer Fit</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Development_Required__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Level of development required to deliver the project to market</description>
+        <externalId>false</externalId>
+        <label>Development Required</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fit_with_Trademark__c</fullName>
+        <defaultValue>1</defaultValue>
+        <externalId>false</externalId>
+        <label>2020 Brand Profit Contribution</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Management_Support__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>What is the likelihood of success and the level of risk associated with undertaking the project</description>
+        <externalId>false</externalId>
+        <label>Management Support</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market_Trend_Alignment__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Does the project address current and/or align with forecasted market trends</description>
+        <externalId>false</externalId>
+        <label>Market Trend Alignment</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operating_Profit_Margin_5yr__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Operating profit margin</description>
+        <externalId>false</externalId>
+        <inlineHelpText>(5 yr Brand Profit / 5yr total sales )</inlineHelpText>
+        <label>Operating Profit Margin (5yr)</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Payback_Timing__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Timing in which it takes the project to pay back the initial investment</description>
+        <externalId>false</externalId>
+        <label>Payback Timing</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Production_Capability__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Production capability required to deliver the product to market</description>
+        <externalId>false</externalId>
+        <label>Production Capability</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <externalId>false</externalId>
+        <label>Project</label>
+        <referenceTo>Project_Opportunity__c</referenceTo>
+        <relationshipLabel>Project Prioritization Evaluations</relationshipLabel>
+        <relationshipName>Project_Prioritization_Evaluations</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Sales_Capacity__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Implications of introducing the product within the current sales capacity</description>
+        <externalId>false</externalId>
+        <label>Sales Capacity</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Strategic_Alignment__c</fullName>
+        <defaultValue>1</defaultValue>
+        <description>Correlation of project with B-F 150 as well as brand strategy alignment</description>
+        <externalId>false</externalId>
+        <label>Strategic Alignment</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Project Prioritization Evaluation</label>
+    <nameField>
+        <displayFormat>Rating-{000000}</displayFormat>
+        <label>Rating ID</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Project Prioritization Evaluations</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

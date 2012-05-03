@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>The fields of the Objects to be synchronised with the client</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>FieldName__c</fullName>
+        <description>The name of the field.</description>
+        <externalId>false</externalId>
+        <label>FieldName</label>
+        <length>50</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Field_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Field Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>String</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Whole Number</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Decimal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Date &amp; Time</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Picklist</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Position__c</fullName>
+        <description>The position of this field in relation to the create, select and update of the object</description>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <precision>4</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wombat_Mobile_Config__c</fullName>
+        <externalId>false</externalId>
+        <label>Wombat Mobile Config</label>
+        <referenceTo>Wombat_Mobile_Config__c</referenceTo>
+        <relationshipLabel>Wombat Mobile Config Fields</relationshipLabel>
+        <relationshipName>Wombat_Mobile_Config_Fields</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Wombat Mobile Config Fields</label>
+    <nameField>
+        <displayFormat>MCFN-{0}</displayFormat>
+        <label>Mobile Config Fields Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Wombat Mobile Config Fields</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

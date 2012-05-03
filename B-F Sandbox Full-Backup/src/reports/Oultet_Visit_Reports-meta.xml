@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Oultet Visit - Reports</name>
+    <publicFolderAccess>ReadWrite</publicFolderAccess>
+    <sharedTo>
+        <role>DEU-Key Acct Mgr (Edeka)</role>
+        <role>DEU-Key Acct Mgr (REWE)</role>
+        <role>DEU-Key Sls Rep (N-Edeka)</role>
+        <role>DEU-Key Sls Rep (REWE)</role>
+        <role>DEU-Key Sls Rep (S-Edeka)</role>
+        <role>DEU-Market Manager/Admin</role>
+        <role>DEU-Natl Key Acct Mgr</role>
+        <role>DEU-Natl Key Acct Rep</role>
+        <role>DEU-ON Trade Leased Mgr(North)</role>
+        <role>DEU-ON Trade Leased Mgr(Ressourcenreich)</role>
+        <role>DEU-ON Trade Leased Mgr(South)</role>
+        <role>DEU-ON Trade Leased Rep(North)</role>
+        <role>DEU-ON Trade Leased Rep(Ressourcenreich)</role>
+        <role>DEU-ON Trade Leased Rep(South)</role>
+        <role>DEU-Off Trade Dir</role>
+        <role>DEU-Off Trade Mgr (North)</role>
+        <role>DEU-Off Trade Mgr (South)</role>
+        <role>DEU-Off Trade Sls Rep (North)</role>
+        <role>DEU-Off Trade Sls Rep (South)</role>
+        <role>DEU-On-Trade Mangers</role>
+        <role>DEU-On-Trade Mgr</role>
+        <role>DEU-On-Trade Sls Mgr (North)</role>
+        <role>DEU-On-Trade Sls Mgr (South)</role>
+        <role>DEU-On-Trade Sls Rep (North)</role>
+        <role>DEU-On-Trade Sls Rep (South)</role>
+        <role>DEU-Sales Director</role>
+        <role>DEU-Sales Manager</role>
+        <role>DEU-Sales Rep</role>
+    </sharedTo>
+</ReportFolder>

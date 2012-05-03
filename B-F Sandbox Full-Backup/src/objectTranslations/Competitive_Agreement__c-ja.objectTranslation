@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>競合ﾌﾞﾗﾝﾄﾞ 契約</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Competitive Agreements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Agreement End Date --></label>
+        <name>Agreement_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agreement Start Date --></label>
+        <name>Agreement_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description/Notes --></label>
+        <name>Description_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier --></label>
+        <name>Supplier__c</name>
+        <relationshipLabel><!-- Competitive Agreements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>First Pour</masterLabel>
+            <translation><!-- First Pour --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- (30) Days Prior Notification --></help>
+        <label><!-- (30) Days Prior Notification --></label>
+        <name>X30_Prior_Notifaction__c</name>
+    </fields>
+    <layouts>
+        <layout>Competitive Agreement Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Competative Agreement Name</nameFieldLabel>
+    <workflowTasks>
+        <name>Competitive_Agreement</name>
+        <subject><!-- Competitive Agreement - Reminder --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

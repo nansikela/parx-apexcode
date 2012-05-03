@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>TICKER</field>
+    </columns>
+    <columns>
+        <field>Account.Board_Number_of_Directors__c</field>
+    </columns>
+    <columns>
+        <field>Account.Mandatory_Retirement_Age__c</field>
+    </columns>
+    <columns>
+        <field>Account.Dual_Class__c</field>
+    </columns>
+    <columns>
+        <field>Account.Market_Cap_m__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description># of BOD&apos;s, Retirement Age, Dual Class, Mkt Cap</description>
+    <filter>
+        <criteriaItems>
+            <column>Account.Status__c</column>
+            <operator>equals</operator>
+            <value>Active</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>Diane&apos;s Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

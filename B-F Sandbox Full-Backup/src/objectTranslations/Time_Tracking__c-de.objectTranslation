@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Time Tracking --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Time Tracking --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Time Tracking --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Time Tracking --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Time Tracking --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Time Tracking --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Time Tracking --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Time Tracking --></value>
+    </caseValues>
+    <fields>
+        <help>Anzahl Tage Veranstaltung</help>
+        <label>Veranstaltung[en]</label>
+        <name>Event__c</name>
+    </fields>
+    <fields>
+        <help>Anzahl Tage Krankheit</help>
+        <label>Krankheit</label>
+        <name>Illness__c</name>
+    </fields>
+    <fields>
+        <help>Anzahl Tage Meeting</help>
+        <label>Meeting</label>
+        <name>Meeting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month --></label>
+        <name>Month__c</name>
+    </fields>
+    <fields>
+        <label>Anzahl max. mögl. Besuche</label>
+        <name>Number_of_possible_Visits__c</name>
+    </fields>
+    <fields>
+        <label><!-- Office --></label>
+        <name>Office__c</name>
+    </fields>
+    <fields>
+        <label><!-- OwnerId --></label>
+        <name>OwnerId__c</name>
+    </fields>
+    <fields>
+        <help>Anzahl Feiertage [Monat]</help>
+        <label>Feiertag[e]</label>
+        <name>Public_Holiday__c</name>
+    </fields>
+    <fields>
+        <help>Account [Mitarbeiter]</help>
+        <label><!-- Staff Account --></label>
+        <name>Staff_Account__c</name>
+        <relationshipLabel>Zeiterfassung [Planung]</relationshipLabel>
+    </fields>
+    <fields>
+        <label>Startdatum Monat</label>
+        <name>StartDate_Month__c</name>
+    </fields>
+    <fields>
+        <help>erster Arbeitstag [aktueller Monat]</help>
+        <label>Startdatum</label>
+        <name>StartDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Startdate Year --></label>
+        <name>Startdate_Year__c</name>
+    </fields>
+    <fields>
+        <help>Anzahl Tage Messe</help>
+        <label>Messe[n]</label>
+        <name>Trade_Fair__c</name>
+    </fields>
+    <fields>
+        <help>Anzahl Tage Training im Monat</help>
+        <label>Training/Schulung</label>
+        <name>Training__c</name>
+    </fields>
+    <fields>
+        <help>Anzahl Urlaubstage [Monat]</help>
+        <label>Urlaub</label>
+        <name>Vacation__c</name>
+    </fields>
+    <fields>
+        <help>Anzahl Arbeitstage [Monat]</help>
+        <label>Arbeitstage</label>
+        <name>Working_Days__c</name>
+    </fields>
+    <fields>
+        <help>verbleibende Arbeitstage [Monat]</help>
+        <label>verbl. Arbeitstage</label>
+        <name>Working_Days_left__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Time Tracking Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- # --></nameFieldLabel>
+</CustomObjectTranslation>

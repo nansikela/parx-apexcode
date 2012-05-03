@@ -1,0 +1,18 @@
+<apex:page standardController="Promotion__c" extensions="NPA_CustomPromotionClone" title="Clone NPA Promotion" tabStyle="Promotion__c">
+<apex:pageMessages />
+<apex:form >
+      <apex:sectionHeader title="Promotion Edit" subTitle="New Promotion"/>
+    <apex:pageblock title="Promotion Edit" mode="edit" tabStyle="Promotion__c">
+        <apex:pageBlockButtons >
+            <apex:commandButton id="save" value="Save" action="{!custom_clone}"/>
+            <apex:commandButton id="cancel" value="Cancel" action="{!cancel}"/>
+        </apex:pageBlockButtons>
+         <apex:pageBlockSection columns="2">
+                  <apex:repeat value="{!$ObjectType.Promotion__c.FieldSets.NPA_Clone_Promotion}" var="f">
+                     <apex:inputField value="{!clonepromo[f]}" required="{!IF( NOT(ISNULL(fieldMap[f]) ) , fieldMap[f],false   )}"/>
+                </apex:repeat>
+        </apex:pageBlockSection>                
+    </apex:pageblock>
+
+    </apex:form>
+</apex:page>

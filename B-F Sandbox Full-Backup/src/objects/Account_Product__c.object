@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Account Products</relationshipLabel>
+        <relationshipName>Account_Products</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Available</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Bottle_Price_Special__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Bottle Price Special</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Bottle_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Bottle Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <description>Brand Name</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <length>80</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Double_Price_Special__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Double Price Special</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Double_Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Double Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Drink_Price_Special__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Drink Price Special</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Drink_Price__c</fullName>
+        <description>Drink Price</description>
+        <externalId>false</externalId>
+        <label>Drink Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Facings_Delta_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Just to serve as flag</description>
+        <externalId>false</externalId>
+        <label>Facings Delta Indicator</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Facings_Delta__c</fullName>
+        <description>Increase or Decrease in Facings &quot;From the last OV&quot;
+i.e. Prior OV Facings = 3 Current = 4 Delta = 1
+i.e. Prior OV Facings = 4 Current = 3 Delta = -1</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Increase or Decrease in Facings &quot;From the last OV&quot;
+i.e. Prior OV Facings = 3 Current = 4 Delta = 1
+i.e. Prior OV Facings = 4 Current = 3 Delta = -1</inlineHelpText>
+        <label>Facings Delta</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Facings__c</fullName>
+        <externalId>false</externalId>
+        <label>Facings</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Outlet_Visit_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Outlet Visit Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Last_Outlet_Visit_Number__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Last Outlet Visit</label>
+        <referenceTo>Outlet_Visit__c</referenceTo>
+        <relationshipLabel>Account Products</relationshipLabel>
+        <relationshipName>Account_Products</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>New_Listing_Date__c</fullName>
+        <description>Same here this date should only be update on the initial list of the Product.</description>
+        <externalId>false</externalId>
+        <label>New Listing Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>New_Listing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>First time entry only - This box will only be check &quot;One&quot; time of first (Initial) entry</description>
+        <externalId>false</externalId>
+        <label>New Listing</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Account Products</relationshipLabel>
+        <relationshipName>Account_Products</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Shelf_Move_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Purpose just to serve as a flag</description>
+        <externalId>false</externalId>
+        <label>Shelf Move Indicator</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Shelf_Move__c</fullName>
+        <description>Shelf Move (Delta)  1 = Lowest ....5 = Highest
+i.e Position Change from 1 to 2 = 1
+i.e Position Change from 2 to 1 = -1</description>
+        <externalId>false</externalId>
+        <label>Shelf Move</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shelf__c</fullName>
+        <externalId>false</externalId>
+        <label>Shelf</label>
+        <length>80</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Account Product</label>
+    <nameField>
+        <displayFormat>AP-{0}</displayFormat>
+        <label>Account Product</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Account Products</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

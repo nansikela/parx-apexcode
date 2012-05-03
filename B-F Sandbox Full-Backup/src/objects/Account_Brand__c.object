@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>INFOWELDERS - Brands Related to this Account</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Account Brands</relationshipLabel>
+        <relationshipName>Account_Brands</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipLabel>Account Brands</relationshipLabel>
+        <relationshipName>Account_Brands</relationshipName>
+        <required>false</required>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Depletion_Actuals__c</fullName>
+        <description>INFOWELDERS - Depletion actuals for this brand at this outlet for this fiscal year as calculated based on depletion records</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Depletion actuals for this brand at this outlet for this fiscal year</inlineHelpText>
+        <label>Depletion Actuals</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FY_End__c</fullName>
+        <description>INFOWELDERS - The end date of the Fiscal Year for this Account Brand Record</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The end date of the Fiscal Year for this Account Brand Record</inlineHelpText>
+        <label>FY End</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FY_Start__c</fullName>
+        <description>INFOWELDERS - The start date of the Fiscal Year for this Account Brand Record</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The start date of the Fiscal Year for this Account Brand Record</inlineHelpText>
+        <label>FY Start</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Fiscal_Year__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <formula>TEXT( YEAR( FY_End__c ))</formula>
+        <label>Fiscal Year</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Forecast_Gauge__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?cht=gom&amp;chf=bg,s,F3F3EC&amp;chd=t:&quot;&amp;TEXT(  of_Forecast__c  *10 )&amp;&quot;&amp;chds=0,10&amp;chma=10,0,10,0&amp;chs=220x100&amp;chl=&quot;&amp;LEFT(TEXT(of_Forecast__c *100 ),4)&amp;&quot; %&quot;,&quot;Depletion to Forecast&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Percent to Forecast based on actual depletions recorded.</inlineHelpText>
+        <label>Forecast Gauge</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Forecast__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Forecast</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Goal_Gauge__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?cht=gom&amp;chf=bg,s,F3F3EC&amp;chd=t:&quot;&amp;TEXT(  of_Goal__c  *10 )&amp;&quot;&amp;chds=0,10&amp;chma=10,0,10,0&amp;chs=220x100&amp;chl=&quot;&amp;LEFT(TEXT(of_Goal__c *100 ),4)&amp;&quot; %&quot;,&quot;Depletion to Budget&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Percent to Goal based on actual depletions recorded.</inlineHelpText>
+        <label>Goal Gauge</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Goal__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Goal</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Key_Brand_Icon__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Key_Brand__c = true, IMAGE(&quot;/resource/1280772831000/INFW_Resources/key.png&quot;, &quot; &quot;),&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Key Brand Icon</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Key_Brand__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Key Brand</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Legacy ID</label>
+        <length>50</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Required_Brand_Icon__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Required_Brand__c = true, IMAGE(&quot;/resource/1280772831000/INFW_Resources/exclamation.png&quot;, &quot; &quot;),&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Required Brand Icon</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Required_Brand__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Mandatory Brand</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Supplier__c</fullName>
+        <externalId>false</externalId>
+        <formula>Brand__r.Supplier__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Supplier</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Forecast__c</fullName>
+        <externalId>false</externalId>
+        <formula>Depletion_Actuals__c / Forecast__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>% of Forecast</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>of_Goal__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <formula>Depletion_Actuals__c / Goal__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>% of Goal</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <type>Percent</type>
+    </fields>
+    <label>Account Brand</label>
+    <nameField>
+        <displayFormat>AB-{0000000}</displayFormat>
+        <label>Account Brands Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Account Brands</pluralLabel>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>Brand__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Key_Brand__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Brand__c</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

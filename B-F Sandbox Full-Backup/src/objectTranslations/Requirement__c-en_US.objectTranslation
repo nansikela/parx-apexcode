@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Requirement</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Requirements</value>
+    </caseValues>
+    <fields>
+        <help><!-- Add any additional comments here. Track each comment with your initial and date e.g. AK 3/29/11 --></help>
+        <label><!-- Additional Comments --></label>
+        <name>Additional_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Work Package Name --></label>
+        <name>Application_Work_Package_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Work Package # --></label>
+        <name>Application_Work_Package_No__c</name>
+        <relationshipLabel><!-- Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Business Approver --></label>
+        <name>Business_Approver__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Change Set --></label>
+        <name>Change_Set__c</name>
+        <relationshipLabel><!-- New Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Demo (Y/N)? --></label>
+        <name>Demo__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Designated Demo Session --></label>
+        <name>Designated_Demo_Session__c</name>
+    </fields>
+    <fields>
+        <help><!-- Development that is related to and managd outside of the Force.com platform but may fall within the scope of the release --></help>
+        <label><!-- External Managed Development --></label>
+        <name>External_Managed_Development__c</name>
+    </fields>
+    <fields>
+        <help><!-- Gap Description (if Gap= &apos;Y&quot;) --></help>
+        <label><!-- Gap Analysis --></label>
+        <name>Gap_Analysis__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gap --></label>
+        <name>Gap__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Key Assumptions --></label>
+        <name>Key_Assumptions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object(s) --></label>
+        <name>Objects__c</name>
+        <picklistValues>
+            <masterLabel>Accounts</masterLabel>
+            <translation><!-- Accounts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brands</masterLabel>
+            <translation><!-- Brands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contacts</masterLabel>
+            <translation><!-- Contacts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internal Orders</masterLabel>
+            <translation><!-- Internal Orders --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market</masterLabel>
+            <translation><!-- Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Opportunities</masterLabel>
+            <translation><!-- Opportunities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Products</masterLabel>
+            <translation><!-- Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotion Material Items</masterLabel>
+            <translation><!-- Promotion Material Items --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Promotions</masterLabel>
+            <translation><!-- Promotions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tasks/ Events</masterLabel>
+            <translation><!-- Tasks/ Events --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Priority --></label>
+        <name>Priority__c</name>
+        <picklistValues>
+            <masterLabel>Critical</masterLabel>
+            <translation><!-- Critical --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Proposed Approach --></label>
+        <name>Proposed_Approach__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requirement Description --></label>
+        <name>Requirement_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scope --></label>
+        <name>Scope__c</name>
+        <picklistValues>
+            <masterLabel>In Scope</masterLabel>
+            <translation><!-- In Scope --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Out of Scope</masterLabel>
+            <translation><!-- Out of Scope --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Solution Type --></label>
+        <name>Solution_Type__c</name>
+        <picklistValues>
+            <masterLabel>Assignment Rules</masterLabel>
+            <translation><!-- Assignment Rules --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Batch Upload</masterLabel>
+            <translation><!-- Batch Upload --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Configuration</masterLabel>
+            <translation><!-- Configuration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Configuration + Custom Code</masterLabel>
+            <translation><!-- Configuration + Custom Code --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom Code</masterLabel>
+            <translation><!-- Custom Code --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom Link</masterLabel>
+            <translation><!-- Custom Link --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Custom Object</masterLabel>
+            <translation><!-- Custom Object --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data</masterLabel>
+            <translation><!-- Data --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>External Leads Message Entry (Sites)</masterLabel>
+            <translation><!-- External Leads Message Entry (Sites) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integration</masterLabel>
+            <translation><!-- Integration --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mashup</masterLabel>
+            <translation><!-- Mashup --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Need More Information</masterLabel>
+            <translation><!-- Need More Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regulatory/Legal/Regional/ Globalization</masterLabel>
+            <translation><!-- Regulatory/Legal/Regional/ Globalization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reporting / Documentation</masterLabel>
+            <translation><!-- Reporting / Documentation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Security (Profile/Roles/Layouts)</masterLabel>
+            <translation><!-- Security (Profile/Roles/Layouts) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Object</masterLabel>
+            <translation><!-- Standard Object --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System</masterLabel>
+            <translation><!-- System --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Territory Management</masterLabel>
+            <translation><!-- Territory Management --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training</masterLabel>
+            <translation><!-- Training --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Validation Rules</masterLabel>
+            <translation><!-- Validation Rules --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web Tab</masterLabel>
+            <translation><!-- Web Tab --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Workflow / Business Process Flow</masterLabel>
+            <translation><!-- Workflow / Business Process Flow --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Source --></label>
+        <name>Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Duplicate</masterLabel>
+            <translation><!-- Duplicate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Future</masterLabel>
+            <translation><!-- Future --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lockdown</masterLabel>
+            <translation><!-- Lockdown --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Prioritization</masterLabel>
+            <translation><!-- Pending Prioritization --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Review</masterLabel>
+            <translation><!-- Pending Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Requirement Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Gap Analysis and Solution Overview --></label>
+            <section>Gap Analysis and Solution Overview</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

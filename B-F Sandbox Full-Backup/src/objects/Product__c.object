@@ -1,0 +1,1835 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>NPA Rollout: Object for storing Products used in National Promotion application.
+Product Remediation : Replicated all standard product fields here.</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Bar_Code__c</fullName>
+        <description>Bar Code</description>
+        <externalId>false</externalId>
+        <label>Bar Code</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand_Code__c</fullName>
+        <description>INFOWELDERS</description>
+        <externalId>false</externalId>
+        <label>Brand Code</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Infowelders, NPA Rollout: Used to store the related Brand</description>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipName>Product</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Carton_Qty__c</fullName>
+        <externalId>false</externalId>
+        <label>Carton Qty</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Multiplier__c</fullName>
+        <description>Created as a part of product remediation</description>
+        <externalId>false</externalId>
+        <label>Case Multiplier</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>4</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1015</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>00-Non-Taxable</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>B0-Beer/Malt Based</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT-In-Transit Material</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S0-Spirits x&gt;24%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S1-Spirits 10&lt;x&lt;=24%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S2-Spirits 6&lt;x&lt;=10%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S3-Spirits x=6%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S4-Spirits 2&lt;x&lt;6%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>S5-Spirits x&lt;=2%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W0-Wines x&gt;24%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W1-Wines 21&lt;x&lt;=24%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W2-Wines 16&lt;x&lt;=21%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W3-Wines 14&lt;x&lt;=16%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W4-Wines 7&lt;x&lt;=14%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W5-Wines x&lt;=7%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W6-Wines Art. Sparkling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>W7-Wines Nat. Sparkling</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X0-Cognac</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X1-Gin</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X2-Liqueur</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X3-Raki</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X4-Rum</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X5-Tequila</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X6-Vodka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X7-Whiskey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X8-Champagne</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>X9-Pre-Mix</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>XA-Wines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Channel__c</fullName>
+        <description>Created as a part of product remediation</description>
+        <externalId>false</externalId>
+        <label>Channel</label>
+        <picklist>
+            <picklistValues>
+                <fullName>On</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Classification__c</fullName>
+        <description>Type of Beverage</description>
+        <externalId>false</externalId>
+        <label>Classification</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Spirit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Wines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PRE-MIX</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>00 - Non-Alcoholic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>01 - Distilled Spirits</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>02 - Wines &lt;=14%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>03 - Wines 14 &lt; x &lt;= 21%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>04 - Wines 21 &lt; x &lt;= 24%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>05 - Wines x &gt; 24%</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>06 - Wines (Artif Carb)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>07 - Wines (Sparkling)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>08 - Beer/Malt Based</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>09 - Pre-Mix (BFA)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>IT - In-Transit Material</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Competes_On_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>INFOWELDERS - Brand that a competitor product competes against.</description>
+        <externalId>false</externalId>
+        <label>Competes On (Brand)</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipName>ProductCompete</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Family__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Family</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPL_Family__c</fullName>
+        <externalId>false</externalId>
+        <label>IPL Family</label>
+        <length>6</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsActive__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Wombat_Product__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>BFA - Check is active</description>
+        <externalId>false</externalId>
+        <label>Is Wombat Product</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Layer_Per_Pallet__c</fullName>
+        <externalId>false</externalId>
+        <label>Layer Per Pallet</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Layer_Qty__c</fullName>
+        <externalId>false</externalId>
+        <label>Layer Qty</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Brand_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>Brand__r.Legacy_Brand_Code_AU__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Legacy Brand Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_ID__c</fullName>
+        <description>Created as a part of product remediation</description>
+        <externalId>false</externalId>
+        <label>Legacy ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mark_for_Deletion__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>NPA Rollout: Used to mark products which are to be made unavailable in the system</description>
+        <externalId>false</externalId>
+        <label>Mark for Deletion</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Market_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Market__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Market Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Created as a part of product remediation</description>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <referenceTo>Market__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>ProductsCustom</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Material_Type__c</fullName>
+        <description>NPA Rollout: Material Type from the general product master</description>
+        <externalId>false</externalId>
+        <label>Material Type</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pack_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Pack Quantity</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pallet_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Pallet Quantity</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Planned_Cost__c</fullName>
+        <description>NPA Rollout: Used to store Planned Cost of Products</description>
+        <externalId>false</externalId>
+        <label>Planned Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Price_Material_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Price Material Group</label>
+        <referenceTo>Reference_Material_Group__c</referenceTo>
+        <relationshipLabel>Products</relationshipLabel>
+        <relationshipName>Products</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Price__c</fullName>
+        <externalId>false</externalId>
+        <label>Price</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Reference_Material__c</fullName>
+        <externalId>false</externalId>
+        <label>Price Ref Material</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ProductCode__c</fullName>
+        <description>NPA Rollout: Used to store the product code of the POS item.</description>
+        <externalId>true</externalId>
+        <label>Product Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>BOURBON</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BRANDY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CHAMPAGNE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>COGNAC</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>GIN</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LIQUEURS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>MERCHANDISING</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OTHERS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OUZO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PRE-MIX</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>RUM</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SPARKLING</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SPIRITS</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TEQUILA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>TIA LUSSO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VERMOUTH</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>VODKA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WHISKY</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WINE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <description>NPA Rollout: Stores the product code</description>
+        <externalId>false</externalId>
+        <label>Product Unique Key</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAP_Material_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>SAP Material Number</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sales_Org__c</fullName>
+        <description>NPA Rollout: Stores the Sales Org for which the Product will be available</description>
+        <externalId>false</externalId>
+        <label>Sales Org</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1000</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sort_Order__c</fullName>
+        <description>Created as a part of product remediation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This sort order will specify in which order products are listed in outlet visit screens.</inlineHelpText>
+        <label>Sort Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>NPA Rollout: Used to store status of Product
+0 = Active
+1 = Cancelled</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Supplier__c</fullName>
+        <description>Created as a part of product remediation</description>
+        <externalId>false</externalId>
+        <formula>Brand__r.Supplier__r.Name</formula>
+        <label>Supplier</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UOM__c</fullName>
+        <description>NPA Rollout: Stores the Unit of Measure for the product</description>
+        <externalId>false</externalId>
+        <label>UOM</label>
+        <picklist>
+            <picklistValues>
+                <fullName>PAK - Pack</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EA - Each</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PAD - Pad</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CAR - Carton</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>KIT - Kit</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SHT - Sheet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PAC	 - Pack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>DZ - Dozen</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ROL - Role</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SET	 - Set</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BAG - Bag</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PAA - Pair</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Cost__c</fullName>
+        <description>**Not Used** NPA Rollout:</description>
+        <externalId>false</externalId>
+        <label>Unit/Actual Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Size__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Size</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>VAT__c</fullName>
+        <description>Created as a part of product remediation</description>
+        <externalId>false</externalId>
+        <inlineHelpText>VAT for this product in this  market. Do not enter a value if VAT does not apply.</inlineHelpText>
+        <label>VAT</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Wholesale_Price__c</fullName>
+        <description>Wholesale Price</description>
+        <externalId>false</externalId>
+        <label>Wholesale Price</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Wholesaler Number</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Product</label>
+    <listViews>
+        <fullName>Australia_Products</fullName>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Is_Wombat_Product__c</columns>
+        <columns>ProductCode__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Australia Products</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Australia_Wet_Goods</fullName>
+        <columns>NAME</columns>
+        <columns>Market__c</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Australia</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <label>Australia (Wet Goods)</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Australia_Wet_Goods_ECC</fullName>
+        <columns>NAME</columns>
+        <columns>Price_Material_Group__c</columns>
+        <columns>Pricing_Reference_Material__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>UPDATEDBY_USER</field>
+            <operation>startsWith</operation>
+            <value>Sandeep</value>
+        </filters>
+        <label>Australia (Wet Goods - ECC)</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>China_Wet_Goods</fullName>
+        <columns>Market__c</columns>
+        <columns>IsActive__c</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Brand_Code__c</columns>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Unit_Cost__c</columns>
+        <columns>Case_Multiplier__c</columns>
+        <columns>Competes_On_Brand__c</columns>
+        <columns>Description__c</columns>
+        <columns>Status__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>China</value>
+        </filters>
+        <label>China Products</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CHN-Mangers</group>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>DEU_Wet_Goods</fullName>
+        <columns>NAME</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>IsActive__c</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Market__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Brand_Code__c</columns>
+        <columns>Channel__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Germany</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <filters>
+            <field>Brand_Code__c</field>
+            <operation>equals</operation>
+            <value>380</value>
+        </filters>
+        <label>DEU - Wet Goods</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>DEU_Wet_Goods_Active</fullName>
+        <columns>NAME</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>IsActive__c</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Market__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Brand_Code__c</columns>
+        <columns>Channel__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Germany</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <filters>
+            <field>IsActive__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>DEU - Wet Goods (Active)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>India_Dry_Goods</fullName>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Description__c</columns>
+        <columns>Unit_Cost__c</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Dry_Goods</value>
+        </filters>
+        <label>India (Dry Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>INR-Brand Manager</role>
+            <role>INR-Finance Manager</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>INR-Sales Manager</role>
+            <role>INR-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>India_Wet_Goods</fullName>
+        <columns>Market__c</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>NAME</columns>
+        <columns>IsActive__c</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Description__c</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <filters>
+            <field>IsActive__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>India (Wet Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>INR-Brand Manager</role>
+            <role>INR-Finance Manager</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>INR-Sales Manager</role>
+            <role>INR-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>JPN_Wet_Goods</fullName>
+        <columns>Sort_Order__c</columns>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Description__c</columns>
+        <columns>Family__c</columns>
+        <columns>Supplier__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Competes_On_Brand__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Brand_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Japan</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <label>JPN - Wet Goods</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>KOR_Products</fullName>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Description__c</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </filters>
+        <filters>
+            <field>IsActive__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>KOR Products</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>KOR-Market Manager/Admin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>KOR_WET_BF</fullName>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Description__c</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>KOREA</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <filters>
+            <field>Supplier__c</field>
+            <operation>equals</operation>
+            <value>B-F</value>
+        </filters>
+        <label>KOR WET BF</label>
+        <language>ko</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>KOR-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Kor_Dry</fullName>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Description__c</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Dry_Goods</value>
+        </filters>
+        <label>Kor Dry</label>
+        <language>ko</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>KOR-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Kor_Wet</fullName>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Description__c</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Korea</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <label>Kor Wet</label>
+        <language>ko</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <roleAndSubordinates>KOR-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>POS_Products</fullName>
+        <columns>Sales_Org__c</columns>
+        <columns>ProductCode__c</columns>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Planned_Cost__c</columns>
+        <columns>Supplier__c</columns>
+        <columns>Mark_for_Deletion__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UOM__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.POS_US</value>
+        </filters>
+        <label>POS Products</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>NPA Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Taiwan_Products</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>Brand__c</columns>
+        <columns>NAME</columns>
+        <columns>Competes_On_Brand__c</columns>
+        <columns>Unit_Cost__c</columns>
+        <columns>Case_Multiplier__c</columns>
+        <columns>IsActive__c</columns>
+        <columns>Market__c</columns>
+        <columns>ProductCode__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </filters>
+        <label>Taiwan Products</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinates>TWN-Market Manager/Admin</roleAndSubordinates>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Taiwan_Wet_Goods</fullName>
+        <columns>Market__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Brand__c</columns>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>IsActive__c</columns>
+        <columns>Description__c</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Taiwan</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <label>Taiwan (Wet Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>TWN-all users</group>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Thailand_Dry_Goods</fullName>
+        <columns>NAME</columns>
+        <columns>Family__c</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Dry_Goods</value>
+        </filters>
+        <label>Thailand (Dry Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>THI-Finance Manager</role>
+            <role>THI-Market Manager/Admin</role>
+            <role>THI-Sales Manager</role>
+            <role>THI-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Thailand_Wet_Goods</fullName>
+        <columns>Market__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Brand__c</columns>
+        <columns>NAME</columns>
+        <columns>ProductCode__c</columns>
+        <columns>Sort_Order__c</columns>
+        <columns>IsActive__c</columns>
+        <columns>Description__c</columns>
+        <columns>Family__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>Thailand</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Product__c.Wet_Goods</value>
+        </filters>
+        <label>Thailand (Wet Goods)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>Global Administrator</role>
+            <role>THI-Finance Manager</role>
+            <role>THI-Market Manager/Admin</role>
+            <role>THI-Sales Manager</role>
+            <role>THI-Sales Rep</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X01M_Products</fullName>
+        <columns>Market__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Brand__c</columns>
+        <columns>NAME</columns>
+        <columns>Description__c</columns>
+        <columns>ProductCode__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>01M Products</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>APAC KJ / Admin</role>
+            <role>APAC MD / Admin</role>
+            <role>APAC SE / Admin</role>
+            <role>CHN-Brand Manager</role>
+            <role>CHN-Finance Manager</role>
+            <role>CHN-Market Manager/Admin</role>
+            <role>CHN-Sales Manager</role>
+            <role>CHN-Sales Manger (East)</role>
+            <role>CHN-Sales Manger (North)</role>
+            <role>CHN-Sales Manger (South)</role>
+            <role>CHN-Sales Manger (West)</role>
+            <role>CHN-Sales Rep (East)</role>
+            <role>CHN-Sales Rep (North)</role>
+            <role>CHN-Sales Rep (South)</role>
+            <role>CHN-Sales Rep (West)</role>
+            <role>CHN-Sales Rep E1</role>
+            <role>CHN-Sales Rep East2</role>
+            <role>CHN-Sales Rep South1</role>
+            <role>CHN-Sales Rep South2</role>
+            <role>CHN-Sales Supervisor (East)</role>
+            <role>CHN-Sales Supervisor (North)</role>
+            <role>CHN-Sales Supervisor (South)</role>
+            <role>CHN-Sales Supervisor (West)</role>
+            <role>CHN-Sales Supervisor East1</role>
+            <role>CHN-Sales Supervisor South1</role>
+            <role>CHN-Sales Supervisor South2</role>
+            <role>DEU-Brand Manager</role>
+            <role>DEU-Finance Manager</role>
+            <role>DEU-Key Acct Mgr (Edeka)</role>
+            <role>DEU-Key Acct Mgr (REWE)</role>
+            <role>DEU-Key Sls Rep (N-Edeka)</role>
+            <role>DEU-Key Sls Rep (REWE)</role>
+            <role>DEU-Key Sls Rep (S-Edeka)</role>
+            <role>DEU-Market Manager/Admin</role>
+            <role>DEU-Natl Key Acct Mgr</role>
+            <role>DEU-Natl Key Acct Rep</role>
+            <role>DEU-ON Trade Leased Mgr(North)</role>
+            <role>DEU-ON Trade Leased Mgr(Ressourcenreich)</role>
+            <role>DEU-ON Trade Leased Mgr(South)</role>
+            <role>DEU-ON Trade Leased Rep(North)</role>
+            <role>DEU-ON Trade Leased Rep(Ressourcenreich)</role>
+            <role>DEU-ON Trade Leased Rep(South)</role>
+            <role>DEU-Off Trade Dir</role>
+            <role>DEU-Off Trade Mgr (North)</role>
+            <role>DEU-Off Trade Mgr (South)</role>
+            <role>DEU-Off Trade Sls Rep (North)</role>
+            <role>DEU-Off Trade Sls Rep (South)</role>
+            <role>DEU-On-Trade Mangers</role>
+            <role>DEU-On-Trade Mgr</role>
+            <role>DEU-On-Trade Sls Mgr (North)</role>
+            <role>DEU-On-Trade Sls Mgr (South)</role>
+            <role>DEU-On-Trade Sls Rep (North)</role>
+            <role>DEU-On-Trade Sls Rep (South)</role>
+            <role>DEU-Sales Director</role>
+            <role>DEU-Sales Manager</role>
+            <role>DEU-Sales Rep</role>
+            <role>FDC-Art Collection Accounting</role>
+            <role>FDC-Art Collection Administrators</role>
+            <role>FDC-Art Collection Users</role>
+            <role>FDC-Force.com Administrators</role>
+            <role>FDC-GD Managers</role>
+            <role>FDC-GD Users</role>
+            <role>FDC-PLFC Managers</role>
+            <role>FDC-PLFC Users</role>
+            <role>FDC-SoD Administrator</role>
+            <role>FDC-SoD User</role>
+            <role>Global Administrator</role>
+            <role>INR-Brand Manager</role>
+            <role>INR-Finance Manager</role>
+            <role>INR-Market Manager/Admin</role>
+            <role>INR-Sales Manager</role>
+            <role>INR-Sales Rep</role>
+            <role>JPN-Brand Manager</role>
+            <role>JPN-Finance Manager</role>
+            <role>JPN-Market Manager/Admin</role>
+            <role>JPN-Sales Manager</role>
+            <role>JPN-Sales Manager-Osaka</role>
+            <role>JPN-Sales Manager-Tokyo</role>
+            <role>JPN-Sales Rep</role>
+            <role>JPN-Sales Rep-Osaka</role>
+            <role>JPN-Sales Rep-Tokyo</role>
+            <role>KOR-Brand Manager</role>
+            <role>KOR-Finance Manager</role>
+            <role>KOR-Market Manager/Admin</role>
+            <role>KOR-Sales Manager</role>
+            <role>KOR-Sales Manager (Off Premise)</role>
+            <role>KOR-Sales Manager (On Premise)</role>
+            <role>KOR-Sales Rep (Off Premise)</role>
+            <role>KOR-Sales Rep (On Premise)</role>
+            <role>THI-Finance Manager</role>
+            <role>THI-Market Manager/Admin</role>
+            <role>THI-Sales Manager</role>
+            <role>THI-Sales Rep</role>
+            <role>TWN-Finance Manager</role>
+            <role>TWN-Market Manager/Admin</role>
+            <role>TWN-Sales Manager</role>
+            <role>TWN-Sales Rep</role>
+            <role>TWN-Sales Rep North</role>
+            <role>TWN-Sales Supervisor North</role>
+            <role>zTest Mgr</role>
+            <role>zTest Rep</role>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>Product Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01I300000017OkOEAU_00N300000084WlFEAU</fullName>
+        <active>true</active>
+        <field>Promotion_Result__c.Custom_Product__c</field>
+        <filterItems>
+            <field>Product__c.Market__r.Name</field>
+            <operation>equals</operation>
+            <valueField>$User.Market__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Promotion Result_Product</name>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01I300000017Op0EAE_00N300000084WlCEAU</fullName>
+        <active>true</active>
+        <field>Promotion_Goal__c.Custom_Product__c</field>
+        <filterItems>
+            <field>Product__c.Market__r.Name</field>
+            <operation>equals</operation>
+            <valueField>$User.Market__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Promotion Goal_Product</name>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PiqMAE_00NV0000000Kod4MAC</fullName>
+        <active>true</active>
+        <field>Order_Item__c.Product__c</field>
+        <filterItems>
+            <field>Product__c.Brand__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Brand__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Product__c.Market__r.Name</field>
+            <operation>equals</operation>
+            <value>Australia</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+        <name>Order Item_Product</name>
+        <sourceObject>Order_Item__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004U52MAE_00NV0000000LqrRMAS</fullName>
+        <active>true</active>
+        <field>Group_Promotion_Item__c.Product__c</field>
+        <filterItems>
+            <field>Product__c.Market__r.Name</field>
+            <operation>equals</operation>
+            <value>Australia</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Group Promotion Item_Product</name>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV0000000ClVjMAK_00NV0000000Sjj8MAC</fullName>
+        <active>true</active>
+        <field>Product_Launch__c.Product__c</field>
+        <filterItems>
+            <field>$User.Market__c</field>
+            <operation>equals</operation>
+            <valueField>Product__c.Market__r.Name</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Product Launch_Product</name>
+    </namedFilters>
+    <pluralLabel>Products</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Dry_Goods</fullName>
+        <active>true</active>
+        <label>Dry Goods</label>
+        <picklistValues>
+            <picklist>Channel__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Family__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Org__c</picklist>
+            <values>
+                <fullName>1000</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UOM__c</picklist>
+            <values>
+                <fullName>EA - Each</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>POS_US</fullName>
+        <active>true</active>
+        <label>POS - US</label>
+        <picklistValues>
+            <picklist>Sales_Org__c</picklist>
+            <values>
+                <fullName>1000</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UOM__c</picklist>
+            <values>
+                <fullName>BAG - Bag</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CAR - Carton</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DZ - Dozen</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EA - Each</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KIT - Kit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PAA - Pair</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PAC%09 - Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PAD - Pad</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PAK - Pack</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>ROL - Role</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SET%09 - Set</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SHT - Sheet</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Wet_Goods</fullName>
+        <active>true</active>
+        <label>Wet Goods</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>00-Non-Taxable</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B0-Beer%2FMalt Based</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT-In-Transit Material</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S0-Spirits x%3E24%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S1-Spirits 10%3Cx%3C%3D24%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S2-Spirits 6%3Cx%3C%3D10%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S3-Spirits x%3D6%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S4-Spirits 2%3Cx%3C6%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S5-Spirits x%3C%3D2%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W0-Wines x%3E24%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W1-Wines 21%3Cx%3C%3D24%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W2-Wines 16%3Cx%3C%3D21%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W3-Wines 14%3Cx%3C%3D16%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W4-Wines 7%3Cx%3C%3D14%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W5-Wines x%3C%3D7%25</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W6-Wines Art%2E Sparkling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>W7-Wines Nat%2E Sparkling</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X0-Cognac</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X1-Gin</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X2-Liqueur</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X3-Raki</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X4-Rum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X5-Tequila</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X6-Vodka</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X7-Whiskey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X8-Champagne</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>X9-Pre-Mix</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XA-Wines</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Channel__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Family__c</picklist>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sales_Org__c</picklist>
+            <values>
+                <fullName>1000</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>UOM__c</picklist>
+            <values>
+                <fullName>EA - Each</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Product__c</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <lookupDialogsAdditionalFields>Product__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Planned_Cost__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Sales_Org__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchResultsAdditionalFields>Product__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Planned_Cost__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Sales_Org__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <webLinks>
+        <fullName>Mark_Delete</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Mark Delete</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)} 
+
+var records = {!GETRECORDIDS( $ObjectType.Product__c )}; 
+var newRecords = []; 
+
+if (records[0] == null) 
+{ 
+alert(&quot;Please select at least one row&quot;) 
+} 
+else 
+{ 
+for (var n=0; n&lt;records.length; n++) { 
+var c = new sforce.SObject(&quot;Product_Custom__c &quot;); 
+c.id = records[n]; 
+c.Mark_for_Deletion__c= true; 
+newRecords.push(c); 
+} 
+
+result = sforce.connection.update(newRecords); 
+
+window.location.reload(); 
+}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Closed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Closed</description>
+        <externalId>false</externalId>
+        <label>Closed</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>DB_Activity_Type__c</fullName>
+        <description>This is a field that is installed by and used with the Adoption Dashboard AppExchange package.  If your org already has a similar field, you can change the reports that are part of the Adoption Dashboard package to use your custom field and then delete this field.</description>
+        <externalId>false</externalId>
+        <formula>IF(CONTAINS( Subject , &quot;Email&quot;), &quot;Email&quot;, IF(CONTAINS( Subject , &quot;Cold Call&quot;), &quot;Cold Call&quot;, IF(CONTAINS( Subject , &quot;Call&quot;), &quot;Call&quot;, IF(CONTAINS( Subject , &quot;Meeting&quot;), &quot;Meeting&quot;, IF(CONTAINS( Subject , &quot;On Site Visit&quot;), &quot;Site Visit&quot;, IF(CONTAINS( Subject , &quot;Quote&quot;), &quot;Send Letter/Quote&quot;, &quot;Other&quot;))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>DB Activity Type</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Code</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_Outlet_Visit__c</fullName>
+        <description>Infowelders - Create an outlet visit from an Event related to the Account.</description>
+        <externalId>false</externalId>
+        <formula>IF(LEFT(WhatId,3) = &quot;001&quot;, HYPERLINK(&quot;https://c.na1.visual.force.com/apex/outletVisit?CF00N30000005PvLY_lkid=&quot;&amp;WhatId&amp;&quot;&amp;retURL=%2F&quot;&amp;Id&amp;&quot;&amp;CF00N30000005PvLY=&quot;&amp;WhatId&amp;&quot;&amp;sfdc.override=1&amp;scontrolCaching=1&quot;, &quot;Create Outlet Visit&quot;) , &quot;No Account Found&quot;)</formula>
+        <inlineHelpText>The Event must be related to an Account</inlineHelpText>
+        <label>New Outlet Visit</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Objectives__c</fullName>
+        <description>Objectives for Upcoming Outlet Visit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter any objectives for the upcoming outlet visit</inlineHelpText>
+        <label>Objectives</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <listViews>
+        <fullName>MyActivities</fullName>
+        <filterScope>Mine</filterScope>
+        <label>My Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>MyDelegatedActivities</fullName>
+        <filterScope>Delegated</filterScope>
+        <label>My Delegated Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>MyTeamsActivities</fullName>
+        <filterScope>Team</filterScope>
+        <label>My Team&apos;s Activities</label>
+    </listViews>
+    <listViews>
+        <fullName>TodaysTasks</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>TASK.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>ACTIVITY.TASK</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>TASK.DUE_DATE</field>
+            <operation>lessThan</operation>
+            <value>TOMORROW</value>
+        </filters>
+        <label>Today&apos;s Tasks</label>
+    </listViews>
+    <listViews>
+        <fullName>UpcomingEvents</fullName>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACTIVITY.TASK</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>TASK.DUE_DATE</field>
+            <operation>greaterThan</operation>
+            <value>YESTERDAY</value>
+        </filters>
+        <label>Upcoming Events</label>
+    </listViews>
+</CustomObject>

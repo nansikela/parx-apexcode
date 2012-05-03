@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Promotion Result</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Promotion Results</value>
+    </caseValues>
+    <fields>
+        <label><!-- Approached --></label>
+        <name>Approached__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attendance --></label>
+        <name>Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Custom_Product__c</name>
+        <relationshipLabel><!-- Promotion Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Females --></label>
+        <name>Females__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Male --></label>
+        <name>Male__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Promotion Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Promotion Comments --></label>
+        <name>Promotion_Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- The promo company that worked to execute promotion and collect results. --></help>
+        <label><!-- Promotion Company --></label>
+        <name>Promotion_Company__c</name>
+        <relationshipLabel><!-- Promotion Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Promotion Results --></label>
+        <name>Promotion_Results__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Volume Results --></label>
+        <name>Promotion_Volume_Results__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion --></label>
+        <name>Promotion__c</name>
+        <relationshipLabel><!-- Promotion Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Purchased --></label>
+        <name>Purchased__c</name>
+    </fields>
+    <fields>
+        <help><!-- Date the result data was collected (event date). --></help>
+        <label><!-- Result Date --></label>
+        <name>Result_Date__c</name>
+    </fields>
+    <layouts>
+        <layout>Promotion Result Layout</layout>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- New --></label>
+        <name>New</name>
+    </webLinks>
+</CustomObjectTranslation>

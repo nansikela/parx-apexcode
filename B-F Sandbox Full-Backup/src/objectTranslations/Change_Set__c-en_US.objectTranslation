@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Change Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Change Requests</value>
+    </caseValues>
+    <fields>
+        <help><!-- Check this box if you need System Administrator access to finish the deployment of this Change Set. e.g. - Manual Approval Process, Profile Changes, etc ... --></help>
+        <label><!-- Admin Access Required --></label>
+        <name>Admin_Access_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Work Package --></label>
+        <name>Application_Work_Package__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Biz Process Design Hours --></label>
+        <name>Biz_Process_Process_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approver --></label>
+        <name>Business_Approver__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Enter the SalesForce Change Set Name --></help>
+        <label><!-- SF Change Set Name --></label>
+        <name>Change_Request_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Configuration Hours --></label>
+        <name>Configuration_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Expected On --></label>
+        <name>Date_Expected_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deployed? --></label>
+        <name>Deployed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Development Hours --></label>
+        <name>Development_Hours__c</name>
+    </fields>
+    <fields>
+        <help><!-- If this change request need to be transported now, check this box.  Please note: an approval from force.com management will be required. --></help>
+        <label><!-- Emergency Change? --></label>
+        <name>Emergency_Change__c</name>
+    </fields>
+    <fields>
+        <label><!-- Infrastructure --></label>
+        <name>Infrastructure__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release Notes --></label>
+        <name>Release_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Release --></label>
+        <name>Releases__c</name>
+        <relationshipLabel><!-- Change Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Requirements Hours --></label>
+        <name>Requirements_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denied</masterLabel>
+            <translation><!-- Denied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted for approval</masterLabel>
+            <translation><!-- Submitted for approval --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Summary --></label>
+        <name>Summary__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tech Design Hours --></label>
+        <name>Tech_Design_Hours__c</name>
+    </fields>
+    <fields>
+        <help><!-- Has this change been tested in the QA instance? --></help>
+        <label><!-- Tested in QA --></label>
+        <name>Tested_in_QA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Level of Effort --></label>
+        <name>Total_Level_of_Effort__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+    </fields>
+    <layouts>
+        <layout>Change Request Layout</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>System Admin Access</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Release --></label>
+        <name>Release</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- System Admin Access --></label>
+        <name>System_Admin_Access</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You must validate that you have tested in QA before created a Change Request. --></errorMessage>
+        <name>Tested_In_QA_Required</name>
+    </validationRules>
+    <workflowTasks>
+        <name>Change_Request</name>
+        <subject><!-- Change Request --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Use Case Step</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Use Case Steps</value>
+    </caseValues>
+    <fields>
+        <label><!-- Expected Result --></label>
+        <name>Expected_Result__c</name>
+    </fields>
+    <fields>
+        <label><!-- Step Description --></label>
+        <name>Step_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Step Number --></label>
+        <name>Step_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Use Case --></label>
+        <name>Use_Case__c</name>
+        <relationshipLabel><!-- Use Case Steps --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Use Case Step Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
