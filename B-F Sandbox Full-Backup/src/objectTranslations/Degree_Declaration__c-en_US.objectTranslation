@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Degree Declaration</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Degree Declaration</value>
+    </caseValues>
+    <fields>
+        <label><!-- Acknowledgement --></label>
+        <name>Acknowledgement__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Approximate Completion Date --></help>
+        <label><!-- Approximate Completion Date --></label>
+        <name>Approximate_Completion_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved/Rejected By --></label>
+        <name>Current_Approver__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Current Cost Per Credit Hour (currency will default to USD) --></help>
+        <label><!-- Current Cost Per Credit Hour --></label>
+        <name>Current_Cost_Per_Credit_Hour__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select Degree Type --></help>
+        <label><!-- Degree Type --></label>
+        <name>Degree_Type__c</name>
+        <picklistValues>
+            <masterLabel>Graduate</masterLabel>
+            <translation><!-- Graduate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Undergraduate</masterLabel>
+            <translation><!-- Undergraduate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- &lt;font color=&quot;red&quot;&gt;Disclaimer: --></label>
+        <name>Disclaimer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Name --></label>
+        <name>Employee_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select HR Manager --></help>
+        <label><!-- HR Manager --></label>
+        <name>HR_Manager__c</name>
+        <relationshipLabel><!-- Degree Declaration (HR Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- By Checking this box you acknowledge that you have read the Repayment Agreement --></help>
+        <label><!-- I have read the Repayment Agreement --></label>
+        <name>I_have_read_the_Repayment_Agreement__c</name>
+    </fields>
+    <fields>
+        <label><!-- LinkPrefix --></label>
+        <name>LinkPrefix__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Major --></help>
+        <label><!-- Major --></label>
+        <name>Major__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select Manager --></help>
+        <label><!-- Manager --></label>
+        <name>Manager__c</name>
+        <relationshipLabel><!-- Degree Declaration (Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Next Approver --></label>
+        <name>Next_Approver__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter The Approximate Number Of Credit Hours Required To Complete This Degree --></help>
+        <label><!-- Number of Credit Hours Required --></label>
+        <name>Number_of_Credit_Hours_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProgramAdminStatus --></label>
+        <name>ProgramAdminStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Admin Approver --></label>
+        <name>Program_Admin_Approver__c</name>
+        <relationshipLabel><!-- Degree Declaration (Program Admin Approver) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Program Admin Name --></label>
+        <name>Program_Admin_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter The Reason You Wish To Pursue This Degree --></help>
+        <label><!-- Reason You Wish To Pursue This Degree --></label>
+        <name>Reason_You_Wish_To_Pursue_This_Degree__c</name>
+    </fields>
+    <fields>
+        <label><!-- Repayment Agreement --></label>
+        <name>Repayment_Agreement__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter School Address --></help>
+        <label><!-- School Address --></label>
+        <name>School_Address__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter School To Be Attended --></help>
+        <label><!-- School To Be Attended --></label>
+        <name>School_To_Be_Attended__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Start Date --></help>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmitforApproval --></label>
+        <name>SubmitforApproval__c</name>
+    </fields>
+    <layouts>
+        <layout>Degree Declaration Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Disclaimer --></label>
+            <section>Disclaimer</section>
+        </sections>
+        <sections>
+            <label><!-- Read and Acknowledge Repayment Agreement --></label>
+            <section>Read and Acknowledge Repayment Agreement</section>
+        </sections>
+    </layouts>
+    <sharingReasons>
+        <label><!-- Share record with Manager and HR Manager --></label>
+        <name>Share_record_with_Manager_and_HR_Manager</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please read and acknowledge Repayment Agreement. --></errorMessage>
+        <name>AcknowledgeRepaymentAgreement</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- HR Manager cannot be same as Requester. --></errorMessage>
+        <name>IsHR_ManagerSameAsRequester</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Manager cannot be same as Requester. --></errorMessage>
+        <name>IsManagerSameAsRequester</name>
+    </validationRules>
+</CustomObjectTranslation>

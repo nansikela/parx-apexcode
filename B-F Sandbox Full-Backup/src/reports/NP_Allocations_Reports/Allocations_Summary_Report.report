@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Promotion_Material_Item__c.Allocations__r$Brand__c</field>
+    </columns>
+    <columns>
+        <field>Promotion_Material_Item__c.Allocations__r$Item_Cost__c</field>
+    </columns>
+    <columns>
+        <field>Promotion_Material_Item__c.Allocations__r$Ship_To_Qty__c</field>
+    </columns>
+    <columns>
+        <field>Promotion_Material_Item__c.Allocations__r$Total_Spend__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Allocations Summary Report</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Promotion_Material_Item__c.Allocations__r$Market_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Promotion_Material_Item__c.Allocations__r$Ship_To__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Promotion_Material_Item__c.Allocations__r$Promotion__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Allocations Summary Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Promotion_Material_Items_with_Allocations__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Promotion_Material_Item__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

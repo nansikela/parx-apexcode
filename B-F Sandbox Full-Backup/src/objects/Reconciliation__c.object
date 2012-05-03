@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>This object contains detailed information regarding each reconciliation that occurs.</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account_Number1__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reconciliation_Accounts__r.Account_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Number__c</fullName>
+        <externalId>false</externalId>
+        <label>Account Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Prime__c</fullName>
+        <externalId>false</externalId>
+        <formula>LEFT(Account_Number1__c, 2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Prime</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Actual_USD__c</fullName>
+        <description>Actual USD stored in SAP</description>
+        <externalId>false</externalId>
+        <label>Actual - USD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Balance_Local__c</fullName>
+        <description>Balance in local currency</description>
+        <externalId>false</externalId>
+        <label>Balance - Local</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Balance_USD__c</fullName>
+        <externalId>false</externalId>
+        <formula>Balance_Local__c  *  Exchange_Rate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Balance as calculated by exchange rate</inlineHelpText>
+        <label>Balance - USD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Company_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reconciliation_Accounts__r.Company_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Company Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_of_Reconciliation__c</fullName>
+        <externalId>false</externalId>
+        <label>Date of Reconciliation</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reconciliation_Accounts__r.Description__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Description</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Exchange_Rate__c</fullName>
+        <description>Stores exchange rate for calculations</description>
+        <externalId>false</externalId>
+        <label>Exchange Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>8</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Explanation__c</fullName>
+        <externalId>false</externalId>
+        <label>Proposed Adjustment Explanation</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Fiscal_Year__c</fullName>
+        <defaultValue>&quot;FY&quot;</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>ex. FY12</inlineHelpText>
+        <label>Fiscal Year</label>
+        <length>4</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Account_1__c</fullName>
+        <description>first account to offset PA</description>
+        <externalId>false</externalId>
+        <label>Account 1</label>
+        <length>7</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Account_2__c</fullName>
+        <externalId>false</externalId>
+        <label>Account 2</label>
+        <length>7</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Account_3__c</fullName>
+        <externalId>false</externalId>
+        <label>Account 3</label>
+        <length>7</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Account_4__c</fullName>
+        <externalId>false</externalId>
+        <label>Account 4</label>
+        <length>7</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Account_5__c</fullName>
+        <externalId>false</externalId>
+        <label>Account 5</label>
+        <length>7</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Value_1__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>First of 5 values to offset PA</description>
+        <externalId>false</externalId>
+        <label>USD Value 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Value_2__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>USD Value 2</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Value_3__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>USD Value 3</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Value_4__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>USD Value 4</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PAE_Value_5__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>USD Value 5</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Party_Responsible__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Party Responsible</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Reconciliations</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Prepared_By__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reconciliation_Accounts__r.Party_Responsible__r.FirstName +&quot; &quot;+ Reconciliation_Accounts__r.Party_Responsible__r.LastName</formula>
+        <label>Prepared By</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Proposed_Adjustment__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please explain adjustment below and enter offsetting line items in the Proposed Adjustment Offsetting Entry section</inlineHelpText>
+        <label>Proposed Adjustment - USD</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Quarter__c</fullName>
+        <externalId>false</externalId>
+        <label>Quarter</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Reconciliation_Accounts__c</fullName>
+        <externalId>false</externalId>
+        <label>Reconciliation Accounts</label>
+        <referenceTo>Reconciliation_Accounts__c</referenceTo>
+        <relationshipLabel>Reconciliations</relationshipLabel>
+        <relationshipName>Reconciliations</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Reviewed_By__c</fullName>
+        <externalId>false</externalId>
+        <formula>Reconciliation_Accounts__r.Reviewer__r.FirstName +&quot; &quot;+ Reconciliation_Accounts__r.Reviewer__r.LastName</formula>
+        <label>Reviewed By</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reviewer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Reviewer</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>ReconciliationsReviewer</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pre-Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pending</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Variance__c</fullName>
+        <description>Difference between converted USD and actual USD</description>
+        <externalId>false</externalId>
+        <formula>Balance_USD__c - Actual_USD__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Calculated Balance - Actual Balance (USD)</inlineHelpText>
+        <label>FX Variance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <label>Reconciliation</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Number__c</columns>
+        <columns>Balance_Local__c</columns>
+        <columns>Exchange_Rate__c</columns>
+        <columns>Balance_USD__c</columns>
+        <columns>Actual_USD__c</columns>
+        <columns>Variance__c</columns>
+        <columns>Status__c</columns>
+        <columns>Party_Responsible__c</columns>
+        <columns>Reviewer__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>R-{0000}</displayFormat>
+        <label>Reconciliation Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Reconciliations</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Account_Number1__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Company_Code__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Fiscal_Year__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Quarter__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Party_Responsible__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Reviewer__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Account_Number1__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Company_Code__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Fiscal_Year__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Quarter__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Party_Responsible__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Reviewer__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>Account_Number1__c</searchFilterFields>
+        <searchFilterFields>Company_Code__c</searchFilterFields>
+        <searchFilterFields>Fiscal_Year__c</searchFilterFields>
+        <searchFilterFields>Quarter__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchFilterFields>Party_Responsible__c</searchFilterFields>
+        <searchFilterFields>Reviewer__c</searchFilterFields>
+        <searchResultsAdditionalFields>Account_Number1__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Company_Code__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Fiscal_Year__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Quarter__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Party_Responsible__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Reviewer__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Proposed_Adjustment_Entry</fullName>
+        <active>true</active>
+        <description>Make sure the proposed adjustment entry values add up to the opposite of the proposed adjustment</description>
+        <errorConditionFormula>-Proposed_Adjustment__c   &lt;&gt;  PAE_Value_1__c + PAE_Value_2__c + PAE_Value_3__c +  PAE_Value_4__c + PAE_Value_5__c</errorConditionFormula>
+        <errorMessage>Please make sure the values in the in the Proposed Adjustment Entry section completely offset the Proposed Adjustment field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Require_PA_Explanation</fullName>
+        <active>true</active>
+        <description>require explanation field if proposed adjustment is not 0</description>
+        <errorConditionFormula>Proposed_Adjustment__c &lt;&gt; 0 &amp;&amp;  ISBLANK( Explanation__c )</errorConditionFormula>
+        <errorDisplayField>Explanation__c</errorDisplayField>
+        <errorMessage>Please enter an explanation for the Proposed Adjustment.</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Transfer Order</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Transfer Orders</value>
+    </caseValues>
+    <fields>
+        <help><!-- The contact person which ordered the products --></help>
+        <label><!-- Customer Contact --></label>
+        <name>Customer_Contact__c</name>
+        <relationshipLabel><!-- Placed Transfer Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The customer (account) which will receive the ordered products --></help>
+        <label><!-- Customer --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- Placed Transfer Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The date the delivery is scheduled for. --></help>
+        <label><!-- Delivery Date --></label>
+        <name>Delivery_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date on which the order was captured --></help>
+        <label><!-- Order Date --></label>
+        <name>Order_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The sales rep of Brown-Forman which captured the transfer order --></help>
+        <label><!-- SR --></label>
+        <name>SR__c</name>
+        <relationshipLabel><!-- Transfer Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The contact person of the supplier which is responsible for the incoming transfer order. --></help>
+        <label><!-- Supplier Contact --></label>
+        <name>Supplier_Contact__c</name>
+        <relationshipLabel><!-- Incoming Transfer Orders --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- The supplier partner (account) which will deliver the ordered products to the customer (account) --></help>
+        <label><!-- Supplier --></label>
+        <name>Supplier__c</name>
+        <relationshipLabel><!-- Incoming Transfer Orders --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Transfer Order Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer --></label>
+            <section>Customer</section>
+        </sections>
+        <sections>
+            <label><!-- Supplier --></label>
+            <section>Supplier</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

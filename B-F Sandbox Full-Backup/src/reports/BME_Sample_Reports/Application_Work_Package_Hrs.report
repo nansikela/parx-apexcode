@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Work_Package__c.Force_com_Application__c</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Work_Package__c.Description__c</field>
+    </columns>
+    <columns>
+        <field>Work_Package__c.Priority__c</field>
+    </columns>
+    <columns>
+        <field>Work_Package__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>Work_Package__c.Estimated_Start_Date__c</field>
+    </columns>
+    <columns>
+        <field>Work_Package__c.Estimated_Completion_Date__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Show me the Total LOE per work package.</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Work_Package__c.Total_Level_of_Effort__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Work_Package__c.Work_Package_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Application Work Package Hours</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Work_Package__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Work_Package__c.Estimated_Completion_Date__c</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,74 @@
+<apex:page standardController="Promotion_Activity__c" extensions="promotionActivityGanttController" cache="false">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.promotionActivityGantt,'gantt.css')}" />
+    <script type="text/javascript" src="{!URLFOR($Resource.promotionActivityGantt,'gantt.js')}"></script>
+    <style>
+        .filtercontainer{
+            width:700px;
+        }
+    </style>
+      </head>
+
+  <body>
+  <apex:form >
+  <apex:pageBlock >
+  <apex:outputpanel layout="block" styleclass="filtercontainer">
+      <apex:pageBlockSection columns="4" >
+          <apex:pageBlockSectionItem >
+              <apex:outputLabel value="Brand" for="BrandFilter"/>
+              <apex:selectList value="{!selBrand}"  size="1" id="BrandFilter" >
+                  <apex:selectOptions value="{!BrandsList}"/>
+              </apex:selectList>
+          </apex:pageBlockSectionItem>    
+          <apex:pageBlockSectionItem >    
+              <apex:outputLabel value="Market" for="MarketFilter"/>
+              <apex:selectList value="{!selMarket}"  size="1" id="MarketFilter" >
+                  <apex:selectOptions value="{!MarketsList}"/>
+              </apex:selectList>
+          </apex:pageBlockSectionItem>
+          <apex:pageBlockSectionItem >    
+              <apex:outputLabel value="Type" for="TypeFilter"/>
+              <!--<apex:selectList value="{!selType}"  size="1" id="TypeFilter" >
+                  <apex:selectOptions value="{!TypesList}"/>
+              </apex:selectList>-->
+              <apex:inputField value="{!Promotion_Activity__c.Promotion_Type__c}" id="selType"/>
+          </apex:pageBlockSectionItem>     
+          <apex:pageBlockSectionItem >
+              <apex:commandButton action="{!refresh}" status="status" value="Apply Filter" />
+          </apex:pageBlockSectionItem>
+    </apex:pageBlockSection>
+  </apex:outputPanel>
+  </apex:pageBlock>
+    </apex:form>
+    <div id="gantt"></div>
+
+    <script>
+          var type = 'N/A';
+          var typeid = 0;
+          var i = 100;  
+          var g = new JSGantt.GanttChart('g',document.getElementById('gantt'), 'month');
+          g.setShowRes(1);
+          g.setShowDur(0);
+          g.setShowComp(1);
+          g.setShowStartDate(0);
+          g.setShowEndDate(0);
+          <apex:repeat value="{!PromotionActivities}" var="p">
+              if (type != '{!p.Promotion_Type__c}') {
+                  typeid++;
+                  g.AddTaskItem(new JSGantt.TaskItem(typeid, '<b>{!p.Promotion_Type__c}</b>', '', '','','','','', '',1,'','1','',''));
+              }
+            g.AddTaskItem(new JSGantt.TaskItem(i, "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{!p.Name}", '<apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!p.Begin_Date__c}" /></apex:outputText>', '<apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!p.End_Date__c}" /></apex:outputText>','a36209','','',"{!p.Brand__r.Name}", '{!p.Market__r.Name}','',typeid,'','',''));
+            type = '{!p.Promotion_Type__c}';
+            i++;
+          </apex:repeat>
+          g.Draw();   
+          g.DrawDependencies();
+    </script>
+
+  </body>
+
+
+
+</apex:page>

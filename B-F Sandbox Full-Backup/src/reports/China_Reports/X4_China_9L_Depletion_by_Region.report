@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Depletion__c.Nine_L_Case__c</field>
+    </columns>
+    <currency>CNY</currency>
+    <filter>
+        <criteriaItems>
+            <column>CUST_CURRENCY_ISO_CODE</column>
+            <operator>equals</operator>
+            <value>CNY</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Depletion__c.Brand__c</column>
+            <operator>equals</operator>
+            <value>Jack Daniel&apos;s</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Month</dateGranularity>
+        <field>Depletion__c.Month_Of_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_$Account.Region__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_$Account.Supplier__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>4. China 9L Depletion by Region</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntity$Depletion__c@Depletion__c.Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Depletion__c.Month_Of_Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Custom object to support the offline mobilization of outlet visits for the Global CRM project</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Available</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Bottle_Price_Special__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Bottle Price Special</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Bottle_Price__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Bottle Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Data_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Available__c,1,
+IF( Bottle_Price__c &gt; 0,1,
+IF( Bottle_Price_Special__c , 1,
+IF( Depletions_Last_Month__c &gt; 0, 1,
+IF( Depletions_Next_Month__c &gt; 0, 1,
+IF( Depletions_This_Month__c &gt; 0, 1,
+IF( Double_Price__c &gt; 0, 1,
+IF( Double_Price_Special__c,1,
+IF( Drink_Price__c &gt; 0, 1,
+IF( Drink_Price_Special__c,1,
+IF( Facing__c &gt; 0, 1,
+IF( NOT(ISPICKVAL(Shelf__c,&quot;&quot;)),1,0
+))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Data Flag</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Depletions_Last_Month_Date__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Depletions Last Month Date</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Depletions_Last_Month__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Depletions Last Month</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Depletions_Next_Month_Date__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Depletions Next Month Date</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Depletions_Next_Month__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Depletions Next Month</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Depletions_This_Month_Date__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Depletions This Month Date</label>
+        <length>10</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Depletions_This_Month__c</fullName>
+        <externalId>false</externalId>
+        <label>Depletions This Month</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Double_Price_Special__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Double Price Special</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Double_Price__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Double Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Drink_Price_Special__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Drink Price Special</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Drink_Price__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Drink Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Facing__c</fullName>
+        <description>Infowelders (DMS)</description>
+        <externalId>false</externalId>
+        <label>Facing</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Location_Off__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Free Place</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Glass Cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pallet Cage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chiller Cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf &amp; Chiller Cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>checkout/information</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Location_On__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <picklist>
+            <picklistValues>
+                <fullName>BackBar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Menu</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Listing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pouring</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Outlet_Visit_Item_Key__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Visit Item Key</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Outlet_Visit__c</fullName>
+        <externalId>false</externalId>
+        <label>Outlet Visit</label>
+        <referenceTo>Outlet_Visit__c</referenceTo>
+        <relationshipLabel>Offline Outlet Visit Items</relationshipLabel>
+        <relationshipName>Offline_Outlet_Visit_Items</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Product_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>Product_ID</label>
+        <length>25</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shelf__c</fullName>
+        <externalId>false</externalId>
+        <label>Shelf</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1. Shelf from Bottom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2. Shelf from Bottom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3. Shelf from Bottom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4. Shelf from Bottom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5. Shelf from Bottom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6. Shelf from Bottom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>7. euro-palette</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Space_Placement__c</fullName>
+        <externalId>false</externalId>
+        <label>Space</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Free Place</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Glass Cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pallet Cage</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chiller Cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf &amp; Chiller Cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>checkout/information</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <label>Offline Outlet Visit Item</label>
+    <nameField>
+        <label>Offline Product Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Offline Outlet Visit Items</pluralLabel>
+    <recordTypes>
+        <fullName>X1</fullName>
+        <active>true</active>
+        <description>Record type to facilitate VF page layout 1</description>
+        <label>1</label>
+        <picklistValues>
+            <picklist>Shelf__c</picklist>
+            <values>
+                <fullName>1%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E euro-palette</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Space_Placement__c</picklist>
+            <values>
+                <fullName>Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Place</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glass Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Cage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf %26 Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>checkout%2Finformation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>X2</fullName>
+        <active>true</active>
+        <description>Record type to facilitate VF page layout 2</description>
+        <label>2</label>
+        <picklistValues>
+            <picklist>Location_Off__c</picklist>
+            <values>
+                <fullName>Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Place</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glass Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Cage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf %26 Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>checkout%2Finformation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Location_On__c</picklist>
+            <values>
+                <fullName>BackBar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Menu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pouring</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Shelf__c</picklist>
+            <values>
+                <fullName>1%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E euro-palette</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Space_Placement__c</picklist>
+            <values>
+                <fullName>Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Place</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glass Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Cage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf %26 Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>checkout%2Finformation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>X3</fullName>
+        <active>true</active>
+        <description>Record type to facilitate VF page layout 3</description>
+        <label>3</label>
+        <picklistValues>
+            <picklist>Location_Off__c</picklist>
+            <values>
+                <fullName>Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Place</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glass Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Cage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf %26 Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>checkout%2Finformation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Location_On__c</picklist>
+            <values>
+                <fullName>BackBar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Listing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Menu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pouring</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Shelf__c</picklist>
+            <values>
+                <fullName>1%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6%2E Shelf from Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7%2E euro-palette</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Space_Placement__c</picklist>
+            <values>
+                <fullName>Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dummy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Free Place</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Glass Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pallet Cage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shelf %26 Chiller Cabinet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>checkout%2Finformation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

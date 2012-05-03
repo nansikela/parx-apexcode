@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Product Launch</relationshipLabel>
+        <relationshipName>Product_Launch</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <trackHistory>false</trackHistory>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Do we need a End Date?</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Volume__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Volume</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Initial__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Field to be used in Trigger logic &quot;Only&quot; - When the record is created the Initial Flag is unchecked, then a new Product Launch Detail Record is created</description>
+        <externalId>false</externalId>
+        <label>Initial</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Launch_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Launch Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Performance_Act_vs_Estimate_List__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?chxl=0:|Low+|Med|On+Target&amp;chxt=y&amp;chs=125x75&amp;cht=gm&amp;chds=-5,&quot;+Text( Estimated_Volume__c )+&quot;&amp;chd=t:&quot;+Text( Total_Volume__c )+&quot;&amp;chl=Volume&quot;,&quot;No Image Available&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Actual vs Estimate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Performance_Act_vs_Estimate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?chxl=0:|Low+|Med|On+Target&amp;chxt=y&amp;chs=250x150&amp;cht=gm&amp;chds=-5,&quot;+Text( Estimated_Volume__c )+&quot;&amp;chd=t:&quot;+Text( Total_Volume__c )+&quot;&amp;chl=Volume&quot;,&quot;No Image Available&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Performance Act vs Estimate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Performance_Trend__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?chxr=0,0,46&amp;chxt=y&amp;chs=190x125&amp;cht=lc&amp;chco=3072F3&amp;chd=s:MNNPVXYY&amp;chg=14.3,-1,1,1&amp;chls=2,24,0&amp;chm=B,76A4FB,0,0,0&quot;, &quot;No Image&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Performance Trend</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Placement__c</fullName>
+        <externalId>false</externalId>
+        <label>Placement</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Pricing_Bar_Chart__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?chxl=1:|%2450.99+(30)|%2449.99+(53)|%2448.99+(55)|%2447.99+(60)|&amp;chxr=0,0,105|1,0,105&amp;chxs=0,676767,11.5,0.5,lt,676767|1,676767,11.5,0,lt,676767&amp;chxtc=0,10|1,10&amp;chxt=x,y&amp;chbh=r&amp;chs=300x150&amp;cht=bhg&amp;chco=80C65A&amp;chd=s:ligS&amp;chma=0,0,0,5&amp;chm=o,FF0000,0,-1,7&quot;, &quot;No Image&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pricing Chart</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_Rollout_Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Rollout - Description</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Winter Jack</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spicy SoCo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finlandia Redberry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Product Launch</relationshipLabel>
+        <relationshipName>Product_Launch</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Remarks__c</fullName>
+        <externalId>false</externalId>
+        <label>Remarks</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Segment_1__c</fullName>
+        <description>Segment_1</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Segment_1</inlineHelpText>
+        <label>Segment_1</label>
+        <summarizedField>Product_Launch_Detail__c.Volume__c</summarizedField>
+        <summaryFilterItems>
+            <field>Product_Launch_Detail__c.Store_Main_Segement__c</field>
+            <operation>equals</operation>
+            <value>1st Segment</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Product_Launch_Detail__c.Product_Launch__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Segment_2__c</fullName>
+        <description>Segment_2</description>
+        <externalId>false</externalId>
+        <label>Segment_2</label>
+        <summarizedField>Product_Launch_Detail__c.Volume__c</summarizedField>
+        <summaryFilterItems>
+            <field>Product_Launch_Detail__c.Store_Main_Segement__c</field>
+            <operation>equals</operation>
+            <value>2nd Segment</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Product_Launch_Detail__c.Product_Launch__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Segment_3__c</fullName>
+        <description>Segment_3</description>
+        <externalId>false</externalId>
+        <label>Segment_3</label>
+        <summarizedField>Product_Launch_Detail__c.Volume__c</summarizedField>
+        <summaryFilterItems>
+            <field>Product_Launch_Detail__c.Store_Main_Segement__c</field>
+            <operation>equals</operation>
+            <value>3rd  Segment</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Product_Launch_Detail__c.Product_Launch__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Segment_Performance_Chart__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?chs=250x175&amp;cht=v&amp;chco=FF6342,ADDE63,63C6DE&amp;chd=t:&quot;+TRIM( Segment_Performance_Data_F__c )+&quot;,30,30,30,10&amp;chdl=1st+Segment+|2st+Segment+|3rd+Segment+&amp;chtt=&quot;,&quot;No Image Available&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Segment Performance Chart</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Segment_Performance_Data_F__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(Segment_1__c) &amp; &apos;,&apos; &amp;Text(Segment_2__c)&amp; &apos;,&apos; &amp;Text(Segment_3__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Segment Performance Data</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Shelf__c</fullName>
+        <externalId>false</externalId>
+        <label>Shelf</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Middle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bottom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Store_Sub_Segment__c</fullName>
+        <description>Purpose for this is solely for the purposes of the formula to get the &quot;Text&quot; values</description>
+        <externalId>false</externalId>
+        <label>Store Sub-Segment</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Christmas Promotion Area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Punch Placement</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf Header (Display) - Spirit Dept</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf Header (Shelf) - Spirit Dept</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf Header (Display) - Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf Header (Shelf) - Promo</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Display</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Shelf</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Segment_Performance_Data__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text( Sub_Segment_rollup1__c) &amp; &apos;|&apos; &amp;Text(Sub_Segment_Rollup2__c )&amp; &apos;|&apos; &amp;Text(Sub_Segment_Rollup3__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sub Segment Performance Data</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sub_Segment_Rollup2__c</fullName>
+        <description>Display</description>
+        <externalId>false</externalId>
+        <label>Sub Segment (Rollup2)</label>
+        <summarizedField>Product_Launch_Detail__c.Volume__c</summarizedField>
+        <summaryFilterItems>
+            <field>Product_Launch_Detail__c.Store_Sub_Segement__c</field>
+            <operation>equals</operation>
+            <value>, Shelf Header (Display)  - Spirit Dept, Shelf Header (Display)  - Promo</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Product_Launch_Detail__c.Product_Launch__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Segment_Rollup3__c</fullName>
+        <description>Shelf</description>
+        <externalId>false</externalId>
+        <label>Sub Segment (Rollup3)</label>
+        <summarizedField>Product_Launch_Detail__c.Volume__c</summarizedField>
+        <summaryFilterItems>
+            <field>Product_Launch_Detail__c.Store_Sub_Segement__c</field>
+            <operation>equals</operation>
+            <value>, Shelf Header (Shelf)  - Spirit Dept, Shelf Header (Shelf)  - Promo</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Product_Launch_Detail__c.Product_Launch__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Sub_Segment_Volume__c</fullName>
+        <description>Field Values are Hard Coded - Values coming in from a combination of Roll-up Summary Fields and then concatenated together in a string in the follow format (#|#|#)</description>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?chxs=0,676767,14.5&amp;chxt=x&amp;chs=300x150&amp;cht=p3&amp;chco=7777CC|76A4FB|3399CC|3366CC&amp;chd=s:jbY&amp;chdl=Christmas|Display|Shelf&amp;chdlp=t&amp;chl=&quot;+Sub_Segment_Performance_Data__c+&quot;&amp;chma=|0,10&quot;, &quot;No Image&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sub Segment (Volume)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sub_Segment_rollup1__c</fullName>
+        <description>Christmas Promotion</description>
+        <externalId>false</externalId>
+        <label>Sub Segment (Rollup1)</label>
+        <summarizedField>Product_Launch_Detail__c.Volume__c</summarizedField>
+        <summaryFilterItems>
+            <field>Product_Launch_Detail__c.Store_Sub_Segement__c</field>
+            <operation>equals</operation>
+            <value>Christmas Promotion Area</value>
+        </summaryFilterItems>
+        <summaryForeignKey>Product_Launch_Detail__c.Product_Launch__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Survey_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Survey Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Sync__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>This Flag will be updates via Workflow when date are manipulated via workflow</description>
+        <externalId>false</externalId>
+        <label>Sync</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Total_Volume__c</fullName>
+        <description>Total Volume of the Product Launch</description>
+        <externalId>false</externalId>
+        <label>Total Volume</label>
+        <summarizedField>Product_Launch_Detail__c.Volume__c</summarizedField>
+        <summaryForeignKey>Product_Launch_Detail__c.Product_Launch__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Volume__c</fullName>
+        <externalId>false</externalId>
+        <label>Volume</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Week__c</fullName>
+        <externalId>false</externalId>
+        <label>Visits</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>of_Goal__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Volume__c  /  Estimated_Volume__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>% of Goal</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <label>Product Launch</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>PL-{0}</displayFormat>
+        <label>Product Launch Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Product Launch</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

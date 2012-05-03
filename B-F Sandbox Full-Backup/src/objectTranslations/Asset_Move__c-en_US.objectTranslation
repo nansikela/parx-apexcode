@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Asset Move</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Asset Move</value>
+    </caseValues>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Asset Move (Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Actual Placement Date --></label>
+        <name>Actual_Placement_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Serial # --></label>
+        <name>Asset_Serial__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Sub Type --></label>
+        <name>Asset_Sub_Type__c</name>
+        <relationshipLabel><!-- Asset Move --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset Type --></label>
+        <name>Asset_Type__c</name>
+        <relationshipLabel><!-- Asset Move --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset --></label>
+        <name>Asset__c</name>
+        <relationshipLabel><!-- Asset History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Asset Move --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Enter Serial# --></label>
+        <name>Enter_Serial__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Branding --></label>
+        <name>External_Branding__c</name>
+        <relationshipLabel><!-- Asset Move (External Branding) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- &quot;State&quot; Designated Fridge Depot --></help>
+        <label><!-- Fridge Depot --></label>
+        <name>Fridge_Depot__c</name>
+        <relationshipLabel><!-- Asset Move (Fridge Depot) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fridge In Fill --></label>
+        <name>Fridge_In_Fill__c</name>
+        <relationshipLabel><!-- Asset Move (Fridge In Fill) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Internal Branding --></label>
+        <name>Internal_Branding__c</name>
+        <relationshipLabel><!-- Asset Move (Internal Branding) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Model --></label>
+        <name>Model__c</name>
+        <relationshipLabel><!-- Asset Move --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Move Complete --></label>
+        <name>Move_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- New Account --></label>
+        <name>New_Account__c</name>
+        <relationshipLabel><!-- Asset History --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- New Address --></label>
+        <name>New_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- New City --></label>
+        <name>New_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- New State --></label>
+        <name>New_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- New Venue Lookup --></label>
+        <name>New_Venue_Lookup__c</name>
+        <relationshipLabel><!-- Asset Move (New Venue Lookup) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- New Venue Name --></label>
+        <name>New_Venue_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- New Venue --></label>
+        <name>New_Venue__c</name>
+    </fields>
+    <fields>
+        <label><!-- New Zip --></label>
+        <name>New_Zip__c</name>
+    </fields>
+    <fields>
+        <label><!-- PFM Asset Tag --></label>
+        <name>PFM_Asset_Tag__c</name>
+    </fields>
+    <fields>
+        <label><!-- PFM Comments --></label>
+        <name>PFM_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- PFM Serial Number --></label>
+        <name>PFM_Serial_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pick Up Date --></label>
+        <name>Pick_Up_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Venue Name --></label>
+        <name>Previous_Venue_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Previous Venue --></label>
+        <name>Previous_Venue__c</name>
+        <relationshipLabel><!-- Asset Move (Previous Venue) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>Reason__c</name>
+        <picklistValues>
+            <masterLabel>Closing</masterLabel>
+            <translation><!-- Closing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Competitor</masterLabel>
+            <translation><!-- Competitor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cool Room</masterLabel>
+            <translation><!-- Cool Room --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Down Sizing</masterLabel>
+            <translation><!-- Down Sizing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROI</masterLabel>
+            <translation><!-- ROI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Upgrading</masterLabel>
+            <translation><!-- Upgrading --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RecordTypeName --></label>
+        <name>RecordTypeName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- Requested Placement Date --></label>
+        <name>Requested_Placement_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Serial Lookup --></label>
+        <name>Serial_Lookup__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Error</masterLabel>
+            <translation><!-- In Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Move</masterLabel>
+            <translation><!-- Process Move --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Contact has agreed to the Placement Terms &amp; Conditions. --></help>
+        <label><!-- Terms &amp; Conditions --></label>
+        <name>Terms_Conditions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type Of Placement --></label>
+        <name>Type_Of_Placement__c</name>
+        <picklistValues>
+            <masterLabel>Permanent</masterLabel>
+            <translation><!-- Permanent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Temporary</masterLabel>
+            <translation><!-- Temporary --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Zip --></label>
+        <name>Zip__c</name>
+    </fields>
+    <layouts>
+        <layout>Asset Move Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Movement Dates --></label>
+            <section>Movement Dates</section>
+        </sections>
+        <sections>
+            <label><!-- New Address --></label>
+            <section>New Address</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Found Fridge Form</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Found Fridge Locked Form</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Permanent Placement</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Movement Dates --></label>
+            <section>Movement Dates</section>
+        </sections>
+        <sections>
+            <label><!-- New Address --></label>
+            <section>New Address</section>
+        </sections>
+        <sections>
+            <label><!-- PFM Use Only --></label>
+            <section>PFM Use Only</section>
+        </sections>
+        <sections>
+            <label><!-- State Fridge Depot --></label>
+            <section>State Fridge Depot</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Permanent Placement Locked</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Movement Dates --></label>
+            <section>Movement Dates</section>
+        </sections>
+        <sections>
+            <label><!-- New Address --></label>
+            <section>New Address</section>
+        </sections>
+        <sections>
+            <label><!-- PFM Use Only --></label>
+            <section>PFM Use Only</section>
+        </sections>
+        <sections>
+            <label><!-- State Fridge Depot --></label>
+            <section>State Fridge Depot</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Pick Up Form</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- PFM Use Only --></label>
+            <section>PFM Use Only</section>
+        </sections>
+        <sections>
+            <label><!-- Pickup Address And Details --></label>
+            <section>Pickup Address And Details</section>
+        </sections>
+        <sections>
+            <label><!-- State Fridge Depot --></label>
+            <section>State Fridge Depot</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Pick Up Locked Form</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- PFM Use Only --></label>
+            <section>PFM Use Only</section>
+        </sections>
+        <sections>
+            <label><!-- Pickup Address And Details --></label>
+            <section>Pickup Address And Details</section>
+        </sections>
+        <sections>
+            <label><!-- State Fridge Depot --></label>
+            <section>State Fridge Depot</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Temporary Placement</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Movement Dates --></label>
+            <section>Movement Dates</section>
+        </sections>
+        <sections>
+            <label><!-- New Address --></label>
+            <section>New Address</section>
+        </sections>
+        <sections>
+            <label><!-- PFM Use Only --></label>
+            <section>PFM Use Only</section>
+        </sections>
+        <sections>
+            <label><!-- State Fridge Depot --></label>
+            <section>State Fridge Depot</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Temporary Placement Locked</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Movement Dates --></label>
+            <section>Movement Dates</section>
+        </sections>
+        <sections>
+            <label><!-- New Address --></label>
+            <section>New Address</section>
+        </sections>
+        <sections>
+            <label><!-- PFM Use Only --></label>
+            <section>PFM Use Only</section>
+        </sections>
+        <sections>
+            <label><!-- State Fridge Depot --></label>
+            <section>State Fridge Depot</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Found Fridge --></label>
+        <name>Found_Fridge</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Found Fridge Locked --></label>
+        <name>Found_Fridge_Locked</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Permanent Placement --></label>
+        <name>Permanent_Delivery</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Permanent Placement Locked --></label>
+        <name>Permanent_Placement_Locked</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Pickup --></label>
+        <name>Pickup</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Pickup Locked --></label>
+        <name>Pickup_Locked</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Temporary Placement --></label>
+        <name>Temporary_Placement</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Temporary Placement Locked --></label>
+        <name>Temporary_Placement_Locked</name>
+    </recordTypes>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

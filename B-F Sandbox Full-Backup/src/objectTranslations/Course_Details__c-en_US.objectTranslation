@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Course Details</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Course Details</value>
+    </caseValues>
+    <fields>
+        <help><!-- Enter Course # --></help>
+        <label><!-- Course# --></label>
+        <name>Course__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Cumulative Hours --></help>
+        <label><!-- Cumulative Hrs --></label>
+        <name>Cumulative_Hrs__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Hours --></help>
+        <label><!-- Hrs --></label>
+        <name>Hrs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tuition Refund --></label>
+        <name>Tuition_Refund__c</name>
+        <relationshipLabel><!-- Course Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Enter Tuition Amount --></help>
+        <label><!-- Tuition --></label>
+        <name>Tuition__c</name>
+    </fields>
+    <layouts>
+        <layout>Course Details Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Defect Requirement Join</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Defect Requirement Joins</value>
+    </caseValues>
+    <fields>
+        <label><!-- Defect --></label>
+        <name>Defect__c</name>
+        <relationshipLabel><!-- Requirements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Requirement --></label>
+        <name>Requirement__c</name>
+        <relationshipLabel><!-- Defects --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Defect Requirement Join Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Venue</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Venues</value>
+    </caseValues>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Venues --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Area Type --></label>
+        <name>Area_Type__c</name>
+        <picklistValues>
+            <masterLabel>Back</masterLabel>
+            <translation><!-- Back --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Beer Garden</masterLabel>
+            <translation><!-- Beer Garden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cocktail</masterLabel>
+            <translation><!-- Cocktail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Down Stairs</masterLabel>
+            <translation><!-- Down Stairs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Front/Main</masterLabel>
+            <translation><!-- Front/Main --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 2</masterLabel>
+            <translation><!-- Level 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 3</masterLabel>
+            <translation><!-- Level 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 4</masterLabel>
+            <translation><!-- Level 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level1</masterLabel>
+            <translation><!-- Level1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lounge</masterLabel>
+            <translation><!-- Lounge --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle</masterLabel>
+            <translation><!-- Middle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Night Club</masterLabel>
+            <translation><!-- Night Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant</masterLabel>
+            <translation><!-- Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sports</masterLabel>
+            <translation><!-- Sports --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1 Convenience</masterLabel>
+            <translation><!-- T1 Convenience --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2 Main Stream</masterLabel>
+            <translation><!-- T2 Main Stream --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3 Barn Big Box</masterLabel>
+            <translation><!-- T3 Barn Big Box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Up Stairs</masterLabel>
+            <translation><!-- Up Stairs --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>Off</masterLabel>
+            <translation><!-- Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On</masterLabel>
+            <translation><!-- On --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notes --></label>
+        <name>Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Segment --></label>
+        <name>Segment__c</name>
+        <picklistValues>
+            <masterLabel>NIL</masterLabel>
+            <translation><!-- NIL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q1</masterLabel>
+            <translation><!-- Q1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q2</masterLabel>
+            <translation><!-- Q2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q3</masterLabel>
+            <translation><!-- Q3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q4</masterLabel>
+            <translation><!-- Q4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T1</masterLabel>
+            <translation><!-- T1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T2</masterLabel>
+            <translation><!-- T2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T3</masterLabel>
+            <translation><!-- T3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UNC</masterLabel>
+            <translation><!-- UNC --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Venue Name --></label>
+        <name>Venue_Name__c</name>
+    </fields>
+    <layouts>
+        <layout>Venue Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

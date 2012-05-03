@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Use Case Requirement Join</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Use Case Requirement Joins</value>
+    </caseValues>
+    <fields>
+        <label><!-- Requirement --></label>
+        <name>Requirement__c</name>
+        <relationshipLabel><!-- Use Cases --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Use Case --></label>
+        <name>Use_Case__c</name>
+        <relationshipLabel><!-- Requirements --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Use Case Requirement Join Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

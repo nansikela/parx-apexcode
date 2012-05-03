@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Test Case Result</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Test Case Results</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Result By --></label>
+        <name>Result_By__c</name>
+        <relationshipLabel><!-- Test Case Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Passed</masterLabel>
+            <translation><!-- Passed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Test Case Step --></label>
+        <name>Test_Case_Step__c</name>
+        <relationshipLabel><!-- Test Case Results --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Tested On --></label>
+        <name>Tested_On__c</name>
+    </fields>
+    <layouts>
+        <layout>Test Case Result Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

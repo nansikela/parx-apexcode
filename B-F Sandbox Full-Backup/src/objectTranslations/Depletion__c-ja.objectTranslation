@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>販売推移</value>
+    </caseValues>
+    <fields>
+        <label>得意先</label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Depletions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>ボトル</label>
+        <name>Bottles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Custom_Product__c</name>
+        <relationshipLabel><!-- Depletions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Key --></label>
+        <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month Of Date --></label>
+        <name>Month_Of_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field is calculated by multiplying the Bottles by the Product -&gt; Case Multiplier field. --></help>
+        <label><!-- 9L Case --></label>
+        <name>Nine_L_Case__c</name>
+    </fields>
+    <fields>
+        <label>商品</label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Depletions --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Depletion Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Depletion #</nameFieldLabel>
+</CustomObjectTranslation>

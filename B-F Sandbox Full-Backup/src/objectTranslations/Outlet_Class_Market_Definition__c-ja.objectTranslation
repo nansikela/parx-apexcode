@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ｸﾗｼﾌｨｹｰｼｮﾝ 定義</value>
+    </caseValues>
+    <fields>
+        <label><!-- BF Brand --></label>
+        <name>BF_Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer --></label>
+        <name>Consumer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Outlet Class Market Definitions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Monthly Visit Goal --></label>
+        <name>Monthly_Visit_Goal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outlet Class --></label>
+        <name>Outlet_Class__c</name>
+        <relationshipLabel><!-- Outlet Class Market Definitions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- POS --></label>
+        <name>POS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotions --></label>
+        <name>Promotions__c</name>
+    </fields>
+    <fields>
+        <label><!-- 9L Cases --></label>
+        <name>X9L_Cases__c</name>
+    </fields>
+    <layouts>
+        <layout>Outlet Class Market Definition Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Outlet Class Definition</nameFieldLabel>
+</CustomObjectTranslation>

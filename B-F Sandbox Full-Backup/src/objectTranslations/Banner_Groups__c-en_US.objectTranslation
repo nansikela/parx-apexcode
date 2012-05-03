@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Banner Group</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Banner Groups</value>
+    </caseValues>
+    <fields>
+        <label><!-- Banner Group Description --></label>
+        <name>Banner_Group_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Number --></label>
+        <name>Customer_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ownership Group --></label>
+        <name>Ownership_Group__c</name>
+        <relationshipLabel><!-- Banner Groups --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>Sales_Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <layouts>
+        <layout>Banner Group Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- AUD - Banner Groups --></label>
+        <name>AUD_Banner_Groups</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CHN - Banner Groups --></label>
+        <name>CHN_Banner_Groups</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DEU - Banner Groups --></label>
+        <name>DEU_Banner_Groups</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

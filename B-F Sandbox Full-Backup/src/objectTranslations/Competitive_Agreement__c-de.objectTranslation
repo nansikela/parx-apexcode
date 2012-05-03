@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Competitive Agreement --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Competitive Agreement --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Competitive Agreement --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Competitive Agreement --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Competitive Agreement --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Competitive Agreement --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Competitive Agreement --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Competitive Agreement --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Competitive Agreements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Ende des vereinbarten Zeitraums</label>
+        <name>Agreement_End_Date__c</name>
+    </fields>
+    <fields>
+        <label>Beginn des vereinbarten Zeitraums</label>
+        <name>Agreement_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label>Notizen / Anmerkungen</label>
+        <name>Description_Notes__c</name>
+    </fields>
+    <fields>
+        <label>Lieferant</label>
+        <name>Supplier__c</name>
+        <relationshipLabel><!-- Competitive Agreements --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Art der Vereinbarung</label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>First Pour</masterLabel>
+            <translation><!-- First Pour --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- (30) Days Prior Notification --></help>
+        <label><!-- (30) Days Prior Notification --></label>
+        <name>X30_Prior_Notifaction__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Competitive Agreement Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Competative Agreement Name --></nameFieldLabel>
+    <workflowTasks>
+        <name>Competitive_Agreement</name>
+        <subject><!-- Competitive Agreement - Reminder --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

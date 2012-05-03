@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>主要任務テンプレート</value>
+    </caseValues>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>qualitative</masterLabel>
+            <translation><!-- qualitative --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>quantitative</masterLabel>
+            <translation><!-- quantitative --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>Both</masterLabel>
+            <translation><!-- Both --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off</masterLabel>
+            <translation><!-- Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On</masterLabel>
+            <translation><!-- On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>PMI ID</label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label>市場</label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Key Task Templates --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>ｸﾗｼﾌｨｹｰｼｮﾝ</label>
+        <name>Outlet_Class__c</name>
+        <relationshipLabel><!-- Key Task Templates --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Key Task Template Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Key Task Template Name</nameFieldLabel>
+</CustomObjectTranslation>

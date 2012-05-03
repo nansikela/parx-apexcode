@@ -1,0 +1,3 @@
+Your contract with {!Contract.Name} will expire on {!Contract.EndDate}
+
+Link: {!Contract.Link}

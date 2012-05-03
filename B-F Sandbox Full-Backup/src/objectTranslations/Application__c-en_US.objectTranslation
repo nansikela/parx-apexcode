@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Application</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Applications</value>
+    </caseValues>
+    <fields>
+        <help><!-- Is there another cloud provider that meets the needs? --></help>
+        <label><!-- Another cloud provider that meets needs --></label>
+        <name>Another_cloud_provider_that_meets_needs__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is application (or set or redundant applications) a ‘Good Fit’ for PaaS infrastructure given criteria defined above? --></help>
+        <label><!-- App Good Fit fr PaaS infrstr per above --></label>
+        <name>App_Good_Fit_fr_PaaS_infrastrture_per_ab__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is the application redundant with other existing systems? --></help>
+        <label><!-- App redundant with other existng systems --></label>
+        <name>App_redundant_with_other_existng_systems__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Application Administration by Users --></label>
+        <name>Application_Administration_by_Business_U__c</name>
+        <picklistValues>
+            <masterLabel>Not Required</masterLabel>
+            <translation><!-- Not Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation><!-- Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Application ID --></label>
+        <name>Application_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Platform --></label>
+        <name>Application_Platform__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approx LOE --></label>
+        <name>Approx_LOE__c</name>
+    </fields>
+    <fields>
+        <label><!-- Regulatory or Contractual Obligations --></label>
+        <name>Are_there_regulatory_or_contractual_obli__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Assumptions --></label>
+        <name>Assumptions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Auditing &amp; Compliance Check? --></label>
+        <name>Auditing_Compliance_Check__c</name>
+        <picklistValues>
+            <masterLabel>Not Required</masterLabel>
+            <translation><!-- Not Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation><!-- Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Business Unit/Department? --></label>
+        <name>Business_Unit__c</name>
+        <picklistValues>
+            <masterLabel>All BPOs</masterLabel>
+            <translation><!-- All BPOs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corporate  Security</masterLabel>
+            <translation><!-- Corporate  Security --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Field Sales</masterLabel>
+            <translation><!-- Field Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance</masterLabel>
+            <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HR</masterLabel>
+            <translation><!-- HR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Purchasing</masterLabel>
+            <translation><!-- Purchasing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SPA and Field Sales</masterLabel>
+            <translation><!-- SPA and Field Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Southern Comfort Brand Team</masterLabel>
+            <translation><!-- Southern Comfort Brand Team --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Can the application be developed on the Force.com platform? --></help>
+        <label><!-- Can app be developed on Force.com --></label>
+        <name>Can_app_be_developed_on_Force_com__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Does the application conform to current and future architectural standards? --></help>
+        <label><!-- Conforms to current/future arch stds --></label>
+        <name>Conforms_to_current_future_arch_stds__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Content-only websites? --></label>
+        <name>Content__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Current Database Platform? --></label>
+        <name>Current_Database_Platform__c</name>
+        <picklistValues>
+            <masterLabel>MS Access</masterLabel>
+            <translation><!-- MS Access --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS Excel</masterLabel>
+            <translation><!-- MS Excel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notes</masterLabel>
+            <translation><!-- Notes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R/3</masterLabel>
+            <translation><!-- R/3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Current Platform --></label>
+        <name>Current_Platform__c</name>
+    </fields>
+    <fields>
+        <label><!-- Current Technology/Platform --></label>
+        <name>Current_Technology_Platform__c</name>
+        <picklistValues>
+            <masterLabel>MS Access</masterLabel>
+            <translation><!-- MS Access --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS Access/Notes</masterLabel>
+            <translation><!-- MS Access/Notes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS Excel</masterLabel>
+            <translation><!-- MS Excel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Notes</masterLabel>
+            <translation><!-- Notes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP Business Explorer</masterLabel>
+            <translation><!-- SAP Business Explorer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Data Entry Complete --></label>
+        <name>Data_Entry_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Migration --></label>
+        <name>Data_Migration__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Date Required --></label>
+        <name>Date_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email Capabilities? --></label>
+        <name>Email_Capabilities__c</name>
+        <picklistValues>
+            <masterLabel>Outbound Emails</masterLabel>
+            <translation><!-- Outbound Emails --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Expected Quarter for Go-Live(per B-F) --></label>
+        <name>Expected__c</name>
+        <picklistValues>
+            <masterLabel>Q1 2012</masterLabel>
+            <translation><!-- Q1 2012 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q2 2011</masterLabel>
+            <translation><!-- Q2 2011 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q2 2012</masterLabel>
+            <translation><!-- Q2 2012 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q4 2011</masterLabel>
+            <translation><!-- Q4 2011 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Global Vs Regional? --></label>
+        <name>Global__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- High Level Use Case --></label>
+        <name>High__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is there a high cost to maintain  and/or upgrade the application? --></help>
+        <label><!-- High cost to maintain  &amp;/or upgrade App --></label>
+        <name>High_cost_to_maintain_or_upgrade_App__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Hosted or On-Premise? --></label>
+        <name>Hosted_or_On_Premise__c</name>
+        <picklistValues>
+            <masterLabel>Hosted</masterLabel>
+            <translation><!-- Hosted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On-Premise</masterLabel>
+            <translation><!-- On-Premise --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- If Private,how data is shared to users --></label>
+        <name>If_Private_how_can_data_be_shared_acros__c</name>
+        <picklistValues>
+            <masterLabel>By Ownership</masterLabel>
+            <translation><!-- By Ownership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>By Role</masterLabel>
+            <translation><!-- By Role --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- If Yes,list Potential systems --></label>
+        <name>If_Yes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Implement Third Party Services? --></label>
+        <name>Implement_Third_Party__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Key Contacts --></label>
+        <name>Key_Contacts__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mission of the Application --></label>
+        <name>Mission_of_the_Application__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile Interface --></label>
+        <name>Mobile_Interface__c</name>
+        <picklistValues>
+            <masterLabel>Multiple</masterLabel>
+            <translation><!-- Multiple --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Required</masterLabel>
+            <translation><!-- Not Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Multi-Currency Support? --></label>
+        <name>Multi_Currency_Support__c</name>
+        <picklistValues>
+            <masterLabel>Not Required</masterLabel>
+            <translation><!-- Not Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation><!-- Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Multi-Language Support? --></label>
+        <name>Multi_Language__c</name>
+        <picklistValues>
+            <masterLabel>Not Required</masterLabel>
+            <translation><!-- Not Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation><!-- Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- No of Users --></label>
+        <name>No_of_Users__c</name>
+    </fields>
+    <fields>
+        <label><!-- Offline Access --></label>
+        <name>Offline__c</name>
+        <picklistValues>
+            <masterLabel>Not Required</masterLabel>
+            <translation><!-- Not Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Required</masterLabel>
+            <translation><!-- Required --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- On-going Data Transfer with Other system --></label>
+        <name>On_going_Data_Transfer_with_Other_system__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes- real time</masterLabel>
+            <translation><!-- Yes- real time --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes- real time/batch ok</masterLabel>
+            <translation><!-- Yes- real time/batch ok --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Based on the Organization’s tolerance for risk , can the application be in the cloud? --></help>
+        <label><!-- Per biz risk tolerance, app be on cloud --></label>
+        <name>Per_biz_risk_tolerance_app_be_on_cloud__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Priority --></label>
+        <name>Priority__c</name>
+    </fields>
+    <fields>
+        <label><!-- Private/Public Read Only or Public Read --></label>
+        <name>Private_Public_Read_Only_or_Public_Read__c</name>
+        <picklistValues>
+            <masterLabel>Private</masterLabel>
+            <translation><!-- Private --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Read-Only</masterLabel>
+            <translation><!-- Public Read-Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Read-Write</masterLabel>
+            <translation><!-- Public Read-Write --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Questions --></label>
+        <name>Questions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reports and Analytics? --></label>
+        <name>Reports__c</name>
+        <picklistValues>
+            <masterLabel>Basic</masterLabel>
+            <translation><!-- Basic --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sample --></label>
+        <name>Sample__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scope (Screen/Objects) --></label>
+        <name>Scope__c</name>
+    </fields>
+    <fields>
+        <label><!-- Scope of Data Cleansing? --></label>
+        <name>Scope_of_Data_Cleansing__c</name>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Scope of automation of business logic? --></label>
+        <name>Scope_of_automation_of_business_logic__c</name>
+        <picklistValues>
+            <masterLabel>Low(&lt;5 Rules)</masterLabel>
+            <translation><!-- Low(&lt;5 Rules) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium(5-15)</masterLabel>
+            <translation><!-- Medium(5-15) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Very High(30-50)</masterLabel>
+            <translation><!-- Very High(30-50) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Application Development In-Progress</masterLabel>
+            <translation><!-- Application Development In-Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved, Awaiting Sponsor Approval</masterLabel>
+            <translation><!-- Approved, Awaiting Sponsor Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed, Awaiting Deployment</masterLabel>
+            <translation><!-- Completed, Awaiting Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Completed, Deployed to Production</masterLabel>
+            <translation><!-- Completed, Deployed to Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Process</masterLabel>
+            <translation><!-- In Process --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Hold</masterLabel>
+            <translation><!-- On Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected, AppExchange Product Exists</masterLabel>
+            <translation><!-- Rejected, AppExchange Product Exists --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected, Not Enough Budget</masterLabel>
+            <translation><!-- Rejected, Not Enough Budget --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected, Not a Fit</masterLabel>
+            <translation><!-- Rejected, Not a Fit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Release Date Assigned</masterLabel>
+            <translation><!-- Release Date Assigned --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sponsor Approved</masterLabel>
+            <translation><!-- Sponsor Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under Assessment</masterLabel>
+            <translation><!-- Under Assessment --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Does the application support active business functions, and provide value? --></help>
+        <label><!-- Supports active biz fns &amp; provides value --></label>
+        <name>Supports_active_biz_fns_provides_value__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Does the application support revenue generating activities (billing, A/R, etc) --></help>
+        <label><!-- Supports revenue generating activities --></label>
+        <name>Supports_revenue_generating_activities__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This field is used to enter the sum of Technical Design hours from all requirements associated to this application work package. --></help>
+        <label><!-- Technical Design --></label>
+        <name>Technical_Design__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type Of Data / Content --></label>
+        <name>Type_Of_Data_Content__c</name>
+        <picklistValues>
+            <masterLabel>Structured</masterLabel>
+            <translation><!-- Structured --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unstructured</masterLabel>
+            <translation><!-- Unstructured --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type of User Interface --></label>
+        <name>Type_of__c</name>
+        <picklistValues>
+            <masterLabel>Browser</masterLabel>
+            <translation><!-- Browser --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rich Client</masterLabel>
+            <translation><!-- Rich Client --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Volume of Data --></label>
+        <name>Volume_of_Data__c</name>
+        <picklistValues>
+            <masterLabel>50k-100k</masterLabel>
+            <translation><!-- 50k-100k --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>&lt;50k</masterLabel>
+            <translation><!-- &lt;50k --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>&gt;100k</masterLabel>
+            <translation><!-- &gt;100k --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Current User Acceptance of Application --></label>
+        <name>current_user_acceptance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Need for Business Process Improvement? --></label>
+        <name>need_for_Business_Process_Imp__c</name>
+    </fields>
+    <fields>
+        <label><!-- Need to Handle Sensitive/Secure Data --></label>
+        <name>need_to_handle_Sensitive_Secu__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Application Layout</layout>
+        <sections>
+            <label><!-- Administration --></label>
+            <section>Administration</section>
+        </sections>
+        <sections>
+            <label><!-- Application Information --></label>
+            <section>Application Information</section>
+        </sections>
+        <sections>
+            <label><!-- Cloud Decision --></label>
+            <section>Cloud Decision</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance --></label>
+            <section>Compliance</section>
+        </sections>
+        <sections>
+            <label><!-- Considerations --></label>
+            <section>Considerations</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Data Management --></label>
+            <section>Data Management</section>
+        </sections>
+        <sections>
+            <label><!-- Force.com Fit --></label>
+            <section>Force.com Fit</section>
+        </sections>
+        <sections>
+            <label><!-- Functional --></label>
+            <section>Functional</section>
+        </sections>
+        <sections>
+            <label><!-- General --></label>
+            <section>General</section>
+        </sections>
+        <sections>
+            <label><!-- Sample --></label>
+            <section>Sample</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Technical --></label>
+            <section>Technical</section>
+        </sections>
+        <sections>
+            <label><!-- Usability --></label>
+            <section>Usability</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <workflowTasks>
+        <description><!-- A Force.com application has recently been moved to the &quot;Submitted&quot; status.
+
+Kindly review the application to determine a Force.com fit.
+
+Thank you! --></description>
+        <name>Review_Force_com_Application</name>
+        <subject><!-- Review Force.com Application --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

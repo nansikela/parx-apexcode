@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>Degree_Declaration__c.Employee_Name__c</field>
+    </columns>
+    <columns>
+        <field>Degree_Declaration__c.Manager__c</field>
+    </columns>
+    <columns>
+        <field>Degree_Declaration__c.HR_Manager__c</field>
+    </columns>
+    <columns>
+        <field>Degree_Declaration__c.Next_Approver__c</field>
+    </columns>
+    <columns>
+        <field>Degree_Declaration__c.Current_Approver__c</field>
+    </columns>
+    <columns>
+        <field>Degree_Declaration__c.Degree_Type__c</field>
+    </columns>
+    <columns>
+        <field>Degree_Declaration__c.Status__c</field>
+    </columns>
+    <currency>USD</currency>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Degree_Declaration__c.ProgramAdminStatus__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Degree Declaration Status This Month</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Degree_Declaration__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_THISMONTH</interval>
+    </timeFrameFilter>
+</Report>

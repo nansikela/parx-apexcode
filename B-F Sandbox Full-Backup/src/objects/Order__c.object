@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>AccountNumber__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.AccountNumber</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AccountNumber</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Orders</relationshipLabel>
+        <relationshipName>Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Banner_Partner__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Banner_Partner__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Banner Partner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bonus_Cartons__c</fullName>
+        <description>Bonus Cartons</description>
+        <externalId>false</externalId>
+        <label>Bonus Cartons</label>
+        <summarizedField>Order_Item__c.Carton_Bonus__c</summarizedField>
+        <summaryForeignKey>Order_Item__c.Order__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Bonus_Unit__c</fullName>
+        <description>Bonus Unit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Bonus Unit</inlineHelpText>
+        <label>Bonus Unit</label>
+        <summarizedField>Order_Item__c.Unit_Bonus__c</summarizedField>
+        <summaryForeignKey>Order_Item__c.Order__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>City__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.ShippingCity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>City</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Orders</relationshipLabel>
+        <relationshipName>Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CreatedBy_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedBy.FirstName  + &apos; &apos; + CreatedBy.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CreatedBy Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Delivery_Instructions__c</fullName>
+        <description>Delivery instructions that will be sent to the wholesaler.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Delivery Instructions Only.  These will be sent to the wholesaler.</inlineHelpText>
+        <label>Delivery Instructions</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Legacy_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Code</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Material_Errors__c</fullName>
+        <description>Tracks how many material errors are in the Order</description>
+        <externalId>false</externalId>
+        <label>Material Errors</label>
+        <summarizedField>Order_Item__c.Missing_Material__c</summarizedField>
+        <summaryForeignKey>Order_Item__c.Order__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <description>Order with notes will send the order to customer service for review and will not be sent to the wholesaler automatically</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Customer Service Instructions</inlineHelpText>
+        <label>Notes:</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Order_Date__c</fullName>
+        <defaultValue>today()</defaultValue>
+        <externalId>false</externalId>
+        <label>Order Date</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Order_Processed__c</fullName>
+        <description>Order Processed (Time Stamp)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Order Processed (Time Stamp)</inlineHelpText>
+        <label>Order Processed (Time Stamp)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Order_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Order Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>In-Direct</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>OwnerName__c</fullName>
+        <externalId>false</externalId>
+        <label>OwnerName</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Postal_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.ShippingPostalCode</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Postal Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Price_Override_Processed_Time_Stamp__c</fullName>
+        <description>Price Override Processed (Time Stamp)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Price Override Processed (Time Stamp)</inlineHelpText>
+        <label>Price Override (Time Stamp)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Price_Override_Relevant__c</fullName>
+        <description>If threre is any discount on the Order flag the Order as Price Override Relevant = True</description>
+        <externalId>false</externalId>
+        <formula>IF(OR(Bonus_Cartons__c &gt; 1, Bonus_Unit__c &gt; 1, Total_Discount__c &gt;1), &apos;True&apos;, &apos;False&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Price Override Relevant</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>RecordTypeName__c</fullName>
+        <externalId>false</externalId>
+        <formula>$RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>RecordTypeName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Rep_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.OwnerId</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Rep Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SAP_Customer_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.AccountNumber</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SAP Customer Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>State__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.ShippingState</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Process Order</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Street_del__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.ShippingStreet</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Street</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Suburb__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Shipping_Suburb__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Suburb</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Discount__c</fullName>
+        <description>Total Discount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Discount</inlineHelpText>
+        <label>Total Discount</label>
+        <summarizedField>Order_Item__c.Discount__c</summarizedField>
+        <summaryForeignKey>Order_Item__c.Order__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_ACN__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler__r.ACN__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler ACN</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Account_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler_Account_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler Customer Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Code__c</fullName>
+        <description>This field is need for the trigger</description>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler__r.Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is need for the trigger</inlineHelpText>
+        <label>Wholesaler_Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Customer_Number__c</fullName>
+        <description>This is the &quot;Customer&quot; number that will be sent to the Wholesaler.</description>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler_Account_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the &quot;Customer&quot; number that will be sent to the Wholesaler.</inlineHelpText>
+        <label>Wholesaler Customer Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Email__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler__r.Email__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Fax__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler__r.Fax__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler Fax</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler Name (ECC)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Number__c</fullName>
+        <description>This is the ECC Retail Account Number</description>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler__r.SAP_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the ECC Retail Account Number</inlineHelpText>
+        <label>Wholesaler Number (ECC)</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_State_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>Wholesalers__r.Wholesaler__r.State_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler State Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Transmission_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Wholesalers__r.Wholesaler__r.Distributor_Group__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler Transmission Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesaler_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>text( Wholesalers__r.Wholesaler__r.Distributor_Group__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wholesaler Transmission</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Wholesalers__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Wholesaler - Look Up</label>
+        <referenceTo>Account_Wholesaler__c</referenceTo>
+        <relationshipLabel>Orders</relationshipLabel>
+        <relationshipName>Orders</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <label>Order</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>CreatedBy_Name__c</columns>
+        <columns>Order_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Price_Override_Relevant</fullName>
+        <columns>NAME</columns>
+        <columns>Price_Override_Relevant__c</columns>
+        <columns>Total_Discount__c</columns>
+        <columns>Bonus_Cartons__c</columns>
+        <columns>Bonus_Unit__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Price_Override_Relevant__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filters>
+        <label>Price Override Relevant</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <displayFormat>ORD-{0}</displayFormat>
+        <label>Order Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Orders</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Locked</fullName>
+        <active>true</active>
+        <description>Locked</description>
+        <label>Locked</label>
+        <picklistValues>
+            <picklist>Order_Type__c</picklist>
+            <values>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Direct</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Process Order</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>New</fullName>
+        <active>true</active>
+        <description>New</description>
+        <label>New</label>
+        <picklistValues>
+            <picklist>Order_Type__c</picklist>
+            <values>
+                <fullName>Direct</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In-Direct</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Customer Service</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Process Order</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Account_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CreatedBy_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Order_Date__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <fullName>InDirect_Order_Must_Have_WS</fullName>
+        <active>true</active>
+        <description>An indirect order must have a wholesaler selected</description>
+        <errorConditionFormula>(ISPICKVAL( Order_Type__c , &apos;In-Direct&apos;) &amp;&amp; ISBLANK ( Wholesalers__c))</errorConditionFormula>
+        <errorDisplayField>Wholesalers__c</errorDisplayField>
+        <errorMessage>An in-direct order requires a wholesaler.</errorMessage>
+    </validationRules>
+</CustomObject>

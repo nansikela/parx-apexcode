@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_NAME</field>
+    </columns>
+    <columns>
+        <field>FK_$Work_Package__c.Status__c</field>
+    </columns>
+    <columns>
+        <field>Requirement__c.Category__c</field>
+    </columns>
+    <columns>
+        <field>Requirement__c.Requirement_Description__c</field>
+    </columns>
+    <columns>
+        <field>Requirement__c.Priority__c</field>
+    </columns>
+    <columns>
+        <field>Requirement__c.Scope__c</field>
+    </columns>
+    <columns>
+        <field>Requirement__c.Objects__c</field>
+    </columns>
+    <columns>
+        <field>Requirement__c.Proposed_Approach__c</field>
+    </columns>
+    <columns>
+        <field>Requirement__c.Gap__c</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Show me all requirements by Work Package.</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Requirement__c.Application_Work_Package_Name__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Summary of Requirements by Work Package</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Requirement__c@Requirement__c.Application_Work_Package_No__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

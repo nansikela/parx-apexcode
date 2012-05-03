@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>酒販店</value>
+    </caseValues>
+    <fields>
+        <help><!-- Check this box if this Supplier record is considered a B-F brand. --></help>
+        <label><!-- Is B-F Brand? --></label>
+        <name>Is_B_F_Brand__c</name>
+    </fields>
+    <layouts>
+        <layout>Supplier NPA Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System information --></label>
+            <section>System information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Supplier Name</nameFieldLabel>
+</CustomObjectTranslation>

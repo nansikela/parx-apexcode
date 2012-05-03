@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Account Brand --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Account Brand --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Account Brand --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Account Brand --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Account Brand --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Account Brand --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Account Brand --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Account Brand --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Account Brands --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Markenname</label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Account Brands --></relationshipLabel>
+    </fields>
+    <fields>
+        <help>Absatzzahlen je Marke [absolut in 9Ltr]</help>
+        <label>Aktueller Absatz in [in 9Ltr]</label>
+        <name>Depletion_Actuals__c</name>
+    </fields>
+    <fields>
+        <help><!-- The end date of the Fiscal Year for this Account Brand Record --></help>
+        <label>Ende Fiskaljahr</label>
+        <name>FY_End__c</name>
+    </fields>
+    <fields>
+        <help><!-- The start date of the Fiscal Year for this Account Brand Record --></help>
+        <label>Beginn Fiskaljahr</label>
+        <name>FY_Start__c</name>
+    </fields>
+    <fields>
+        <label>Fiskaljahr</label>
+        <name>Fiscal_Year__c</name>
+    </fields>
+    <fields>
+        <help><!-- Percent to Forecast based on actual depletions recorded. --></help>
+        <label>Abweichung von der Prognose</label>
+        <name>Forecast_Gauge__c</name>
+    </fields>
+    <fields>
+        <label>Prognose</label>
+        <name>Forecast__c</name>
+    </fields>
+    <fields>
+        <help><!-- Percent to Goal based on actual depletions recorded. --></help>
+        <label>Abweichung vom Absatzziel</label>
+        <name>Goal_Gauge__c</name>
+    </fields>
+    <fields>
+        <label>Absatzziel</label>
+        <name>Goal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Brand Icon --></label>
+        <name>Key_Brand_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Brand --></label>
+        <name>Key_Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Required Brand Icon --></label>
+        <name>Required_Brand_Icon__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mandatory Brand --></label>
+        <name>Required_Brand__c</name>
+    </fields>
+    <fields>
+        <label>Lieferant</label>
+        <name>Supplier__c</name>
+    </fields>
+    <fields>
+        <label><!-- % of Forecast --></label>
+        <name>of_Forecast__c</name>
+    </fields>
+    <fields>
+        <label><!-- % of Goal --></label>
+        <name>of_Goal__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Account Brand Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Account Brands Number --></nameFieldLabel>
+</CustomObjectTranslation>

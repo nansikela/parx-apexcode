@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>StoreCheckPage</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>StoreCheckPage</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>StoreCheckPage</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>A store check is a controll visit by the sales manager after his sales rep has just left the outlet and entered his outlet visit data.</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Store Checks</relationshipLabel>
+        <relationshipName>Store_Checks</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Addit_notes_comments_about_cust_acc__c</fullName>
+        <externalId>false</externalId>
+        <label>Addit. notes/comments about cust./acc.</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Address__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.BillingStreet +&apos;, &apos;+ Account__r.BillingCity</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>All_pricing_labels_available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>All pricing labels available?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>B_F_listing_complete_realized_practiced__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>B-F listing complete realized/practiced?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Data_maintenance_in_SF_complete_correct__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Data maintenance in SF complete/correct?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Discussed_with__c</fullName>
+        <externalId>false</externalId>
+        <label>Discussed with</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Store manager</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food area manager</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Gaps_in_shelf_closed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Gaps in shelf closed..?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Gift_promo_packs_addit_avail_in_shelf__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Gift/promo packs addit. avail. in shelf?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Gift_promo_packs_in_shelf_available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Gift/promo packs in shelf available?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Ground_Area_Second_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Ground Area</label>
+        <picklist>
+            <picklistValues>
+                <fullName>cash area/point of sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>turn stile area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>food area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>main corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>side corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>promotion end cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>end cap spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>display refrigerator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>other place</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Ground_Area_Third_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Ground Area</label>
+        <picklist>
+            <picklistValues>
+                <fullName>cash area/point of sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>turn stile area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>food area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>main corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>side corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>promotion end cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>end cap spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>display refrigerator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>other place</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Ground_Area_first_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Ground Area</label>
+        <picklist>
+            <picklistValues>
+                <fullName>cash area/point of sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>turn stile area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>food area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>main corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>side corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>promotion end cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>end cap spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>display refrigerator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>other place</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>JD_Cola_Ginger_avail_as_in_multi_pack__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>JD&amp;Cola/Ginger avail. as/in multi pack?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>JD_Cola_Ginger_avail_as_single_can__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>JD &amp; Cola/Ginger avail. as single can?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>JD_Cola_Ginger_avail_in_chiller_cab__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>JD &amp; Cola/Ginger avail. in chiller cab.?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>JD_Cola_Ginger_available_in_shelf__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>JD &amp; Cola/Ginger available in shelf?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>JD_Cola_Ginger_available_in_tray__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>JD &amp; Cola/Ginger available in tray?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Last_Outlet_Visit__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Last Outlet Visit</label>
+        <referenceTo>Outlet_Visit__c</referenceTo>
+        <relationshipLabel>Store Checks</relationshipLabel>
+        <relationshipName>Store_Checks</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Last_Visit_SR__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Visit SR</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Location_first_SCP__c</fullName>
+        <description>Location of the target article/product</description>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Store front</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>(shelf) End cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chiller cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Check out area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Isle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food section</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Location_second_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Store front</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>(shelf) End cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chiller cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Check out area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Isle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food section</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Location_third_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Store front</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>(shelf) End cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chiller cabinet</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Check out area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Isle</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food section</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <referenceTo>Market__c</referenceTo>
+        <relationshipLabel>Store Checks</relationshipLabel>
+        <relationshipName>Store_Checks</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Notes_Comment_about_shelf_situation__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes/Comment about shelf situation</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Notes_comments_about_secondary_placement__c</fullName>
+        <externalId>false</externalId>
+        <label>Notes/comments about secondary placement</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Number_of_bottles_display_First_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of bottles/display</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_bottles_display_Second_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of bottles/display</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_bottles_display_Third_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of bottles/display</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Product_first_SCP__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Store Checks</relationshipLabel>
+        <relationshipName>Store_Checks</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Product_second_SCP__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Store Checks (Product)</relationshipLabel>
+        <relationshipName>Store_Checks1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Product_third_SCP__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <referenceTo>Product__c</referenceTo>
+        <relationshipLabel>Store Checks (Product)</relationshipLabel>
+        <relationshipName>Store_Checks2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Rating_Grade__c</fullName>
+        <externalId>false</externalId>
+        <label>Rating/Grade</label>
+        <picklist>
+            <picklistValues>
+                <fullName>0</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Remarks_after_discussion__c</fullName>
+        <externalId>false</externalId>
+        <label>Remarks after discussion</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>SC_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>SC By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Stores_Check</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SC_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>SC Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>SR__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>SR</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Stores_Check1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Sales_campaign_labels_tended__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Sales campaign labels tended?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Space_First_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Space</label>
+        <picklist>
+            <picklistValues>
+                <fullName>cash area/point of sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>turn stile area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>food area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>main corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>side corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>promotion end cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>end cap spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>display refrigerator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>other place</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Space_Second_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Space</label>
+        <picklist>
+            <picklistValues>
+                <fullName>cash area/point of sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>turn stile area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>food area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>main corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>side corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>promotion end cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>end cap spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>display refrigerator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>other place</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Space_Third_SCP__c</fullName>
+        <externalId>false</externalId>
+        <label>Space</label>
+        <picklist>
+            <picklistValues>
+                <fullName>cash area/point of sale</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>turn stile area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>food area</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>main corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>side corridor</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>promotion end cap</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>end cap spirit department</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>display refrigerator</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>other place</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Targ_for_follow_up_visit_maintained_SF__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Targ. for follow up visit maintained/SF?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>enough_products_in_the_shelf_available__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>enough products in the shelf available?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>sales_campaign_with_2_pl_realized__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>sales campaign with 2. pl. realized?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <label>Store Check</label>
+    <nameField>
+        <displayFormat>{YYYYMM}-{00000}</displayFormat>
+        <label>Store Check Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Store Checks</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <webLinks>
+        <fullName>Share</fullName>
+        <availability>online</availability>
+        <description>Enables the approval for the record owner and SR</description>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Share</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/15.0/apex.js&quot;)}
+array = {!GETRECORDIDS($ObjectType.Store_Check__c)};
+var result = sforce.apex.execute(&quot;StoreCheckApproval&quot;,&quot;init&quot;, {ids:array});
+
+if(result != &apos;&apos;)
+  alert(result);
+
+if(result != &apos;{!$Label.sc_approval_no_selection}&apos;)
+  window.location.reload();</url>
+    </webLinks>
+</CustomObject>

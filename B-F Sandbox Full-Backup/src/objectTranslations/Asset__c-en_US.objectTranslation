@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Asset</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Assets</value>
+    </caseValues>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset Status --></label>
+        <name>Active__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disposed</masterLabel>
+            <translation><!-- Disposed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disputed</masterLabel>
+            <translation><!-- Disputed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lost</masterLabel>
+            <translation><!-- Lost --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Repair</masterLabel>
+            <translation><!-- Repair --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Agreement # --></label>
+        <name>Agreement__c</name>
+    </fields>
+    <fields>
+        <label><!-- AssetNumber --></label>
+        <name>AssetNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Model --></label>
+        <name>Asset_Model__c</name>
+        <relationshipLabel><!-- Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset Tag --></label>
+        <name>Asset_Tag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Asset Type --></label>
+        <name>Asset_Type__c</name>
+        <relationshipLabel><!-- Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Branding --></label>
+        <name>External_Branding__c</name>
+        <relationshipLabel><!-- Assets (External Branding) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fridge Details Incorrect --></label>
+        <name>Fridge_Details_Incorrect__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fridge In Fill --></label>
+        <name>Fridge_In_Fill__c</name>
+        <relationshipLabel><!-- Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fridge Sighted --></label>
+        <name>Fridge_Sighted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Branding --></label>
+        <name>Internal_Branding__c</name>
+        <relationshipLabel><!-- Assets (Internal Branding) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Checked Is Active --></help>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Sighted --></label>
+        <name>Last_Sighted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Placement Date --></label>
+        <name>Placement_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Asset # --></label>
+        <name>SAP_Asset__c</name>
+    </fields>
+    <fields>
+        <label><!-- Serial # --></label>
+        <name>Serial__c</name>
+    </fields>
+    <fields>
+        <label><!-- Supplier --></label>
+        <name>Supplier__c</name>
+        <picklistValues>
+            <masterLabel>AHT</masterLabel>
+            <translation><!-- AHT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cornelius</masterLabel>
+            <translation><!-- Cornelius --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Orford</masterLabel>
+            <translation><!-- Orford --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sanden</masterLabel>
+            <translation><!-- Sanden --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Skope</masterLabel>
+            <translation><!-- Skope --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Venue --></label>
+        <name>Venue__c</name>
+        <relationshipLabel><!-- Assets --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Asset Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- No Agreement has been linked to this asset.  Create an agreement and then save. --></errorMessage>
+        <name>Agreement_If_Null</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Explain why you disagree with data --></errorMessage>
+        <name>Enter_Comments</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Asset_Actions --></label>
+        <name>Asset_Actions</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Fridge_Found --></label>
+        <name>Fridge_Found</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Permanent_Placement --></label>
+        <name>Permanent_Placement</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Pick_Up --></label>
+        <name>Pick_Up</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Temporary_Placement --></label>
+        <name>Temporary_Placement</name>
+    </webLinks>
+</CustomObjectTranslation>

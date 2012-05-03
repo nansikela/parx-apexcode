@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Art Asset</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Art Assets</value>
+    </caseValues>
+    <fields>
+        <label><!-- Appraised Value --></label>
+        <name>Appraised_Value__c</name>
+    </fields>
+    <fields>
+        <help><!-- Location where the Asset is stored --></help>
+        <label><!-- Art Location --></label>
+        <name>Art_Location__c</name>
+        <relationshipLabel><!-- Art Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Select the Artist that created the asset. --></help>
+        <label><!-- Artist --></label>
+        <name>Artist__c</name>
+        <relationshipLabel><!-- Art Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Asset Type --></label>
+        <name>Asset_Type__c</name>
+        <picklistValues>
+            <masterLabel>Art</masterLabel>
+            <translation><!-- Art --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brand Archives</masterLabel>
+            <translation><!-- Brand Archives --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Legacy ID sometimes used for searches --></help>
+        <label><!-- B-F Number --></label>
+        <name>BF_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Location Field Used for Sorting --></help>
+        <label><!-- B-F Location --></label>
+        <name>B_F_Location__c</name>
+    </fields>
+    <fields>
+        <label><!-- Condition Description --></label>
+        <name>Condition_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Condition --></label>
+        <name>Condition__c</name>
+        <picklistValues>
+            <masterLabel>Destroyed</masterLabel>
+            <translation><!-- Destroyed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Excellent</masterLabel>
+            <translation><!-- Excellent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Good</masterLabel>
+            <translation><!-- Good --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poor</masterLabel>
+            <translation><!-- Poor --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Copyright --></label>
+        <name>Copyright__c</name>
+    </fields>
+    <fields>
+        <help><!-- Purchase price --></help>
+        <label><!-- Cost --></label>
+        <name>Cost__c</name>
+    </fields>
+    <fields>
+        <help><!-- Optional - Depth in inches, do not include quotes &quot; --></help>
+        <label><!-- Depth (in) --></label>
+        <name>Depth_in__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Managed by Accounting, this field is used for tracking assets --></help>
+        <label><!-- Fixed Asset Number --></label>
+        <name>Fixed_Asset_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the floor where the art asset is located --></help>
+        <label><!-- Floor --></label>
+        <name>Floor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Framed --></label>
+        <name>Framed__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Gallery that the asset was purchased from --></help>
+        <label><!-- Gallery --></label>
+        <name>Gallery__c</name>
+        <relationshipLabel><!-- Art Assets --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Height in inches, do not include quotes &quot; --></help>
+        <label><!-- Height (in) --></label>
+        <name>Height_in__c</name>
+    </fields>
+    <fields>
+        <label><!-- Insured Value --></label>
+        <name>Insured_Value__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used to reference original record in source file --></help>
+        <label><!-- LegacyID --></label>
+        <name>LegacyID__c</name>
+    </fields>
+    <fields>
+        <help><!-- original text to indicate size --></help>
+        <label><!-- Legacy Size --></label>
+        <name>Legacy_Size__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter details about all mediums used to create this art asset --></help>
+        <label><!-- Medium Description --></label>
+        <name>Medium_Description__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the office/room where the art asset is stored. --></help>
+        <label><!-- Office --></label>
+        <name>Office__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used for reporting, enter the primary medium used to create this asset --></help>
+        <label><!-- Primary Medium --></label>
+        <name>Primary_Medium__c</name>
+        <picklistValues>
+            <masterLabel>Acrylic</masterLabel>
+            <translation><!-- Acrylic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ceramic</masterLabel>
+            <translation><!-- Ceramic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charcoal</masterLabel>
+            <translation><!-- Charcoal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fabric</masterLabel>
+            <translation><!-- Fabric --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gouache</masterLabel>
+            <translation><!-- Gouache --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ink</masterLabel>
+            <translation><!-- Ink --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lithograph</masterLabel>
+            <translation><!-- Lithograph --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil</masterLabel>
+            <translation><!-- Oil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pastel</masterLabel>
+            <translation><!-- Pastel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pencil</masterLabel>
+            <translation><!-- Pencil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Photograph</masterLabel>
+            <translation><!-- Photograph --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print</masterLabel>
+            <translation><!-- Print --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Watercolor</masterLabel>
+            <translation><!-- Watercolor --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Temporary field used to build the Purchased From Gallery or Artist values. --></help>
+        <label><!-- Purchased From Details --></label>
+        <name>Purchased_From_Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicate whether this was purchased from an artist or a gallery --></help>
+        <label><!-- Purchased From --></label>
+        <name>Purchased_From__c</name>
+        <picklistValues>
+            <masterLabel>Artist</masterLabel>
+            <translation><!-- Artist --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gallery</masterLabel>
+            <translation><!-- Gallery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown</masterLabel>
+            <translation><!-- Unknown --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Displays the Artist or Gallery Name --></help>
+        <label><!-- Purchased From (f) --></label>
+        <name>Purchased_From_f__c</name>
+    </fields>
+    <fields>
+        <help><!-- Calculates the size based on Width, Height and Depth entered. --></help>
+        <label><!-- Size (f) --></label>
+        <name>Size_f__c</name>
+    </fields>
+    <fields>
+        <help><!-- Width in inches, do not include quotes &quot; --></help>
+        <label><!-- Width (in) --></label>
+        <name>Width_in__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+    </fields>
+    <layouts>
+        <layout>Art Asset Layout</layout>
+        <sections>
+            <label><!-- Accounting Details --></label>
+            <section>Accounting Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Image --></label>
+            <section>Image</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- If you select the Purchased From value of &quot;Gallery&quot;, you must enter a Gallery. --></errorMessage>
+        <name>Select_Gallery_if_Purchased_From_a_Galle</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Print_PDF --></label>
+        <name>Print_PDF</name>
+    </webLinks>
+</CustomObjectTranslation>

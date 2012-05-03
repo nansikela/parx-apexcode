@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>Canada Reports</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <role>CAD-Bus Dev East(BF)</role>
+        <role>CAD-Bus Dev West(BF)</role>
+        <role>CAD-Market Manager/Admin</role>
+        <role>CAD-Marketing Director</role>
+        <role>CAD-National Level (BF)</role>
+        <role>CAD-National Level (Hive)</role>
+        <role>CAD-Sales Manager Alberta(Hive)</role>
+        <role>CAD-Sales Manager BC(Hive)</role>
+        <role>CAD-Sales Manager Ontario(Hive)</role>
+        <role>CAD-Sales Manager Quebec(Hive)</role>
+        <role>CAD-Sales Rep Alberta(Hive)</role>
+        <role>CAD-Sales Rep BC(Hive)</role>
+        <role>CAD-Sales Rep Manitoba(Hive)</role>
+        <role>CAD-Sales Rep Ontario(Hive)</role>
+        <role>CAD-Sales Rep Quebec(Hive)</role>
+        <role>CAD-Sales Rep Saskatchewan(Hive)</role>
+    </sharedTo>
+</ReportFolder>

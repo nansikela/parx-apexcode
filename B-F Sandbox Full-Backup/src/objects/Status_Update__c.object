@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Object used to track periodic status report at the Application Work Package level by respective owners</description>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Accomplishment_this_period__c</fullName>
+        <externalId>false</externalId>
+        <label>Accomplished This Period</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Accomplishments_Planned_for_Next_Period__c</fullName>
+        <externalId>false</externalId>
+        <label>Accomplishments Planned for Next Period</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Application_Work_Package__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Application Work Package</label>
+        <referenceTo>Work_Package__c</referenceTo>
+        <relationshipLabel>Status Update</relationshipLabel>
+        <relationshipName>Status_Update</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Items_for_Management_Attention__c</fullName>
+        <externalId>false</externalId>
+        <label>Items for Management Attention</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Period_Ending__c</fullName>
+        <externalId>false</externalId>
+        <label>Period Ending</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Planned_but_not_accomplished__c</fullName>
+        <externalId>false</externalId>
+        <label>Planned But Not Accomplished</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>On Track</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Off Track</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>At Risk</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( CASE(  Project_Status__c ,
+ &quot;On Track&quot;, &quot;/img/samples/light_green.gif&quot;, 
+&quot;Off Track&quot;, &quot;/img/samples/light_yellow.gif&quot;, 
+&quot;At Risk&quot;, &quot;/img/samples/light_red.gif&quot;, &quot;/s.gif&quot;), &quot;status color&quot;)</formula>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Work_Package_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Application_Work_Package__r.Work_Package_Name__c</formula>
+        <label>Work Package Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Status Update</label>
+    <nameField>
+        <displayFormat>SR-{MM}-{YY}-{00000}</displayFormat>
+        <label>Status Tracking #</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Status Update</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

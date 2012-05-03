@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>3000</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>POS Ordering</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom93: Shopping Cart</motif>
+    <url>http://portal.b-f.com/irj/servlet/prt/portal/prtroot/pcd!3aportal_content!2fcom.b-f.folder.bfContent!2fcom.b-f.folder.Building_Brands!2fcom.b-f.Brand_Assets!2fcom.b-f.iViews!2fcom.b-f.imageSellersPOS</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Reconciliation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Reconciliations</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account Number --></label>
+        <name>Account_Number1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Number --></label>
+        <name>Account_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Prime --></label>
+        <name>Account_Prime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Actual - USD --></label>
+        <name>Actual_USD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Balance - Local --></label>
+        <name>Balance_Local__c</name>
+    </fields>
+    <fields>
+        <help><!-- Balance as calculated by exchange rate --></help>
+        <label><!-- Balance - USD --></label>
+        <name>Balance_USD__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Code --></label>
+        <name>Company_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Reconciliation --></label>
+        <name>Date_of_Reconciliation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Exchange Rate --></label>
+        <name>Exchange_Rate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proposed Adjustment Explanation --></label>
+        <name>Explanation__c</name>
+    </fields>
+    <fields>
+        <help><!-- ex. FY12 --></help>
+        <label><!-- Fiscal Year --></label>
+        <name>Fiscal_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account 1 --></label>
+        <name>PAE_Account_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account 2 --></label>
+        <name>PAE_Account_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account 3 --></label>
+        <name>PAE_Account_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account 4 --></label>
+        <name>PAE_Account_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account 5 --></label>
+        <name>PAE_Account_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- USD Value 1 --></label>
+        <name>PAE_Value_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- USD Value 2 --></label>
+        <name>PAE_Value_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- USD Value 3 --></label>
+        <name>PAE_Value_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- USD Value 4 --></label>
+        <name>PAE_Value_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- USD Value 5 --></label>
+        <name>PAE_Value_5__c</name>
+    </fields>
+    <fields>
+        <label><!-- Party Responsible --></label>
+        <name>Party_Responsible__c</name>
+        <relationshipLabel><!-- Reconciliations (Party Responsible) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Prepared By --></label>
+        <name>Prepared_By__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please explain adjustment below and enter offsetting line items in the Proposed Adjustment Offsetting Entry section --></help>
+        <label><!-- Proposed Adjustment - USD --></label>
+        <name>Proposed_Adjustment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quarter --></label>
+        <name>Quarter__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reconciliation Accounts --></label>
+        <name>Reconciliation_Accounts__c</name>
+        <relationshipLabel><!-- Reconciliations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reviewed By --></label>
+        <name>Reviewed_By__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reviewer --></label>
+        <name>Reviewer__c</name>
+        <relationshipLabel><!-- Reconciliations (Reviewer) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Open</masterLabel>
+            <translation><!-- Open --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending</masterLabel>
+            <translation><!-- Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pre-Approved</masterLabel>
+            <translation><!-- Pre-Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Calculated Balance - Actual Balance (USD) --></help>
+        <label><!-- FX Variance --></label>
+        <name>Variance__c</name>
+    </fields>
+    <layouts>
+        <layout>Reconciliation Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Proposed Adjustment Offsetting Entry --></label>
+            <section>Proposed Adjustment Offsetting Entry</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please make sure the values in the in the Proposed Adjustment Entry section completely offset the Proposed Adjustment field. --></errorMessage>
+        <name>Proposed_Adjustment_Entry</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter an explanation for the Proposed Adjustment. --></errorMessage>
+        <name>Require_PA_Explanation</name>
+    </validationRules>
+    <workflowTasks>
+        <name>Reconciliation_Needs_Updated</name>
+        <subject><!-- Reconciliation Needs Updated --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

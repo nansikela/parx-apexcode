@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>B-F Event</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>B-F Events</value>
+    </caseValues>
+    <fields>
+        <help><!-- Enter the date of the event --></help>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter purpose of and detailed description of the event --></help>
+        <label><!-- Details --></label>
+        <name>Details__c</name>
+    </fields>
+    <fields>
+        <help><!-- Where will the event be held? --></help>
+        <label><!-- Location --></label>
+        <name>Location__c</name>
+    </fields>
+    <fields>
+        <help><!-- Number of contacts where Status = Yes --></help>
+        <label><!-- Number Attending --></label>
+        <name>Number_Attending__c</name>
+    </fields>
+    <fields>
+        <help><!-- Number of contacts where Status does not equal &quot;Sent&quot; --></help>
+        <label><!-- Number Responded --></label>
+        <name>Number_Responded__c</name>
+    </fields>
+    <fields>
+        <help><!-- Total number of related contacts --></help>
+        <label><!-- Number of Invites --></label>
+        <name>Number_of_Invites__c</name>
+    </fields>
+    <fields>
+        <help><!-- Number of Contacts where Status = Yes or Maybe --></help>
+        <label><!-- Number of Possible Attendees --></label>
+        <name>Number_of_Possible_Attendees__c</name>
+    </fields>
+    <layouts>
+        <layout>B-F Event Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Responses --></label>
+            <section>Responses</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

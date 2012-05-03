@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>CollaborationGroup$Name</field>
+    </columns>
+    <columns>
+        <field>CollaborationGroup$Owner</field>
+    </columns>
+    <columns>
+        <field>CollaborationGroup$CreatedDate</field>
+    </columns>
+    <columns>
+        <field>CollaborationGroup$LastModifiedDate</field>
+    </columns>
+    <columns>
+        <field>CollaborationGroup$LastModifiedBy</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Report of Chatter Groups and Owners</description>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CollaborationGroup$CreatedBy</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Chatter Groups Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Chatter_Groups_with_Group_Feed__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CollaborationGroup$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>

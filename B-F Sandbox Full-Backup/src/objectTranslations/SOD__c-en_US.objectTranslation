@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Certification Records</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Certification Records</value>
+    </caseValues>
+    <fields>
+        <label><!-- Business Process Owner --></label>
+        <name>Business_Process_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certified Complete? --></label>
+        <name>Certified_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Certified Status --></label>
+        <name>Certified_Status__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter comments. --></help>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Compliance Method --></label>
+        <name>Compliance_Method__c</name>
+        <picklistValues>
+            <masterLabel>Faxed</masterLabel>
+            <translation><!-- Faxed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Included</masterLabel>
+            <translation><!-- Included --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mailed</masterLabel>
+            <translation><!-- Mailed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Control Date --></label>
+        <name>Control_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date Text --></label>
+        <name>Due_Date_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Due Date --></label>
+        <name>Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- SOD Group ID --></label>
+        <name>SOD_Group_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- SOX Contact ID --></label>
+        <name>SOX_Contact_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- UniqueID --></label>
+        <name>UniqueID__c</name>
+    </fields>
+    <fields>
+        <label><!-- User ID(s) --></label>
+        <name>User_ID_s__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Name(s) --></label>
+        <name>User_Name_s__c</name>
+    </fields>
+    <fields>
+        <label><!-- tsid --></label>
+        <name>tsid__c</name>
+    </fields>
+    <layouts>
+        <layout>SOD Certification Layout</layout>
+        <sections>
+            <label><!-- Instructions --></label>
+            <section>Instructions</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>SOD User Certification Layout</layout>
+        <sections>
+            <label><!-- Instructions --></label>
+            <section>Instructions</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- SOX Contact cannot be changed --></errorMessage>
+        <name>PreventChangeofSoxContactName</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- UniqueID cannot be changed --></errorMessage>
+        <name>PreventChangeofUniqueID</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- I_Certify_Complete --></label>
+        <name>I_Certify_Complete</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Monthly_SoD_Certification_Process --></label>
+        <name>Monthly_SoD_Certification_Process</name>
+    </webLinks>
+</CustomObjectTranslation>

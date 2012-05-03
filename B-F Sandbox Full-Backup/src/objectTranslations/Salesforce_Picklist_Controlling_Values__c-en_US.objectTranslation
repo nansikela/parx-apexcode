@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Salesforce Picklist Controlling Values</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Salesforce Picklist Controlling Values</value>
+    </caseValues>
+    <fields>
+        <label><!-- Controller Value --></label>
+        <name>Controller_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Controller --></label>
+        <name>Controller__c</name>
+    </fields>
+    <fields>
+        <label><!-- Field Name --></label>
+        <name>Field_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Object Name --></label>
+        <name>Object_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Value --></label>
+        <name>Value__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Wholesaler</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Wholesalers</value>
+    </caseValues>
+    <fields>
+        <label><!-- ACN --></label>
+        <name>ACN__c</name>
+    </fields>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Wholesalers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+    </fields>
+    <fields>
+        <help><!-- Wholesaler Transmission - This is used for Boomi --></help>
+        <label><!-- Wholesaler Transmission --></label>
+        <name>Distributor_Group__c</name>
+        <picklistValues>
+            <masterLabel>ALM</masterLabel>
+            <translation><!-- ALM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HLW</masterLabel>
+            <translation><!-- HLW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ILG</masterLabel>
+            <translation><!-- ILG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others - Email</masterLabel>
+            <translation><!-- Others - Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Others - Fax</masterLabel>
+            <translation><!-- Others - Fax --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIL</masterLabel>
+            <translation><!-- SIL --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fax --></label>
+        <name>Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- LMAA Number --></label>
+        <name>LMAA_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Do we need this field? It&apos;s not coming from ECC will this be loaded from Possum --></help>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Wholesalers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- SAP Number --></label>
+        <name>SAP_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Organization --></label>
+        <name>Sales_Organization__c</name>
+    </fields>
+    <fields>
+        <label><!-- State Code --></label>
+        <name>State_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <help><!-- Do we need this anymore.... --></help>
+        <label><!-- Wholesaler Name --></label>
+        <name>Wholesaler_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Zip --></label>
+        <name>Zip__c</name>
+    </fields>
+    <layouts>
+        <layout>Wholesaler Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

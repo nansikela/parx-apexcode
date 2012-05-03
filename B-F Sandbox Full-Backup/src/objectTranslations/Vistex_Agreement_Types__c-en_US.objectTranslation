@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Vistex Agreement Types</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Vistex Agreement Types</value>
+    </caseValues>
+    <fields>
+        <label><!-- Activity --></label>
+        <name>Activity__c</name>
+        <picklistValues>
+            <masterLabel>Advertising</masterLabel>
+            <translation><!-- Advertising --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catalogue</masterLabel>
+            <translation><!-- Catalogue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cocktail Listings</masterLabel>
+            <translation><!-- Cocktail Listings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incentives</masterLabel>
+            <translation><!-- Incentives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pouring</masterLabel>
+            <translation><!-- Pouring --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Support</masterLabel>
+            <translation><!-- Price Support --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printing</masterLabel>
+            <translation><!-- Printing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ranging</masterLabel>
+            <translation><!-- Ranging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Secondary Display</masterLabel>
+            <translation><!-- Secondary Display --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Signage</masterLabel>
+            <translation><!-- Signage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uniforms</masterLabel>
+            <translation><!-- Uniforms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Xmas Catalogue</masterLabel>
+            <translation><!-- Xmas Catalogue --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>Application__c</name>
+        <picklistValues>
+            <masterLabel>On Retailers Invoice - Rate per Case Off</masterLabel>
+            <translation><!-- On Retailers Invoice - Rate per Case Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Retailers Invoice - Rate per Case On</masterLabel>
+            <translation><!-- On Retailers Invoice - Rate per Case On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Customer - Lump Sum Off</masterLabel>
+            <translation><!-- Rebate Customer - Lump Sum Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Customer - Lump Sum On</masterLabel>
+            <translation><!-- Rebate Customer - Lump Sum On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Customer - Rate per Case Off</masterLabel>
+            <translation><!-- Rebate Customer - Rate per Case Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Customer - Rate per Case On</masterLabel>
+            <translation><!-- Rebate Customer - Rate per Case On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Group - Lump Sum Off</masterLabel>
+            <translation><!-- Rebate Group - Lump Sum Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Group - Lump Sum On</masterLabel>
+            <translation><!-- Rebate Group - Lump Sum On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Group - Rate Per Case Off</masterLabel>
+            <translation><!-- Rebate Group - Rate Per Case Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Group - Rate Per Case On</masterLabel>
+            <translation><!-- Rebate Group - Rate Per Case On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Third Party - Lump Sum Off</masterLabel>
+            <translation><!-- Rebate Third Party - Lump Sum Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Third Party - Lump Sum On</masterLabel>
+            <translation><!-- Rebate Third Party - Lump Sum On --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>OFF</masterLabel>
+            <translation><!-- OFF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ON</masterLabel>
+            <translation><!-- ON --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Condition --></label>
+        <name>Condition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Method --></label>
+        <name>Method__c</name>
+        <picklistValues>
+            <masterLabel>Lump Sum</masterLabel>
+            <translation><!-- Lump Sum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lump Sum Off</masterLabel>
+            <translation><!-- Lump Sum Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rate Per Case</masterLabel>
+            <translation><!-- Rate Per Case --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rate per Case Off</masterLabel>
+            <translation><!-- Rate per Case Off --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

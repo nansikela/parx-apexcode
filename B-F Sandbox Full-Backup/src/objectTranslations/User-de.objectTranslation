@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Brand Manager --></label>
+        <name>Brand_Manager__c</name>
+        <relationshipLabel><!-- Users (Brand Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Enter Additional Information here --></help>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this box to execute a trigger upon save that will create/update Offline Outlet Visit records for this user (requires user to be enabled for mobile or offline access). --></help>
+        <label><!-- Create Offline Outlet Visit Records --></label>
+        <name>Create_Offline_Outlet_Visit_Records__c</name>
+    </fields>
+    <fields>
+        <label><!-- DB Region --></label>
+        <name>DB_Region__c</name>
+        <picklistValues>
+            <masterLabel>APAC</masterLabel>
+            <translation><!-- APAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EMEA</masterLabel>
+            <translation><!-- EMEA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NA</masterLabel>
+            <translation><!-- NA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Finance Manager --></label>
+        <name>Finance_Manager__c</name>
+        <relationshipLabel><!-- Users (Finance Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- LastTransactionStatus --></label>
+        <name>LastTransactionStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manger Email --></label>
+        <name>Manger_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Manager --></label>
+        <name>Market_Manager__c</name>
+        <relationshipLabel><!-- Users (Market Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- CRM: Market at a Country level-  such as Germany, Korea, India, Japan etc.
+NPA: Market at a State level-  such as Illinois, Kentucky etc. --></help>
+        <label>Land</label>
+        <name>Market__c</name>
+        <picklistValues>
+            <masterLabel>ALL</masterLabel>
+            <translation><!-- ALL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Australia</masterLabel>
+            <translation><!-- Australia --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada General</masterLabel>
+            <translation><!-- Canada General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>China</masterLabel>
+            <translation><!-- China --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Germany</masterLabel>
+            <translation><!-- Germany --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>India</masterLabel>
+            <translation><!-- India --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Japan</masterLabel>
+            <translation><!-- Japan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Korea</masterLabel>
+            <translation><!-- Korea --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taiwan</masterLabel>
+            <translation><!-- Taiwan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thailand</masterLabel>
+            <translation><!-- Thailand --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- NextLevelManagers --></label>
+        <name>NextLevelManagers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Name --></label>
+        <name>Owner_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProductPromotionAllowance --></label>
+        <name>ProductPromotionAllowance__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProductPromotionBalance --></label>
+        <name>ProductPromotionBalance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Manager --></label>
+        <name>Sales_Manager__c</name>
+        <relationshipLabel><!-- Users (Sales Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- TSID --></label>
+        <name>TSID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wombat_Sync_Session_ID --></label>
+        <name>Wombat_Sync_Session_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Office Location --></label>
+        <name>physicalDeliveryOfficeName__c</name>
+    </fields>
+    <layouts>
+        <layout>User Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <webLinks>
+        <label><!-- Arrivo --></label>
+        <name>Arrivo</name>
+    </webLinks>
+</CustomObjectTranslation>

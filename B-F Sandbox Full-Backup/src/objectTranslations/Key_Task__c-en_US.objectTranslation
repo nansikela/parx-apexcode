@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Key Task</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Key Tasks</value>
+    </caseValues>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complete --></label>
+        <name>Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsQualitative --></label>
+        <name>IsQualitative__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsQuantitative --></label>
+        <name>IsQuantitative__c</name>
+    </fields>
+    <fields>
+        <label><!-- Key Task Template --></label>
+        <name>Key_Task_Template__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Met With --></label>
+        <name>Met_With__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Outlet Visit --></label>
+        <name>Outlet_Visit__c</name>
+        <relationshipLabel><!-- Key Tasks --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Key Task Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

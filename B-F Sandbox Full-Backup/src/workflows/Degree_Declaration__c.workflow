@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Degree_Declaration_ApprovedHTML</fullName>
+        <description>Degree Declaration Approved HTML</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_Email_Templates/Degree_Declaration_ApprovedHTML</template>
+    </alerts>
+    <alerts>
+        <fullName>Degree_Declaration_RejectedHTML</fullName>
+        <description>Degree Declaration RejectedHTML</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_Email_Templates/Degree_Declaration_RejectedHTML</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>UpdateCurrentApproverwithHRManager</fullName>
+        <field>Current_Approver__c</field>
+        <formula>HR_Manager__r.FirstName &amp; &quot; &quot; &amp; HR_Manager__r.LastName</formula>
+        <name>UpdateCurrentApproverwithHRManager</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateCurrentApproverwithManagerName</fullName>
+        <field>Current_Approver__c</field>
+        <formula>Manager__r.FirstName &amp; &quot; &quot; &amp;  Manager__r.LastName</formula>
+        <name>UpdateCurrentApproverwithManagerName</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateCurrentApproverwithProgramAdmin</fullName>
+        <field>Current_Approver__c</field>
+        <formula>Program_Admin_Name__c</formula>
+        <name>UpdateCurrentApproverwithProgramAdmin</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateCurrentApproverwithSubmittedforApp</fullName>
+        <description>Update current approver with Submitted for Approval</description>
+        <field>Current_Approver__c</field>
+        <formula>&quot;Submitted for Approval&quot;</formula>
+        <name>UpdateCurrentApproverwithSubmittedforApp</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateProgramAdminStatus</fullName>
+        <field>ProgramAdminStatus__c</field>
+        <formula>&quot;ManagerApproved&quot;</formula>
+        <name>UpdateProgramAdminStatus</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateProgramAdminStatus_Rejected</fullName>
+        <field>ProgramAdminStatus__c</field>
+        <formula>&quot;Rejected&quot;</formula>
+        <name>UpdateProgramAdminStatus_Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateProgramAdminStatustoClosed</fullName>
+        <field>ProgramAdminStatus__c</field>
+        <formula>&quot;Closed&quot;</formula>
+        <name>UpdateProgramAdminStatustoClosed</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UpdateSubmitforApprovaltoFalse</fullName>
+        <field>SubmitforApproval__c</field>
+        <formula>&quot;False&quot;</formula>
+        <name>UpdateSubmitforApprovaltoFalse</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

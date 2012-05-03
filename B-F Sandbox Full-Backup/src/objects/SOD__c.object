@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Used for SOD Certification</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Business_Process_Owner__c</fullName>
+        <externalId>false</externalId>
+        <label>Business Process Owner</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certified_Complete__c</fullName>
+        <externalId>false</externalId>
+        <label>Certified Complete?</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Certified_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE( CASE( Certified_Complete__c , 
+&quot;No&quot;, &quot;/img/samples/light_red.gif&quot;, 
+&quot;&quot;, &quot;/img/samples/light_red.gif&quot;, 
+&quot;Yes&quot;, &quot;/img/samples/light_green.gif&quot;, &quot;/s.gif&quot;), &quot;status color&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Certified Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter comments.</inlineHelpText>
+        <label>Comments</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Compliance_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>Compliance Method</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Included</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mailed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Faxed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Control_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Control Date</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Due_Date_Text__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(MONTH(Due_Date__c )) &amp;&apos;/&apos;&amp; TEXT(DAY(Due_Date__c)) &amp;&apos;/&apos;&amp; TEXT(YEAR(Due_Date__c))</formula>
+        <label>Due Date Text</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Due Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SOD_Group_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>SOD Group ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>SOX_Contact_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>SOX Contact ID</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UniqueID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Unique Identifier to prevent duplicates</description>
+        <externalId>false</externalId>
+        <label>UniqueID</label>
+        <length>100</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>User_ID_s__c</fullName>
+        <externalId>false</externalId>
+        <label>User ID(s)</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>12</visibleLines>
+    </fields>
+    <fields>
+        <fullName>User_Name_s__c</fullName>
+        <externalId>false</externalId>
+        <label>User Name(s)</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>12</visibleLines>
+    </fields>
+    <fields>
+        <fullName>tsid__c</fullName>
+        <externalId>false</externalId>
+        <label>tsid</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Certification Records</label>
+    <listViews>
+        <fullName>All</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>SOD_Group_ID__c</columns>
+        <columns>Business_Process_Owner__c</columns>
+        <columns>Compliance_Method__c</columns>
+        <columns>Control_Date__c</columns>
+        <columns>Due_Date__c</columns>
+        <columns>Certified_Complete__c</columns>
+        <columns>Certified_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Certified_Complete__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <filters>
+            <field>Certified_Complete__c</field>
+            <operation>equals</operation>
+            <value>No</value>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>FDC-SoD Administrator</role>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Certification_Records</fullName>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <columns>NAME</columns>
+        <columns>SOD_Group_ID__c</columns>
+        <columns>Business_Process_Owner__c</columns>
+        <columns>Compliance_Method__c</columns>
+        <columns>Control_Date__c</columns>
+        <columns>Due_Date__c</columns>
+        <columns>Certified_Complete__c</columns>
+        <columns>Certified_Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Certified_Complete__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <filters>
+            <field>Certified_Complete__c</field>
+            <operation>equals</operation>
+            <value>No</value>
+        </filters>
+        <label>All Certification Records</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>APAC KJ / Admin</role>
+            <role>APAC MD / Admin</role>
+            <role>CHN-Sales Manager</role>
+            <role>FDC-SoD User</role>
+            <role>Global Administrator</role>
+            <role>TWN-Finance Manager</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Closed</fullName>
+        <columns>NAME</columns>
+        <columns>SOD_Group_ID__c</columns>
+        <columns>Business_Process_Owner__c</columns>
+        <columns>Compliance_Method__c</columns>
+        <columns>Control_Date__c</columns>
+        <columns>Due_Date__c</columns>
+        <columns>Certified_Complete__c</columns>
+        <columns>Certified_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Certified_Complete__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <label>All Closed</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>FDC-SoD Administrator</role>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Open</fullName>
+        <columns>NAME</columns>
+        <columns>SOD_Group_ID__c</columns>
+        <columns>Business_Process_Owner__c</columns>
+        <columns>Compliance_Method__c</columns>
+        <columns>Control_Date__c</columns>
+        <columns>Due_Date__c</columns>
+        <columns>Certified_Complete__c</columns>
+        <columns>Certified_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Certified_Complete__c</field>
+            <operation>equals</operation>
+            <value>No</value>
+        </filters>
+        <label>All Open</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>FDC-SoD Administrator</role>
+            <role>Global Administrator</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Closed_Certification_Records</fullName>
+        <columns>NAME</columns>
+        <columns>SOD_Group_ID__c</columns>
+        <columns>Business_Process_Owner__c</columns>
+        <columns>Compliance_Method__c</columns>
+        <columns>Control_Date__c</columns>
+        <columns>Due_Date__c</columns>
+        <columns>Certified_Complete__c</columns>
+        <columns>Certified_Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Certified_Complete__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </filters>
+        <label>My Closed Certification Records</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>APAC KJ / Admin</role>
+            <role>APAC MD / Admin</role>
+            <role>CHN-Sales Manager</role>
+            <role>FDC-SoD User</role>
+            <role>TWN-Finance Manager</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Open_Certification_Records</fullName>
+        <columns>NAME</columns>
+        <columns>SOD_Group_ID__c</columns>
+        <columns>Business_Process_Owner__c</columns>
+        <columns>Compliance_Method__c</columns>
+        <columns>Control_Date__c</columns>
+        <columns>Due_Date__c</columns>
+        <columns>Certified_Complete__c</columns>
+        <columns>Certified_Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Certified_Complete__c</field>
+            <operation>equals</operation>
+            <value>No</value>
+        </filters>
+        <label>My Open Certification Records</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>APAC KJ / Admin</role>
+            <role>APAC MD / Admin</role>
+            <role>CHN-Sales Manager</role>
+            <role>FDC-SoD User</role>
+            <role>TWN-Finance Manager</role>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <label>SOX Contact</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Certification Records</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <searchFilterFields>NAME</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>PreventChangeofSoxContactName</fullName>
+        <active>true</active>
+        <description>Prevents users from changing a custom field called Sox Contact (Name) after it has been saved initially - Used with Compensating Controls Application</description>
+        <errorConditionFormula>AND( NOT( ISNEW() ), ISCHANGED(  Name ))</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>SOX Contact cannot be changed</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>PreventChangeofUniqueID</fullName>
+        <active>true</active>
+        <description>Prevents users from changing a custom field called UniqueID after it has been saved initially - Used with Compensating Controls Application</description>
+        <errorConditionFormula>AND( NOT( ISNEW() ), ISCHANGED( UniqueID__c ))</errorConditionFormula>
+        <errorDisplayField>UniqueID__c</errorDisplayField>
+        <errorMessage>UniqueID cannot be changed</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>I_Certify_Complete</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>I Certify Complete</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!requireScript(&quot;/soap/ajax/20.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)}
+
+var recId = &quot;{!SOD__c.Id}&quot;;
+sforce.connection.sessionId = &quot;{!API.Session_ID}&quot;; 
+//Call the class &apos;certificatioCheck&apos; with the method &apos;checkCertification&apos; 
+var result = sforce.apex.execute(&quot;certificationCheck&quot;,&quot;checkCertification&quot;,{recordId:recId}); 
+
+if(result==&apos;true&apos;)
+{  
+// Refresh window
+window.location.reload(); 
+}
+if(result==&apos;false&apos;)
+{
+alert(&apos;Please select Compliance Method or Attach Proof of Controls !&apos;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Monthly_SoD_Certification_Process</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>Monthly SoD Certification Process</masterLabel>
+        <openType>newWindow</openType>
+        <position>fullScreen</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>https://docs.google.com/a/b-f.com/viewer?a=v&amp;pid=explorer&amp;chrome=true&amp;srcid=0B7q9v-RbSX5oNDBmY2NjZTAtZTI3NC00ZDhhLWExYjctMzEzZmNhMTc1Njg1&amp;hl=en_US</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DashboardFolder xmlns="http://soap.sforce.com/2006/04/metadata">
+    <accessType>Shared</accessType>
+    <name>FDC - Art Collection</name>
+    <publicFolderAccess>ReadOnly</publicFolderAccess>
+    <sharedTo>
+        <role>FDC-Force.com Administrators</role>
+        <roleAndSubordinates>FDC-Art Collection Administrators</roleAndSubordinates>
+    </sharedTo>
+</DashboardFolder>

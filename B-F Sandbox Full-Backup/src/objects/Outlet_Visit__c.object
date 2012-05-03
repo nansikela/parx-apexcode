@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>outletVisit</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>outletVisit</content>
+        <skipRecordTypeSelect>true</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <content>outletVisit</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>AccountName__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AccountName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AccountNumber__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.AccountNumber</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AccountNumber</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Outlet (Account)</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Outlet Visits</relationshipLabel>
+        <relationshipName>Outlet_Visits</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Competitor_Activity__c</fullName>
+        <externalId>false</externalId>
+        <label>Competitor Activity</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Create_Offline_OVIs__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Infowelders -- used to create Offline OVIs in batchable class.</description>
+        <externalId>false</externalId>
+        <label>Create Offline OVIs?</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Follow_Up__c</fullName>
+        <description>Follow-Up items from the outlet visit</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter any follow-up items from the outlet visit</inlineHelpText>
+        <label>Follow-Up</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Last_Visit_Date__c</fullName>
+        <description>P00001 - Created by PARX to improve reporting on Last Visits</description>
+        <externalId>false</externalId>
+        <formula>today()</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Data is Today if Visit is last visit otherwise Visit Date. This allows Last Visits of Accounts visited long ago to appear in Last Visit reports. This is useful to compare the same set of accounts again and again.</inlineHelpText>
+        <label>Last Visit Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Last_Visit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>P00001  - Created by PARX to improve reporting on Last Visits</description>
+        <externalId>false</externalId>
+        <label>Last Visit</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Legacy_Code__c</fullName>
+        <externalId>false</externalId>
+        <label>Legacy Code</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_ID__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Legacy ID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Met_With__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Met With (Contact)</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Outlet Visits</relationshipLabel>
+        <relationshipName>Outlet_Visits</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Next_to_Last_Visit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>P00001  - Created by PARX to improve reporting on Last Visits</description>
+        <externalId>false</externalId>
+        <label>Next to Last Visit</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Objectives__c</fullName>
+        <externalId>false</externalId>
+        <label>Objectives</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Offline_Use__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>This field is set by a scheduled APEX class and is used by offline briefcase configurations</description>
+        <externalId>false</externalId>
+        <label>Offline_Use</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>New</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Complete</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Time_Tracking__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>PARX - Jochen Schrader: Needed for a weekly report about the number of visits done by a sales rep and his possible (maximum) number of visits that can be calculated by his timetracking</description>
+        <externalId>false</externalId>
+        <label>Time Tracking</label>
+        <referenceTo>Time_Tracking__c</referenceTo>
+        <relationshipLabel>Outlet Visits</relationshipLabel>
+        <relationshipName>Outlet_Visits</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Venue__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Venue</label>
+        <referenceTo>Venue__c</referenceTo>
+        <relationshipLabel>Outlet Visits</relationshipLabel>
+        <relationshipName>Outlet_Visits</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Visit_Comments__c</fullName>
+        <externalId>false</externalId>
+        <label>Visit Comments</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Visit_Counts__c</fullName>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Visit Counts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Visit_Date_Month__c</fullName>
+        <description>Needed for a trigger in Time Tracking to select the right outlet visits</description>
+        <externalId>false</externalId>
+        <formula>Year(Visit_Date__c)* 100 + Month( Visit_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Month &amp; Year of Visit Date</inlineHelpText>
+        <label>Visit Date Month</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Visit_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Visit Date</label>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <type>Date</type>
+    </fields>
+    <label>Outlet Visit</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>OV-{00000}</displayFormat>
+        <label>Outlet Visit Name</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Outlet Visits</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>X1</fullName>
+        <active>true</active>
+        <description>Record type to facilitate VF page layout 1</description>
+        <label>1</label>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>X2</fullName>
+        <active>true</active>
+        <description>Record type to facilitate VF page layout 2</description>
+        <label>2</label>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>X3</fullName>
+        <active>true</active>
+        <description>Record type to facilitate VF page layout 3</description>
+        <label>3</label>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <sharingReasons>
+        <fullName>Substitution__c</fullName>
+        <label>Substitution</label>
+    </sharingReasons>
+    <startsWith>Vowel</startsWith>
+</CustomObject>

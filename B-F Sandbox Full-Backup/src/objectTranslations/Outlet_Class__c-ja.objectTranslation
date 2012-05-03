@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>ｸﾗｼﾌｨｹｰｼｮﾝ</value>
+    </caseValues>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Outlet Classes --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Monthly Visit Goal --></label>
+        <name>Monthly_Visit_Goal__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Outlet_Class_Description__c</name>
+    </fields>
+    <layouts>
+        <layout>Outlet Class Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Outlet Class Name</nameFieldLabel>
+    <namedFilters>
+        <errorMessage><!-- You may only select Class values for your market. --></errorMessage>
+        <name>Account_00N30000005PvL2EAK</name>
+    </namedFilters>
+    <namedFilters>
+        <errorMessage><!-- You may only associate Key Task Templates to Classes in the same market. --></errorMessage>
+        <name>nf_01I300000017yEWEAY_00N30000005PvLIEA0</name>
+    </namedFilters>
+</CustomObjectTranslation>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Market</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Markets</value>
+    </caseValues>
+    <fields>
+        <label><!-- Evaluator 1 --></label>
+        <name>Evaluator_1__c</name>
+        <relationshipLabel><!-- Markets (Evaluator 1) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 2 --></label>
+        <name>Evaluator_2__c</name>
+        <relationshipLabel><!-- Markets (Evaluator 2) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 3 --></label>
+        <name>Evaluator_3__c</name>
+        <relationshipLabel><!-- Markets (Evaluator 3) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 4 --></label>
+        <name>Evaluator_4__c</name>
+        <relationshipLabel><!-- Markets (Evaluator 4) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 5 --></label>
+        <name>Evaluator_5__c</name>
+        <relationshipLabel><!-- Markets (Evaluator 5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 6 --></label>
+        <name>Evaluator_6__c</name>
+        <relationshipLabel><!-- Markets (Evaluator 6) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 7 --></label>
+        <name>Evaluator_7__c</name>
+        <relationshipLabel><!-- Markets (Evaluator 7) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Evaluator 8 --></label>
+        <name>Evaluator_8__c</name>
+        <relationshipLabel><!-- Markets (Evaluator 8) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Innovation Director --></label>
+        <name>Innovation_Director__c</name>
+        <relationshipLabel><!-- Markets (Innovation Director) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Market Code --></label>
+        <name>Market_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Used by the Outlet Visit page to determine what grid-layout to use in the B-F and Competitor Brands sections. This &quot;Off Channel&quot; references the value in the related Account.Channel__c field value.
+1-Standard Layout
+2-Euro Off
+3-Euro On --></help>
+        <label><!-- Off Channel --></label>
+        <name>Off_Channel__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Used by the Outlet Visit page to determine what grid-layout to use in the B-F and Competitor Brands sections. This &quot;On Channel&quot; references the value in the related Account.Channel__c field value.
+1-Standard Layout
+2-Euro Off
+3-Euro On --></help>
+        <label><!-- On Channel --></label>
+        <name>On_Channel__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Parent Market Code --></label>
+        <name>Parent_Market_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Market --></label>
+        <name>Parent_Market__c</name>
+        <relationshipLabel><!-- Markets --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Market Admin Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Prioritization Evaluators --></label>
+            <section>Prioritization Evaluators</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Market Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Market Layout - Prioritization Model</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Prioritization Evaluators --></label>
+            <section>Prioritization Evaluators</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Market NPA Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

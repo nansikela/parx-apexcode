@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>訪問項目</value>
+    </caseValues>
+    <fields>
+        <label><!-- Available --></label>
+        <name>Available__c</name>
+    </fields>
+    <fields>
+        <label><!-- BackBarVisit --></label>
+        <name>BackBarVisit__c</name>
+    </fields>
+    <fields>
+        <label>ﾎﾞﾄﾙ特別価格</label>
+        <name>Bottle_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label>ﾎﾞﾄﾙ販売価格</label>
+        <name>Bottle_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+    </fields>
+    <fields>
+        <label><!-- CocktailCount --></label>
+        <name>CocktailCount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Custom_Product__c</name>
+        <relationshipLabel><!-- Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Double Price Special --></label>
+        <name>Double_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label><!-- Double Price --></label>
+        <name>Double_Price__c</name>
+    </fields>
+    <fields>
+        <label>ﾄﾞﾘﾝｸ特別価格</label>
+        <name>Drink_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label>ﾄﾞﾘﾝｸ価格</label>
+        <name>Drink_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facing --></label>
+        <name>Facing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_Off__c</name>
+        <picklistValues>
+            <masterLabel>Chiller Cabinet</masterLabel>
+            <translation><!-- Chiller Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dummy</masterLabel>
+            <translation><!-- Dummy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Place</masterLabel>
+            <translation><!-- Free Place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glass Cabinet</masterLabel>
+            <translation><!-- Glass Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pallet Cage</masterLabel>
+            <translation><!-- Pallet Cage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf</masterLabel>
+            <translation><!-- Shelf --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Checkout Shelf</masterLabel>
+            <translation><!-- Shelf &amp; Checkout Shelf --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Chiller Cabinet</masterLabel>
+            <translation><!-- Shelf &amp; Chiller Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Cooler</masterLabel>
+            <translation><!-- Shelf &amp; Cooler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Walk-in Cooler</masterLabel>
+            <translation><!-- Shelf &amp; Walk-in Cooler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Walk-in Cooler</masterLabel>
+            <translation><!-- Walk-in Cooler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>checkout/information</masterLabel>
+            <translation><!-- checkout/information --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_On__c</name>
+        <picklistValues>
+            <masterLabel>BackBar</masterLabel>
+            <translation><!-- BackBar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Listing</masterLabel>
+            <translation><!-- Listing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Menu</masterLabel>
+            <translation><!-- Menu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pouring</masterLabel>
+            <translation><!-- Pouring --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Well</masterLabel>
+            <translation><!-- Well --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location Reporting --></label>
+        <name>Location_Reporting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outlet Visit Item Key --></label>
+        <name>Outlet_Visit_Item_Key__c</name>
+    </fields>
+    <fields>
+        <label>訪問記録</label>
+        <name>Outlet_Visit__c</name>
+        <relationshipLabel><!-- Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Placement --></label>
+        <name>Placement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- PriceTypeFlag --></label>
+        <name>PriceTypeFlag__c</name>
+    </fields>
+    <fields>
+        <label>商品</label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shelf Category Item --></label>
+        <name>Shelf_Category_Item__c</name>
+        <relationshipLabel><!-- Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shelf --></label>
+        <name>Shelf__c</name>
+        <picklistValues>
+            <masterLabel>1. Shelf from Bottom</masterLabel>
+            <translation><!-- 1. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2. Shelf from Bottom</masterLabel>
+            <translation><!-- 2. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3. Shelf from Bottom</masterLabel>
+            <translation><!-- 3. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4. Shelf from Bottom</masterLabel>
+            <translation><!-- 4. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5. Shelf from Bottom</masterLabel>
+            <translation><!-- 5. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6. Shelf from Bottom</masterLabel>
+            <translation><!-- 6. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7. Shelf from Bottom</masterLabel>
+            <translation><!-- 7. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7. europalette</masterLabel>
+            <translation><!-- 7. europalette --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8. Shelf from Bottom</masterLabel>
+            <translation><!-- 8. Shelf from Bottom --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Space_Placement__c</name>
+        <picklistValues>
+            <masterLabel>Chiller Cabinet</masterLabel>
+            <translation><!-- Chiller Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dummy</masterLabel>
+            <translation><!-- Dummy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Place</masterLabel>
+            <translation><!-- Free Place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glass Cabinet</masterLabel>
+            <translation><!-- Glass Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pallet Cage</masterLabel>
+            <translation><!-- Pallet Cage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf</masterLabel>
+            <translation><!-- Shelf --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Chiler Cabinet</masterLabel>
+            <translation><!-- Shelf &amp; Chiler Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Cooler</masterLabel>
+            <translation><!-- Shelf &amp; Cooler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Walk-in Cooler</masterLabel>
+            <translation><!-- Walk-in Cooler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>checkout/information</masterLabel>
+            <translation><!-- checkout/information --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Outlet Visit Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Outlet Visit Item Name</nameFieldLabel>
+    <recordTypes>
+        <label><!-- APAC --></label>
+        <name>APAC</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Canada --></label>
+        <name>Canada</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Germany --></label>
+        <name>Germany</name>
+    </recordTypes>
+</CustomObjectTranslation>

@@ -1,0 +1,30 @@
+<apex:page >
+<style>
+    
+#outerdiv
+{
+width:100%;
+height:10000px;
+overflow:hidden;
+position:absolute;
+top:3px;
+left:0px;
+margin:1px;
+}
+
+#inneriframe
+{
+position:absolute;
+top:-30px;
+left:0px;
+width:100%;
+height:10000px;
+margin:1px;
+}
+    </style>
+<div id='outerdiv'>
+    <iframe src="http://sites.google.com/a/b-f.com/soco-team-room/" id='inneriframe' scrolling="no"></iframe>
+</div>
+<div id='background' style="width:100%; height:10000px; background:#fff"></div>
+<iframe src="http://docs.google.com/a/b-f.com" style="display:none; height:2100px"></iframe>
+</apex:page>

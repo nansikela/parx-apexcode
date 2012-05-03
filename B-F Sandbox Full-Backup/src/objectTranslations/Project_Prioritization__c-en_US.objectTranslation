@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Project Prioritization Evaluation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Project Prioritization Evaluations</value>
+    </caseValues>
+    <fields>
+        <label><!-- Achievement --></label>
+        <name>Achievement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attractiveness --></label>
+        <name>Attractiveness__c</name>
+    </fields>
+    <fields>
+        <label><!-- Capital Expenditure --></label>
+        <name>Capital_Expenditure__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category Segment / Outlook --></label>
+        <name>Category_Segment_Outlook__c</name>
+    </fields>
+    <fields>
+        <label><!-- Competitor Defensibility --></label>
+        <name>Competitor_Defensibility__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer / Occasion Fit --></label>
+        <name>Consumer_Occasion_Fit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Fit --></label>
+        <name>Customer_Fit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Development Required --></label>
+        <name>Development_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- 2020 Brand Profit Contribution --></label>
+        <name>Fit_with_Trademark__c</name>
+    </fields>
+    <fields>
+        <label><!-- Management Support --></label>
+        <name>Management_Support__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Trend Alignment --></label>
+        <name>Market_Trend_Alignment__c</name>
+    </fields>
+    <fields>
+        <help><!-- (5 yr Brand Profit / 5yr total sales ) --></help>
+        <label><!-- Operating Profit Margin (5yr) --></label>
+        <name>Operating_Profit_Margin_5yr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payback Timing --></label>
+        <name>Payback_Timing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Production Capability --></label>
+        <name>Production_Capability__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project --></label>
+        <name>Project__c</name>
+        <relationshipLabel><!-- Project Prioritization Evaluations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Capacity --></label>
+        <name>Sales_Capacity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Strategic Alignment --></label>
+        <name>Strategic_Alignment__c</name>
+    </fields>
+    <layouts>
+        <layout>Project Prioritization Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

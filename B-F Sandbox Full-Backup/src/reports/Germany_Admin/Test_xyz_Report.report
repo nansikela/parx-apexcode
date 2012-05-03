@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Market__c.Accounts__r$English_Name__c</field>
+    </columns>
+    <columns>
+        <field>Market__c.Accounts__r$Name</field>
+    </columns>
+    <columns>
+        <field>Market__c.Accounts__r$Outlet_Class__c</field>
+    </columns>
+    <columns>
+        <field>Market__c.Accounts__r.Activities$Subject</field>
+    </columns>
+    <columns>
+        <field>Market__c.Accounts__r.Activities$IsClosed</field>
+    </columns>
+    <columns>
+        <field>Market__c.Accounts__r.Activities$Closed__c</field>
+    </columns>
+    <currency>EUR</currency>
+    <description>Test for the closed issue</description>
+    <filter>
+        <criteriaItems>
+            <column>Market__c.Accounts__r$Channel__c</column>
+            <operator>equals</operator>
+            <value>Off</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Market__c$Name</column>
+            <operator>equals</operator>
+            <value>Germany</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>****Test xyz Report</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>XYZ__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Market__c.Accounts__r.Activities$ActivityDate</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

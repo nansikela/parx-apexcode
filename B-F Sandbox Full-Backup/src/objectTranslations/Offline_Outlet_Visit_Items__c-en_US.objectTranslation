@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Offline Outlet Visit Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Offline Outlet Visit Items</value>
+    </caseValues>
+    <fields>
+        <label><!-- Available --></label>
+        <name>Available__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bottle Price Special --></label>
+        <name>Bottle_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bottle Price --></label>
+        <name>Bottle_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Data Flag --></label>
+        <name>Data_Flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Depletions Last Month Date --></label>
+        <name>Depletions_Last_Month_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Depletions Last Month --></label>
+        <name>Depletions_Last_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Depletions Next Month Date --></label>
+        <name>Depletions_Next_Month_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Depletions Next Month --></label>
+        <name>Depletions_Next_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Depletions This Month Date --></label>
+        <name>Depletions_This_Month_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Depletions This Month --></label>
+        <name>Depletions_This_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Double Price Special --></label>
+        <name>Double_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label><!-- Double Price --></label>
+        <name>Double_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Drink Price Special --></label>
+        <name>Drink_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label><!-- Drink Price --></label>
+        <name>Drink_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facing --></label>
+        <name>Facing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_Off__c</name>
+        <picklistValues>
+            <masterLabel>Chiller Cabinet</masterLabel>
+            <translation><!-- Chiller Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dummy</masterLabel>
+            <translation><!-- Dummy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Place</masterLabel>
+            <translation><!-- Free Place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glass Cabinet</masterLabel>
+            <translation><!-- Glass Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pallet Cage</masterLabel>
+            <translation><!-- Pallet Cage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Chiller Cabinet</masterLabel>
+            <translation><!-- Shelf &amp; Chiller Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>checkout/information</masterLabel>
+            <translation><!-- checkout/information --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_On__c</name>
+        <picklistValues>
+            <masterLabel>BackBar</masterLabel>
+            <translation><!-- BackBar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Listing</masterLabel>
+            <translation><!-- Listing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Menu</masterLabel>
+            <translation><!-- Menu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pouring</masterLabel>
+            <translation><!-- Pouring --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Outlet Visit Item Key --></label>
+        <name>Outlet_Visit_Item_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outlet Visit --></label>
+        <name>Outlet_Visit__c</name>
+        <relationshipLabel><!-- Offline Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product_ID --></label>
+        <name>Product_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf --></label>
+        <name>Shelf__c</name>
+        <picklistValues>
+            <masterLabel>1. Shelf from Bottom</masterLabel>
+            <translation><!-- 1. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2. Shelf from Bottom</masterLabel>
+            <translation><!-- 2. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3. Shelf from Bottom</masterLabel>
+            <translation><!-- 3. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4. Shelf from Bottom</masterLabel>
+            <translation><!-- 4. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5. Shelf from Bottom</masterLabel>
+            <translation><!-- 5. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6. Shelf from Bottom</masterLabel>
+            <translation><!-- 6. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7. euro-palette</masterLabel>
+            <translation><!-- 7. euro-palette --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Space --></label>
+        <name>Space_Placement__c</name>
+        <picklistValues>
+            <masterLabel>Chiller Cabinet</masterLabel>
+            <translation><!-- Chiller Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dummy</masterLabel>
+            <translation><!-- Dummy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Place</masterLabel>
+            <translation><!-- Free Place --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glass Cabinet</masterLabel>
+            <translation><!-- Glass Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pallet Cage</masterLabel>
+            <translation><!-- Pallet Cage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Chiller Cabinet</masterLabel>
+            <translation><!-- Shelf &amp; Chiller Cabinet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>checkout/information</masterLabel>
+            <translation><!-- checkout/information --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>VF Grid 1</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>VF Grid 2</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>VF Grid 3</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- 1 --></label>
+        <name>X1</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- 2 --></label>
+        <name>X2</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- 3 --></label>
+        <name>X3</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

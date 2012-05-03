@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Deal</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Deals</value>
+    </caseValues>
+    <fields>
+        <label><!-- AccountName --></label>
+        <name>AccountName__c</name>
+    </fields>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <help><!-- Account Wholesaler --></help>
+        <label><!-- Account Wholesaler --></label>
+        <name>Account_Wholesaler__c</name>
+        <relationshipLabel><!-- Deals --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Deals --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Activity Code --></label>
+        <name>Activity_Code__c</name>
+        <picklistValues>
+            <masterLabel>Advertising</masterLabel>
+            <translation><!-- Advertising --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catalogue</masterLabel>
+            <translation><!-- Catalogue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cocktail Listings</masterLabel>
+            <translation><!-- Cocktail Listings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incentives</masterLabel>
+            <translation><!-- Incentives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pouring</masterLabel>
+            <translation><!-- Pouring --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Support</masterLabel>
+            <translation><!-- Price Support --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printing</masterLabel>
+            <translation><!-- Printing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ranging</masterLabel>
+            <translation><!-- Ranging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Secondary Display</masterLabel>
+            <translation><!-- Secondary Display --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Signage</masterLabel>
+            <translation><!-- Signage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Uniforms</masterLabel>
+            <translation><!-- Uniforms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Xmas Catalogue</masterLabel>
+            <translation><!-- Xmas Catalogue --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Activity Comment --></label>
+        <name>Activity_Comment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>Application__c</name>
+        <picklistValues>
+            <masterLabel>On Retailer&apos;s Invoice - Rate per Case On</masterLabel>
+            <translation><!-- On Retailer&apos;s Invoice - Rate per Case On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Retailers Invoice - Rate per Case Off</masterLabel>
+            <translation><!-- On Retailers Invoice - Rate per Case Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Customer - Lump Sum Off</masterLabel>
+            <translation><!-- Rebate Customer - Lump Sum Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Customer - Lump Sum On</masterLabel>
+            <translation><!-- Rebate Customer - Lump Sum On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Customer - Rate per Case Off</masterLabel>
+            <translation><!-- Rebate Customer - Rate per Case Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Customer - Rate per Case On</masterLabel>
+            <translation><!-- Rebate Customer - Rate per Case On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Group - Lump Sum Off</masterLabel>
+            <translation><!-- Rebate Group - Lump Sum Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Group - Lump Sum On</masterLabel>
+            <translation><!-- Rebate Group - Lump Sum On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Group - Rate Per Case Off</masterLabel>
+            <translation><!-- Rebate Group - Rate Per Case Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Group - Rate Per Case On</masterLabel>
+            <translation><!-- Rebate Group - Rate Per Case On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Third Party - Lump Sum Off</masterLabel>
+            <translation><!-- Rebate Third Party - Lump Sum Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate Third Party - Lump Sum On</masterLabel>
+            <translation><!-- Rebate Third Party - Lump Sum On --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Approx LUC (exc GST) --></label>
+        <name>Approx_LUC_exc_GST__c</name>
+    </fields>
+    <fields>
+        <label><!-- Banner Group Name --></label>
+        <name>Banner_Group_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Banner Group --></label>
+        <name>Banner_Group__c</name>
+        <relationshipLabel><!-- Deals --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Should be done at the Brand Level --></help>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Deals --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>Buy_Period_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The period that the Account can purchase the product. --></help>
+        <label><!-- Buy Period Start Date --></label>
+        <name>Buy_Period_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Co Op Type --></label>
+        <name>Co_Op_Type__c</name>
+        <picklistValues>
+            <masterLabel>Case Rate (Rebate)</masterLabel>
+            <translation><!-- Case Rate (Rebate) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lump Sum (Rebate)</masterLabel>
+            <translation><!-- Lump Sum (Rebate) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Level --></label>
+        <name>Customer_Level__c</name>
+        <picklistValues>
+            <masterLabel>Banner</masterLabel>
+            <translation><!-- Banner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retailer</masterLabel>
+            <translation><!-- Retailer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Manual named field --></help>
+        <label><!-- Customer Promotion ID --></label>
+        <name>Customer_Promotion_ID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Vistex - Tactic --></help>
+        <label><!-- Deal Channel --></label>
+        <name>Deal_Channel__c</name>
+        <picklistValues>
+            <masterLabel>Integrated</masterLabel>
+            <translation><!-- Integrated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OFF</masterLabel>
+            <translation><!-- OFF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ON</masterLabel>
+            <translation><!-- ON --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Deal Display Helper Type --></label>
+        <name>Deal_Display_Helper_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deal Method --></label>
+        <name>Deal_Method__c</name>
+        <picklistValues>
+            <masterLabel>Lump Sum</masterLabel>
+            <translation><!-- Lump Sum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lump Sum Off</masterLabel>
+            <translation><!-- Lump Sum Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rate Per Case</masterLabel>
+            <translation><!-- Rate Per Case --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rate per Case Off</masterLabel>
+            <translation><!-- Rate per Case Off --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Deal Type --></label>
+        <name>Deal_Type__c</name>
+        <picklistValues>
+            <masterLabel>On Promotion</masterLabel>
+            <translation><!-- On Promotion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ongoing</masterLabel>
+            <translation><!-- Ongoing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Dollar per Case - Trade Allowance Discount Amount --></help>
+        <label><!-- Extra Co-Op per Case --></label>
+        <name>Extra_Co_Op_per_Case__c</name>
+    </fields>
+    <fields>
+        <help><!-- In Addition to the existing PA --></help>
+        <label><!-- Extra PA ($) --></label>
+        <name>Extra_Unit_PA__c</name>
+    </fields>
+    <fields>
+        <help><!-- System Generated Key --></help>
+        <label><!-- Id --></label>
+        <name>Id__c</name>
+    </fields>
+    <fields>
+        <help><!-- Landed Unit Cost - What the retailer pays. --></help>
+        <label><!-- LUC (GST INC) ($) --></label>
+        <name>LUC_GST_INC__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Lumps Sum of Trade Allowance allocated to a Pay Date (Either one or the other Co-op value) --></help>
+        <label><!-- Lump Sum Co-Op --></label>
+        <name>Lump_Sum_Co_OP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lump Sum --></label>
+        <name>Lump_Sum__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sell - LUC / Sell --></help>
+        <label><!-- Margin % --></label>
+        <name>Margin__c</name>
+    </fields>
+    <fields>
+        <help><!-- This will be the old product group. --></help>
+        <label><!-- Material Product Group --></label>
+        <name>Material_Product_Group__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Note to Approver --></label>
+        <name>Note_to_Approver__c</name>
+    </fields>
+    <fields>
+        <help><!-- Defined by Vistex --></help>
+        <label><!-- Objective --></label>
+        <name>Objective__c</name>
+        <picklistValues>
+            <masterLabel>001 Price Allowance</masterLabel>
+            <translation><!-- 001 Price Allowance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>003 Compliance</masterLabel>
+            <translation><!-- 003 Compliance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>004 Route to Market - Recovery</masterLabel>
+            <translation><!-- 004 Route to Market - Recovery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>005 Visibility</masterLabel>
+            <translation><!-- 005 Visibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>009 Bonus</masterLabel>
+            <translation><!-- 009 Bonus --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- This number should come from Vistex - Sum of all PA Promotions
+
+Off Invoice from the Wholesaler --></help>
+        <label><!-- Ongoing PA ($) --></label>
+        <name>Ongoing_PA__c</name>
+    </fields>
+    <fields>
+        <label><!-- PA Type --></label>
+        <name>PA_Type__c</name>
+        <picklistValues>
+            <masterLabel>$ Loaded</masterLabel>
+            <translation><!-- $ Loaded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>$ Rebated</masterLabel>
+            <translation><!-- $ Rebated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>$ Scan Deal (Rebated)</masterLabel>
+            <translation><!-- $ Scan Deal (Rebated) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Price Type --></label>
+        <name>Price_Type__c</name>
+        <picklistValues>
+            <masterLabel>EDVP</masterLabel>
+            <translation><!-- EDVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Exact Promoted</masterLabel>
+            <translation><!-- Exact Promoted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Max Shelf</masterLabel>
+            <translation><!-- Max Shelf --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Class --></label>
+        <name>Product_Class__c</name>
+        <picklistValues>
+            <masterLabel>Full Strength</masterLabel>
+            <translation><!-- Full Strength --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pre-Mix</masterLabel>
+            <translation><!-- Pre-Mix --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Product Group - This will be a drill down from brand to product class, to material product group.(Old product group) And allow multiple selection.  Note the rule is one promotion per equally priced and discounted material product group. CD --></help>
+        <label><!-- Promotion Group --></label>
+        <name>Promotion_Group__c</name>
+        <picklistValues>
+            <masterLabel>Example 1</masterLabel>
+            <translation><!-- Example 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Example 2</masterLabel>
+            <translation><!-- Example 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Example 3</masterLabel>
+            <translation><!-- Example 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Promotion Mechanics --></label>
+        <name>Promotion_Mechanics__c</name>
+        <picklistValues>
+            <masterLabel>Bundle</masterLabel>
+            <translation><!-- Bundle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GWP</masterLabel>
+            <translation><!-- GWP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Major Prize</masterLabel>
+            <translation><!-- Major Prize --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price</masterLabel>
+            <translation><!-- Price --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price &amp; GWP</masterLabel>
+            <translation><!-- Price &amp; GWP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price &amp; WIS</masterLabel>
+            <translation><!-- Price &amp; WIS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WIS</masterLabel>
+            <translation><!-- WIS --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- (End Date) --></label>
+        <name>Promotion_Period_End_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The Date the Promotion runs in the store. --></help>
+        <label><!-- Promotion (Start Date) --></label>
+        <name>Promotion_Period_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Type --></label>
+        <name>Promotion_Type__c</name>
+        <picklistValues>
+            <masterLabel>Advertised</masterLabel>
+            <translation><!-- Advertised --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In-Store</masterLabel>
+            <translation><!-- In-Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf</masterLabel>
+            <translation><!-- Shelf --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rate Per Case --></label>
+        <name>Rate_Per_Case__c</name>
+    </fields>
+    <fields>
+        <label><!-- RecordTypeName --></label>
+        <name>RecordTypeName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>Region__c</name>
+        <picklistValues>
+            <masterLabel>South</masterLabel>
+            <translation><!-- South --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South West</masterLabel>
+            <translation><!-- South West --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- (1) This is the Sell Price of the Promoted Pack --></help>
+        <label><!-- Sell Price (GST INC) ($) --></label>
+        <name>Sell_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+        <picklistValues>
+            <masterLabel>ACT</masterLabel>
+            <translation><!-- ACT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NSW</masterLabel>
+            <translation><!-- NSW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NT</masterLabel>
+            <translation><!-- NT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QLD</masterLabel>
+            <translation><!-- QLD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SA</masterLabel>
+            <translation><!-- SA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TAS</masterLabel>
+            <translation><!-- TAS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VIC</masterLabel>
+            <translation><!-- VIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA</masterLabel>
+            <translation><!-- WA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined</masterLabel>
+            <translation><!-- Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initial</masterLabel>
+            <translation><!-- Initial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Defined by Vistex --></help>
+        <label><!-- Tatic --></label>
+        <name>Tatic__c</name>
+        <picklistValues>
+            <masterLabel>Off Premise</masterLabel>
+            <translation><!-- Off Premise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Premise</masterLabel>
+            <translation><!-- On Premise --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Unit --></label>
+        <name>Unit__c</name>
+        <picklistValues>
+            <masterLabel>Bottles</masterLabel>
+            <translation><!-- Bottles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cases</masterLabel>
+            <translation><!-- Cases --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Need Unit Examples</masterLabel>
+            <translation><!-- Need Unit Examples --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Vistex Agreement Number --></help>
+        <label><!-- Vistex Agreement Number --></label>
+        <name>Vistex_Agreement_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Defined by Vistex --></help>
+        <label><!-- Vistex Agreement Type --></label>
+        <name>Vistex_Agreement_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vistex Condition Type --></label>
+        <name>Vistex_Condition_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Source --></label>
+        <name>Volume_Source__c</name>
+        <picklistValues>
+            <masterLabel>W/S Loaded</masterLabel>
+            <translation><!-- W/S Loaded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W/S Rebate</masterLabel>
+            <translation><!-- W/S Rebate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Name --></label>
+        <name>Wholesaler_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the individual wholesaler shed (ie, ALM NSW) --></help>
+        <label><!-- Wholesaler --></label>
+        <name>Wholesaler__c</name>
+        <relationshipLabel><!-- Deals --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Group Deal</layout>
+        <sections>
+            <label><!-- Apply To --></label>
+            <section>Apply To</section>
+        </sections>
+        <sections>
+            <label><!-- Criteria --></label>
+            <section>Criteria</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Deal Type --></label>
+            <section>Deal Type</section>
+        </sections>
+        <sections>
+            <label><!-- Vistex --></label>
+            <section>Vistex</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Group Promotion Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Method --></label>
+            <section>Method</section>
+        </sections>
+        <sections>
+            <label><!-- New Fields --></label>
+            <section>New Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Price --></label>
+            <section>Price</section>
+        </sections>
+        <sections>
+            <label><!-- Vistex --></label>
+            <section>Vistex</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Outlet Deal</layout>
+        <sections>
+            <label><!-- Apply To --></label>
+            <section>Apply To</section>
+        </sections>
+        <sections>
+            <label><!-- Criteria --></label>
+            <section>Criteria</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dates --></label>
+            <section>Dates</section>
+        </sections>
+        <sections>
+            <label><!-- Vistex --></label>
+            <section>Vistex</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Group Deal --></label>
+        <name>Group_Deal</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Outlet Deal --></label>
+        <name>Outlet_Deal</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Buy period end date can not be lower than buy period start date. --></errorMessage>
+        <name>Buy_Period_End_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Promotion period end date cannot be lower than promotion period start date. --></errorMessage>
+        <name>Promotion_Period_End_Date</name>
+    </validationRules>
+</CustomObjectTranslation>

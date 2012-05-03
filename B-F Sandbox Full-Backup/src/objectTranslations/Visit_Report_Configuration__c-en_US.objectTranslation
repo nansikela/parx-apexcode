@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Visit Report Configuration</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Visit Report Configurations</value>
+    </caseValues>
+    <fields>
+        <help><!-- Default: Only the Last Visit per Account per Period is selected! --></help>
+        <label><!-- All Data --></label>
+        <name>All_Data__c</name>
+    </fields>
+    <fields>
+        <help><!-- With &quot;On&quot; only the &quot;Group&quot; Picklist will be taken into account. With &quot;Off&quot; only the Outlet Class will be used. With &quot;Both&quot; you can choose both of them.
+&quot;Wholeseller&quot; will only select Visits of &quot;Wholeseller&quot; Accounts ignoring Group and Class. --></help>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>Both</masterLabel>
+            <translation><!-- Both --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off</masterLabel>
+            <translation><!-- Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On</masterLabel>
+            <translation><!-- On --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesaler</masterLabel>
+            <translation><!-- Wholesaler --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Group --></label>
+        <name>Group__c</name>
+        <picklistValues>
+            <masterLabel>Bar / Pub</masterLabel>
+            <translation><!-- Bar / Pub --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Convenience Store</masterLabel>
+            <translation><!-- Convenience Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dance Club</masterLabel>
+            <translation><!-- Dance Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Department Store</masterLabel>
+            <translation><!-- Department Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Disco / Hip Hop</masterLabel>
+            <translation><!-- Disco / Hip Hop --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drink</masterLabel>
+            <translation><!-- Drink --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Duty Free</masterLabel>
+            <translation><!-- Duty Free --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Event</masterLabel>
+            <translation><!-- Event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government</masterLabel>
+            <translation><!-- Government --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel / Resort</masterLabel>
+            <translation><!-- Hotel / Resort --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hyper Market</masterLabel>
+            <translation><!-- Hyper Market --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent</masterLabel>
+            <translation><!-- Independent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Independent Group</masterLabel>
+            <translation><!-- Independent Group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Karaoke</masterLabel>
+            <translation><!-- Karaoke --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Life</masterLabel>
+            <translation><!-- Life --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Liquor Store</masterLabel>
+            <translation><!-- Liquor Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lodging</masterLabel>
+            <translation><!-- Lodging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>National Chain</masterLabel>
+            <translation><!-- National Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Night Club / Salon</masterLabel>
+            <translation><!-- Night Club / Salon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Store</masterLabel>
+            <translation><!-- Other Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Private</masterLabel>
+            <translation><!-- Private --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional Chain</masterLabel>
+            <translation><!-- Regional Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurant / Cafe</masterLabel>
+            <translation><!-- Restaurant / Cafe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Room Salon</masterLabel>
+            <translation><!-- Room Salon --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Slow Food</masterLabel>
+            <translation><!-- Slow Food --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Small Food / Bistro</masterLabel>
+            <translation><!-- Small Food / Bistro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sports / Darts</masterLabel>
+            <translation><!-- Sports / Darts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sub Wholesalers</masterLabel>
+            <translation><!-- Sub Wholesalers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supermarket</masterLabel>
+            <translation><!-- Supermarket --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesalers</masterLabel>
+            <translation><!-- Wholesalers --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Recurrence --></label>
+        <name>IsRecurrence__c</name>
+    </fields>
+    <fields>
+        <label><!-- LastRecalculation --></label>
+        <name>LastRecalculation__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+        <relationshipLabel><!-- Visit Report Configurations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Outlet Class --></label>
+        <name>Outlet_Class__c</name>
+        <relationshipLabel><!-- Visit Report Configurations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Period1_From --></label>
+        <name>Period1_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period1 To --></label>
+        <name>Period1_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period2_From --></label>
+        <name>Period2_From__c</name>
+    </fields>
+    <fields>
+        <label><!-- Period2_To --></label>
+        <name>Period2_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recurrence Interval --></label>
+        <name>Recurrence_Int__c</name>
+        <picklistValues>
+            <masterLabel>Free Selection</masterLabel>
+            <translation><!-- Free Selection --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monthly</masterLabel>
+            <translation><!-- Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Quarterly</masterLabel>
+            <translation><!-- Quarterly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly</masterLabel>
+            <translation><!-- Weekly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yearly</masterLabel>
+            <translation><!-- Yearly --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Number for free recurrence interval --></help>
+        <label><!-- Recurrence Number --></label>
+        <name>Recurrence_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Unit of Recurrence --></help>
+        <label><!-- Recurrence Unit --></label>
+        <name>Recurrence_Unit__c</name>
+        <picklistValues>
+            <masterLabel>Day(s)</masterLabel>
+            <translation><!-- Day(s) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Month(s)</masterLabel>
+            <translation><!-- Month(s) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Week(s)</masterLabel>
+            <translation><!-- Week(s) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Year(s)</masterLabel>
+            <translation><!-- Year(s) --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Visit Report Configuration Layout</layout>
+        <sections>
+            <label><!-- Criteria --></label>
+            <section>Criteria</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Period --></label>
+            <section>Period</section>
+        </sections>
+        <sections>
+            <label><!-- Recurrence --></label>
+            <section>Recurrence</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- With free selection you have to give number and unit! --></errorMessage>
+        <name>RecurrenceFreeSelection</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- If recurrence is selected you have to choose an interval! --></errorMessage>
+        <name>RecurrenceIntervalHasToBeSet</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- GetData2 --></label>
+        <name>GetData2</name>
+    </webLinks>
+</CustomObjectTranslation>

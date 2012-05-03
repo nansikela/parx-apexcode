@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>PARX - Jochen Schrader: P00002 Germany needs to track the times for their sales reps easily to compare this to the sums of the actual times.</description>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Event__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>PARX - Jochen Schrader: P00002 Event days in the selected Month</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Event days in the selected Month</inlineHelpText>
+        <label>Event</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Illness__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>PARX - Jochen Schrader: P00002 - Number of Illness Days in the selected Month</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of Illness Days in the selected Month</inlineHelpText>
+        <label>Illness</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Meeting__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>PARX - Jochen Schrader: P00002 Meeting Days in the selected Month</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Meeting Days in the selected Month</inlineHelpText>
+        <label>Meeting</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Month__c</fullName>
+        <description>PARX - JS: Month for whch the timecard is vaild, just for the related list</description>
+        <externalId>false</externalId>
+        <formula>TEXT(StartDate_Month__c) &amp; &quot;/&quot; &amp;  Startdate_Year__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_possible_Visits__c</fullName>
+        <description>Number of maximum or possible visits for this sales rep</description>
+        <externalId>false</externalId>
+        <formula>Working_Days_left__c *8</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Number of possible Visits</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Office__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Maintenance of administration effort</description>
+        <externalId>false</externalId>
+        <label>Office</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OwnerId__c</fullName>
+        <description>PARX - Jochen Schrader Trigger needs this for select of outlet visits</description>
+        <externalId>false</externalId>
+        <formula>Staff_Account__r.OwnerId</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>OwnerId</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Public_Holiday__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>PARX - Jochen Schrader: P00002 Public Holiday Days in the selected Month</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Public Holiday Days in the selected Month that counts agains the working days</inlineHelpText>
+        <label>Public Holiday</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Staff_Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>PARX - Jochen Schrader: P00002 Account that is related to Staff Member</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Account that is related to Staff Member</inlineHelpText>
+        <label>Staff Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Time Tracking</relationshipLabel>
+        <relationshipName>Time_Tracking</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>StartDate_Month__c</fullName>
+        <description>PARX - Jochen Schrader: needed to select the time tracking records by outlet visit trigger</description>
+        <externalId>false</externalId>
+        <formula>Month(StartDate__c)+(Year(StartDate__c)*100)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>StartDate Month</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>StartDate__c</fullName>
+        <defaultValue>Date(Year(Today()),Month(Today()),1 )</defaultValue>
+        <description>PARX - Jochen Schrader: P00002 The Start Date you are working for B-F this month.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Start Date you are working for B-F this month.</inlineHelpText>
+        <label>StartDate</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Startdate_Year__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Year(StartDate__c))</formula>
+        <label>Startdate Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Trade_Fair__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>PARX - Jochen Schrader: Days you were visiting a trade fair</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Days you were visiting a trade fair</inlineHelpText>
+        <label>Trade Fair</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Training__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>PARX - Jochen Schrader: P00002 Days on Training in the selected Month</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Days on Training in the selected Month</inlineHelpText>
+        <label>Training</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vacation__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>PARX - Jochen Schrader: P00002 Number of Vacation Days in the selected Month</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of Vacation Days in the selected Month</inlineHelpText>
+        <label>Vacation</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Working_Days__c</fullName>
+        <description>PARX - Jochen Schrader: P00002 Monthly Working Days - Calculated by Workflow because formular is too big</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Monthly Working Days</inlineHelpText>
+        <label>Working Days</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Working_Days_left__c</fullName>
+        <description>PARX - Jochen Schrader: P00002 left over Working Days for the selected Month</description>
+        <externalId>false</externalId>
+        <formula>Working_Days__c  - Meeting__c - Public_Holiday__c - Trade_Fair__c - Training__c - Vacation__c - Event__c - Illness__c-Office__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>left over Working Days for the selected Month</inlineHelpText>
+        <label>Working Days left</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Time Tracking</label>
+    <nameField>
+        <displayFormat>T{YYYY}{MM}-{00}</displayFormat>
+        <label>#</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Time Tracking</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Product Launch Detail</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Product Launch Details</value>
+    </caseValues>
+    <fields>
+        <label><!-- Calendar Week # --></label>
+        <name>Calendar_Week__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calender Week --></label>
+        <name>Calender_Week__c</name>
+    </fields>
+    <fields>
+        <label><!-- Complete --></label>
+        <name>Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Counter --></label>
+        <name>Counter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Placement --></label>
+        <name>Placement__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Launch --></label>
+        <name>Product_Launch__c</name>
+        <relationshipLabel><!-- Product Launch Details --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Product --></label>
+        <name>Product__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Price --></label>
+        <name>Promotion_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Remarks --></label>
+        <name>Remarks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shelf --></label>
+        <name>Shelf__c</name>
+        <picklistValues>
+            <masterLabel>Bottom</masterLabel>
+            <translation><!-- Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Middle</masterLabel>
+            <translation><!-- Middle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Top</masterLabel>
+            <translation><!-- Top --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Standard Price --></label>
+        <name>Standard_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Store Main Segement --></label>
+        <name>Store_Main_Segement__c</name>
+        <picklistValues>
+            <masterLabel>1st Segment</masterLabel>
+            <translation><!-- 1st Segment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2nd Segment</masterLabel>
+            <translation><!-- 2nd Segment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3rd  Segment</masterLabel>
+            <translation><!-- 3rd  Segment --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Store Sub-Segment --></label>
+        <name>Store_Sub_Segement__c</name>
+        <picklistValues>
+            <masterLabel>Christmas Promotion Area</masterLabel>
+            <translation><!-- Christmas Promotion Area --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Punch Placement</masterLabel>
+            <translation><!-- Punch Placement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf Header (Display)  - Promo</masterLabel>
+            <translation><!-- Shelf Header (Display)  - Promo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf Header (Display)  - Spirit Dept</masterLabel>
+            <translation><!-- Shelf Header (Display)  - Spirit Dept --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf Header (Shelf)  - Promo</masterLabel>
+            <translation><!-- Shelf Header (Shelf)  - Promo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf Header (Shelf)  - Spirit Dept</masterLabel>
+            <translation><!-- Shelf Header (Shelf)  - Spirit Dept --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Survey Date --></label>
+        <name>Survey_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume --></label>
+        <name>Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Week --></label>
+        <name>Week__c</name>
+    </fields>
+    <fields>
+        <label><!-- % of Goal --></label>
+        <name>of_Goal__c</name>
+    </fields>
+    <layouts>
+        <layout>Product Launch Detail Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing &amp; Volume --></label>
+            <section>Pricing &amp; Volume</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Germany Off --></label>
+        <name>Germany_Off</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>BME Settings</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>BME Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- BF IT Chatter Group --></label>
+        <name>BF_IT_Chatter_Group__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Wholesaler</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Wholesalers</value>
+    </caseValues>
+    <fields>
+        <help><!-- ECC Account Number --></help>
+        <label><!-- Account Number (SAP) --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Owner ID --></label>
+        <name>Account_Owner_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Account Wholesalers --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Address --></label>
+        <name>Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Allow Order --></label>
+        <name>Allow_Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Banner Partner --></label>
+        <name>Banner_Partner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Day 1 --></label>
+        <name>Delivery_Day_1__c</name>
+        <picklistValues>
+            <masterLabel>Friday</masterLabel>
+            <translation><!-- Friday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monday</masterLabel>
+            <translation><!-- Monday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saturday</masterLabel>
+            <translation><!-- Saturday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sunday</masterLabel>
+            <translation><!-- Sunday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thursday</masterLabel>
+            <translation><!-- Thursday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tuesday</masterLabel>
+            <translation><!-- Tuesday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wednesday</masterLabel>
+            <translation><!-- Wednesday --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Delivery Day 2 --></label>
+        <name>Delivery_Day_2__c</name>
+        <picklistValues>
+            <masterLabel>Friday</masterLabel>
+            <translation><!-- Friday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monday</masterLabel>
+            <translation><!-- Monday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Saturday</masterLabel>
+            <translation><!-- Saturday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sunday</masterLabel>
+            <translation><!-- Sunday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thursday</masterLabel>
+            <translation><!-- Thursday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tuesday</masterLabel>
+            <translation><!-- Tuesday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wednesday</masterLabel>
+            <translation><!-- Wednesday --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Fax --></label>
+        <name>Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- LMAA Number --></label>
+        <name>LMAA_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- License Number --></label>
+        <name>License_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notes: --></label>
+        <name>Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partner Function --></label>
+        <name>Partner_Function__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partner Identification Type --></label>
+        <name>Partner_Identification_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>Postal_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Suburb --></label>
+        <name>Suburb__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trading Name --></label>
+        <name>Trading_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the Wholesalers (Account Name) for this retailer - Used for the (Cross-Reference) Conversion --></help>
+        <label><!-- Wholesaler Account Name --></label>
+        <name>Wholesaler_Account_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This is the Wholesalers (Account Number) for this retailer - Used for the (Cross-Reference) Conversion --></help>
+        <label><!-- Wholesaler Account Number --></label>
+        <name>Wholesaler_Account_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler Name --></label>
+        <name>Wholesaler_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Wholesaler --></label>
+        <name>Wholesaler__c</name>
+        <relationshipLabel><!-- Account Wholesalers --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Wholesalers Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

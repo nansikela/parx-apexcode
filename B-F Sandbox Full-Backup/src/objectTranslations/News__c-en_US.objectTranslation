@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Manage News</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Manage News</value>
+    </caseValues>
+    <fields>
+        <label><!-- Body --></label>
+        <name>Body__c</name>
+    </fields>
+    <fields>
+        <help><!-- When you check this field, it will place a banner across the top with a link to this story. --></help>
+        <label><!-- Breaking News --></label>
+        <name>Breaking_News__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter content --></help>
+        <label><!-- Content --></label>
+        <name>Content__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter External URL. No entry required if pointing to this document. --></help>
+        <label><!-- External URL --></label>
+        <name>External_URL__c</name>
+    </fields>
+    <fields>
+        <help><!-- Check this field if you wish this article to show in the Featured section of the News Page --></help>
+        <label><!-- Featured --></label>
+        <name>Featured__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select the Category of the news article. --></help>
+        <label><!-- Category --></label>
+        <name>Group__c</name>
+        <picklistValues>
+            <masterLabel>Brands</masterLabel>
+            <translation><!-- Brands --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Company</masterLabel>
+            <translation><!-- Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Employee</masterLabel>
+            <translation><!-- Employee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industry</masterLabel>
+            <translation><!-- Industry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Story of the Day</masterLabel>
+            <translation><!-- Story of the Day --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel Alert</masterLabel>
+            <translation><!-- Travel Alert --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Video of the Day</masterLabel>
+            <translation><!-- Video of the Day --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Source --></label>
+        <name>Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Thumbnail URL --></label>
+        <name>Thumbnail_URL__c</name>
+    </fields>
+    <layouts>
+        <layout>News Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

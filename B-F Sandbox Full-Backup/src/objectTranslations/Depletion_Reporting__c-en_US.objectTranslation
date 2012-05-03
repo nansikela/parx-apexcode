@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Depletion Reporting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Depletion Reporting</value>
+    </caseValues>
+    <fields>
+        <label><!-- Brand Minor --></label>
+        <name>Brand_Minor__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Budget Depletions (Month) --></label>
+        <name>Budget_Depletions_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date --></label>
+        <name>Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- DeplDate --></label>
+        <name>DeplDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Depletion Reporting Name --></label>
+        <name>Depletion_Reporting_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Estimated Depletions (Month) --></label>
+        <name>Estimated_Depletions_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- MTD Shipments --></label>
+        <name>MTD_Depletions__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>Region__c</name>
+    </fields>
+    <fields>
+        <label><!-- Version --></label>
+        <name>Version__c</name>
+    </fields>
+    <fields>
+        <label><!-- 12 mo MAT --></label>
+        <name>X12_mo_MAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- 3 mo MAT --></label>
+        <name>X3_mo_MAT__c</name>
+    </fields>
+    <fields>
+        <label><!-- 6 mo MAT --></label>
+        <name>X6_mo_MAT__c</name>
+    </fields>
+    <layouts>
+        <layout>Depletion Reporting Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

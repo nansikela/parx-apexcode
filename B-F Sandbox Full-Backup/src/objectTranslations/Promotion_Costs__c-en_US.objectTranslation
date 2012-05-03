@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Promotion Costs</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Promotion Costs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand__c</name>
+        <relationshipLabel><!-- Promotion Costs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cost Type --></label>
+        <name>Cost_Type__c</name>
+        <picklistValues>
+            <masterLabel>Agency Admin</masterLabel>
+            <translation><!-- Agency Admin --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agency Labor</masterLabel>
+            <translation><!-- Agency Labor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chiller Machines</masterLabel>
+            <translation><!-- Chiller Machines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Equipment Rental</masterLabel>
+            <translation><!-- Equipment Rental --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incentive</masterLabel>
+            <translation><!-- Incentive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local POS</masterLabel>
+            <translation><!-- Local POS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media</masterLabel>
+            <translation><!-- Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>National POS</masterLabel>
+            <translation><!-- National POS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Printing</masterLabel>
+            <translation><!-- Printing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Samples</masterLabel>
+            <translation><!-- Samples --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sponsorship Fee</masterLabel>
+            <translation><!-- Sponsorship Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sweepstakes</masterLabel>
+            <translation><!-- Sweepstakes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- $ Cost --></label>
+        <name>Promotion_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion --></label>
+        <name>Promotion__c</name>
+        <relationshipLabel><!-- Promotion Costs --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

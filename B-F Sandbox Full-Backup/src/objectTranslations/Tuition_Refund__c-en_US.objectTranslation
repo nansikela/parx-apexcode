@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Tuition Refund</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Tuition Refund</value>
+    </caseValues>
+    <fields>
+        <help><!-- Enter the amount of other tuition assistance you receive. --></help>
+        <label><!-- Amount --></label>
+        <name>Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Close and Lock --></label>
+        <name>Close_and_Lock__c</name>
+    </fields>
+    <fields>
+        <label><!-- Comments --></label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved/Rejected By --></label>
+        <name>Current_Approver__c</name>
+    </fields>
+    <fields>
+        <help><!-- Select Degree Declaration --></help>
+        <label><!-- Degree Declaration --></label>
+        <name>Degree_Declaration__c</name>
+        <relationshipLabel><!-- Tuition Refund --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Employee Name --></label>
+        <name>Employee_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- FinalApprovalStatus --></label>
+        <name>FinalApprovalStatus__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this your first course in the degree program? --></help>
+        <label><!-- First course in the degree program? --></label>
+        <name>First_course_in_the_degree_program__c</name>
+    </fields>
+    <fields>
+        <label><!-- 4. --></label>
+        <name>Four_4__c</name>
+    </fields>
+    <fields>
+        <label><!-- HR Manager --></label>
+        <name>HR_Manager__c</name>
+        <relationshipLabel><!-- Tuition Refund (HR Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Have you changed majors since last attending school --></help>
+        <label><!-- Have you changed majors? --></label>
+        <name>Have_you_changed_majors__c</name>
+    </fields>
+    <fields>
+        <help><!-- Have you changed positions since last attending school? --></help>
+        <label><!-- Have you changed positions? --></label>
+        <name>Have_you_changed_positions__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRS Rules --></label>
+        <name>IRS_Rules__c</name>
+    </fields>
+    <fields>
+        <label><!-- Instructions --></label>
+        <name>Instructions__c</name>
+    </fields>
+    <fields>
+        <help><!-- Scroll below to the Google Doc, Notes and Attachments section - - &gt; Click on Attach File - - &gt; Upload your Invoice(s) and Grades. --></help>
+        <label><!-- Invoice(s) / Grades Attached --></label>
+        <name>Invoice_s_Grades_Attached__c</name>
+    </fields>
+    <fields>
+        <label><!-- LinkPrefix --></label>
+        <name>LinkPrefix__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter Major --></help>
+        <label><!-- Major --></label>
+        <name>Major__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manager --></label>
+        <name>Manager__c</name>
+        <relationshipLabel><!-- Tuition Refund (Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Next Approver --></label>
+        <name>Next_Approver__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Courses --></label>
+        <name>Number_of_Courses__c</name>
+    </fields>
+    <fields>
+        <label><!-- 1. --></label>
+        <name>One_1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Amount --></label>
+        <name>Payment_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Date --></label>
+        <name>Payment_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProgramAdminStatus --></label>
+        <name>ProgramAdminStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Admin Approver --></label>
+        <name>Program_Admin_Approver__c</name>
+        <relationshipLabel><!-- Tuition Refund (Program Admin Approver) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Program Admin Name --></label>
+        <name>Program_Admin_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this coursework required by your employer to maintain your current position or required by law or regulation to maintain your current position? --></help>
+        <label><!-- Required to maintain current  position? --></label>
+        <name>Required_to_maintain_current_position__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- School --></label>
+        <name>School__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the source of other tuition assistance you receive. Enter none if you do not receive any other tuition assistance. --></help>
+        <label><!-- Source of other tuition assistance --></label>
+        <name>Source_of_other_tuition_assistance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- SubmitforApproval --></label>
+        <name>SubmitforApproval__c</name>
+    </fields>
+    <fields>
+        <help><!-- Is this coursework taken to maintain or improve skills necessary to perform your current duties as an employee of Brown-Forman? --></help>
+        <label><!-- Taken to maintain or improve skills? --></label>
+        <name>Taken_to_maintain_or_improve_skills__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is this coursework taken to attain the minimum educational requirements to qualify for your current position? --></help>
+        <label><!-- Taken to qualify for current position? --></label>
+        <name>Taken_to_qualify_for_current_position__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is this coursework part of a program of study which will lead to qualifying you for a new trade or business?  (Generally the IRS has ruled that MBA programs do not qualify individuals for a new trade or business.) --></help>
+        <label><!-- Taken to qulaify for new trade/business? --></label>
+        <name>Taken_to_qulaify_for_new_trade_business__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 3. --></label>
+        <name>Three_3__c</name>
+    </fields>
+    <fields>
+        <label><!-- 2. --></label>
+        <name>Two_2__c</name>
+    </fields>
+    <layouts>
+        <layout>Tuition Reimbursement Layout</layout>
+        <sections>
+            <label><!-- Check the box below to confirm uploading of Invoice(s) and Grades --></label>
+            <section>Check the box below to confirm uploading of Invoice(s) and Grades</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Instructions --></label>
+            <section>Instructions</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Processing Information (Admin use only) --></label>
+            <section>Payment Processing Information (Admin use only)</section>
+        </sections>
+        <sections>
+            <label><!-- Section1 --></label>
+            <section>Section1</section>
+        </sections>
+        <sections>
+            <label><!-- Section2 --></label>
+            <section>Section2</section>
+        </sections>
+    </layouts>
+    <sharingReasons>
+        <label><!-- Share record with Manager and HR Manager --></label>
+        <name>Share_record_with_Manager_and_HR_Manager</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- This record is closed and cannot be edited. --></errorMessage>
+        <name>PreventEdits_FinalApprovalStatusClosed</name>
+    </validationRules>
+</CustomObjectTranslation>

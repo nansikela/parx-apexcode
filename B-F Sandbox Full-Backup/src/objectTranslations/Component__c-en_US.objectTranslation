@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Component</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Components</value>
+    </caseValues>
+    <fields>
+        <label><!-- Dependency Details --></label>
+        <name>Dependency_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Migrated On --></label>
+        <name>Last_Migrated_On__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Migrated To --></label>
+        <name>Last_Migrated_To__c</name>
+        <picklistValues>
+            <masterLabel>Config01</masterLabel>
+            <translation><!-- Config01 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dev01</masterLabel>
+            <translation><!-- Dev01 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Production</masterLabel>
+            <translation><!-- Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Test01</masterLabel>
+            <translation><!-- Test01 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Related Component --></label>
+        <name>Related_Component__c</name>
+        <relationshipLabel><!-- Related Components --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Work Package Name --></label>
+        <name>Work_Package_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Work Package --></label>
+        <name>Work_Package__c</name>
+        <relationshipLabel><!-- Components --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Component Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

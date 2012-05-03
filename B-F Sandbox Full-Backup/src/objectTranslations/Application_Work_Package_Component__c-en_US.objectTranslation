@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Application Work Package Component</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Application Work Package Components</value>
+    </caseValues>
+    <fields>
+        <label><!-- Application Work Package --></label>
+        <name>Application_Work_Package__c</name>
+        <relationshipLabel><!-- Application Work Package Components --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Component --></label>
+        <name>Component__c</name>
+        <relationshipLabel><!-- Application Work Package Components --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Application Work Package Component Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

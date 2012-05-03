@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Outlet Visit Item --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Outlet Visit Item --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Outlet Visit Item --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Outlet Visit Item --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Outlet Visit Item --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Outlet Visit Item --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Outlet Visit Item --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Outlet Visit Item --></value>
+    </caseValues>
+    <fields>
+        <label>verfügbar</label>
+        <name>Available__c</name>
+    </fields>
+    <fields>
+        <label><!-- BackBarVisit --></label>
+        <name>BackBarVisit__c</name>
+    </fields>
+    <fields>
+        <label>Preis je Flasche -Special</label>
+        <name>Bottle_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label>Preis je Flasche</label>
+        <name>Bottle_Price__c</name>
+    </fields>
+    <fields>
+        <label>Brand/marke</label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+    </fields>
+    <fields>
+        <label><!-- CocktailCount --></label>
+        <name>CocktailCount__c</name>
+    </fields>
+    <fields>
+        <label>Produkt</label>
+        <name>Custom_Product__c</name>
+        <relationshipLabel><!-- Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>4cl-spezial</label>
+        <name>Double_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label>4cl</label>
+        <name>Double_Price__c</name>
+    </fields>
+    <fields>
+        <label>2cl- spezial</label>
+        <name>Drink_Price_Special__c</name>
+    </fields>
+    <fields>
+        <label>2cl</label>
+        <name>Drink_Price__c</name>
+    </fields>
+    <fields>
+        <label>Anzahl Facings</label>
+        <name>Facing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_Off__c</name>
+        <picklistValues>
+            <masterLabel>Chiller Cabinet</masterLabel>
+            <translation>Kühlregal/Kühlung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dummy</masterLabel>
+            <translation>Dummy</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Place</masterLabel>
+            <translation>fr. Platz im Regal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glass Cabinet</masterLabel>
+            <translation>Glasschrank</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pallet Cage</masterLabel>
+            <translation>G.-Box</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf</masterLabel>
+            <translation>Regal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Checkout Shelf</masterLabel>
+            <translation><!-- Shelf &amp; Checkout Shelf --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Chiller Cabinet</masterLabel>
+            <translation>Regal &amp; Kühlung - doppelt plaziert</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Cooler</masterLabel>
+            <translation>Kühlraum &amp; Regal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Walk-in Cooler</masterLabel>
+            <translation><!-- Shelf &amp; Walk-in Cooler --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Walk-in Cooler</masterLabel>
+            <translation>Kühlraum [begehbar]</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>checkout/information</masterLabel>
+            <translation>Kasse/Info</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>Location_On__c</name>
+        <picklistValues>
+            <masterLabel>BackBar</masterLabel>
+            <translation>Karte+BackBar [Listung ]</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Listing</masterLabel>
+            <translation>Listung in Karte</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Menu</masterLabel>
+            <translation>Tafel/Aktion [Listung ]</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pouring</masterLabel>
+            <translation>Pouring</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Well</masterLabel>
+            <translation><!-- Well --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location Reporting --></label>
+        <name>Location_Reporting__c</name>
+    </fields>
+    <fields>
+        <label>Schlüssel Kundenbesuch/Outlet Visit</label>
+        <name>Outlet_Visit_Item_Key__c</name>
+    </fields>
+    <fields>
+        <label>Kundenbesuch</label>
+        <name>Outlet_Visit__c</name>
+        <relationshipLabel><!-- Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Plazierung</label>
+        <name>Placement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Position --></label>
+        <name>Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- PriceTypeFlag --></label>
+        <name>PriceTypeFlag__c</name>
+    </fields>
+    <fields>
+        <label>Produkt</label>
+        <name>Product__c</name>
+        <relationshipLabel><!-- Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Shelf Category Item --></label>
+        <name>Shelf_Category_Item__c</name>
+        <relationshipLabel><!-- Outlet Visit Items --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Regal</label>
+        <name>Shelf__c</name>
+        <picklistValues>
+            <masterLabel>1. Shelf from Bottom</masterLabel>
+            <translation>1 v. unten</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2. Shelf from Bottom</masterLabel>
+            <translation>2 v. unten</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3. Shelf from Bottom</masterLabel>
+            <translation>3 v. unten</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4. Shelf from Bottom</masterLabel>
+            <translation>4 v. unten</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5. Shelf from Bottom</masterLabel>
+            <translation>5 v. unten</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6. Shelf from Bottom</masterLabel>
+            <translation>6 v. unten</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7. Shelf from Bottom</masterLabel>
+            <translation><!-- 7. Shelf from Bottom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7. europalette</masterLabel>
+            <translation>7. Palette</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8. Shelf from Bottom</masterLabel>
+            <translation><!-- 8. Shelf from Bottom --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Pl.-Ort</label>
+        <name>Space_Placement__c</name>
+        <picklistValues>
+            <masterLabel>Chiller Cabinet</masterLabel>
+            <translation>Kühlregal/Kühlung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dummy</masterLabel>
+            <translation>Dummy</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Free Place</masterLabel>
+            <translation>fr. Platz im Regal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Glass Cabinet</masterLabel>
+            <translation>Glasschrank</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pallet Cage</masterLabel>
+            <translation>G.-Box</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf</masterLabel>
+            <translation>Regal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Chiler Cabinet</masterLabel>
+            <translation>Regal &amp; Kühlung - doppelt plaziert</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf &amp; Cooler</masterLabel>
+            <translation>Kühlraum &amp; Regal</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Walk-in Cooler</masterLabel>
+            <translation>Kühlraum [begehbar]</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>checkout/information</masterLabel>
+            <translation>Kasse/Info</translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Outlet Visit Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Outlet Visit Item Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- APAC --></label>
+        <name>APAC</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Canada --></label>
+        <name>Canada</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Germany --></label>
+        <name>Germany</name>
+    </recordTypes>
+</CustomObjectTranslation>

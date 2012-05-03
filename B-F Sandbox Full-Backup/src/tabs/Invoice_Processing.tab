@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Invoice Processing</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom41: Stack of Cash</motif>
+    <url>http://bfextweb1.b-f.com/googleGadgets/salesforce/redirect/redirect.asp?redirect=https://login.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F9300000000auw</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Article</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Articles</value>
+    </caseValues>
+    <fields>
+        <label><!-- Body --></label>
+        <name>Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Category__c</name>
+        <picklistValues>
+            <masterLabel>ABAP</masterLabel>
+            <translation><!-- ABAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>APEX</masterLabel>
+            <translation><!-- APEX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ASP</masterLabel>
+            <translation><!-- ASP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Formula</masterLabel>
+            <translation><!-- Formula --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Visual Force</masterLabel>
+            <translation><!-- Visual Force --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web DynPro</masterLabel>
+            <translation><!-- Web DynPro --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Platform --></label>
+        <name>Platform__c</name>
+        <picklistValues>
+            <masterLabel>.Net</masterLabel>
+            <translation><!-- .Net --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAP</masterLabel>
+            <translation><!-- SAP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales Force</masterLabel>
+            <translation><!-- Sales Force --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deprecated</masterLabel>
+            <translation><!-- Deprecated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Proposed</masterLabel>
+            <translation><!-- Proposed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <layouts>
+        <layout>Article Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Visits Per Day</description>
+        <developerName>FORMULA3</developerName>
+        <isActive>true</isActive>
+        <masterLabel>Visits Per Day</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <acrossGroupingContext>GRAND_SUMMARY</acrossGroupingContext>
+        <calculatedFormula>28</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Weekly Goal</description>
+        <developerName>FORMULA4</developerName>
+        <downGroupingContext>FK_ACC_OWNER_NAME</downGroupingContext>
+        <isActive>true</isActive>
+        <masterLabel>Weekly Goal</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <acrossGroupingContext>GRAND_SUMMARY</acrossGroupingContext>
+        <calculatedFormula>RowCount/40</calculatedFormula>
+        <datatype>percent</datatype>
+        <description>% of Goal</description>
+        <developerName>FORMULA5</developerName>
+        <downGroupingContext>FK_ACC_OWNER_NAME</downGroupingContext>
+        <isActive>true</isActive>
+        <masterLabel>% of Goal</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <aggregates>
+        <acrossGroupingContext>GRAND_SUMMARY</acrossGroupingContext>
+        <calculatedFormula>RowCount/196</calculatedFormula>
+        <datatype>percent</datatype>
+        <description>Goal Achived</description>
+        <developerName>FORMULA6</developerName>
+        <downGroupingContext>GRAND_SUMMARY</downGroupingContext>
+        <isActive>true</isActive>
+        <masterLabel>Goal Achived</masterLabel>
+        <scale>0</scale>
+    </aggregates>
+    <chart>
+        <backgroundColor1>#FFFFFF</backgroundColor1>
+        <backgroundColor2>#FFFFFF</backgroundColor2>
+        <backgroundFadeDir>Diagonal</backgroundFadeDir>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>FORMULA3</column>
+        </chartSummaries>
+        <chartSummaries>
+            <axisBinding>y</axisBinding>
+            <column>FORMULA4</column>
+        </chartSummaries>
+        <chartType>HorizontalBar</chartType>
+        <enableHoverLabels>true</enableHoverLabels>
+        <expandOthers>true</expandOthers>
+        <groupingColumn>FK_ACC_OWNER_NAME</groupingColumn>
+        <legendPosition>Right</legendPosition>
+        <location>CHART_BOTTOM</location>
+        <showAxisLabels>true</showAxisLabels>
+        <showPercentage>false</showPercentage>
+        <showTotal>false</showTotal>
+        <showValues>false</showValues>
+        <size>Medium</size>
+        <summaryAxisRange>Auto</summaryAxisRange>
+        <textColor>#000000</textColor>
+        <textSize>12</textSize>
+        <titleColor>#000000</titleColor>
+        <titleSize>18</titleSize>
+    </chart>
+    <colorRanges>
+        <columnName>FORMULA5</columnName>
+        <highBreakpoint>80.0</highBreakpoint>
+        <highColor>#54C254</highColor>
+        <lowBreakpoint>0.0</lowBreakpoint>
+        <lowColor>#C25454</lowColor>
+        <midColor>#C2C254</midColor>
+    </colorRanges>
+    <colorRanges>
+        <columnName>FORMULA6</columnName>
+        <highBreakpoint>80.0</highBreakpoint>
+        <highColor>#54C254</highColor>
+        <lowBreakpoint>0.0</lowBreakpoint>
+        <lowColor>#C25454</lowColor>
+        <midColor>#C2C254</midColor>
+    </colorRanges>
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>CUST_ID</field>
+    </columns>
+    <currency>USD</currency>
+    <description>Outlet Visits Goals</description>
+    <filter>
+        <criteriaItems>
+            <column>FK_$Account.Market__c</column>
+            <operator>equals</operator>
+            <value>Germany</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>CUST_OWNER_NAME</column>
+            <operator>equals</operator>
+            <value>Angela Denise Smith,Caroline Hix,Daniela Wölfel,David Gritl,Mike Mehlau,Sandra Hinze,Stefan Roelofs</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Outlet_Visit__c.Visit_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_ACC_OWNER_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Outlet Visits Goals</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntity$Outlet_Visit__c@Outlet_Visit__c.Account__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Outlet_Visit__c.Visit_Date__c</dateColumn>
+        <interval>INTERVAL_LASTWEEK</interval>
+    </timeFrameFilter>
+</Report>

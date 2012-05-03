@@ -1,0 +1,248 @@
+<apex:page controller="displayNewsController" sidebar="false">
+<style>
+</style>
+<apex:stylesheet value="{!URLFOR($Resource.NewsFiles, 'styles/news.css')}" />
+<div id="container5">
+    <apex:outputPanel styleClass="breakingNews" id="breakingNews" layout="block" rendered="{!BreakingNews.id != null}">
+        <apex:outputLink value="/apex/NewsContent?id={!BreakingNews.id}" target="_blank">Breaking News: {!BreakingNews.Name__c}</apex:outputLink>
+    </apex:outputPanel>
+    <div id="container4">
+        <div id="topVideoBanner">
+            <span class="bannerText">VIDEO OF THE DAY</span>
+        </div>  
+        <div id="container3">
+            <div id="container2">
+                <div id="topStoryBanner">
+                    <span class="bannerText">TOP STORY</span>
+                </div>  
+                <div id="container1">
+                    <div id="col1">
+                        <!-- Column one start -->
+                        <div class="columnTop">
+                            <apex:outputLink id="sotdImageLink" value="/apex/NewsContent?id={!StoryOfTheDay.id}" target="_blank">
+                                        <apex:image styleClass="StoryOfTheDayThumbnail" value="{!StoryOfTheDay.Thumbnail_URL__c}"></apex:image>
+                                </apex:outputLink>
+                        </div>
+                        <div id="companyBanner">
+                            <apex:outputLink styleClass="bannerLink" title="Click for more Company News" value="/apex/NewsSection?section=Company">                     
+                                <span class="bannerText">COMPANY</span>
+                                <span class="moreText">more ...</span>
+                            </apex:outputLink>
+                        </div>  
+                        <div id="showHideJoinLink" class="ChatterJoin" style="{!CheckCompanyMember}">
+                            <div class="groupmanagementlink groupmembership">
+                                <div class="nonmember">
+                                     <a href="javascript:void(0);" title="Join the Company Chatter Group" onclick="return chatter.getGroupMembershipHolder().join(this, {groupId: '{!CompanyNewsChatter}', refresh: true, style: 'profile'});">
+                                       <img class="check" src="/s.gif"/>
+                                       <span>Join</span>
+                                     </a>
+                                 </div>
+                            </div>
+                        </div>
+                        <apex:repeat id="cR" value="{!CompanyNews}" var="c">
+                            <p>
+                                <apex:outputLink value="/apex/NewsContent?id={!c.id}" target="_blank" rendered="{!c.External_URL__c = null}">{!c.Name__c}</apex:outputLink>
+                                <apex:outputLink value="{!c.External_URL__c}" target="_blank" rendered="{!c.External_URL__c != null}">{!c.Name__c}</apex:outputLink>
+                            </p>
+                        </apex:repeat>
+    
+                    <!-- Column one end -->
+                    </div>
+
+                    <div id="col2">
+                    <!-- Column two start -->
+                    <div class="columnTop">
+                        <apex:outputLink id="sotdLink" value="/apex/NewsContent?id={!StoryOfTheDay.id}" target="_blank" rendered="{!StoryOfTheDay.External_URL__c = null}">{!StoryOfTheDay.Name__c}</apex:outputLink>
+                                    <apex:outputLink value="{!StoryOfTheDay.External_URL__c}" target="_blank" rendered="{!StoryOfTheDay.External_URL__c != null}">{!StoryOfTheDay.Name__c}</apex:outputLink>
+                        <p/>
+                          <div id="showHideJoinLink" class="ChatterJoin" style="{!CheckSotDMember}">
+                                        <div class="groupmanagementlink groupmembership">
+                                            <div class="nonmember">
+                                                 <a href="javascript:void(0);" title="Join the Story of the Day Chatter Group" onclick="return chatter.getGroupMembershipHolder().join(this, {groupId: '{!StoryoftheDayChatter}', refresh: true, style: 'profile'});">
+                                                   <img class="check" src="/s.gif"/>
+                                                   <span>Join</span>
+                                                 </a>
+                                             </div>
+                                        </div>
+                                    </div>
+                        </div>
+                        <div id="brandBanner">
+                            <apex:outputLink styleClass="bannerLink" title="Click for more Brand News" value="/apex/NewsSection?section=Brands">                        
+                                <span class="bannerText">BRAND</span>
+                                <span class="moreText">more ...</span>
+                            </apex:outputLink>
+                        </div>                      
+                        <div id="showHideJoinLink" class="ChatterJoin" style="{!CheckBrandMember}">
+                                    <div class="groupmanagementlink groupmembership">
+                                        <div class="nonmember">
+                                             <a href="javascript:void(0);" title="Join the Brand Chatter Group" onclick="return chatter.getGroupMembershipHolder().join(this, {groupId: '{!BrandNewsChatter}', refresh: true, style: 'profile'});">
+                                               <img class="check" src="/s.gif"/>
+                                               <span>Join</span>
+                                             </a>
+                                         </div>
+                                    </div>
+                            </div>
+                            <apex:repeat id="bR" value="{!BrandNews}" var="b">
+                                    <p>
+                                        <apex:outputLink value="/apex/NewsContent?id={!b.id}" target="_blank" rendered="{!b.External_URL__c = null}">{!b.Name__c}</apex:outputLink>
+                                        <apex:outputLink value="{!b.External_URL__c}" target="_blank" rendered="{!b.External_URL__c != null}">{!b.Name__c}</apex:outputLink>
+                                    </p>
+                            </apex:repeat>
+                    <!-- Column two end -->
+                    </div>
+
+                    <div id="col3">
+                    <!-- Column three start -->
+                        <div class="columnTop">
+                                        <apex:outputLink id="votdImageLink" value="/apex/pages/bftvFeaturedVFPage?id={!VideoOfTheDay.ID}" target="_blank">
+                                            <apex:image title="Play the Video of the Day" styleClass="VideoOfTheDayThumbnail" value="{!VideoOfTheDay.Thumbnail_URL__c}"></apex:image>
+                                        </apex:outputLink>
+                        </div>
+                        <div id="industryBanner">
+                            <apex:outputLink styleClass="bannerLink" title="Click for more Industry News" value="/apex/NewsSection?section=Industry">                       
+                                <span class="bannerText">INDUSTRY</span>
+                                <span class="moreText">more ...</span>
+                            </apex:outputLink>
+                        </div>                      
+                        <div id="showHideJoinLink" class="ChatterJoin" style="{!CheckIndustryMember}">
+                                    <div class="groupmanagementlink groupmembership">
+                                        <div class="nonmember">
+                                             <a href="javascript:void(0);" title="Join the Industry Chatter Group" onclick="return chatter.getGroupMembershipHolder().join(this, {groupId: '{!IndustryNewsChatter}', refresh: true, style: 'profile'});">
+                                               <img class="check" src="/s.gif"/>
+                                               <span>Join</span>
+                                             </a>
+                                         </div>
+                                    </div>
+                                </div>
+                        <apex:repeat id="iR" value="{!IndustryNews}" var="i">
+                                       <p>                             
+                                           <apex:outputLink value="/apex/NewsContent?id={!i.id}" target="_blank" rendered="{!i.External_URL__c = null}">{!i.Name__c}</apex:outputLink>
+                                           <apex:outputLink value="{!i.External_URL__c}" target="_blank" rendered="{!i.External_URL__c != null}">{!i.Name__c}</apex:outputLink>
+                                       </p>
+                                 </apex:repeat>
+
+                    <!-- Column three end -->
+                    </div>
+
+                    <div id="col4">
+                    <!-- Column four start -->
+
+                        <div class="columnTop">
+                                            <apex:outputLink id="votdLink" value="/apex/pages/bftvFeaturedVFPage?id={!VideoOfTheDay.ID}" target="_blank">
+                                            <apex:image title="Play the Video of the Day" width="15" height="15" url="{!URLFOR($Resource.NewsFiles, '/images/play.jpg')}"></apex:image>
+                                            {!VideoOfTheDay.Name__c}
+                                            </apex:outputLink>
+                                            <div id="showVotDHideJoinLink" class="ChatterJoin" style="{!CheckVotDMember}">
+                                                <div class="groupmanagementlink groupmembership">
+                                                    <div class="nonmember">
+                                                         <a href="javascript:void(0);" title="Join the Video of the Day Chatter Group" onclick="return chatter.getGroupMembershipHolder().join(this, {groupId: '{!VideooftheDayChatter}', refresh: true, style: 'profile'});">
+                                                           <img class="check" src="/s.gif"/>
+                                                           <span>Join</span>
+                                                         </a>
+                                                     </div>
+                                                </div>
+                                            </div>
+                                            <br/>
+                                            <a href="http://video.google.com/a/?pli=1#/Search/q=tag%253ABFTV&start=0&ev=1851911600" target="_blank">
+                                <br/>
+                                <apex:image value="{!URLFOR($Resource.NewsFiles, 'images/moreBFTV.png')}" styleClass="MoreBFTV"></apex:image>
+                            </a>
+                        </div>
+                        <div id="employeeBanner">
+                            <apex:outputLink styleClass="bannerLink" title="Click for more Employee News" value="/apex/NewsSection?section=Employee">                       
+                                <span class="bannerText">EMPLOYEE</span>
+                                <span class="moreText">more ...</span>
+                            </apex:outputLink>
+                        </div>
+                            <div id="showHideJoinLink" class="ChatterJoin" style="{!CheckEmployeeMember}">
+                                    <div class="groupmanagementlink groupmembership">
+                                    <div class="nonmember">
+                                            <a href="javascript:void(0);" title="Join the Employee Chatter Group" onclick="return chatter.getGroupMembershipHolder().join(this, {groupId: '{!EmployeeNewsChatter}', refresh: true, style: 'profile'});">
+                                                    <img class="check" src="/s.gif"/>
+                                                    <span>Join</span>
+                                                </a>
+                                        </div>
+                            </div>
+                            </div>
+                        <apex:repeat id="eR" value="{!EmployeeNews}" var="e">
+                            <p>             
+                                <apex:outputLink value="/apex/NewsContent?id={!e.id}" target="_blank" rendered="{!e.External_URL__c = null}">{!e.Name__c}</apex:outputLink>
+                                <apex:outputLink value="{!e.External_URL__c}" target="_blank" rendered="{!e.External_URL__c != null}">{!e.Name__c}</apex:outputLink>
+                            </p>
+                        </apex:repeat>
+
+                    <!-- Column four end -->
+                    </div>
+                    <div id="col5">
+                        <!-- Column five start -->
+                        //TODO Searchit Goes Here
+                        <div id="featuredTable">
+                            <div id="checkThisOutBanner">
+                                <span class="bannerText">CHECK THIS OUT</span>
+                            </div>
+                            <div id="featuredContent">
+                                <apex:repeat id="fR" value="{!Featured}" var="f">
+                                    <p>
+                                        <apex:outputLink value="/apex/NewsContent?id={!f.id}" target="_blank" rendered="{!f.External_URL__c = null}">{!f.Name__c}</apex:outputLink>
+                                        <apex:outputLink value="{!f.External_URL__c}" target="_blank" rendered="{!f.External_URL__c != null}">{!f.Name__c}</apex:outputLink>
+                                    </p>
+                                </apex:repeat>                          
+                            </div>
+                        </div>
+                        
+                        <div id="stockTable">
+                            <div id="stockBanner">
+                                <span class="bannerText">STOCKS</span>
+                            </div>
+                            <div id="stockContent">
+                                <apex:outputText styleClass="StockUpdate" value="Last Updated: {!StockUpdatedDate}"></apex:outputText>
+                                <br/>
+                                <apex:repeat id="stR" value="{!StockData}" var="s">
+                                    <div class="stockSymbol">
+                                        <apex:outputLink styleClass="stockSymbol" target="_blank" value="http://finance.yahoo.com/q?s={!s.Name}" >{!s.Stock_Ticker__c}</apex:outputLink>
+                                    </div>
+                                    <div class="stockValue">
+                                        <apex:outputText value="{!s.Stock_Value__c}" rendered="{!s.Stock_Value__c != 0}" />
+                                        <apex:outputText value="click for quote" rendered="{!s.Stock_Value__c == 0}" />
+                                    </div>
+                                </apex:repeat>                          
+                            </div>
+                        </div>                     
+                    <!-- Column five end -->
+                    </div>
+                <!-- Container 1 End -->
+                </div>
+            <!-- Container 2 End -->
+            </div>
+        <!-- Container 3 End -->
+        </div>
+    <!-- Container 4 End -->
+    </div>
+
+	<div id="chatterFeed">
+<!-- 
+		<div id="chatterBanner">
+		    <span class="bannerText">CHATTER</span>
+		</div>
+--> 
+		<hr/>	
+		<chatter:feedWithFollowers entityId="{!$User.Id}" showHeader="True"/>	
+	</div>
+
+<!-- Container 5 End -->
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-26701751-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</apex:page>

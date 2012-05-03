@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Outlet Visit --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Outlet Visit --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Outlet Visit --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Outlet Visit --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Outlet Visit --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Outlet Visit --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Outlet Visit --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Outlet Visit --></value>
+    </caseValues>
+    <fields>
+        <label><!-- AccountName --></label>
+        <name>AccountName__c</name>
+    </fields>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label>Account/Kunde</label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Outlet Visits --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Wettbewerberaktivität</label>
+        <name>Competitor_Activity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Offline OVIs? --></label>
+        <name>Create_Offline_OVIs__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter any follow-up items from the outlet visit --></help>
+        <label><!-- Follow-Up --></label>
+        <name>Follow_Up__c</name>
+    </fields>
+    <fields>
+        <help>Datum  ist heute , falls dieser Besuch der letzte Besuch ist - ansonsten Beuschsdatum</help>
+        <label>Datum letzter Besuch</label>
+        <name>Last_Visit_Date__c</name>
+    </fields>
+    <fields>
+        <label>letzter Besuch</label>
+        <name>Last_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label>Getroffen mit..</label>
+        <name>Met_With__c</name>
+        <relationshipLabel><!-- Outlet Visits --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>vorletzter Besuch</label>
+        <name>Next_to_Last_Visit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Objectives --></label>
+        <name>Objectives__c</name>
+    </fields>
+    <fields>
+        <label><!-- Offline_Use --></label>
+        <name>Offline_Use__c</name>
+    </fields>
+    <fields>
+        <label>Status</label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation><!-- New --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Zeiterfassung</label>
+        <name>Time_Tracking__c</name>
+        <relationshipLabel><!-- Outlet Visits --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Venue --></label>
+        <name>Venue__c</name>
+        <relationshipLabel><!-- Outlet Visits --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Besuchskommentare</label>
+        <name>Visit_Comments__c</name>
+    </fields>
+    <fields>
+        <label>Anzahl Besuche</label>
+        <name>Visit_Counts__c</name>
+    </fields>
+    <fields>
+        <help><!-- Month &amp; Year of Visit Date --></help>
+        <label>Besuchsdatum [Monat]</label>
+        <name>Visit_Date_Month__c</name>
+    </fields>
+    <fields>
+        <label>Besuchsdatum</label>
+        <name>Visit_Date__c</name>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Outlet Visit Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Outlet Visit Layout 1</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Outlet Visit Layout 2</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Outlet Visit Layout 3</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Outlet Visit Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- 1 --></label>
+        <name>X1</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- 2 --></label>
+        <name>X2</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- 3 --></label>
+        <name>X3</name>
+    </recordTypes>
+    <sharingReasons>
+        <label><!-- Substitution --></label>
+        <name>Substitution</name>
+    </sharingReasons>
+</CustomObjectTranslation>

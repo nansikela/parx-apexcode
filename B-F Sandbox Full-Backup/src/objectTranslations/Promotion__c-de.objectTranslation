@@ -1,0 +1,2869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Promotion --></value>
+    </caseValues>
+    <fields>
+        <label><!-- Channel --></label>
+        <name>AUD_Channel__c</name>
+        <picklistValues>
+            <masterLabel>Off</masterLabel>
+            <translation><!-- Off --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On</masterLabel>
+            <translation><!-- On --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- AccountName --></label>
+        <name>AccountName__c</name>
+    </fields>
+    <fields>
+        <label><!-- AccountNumber --></label>
+        <name>AccountNumber__c</name>
+    </fields>
+    <fields>
+        <label>Kapazität / max Anzahl Besucher</label>
+        <name>Account_Capacity_f__c</name>
+    </fields>
+    <fields>
+        <label>Territorium [Kunde]</label>
+        <name>Account_Market__c</name>
+    </fields>
+    <fields>
+        <label>Account/Kunde</label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Active Promotion --></label>
+        <name>Active_Promotion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Additional Mechanics --></label>
+        <name>Additional_Mechanics__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the number of people that were approached during the event --></help>
+        <label><!-- Approached --></label>
+        <name>Approached__c</name>
+    </fields>
+    <fields>
+        <label>Status der Genehmigung</label>
+        <name>Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Accomplished</masterLabel>
+            <translation>abgeschlossen</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation>bestätigt</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inactive</masterLabel>
+            <translation>inaktiv</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New</masterLabel>
+            <translation>neu</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation>abgelehnt</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Submitted</masterLabel>
+            <translation>übermittelt</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Terminated</masterLabel>
+            <translation><!-- Terminated --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Banner Group --></label>
+        <name>Banner_Group__c</name>
+        <picklistValues>
+            <masterLabel>1ST CHOICE</masterLabel>
+            <translation><!-- 1ST CHOICE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 STAR CELLARS</masterLabel>
+            <translation><!-- 5 STAR CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9-11 GROUP</masterLabel>
+            <translation><!-- 9-11 GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>A.L.M.</masterLabel>
+            <translation><!-- A.L.M. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ACCOR HOTELS</masterLabel>
+            <translation><!-- ACCOR HOTELS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AIRLINES/AIRPOR</masterLabel>
+            <translation><!-- AIRLINES/AIRPOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AJC</masterLabel>
+            <translation><!-- AJC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALBION PARK CEL</masterLabel>
+            <translation><!-- ALBION PARK CEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALDI</masterLabel>
+            <translation><!-- ALDI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALH GROUP LTD</masterLabel>
+            <translation><!-- ALH GROUP LTD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALL SEASONS</masterLabel>
+            <translation><!-- ALL SEASONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALM GOLD CLUBS</masterLabel>
+            <translation><!-- ALM GOLD CLUBS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALPHA SERVICE</masterLabel>
+            <translation><!-- ALPHA SERVICE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AMATOS</masterLabel>
+            <translation><!-- AMATOS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ANSETT</masterLabel>
+            <translation><!-- ANSETT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ASHOK</masterLabel>
+            <translation><!-- ASHOK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AUR FOODWORKS</masterLabel>
+            <translation><!-- AUR FOODWORKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AVS CATERING</masterLabel>
+            <translation><!-- AVS CATERING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BAR-GAINS</masterLabel>
+            <translation><!-- BAR-GAINS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BARGAINS</masterLabel>
+            <translation><!-- BARGAINS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BASIX LIQUOR</masterLabel>
+            <translation><!-- BASIX LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BIG BARGAIN GRP</masterLabel>
+            <translation><!-- BIG BARGAIN GRP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BLUE HILLS</masterLabel>
+            <translation><!-- BLUE HILLS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BONUS LIQUOR</masterLabel>
+            <translation><!-- BONUS LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOOTLEG</masterLabel>
+            <translation><!-- BOOTLEG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOOZE BROS</masterLabel>
+            <translation><!-- BOOZE BROS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOSS GROUP</masterLabel>
+            <translation><!-- BOSS GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOTTLE-O</masterLabel>
+            <translation><!-- BOTTLE-O --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOTTLE-O N/HOOD</masterLabel>
+            <translation><!-- BOTTLE-O N/HOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOTTLEMART ADV</masterLabel>
+            <translation><!-- BOTTLEMART ADV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOTTLEMART BUY</masterLabel>
+            <translation><!-- BOTTLEMART BUY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOTTLEMART EXPR</masterLabel>
+            <translation><!-- BOTTLEMART EXPR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOTTLEMART NON</masterLabel>
+            <translation><!-- BOTTLEMART NON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BOTTLEMART ON</masterLabel>
+            <translation><!-- BOTTLEMART ON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BROOKVALE CEL</masterLabel>
+            <translation><!-- BROOKVALE CEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BUNDABERG LL</masterLabel>
+            <translation><!-- BUNDABERG LL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BURSWOOD CASINO</masterLabel>
+            <translation><!-- BURSWOOD CASINO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BWS</masterLabel>
+            <translation><!-- BWS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C-INC</masterLabel>
+            <translation><!-- C-INC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAMPBELLS C &amp; C</masterLabel>
+            <translation><!-- CAMPBELLS C &amp; C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CANDAMBER</masterLabel>
+            <translation><!-- CANDAMBER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CAPITAL LIQUOR</masterLabel>
+            <translation><!-- CAPITAL LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CASTELLOS</masterLabel>
+            <translation><!-- CASTELLOS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CASTLE HAMPERS</masterLabel>
+            <translation><!-- CASTLE HAMPERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CATERERS</masterLabel>
+            <translation><!-- CATERERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CELLARB ON PREM</masterLabel>
+            <translation><!-- CELLARB ON PREM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CELLARBRATIONS</masterLabel>
+            <translation><!-- CELLARBRATIONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CENTRAL QLD HTL</masterLabel>
+            <translation><!-- CENTRAL QLD HTL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHACE</masterLabel>
+            <translation><!-- CHACE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHAMBERS CELLAR</masterLabel>
+            <translation><!-- CHAMBERS CELLAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHEEERS</masterLabel>
+            <translation><!-- CHEEERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHRISCO HAMPERS</masterLabel>
+            <translation><!-- CHRISCO HAMPERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHRISTMAS FUNDS</masterLabel>
+            <translation><!-- CHRISTMAS FUNDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CITY LIQUOR</masterLabel>
+            <translation><!-- CITY LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLARENCE VALLEY</masterLabel>
+            <translation><!-- CLARENCE VALLEY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLARK STORES</masterLabel>
+            <translation><!-- CLARK STORES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLUB HOST</masterLabel>
+            <translation><!-- CLUB HOST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLUB LINKS</masterLabel>
+            <translation><!-- CLUB LINKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLUB LIQUOR</masterLabel>
+            <translation><!-- CLUB LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLUB PARTNERS</masterLabel>
+            <translation><!-- CLUB PARTNERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLUB POWER GRP</masterLabel>
+            <translation><!-- CLUB POWER GRP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLUBMART</masterLabel>
+            <translation><!-- CLUBMART --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLUBMART GROUP</masterLabel>
+            <translation><!-- CLUBMART GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CLUBS</masterLabel>
+            <translation><!-- CLUBS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COASTAL LIQUOR</masterLabel>
+            <translation><!-- COASTAL LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COMPASS GROUP</masterLabel>
+            <translation><!-- COMPASS GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COMPASS HOTELS</masterLabel>
+            <translation><!-- COMPASS HOTELS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COOK IS OTHER</masterLabel>
+            <translation><!-- COOK IS OTHER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COOK IS SAVA</masterLabel>
+            <translation><!-- COOK IS SAVA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COOK IS TRADING</masterLabel>
+            <translation><!-- COOK IS TRADING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CORKERS</masterLabel>
+            <translation><!-- CORKERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COSTCO</masterLabel>
+            <translation><!-- COSTCO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COUNTRY COMFORT</masterLabel>
+            <translation><!-- COUNTRY COMFORT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COUNTRY WIDE LIQUOR</masterLabel>
+            <translation><!-- COUNTRY WIDE LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COUNTRYWIDE</masterLabel>
+            <translation><!-- COUNTRYWIDE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CREEDYS W/SALE</masterLabel>
+            <translation><!-- CREEDYS W/SALE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CROWN CASINO</masterLabel>
+            <translation><!-- CROWN CASINO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Colonial Stadiu</masterLabel>
+            <translation><!-- Colonial Stadiu --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D&apos;AQUINO BROS</masterLabel>
+            <translation><!-- D&apos;AQUINO BROS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DAN MURPHY</masterLabel>
+            <translation><!-- DAN MURPHY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DAQUINOS</masterLabel>
+            <translation><!-- DAQUINOS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DAVID JONES</masterLabel>
+            <translation><!-- DAVID JONES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DFS AUSTRALIA</masterLabel>
+            <translation><!-- DFS AUSTRALIA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DILETTARE</masterLabel>
+            <translation><!-- DILETTARE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DIPLOMATIC</masterLabel>
+            <translation><!-- DIPLOMATIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DISC ACC (DACA)</masterLabel>
+            <translation><!-- DISC ACC (DACA) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DOLLAR SAVERS</masterLabel>
+            <translation><!-- DOLLAR SAVERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DOWN UNDER CELL</masterLabel>
+            <translation><!-- DOWN UNDER CELL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DRINK LINK</masterLabel>
+            <translation><!-- DRINK LINK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DRINX</masterLabel>
+            <translation><!-- DRINX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DUNCANS LIQUOR</masterLabel>
+            <translation><!-- DUNCANS LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DUNCANS NON-AD</masterLabel>
+            <translation><!-- DUNCANS NON-AD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DUTY FREE</masterLabel>
+            <translation><!-- DUTY FREE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DUTY FREE STORE</masterLabel>
+            <translation><!-- DUTY FREE STORE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EASY ST</masterLabel>
+            <translation><!-- EASY ST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ECHO ENTERTAINM</masterLabel>
+            <translation><!-- ECHO ENTERTAINM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDG</masterLabel>
+            <translation><!-- EDG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EMPIRE GROUP</masterLabel>
+            <translation><!-- EMPIRE GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ENT ENTERPRISES</masterLabel>
+            <translation><!-- ENT ENTERPRISES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUREKA</masterLabel>
+            <translation><!-- EUREKA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUREST NSW</masterLabel>
+            <translation><!-- EUREST NSW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUREST NT</masterLabel>
+            <translation><!-- EUREST NT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUREST QLD</masterLabel>
+            <translation><!-- EUREST QLD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUREST SA</masterLabel>
+            <translation><!-- EUREST SA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUREST VIC</masterLabel>
+            <translation><!-- EUREST VIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EUREST WA</masterLabel>
+            <translation><!-- EUREST WA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EVENTS</masterLabel>
+            <translation><!-- EVENTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EXPORTS</masterLabel>
+            <translation><!-- EXPORTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FASSINA LIQ MER</masterLabel>
+            <translation><!-- FASSINA LIQ MER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FERNWOOD</masterLabel>
+            <translation><!-- FERNWOOD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FESTIVAL WINES</masterLabel>
+            <translation><!-- FESTIVAL WINES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FIGTREE CELLARS</masterLabel>
+            <translation><!-- FIGTREE CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FIJI-MOTIBAHI</masterLabel>
+            <translation><!-- FIJI-MOTIBAHI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FIJI-TAPPOO</masterLabel>
+            <translation><!-- FIJI-TAPPOO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FISH LIQUOR</masterLabel>
+            <translation><!-- FISH LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FISHERS</masterLabel>
+            <translation><!-- FISHERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FOOD WORKS</masterLabel>
+            <translation><!-- FOOD WORKS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FOODSERVICE CTL</masterLabel>
+            <translation><!-- FOODSERVICE CTL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FRANKLINS</masterLabel>
+            <translation><!-- FRANKLINS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FREE STOCK</masterLabel>
+            <translation><!-- FREE STOCK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FRONTLINE DEFEN</masterLabel>
+            <translation><!-- FRONTLINE DEFEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FROZEN</masterLabel>
+            <translation><!-- FROZEN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GATEWAY GOURMET</masterLabel>
+            <translation><!-- GATEWAY GOURMET --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GATEWAY/COMPAS</masterLabel>
+            <translation><!-- GATEWAY/COMPAS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GEORGES LIQUOR</masterLabel>
+            <translation><!-- GEORGES LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GH COLE &amp; SONS</masterLabel>
+            <translation><!-- GH COLE &amp; SONS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GIANTS LS</masterLabel>
+            <translation><!-- GIANTS LS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GIANTS QLD</masterLabel>
+            <translation><!-- GIANTS QLD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GLENBROOK CLUBS</masterLabel>
+            <translation><!-- GLENBROOK CLUBS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GLENBROOK REST</masterLabel>
+            <translation><!-- GLENBROOK REST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GODWIN GROUP</masterLabel>
+            <translation><!-- GODWIN GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GOLD &amp; THINGS</masterLabel>
+            <translation><!-- GOLD &amp; THINGS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GOLLARS</masterLabel>
+            <translation><!-- GOLLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GOVERNMENT DEPT</masterLabel>
+            <translation><!-- GOVERNMENT DEPT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GRAPE GROUP</masterLabel>
+            <translation><!-- GRAPE GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>H &amp; M LIQ</masterLabel>
+            <translation><!-- H &amp; M LIQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HAMPER KING</masterLabel>
+            <translation><!-- HAMPER KING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HANDIPUB</masterLabel>
+            <translation><!-- HANDIPUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HAPPY HOST ADV</masterLabel>
+            <translation><!-- HAPPY HOST ADV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HAPPY HOST BUY</masterLabel>
+            <translation><!-- HAPPY HOST BUY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HARRY BROWN</masterLabel>
+            <translation><!-- HARRY BROWN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HARVEST LS</masterLabel>
+            <translation><!-- HARVEST LS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HARVEST QLD</masterLabel>
+            <translation><!-- HARVEST QLD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HEDLEY LIQUOR</masterLabel>
+            <translation><!-- HEDLEY LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HEDZ LIQUOR</masterLabel>
+            <translation><!-- HEDZ LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HENRYS</masterLabel>
+            <translation><!-- HENRYS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HILTON HOTELS</masterLabel>
+            <translation><!-- HILTON HOTELS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HLW</masterLabel>
+            <translation><!-- HLW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HOTELS</masterLabel>
+            <translation><!-- HOTELS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HOTELS UNITED</masterLabel>
+            <translation><!-- HOTELS UNITED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HOUSE ACCOUNTS</masterLabel>
+            <translation><!-- HOUSE ACCOUNTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HYATT GROUP</masterLabel>
+            <translation><!-- HYATT GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HYDE PARK CEL</masterLabel>
+            <translation><!-- HYDE PARK CEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ICE BOX LIQUOR</masterLabel>
+            <translation><!-- ICE BOX LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IGA</masterLabel>
+            <translation><!-- IGA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IGA EVERYDAY CL</masterLabel>
+            <translation><!-- IGA EVERYDAY CL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IGA SUPA</masterLabel>
+            <translation><!-- IGA SUPA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ILG</masterLabel>
+            <translation><!-- ILG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INNKEEPER</masterLabel>
+            <translation><!-- INNKEEPER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>INTER CONTINENT</masterLabel>
+            <translation><!-- INTER CONTINENT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JAM Hotels</masterLabel>
+            <translation><!-- JAM Hotels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JIMS CELLARS</masterLabel>
+            <translation><!-- JIMS CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JJ OBRIEN GRP</masterLabel>
+            <translation><!-- JJ OBRIEN GRP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>JR DUTY FREE</masterLabel>
+            <translation><!-- JR DUTY FREE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KARANA</masterLabel>
+            <translation><!-- KARANA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KEG RESTAURANT</masterLabel>
+            <translation><!-- KEG RESTAURANT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KEMENYS</masterLabel>
+            <translation><!-- KEMENYS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KINGS OF LIQUOR</masterLabel>
+            <translation><!-- KINGS OF LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KOLLARAS</masterLabel>
+            <translation><!-- KOLLARAS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA NITA LIQUOR</masterLabel>
+            <translation><!-- LA NITA LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LAUNDY GROUP</masterLabel>
+            <translation><!-- LAUNDY GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LILS</masterLabel>
+            <translation><!-- LILS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQ LEGENDS-NSW</masterLabel>
+            <translation><!-- LIQ LEGENDS-NSW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQ MERCH</masterLabel>
+            <translation><!-- LIQ MERCH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQ SAVERS</masterLabel>
+            <translation><!-- LIQ SAVERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQ WORLD ILG</masterLabel>
+            <translation><!-- LIQ WORLD ILG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUID MIX</masterLabel>
+            <translation><!-- LIQUID MIX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR 4 LESS 1</masterLabel>
+            <translation><!-- LIQUOR 4 LESS 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR 4 LESS-2</masterLabel>
+            <translation><!-- LIQUOR 4 LESS-2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR @</masterLabel>
+            <translation><!-- LIQUOR @ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR BARON</masterLabel>
+            <translation><!-- LIQUOR BARON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR CO-OP</masterLabel>
+            <translation><!-- LIQUOR CO-OP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR KING</masterLabel>
+            <translation><!-- LIQUOR KING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR LADS</masterLabel>
+            <translation><!-- LIQUOR LADS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR LEGENDS</masterLabel>
+            <translation><!-- LIQUOR LEGENDS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR MATE</masterLabel>
+            <translation><!-- LIQUOR MATE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR SMART</masterLabel>
+            <translation><!-- LIQUOR SMART --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR STOP ADV</masterLabel>
+            <translation><!-- LIQUOR STOP ADV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR STORES</masterLabel>
+            <translation><!-- LIQUOR STORES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUOR SUPPLRS</masterLabel>
+            <translation><!-- LIQUOR SUPPLRS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORFORCE 1</masterLabel>
+            <translation><!-- LIQUORFORCE 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORFORCE 2</masterLabel>
+            <translation><!-- LIQUORFORCE 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORFORCE ON</masterLabel>
+            <translation><!-- LIQUORFORCE ON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORLAND</masterLabel>
+            <translation><!-- LIQUORLAND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORLAND EXPR</masterLabel>
+            <translation><!-- LIQUORLAND EXPR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORLINK</masterLabel>
+            <translation><!-- LIQUORLINK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORSAVE</masterLabel>
+            <translation><!-- LIQUORSAVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORSTAX ADV</masterLabel>
+            <translation><!-- LIQUORSTAX ADV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORSTAX NON</masterLabel>
+            <translation><!-- LIQUORSTAX NON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORWISE</masterLabel>
+            <translation><!-- LIQUORWISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LIQUORWORLD</masterLabel>
+            <translation><!-- LIQUORWORLD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LITTLE BOTTLER</masterLabel>
+            <translation><!-- LITTLE BOTTLER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LMAA</masterLabel>
+            <translation><!-- LMAA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LOCAL L/WISE</masterLabel>
+            <translation><!-- LOCAL L/WISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LOCAL LIQUOR</masterLabel>
+            <translation><!-- LOCAL LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LONE STAR</masterLabel>
+            <translation><!-- LONE STAR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LUCKY PIPPOS</masterLabel>
+            <translation><!-- LUCKY PIPPOS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LWISE BUY2</masterLabel>
+            <translation><!-- LWISE BUY2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MAGEE&apos;S WSALE</masterLabel>
+            <translation><!-- MAGEE&apos;S WSALE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MARC FAHEY</masterLabel>
+            <translation><!-- MARC FAHEY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MARKDOWN GROUP</masterLabel>
+            <translation><!-- MARKDOWN GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MARRINER THEATR</masterLabel>
+            <translation><!-- MARRINER THEATR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MIRVAC</masterLabel>
+            <translation><!-- MIRVAC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MR INDEPENDENT</masterLabel>
+            <translation><!-- MR INDEPENDENT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>McGUIRES</masterLabel>
+            <translation><!-- McGUIRES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NATIONAL ONE</masterLabel>
+            <translation><!-- NATIONAL ONE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NGA LIQUOR DIST</masterLabel>
+            <translation><!-- NGA LIQUOR DIST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NILWA</masterLabel>
+            <translation><!-- NILWA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NILWA CUSTOMER</masterLabel>
+            <translation><!-- NILWA CUSTOMER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NON REV FRIDGES</masterLabel>
+            <translation><!-- NON REV FRIDGES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NON-SALES</masterLabel>
+            <translation><!-- NON-SALES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NORFOLK ISLAND</masterLabel>
+            <translation><!-- NORFOLK ISLAND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NOVOCASTRIAN</masterLabel>
+            <translation><!-- NOVOCASTRIAN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NUANCE</masterLabel>
+            <translation><!-- NUANCE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NUIE</masterLabel>
+            <translation><!-- NUIE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O&apos;REILLY HOTELS</masterLabel>
+            <translation><!-- O&apos;REILLY HOTELS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OGDEN GROUP</masterLabel>
+            <translation><!-- OGDEN GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OPEN DOOR PUB</masterLabel>
+            <translation><!-- OPEN DOOR PUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OUR SHOUT</masterLabel>
+            <translation><!-- OUR SHOUT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OZ PUB GROUP</masterLabel>
+            <translation><!-- OZ PUB GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>P&amp;O CRUISES</masterLabel>
+            <translation><!-- P&amp;O CRUISES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PABLOS-A</masterLabel>
+            <translation><!-- PABLOS-A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PAPUA NG</masterLabel>
+            <translation><!-- PAPUA NG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PARAMOUNT</masterLabel>
+            <translation><!-- PARAMOUNT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PETER DOYLE N/C</masterLabel>
+            <translation><!-- PETER DOYLE N/C --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PORTERS</masterLabel>
+            <translation><!-- PORTERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PREF REST</masterLabel>
+            <translation><!-- PREF REST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PREMIX KING</masterLabel>
+            <translation><!-- PREMIX KING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRINCESS CRUISE</masterLabel>
+            <translation><!-- PRINCESS CRUISE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PRIVATE TRADE</masterLabel>
+            <translation><!-- PRIVATE TRADE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PUBMART ADVERT</masterLabel>
+            <translation><!-- PUBMART ADVERT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PUBMART BUYING</masterLabel>
+            <translation><!-- PUBMART BUYING --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PUBSTOP</masterLabel>
+            <translation><!-- PUBSTOP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PYRMONT D/FREE</masterLabel>
+            <translation><!-- PYRMONT D/FREE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Q CLUBS</masterLabel>
+            <translation><!-- Q CLUBS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QANTAS</masterLabel>
+            <translation><!-- QANTAS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QLD LIQUOR</masterLabel>
+            <translation><!-- QLD LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QUINN GROUP QLD</masterLabel>
+            <translation><!-- QUINN GROUP QLD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RADISSON HOTELS</masterLabel>
+            <translation><!-- RADISSON HOTELS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>REMAINDER</masterLabel>
+            <translation><!-- REMAINDER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RESTAURANTS</masterLabel>
+            <translation><!-- RESTAURANTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RETAIL LOGISTIC</masterLabel>
+            <translation><!-- RETAIL LOGISTIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RITCHIES IGA</masterLabel>
+            <translation><!-- RITCHIES IGA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RIVERCITY</masterLabel>
+            <translation><!-- RIVERCITY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROCKINGHAM LIQU</masterLabel>
+            <translation><!-- ROCKINGHAM LIQU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROUTE 66</masterLabel>
+            <translation><!-- ROUTE 66 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ROWLAND CATERIN</masterLabel>
+            <translation><!-- ROWLAND CATERIN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RTD FIGHT FUND</masterLabel>
+            <translation><!-- RTD FIGHT FUND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RYDGES</masterLabel>
+            <translation><!-- RYDGES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SA LIQUOR DIST</masterLabel>
+            <translation><!-- SA LIQUOR DIST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SAMOA A&amp;M</masterLabel>
+            <translation><!-- SAMOA A&amp;M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEALANE</masterLabel>
+            <translation><!-- SEALANE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SEC &amp; MGRS CLUB</masterLabel>
+            <translation><!-- SEC &amp; MGRS CLUB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHERATON HOTELS</masterLabel>
+            <translation><!-- SHERATON HOTELS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SHIP STORES</masterLabel>
+            <translation><!-- SHIP STORES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SIP N SAVE</masterLabel>
+            <translation><!-- SIP N SAVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SMART LIQUOR</masterLabel>
+            <translation><!-- SMART LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SOLOMON IS</masterLabel>
+            <translation><!-- SOLOMON IS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SPIRIT HOTELS</masterLabel>
+            <translation><!-- SPIRIT HOTELS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SPOTLESS CATER</masterLabel>
+            <translation><!-- SPOTLESS CATER --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STAR CITY</masterLabel>
+            <translation><!-- STAR CITY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STC</masterLabel>
+            <translation><!-- STC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STEWART &amp; CO</masterLabel>
+            <translation><!-- STEWART &amp; CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STEWARTS</masterLabel>
+            <translation><!-- STEWARTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STH IND LIQUOR</masterLabel>
+            <translation><!-- STH IND LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>STOP N SAVE</masterLabel>
+            <translation><!-- STOP N SAVE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUNCOAST</masterLabel>
+            <translation><!-- SUNCOAST --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUPABARN</masterLabel>
+            <translation><!-- SUPABARN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SUPER CELLARS</masterLabel>
+            <translation><!-- SUPER CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SYDNEY CASINO</masterLabel>
+            <translation><!-- SYDNEY CASINO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TACO BILL</masterLabel>
+            <translation><!-- TACO BILL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TALBOT HOTEL GR</masterLabel>
+            <translation><!-- TALBOT HOTEL GR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TAS IND LIQUOR</masterLabel>
+            <translation><!-- TAS IND LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TASMANIA LIQ</masterLabel>
+            <translation><!-- TASMANIA LIQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TAVERN SERVICES</masterLabel>
+            <translation><!-- TAVERN SERVICES --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TAVERNER GROUP</masterLabel>
+            <translation><!-- TAVERNER GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TEAM CELLARS</masterLabel>
+            <translation><!-- TEAM CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>THEOS</masterLabel>
+            <translation><!-- THEOS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>THIRSTY CAM NON</masterLabel>
+            <translation><!-- THIRSTY CAM NON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>THIRSTY CAMEL</masterLabel>
+            <translation><!-- THIRSTY CAMEL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TONGA</masterLabel>
+            <translation><!-- TONGA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TOP DROPS</masterLabel>
+            <translation><!-- TOP DROPS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tasqua Cellars</masterLabel>
+            <translation><!-- Tasqua Cellars --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ULT DROP GROUP</masterLabel>
+            <translation><!-- ULT DROP GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UNASSIGNED</masterLabel>
+            <translation><!-- UNASSIGNED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UNITED CELLARS</masterLabel>
+            <translation><!-- UNITED CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VALORE CELLARS</masterLabel>
+            <translation><!-- VALORE CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VALUE LIQUOR</masterLabel>
+            <translation><!-- VALUE LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VANUATU DFR</masterLabel>
+            <translation><!-- VANUATU DFR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VANUATU VILA</masterLabel>
+            <translation><!-- VANUATU VILA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VEGAS LIQUOR</masterLabel>
+            <translation><!-- VEGAS LIQUOR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VINTAGE CELLARS</masterLabel>
+            <translation><!-- VINTAGE CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VIRGIN BLUE</masterLabel>
+            <translation><!-- VIRGIN BLUE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VIRGIN LIQUOR GROUP</masterLabel>
+            <translation><!-- VIRGIN LIQUOR GROUP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W/SALER CLOSED</masterLabel>
+            <translation><!-- W/SALER CLOSED --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WELLERS</masterLabel>
+            <translation><!-- WELLERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WESTERN CELLARS</masterLabel>
+            <translation><!-- WESTERN CELLARS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WHOLESALERS</masterLabel>
+            <translation><!-- WHOLESALERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WINE SLASHERS</masterLabel>
+            <translation><!-- WINE SLASHERS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WLWRTHS-SFWYS</masterLabel>
+            <translation><!-- WLWRTHS-SFWYS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YOUR LOCAL</masterLabel>
+            <translation><!-- YOUR LOCAL --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Brand Code --></label>
+        <name>Brand_Code__c</name>
+    </fields>
+    <fields>
+        <label>Brand/MarkenManager</label>
+        <name>Brand_Manager__c</name>
+        <relationshipLabel><!-- Promotions (Brand Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Brand --></label>
+        <name>Brand_NPA__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Brand is tied to the selected promotion activity. --></help>
+        <label>Brand/Marke</label>
+        <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buy Period End Date --></label>
+        <name>Buy_Period_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Buy Period Start Date --></label>
+        <name>Buy_Period_Start_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- It defaults to outlet channel unless channel is pubs then you pick on or off. --></help>
+        <label><!-- Channel --></label>
+        <name>Channel__c</name>
+        <picklistValues>
+            <masterLabel>OFF</masterLabel>
+            <translation><!-- OFF --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ON</masterLabel>
+            <translation><!-- ON --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Kommentare</label>
+        <name>Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact Email --></label>
+        <name>Contact_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact_MobilePhone --></label>
+        <name>Contact_MobilePhone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact_Phone --></label>
+        <name>Contact_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Unterstützung durch Vertriebsteam</label>
+        <name>Crew_Support__c</name>
+    </fields>
+    <fields>
+        <help><!-- The One off is for free stock and can only be used on one order.
+On-Going start and end date appear. --></help>
+        <label><!-- Deal Duration --></label>
+        <name>Deal_Duration__c</name>
+        <picklistValues>
+            <masterLabel>On-Going (Till Next CPI?)</masterLabel>
+            <translation><!-- On-Going (Till Next CPI?) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>One Off</masterLabel>
+            <translation><!-- One Off --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Draw Date --></label>
+        <name>Draw_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+        <picklistValues>
+            <masterLabel>00:00</masterLabel>
+            <translation><!-- 00:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>01:00</masterLabel>
+            <translation><!-- 01:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02:00</masterLabel>
+            <translation><!-- 02:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>03:00</masterLabel>
+            <translation><!-- 03:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>04:00</masterLabel>
+            <translation><!-- 04:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>05:00</masterLabel>
+            <translation><!-- 05:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>06:00</masterLabel>
+            <translation><!-- 06:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>07:00</masterLabel>
+            <translation><!-- 07:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>08:00</masterLabel>
+            <translation><!-- 08:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>09:00</masterLabel>
+            <translation><!-- 09:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10:00</masterLabel>
+            <translation><!-- 10:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11:00</masterLabel>
+            <translation><!-- 11:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12:00</masterLabel>
+            <translation><!-- 12:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13:00</masterLabel>
+            <translation><!-- 13:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14:00</masterLabel>
+            <translation><!-- 14:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15:00</masterLabel>
+            <translation><!-- 15:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16:00</masterLabel>
+            <translation><!-- 16:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17:00</masterLabel>
+            <translation><!-- 17:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18:00</masterLabel>
+            <translation><!-- 18:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19:00</masterLabel>
+            <translation><!-- 19:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20:00</masterLabel>
+            <translation><!-- 20:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21:00</masterLabel>
+            <translation><!-- 21:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>22:00</masterLabel>
+            <translation><!-- 22:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>23:00</masterLabel>
+            <translation><!-- 23:00 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- English Name --></label>
+        <name>English_Name__c</name>
+    </fields>
+    <fields>
+        <label>erwartete Kosten</label>
+        <name>Estimated_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Finance Manager --></label>
+        <name>Finance_Manager__c</name>
+        <relationshipLabel><!-- Promotions (Finance Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fiscal Year --></label>
+        <name>Fiscal_Year__c</name>
+    </fields>
+    <fields>
+        <label><!-- Freeze Date --></label>
+        <name>Freeze_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- GTM Channel Code --></label>
+        <name>GTM_Channel_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- GTM Channel --></label>
+        <name>GTM_Channel_Description__c</name>
+        <picklistValues>
+            <masterLabel>10 - Off-Wholesale Club</masterLabel>
+            <translation><!-- 10 - Off-Wholesale Club --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21 - Off-Superstore</masterLabel>
+            <translation><!-- 21 - Off-Superstore --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>22 - Off-Conventional</masterLabel>
+            <translation><!-- 22 - Off-Conventional --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>24 - Off-Wine Specialty</masterLabel>
+            <translation><!-- 24 - Off-Wine Specialty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25 - Off-Beer Specialty</masterLabel>
+            <translation><!-- 25 - Off-Beer Specialty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>30 - Off-Drug</masterLabel>
+            <translation><!-- 30 - Off-Drug --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40 - Off-Cigarette Outlet</masterLabel>
+            <translation><!-- 40 - Off-Cigarette Outlet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>501 - On-Fine</masterLabel>
+            <translation><!-- 501 - On-Fine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>502 - On-Casual Dining</masterLabel>
+            <translation><!-- 502 - On-Casual Dining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>503 - On-Theme Restaurant</masterLabel>
+            <translation><!-- 503 - On-Theme Restaurant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>51 - Off-Limited/Assrtmnt</masterLabel>
+            <translation><!-- 51 - Off-Limited/Assrtmnt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>511 - On-Neighborhood</masterLabel>
+            <translation><!-- 511 - On-Neighborhood --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>512 - On-Casual Nightclub</masterLabel>
+            <translation><!-- 512 - On-Casual Nightclub --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>513 - On-Sports Bar</masterLabel>
+            <translation><!-- 513 - On-Sports Bar --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>514 - On-Prem Nightclub</masterLabel>
+            <translation><!-- 514 - On-Prem Nightclub --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>515 - On-Adult Ent.</masterLabel>
+            <translation><!-- 515 - On-Adult Ent. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>516 - On-Irish</masterLabel>
+            <translation><!-- 516 - On-Irish --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>517 - On-Premium</masterLabel>
+            <translation><!-- 517 - On-Premium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>518 - On-Country Western</masterLabel>
+            <translation><!-- 518 - On-Country Western --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>52 - Off-Natural/Gourmet</masterLabel>
+            <translation><!-- 52 - Off-Natural/Gourmet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>520 - On-Lodging</masterLabel>
+            <translation><!-- 520 - On-Lodging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53 - Off-Warehouse</masterLabel>
+            <translation><!-- 53 - Off-Warehouse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>530 - On-Recreation</masterLabel>
+            <translation><!-- 530 - On-Recreation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54 - Off-Superette</masterLabel>
+            <translation><!-- 54 - Off-Superette --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>540 - Transportation</masterLabel>
+            <translation><!-- 540 - Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55 - Off-Supermarket</masterLabel>
+            <translation><!-- 55 - Off-Supermarket --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>550 - On-Caterer</masterLabel>
+            <translation><!-- 550 - On-Caterer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56 - Off-Supercenter</masterLabel>
+            <translation><!-- 56 - Off-Supercenter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>570 - Military</masterLabel>
+            <translation><!-- 570 - Military --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>590 - On-Extended Master</masterLabel>
+            <translation><!-- 590 - On-Extended Master --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>60 - Off-Category Killer</masterLabel>
+            <translation><!-- 60 - Off-Category Killer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>70 - Off-Convenience</masterLabel>
+            <translation><!-- 70 - Off-Convenience --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>80 - Off-Mass Merch.</masterLabel>
+            <translation><!-- 80 - Off-Mass Merch. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>90 - Off-Extended Master</masterLabel>
+            <translation><!-- 90 - Off-Extended Master --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>999 - Not Applicable</masterLabel>
+            <translation><!-- 999 - Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ALL - All Channels</masterLabel>
+            <translation><!-- ALL - All Channels --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Has Line Items --></label>
+        <name>Has_Line_Items__c</name>
+    </fields>
+    <fields>
+        <label><!-- IO Fiscal Tertile --></label>
+        <name>IO_Fiscal_Tertile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Internal Order --></label>
+        <name>Internal_Order__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <help><!-- Populates if type of spend is a brand building type --></help>
+        <label><!-- Is Brand Building Type --></label>
+        <name>Is_Brand_Building_Type__c</name>
+        <picklistValues>
+            <masterLabel>Invoice From 3rd Party</masterLabel>
+            <translation><!-- Invoice From 3rd Party --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invoice From Customer</masterLabel>
+            <translation><!-- Invoice From Customer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Legacy Code --></label>
+        <name>Legacy_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Legacy ID --></label>
+        <name>Legacy_ID__c</name>
+    </fields>
+    <fields>
+        <label>Platz der Zweitplatzierung</label>
+        <name>Location_secondary_Placement__c</name>
+        <picklistValues>
+            <masterLabel>Centre Aisle</masterLabel>
+            <translation>Nebengang</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Checkout</masterLabel>
+            <translation>Vorkasse</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cooler</masterLabel>
+            <translation>Kühlung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>End Aisle</masterLabel>
+            <translation>Aktionsgondelkopf</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Front Entrance</masterLabel>
+            <translation>Drehkreuz</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Section</masterLabel>
+            <translation>Hauptgang</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Section (other category)</masterLabel>
+            <translation>andere</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation>Foodabteilung</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Window</masterLabel>
+            <translation>Kopfgondel Spirituosen</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Mark for Deletion --></label>
+        <name>Mark_for_Delete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Market Manager --></label>
+        <name>Market_Manager__c</name>
+        <relationshipLabel><!-- Promotions (Market Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Market --></label>
+        <name>Market__c</name>
+    </fields>
+    <fields>
+        <help><!-- Filtered list based on brand and product class (old product group) --></help>
+        <label><!-- Material Product Group --></label>
+        <name>Material_Product_Group__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Mechanism --></label>
+        <name>Mechanism__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please type in the number/amount of bottles  - that you haveplaced by time in the duartion of that secondary placement! --></help>
+        <label>Anzahl Flaschen</label>
+        <name>Number_of_Bottles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outlet Class --></label>
+        <name>Outlet_Class__c</name>
+    </fields>
+    <fields>
+        <label><!-- OwnerId --></label>
+        <name>OwnerId__c</name>
+    </fields>
+    <fields>
+        <help><!-- Shows if deal selected is type PA --></help>
+        <label><!-- PA Type --></label>
+        <name>PA_Type__c</name>
+        <picklistValues>
+            <masterLabel>$ Loaded</masterLabel>
+            <translation><!-- $ Loaded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>$ Rebated</masterLabel>
+            <translation><!-- $ Rebated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>$ Scan Deal (Rebated)</masterLabel>
+            <translation><!-- $ Scan Deal (Rebated) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bonus Cases</masterLabel>
+            <translation><!-- Bonus Cases --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Particular Agreement --></label>
+        <name>Particular_Agreement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Post Code --></label>
+        <name>Post_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Premise Indicator Code --></label>
+        <name>Premise_Indicator_Code__c</name>
+        <picklistValues>
+            <masterLabel>B</masterLabel>
+            <translation><!-- B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>F</masterLabel>
+            <translation><!-- F --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>M</masterLabel>
+            <translation><!-- M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>O</masterLabel>
+            <translation><!-- O --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T</masterLabel>
+            <translation><!-- T --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Product Class --></label>
+        <name>Product_Class__c</name>
+        <picklistValues>
+            <masterLabel>Full Strength</masterLabel>
+            <translation><!-- Full Strength --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pre-Mix</masterLabel>
+            <translation><!-- Pre-Mix --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Promotion Activity --></label>
+        <name>Promotion_Activity_AUD__c</name>
+        <relationshipLabel><!-- Promotions (Promotion Activity) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label>Promotion Aktivität</label>
+        <name>Promotion_Activity__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Promotion Category --></label>
+        <name>Promotion_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion End Date --></label>
+        <name>Promotion_End_Date_BFA__c</name>
+    </fields>
+    <fields>
+        <label>Endedatum der Promotion</label>
+        <name>Promotion_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Goal Lock --></label>
+        <name>Promotion_Goal_Lock__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Mechanics --></label>
+        <name>Promotion_Mechanics__c</name>
+        <picklistValues>
+            <masterLabel>Bundle</masterLabel>
+            <translation><!-- Bundle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GWP</masterLabel>
+            <translation><!-- GWP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Major Prize</masterLabel>
+            <translation><!-- Major Prize --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price</masterLabel>
+            <translation><!-- Price --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price &amp; GWP</masterLabel>
+            <translation><!-- Price &amp; GWP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price &amp; WIS</masterLabel>
+            <translation><!-- Price &amp; WIS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WIS</masterLabel>
+            <translation><!-- WIS --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Promotion-ID [Nummer]</label>
+        <name>Promotion_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the objective commentary for a promotion --></help>
+        <label><!-- Promotion Objective Comments --></label>
+        <name>Promotion_Objective_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Premise --></label>
+        <name>Promotion_Premise__c</name>
+        <picklistValues>
+            <masterLabel>Military</masterLabel>
+            <translation><!-- Military --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off Premise</masterLabel>
+            <translation><!-- Off Premise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On &amp; Off Premise</masterLabel>
+            <translation><!-- On &amp; Off Premise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Premise</masterLabel>
+            <translation><!-- On Premise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter the result comments for the promotion --></help>
+        <label><!-- Promotion Result Comments --></label>
+        <name>Promotion_Result_Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Start Date\Time for Australia --></help>
+        <label><!-- Promotion Start Date --></label>
+        <name>Promotion_Start_Date_BFA__c</name>
+    </fields>
+    <fields>
+        <label>Startdatum der Promotion</label>
+        <name>Promotion_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Promotion Status --></label>
+        <name>Promotion_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Created</masterLabel>
+            <translation><!-- Created --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Promotion Sub-Type --></label>
+        <name>Promotion_Sub_Type__c</name>
+        <picklistValues>
+            <masterLabel>Off - AdHoc</masterLabel>
+            <translation><!-- Off - AdHoc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off - Brand Presentation</masterLabel>
+            <translation><!-- Off - Brand Presentation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off - Cold Box</masterLabel>
+            <translation><!-- Off - Cold Box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off - Displays</masterLabel>
+            <translation><!-- Off - Displays --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off - Event</masterLabel>
+            <translation><!-- Off - Event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off - Feature Pricing</masterLabel>
+            <translation><!-- Off - Feature Pricing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off - Retail Sampling</masterLabel>
+            <translation><!-- Off - Retail Sampling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Off - Staff Sampling / Training</masterLabel>
+            <translation><!-- Off - Staff Sampling / Training --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On - AdHoc</masterLabel>
+            <translation><!-- On - AdHoc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On - Consumer Sampling</masterLabel>
+            <translation><!-- On - Consumer Sampling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On - Drink Feature</masterLabel>
+            <translation><!-- On - Drink Feature --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On - Event</masterLabel>
+            <translation><!-- On - Event --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On - Menu Placement / BTG</masterLabel>
+            <translation><!-- On - Menu Placement / BTG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On - Staff Incentives</masterLabel>
+            <translation><!-- On - Staff Incentives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On - Staff Training</masterLabel>
+            <translation><!-- On - Staff Training --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Promotion Type --></label>
+        <name>Promotion_Type__c</name>
+        <picklistValues>
+            <masterLabel>Advertised</masterLabel>
+            <translation><!-- Advertised --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDVP</masterLabel>
+            <translation><!-- EDVP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In-Store</masterLabel>
+            <translation><!-- In-Store --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shelf</masterLabel>
+            <translation><!-- Shelf --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Remind Me Date --></label>
+        <name>Remind_Me_Date__c</name>
+    </fields>
+    <fields>
+        <label>Vertriebsmanager</label>
+        <name>Sales_Manager__c</name>
+        <relationshipLabel><!-- Promotions (Sales Manager) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Org --></label>
+        <name>Sales_Org__c</name>
+        <picklistValues>
+            <masterLabel>1000</masterLabel>
+            <translation><!-- 1000 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>East</masterLabel>
+            <translation><!-- East --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>North</masterLabel>
+            <translation><!-- North --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>South</masterLabel>
+            <translation><!-- South --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SouthW</masterLabel>
+            <translation><!-- SouthW --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sales Region --></label>
+        <name>Sales_Region__c</name>
+    </fields>
+    <fields>
+        <label>Zweitplatzierung ist vereinbart/abgest.</label>
+        <name>Secondary_Placement_is_agreed_discussed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping City --></label>
+        <name>Shipping_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Country --></label>
+        <name>Shipping_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping State --></label>
+        <name>Shipping_State__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Street --></label>
+        <name>Shipping_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Shipping Zip --></label>
+        <name>Shipping_Zip__c</name>
+    </fields>
+    <fields>
+        <label>Größe des Display</label>
+        <name>Size_of_Display__c</name>
+        <picklistValues>
+            <masterLabel>1/1 europallet</masterLabel>
+            <translation>1 Europlatte</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2      europallet</masterLabel>
+            <translation>2 Europaletten</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3      europallet</masterLabel>
+            <translation>3 Europaletten</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>¼     europallet</masterLabel>
+            <translation>1/4 Europalette</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>½    europallet</masterLabel>
+            <translation>1/2 Europalette</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>¾     europallet</masterLabel>
+            <translation>3/4 Europalette</translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Gr. des Display/Anzahl Böden</label>
+        <name>Size_of_Display_number_of_shelves__c</name>
+        <picklistValues>
+            <masterLabel>1  shelve</masterLabel>
+            <translation>1 Regalboden</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2  shelves</masterLabel>
+            <translation>2 Regalböden</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3  shelves</masterLabel>
+            <translation>3 Regalböden</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4 shelves</masterLabel>
+            <translation><!-- 4 shelves --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 shelves</masterLabel>
+            <translation><!-- 5 shelves --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Sonderveranstaltung</label>
+        <name>Special_Event__c</name>
+    </fields>
+    <fields>
+        <label><!-- Spend Type --></label>
+        <name>Spend_Type__c</name>
+        <picklistValues>
+            <masterLabel>Catalogue - TA Disc</masterLabel>
+            <translation><!-- Catalogue - TA Disc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cocktail Menus - Brand Bldg</masterLabel>
+            <translation><!-- Cocktail Menus - Brand Bldg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>First Pour Agreement - Brand Bldg</masterLabel>
+            <translation><!-- First Pour Agreement - Brand Bldg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Newspaper Ad - TA Disc</masterLabel>
+            <translation><!-- Newspaper Ad - TA Disc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Price Deal - PA Disc</masterLabel>
+            <translation><!-- Price Deal - PA Disc --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ranging Deal - Brand Bldg</masterLabel>
+            <translation><!-- Ranging Deal - Brand Bldg --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Show - Brand Bldg</masterLabel>
+            <translation><!-- Trade Show - Brand Bldg --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Startzeit</label>
+        <name>Start_Time__c</name>
+        <picklistValues>
+            <masterLabel>00:00</masterLabel>
+            <translation><!-- 00:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>01:00</masterLabel>
+            <translation><!-- 01:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>02:00</masterLabel>
+            <translation><!-- 02:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>03:00</masterLabel>
+            <translation><!-- 03:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>04:00</masterLabel>
+            <translation><!-- 04:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>05:00</masterLabel>
+            <translation><!-- 05:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>06:00</masterLabel>
+            <translation><!-- 06:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>07:00</masterLabel>
+            <translation><!-- 07:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>08:00</masterLabel>
+            <translation><!-- 08:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>09:00</masterLabel>
+            <translation><!-- 09:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10:00</masterLabel>
+            <translation><!-- 10:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11:00</masterLabel>
+            <translation><!-- 11:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12:00</masterLabel>
+            <translation><!-- 12:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13:00</masterLabel>
+            <translation><!-- 13:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14:00</masterLabel>
+            <translation><!-- 14:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15:00</masterLabel>
+            <translation><!-- 15:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16:00</masterLabel>
+            <translation><!-- 16:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17:00</masterLabel>
+            <translation><!-- 17:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18:00</masterLabel>
+            <translation><!-- 18:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19:00</masterLabel>
+            <translation><!-- 19:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20:00</masterLabel>
+            <translation><!-- 20:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21:00</masterLabel>
+            <translation><!-- 21:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>22:00</masterLabel>
+            <translation><!-- 22:00 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>23:00</masterLabel>
+            <translation><!-- 23:00 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+        <picklistValues>
+            <masterLabel>NSW</masterLabel>
+            <translation><!-- NSW --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NT</masterLabel>
+            <translation><!-- NT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QLD</masterLabel>
+            <translation><!-- QLD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SA</masterLabel>
+            <translation><!-- SA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TAS</masterLabel>
+            <translation><!-- TAS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VIC</masterLabel>
+            <translation><!-- VIC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA</masterLabel>
+            <translation><!-- WA --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sub Type --></label>
+        <name>Sub_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Suburb --></label>
+        <name>Suburb__c</name>
+    </fields>
+    <fields>
+        <label><!-- Support and Backup --></label>
+        <name>Support_and_Backup__c</name>
+    </fields>
+    <fields>
+        <help><!-- Shows if deal selected is type TA. --></help>
+        <label><!-- TA Type --></label>
+        <name>TA_Type__c</name>
+        <picklistValues>
+            <masterLabel>Case Rate (Rebate)</masterLabel>
+            <translation><!-- Case Rate (Rebate) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lump Sum</masterLabel>
+            <translation><!-- Lump Sum --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Alter Zielgruppe</label>
+        <name>Target_Age_Group__c</name>
+        <picklistValues>
+            <masterLabel>20 - 25 F</masterLabel>
+            <translation><!-- 20 - 25 F --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20 - 25 M</masterLabel>
+            <translation><!-- 20 - 25 M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>26 - 30 F</masterLabel>
+            <translation><!-- 26 - 30 F --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>26 - 30 M</masterLabel>
+            <translation><!-- 26 - 30 M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>31 - 45 M</masterLabel>
+            <translation><!-- 31 - 45 M --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>31 -45 F</masterLabel>
+            <translation><!-- 31 -45 F --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>45+ F</masterLabel>
+            <translation><!-- 45+ F --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>45+ M</masterLabel>
+            <translation><!-- 45+ M --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label>Zielgruppe</label>
+        <name>Target_Attendance__c</name>
+    </fields>
+    <fields>
+        <label><!-- Telephone --></label>
+        <name>Telephone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tertile --></label>
+        <name>Tertile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tier 1 WS --></label>
+        <name>Tier_1_WS_CHN__c</name>
+        <relationshipLabel><!-- Promotions (Tier 1 WS) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Tier 2 WS --></label>
+        <name>Tier_2_WS_CHN__c</name>
+        <relationshipLabel><!-- Promotions (Tier 2 WS) --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Total Gross Profit - Total Promotion Cost --></help>
+        <label>MarkenProfit [Total]</label>
+        <name>Total_Brand_Profit__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sum of Gross Profit for all related Promotion Goal records --></help>
+        <label>Marge [Total]</label>
+        <name>Total_Margin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Pouring Amount --></label>
+        <name>Total_Pouring_Amount2__c</name>
+    </fields>
+    <fields>
+        <help><!-- Sum of Promotion Material Cost for all related Promotion Materials records --></help>
+        <label>Kosten der Promotion [Total]</label>
+        <name>Total_Promotion_Cost__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Promotion Costs --></label>
+        <name>Total_Promotion_Costs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Sales Volume --></label>
+        <name>Total_Sales_Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- Venue --></label>
+        <name>Venue__c</name>
+        <relationshipLabel><!-- Promotions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- If spend type is a discount (pa or ta), then this is required. --></help>
+        <label><!-- Volume Source --></label>
+        <name>Volume_Source__c</name>
+        <picklistValues>
+            <masterLabel>W/S Loaded</masterLabel>
+            <translation><!-- W/S Loaded --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>W/S Rebate</masterLabel>
+            <translation><!-- W/S Rebate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Winner Name --></label>
+        <name>Winner_Name__c</name>
+    </fields>
+    <fields>
+        <label>Kosten der Zweitplatzierung</label>
+        <name>costs_of_Secondary_placement__c</name>
+    </fields>
+    <fields>
+        <label>Status der Zweitplatzierung</label>
+        <name>status_of_Secondary_placement__c</name>
+        <picklistValues>
+            <masterLabel>discussed</masterLabel>
+            <translation>besprochen/abgestimmt</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>extended</masterLabel>
+            <translation>verlängert</translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>placed</masterLabel>
+            <translation>plaziert</translation>
+        </picklistValues>
+    </fields>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>AUD_Agreement_Layout</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AUD_Promotion_Layout</layout>
+        <sections>
+            <label><!-- Account Detail --></label>
+            <section>Account Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Details --></label>
+            <section>Promotion Details</section>
+        </sections>
+        <sections>
+            <label><!-- Staffed --></label>
+            <section>Staffed</section>
+        </sections>
+        <sections>
+            <label><!-- Winner --></label>
+            <section>Winner</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Agreement Layout</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CAD-Agreement Layout</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CAD-Promotion Layout</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CAD-Secondary Placement</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+        <sections>
+            <label><!-- Secondary Placement --></label>
+            <section>Secondary Placement</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>DEU_Promotion_Layout</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>National Promotion Layout - US</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Pouring Contract</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Pouring Details --></label>
+            <section>Pouring Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Promotion Layout</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Secondary Placement</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+        <sections>
+            <label><!-- Secondary Placement --></label>
+            <section>Secondary Placement</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Simplified Promotion Layout</layout>
+        <sections>
+            <label><!-- Approval Users --></label>
+            <section>Approval Users</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Details --></label>
+            <section>Details</section>
+        </sections>
+        <sections>
+            <label><!-- Promotion Totals --></label>
+            <section>Promotion Totals</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Promotion Name --></nameFieldLabel>
+    <recordTypes>
+        <label><!-- Agreement --></label>
+        <name>Agreement</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- National Promotion - US --></label>
+        <name>National_Promotion_US</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Pouring Contract --></label>
+        <name>Pouring_Contract</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Sales Promotion --></label>
+        <name>Sales_Promotion</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Secondary Placement --></label>
+        <name>Secondary_Placement</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Secondary  Placement --></label>
+        <name>Secondary_Placement_Default</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Theme Promotion --></label>
+        <name>Theme_Promotion</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Please select an active promotion activity --></errorMessage>
+        <name>Inactive_Promotion_Activity</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can only update the internal order if the promotion status is Created --></errorMessage>
+        <name>NPA_InternalOrder_Update_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only Promotions with Status Created can be marked for deletion --></errorMessage>
+        <name>NPA_Mark_For_Deletion_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start Date cannot be greater than End Date --></errorMessage>
+        <name>NPA_Start_Date_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot change Promotion Status from Active to Created. --></errorMessage>
+        <name>NPA_Status_Validation_Active</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cannot change Promotion Status from Cancelled to Created. --></errorMessage>
+        <name>NPA_Status_Validation_Cancelled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Start Date and End Date should be within a single Tertile --></errorMessage>
+        <name>NPA_Tertile_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This is a Win In Store promotion.  A draw date must be entered. --></errorMessage>
+        <name>Promotion_Win_In_Store</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- NPA_Clone --></label>
+        <name>NPA_Clone</name>
+    </webLinks>
+    <webLinks>
+        <label>Sales Promotion - neu</label>
+        <name>New_Sales_Promotion</name>
+    </webLinks>
+    <webLinks>
+        <label>Themen Promotion - neu</label>
+        <name>New_Theme_Promotion</name>
+    </webLinks>
+    <webLinks>
+        <label>Promotion Information kopieren</label>
+        <name>Reuse_Promotion</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Update_Managers --></label>
+        <name>Update_Managers</name>
+    </webLinks>
+    <workflowTasks>
+        <description><!-- Promotion agreement reminder. --></description>
+        <name>Agreement_Reminder</name>
+        <subject><!-- Agreement Reminder --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Please collect the Winner Details for the Win in Store Promotion. --></description>
+        <name>Collect_Winner_Details</name>
+        <subject><!-- Collect Winner Details --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Achievement_Chart__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?chxl=0:|1|3|5|7|9|1:|Op+Pfit+Mgin|Payback+Timing|Capital+Expend|Strategic+Alignmt|Consumer+Fit|Market+Alignmt|Competitor+Defen&amp;chxr=0,0,10|1,-5,100&amp;chxs=1,676767,10.5,-0.5,l,676767&amp;chxt=y,x&amp;chs=850x250&amp;cht=lc&amp;chco=DA3B15,F7A10A,4582E7&amp;chds=0,10,0,10,0,10&amp;chd=t:3,6,7,4,3,2,9|4,7,8,3,2,7,5|8,9,7,6,8,8,7&amp;chg=-1,-1,1,3&amp;chls=1|1|1&amp;chtt=Achievement&quot;, &quot;Achievement Chart&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Achievement Chart</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Achievement_Sum__c</fullName>
+        <externalId>false</externalId>
+        <label>Achievement Sum</label>
+        <summarizedField>Project_Prioritization__c.Achievement__c</summarizedField>
+        <summaryForeignKey>Project_Prioritization__c.Project__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Achievement__c</fullName>
+        <externalId>false</externalId>
+        <formula>Achievement_Sum__c / Ratings_Submitted__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Achievement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attractiveness_Chart__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;http://chart.apis.google.com/chart?chxl=0:|1|3|5|7|9|1:|Op+Pfit+Mgin|Payback+Timing|Capital+Expend|Strategic+Alignmt|Consumer+Fit|Market+Alignmt|Competitor+Defen&amp;chxr=0,0,10|1,-5,100&amp;chxs=1,676767,10.5,-0.5,l,676767&amp;chxt=y,x&amp;chs=850x250&amp;cht=lc&amp;chco=DA3B15,F7A10A,4582E7&amp;chds=0,10,0,10,0,10&amp;chd=t:1,3,3,1,5,4,8|3,5,6,7,5,4,2|7,8,5,8,9,6,4&amp;chg=-1,-1,1,3&amp;chls=1|1|1&amp;chtt=Attractiveness&quot;, &quot;Achievement Chart&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Attractiveness Chart</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Attractiveness_Sum__c</fullName>
+        <externalId>false</externalId>
+        <label>Attractiveness Sum</label>
+        <summarizedField>Project_Prioritization__c.Attractiveness__c</summarizedField>
+        <summaryForeignKey>Project_Prioritization__c.Project__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Attractiveness__c</fullName>
+        <externalId>false</externalId>
+        <formula>Attractiveness_Sum__c / Ratings_Submitted__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Attractiveness</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>Brand__c</referenceTo>
+        <relationshipName>Project_Opportunities</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Branded Line Extension (Full &amp; Mid Proof)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Single Serve</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multi-Serve</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NtW Mid-Proof</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NtW  Full-Proof</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 1</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_3__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 3</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects2</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_4__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 4</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects3</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_5__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 5</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects4</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 6</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects7</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_7__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 7</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects5</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Evaluator_8__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Evaluator 8</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects6</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Market__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Market</label>
+        <referenceTo>Market__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Project_Opportunities</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>ROI__c</fullName>
+        <externalId>false</externalId>
+        <label>ROI</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Ratings_Submitted__c</fullName>
+        <externalId>false</externalId>
+        <label>Ratings Submitted</label>
+        <summaryForeignKey>Project_Prioritization__c.Project__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Spend_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Spend Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>X5_Yr_NPV__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>5 Yr NPV</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <label>Project</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Category__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Market__c</columns>
+        <columns>Description__c</columns>
+        <columns>Start_Date__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Project Opportunity Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01IV0000000CnpCMAS_00NV0000000TAj7MAG</fullName>
+        <active>true</active>
+        <field>Project_Prioritization__c.Project__c</field>
+        <filterItems>
+            <field>Project_Opportunity__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PM - New, PM - Evaluated, PM - Closed, PM - In Evaluation</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Project Prioritization Evaluation_Projec</name>
+    </namedFilters>
+    <pluralLabel>Projects</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>PM_Closed</fullName>
+        <active>true</active>
+        <description>This will remove the project from the dashboard and pipeline.</description>
+        <label>PM - Closed</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>Branded Line Extension %28Full %26 Mid Proof%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Serve</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NtW  Full-Proof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NtW Mid-Proof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single Serve</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>PM_Evaluated</fullName>
+        <active>true</active>
+        <description>Once a project is marked &quot;Evaluated&quot;, it will show up on the Pipeline and Dashboard so it can be viewed alongside the other projects.</description>
+        <label>PM - Evaluated</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>Branded Line Extension %28Full %26 Mid Proof%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Serve</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NtW  Full-Proof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NtW Mid-Proof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single Serve</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>PM_In_Evaluation</fullName>
+        <active>true</active>
+        <description>This will send a note to all the evaluators of the project with a link to submit their ratings.</description>
+        <label>PM - In Evaluation</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>Branded Line Extension %28Full %26 Mid Proof%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Serve</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NtW  Full-Proof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NtW Mid-Proof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single Serve</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Prioritization_Model</fullName>
+        <active>true</active>
+        <description>As part of the Stage Gate process this project will be evaluated by a team and loaded into a prioritization model for Senior Leadership to review.</description>
+        <label>PM - New</label>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>Branded Line Extension %28Full %26 Mid Proof%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multi-Serve</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NtW  Full-Proof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NtW Mid-Proof</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Single Serve</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

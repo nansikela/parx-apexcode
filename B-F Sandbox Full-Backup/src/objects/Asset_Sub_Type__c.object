@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Asset_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Asset Model</label>
+        <referenceTo>Asset_Models__c</referenceTo>
+        <relationshipLabel>Asset Sub Type</relationshipLabel>
+        <relationshipName>Asset_Sub_Type</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Asset Sub Type</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Asset_Model__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Asset Sub Type Name</label>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01IV00000004PoZMAU_00NV0000000M0QVMA0</fullName>
+        <active>true</active>
+        <field>Asset_Move__c.Asset_Sub_Type__c</field>
+        <filterItems>
+            <field>Asset_Sub_Type__c.Asset_Model__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Model__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Asset Move_Asset Sub Type</name>
+        <sourceObject>Asset_Move__c</sourceObject>
+    </namedFilters>
+    <pluralLabel>Asset Sub Type</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

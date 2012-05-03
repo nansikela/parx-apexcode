@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <fields>
+        <fullName>Asset_Model__c</fullName>
+        <externalId>false</externalId>
+        <label>Asset Model</label>
+        <referenceTo>Asset_Models__c</referenceTo>
+        <relationshipLabel>Fridge In Fills</relationshipLabel>
+        <relationshipName>Fridge_In_Fills</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Fridge_In_Fill_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Fridge In Fill Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>External Branding</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fridge In Fill</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Internal Branding</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <label>Fridge In Fills</label>
+    <nameField>
+        <label>Fridge In Fills Name</label>
+        <type>Text</type>
+    </nameField>
+    <namedFilters>
+        <fullName>nf_01I30000002EvgPEAS_00NQ0000000znNCMAY</fullName>
+        <active>true</active>
+        <field>Asset__c.Internal_Branding__c</field>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Fridge_In_Fill_Type__c</field>
+            <operation>equals</operation>
+            <value>Internal Branding</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Asset_Internal Branding</name>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01I30000002EvgPEAS_00NQ0000000znNGMAY</fullName>
+        <active>true</active>
+        <field>Asset__c.Fridge_In_Fill__c</field>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Fridge_In_Fill_Type__c</field>
+            <operation>equals</operation>
+            <value>Fridge In Fill</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Asset_Fridge In Fills</name>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01I30000002EvgPEAS_00NQ0000000znNLMAY</fullName>
+        <active>true</active>
+        <field>Asset__c.External_Branding__c</field>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Fridge_In_Fill_Type__c</field>
+            <operation>equals</operation>
+            <value>External Branding</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+        <name>Asset_External Branding</name>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PoZMAU_00NV0000000M0TQMA0</fullName>
+        <active>true</active>
+        <field>Asset_Move__c.Fridge_In_Fill__c</field>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Asset_Model__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Model__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Fridge_In_Fill_Type__c</field>
+            <operation>equals</operation>
+            <value>Fridge In Fill</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+        <name>Asset Move_Fridge In Fill</name>
+        <sourceObject>Asset_Move__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PoZMAU_00NV0000000M0TeMAK</fullName>
+        <active>true</active>
+        <field>Asset_Move__c.Internal_Branding__c</field>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Asset_Model__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Model__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Fridge_In_Fill_Type__c</field>
+            <operation>equals</operation>
+            <value>Internal Branding</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+        <name>Asset Move_Internal Branding</name>
+        <sourceObject>Asset_Move__c</sourceObject>
+    </namedFilters>
+    <namedFilters>
+        <fullName>nf_01IV00000004PoZMAU_00NV0000000M0TjMAK</fullName>
+        <active>true</active>
+        <field>Asset_Move__c.External_Branding__c</field>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Asset_Model__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Model__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Fridge_In_Fills__c.Fridge_In_Fill_Type__c</field>
+            <operation>equals</operation>
+            <value>External Branding</value>
+        </filterItems>
+        <isOptional>true</isOptional>
+        <name>Asset Move_External Branding</name>
+        <sourceObject>Asset_Move__c</sourceObject>
+    </namedFilters>
+    <pluralLabel>Fridge In Fills</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Asset_Model__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Fridge_In_Fill_Type__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>

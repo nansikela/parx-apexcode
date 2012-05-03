@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>All corporate calendars in Google</description>
+    <frameHeight>800</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>B-F Calendars</label>
+    <mobileReady>true</mobileReady>
+    <motif>Custom95: Stopwatch</motif>
+    <url>http://mobile.b-f.com/calendars.html</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

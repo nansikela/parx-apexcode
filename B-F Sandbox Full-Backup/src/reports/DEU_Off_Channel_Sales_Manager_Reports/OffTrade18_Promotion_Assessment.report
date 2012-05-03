@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>Promotion__c.Promotion_Activity__c.Promotion_Goal__c:SUM</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Goal</description>
+        <developerName>FORMULA1</developerName>
+        <isActive>true</isActive>
+        <masterLabel>Goal</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>IF(Promotion__c.Promotion_Activity__c.Promotion_Goal__c:SUM&gt;0,Promotion__c.Promotion_Activity__c.Promotion_Goal__c:SUM-RowCount,0)</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Delta</description>
+        <developerName>FORMULA2</developerName>
+        <isActive>true</isActive>
+        <masterLabel>Delta Value</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <description>Promotion Count</description>
+        <developerName>FORMULA3</developerName>
+        <isActive>true</isActive>
+        <masterLabel>Promotion Count</masterLabel>
+        <scale>2</scale>
+    </aggregates>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account.Promotions__r$Name</field>
+    </columns>
+    <currency>EUR</currency>
+    <description>Comparison Plan-Actual currently not possible // Target setting on promotional and employee level.</description>
+    <filter>
+        <criteriaItems>
+            <column>Account$Market__c</column>
+            <operator>equals</operator>
+            <value>Germany</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account$Channel__c</column>
+            <operator>equals</operator>
+            <value>Off</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Owner</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Promotions__r$Brand__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Promotions__r$Promotion_Activity__c.Name</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>OffTrade18: Promotion Assessment</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>Accounts_with_Promotions_and_Promotion_Activities__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Account$LastModifiedDate</dateColumn>
+        <interval>INTERVAL_CURRENT</interval>
+    </timeFrameFilter>
+</Report>

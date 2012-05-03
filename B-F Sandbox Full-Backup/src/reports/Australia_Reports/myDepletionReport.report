@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Depletion__c.Nine_L_Case__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Depletion__c.Bottles__c</field>
+    </columns>
+    <currency>AUD</currency>
+    <description>Sample Depletion Report</description>
+    <filter>
+        <criteriaItems>
+            <column>FK_NAME</column>
+            <operator>equals</operator>
+            <value>Mike&apos;s Bar</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Depletion__c.Month_Of_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>FK_NAME</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Depletion__c.Brand__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>myDepletionReport</name>
+    <params>
+        <name>co</name>
+        <value>0</value>
+    </params>
+    <reportType>CustomEntity$Depletion__c@Depletion__c.Account__c</reportType>
+    <scope>user</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Depletion__c.Month_Of_Date__c</dateColumn>
+        <interval>INTERVAL_PREVY</interval>
+    </timeFrameFilter>
+</Report>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Custom_Product__c.Brand__c</field>
+    </columns>
+    <columns>
+        <field>Account$BillingCity</field>
+    </columns>
+    <columns>
+        <field>Account$Subgroup__c</field>
+    </columns>
+    <columns>
+        <field>Account$Region__c</field>
+    </columns>
+    <columns>
+        <field>Account$Name</field>
+    </columns>
+    <columns>
+        <field>Account$Owner</field>
+    </columns>
+    <columns>
+        <field>Account$Outlet_Class__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <aggregateTypes>Maximum</aggregateTypes>
+        <aggregateTypes>Minimum</aggregateTypes>
+        <field>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Drink_Price__c</field>
+    </columns>
+    <columns>
+        <aggregateTypes>Average</aggregateTypes>
+        <aggregateTypes>Maximum</aggregateTypes>
+        <aggregateTypes>Minimum</aggregateTypes>
+        <field>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Bottle_Price__c</field>
+    </columns>
+    <currency>CAD</currency>
+    <description>CAD - Outlet Visit Pricing Summary by Month</description>
+    <filter>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <column>Account$Market__c</column>
+            <operator>contains</operator>
+            <value>Canada</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Drink_Price__c</column>
+            <operator>greaterThan</operator>
+            <value>CAD 0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Bottle_Price__c</column>
+            <operator>greaterThan</operator>
+            <value>CAD 0</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Month</dateGranularity>
+        <field>Account.Outlet_Visits__r$Visit_Date__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account$Channel__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Account.Outlet_Visits__r.Outlet_Visit_Items__r$Custom_Product__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>CAD - Outlet Visit Pricing Summary</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Accounts_Outlet_Vistits_Visit_Items__c</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Account.Outlet_Visits__r$Visit_Date__c</dateColumn>
+        <interval>INTERVAL_CURFY</interval>
+    </timeFrameFilter>
+</Report>

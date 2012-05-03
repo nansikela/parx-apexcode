@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Created for FDC-PLFC Database to track responses to events</description>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Date__c</fullName>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the date of the event</inlineHelpText>
+        <label>Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Details__c</fullName>
+        <description>FDC-PLFC</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter purpose of and detailed description of the event</inlineHelpText>
+        <label>Details</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Location__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Where will the event be held?</inlineHelpText>
+        <label>Location</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_Attending__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of contacts where Status = Yes</inlineHelpText>
+        <label>Number Attending</label>
+        <summaryFilterItems>
+            <field>B_F_Event_Response__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </summaryFilterItems>
+        <summaryForeignKey>B_F_Event_Response__c.B_F_Event__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Number_Responded__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of contacts where Status does not equal &quot;Sent&quot;</inlineHelpText>
+        <label>Number Responded</label>
+        <summaryFilterItems>
+            <field>B_F_Event_Response__c.Status__c</field>
+            <operation>notEqual</operation>
+            <value>Sent</value>
+        </summaryFilterItems>
+        <summaryForeignKey>B_F_Event_Response__c.B_F_Event__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Invites__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Total number of related contacts</inlineHelpText>
+        <label>Number of Invites</label>
+        <summaryForeignKey>B_F_Event_Response__c.B_F_Event__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Possible_Attendees__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of Contacts where Status = Yes or Maybe</inlineHelpText>
+        <label>Number of Possible Attendees</label>
+        <summaryFilterItems>
+            <field>B_F_Event_Response__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Yes, Maybe</value>
+        </summaryFilterItems>
+        <summaryForeignKey>B_F_Event_Response__c.B_F_Event__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <label>B-F Event</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Date__c</columns>
+        <columns>Location__c</columns>
+        <columns>Number_Attending__c</columns>
+        <columns>Number_of_Invites__c</columns>
+        <columns>Number_of_Possible_Attendees__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>B-F Event Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>B-F Events</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+</CustomObject>
