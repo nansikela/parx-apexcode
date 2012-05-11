@@ -1,0 +1,150 @@
+<apex:page controller="CampaignCallDownController" > 
+
+  <apex:sectionHeader title="Call Down Liste" />
+  <apex:form id="calls">  
+    <apex:pageBlock >
+    <apex:selectList value="{!camp}" size="1">Kampagne:
+            <apex:selectOptions value="{!campaignItems}"/>
+            <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="calls, status, callList, owners, goToCampaign"/>
+        </apex:selectList>&nbsp;&nbsp;
+        <apex:outputLink id="goToCampaign" value="/{!camp}" >Gehe zu Kampagne</apex:outputLink>
+    </apex:pageBlock>
+    <apex:pageBlock >
+<table>
+    <tr>
+        <td>
+            <apex:outputText >Status:</apex:outputText>
+        </td>
+        <td>
+            <apex:selectList value="{!status}" size="1">
+                <apex:selectOptions value="{!statusItems}"/>
+                <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="calls"/>
+            </apex:selectList>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <apex:outputText >Inhaber:</apex:outputText> 
+        </td>
+        <td>
+            <apex:selectList value="{!ownerId}" size="1">
+                <apex:selectOptions value="{!owners}"/>
+                <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="callList"/>
+            </apex:selectList> 
+        </td>
+    </tr>
+        
+        <!-- C.Vidal: new block for the "bearbeiter"-->
+
+            
+            <script>
+                function toggleCheckbox(checkbox) {
+                    if(checkbox.checked) {
+                        document.getElementById('bearbeiterList').style.visibility = 'collapse';
+                    }
+                    else {
+                        document.getElementById('bearbeiterList').style.visibility = 'visible';
+                    }
+                }
+            </script>
+    <tr id="bearbeiterList">
+        <td>
+                <apex:outputText >Bearbeiter:</apex:outputText> 
+        </td>
+        <td>
+                <apex:selectList value="{!BearbeiterId}" size="1">
+                    <apex:selectOptions value="{!bearbeiters}"/>
+                    <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="callList"/>
+                </apex:selectList> 
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <apex:outputLabel value="nur meine"/>
+        </td>
+        <td>
+            <apex:inputCheckbox value="{!bearbeiterCheckbox}" onchange="toggleCheckbox(this);" id="checkboxId">
+                 <apex:actionSupport event="onclick" status="counterStatus" action="{!campaignRefresh}" rerender="callList"/>
+            </apex:inputCheckbox>
+            <script>
+                toggleCheckbox(document.getElementById('{!$Component.checkboxId}'));
+            </script>
+        </td>
+    </tr>
+        </table> 
+            <br/>
+
+
+        <!-- End of the block-->
+        
+        <apex:outputPanel layout="block" style="position: relative; width: 100%">
+            <apex:outputPanel layout="block" style="float: left;">
+                <apex:outputLink value="{!backRef}" style="line-height: 24px;">Einstellungen</apex:outputLink>
+            </apex:outputPanel>
+            <apex:outputPanel layout="block" style="float: right; padding-right: 5px; padding-bottom: 5px">
+                <apex:commandButton action="{!updateAll}" value="Update All" reRender="callList" status="counterStatus"/>
+            </apex:outputPanel>
+            <apex:outputPanel layout="block" style="clear: both;">
+            </apex:outputPanel>
+        </apex:outputPanel>
+           <apex:actionStatus id="counterStatus">
+              <apex:facet name="start">  
+                <apex:outputPanel id="processing">
+                  <apex:pageMessage title="Processing..." severity="info" strength="2" rendered="true" />
+                  <br/>
+                  <br/>
+                  <p><apex:image id="loader" url="{!URLFOR($Resource.CampaignCallDown, '/images/loaderImage.gif')}"/></p>
+                </apex:outputPanel>   
+              </apex:facet>
+              <apex:facet name="stop">
+                    <apex:pageBlockTable value="{!leadPlusTasks}" var="lpt" id="callList">
+                        <apex:column value="{!lpt.ownerFirstName} {!lpt.ownerLastName}" headerValue="Inhaber" rendered="{!$Setup.CampaignColumns__c.OWNER__c}" />
+                        <apex:column value="{!lpt.SALUTATION}" headerValue="Anrede" rendered="{!$Setup.CampaignColumns__c.SALUTATION__c}" />
+                        <apex:column >
+                            <apex:facet name="header">
+                                <apex:commandLink action="{!sortByName}" Value="Name" rerender="calls"/>
+                            </apex:facet>
+                            <apex:outputLink value="/{!lpt.ID}">{!lpt.NAME}</apex:outputLink>
+                        </apex:column>
+                        <apex:column value="{!lpt.TITLE}" rendered="{!$Setup.CampaignColumns__c.TITLE__c}">
+                            <apex:facet name="header">
+                                <apex:commandLink action="{!sortByTitle}" Value="Titel" rerender="calls"/>
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column value="{!lpt.COMPANY}" rendered="{!$Setup.CampaignColumns__c.COMPANY__c}">
+                            <apex:facet name="header">
+                                <apex:commandLink action="{!sortByCompany}" Value="Company" rerender="calls"/>
+                            </apex:facet>
+                        </apex:column>
+                        <apex:column headerValue="Lead/Kontakt">
+                            <apex:image id="cORlImage1" url="{!URLFOR($Resource.CampaignCallDown, 'images/contactsImage.png')}" rendered="{!lpt.cORl == 'contact'}"/>
+                            <apex:image id="cORlImage2" url="{!URLFOR($Resource.CampaignCallDown, 'images/leadsImage.png')}" rendered="{!lpt.cORl == 'lead'}"/>
+                        </apex:column>
+                        <apex:column headerValue="Adresse" rendered="{!$Setup.CampaignColumns__c.ADDRESS__c}">
+                            <apex:outputText value="{!lpt.ADDRESS}" escape="false"/>
+                        </apex:column>
+                        <apex:column headerValue="Email" rendered="{!$Setup.CampaignColumns__c.EMAIL__c}">
+                            <apex:outputText value="{!lpt.EMAIL}" escape="false"/>
+                        </apex:column>
+                        <apex:column value="{!lpt.PHONE}" headerValue="Telefon" rendered="{!$Setup.CampaignColumns__c.PHONE__c}"/>
+                        <apex:column headerValue="Fax" rendered="{!$Setup.CampaignColumns__c.FAX__c}">
+                            <apex:outputText value="{!lpt.FAX}" escape="false"/>
+                        </apex:column>
+                        <apex:column >
+                            <apex:facet name="header">
+                                <apex:commandLink action="{!sortByStatus}" Value="Status" rerender="calls"/>
+                            </apex:facet>
+                            <apex:selectList value="{!lpt.statusUpdate}" size="1">
+                            <apex:selectOptions value="{!lpt.memStatusValue}"/>
+                            </apex:selectList>
+                        </apex:column>
+                        <apex:column headerValue="Log A Call">
+                            <apex:inputTextarea value="{!lpt.t.Description}" cols="25" rows="1" onFocus="this.rows=3;" onBlur="this.rows=1" />
+                            <br />
+                        </apex:column> 
+                    </apex:pageBlockTable>
+                   </apex:facet>
+                  </apex:actionStatus>
+  </apex:pageBlock> 
+  </apex:form>
+</apex:page>
