@@ -28,7 +28,7 @@
             <operator>equals</operator>
             <value>1</value>
         </criteriaItems>
-        <language>de</language>
+        <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>

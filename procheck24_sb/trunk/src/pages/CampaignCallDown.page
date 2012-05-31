@@ -1,15 +1,46 @@
 <apex:page controller="CampaignCallDownController" > 
 
+	<script>
+	function displayActivities() {
+		document.getElementById('{!$Component.theActivityLayer}').style.visibility='visible';
+    }
+    
+    function hideActivities() {
+    	document.getElementById('{!$Component.theActivityLayer}').style.visibility='hidden';
+    }
+	</script>
+	<apex:form id="actionFunctionForm">
+		<apex:actionFunction name="setRecentRecordId" action="{!setRecentRecordId}" rerender="theActivityLayer">
+			<apex:param name="recentRecordId" assignTo="{!recentRecordId}" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction name="resetRecentRecordId" action="{!resetRecentRecordId}" rerender="theActivityLayer">
+		</apex:actionFunction>
+	</apex:form>
+	
   <apex:sectionHeader title="Call Down Liste" />
-  <apex:form id="calls">  
+  <apex:form id="calls">
     <apex:pageBlock >
     <apex:selectList value="{!camp}" size="1">Kampagne:
             <apex:selectOptions value="{!campaignItems}"/>
             <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="calls, status, callList, owners, goToCampaign"/>
         </apex:selectList>&nbsp;&nbsp;
-        <apex:outputLink id="goToCampaign" value="/{!camp}" >Gehe zu Kampagne</apex:outputLink>
+        <apex:outputLink id="goToCampaign" value="/{!camp}" target="_blank" >Gehe zu Kampagne</apex:outputLink>
     </apex:pageBlock>
     <apex:pageBlock >
+    
+            <!-- C.Vidal: new block for the "bearbeiter"-->
+
+            
+            <script>
+                function toggleCheckbox(checkbox) {
+                    if(checkbox.checked) {
+                        document.getElementById('bearbeiterList').style.visibility = 'hidden';
+                    }
+                    else {
+                        document.getElementById('bearbeiterList').style.visibility = 'visible';
+                    }
+                }
+            </script>
 <table>
     <tr>
         <td>
@@ -33,38 +64,24 @@
             </apex:selectList> 
         </td>
     </tr>
-        
-        <!-- C.Vidal: new block for the "bearbeiter"-->
-
-            
-            <script>
-                function toggleCheckbox(checkbox) {
-                    if(checkbox.checked) {
-                        document.getElementById('bearbeiterList').style.visibility = 'collapse';
-                    }
-                    else {
-                        document.getElementById('bearbeiterList').style.visibility = 'visible';
-                    }
-                }
-            </script>
-    <tr id="bearbeiterList">
+    <tr id="bearbeiterList" style="display:{!bearbeiterVisible};">
         <td>
                 <apex:outputText >Bearbeiter:</apex:outputText> 
         </td>
         <td>
-                <apex:selectList value="{!BearbeiterId}" size="1">
+                <apex:selectList value="{!BearbeiterId}" size="1" id="bearbeiterselectlist">
                     <apex:selectOptions value="{!bearbeiters}"/>
                     <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="callList"/>
                 </apex:selectList> 
         </td>
     </tr>
-    <tr>
+    <tr style="display:{!bearbeiterVisible};">
         <td>
             <apex:outputLabel value="nur meine"/>
         </td>
         <td>
             <apex:inputCheckbox value="{!bearbeiterCheckbox}" onchange="toggleCheckbox(this);" id="checkboxId">
-                 <apex:actionSupport event="onclick" status="counterStatus" action="{!campaignRefresh}" rerender="callList"/>
+                 <apex:actionSupport event="onclick" status="counterStatus" action="{!campaignRefresh}" rerender="callList,bearbeiterselectlist"/>
             </apex:inputCheckbox>
             <script>
                 toggleCheckbox(document.getElementById('{!$Component.checkboxId}'));
@@ -78,11 +95,17 @@
         <!-- End of the block-->
         
         <apex:outputPanel layout="block" style="position: relative; width: 100%">
-            <apex:outputPanel layout="block" style="float: left;">
+<!--        style="float: left;"-->
+            <apex:outputPanel layout="block" >
                 <apex:outputLink value="{!backRef}" style="line-height: 24px;">Einstellungen</apex:outputLink>
             </apex:outputPanel>
+            
+            <apex:outputPanel id="pageMessageBlock">
+ 			<apex:pagemessages />
+			</apex:outputPanel>
+			
             <apex:outputPanel layout="block" style="float: right; padding-right: 5px; padding-bottom: 5px">
-                <apex:commandButton action="{!updateAll}" value="Update All" reRender="callList" status="counterStatus"/>
+                <apex:commandButton action="{!updateAll}" value="Update All" reRender="callList,pageMessageBlock" status="counterStatus"/>
             </apex:outputPanel>
             <apex:outputPanel layout="block" style="clear: both;">
             </apex:outputPanel>
@@ -104,7 +127,10 @@
                             <apex:facet name="header">
                                 <apex:commandLink action="{!sortByName}" Value="Name" rerender="calls"/>
                             </apex:facet>
-                            <apex:outputLink value="/{!lpt.ID}">{!lpt.NAME}</apex:outputLink>
+<!--							onmouseover="setRecentRecordId('{!lpt.Id}');displayActivities();"-->
+                            <apex:outputLink value="/{!lpt.ID}" target="_blank"  >
+                            	{!lpt.NAME}
+                            </apex:outputLink>
                         </apex:column>
                         <apex:column value="{!lpt.TITLE}" rendered="{!$Setup.CampaignColumns__c.TITLE__c}">
                             <apex:facet name="header">
@@ -113,7 +139,7 @@
                         </apex:column>
                         <apex:column value="{!lpt.COMPANY}" rendered="{!$Setup.CampaignColumns__c.COMPANY__c}">
                             <apex:facet name="header">
-                                <apex:commandLink action="{!sortByCompany}" Value="Company" rerender="calls"/>
+                                <apex:commandLink action="{!sortByCompany}" Value="Firma" rerender="calls"/>
                             </apex:facet>
                         </apex:column>
                         <apex:column headerValue="Lead/Kontakt">
@@ -127,6 +153,8 @@
                             <apex:outputText value="{!lpt.EMAIL}" escape="false"/>
                         </apex:column>
                         <apex:column value="{!lpt.PHONE}" headerValue="Telefon" rendered="{!$Setup.CampaignColumns__c.PHONE__c}"/>
+                        <apex:column value="{!lpt.PHONE2}" headerValue="Telefon2" rendered="{!$Setup.CampaignColumns__c.PHONE2__c}"/>
+                        <apex:column value="{!lpt.MOBILE}" headerValue="Mobil" rendered="{!$Setup.CampaignColumns__c.MOBILE__c}"/>
                         <apex:column headerValue="Fax" rendered="{!$Setup.CampaignColumns__c.FAX__c}">
                             <apex:outputText value="{!lpt.FAX}" escape="false"/>
                         </apex:column>
@@ -138,13 +166,50 @@
                             <apex:selectOptions value="{!lpt.memStatusValue}"/>
                             </apex:selectList>
                         </apex:column>
-                        <apex:column headerValue="Log A Call">
-                            <apex:inputTextarea value="{!lpt.t.Description}" cols="25" rows="1" onFocus="this.rows=3;" onBlur="this.rows=1" />
+                        <apex:column headerValue="Gesprächsnotiz">
+                            <apex:inputTextarea value="{!lpt.memo}" cols="25" rows="1" onFocus="this.rows=3;" onBlur="this.rows=1" />
                             <br />
-                        </apex:column> 
+                        </apex:column>
+                        <apex:column headerValue="Kopie">
+                            <apex:inputCheckbox value="{!lpt.followupdesc}" />
+                            <br />
+                        </apex:column>
+                        <apex:column headerValue="Neue Aufgabe">
+                            <apex:inputText value="{!lpt.followupTaskSubject}" size="10" />
+                            <br />
+                        </apex:column>
+                        <apex:column headerValue="Fälligkeit">
+                            <c:specialDateField >
+                        		<apex:inputText id="activitydate" value="{!lpt.followupActivityDate}" onBlur="closeCalendar('{!$Component.activitydate}');" onmouseover="initialiseCalendar(this, '{!$Component.activitydate}')" />
+<!--                                <apex:inputField id="activitydate" value="{!lpt.followup.ActivityDate}" onBlur="closeCalendar('{!$Component.activitydate}');" onmouseover="initialiseCalendar(this, '{!$Component.activitydate}')"/>-->
+<!--                                <apex:inputField value="{!lpt.followup.ActivityDate}" />-->
+                            </c:specialDateField>
+                            <apex:outputText style="color:red" value="{!lpt.activityDateErrorMessage}" rendered="{!LEN(lpt.activityDateErrorMessage)>0}"/>
+                        </apex:column>  
                     </apex:pageBlockTable>
                    </apex:facet>
                   </apex:actionStatus>
   </apex:pageBlock> 
   </apex:form>
+<!--  <apex:outputPanel layout="block" style="width:600px;position:absolute;left:250px;top:150px;" id="theActivityLayer" >-->
+<!--  	<apex:outputLink value="#" onclick="hideActivities();">Close</apex:outputLink>-->
+<!--  	<div id="responseErrors"></div> -->
+<!--  	-->
+<!--  	<apex:pageBlock id="tasklist">-->
+<!--                    <apex:pageBlockTable value="{!recordActivities}" var="t" id="tlist">-->
+<!--                    	<apex:column headerValue="Datum">-->
+<!--                    		<apex:outputField value="{!t.ActivityDate}" />-->
+<!--                    	</apex:column>-->
+<!--                    	<apex:column headerValue="Thema">-->
+<!--                    		<apex:outputField value="{!t.Subject}" />-->
+<!--                    	</apex:column>-->
+<!--                    	<apex:column headerValue="Anmerkung">-->
+<!--                    		<apex:outputField value="{!t.Description}" />-->
+<!--                    	</apex:column>-->
+<!--                    </apex:pageBlockTable>-->
+<!--  	</apex:pageBlock>-->
+<!--  </apex:outputPanel>-->
+  <script>
+  	document.getElementById('{!$Component.theActivityLayer}').style.visibility='hidden';
+  </script>
 </apex:page>

@@ -20,14 +20,16 @@ public with sharing class CampaignCallDownSettingsController{
             backpage='/';
           
         campaignColumns = CampaignColumns__c.getInstance();
-        columnSettingsList.add( new ColumnSettings( 'Title',            campaignColumns == null ? false : campaignColumns.TITLE__c ));
-        columnSettingsList.add( new ColumnSettings( 'Company',      campaignColumns == null ? false : campaignColumns.COMPANY__c ));
-        columnSettingsList.add( new ColumnSettings( 'Phone',            campaignColumns == null ? false : campaignColumns.PHONE__c ));
+        columnSettingsList.add( new ColumnSettings( 'Titel',            campaignColumns == null ? false : campaignColumns.TITLE__c ));
+        columnSettingsList.add( new ColumnSettings( 'Firma',      campaignColumns == null ? false : campaignColumns.COMPANY__c ));
+        columnSettingsList.add( new ColumnSettings( 'Telefon',            campaignColumns == null ? false : campaignColumns.PHONE__c ));
+        columnSettingsList.add( new ColumnSettings( 'Telefon2',            campaignColumns == null ? false : campaignColumns.PHONE2__c ));
+        columnSettingsList.add( new ColumnSettings( 'Mobil',            campaignColumns == null ? false : campaignColumns.MOBILE__c ));
         columnSettingsList.add( new ColumnSettings( 'Email',            campaignColumns == null ? false : campaignColumns.EMAIL__c ));
         columnSettingsList.add( new ColumnSettings( 'Fax',          campaignColumns == null ? false : campaignColumns.FAX__c ));
-        columnSettingsList.add( new ColumnSettings( 'Salutation',   campaignColumns == null ? false : campaignColumns.SALUTATION__c ));
-        columnSettingsList.add( new ColumnSettings( 'Owner',            campaignColumns == null ? false : campaignColumns.OWNER__c ));
-        columnSettingsList.add( new ColumnSettings( 'Address',      campaignColumns == null ? false : campaignColumns.ADDRESS__c ));
+        columnSettingsList.add( new ColumnSettings( 'Anrede',   campaignColumns == null ? false : campaignColumns.SALUTATION__c ));
+        columnSettingsList.add( new ColumnSettings( 'Inhaber',            campaignColumns == null ? false : campaignColumns.OWNER__c ));
+        columnSettingsList.add( new ColumnSettings( 'Adresse',      campaignColumns == null ? false : campaignColumns.ADDRESS__c ));
     } 
 
     /**
@@ -50,14 +52,16 @@ public with sharing class CampaignCallDownSettingsController{
                 campaignColumns.SetupOwnerId = Userinfo.getUserId();
             }
         
-            campaignColumns.ADDRESS__c          = columnSettingsList[ 7 ].cValue;
+            campaignColumns.ADDRESS__c          = columnSettingsList[ 9 ].cValue;
             campaignColumns.COMPANY__c          = columnSettingsList[ 1 ].cValue;
-            campaignColumns.EMAIL__c            = columnSettingsList[ 3 ].cValue;
+            campaignColumns.EMAIL__c            = columnSettingsList[ 5 ].cValue;
             campaignColumns.PHONE__c            = columnSettingsList[ 2 ].cValue;
-            campaignColumns.FAX__c              = columnSettingsList[ 4 ].cValue;
-            campaignColumns.SALUTATION__c       = columnSettingsList[ 5 ].cValue;
+            campaignColumns.PHONE2__c           = columnSettingsList[ 3 ].cValue;
+            campaignColumns.MOBILE__c           = columnSettingsList[ 4 ].cValue;
+            campaignColumns.FAX__c              = columnSettingsList[ 6 ].cValue;
+            campaignColumns.SALUTATION__c       = columnSettingsList[ 7 ].cValue;
             campaignColumns.TITLE__c            = columnSettingsList[ 0 ].cValue;
-            campaignColumns.OWNER__c            = columnSettingsList[ 6 ].cValue;
+            campaignColumns.OWNER__c            = columnSettingsList[ 8 ].cValue;
 
             
              upsert campaignColumns;
