@@ -19,7 +19,7 @@ public with sharing class CampaignCallDownController{
     private string              thisCampaign;
     private Lead[]              lead; 
     private Contact[]           contact;
-    private CampaignMember[]    members; //the members for that campaign
+    private transient CampaignMember[]    members; //the members for that campaign
     private Lead[]              relevantLeads; 
     private List<leadPlusTaskPlusContact>   leadPlusTasks;
     private Map<String, Boolean>            callDownColumns;    
@@ -35,13 +35,19 @@ public with sharing class CampaignCallDownController{
     public list<SelectOption>   bearbeiters;
     public string               ownerId{ get; set; }
     public string               bearbeiterId{ get; set; }
+    public static Id			recentRecordId	{get; set;}
+    public String				bearbeiterVisible { get; private set; }
     
     /**
     *Constructor
     */
     public CampaignCallDownController(){
+    	// controlls the stylesheet for visibility of bearbeiter selection and checkbox
+    	// none: not visible
+    	// inline: visible
+    	bearbeiterVisible='none';
         //C.Vidal: checkbox
-        bearbeiterCheckbox = false;
+        bearbeiterCheckbox = true;
         
         relevantLeads = new Lead[ 0 ];
         leadPlusTasks = new leadPlusTaskPlusContact[]{};
@@ -90,6 +96,25 @@ public with sharing class CampaignCallDownController{
     }
     
     /**
+    * Returns activities for record
+    *@return activities list<Task> list
+    */
+    public list<Task> getRecordActivities() {
+    	if (recentRecordId!=null) return [SELECT Id, Subject, ActivityDate, Description FROM Task WHERE WhoId=:recentRecordId ORDER BY ActivityDate DESC limit 10];
+    	//else return [SELECT Id, Subject, ActivityDate, Description FROM Task WHERE WhoId='00Qc0000000xrqEEAQ' ORDER BY ActivityDate limit 10];
+    	else return new list<Task>();
+    }
+    
+    public PageReference setRecentRecordId() {
+    	return null;
+    }
+    
+    public PageReference resetRecentRecordId() {
+    	recentRecordId=null;
+    	return null;
+    }
+    
+    /**
     *Update all status and log , retuen page reference for redirection
     *@return null
     */
@@ -107,18 +132,76 @@ public with sharing class CampaignCallDownController{
             
             updated = true;
           }
-          if (updated || (current.t.Description != '' && current.t.Description != null)) {
+          
+          // MRO: moved this from leadPlusTaskPlusContact Ctor
+          Task t = new Task();
+          t.ActivityDate = System.today();
+          t.WhoId = current.ID;
+          t.Status = 'Abgeschlossen';
+          t.Subject = '';
+          t.Description = '';
+          t.CampaignId__c=camp;
+          t.CampaignName__c=thisCampaign;
+          if ( current.ID == null ){
+              t.WhatId = camp;
+          }
+            
+          Task followup = new Task();
+          //followup.ActivityDate = System.today();
+          followup.WhoId = current.ID;
+          followup.Status = 'Offen';
+          followup.Subject = '';
+          followup.Description = '';
+          followup.CampaignId__c=camp;
+          followup.CampaignName__c=thisCampaign;
+          if ( current.ID == null ){
+              followup.WhatId = camp;
+          }
+          t.Description = current.memo;
+          followup.Subject = current.followupTaskSubject;
+          if (current.followupActivityDate != null && current.followupActivityDate != ''){
+          	try {
+          		String[] dateArray = current.followupActivityDate.split('\\.');
+          		followup.ActivityDate = Date.newInstance(Integer.valueOf(dateArray[2]), Integer.valueOf(dateArray[1]), Integer.valueOf(dateArray[0]));
+          		current.activityDateErrorMessage = '';
+          	}
+          	catch (Exception ex){
+          		ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.ERROR,'Sie haben bei mindestens einem Eintrag ein falsches Datumsformat verwendet.\n' +
+          		'Es wurde deswegen kein Eintrag gespeichert!\n' +
+          		'Bitte suchen Sie auf dieser Seite nach Fehlermeldungen und beheben Sie bitte die Fehler.');
+           		ApexPages.addMessage(myMsg);
+           		current.activityDateErrorMessage = 'Falsches Datumsformat';
+          	}
+          }
+          else if (current.followupActivityDate != null && current.followupActivityDate == ''){
+          	current.activityDateErrorMessage = '';
+          }
+          
+          if (! ApexPages.hasMessages()){
+          //current.followup.ActivityDate = Date.today();
+          if (updated || (t.Description != '' && t.Description != null) || (followup.Subject!=null && followup.Subject!='' && followup.ActivityDate!=null)) {
           //log a call
-            current.t.Subject = 'Anruf--: '+this.getCampaignName();
-            insert current.t;
+            if (t.Description != '' && t.Description != null) {
+            	t.Subject = 'Anruf: '+this.getCampaignName();
+            	insert t;
+            
+	            if (followup.Subject!=null && followup.Subject!='' && followup.ActivityDate!=null) {
+	            	if (current.followupdesc) followup.Description=t.Description;
+	            	followup.Subject = followup.Subject + ' ' +this.getCampaignName();
+	            	insert followup;
+	            }
+            }
             updated = true;
           }
           if (!updated) {
             cleanRecords.add(current);
+          }
           }      
 
-         } 
-         leadPlusTasks = cleanRecords;
+         }
+         if (! ApexPages.hasMessages()){ 
+         	leadPlusTasks = cleanRecords;
+         }
         return null;
     }
     
@@ -143,7 +226,7 @@ public with sharing class CampaignCallDownController{
     *@return page reference
     */
     public PageReference campaignRefresh(){
-        bearbeiterCheckbox = false;
+        //bearbeiterCheckbox = true;
         Map<String, String>ownerMap = new Map<String, String>();
         //C.Vidal: bearbeiterMap
         Map<String, String>bearbeiterMap = new Map<String, String>();
@@ -155,25 +238,29 @@ public with sharing class CampaignCallDownController{
             try{
             //C.Vidal: change as dynamic query and add the param bearbeiter.
              String query = 'select Id, ContactId, LeadId, Status, CampaignId, Campaign.Name, ' +
-                    'Lead.Id, Lead.Salutation, Lead.Title, Lead.Name, Lead.isConverted, Lead.Company, Lead.Phone, ' +
+                    'Lead.Id, Lead.Salutation, Lead.Title, Lead.Name, Lead.isConverted, Lead.Company, Lead.Phone, Lead.Telefon_2__c, Lead.MobilePhone, ' +
                     'Lead.Street, Lead.State, Lead.PostalCode, Lead.Country, Lead.City, Lead.Fax, ' +
-                    'Lead.Email, Lead.OwnerId, Lead.Owner.FirstName, Lead.Owner.LastName, Lead.Owner.Id, ' +
+                    'Lead.Email, Lead.OwnerId, Lead.Owner.FirstName, Lead.Owner.LastName, Lead.Owner.Name, Lead.Owner.Id, ' +
                     'Contact.ID, Contact.AccountId, Contact.Salutation, Contact.Title, Contact.Name, ' +
                     'Contact.Phone, Contact.MailingStreet, Contact.MailingState, Contact.MailingPostalCode, ' +
                     'Contact.MailingCountry, Contact.MailingCity, Contact.Fax, Contact.Email, Contact.OwnerId,' +
                     'Contact.Owner.FirstName, Contact.Owner.LastName, Contact.Owner.Id, Contact.Account.name, Bearbeiter__c ' +
                     'from CampaignMember where CampaignId = :camp ';
-                    if( status != null && status != '--ALL--' ) {
+                    if( status != null && status == '--ALL--' ) {
+                    	// Filter the initial list
+                    	query += ' AND Status != \'Erledigt mit Kontakt\' AND Status != \'Erledigt ohne Kontakt\'';
+                    }
+                    else if( status != null && status != '--ALL--' ) {
                        query += ' AND Status = :status ';
                     }
                     if( bearbeiterCheckbox) {
-                       User u = [select Email from user where Id =: UserInfo.getUserId()];
-                       query += ' AND Bearbeiter__c = \'' + u.Email  + '\' ';
+                       User u = [select Email, Alias, Name from user where Id =: UserInfo.getUserId()];
+                       query += ' AND Bearbeiter__c = \'' + u.Alias  + '\' ';
                     }
                     else if( bearbeiterId != null && bearbeiterId != '--ALL--' ) {
                        query += ' AND Bearbeiter__c = :bearbeiterId ';
                     }
-                    query += ' limit 1000';
+                    query += ' limit 100';
                 members = database.query(query);    
                /* if( status == null || status == '--ALL--' )
                     members = [select Id, ContactId, LeadId, Status, CampaignId, Campaign.Name,
@@ -205,19 +292,21 @@ public with sharing class CampaignCallDownController{
                     
                 //loop through all leads, add relevent leads and their status
             for ( CampaignMember m : members ){
-                leadPlusTaskPlusContact lpt = new leadPlusTaskPlusContact( m, getcStatusMap( camp ), camp );
+                leadPlusTaskPlusContact lpt = new leadPlusTaskPlusContact( m, getcStatusMap( camp ), camp, thisCampaign );
                 leadPlusTasks.add( lpt );
                 
                 //C.Vidal: null fixed.
                 ownerMap.put( lpt.ownerId, (lpt.ownerFirstName!=null?lpt.ownerFirstName:'') + ' ' + (lpt.ownerLastName!=null?lpt.ownerLastName:'') );
                 //C.Vidal: BearbeiterMap
-                bearbeiterMap.put( lpt.Bearbeiter, (lpt.ownerFirstName!=null?lpt.ownerFirstName:'') + ' ' + (lpt.ownerLastName!=null?lpt.ownerLastName:'') );
+                if (!bearbeiterCheckbox)
+                	bearbeiterMap.put( lpt.Bearbeiter, (lpt.ownerFirstName!=null?lpt.ownerFirstName:'') + ' ' + (lpt.ownerLastName!=null?lpt.ownerLastName:'') );
             }
                 
             //set owners
             owners = ownerMapToSelectOption( ownerMap );
             //C.Vidal
-            bearbeiters = bearbeiterMapToSelectOption( bearbeiterMap);
+            if (!bearbeiterCheckbox)
+            	bearbeiters = bearbeiterMapToSelectOption( bearbeiterMap);
             //filter for owner
             filterOwner();
             if( leadPlusTasks.size() > 1 )
@@ -235,8 +324,8 @@ public with sharing class CampaignCallDownController{
         Set<String> keys = new Set<String>();
         keys = ownerMap.keySet();
         returnVal.add( new SelectOption( '--ALL--', '--ALL--' ));
-        for(User u:[select Email, Name from User where Email IN: ownerMap.keySet()]) {
-            returnVal.add( new SelectOption(u.Email, u.Name));
+        for(User u:[select Email, Name, Alias from User where Alias IN: ownerMap.keySet()]) {
+            returnVal.add( new SelectOption(u.Alias, u.Name));
         }
         
         return returnVal;
@@ -449,7 +538,13 @@ public with sharing class CampaignCallDownController{
     public class leadPlusTaskPlusContact{
         //variable for each piece of the combined record
 
-        public Task t;
+        public String memo {get; set;} // primitive field instead of whole task to reduce size of viewstate 
+        public String followupTaskSubject {get; set;} // primitive field instead of whole task to reduce size of viewstate 
+        public String followupActivityDate {get; set;} // primitive field instead of whole task to reduce size of viewstate
+        public String activityDateErrorMessage { get; set; }
+        
+        
+        public Boolean followupdesc { get; set; } // checkbox that controlls description of followup
         public String memStatus      {get; set;}
         public Map<String, String> localCStatusMap;
         public string ID             {get; set;}
@@ -457,6 +552,8 @@ public with sharing class CampaignCallDownController{
         public string TITLE          {get; set;}
         public string SALUTATION     {get; set;}
         public string PHONE          {get; set;}
+        public string PHONE2          {get; set;}
+        public string MOBILE		{ get; set; }
         public string COMPANY        {get; set;}
         public boolean isAContact    {get; set;}
         public string cORl           {get; set;}
@@ -479,7 +576,7 @@ public with sharing class CampaignCallDownController{
         *@param statusMap a map of atatuses
         *@param camp id of campaign
         */  
-        public leadPlusTaskPlusContact( CampaignMember m, Map<String, String> statusMap, string camp ){
+        public leadPlusTaskPlusContact( CampaignMember m, Map<String, String> statusMap, string camp, string campname ){
             //C.Vidal: fixed mismatch between contact and lead with the help field isconverted.
             if ( m.Lead.id != null && m.Lead.IsConverted == false){
                 cORl = 'lead';
@@ -489,6 +586,8 @@ public with sharing class CampaignCallDownController{
                 TITLE = m.Lead.Title;
                 SALUTATION=m.Lead.Salutation;
                 PHONE = m.Lead.Phone;
+                PHONE2 = m.Lead.Telefon_2__c;
+                MOBILE = m.Lead.MobilePhone;
                 COMPANY = m.Lead.Company;
                 if( m.Lead.Street != null ){
                     ADDRESS = m.Lead.Street + '<br>';
@@ -515,6 +614,7 @@ public with sharing class CampaignCallDownController{
                     }
                     FAX=m.Lead.Fax;
                     ownerFirstName = m.Lead.Owner.FirstName; ownerLastName = m.Lead.Owner.LastName; 
+                    if(ownerLastName==null) ownerLastName=m.Lead.Owner.Name;
                     ownerId = m.Lead.OwnerId; 
             }else{
                 cORl = 'contact';
@@ -556,36 +656,42 @@ public with sharing class CampaignCallDownController{
                else
                   COMPANY = '';
             }
-            t = new Task();
-            t.ActivityDate = System.today();
-            t.WhoId = ID;
-            t.Status = 'Abgeschlossen';
-            t.Subject = '';
-            t.Description = '';
-            if ( m.Lead.id == null ){
-                t.WhatId = camp;
-            }
+            
+            memo = '';
+            followupTaskSubject = '';
+            activityDateErrorMessage = '';
+            
+            // MRO: moved tasks to updateAll()
+            
+            followupdesc=true;
             memberID = m.ID;
             memStatus = m.Status;
             //C.Vidal: Bearbeiter
             Bearbeiter = m.Bearbeiter__c;
             localCStatusMap = statusMap;
         }
-
-        /**
-        *Return a task
-        *@return t
-        */
-        public Task gett(){
-            return t;
+        
+        public String getMemo(){
+        	return memo;
+        }
+        public void setMemo(String m){
+        	memo = m;
         }
         
-        /**
-        *Set the task propertie
-        *@param tsk
-        */
-        public Void sett( Task tsk ){
-            t = tsk;
+		public String getFollowupTaskSubject(){
+        	return followupTaskSubject;
+        }
+        public void setFollowupTaskSubject(String s){
+        	if (followupdesc)
+        		followupTaskSubject = s;
+        }
+        
+        public String getFollowupActivityDate(){
+        	return followupActivityDate;
+        }
+        public void setFollowupActivityDate(String d){
+        	if (followupdesc)
+        		followupActivityDate = d;
         }
         
         /**
