@@ -1,115 +1,141 @@
-<apex:page controller="CampaignCallDownController" > 
+<apex:page controller="CampaignCallDownController" id="callbacklist" > 
 
-	<script>
-	function displayActivities() {
-		document.getElementById('{!$Component.theActivityLayer}').style.visibility='visible';
+	<script type="text/javascript">
+	function getRemoteMemberInfo(recordId) {
+	
+<!--    Visualforce.remoting.Manager.invokeAction(-->
+<!--	        '{!$RemoteAction.CampaignCallDownController.getRecordMitgliedsinfo}', -->
+<!--	        recordId, -->
+<!--	        function(result, event){-->
+<!--	            if (event.status) {-->
+<!--	                document.getElementById('minfotext').innerHTML = result-->
+<!--	            } else if (event.type === 'exception') {-->
+<!--	                document.getElementById("responseErrors").innerHTML = event.message;-->
+<!--	            } else {-->
+<!--	                document.getElementById("responseErrors").innerHTML = event.message;-->
+<!--	            }-->
+<!--	        }, -->
+<!--	        {escape: true}-->
+<!--	    );-->
+	CampaignCallDownController.getRecordMitgliedsinfo(recordId,
+		function(result, event){
+	            if (event.status) {
+	                document.getElementById('minfotext').innerHTML = result
+	            } else if (event.type === 'exception') {
+	                document.getElementById("responseErrors").innerHTML = event.message;
+	            } else {
+	                document.getElementById("responseErrors").innerHTML = event.message;
+	            }
+	        });
+	}	
+	
+	
+	function mouseposition(e)
+	{
+	  var x = e? e.pageX : event.clientX;
+	  var y = e? e.pageY : event.clientY;
+	  document.getElementById('{!$Component.theMemberInfoLayer}').style.top = y + 10 - 100 + "px";
+	  document.getElementById('{!$Component.theMemberInfoLayer}').style.left = x + 10 + "px";
+	}
+	
+	function displayMemberInfoHover(recordId) {
+		getRemoteMemberInfo(recordId);
+		document.getElementById('{!$Component.theMemberInfoLayer}').style.visibility='visible';
+	  	document.onmousemove=mouseposition;
     }
     
-    function hideActivities() {
-    	document.getElementById('{!$Component.theActivityLayer}').style.visibility='hidden';
-    }
+    function hideMemberInfoHover() {
+    	document.getElementById('{!$Component.theMemberInfoLayer}').style.visibility='hidden';
+    	document.onmousemove=null;
+    	document.getElementById('minfotext').innerHTML = "lade Mitgliedsinfo ...";
+	}
 	</script>
-	<apex:form id="actionFunctionForm">
-		<apex:actionFunction name="setRecentRecordId" action="{!setRecentRecordId}" rerender="theActivityLayer">
-			<apex:param name="recentRecordId" assignTo="{!recentRecordId}" value="" />
-		</apex:actionFunction>
-		<apex:actionFunction name="resetRecentRecordId" action="{!resetRecentRecordId}" rerender="theActivityLayer">
-		</apex:actionFunction>
-	</apex:form>
 	
-  <apex:sectionHeader title="Call Down Liste" />
+  <apex:sectionHeader title="Call Down Liste" id="sectionHeader"/>
   <apex:form id="calls">
+  	<apex:outputPanel id="pageMessageBlock">
+ 			<apex:pagemessages id="errormessages"/>
+	</apex:outputPanel>
     <apex:pageBlock >
-    <apex:selectList value="{!camp}" size="1">Kampagne:
+    <apex:outputPanel id="campaignselect" style="padding-bottom: 5px;" layout="block">
+    <apex:selectList value="{!camp}" size="1" id="campaignselectlist">Kampagne:
             <apex:selectOptions value="{!campaignItems}"/>
             <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="calls, status, callList, owners, goToCampaign"/>
         </apex:selectList>&nbsp;&nbsp;
         <apex:outputLink id="goToCampaign" value="/{!camp}" target="_blank" >Gehe zu Kampagne</apex:outputLink>
-    </apex:pageBlock>
-    <apex:pageBlock >
     
             <!-- C.Vidal: new block for the "bearbeiter"-->
 
             
             <script>
                 function toggleCheckbox(checkbox) {
-                    if(checkbox.checked) {
+                    if(checkbox.checked && document.getElementById('bearbeiterList')!=null) {
                         document.getElementById('bearbeiterList').style.visibility = 'hidden';
                     }
-                    else {
+                    else if (!checkbox.checked && document.getElementById('bearbeiterList')!=null) {
                         document.getElementById('bearbeiterList').style.visibility = 'visible';
                     }
                 }
             </script>
-<table>
-    <tr>
-        <td>
-            <apex:outputText >Status:</apex:outputText>
-        </td>
-        <td>
+    </apex:outputPanel>
+<!--    <script>twistSection('{!$Component.pbs_filter}');</script>-->
+    <apex:pageBlockSection id="pbs_filter" title="Filter - {!CampaignName}" columns="1">
+    
+	<apex:outputPanel id="status">
+            <apex:outputLabel >Status:</apex:outputLabel>
+
             <apex:selectList value="{!status}" size="1">
                 <apex:selectOptions value="{!statusItems}"/>
                 <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="calls"/>
             </apex:selectList>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <apex:outputText >Inhaber:</apex:outputText> 
-        </td>
-        <td>
+    </apex:outputPanel>
+	<apex:outputPanel id="owner">
+            <apex:outputLabel >Inhaber:</apex:outputLabel> 
+
             <apex:selectList value="{!ownerId}" size="1">
                 <apex:selectOptions value="{!owners}"/>
                 <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="callList"/>
             </apex:selectList> 
-        </td>
-    </tr>
-    <tr id="bearbeiterList" style="display:{!bearbeiterVisible};">
-        <td>
-                <apex:outputText >Bearbeiter:</apex:outputText> 
-        </td>
-        <td>
+	</apex:outputPanel>
+    <apex:outputPanel id="bearbeiterList" style="display:{!bearbeiterVisible};">
+                <apex:outputLabel >Bearbeiter:</apex:outputLabel> 
+
                 <apex:selectList value="{!BearbeiterId}" size="1" id="bearbeiterselectlist">
                     <apex:selectOptions value="{!bearbeiters}"/>
                     <apex:actionSupport event="onchange" status="counterStatus" action="{!campaignRefresh}" rerender="callList"/>
                 </apex:selectList> 
-        </td>
-    </tr>
-    <tr style="display:{!bearbeiterVisible};">
-        <td>
+
+    </apex:outputPanel>
+    <apex:outputPanel style="display:{!bearbeiterVisible};">
+
             <apex:outputLabel value="nur meine"/>
-        </td>
-        <td>
+
             <apex:inputCheckbox value="{!bearbeiterCheckbox}" onchange="toggleCheckbox(this);" id="checkboxId">
                  <apex:actionSupport event="onclick" status="counterStatus" action="{!campaignRefresh}" rerender="callList,bearbeiterselectlist"/>
             </apex:inputCheckbox>
             <script>
                 toggleCheckbox(document.getElementById('{!$Component.checkboxId}'));
             </script>
-        </td>
-    </tr>
-        </table> 
-            <br/>
 
+    </apex:outputPanel>
 
-        <!-- End of the block-->
-        
         <apex:outputPanel layout="block" style="position: relative; width: 100%">
 <!--        style="float: left;"-->
             <apex:outputPanel layout="block" >
                 <apex:outputLink value="{!backRef}" style="line-height: 24px;">Einstellungen</apex:outputLink>
             </apex:outputPanel>
-            
-            <apex:outputPanel id="pageMessageBlock">
- 			<apex:pagemessages />
-			</apex:outputPanel>
-			
-            <apex:outputPanel layout="block" style="float: right; padding-right: 5px; padding-bottom: 5px">
+ 
+        </apex:outputPanel>
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+  <!-- End of the filter block-->       
+ <!-- Start of the list block -->
+        <apex:pageBlock >
+			<apex:outputPanel layout="block" style="float: right; padding-right: 5px; padding-bottom: 5px">
                 <apex:commandButton action="{!updateAll}" value="Update All" reRender="callList,pageMessageBlock" status="counterStatus"/>
             </apex:outputPanel>
             <apex:outputPanel layout="block" style="clear: both;">
             </apex:outputPanel>
-        </apex:outputPanel>
            <apex:actionStatus id="counterStatus">
               <apex:facet name="start">  
                 <apex:outputPanel id="processing">
@@ -127,8 +153,7 @@
                             <apex:facet name="header">
                                 <apex:commandLink action="{!sortByName}" Value="Name" rerender="calls"/>
                             </apex:facet>
-<!--							onmouseover="setRecentRecordId('{!lpt.Id}');displayActivities();"-->
-                            <apex:outputLink value="/{!lpt.ID}" target="_blank"  >
+                            <apex:outputLink value="/{!lpt.ID}" target="_blank" onmouseover="displayMemberInfoHover('{!lpt.Id}');" onmouseout="hideMemberInfoHover();" >
                             	{!lpt.NAME}
                             </apex:outputLink>
                         </apex:column>
@@ -191,10 +216,14 @@
                   </apex:actionStatus>
   </apex:pageBlock> 
   </apex:form>
-<!--  <apex:outputPanel layout="block" style="width:600px;position:absolute;left:250px;top:150px;" id="theActivityLayer" >-->
-<!--  	<apex:outputLink value="#" onclick="hideActivities();">Close</apex:outputLink>-->
-<!--  	<div id="responseErrors"></div> -->
-<!--  	-->
+	<apex:outputPanel layout="block" style="position:absolute; top: -2000px; left: -2000px" id="theMemberInfoLayer" >
+<!--  	<apex:outputLink value="#" onclick="hideMemberInfoHover();">Close</apex:outputLink>-->
+  	<div id="responseErrors"></div> 
+	<apex:pageBlock id="mitgliedsinfo" title="Mitgliedsinfo">
+			<!-- div with own id was necesary,  $Component did not work with javascript remote! -->
+			<div id="minfotextdiv"><pre id="minfotext" style="font-family: Arial,Helvetica,sans-serif; font-size: 100%;">lade Mitgliedsinfo ...</pre></div>
+	</apex:pageBlock>
+  </apex:outputPanel>
 <!--  	<apex:pageBlock id="tasklist">-->
 <!--                    <apex:pageBlockTable value="{!recordActivities}" var="t" id="tlist">-->
 <!--                    	<apex:column headerValue="Datum">-->
@@ -208,8 +237,5 @@
 <!--                    	</apex:column>-->
 <!--                    </apex:pageBlockTable>-->
 <!--  	</apex:pageBlock>-->
-<!--  </apex:outputPanel>-->
-  <script>
-  	document.getElementById('{!$Component.theActivityLayer}').style.visibility='hidden';
-  </script>
+
 </apex:page>

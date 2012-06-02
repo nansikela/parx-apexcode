@@ -10,7 +10,7 @@ labs@salesforce.com
 * updated Static Resources 
 
 */
-public with sharing class CampaignCallDownController{
+global with sharing class CampaignCallDownController{
     
     //setup appropriate variables
     private Boolean             hasCampaignID = false;
@@ -105,13 +105,11 @@ public with sharing class CampaignCallDownController{
     	else return new list<Task>();
     }
     
-    public PageReference setRecentRecordId() {
-    	return null;
-    }
-    
-    public PageReference resetRecentRecordId() {
-    	recentRecordId=null;
-    	return null;
+    @RemoteAction
+    global static String getRecordMitgliedsinfo(String rId) {
+    	if (rId!=null) return getMemberinfo(rId);
+    	//else return [SELECT Id, Subject, ActivityDate, Description FROM Task WHERE WhoId='00Qc0000000xrqEEAQ' ORDER BY ActivityDate limit 10];
+    	else return '';
     }
     
     /**
@@ -222,6 +220,16 @@ public with sharing class CampaignCallDownController{
     }
     
     /**
+    * return mitgliedsinfo from CampaignMember
+    */
+    private static String getMemberinfo(String rId) {
+    	CampaignMember cm=[SELECT Id, ContactId, LeadId, Mitgliedsinfo__c FROM CampaignMember WHERE LeadId=:rId OR ContactId=:rId];
+		if (cm!=null && cm.Mitgliedsinfo__c!=null)
+			return cm.Mitgliedsinfo__c;
+    	return 'Keine bestehende Mitglieder Information vorhanden!';
+    }
+    
+    /**
     *Refresh campaign list
     *@return page reference
     */
@@ -237,12 +245,12 @@ public with sharing class CampaignCallDownController{
             hasCampaignID = true;           
             try{
             //C.Vidal: change as dynamic query and add the param bearbeiter.
-             String query = 'select Id, ContactId, LeadId, Status, CampaignId, Campaign.Name, ' +
+             String query = 'select Id, ContactId, LeadId, Status, CampaignId, Mitgliedsinfo__c, Campaign.Name, ' +
                     'Lead.Id, Lead.Salutation, Lead.Title, Lead.Name, Lead.isConverted, Lead.Company, Lead.Phone, Lead.Telefon_2__c, Lead.MobilePhone, ' +
                     'Lead.Street, Lead.State, Lead.PostalCode, Lead.Country, Lead.City, Lead.Fax, ' +
                     'Lead.Email, Lead.OwnerId, Lead.Owner.FirstName, Lead.Owner.LastName, Lead.Owner.Name, Lead.Owner.Id, ' +
                     'Contact.ID, Contact.AccountId, Contact.Salutation, Contact.Title, Contact.Name, ' +
-                    'Contact.Phone, Contact.MailingStreet, Contact.MailingState, Contact.MailingPostalCode, ' +
+                    'Contact.Phone, Contact.Telefon_2__c, Contact.MobilePhone, Contact.MailingStreet, Contact.MailingState, Contact.MailingPostalCode, ' +
                     'Contact.MailingCountry, Contact.MailingCity, Contact.Fax, Contact.Email, Contact.OwnerId,' +
                     'Contact.Owner.FirstName, Contact.Owner.LastName, Contact.Owner.Id, Contact.Account.name, Bearbeiter__c ' +
                     'from CampaignMember where CampaignId = :camp ';
@@ -520,7 +528,7 @@ public with sharing class CampaignCallDownController{
         if ( hasCampaignID ){
             return thisCampaign;
         } else{
-            return 'All Leads';
+            return 'Keine Kampagne ausgewählt';
         }   
     }
         
@@ -642,6 +650,8 @@ public with sharing class CampaignCallDownController{
                TITLE            = m.Contact.Title;
                SALUTATION       = m.Contact.Salutation;
                PHONE            = m.Contact.Phone;
+               PHONE2 			= m.Contact.Telefon_2__c;
+               MOBILE 			= m.Contact.MobilePhone;
                if(m.Contact.Email != null){
                     EMAIL = '<a href="mailto:' + m.Contact.Email + '">' + m.Contact.Email + '</a>';     
                }else{
