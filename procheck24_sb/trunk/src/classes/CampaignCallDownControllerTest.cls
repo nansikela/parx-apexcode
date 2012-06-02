@@ -146,7 +146,7 @@ private class CampaignCallDownControllerTest {
 	    String s = ccdc1.getCampaignName();
 	    
 	    //Campaign name
-	    System.assertEquals( s, 'All Leads' );
+	    System.assertEquals( s, 'Keine Kampagne ausgewählt' );
 	    
 	  	ccdc1.campaignRefresh();
 	    s = ccdc1.getCampaignName();
