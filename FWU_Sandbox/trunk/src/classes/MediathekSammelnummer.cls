@@ -1,7 +1,13 @@
+/*
+* @author Jochen Schrader
+* @date 18.06.2012
+* @description Creates the Medienpaket Licenses for each package and calculates the prices
+*/
 public class MediathekSammelnummer {
 
 	public static Boolean createMedienpaketLizenzenOnce=false;
 	public static Boolean updatePricesOnce=false;
+	private static final String SEPERATOR=';';
 	
 	public static set<Double> validProduktionsstufen=new set<Double>{ 4,5 };
 	
@@ -90,37 +96,54 @@ public class MediathekSammelnummer {
 		}
 	}
 	
-	public static void createOrRemoveMedienpaketLizenzen(map<Id, Product2> products, map<String, map<String, String>> kz2pkg) {
-		for (Product2 p: products.values()) {
+	public static void createOrRemoveMedienpaketLizenzen(map<Id, Product2> products, map<String, map<String, String>> kz2pkg) 
+	{
+		for (Product2 p: products.values()) 
+		{
 			System.debug('PARX MTSammelnummer create or remove Product: ' + p.id + ' / Name ' + p.Name + ' / Mediathek ' + (p.Mediathek__c==null?'':p.Mediathek__c));
 			// we delete every mpl for each updated product and will create new ones if neccessary
-			for (String pkg: pkg2lzn.keySet()) {
-				if (existing_mpl.containsKey(p.Name) && existing_mpl.get(p.Name).containsKey(pkg) && !existing_mpl.get(p.Name).get(pkg).isEmpty()) {
+			for (String pkg: pkg2lzn.keySet()) 
+			{
+				if (existing_mpl.containsKey(p.Name) && existing_mpl.get(p.Name).containsKey(pkg) && !existing_mpl.get(p.Name).get(pkg).isEmpty())
+				{
 					// mpls for all lizenzen have to be deleted
 					mpltodelete.addAll(existing_mpl.get(p.Name).get(pkg).values());
 				}
 			}
 			// we iterate through every existing package (and every license) and create new mpls
-			if (p.Mediathek__c!=null && kz2pkg.containsKey(p.Mediathek__c) && validProduktionsstufen.contains(p.PDKZ01__c) && p.IsActive) {
-				for (String pkg: kz2pkg.get(p.Mediathek__c).values()) {
-				// for each lizenznummer
-					for (String lzn: pkg2lzn.get(pkg).values()) {
-						System.debug('PARX MTSammelnummer create or remove: pkg ' + pkg + ' / lzn ' + lzn);
-						// create a new one
-						// find suitable artikellizenz
-						Id alid;
-						try {
-							alid=artikellizenzen.get(p.id).get(lzn).id;
-						} catch (System.Nullpointerexception e) {
-							SystemSettings.logError('MT Error, for Product ' + p.id + ' no ArtikelLizenz ' + lzn + ' exists!');
-						}
-						if (alid!=null) {
-						Medienpaket_Lizenz__c mpl = new Medienpaket_Lizenz__c(
-							VPR012__c=0.11,
-							LZN012__c=artikellizenzen.get(p.id).get(lzn).id,
-							Medienpaket__c=pkg2productid.get(pkg)
-							);
-						mpltoinsert.add(mpl);
+			if (p.Mediathek__c!=null && validProduktionsstufen.contains(p.PDKZ01__c) && p.IsActive) 
+			{	
+				for (String mkz:p.Mediathek__c.split(SEPERATOR)) 
+				{
+					if (kz2pkg.containsKey(mkz.trim())) 
+					{	
+						for (String pkg: kz2pkg.get(mkz.trim()).values()) 
+						{	
+							// for each lizenznummer
+							for (String lzn: pkg2lzn.get(pkg).values()) 
+							{	
+								System.debug('PARX MTSammelnummer create or remove: pkg ' + pkg + ' / lzn ' + lzn);
+								// create a new one
+								// find suitable artikellizenz
+								Id alid;
+								try 
+								{
+									alid=artikellizenzen.get(p.id).get(lzn).id;
+								} 
+								catch (System.Nullpointerexception e) 
+								{
+									SystemSettings.logError('MT Error, for Product ' + p.id + ' no ArtikelLizenz ' + lzn + ' exists!');
+								}
+								if (alid!=null) 
+								{
+								Medienpaket_Lizenz__c mpl = new Medienpaket_Lizenz__c(
+									VPR012__c=0.11,
+									LZN012__c=artikellizenzen.get(p.id).get(lzn).id,
+									Medienpaket__c=pkg2productid.get(pkg)
+									);
+								mpltoinsert.add(mpl);
+								}
+							}
 						}
 					}
 				}
