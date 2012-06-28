@@ -1,0 +1,12 @@
+<apex:page showheader="false" sidebar="false" id="de_authorization_terms_and_conditions"
+	controller="DETemplateController" extensions="DE_Authorization_Controller" title="{!$Label.de_title}"
+	language="{!defaultlanguage}" action="{!init}">
+	
+<apex:composition template="{!$Site.Template}">
+	<apex:define name="body">
+		<apex:form >
+	    	<apex:commandButton value="bestätigen" action="{!goToConclusion}"></apex:commandButton>
+		</apex:form>
+	</apex:define>
+</apex:composition>
+</apex:page>

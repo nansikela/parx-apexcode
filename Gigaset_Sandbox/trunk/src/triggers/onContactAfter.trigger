@@ -28,8 +28,15 @@ after update) {
     
     if((trigger.isInsert || trigger.isUpdate) && trigger.isAfter) {
     	list<Contact> contact2Update = new list<Contact>();
-    	list<Contact> Contacts = new list<Contact>([select id, SecurityId__c from Contact where Id IN: trigger.new]);
+    	list<Contact> Contacts = new list<Contact>([select id, SecurityId__c, HasOptedOutOfEmail, Newsletter_Security_Link__c, Info_per_Email__c from Contact where Id IN: trigger.new]);
 	    for(Contact c:Contacts) {
+	    	Boolean needsUpdate = false;
+	    	
+	    	if(trigger.isInsert && (c.Newsletter_Security_Link__c != null || c.Newsletter_Security_Link__c != '')) {
+	    		c.Newsletter_Security_Link__c = '';
+	    		needsUpdate = true;
+	    	}
+	    	
 	    	if(c.SecurityId__c == null || c.SecurityId__c == '') {
 		        String algorithmName = 'hmacSHA512';
 		        String key = '';
@@ -37,8 +44,24 @@ after update) {
 		        Blob privateKey = EncodingUtil.base64Decode(key);
 		        Blob input = Blob.valueOf(String.valueOf(c.Id).substring(0,15)); 
 		        c.SecurityId__c = EncodingUtil.urlEncode(EncodingUtil.base64Encode( Crypto.generateMac(algorithmName, input, privateKey )), 'UTF-8');
-		        contact2Update.add(c);
+		        needsUpdate = true;
 		    }
+		    if((trigger.isInsert || (trigger.isUpdate && c.HasOptedOutOfEmail)) && c.Info_per_Email__c && (c.Newsletter_Security_Link__c == null || c.Newsletter_Security_Link__c == '')) {
+	    		String algorithmName = 'hmacMD5';
+       			String key = '';
+       			if(trigger_settings__c.getAll().containsKey('newsletter_registration_security_key'))
+       			    key = trigger_settings__c.getAll().get('newsletter_registration_security_key').Value__c;
+       			else {
+       				c.addError(System.Label.lead_convert_newsletter_activation_security_key);
+       			}
+       			Blob privateKey = EncodingUtil.base64Decode(key);
+       			Blob input = Blob.valueOf('Id=' + c.Id);
+       			c.Newsletter_Security_Link__c = 'Id=' + c.Id + '&Check='+ EncodingUtil.urlEncode(EncodingUtil.base64Encode( Crypto.generateMac(algorithmName, input, privateKey )), 'UTF-8');    
+	  			needsUpdate = true;
+	    	}
+	    	
+	    	if(needsUpdate)
+	    		contact2Update.add(c);
 	    }
 	    if(!contact2Update.isEmpty())
 	       update contact2Update;

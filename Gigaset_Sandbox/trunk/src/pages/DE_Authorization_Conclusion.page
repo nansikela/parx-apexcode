@@ -1,0 +1,20 @@
+<apex:page showheader="false" sidebar="false" id="de_authorization_conclusion"
+	controller="DETemplateController" title="{!$Label.de_title}"
+	language="{!defaultlanguage}" action="{!init}">
+
+<apex:composition template="{!$Site.Template}">
+		<apex:define name="body">
+	     			<div class="contactBox">
+	      			<div id="contact">
+	       				<c:contentblock name="maincontent"/>
+	      			</div>
+	     				<span id="end"></span>
+	     			</div>
+     		<div id="colRgt">
+				<c:DEcontactportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp),showcontactportlet)}" />
+         		<c:DEuserprofileportlet rendered="{!AND(isAuthenticated,NOT(showclearingcomp))}" />
+			</div>
+	</apex:define>
+</apex:composition>
+
+</apex:page>

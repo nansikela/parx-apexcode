@@ -73,8 +73,7 @@
         <name>CustomTab</name>
     </types>
     <types>
-        <members>Find_Nearby_info</members>
-        <members>Find_Nearby_info/Find_Nearby_dash</members>
+        <members>Administration/Find_Nearby_dash</members>
         <name>Dashboard</name>
     </types>
     <types>
@@ -107,5 +106,5 @@
         <members>Lead.Map_Leads</members>
         <name>WebLink</name>
     </types>
-    <version>20.0</version>
+    <version>24.0</version>
 </Package>

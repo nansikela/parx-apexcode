@@ -7,9 +7,6 @@
         <field>LAST_NAME</field>
     </columns>
     <columns>
-        <field>CREATED_DATE</field>
-    </columns>
-    <columns>
         <field>CONVERTED</field>
     </columns>
     <columns>

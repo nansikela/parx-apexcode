@@ -65,7 +65,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Do Not map</fullName>
+                <fullName>Do Not Map</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -81,15 +81,15 @@
         <label>Mapping Address</label>
         <picklist>
             <picklistValues>
-                <fullName>Billing</fullName>
+                <fullName>Do Not Map</fullName>
                 <default>true</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Shipping</fullName>
+                <fullName>Billing</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Do Not Map</fullName>
+                <fullName>Shipping</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

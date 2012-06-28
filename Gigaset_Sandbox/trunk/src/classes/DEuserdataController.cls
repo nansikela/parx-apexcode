@@ -18,7 +18,7 @@ public class DEuserdataController {
 	//public String errStylePhone { get; set; }
 	//public String errStyleMobilePhone { get; set; }
 	public String success_headline { get; set; }
-
+	
 	public DEuserdataController() {
 		isPro = SystemSettings.isPro;
 		portal=SystemSettings.portal;

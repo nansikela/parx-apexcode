@@ -24,5 +24,5 @@
         <members>Site_Usage_Reports</members>
         <name>ReportType</name>
     </types>
-    <version>20.0</version>
+    <version>24.0</version>
 </Package>

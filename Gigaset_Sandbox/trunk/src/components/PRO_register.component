@@ -23,13 +23,11 @@
                     <div class="prodTeaserBig"> 
                     <!-- Start Register Navi -->
                     <!-- disabled="{!step=0}"  -->
-                    <ul>
-                        <li>
-                        <apex:outputLink value="#"  onclick="goToStep(0)" styleClass="{!active0}" id="plinkstep0">{!$Label.clientdata_privacy}</apex:outputLink>
-                        </li>
+                    <ul>                       
                         <li><apex:outputLink value="#"  onclick="goToStep(1)" styleClass="{!active1}" disabled="{!disabledStep1}" id="plinkstep1" >{!$Label.clientdata_companydata}</apex:outputLink></li>
                         <li><apex:outputLink value="#"  onclick="goToStep(2)" styleClass="{!active2}" disabled="{!disabledStep2}" id="plinkstep2" >{!$Label.clientdata_userdata}</apex:outputLink></li>
                         <li><apex:outputLink value="#"  onclick="goToStep(3)" styleClass="{!active3}" disabled="{!disabledStep3}" id="plinkstep3" >{!$Label.clientdata_companyprofile}</apex:outputLink></li>
+                    	<li><apex:outputLink value="#"  onclick="goToStep(4)" styleClass="{!active4}" disabled="{!disabledStep4}" id="plinkstep4">{!$Label.clientdata_privacy}</apex:outputLink></li>
                     </ul>
                     </div>
                 </apex:outputPanel>
@@ -53,24 +51,6 @@
                 <p> </p>
                 <h1>{!$Label.registration}</h1>
                 <p> </p>
-                <apex:outputPanel id="privacy" rendered="{!AND(step=0,showprivacy)}">
-                    <apex:pageMessages id="errorprivacy" />
-                    <apex:outputPanel id="theprivacyiframepanel" style="margin-left: -11px;">
-                    <apex:iframe src="{!privacypageurl}" scrolling="true" id="thePrivacyIframe" width="600px" height="400px"/>
-                    </apex:outputPanel>
-                    <!-- <c:contentblock name="main"/> -->
-                    <apex:form id="privacyform" style="margin-top: 18px;">
-                        <table>
-                        <tr>
-                        <td>
-                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Datenschutzerkl_rung_zugestimmt__c.label}*" for="commit" />
-                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="commit" value="{!l.Datenschutzerkl_rung_zugestimmt__c}" required="true" styleClass="FieldRequired" />
-                        </td></tr></table>
-                        <apex:outputLink styleClass="gcbtn" value="javascript:history.go(-1);">{!$Label.back}</apex:outputLink>
-                        <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register" id="nextstep0_btn"  />
-                    </apex:form>
-                </apex:outputPanel>
-                
                 <apex:outputPanel id="step1" rendered="{!step=1}">
                     <p>{!$Label.registration_subtitle}</p>
                     <apex:pageMessages id="errorstep1" /> 
@@ -358,10 +338,28 @@
                 </apex:form>
                 
                 </apex:outputPanel>
+                <apex:outputPanel id="privacy" rendered="{!AND(step=4,showprivacy)}">
+                    <apex:pageMessages id="errorprivacy" />
+                    <apex:outputPanel id="theprivacyiframepanel" style="margin-left: -11px;">
+                    <apex:iframe src="{!privacypageurl}" scrolling="true" id="thePrivacyIframe" width="600px" height="400px"/>
+                    </apex:outputPanel>
+                    <!-- <c:contentblock name="main"/> -->
+                    <apex:form id="privacyform" style="margin-top: 18px;">
+                        <table>
+                        <tr>
+                        <td>
+                        <apex:outputLabel value="{!$ObjectType.Lead.fields.Datenschutzerkl_rung_zugestimmt__c.label}*" for="commit" />
+                        </td><td>   <apex:inputField style="right: 4px;top: 3px;position: relative;" id="commit" value="{!l.Datenschutzerkl_rung_zugestimmt__c}" required="true" styleClass="FieldRequired" />
+                        </td></tr></table>
+                        <apex:outputLink styleClass="gcbtn" value="javascript:history.go(-1);">{!$Label.back}</apex:outputLink>
+                        <apex:commandButton action="{!nextStep}" value="{!$Label.next}" styleClass="spacer9" rerender="register" id="nextstep0_btn"  />
+                    </apex:form>
+                </apex:outputPanel>
+                 
                 <apex:outputPanel id="additionaltext" rendered="{! AND(step<3,step>0)}">
                     <p>{!$Label.registration_required_fields}</p>
                 </apex:outputPanel>
-                <apex:outputPanel id="success" rendered="{!step=4}">
+                <apex:outputPanel id="success" rendered="{!OR(AND(step=4,NOT(showprivacy)),AND(step=5,showprivacy))}">
                     <p>{!$Label.registration_thanks}</p>
                     <!-- <p>{!$Label.registration_sendaccountto} <b>{!l.Email}</b></p> -->
                 </apex:outputPanel>
@@ -370,7 +368,7 @@
                     <apex:pageMessages id="error" />
                 </apex:outputPanel>
                 <div class="requiredInput spacer5">
-                    <apex:outputPanel id="backaftersuccess" rendered="{!step>3}" >
+                    <apex:outputPanel id="backaftersuccess" rendered="{!IF(showprivacy, step>4,step>3)}" >
                         <apex:outputLink styleClass="gcbtn" value="{!goHomeUrl}" id="linkgohome" >{!$Label.gohome}</apex:outputLink>
                     </apex:outputPanel>
                 </div>

@@ -4,6 +4,6 @@
     <name>VR Email History Contact</name>
     <publicFolderAccess>ReadOnly</publicFolderAccess>
     <sharedTo>
-        <roles>Marketing DE</roles>
+        <group>Administration294141</group>
     </sharedTo>
 </ReportFolder>

@@ -1,0 +1,1229 @@
+<apex:page id="ic_page" controller="Capture.MassCaptureInterface"
+	tabStyle="Mass_Capture__tab" sidebar="false"
+	action="{!executeInitialisation}">
+	<apex:PageMessages id="ic_msgs" rendered="{!isMessagesShown}" />
+
+	<apex:includescript value="{!$Resource.Capture__jquery16min}" />
+	<apex:includescript value="{!$Resource.Capture__jQueryUI}" />
+	<apex:includescript value="{!URLFOR($Resource.Capture__linenumber, 'jquery-linedtextarea.js')}" />
+	<apex:includescript value="{!$Resource.Capture__TabPlugin}" />
+
+	<apex:stylesheet value="{!URLFOR($Resource.Capture__jQueryUI_CSS, 'jquery-ui-1.8.14.custom.css')}" />
+	<apex:stylesheet value="{!URLFOR($Resource.Capture__linenumber, 'jquery-linedtextarea.css')}" />
+
+	<style>
+#multipleCapture {
+	display: none;
+	text-align: center;
+}
+
+.linedtextarea {
+	height: 490px !important;
+}
+
+.linedwrap {
+	height: 500px !important;
+	width: 98% !important;
+}
+
+.lined {
+	height: 490px !important;
+	width: 90% !important;
+}
+
+.ic_checkBox {
+	
+}
+
+.ic_border {
+	
+}
+
+.ic_inputFields {
+	
+}
+
+.ic_IDTable {
+	
+}
+
+.bPageBlock .detailList .errorMsg {
+	font-size: 10px;
+}
+
+.apexp .editPage .bPageBlock .detailList .list tr th {
+	padding-top: 0;
+	padding-bottom: 0;
+	vertical-align: middle;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+#motifCurve {
+	display: none;
+}
+
+a#ic_page\:ic_form\:ic_pb_capture\:HelpLink {
+	text-decoration: none;
+}
+
+a#ic_page\:ic_form\:ic_pb_capture\:HelpLink:hover {
+	text-decoration: underline;
+}
+</style>
+
+	<script language="javascript">
+
+    var $ic = jQuery.noConflict();
+    
+    var isAlreadyOpened = false;
+    var newWin = null;
+    var focusedElement = null;
+    var pasted = false;
+    var captureType = 'L';
+    var multipleCapture = false;
+    var wasLastPosition = false;
+    var $fields = null;
+    var tab = "\t";
+    var vClipboard = null;
+    var tbl = null;
+    var ClickedElement = null;
+    
+    $ic(document).ready(function(){
+        prepareIt();
+    }); 
+    
+    function  prepareIt() {
+        var dateInputs = $ic('.dateInput input');
+        if(dateInputs.length > 0){
+            dateInputs.onfocus = null;
+            dateInputs.live('focus', {}, function(e) {
+              onDateInputFocus(this);
+            })
+        }
+    }
+    
+    function onDateInputFocus(trigger){
+        var x = $ic(document.getElementById(trigger.id)).offset().top;
+        var y = $ic(document.getElementById(trigger.id)).offset().left;
+        DatePicker.pickDate(true, trigger.id, false);
+        $ic('.datePicker').css('top',x-85);
+        $ic('.datePicker').css('left',y-20);
+        DatePicker.datePicker.shim.setStyle("display", "block");
+    }
+    
+    $ic(document).ready(function() {
+        countFields();
+        
+        if(checkBrowserName('MSIE 9.0'))
+            $ic('#TheTable').css('overflow-x', 'scroll');
+    }); 
+    
+    $ic("#txtArea").live('paste input', function(e){
+        if(!checkBrowserName('MSIE'))
+            deleteSpaces();
+    });
+    
+    document.onpaste=function(e) {
+        if($ic('#txtArea').is(":focus") == false) {
+            pasted = true;
+        }
+    }
+    
+    document.onkeyup=function(e) { 
+        if($ic('#txtArea').is(":focus") == true) {
+            var txt = $ic('#txtArea').val();
+            var res = txt.split('\n');
+            
+            if(res.length >= 101) {
+                
+                var newTxt = '';
+                for(var i = 0; i < 100; i++) {
+                    if(i < 99)
+                        newTxt = newTxt + res[i] + '\n';
+                    else    
+                        newTxt = newTxt + res[i];
+                }
+                $ic('#txtArea').val(newTxt);
+                $ic('#txtArea').animate({scrollTop: 3000}, 10);
+            }
+        }
+    } 
+    
+    function checkBrowserName(name){  
+        var agent = navigator.userAgent.toLowerCase();  
+        if (agent.indexOf(name.toLowerCase())>-1) {  
+            return true;  
+        }  
+        return false;  
+    }
+      
+    function openMultipleMassCapture() {
+        
+        $ic('#multipleCapture').dialog({ resizable: false });
+        $ic('#multipleCapture').dialog("option", "width", 630); 
+        
+        
+        if(isAlreadyOpened == false) {
+            $ic("#txtArea").linedtextarea(); 
+            isAlreadyOpened = true;
+        }
+        
+        
+        $ic('#multipleCapture').dialog("option", "height", 600);
+        $ic('#txtArea').css('overflow', 'scroll');
+    
+        $ic('#multipleCapture').bind( "dialogopen", function(event, ui) {
+            $ic('#txtArea').val('');
+        });
+        
+        $ic('#txtArea').val('');
+        $ic('#txtArea').tabOverride();
+        $ic.fn.tabOverride.autoIndent = false;
+        
+        if(checkBrowserName('MSIE 7.0')) {
+            $ic('#txtArea').height(800);
+        }
+    }
+    
+    function deleteSpaces() {
+        var content = $ic('#txtArea').val();
+        var records = content.split("\n");
+        var newText = '';
+        var Ausdruck = /\S+/;
+        
+        for(var i = 0; i < records.length; i++) {
+            var row = records[i];
+            if(row == null || row.length == 0 || row == '' || !Ausdruck.test(row)){
+                continue;
+            }
+            if(i >= records.length-1)
+                newText += row; 
+            else
+                newText += row + '\n';
+        }
+        $ic('#txtArea').val(newText);
+    } 
+   
+    function countFields(){
+        $fields = $ic('.ic_border');
+    }
+    
+    function saveMultipleRecords() {
+        countFields();
+        deleteSpaces();
+        
+        var content = $ic('#txtArea').val();
+        var records = content.split("\n");
+        var Ausdruck = /\S+/;
+        var row = 0;
+        
+        for(var i = 0; i < records.length; i++) {
+
+            if(Ausdruck.test(records[i]) == true) {
+                row++;
+            }
+        }
+
+        extendRows(row);
+        $ic('.codelines').css('margin-top', '0px');
+        $ic('#txtArea').animate({scrollTop: 0}, 10);
+        $ic('#txtArea').animate({scrollTop: 3000}, 10);
+    }
+    
+    function insertMultipleRecords(content) {
+        //var content = $ic('#txtArea').val();
+        var records = content.split("\n");
+        var Ausdruck = /\S+/;
+        countFields();
+        
+        for(var i = 0, row = 0; i < records.length; i++) {
+            if(Ausdruck.test(records[i]) == true) {
+                if(i == (records.length-1)){
+                    if(records[i].indexOf('\n') != -1) {
+                        records[i] = records[i] + '\n';
+                    }
+                }
+                formatCells(records[i], 0, row);
+                row++;
+            }
+        }
+    }
+    
+    function closeMultipleRecords() {
+        $ic('#multipleCapture').dialog( "close" );
+    }
+
+    function checkUncheckAll(theElement) {
+       var theForm = theElement.form, z = 0;
+       for(z=0; z<theForm.length;z++){
+            if(theForm[z].type == 'checkbox' && theForm[z].name != 'checkall'){
+              theForm[z].checked = theElement.checked;
+          }
+       }
+    }
+     
+    function openLookupPopup(name, pos, objectName) {
+        var url;
+        if(objectName == 'Account')
+            url="/apex/MassCaptureLookupPopupAccount?pos=" + pos + "&namefield=" + name + "&objectName=Account" ;
+        else
+            url="/apex/MassCaptureLookupPopupCampaign?pos=" + pos + "&namefield=" + name + "&objectName=Campaign" ;
+        newWin=window.open(url, 'Popup','height=500,width=600,left=100,top=100,resizable=no,scrollbars=yes,toolbar=no,status=no');
+        if (window.focus) 
+        {
+            newWin.focus();
+        }
+            
+        return false;
+    }
+      
+    function openDuplicatePopup(Id) {
+        var url;
+        url= '/' + Id;
+        
+        newWin= window.open(url , 'Popup','height=768,width=1024,left=10,top=10,resizable=no,scrollbars=yes,toolbar=no,status=no');
+        if (window.focus) 
+        {
+            newWin.focus();
+        }
+            
+        return false;
+    }
+    
+    function openHelpPopup() {
+        var url;
+        url= 'https://masscapture.secure.force.com/docs';
+        winWidth = 1024;
+        winHeight = 768;
+        if(screen) {
+            winWidth = screen.height;
+            winHeight = screen.height;
+        }
+       
+        newWin= window.open(url , 'Help','height='+winHeight+',width='+winWidth);
+        if (window.focus) 
+        {
+            newWin.focus();
+        }
+            
+        return false;
+    }
+         
+    function closeLookupPopup() 
+    {
+       if (null!=newWin)
+       {
+          newWin.close();
+       }  
+    }
+    
+    function autocompleteAcc(theID, pos) {
+        autoCompleteAcc(theID, pos); 
+    }
+    
+    function autocompleteCamp(theID, pos) {
+        autoCompleteCamp(theID, pos); 
+    }
+    
+    function deleteRecords(fieldName) {
+        var result = '';
+        var ele = document.getElementsByName(fieldName);
+        var k = ele[0].value;
+        var i = 0;
+        //var columns = $ic(document.getElementById('ic_page:ic_form:ic_pb_capture:'+k+':IDTable')).find('th').size()-2;
+        
+        while(k != null) {
+            if(document.getElementById('ic_page:ic_form:ic_pb_capture:'+k+':IDTable:'+i+':checked') == null)
+                break;  
+            if(document.getElementById('ic_page:ic_form:ic_pb_capture:'+k+':IDTable:'+i+':checked').checked) {
+                result += i+':';
+            //    $ic(document.getElementById('ic_page:ic_form:ic_pb_capture:'+k+':IDTable:'+i+':checked')).parent().parent().remove();
+            }
+            i++;
+        }
+        /* result = result.substring(0, result.length-1);
+        
+        countFields();
+        
+        vClipboard = '';
+        var counter = 0;
+        
+        $ic.each($ic('.ic_inputFields'), function() {
+        	
+        	var value = null;
+        	if($ic(this).attr('id').indexOf('captureInput_unselected')  != -1) 
+            	return;
+            if($ic(this).attr('id').indexOf('captureInput_right_arrow')  != -1)
+            	return;
+            if($ic(this).attr('id').indexOf('captureInput_left_arrow')  != -1)
+            	return;
+            if($ic(this).css('display') == 'none')
+				return;
+				
+        	if($ic(this).attr('id').indexOf('captureInput_selected')  != -1) {
+            	value = '';
+            	var $selected_picklist = $ic(this);
+            	$ic($ic("option", $selected_picklist)).each(function() {
+                	value += this.text + ';'; 
+                });
+                value = value.substring(0, value.length - 1);
+            } else
+            	value = $ic(this).val();
+            	
+        	if(counter%columns < columns-1) {
+            	vClipboard += value +'\t';
+            } else
+           		vClipboard += value +'\n';
+ 				
+            counter++;
+        });
+ */
+        if(result != null || result != '' || i == 0)
+            delSelRecs(result);
+    }
+    
+    function addRecords(field) {
+        var quantity = document.getElementById(field).value;
+        addEmptyRows(quantity);
+    }
+    
+    function changeLayoutJS(fieldName) {
+        $ic('#multipleCapture').dialog('close');
+        countFields();
+        var ele = document.getElementsByName(fieldName);
+        changeLayout(ele[0].value);
+    }
+    
+    function refresh(fieldName) {
+        $ic('#multipleCapture').dialog('close');
+        countFields();
+        var ele = document.getElementsByName(fieldName);
+        captureType = ele[0].value;
+        isCtrl = false;
+        vKey = false;
+        pasted = false;
+        multipleCapture = false;
+        wasLastPosition = false;
+        refreshTables(ele[0].value);
+    }
+    
+    function formatCells(xls) {
+        formatCells(xls, null);
+    }
+    
+    function formatCells(xls, iColumn, iRow) {
+        
+        if(xls == null || xls == 'null')
+            return false;
+            
+        var arrGroup = xls.split("\t");
+        var startPosition = 0;
+        var column = 0;
+        var row = 0;
+
+        var $table = $ic('[id$=IDTable]');
+        var tblColAmount = $ic('>thead >tr >th', $table).size()-2;
+         
+        if(iColumn != null && iRow != null) { 
+            column = iColumn;
+            row = iRow;
+        } else {
+            for(var i = 0; i < $fields.size() && focusedElement != null; i++) {
+                var $current = $ic('.ic_inputFields', $fields.eq(i));
+                if($current.attr('id') == focusedElement) { 
+                    row = parseInt(i/tblColAmount);
+                    column = i % tblColAmount;
+                    break;
+                }   
+            }
+        }
+        
+        for(var i = 0; i < arrGroup.length; i++, column++) {
+            if(column >= tblColAmount)
+                break;
+            
+            //Define as preparation for further usage two types of variables. This is necessary,
+            //because native input is within class ic_inputFields and picklist is not there. 
+            var $field = $ic('.ic_inputFields', $fields.eq(column+row*tblColAmount));
+            var $picklist = $fields.eq(column+row*tblColAmount).find('.multiSelectPicklistTable');
+            
+            if($field != null) {
+                //Check if input is a checkbox
+                if($field.is(':checkbox') == true) {
+                    if(arrGroup[i] == '1' || arrGroup[i] == true || arrGroup[i] == 'true')
+                        $field.attr('checked', true);
+                    else
+                        $field.attr('checked', false);
+                //If not, check if input is a picklist
+                } else if($picklist != null && $picklist.size() > 0) {
+                    var $unselectedList = $picklist.find('[id$=captureInput_unselected]');
+                    var $selectedList = $picklist.find('[id$=captureInput_selected]');
+                    var $picklistElements = arrGroup[i].split(";");
+                    
+                    if($picklistElements != null && $picklistElements != 'null') {
+                         //To reset all elements, we need to select all selected elements firstly
+                         for(var counter = 0; counter < $picklistElements.length; counter++)
+                            $ic($ic("option", $selectedList)).each(function() {
+                            	this.selected = true;
+                            }); 
+                        
+                        //Secoundly, move selected items into left picklist through triggering the left arrow.
+                        $leftArrow = $ic('[id$=captureInput_left_arrow]', $picklist).parent();
+                        eval(decodeURIComponent($leftArrow.attr('href')));
+                        //Now the element is resetted and the values can be pasted in.
+           
+                        
+                        //Firstly, select all existing elements matching with the content to avoid illegal inputs.
+                        for(var counter = 0; counter < $picklistElements.length; counter++)
+                            $ic($ic("option", $unselectedList)).each(function() {
+                                if(this.text == $picklistElements[counter])
+                                    this.selected = true;
+                            }); 
+                        
+                        //Secoundly, move selected items into right picklist through triggering the right arrow
+                        $rightArrow = $ic('[id$=captureInput_right_arrow]', $picklist).parent();
+                        eval(decodeURIComponent($rightArrow.attr('href')));
+                    }
+                //If not, input can be only a native inputfield
+                } else {
+                    $field.val(arrGroup[i]);
+                }
+            }
+        }
+    }
+
+    function copySelectedRecord() {
+        var $checkboxes = $ic('.ic_checkBox');
+        var checked = 0;
+        var virtualClipboard = '';
+        var $checkbox = null;
+        
+        $ic.each($checkboxes, function() {
+            if(this.checked == true) {
+                checked++;
+                $checkbox = $ic(this);
+            }
+        });
+        
+        if(checked > 1)
+            showError();
+        else if(checked > 0){
+            var $tr = $checkbox.parent().parent("tr");
+            var $borders  = $tr.contents().find(".ic_border");
+            $ic.each($borders, function() {
+                
+                var $picklist = $ic(this).find('.multiSelectPicklistTable');
+                
+                if($ic('input:checkbox', $ic(this)).attr('id') != null) {
+                
+                    var isChecked = $ic('.ic_inputFields', $ic(this)).is(':checked');
+                    virtualClipboard = virtualClipboard + isChecked + '\t'; 
+                
+                } else if($picklist != null && $picklist.size() > 0) {
+                    
+                    var $selectedList = $picklist.find('[id$=captureInput_selected]');
+                    var values = '';    
+                    
+                    //Firstly, generate a chain of values dividing with a semicolon.
+                    $ic('option',$selectedList).each(function() {
+                        values += this.text +';';
+                    }); 
+                    values = values.substring(0,values.length-1);
+                    
+                    //Secoundly, append values to the result
+                    virtualClipboard += values;
+                    
+                } else
+                    virtualClipboard = virtualClipboard + $ic(".ic_inputFields", $ic(this)).val() + '\t';
+            });
+            vClipboard = virtualClipboard.substring(0, virtualClipboard.length-1);
+        }
+    }
+    
+    function pasteSelectedRecord() {
+        countFields();
+        var $checkboxes = $ic('.ic_checkBox');
+        var row = 0;
+        $ic.each($checkboxes, function() {
+            if(this.checked == true)
+                formatCells(vClipboard, 0, row);
+                row++;
+        });
+        refreshMsgs();
+    }
+        
+    function getWindowWidth() {
+       return window.innerWidth - 50  || document.body.clientWidth - 30;
+    }
+    
+    function setHiddenBG() {
+        var elm=document.getElementById('ic_page:ic_form:ic_pb_capture:L:IDTable');
+        
+        if(elm == null)
+            elm=document.getElementById('ic_page:ic_form:ic_pb_capture:AC:IDTable');
+        
+        if(elm == null)
+            elm=document.getElementById('ic_page:ic_form:ic_pb_capture:PA:IDTable');
+        
+        if(elm != null)
+            elm.style.display='none'; 
+       
+       document.getElementById("TheTable").style.overflowX = "auto";      
+    } 
+    
+    function afterHiddenBG() {
+        
+        if(checkBrowserName('MSIE 9.0') && ($ic('.ic_IDTable').width() >= $ic('#TheTable').width())){
+            document.getElementById("TheTable").style.overflowX = "scroll";      
+        } else {
+            document.getElementById("TheTable").style.overflowX = "auto";      
+        }
+    } 
+    
+    function cleanAndSaveRecords(theElement) {
+        ClickedElement = theElement;
+        startClean(theElement);
+        countFields();
+        
+        var $table = $ic('[id$=IDTable]');
+        var columns = $ic('>thead >tr >th', $table).size()-2;
+        var rows = $fields.size() / columns;
+            
+        tbl = new Array(rows);
+        for(var i = 0; i < tbl.length; i++) {
+            tbl[i] = new Array(columns+1);
+            tbl[i][columns] = 'false';
+        }
+        
+        for(var row = 0; row < rows; row++) {
+            var isEmpty = true;
+            
+            for(var col = 0; col < columns; col++) {
+            
+                var $field = $ic('.ic_inputFields', $fields.eq(col+row*columns));
+                
+                
+                if($field == null)
+                    $field = $fields.eq(col+row*columns).children().find('.ic_inputFields');
+                
+                if($field != null) {
+                    tbl[row][col] = $field.val();
+                    if($field.is(':checkbox') == true && $field.attr('checked') == true) {
+                        isEmpty = false;
+                    } else if($field.val() != null && $field.val() != '') {
+                        isEmpty = false;
+                    }
+                }
+            }
+            
+            if(isEmpty) {
+                tbl[row][columns] = 'true';
+                $ic('.ic_checkBox').eq(row).attr('checked', true);
+            }
+        }
+        cleanBeforeSave($ic('[id$=captureTypeSelection]').attr('id'));
+    }
+    
+    function cleanBeforeSave(fieldName) {
+        var result = '';
+        var ele = document.getElementsByName(fieldName);
+        var k = ele[0].value;
+        var i = 0;
+
+        while(k != null) {
+            if(document.getElementById('ic_page:ic_form:ic_pb_capture:'+k+':IDTable:'+i+':checked') == null)
+                break;  
+            if(document.getElementById('ic_page:ic_form:ic_pb_capture:'+k+':IDTable:'+i+':checked').checked)
+                result += i+':';
+            i++;
+        }
+        
+        result = result.substring(0, result.length-1);
+        
+        if(result != null || result != '' || i == 0)
+            cleanTable(result);
+           
+        $ic.each($ic('.ic_checkBox'), function() {
+            $ic(this).attr('checked', false);
+        });
+    }
+    
+    function updateTableBeforeSave() {
+        countFields();
+        var newRow = 0;
+        
+        for(var row = 0; row < tbl.length; row++) { 
+            for(var col = 0; col < tbl[row].length-1; col++) {
+                var $field = $ic('.ic_inputFields', $fields.eq(col+newRow*(tbl[newRow].length-1)));
+                
+                if($field == null)
+                    $field = $fields.eq(col+newRow*(tbl[newRow].length-1)).children().find('.ic_inputFields');
+                
+                if($field != null) {
+                    $field.val(tbl[row][col]);
+                } 
+            }
+            if(tbl[row][tbl[row].length-1] == 'false')
+                newRow++;
+        }       
+        if(ClickedElement.id == 'save')
+            saveAfterClean();
+        else
+            findDupAfterClean();
+    }
+    
+    function startClean(theElement) {
+        var theForm = theElement.form, z = 0;
+        for(z=0; z<theForm.length;z++){
+           if(theForm[z].type == 'checkbox' && theForm[z].getAttribute('class') == 'ic_checkBox'){
+              theForm[z].checked = false;
+           }
+        }
+      
+        $ic('[id$=IDTable]').css('display', 'none');
+        $ic('#loading').css('display', 'inline');    
+    }
+    
+    function saveFinished() {
+        $ic('#loading').css('display', 'none');
+        $ic('[id$=IDTable]').css('display', 'block');
+    }
+    
+    function init() {
+       var elm=document.getElementById('ic_page:ic_form');
+       elm.style.width=getWindowWidth() + 'px';
+       elm=document.getElementById('contentWrapper');
+       elm.style.width=getWindowWidth() + 'px';  
+    }
+    
+    window.onload = init;
+</script>
+
+	<div id="multipleCapture" style="width: 750px; height: 500px;"
+		class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-draggable ui-resizable"
+		title="{!$Label.ic_multipleCaptureHeading}">
+		<textarea id="txtArea" class="lined" rows="20" cols="75"
+			style="overflow: scroll;"> 
+        </textarea>
+		<br /> <input id="saveMultipleLineCapture" class="btn" type="button"
+			name="addMultipleRecords" value="{!$Label.ic_add}"
+			onclick="saveMultipleRecords(); return false;" /> <input
+			id="cancelMultipleLineCapture" class="btn" type="button"
+			name="cancelMultipleRecords" value="{!$Label.ic_cancel}"
+			onclick="closeMultipleRecords(); return false;" />
+	</div>
+
+	<apex:form id="ic_form">
+		<apex:actionFunction name="cleanTable"
+			action="{!deleteSelectedRecords}"
+			oncomplete="updateTableBeforeSave();" immediate="true"
+			rerender="ic_msgs">
+			<apex:param name="positionsToRemove" assignTo="{!positionsToRemove}"
+				value="" />
+		</apex:actionFunction>
+
+		<apex:actionFunction name="saveAfterClean" action="{!save}"
+			rerender="ic_pb_capture,ic_msgs" oncomplete="saveFinished();" />
+		<apex:actionFunction name="findDupAfterClean" action="{!DupSearch}"
+            rerender="ic_pb_capture,ic_msgs" oncomplete="saveFinished();" />
+		<apex:actionFunction name="showError" action="{!tooManyRowsSelected}"
+			immediate="true" rerender="ic_pb_capture,ic_msgs" status="status" />
+		<apex:actionFunction name="refreshMsgs" action="{!refreshMsgs}"
+			immediate="true" rerender="ic_msgs" />
+		<apex:actionFunction name="extendRows" action="{!extendRowSet}"
+			immediate="true"
+			oncomplete="insertMultipleRecords($ic('#txtArea').val()); return false;"
+			rerender="ic_pb_capture,ic_msgs" status="status">
+			<apex:param name="rows" value="" />
+		</apex:actionFunction>
+
+		<apex:pageblock id="ic_pb_capture" title="{!$Label.capture__ic_masscapture}"
+			mode="edit">
+
+			<apex:pageBlockButtons >
+				<input class="btn" type="button" name="cleanAndSaveRecord" id="save"
+					onclick="cleanAndSaveRecords(this);" value="{!$Label.ic_save}"
+					accesskey="s" />
+				<!-- <apex:commandButton action="{!save}" value="{!$Label.ic_save}" accesskey="s"/> -->
+				<input class="btn" type="button" name="cleanAndFindDupRecord" id="find"
+                    onclick="cleanAndSaveRecords(this);" value="{!$Label.ic_save_dup}"
+                    accesskey="f" />
+<!-- 				<apex:commandButton action="{!DupSearch}" style="margin-left: 5px;" -->
+<!-- 					value="{!$Label.ic_save_dup}" accesskey="f" /> -->
+				<!-- <apex:commandButton action="{!deleteSelectedRecords}" Immediate="true" value="Markierte Zeilen löschen" />  -->
+				<input class="btn" type="button" name="copyRecord"
+					onclick="copySelectedRecord();" value="{!$Label.ic_copy}"
+					accesskey="c" />
+				<input class="btn" type="button" name="pasteRecord"
+					onclick="pasteSelectedRecord();" value="{!$Label.ic_paste}"
+					accesskey="v" />
+				<input class="btn" type="button" name="removeRecords"
+					value="{!$Label.ic_delete}"
+					onclick="deleteRecords('{!$Component.captureTypeSelection}'); return false;"
+					accesskey="d" />
+				<input id="multipleLineCapture" class="btn" type="button"
+					name="addMultipleRecords" onclick="openMultipleMassCapture();"
+					value="{!$Label.ic_multipleCapture}" accesskey="m" />
+				<input class="btn" type="button" name="resetRecords"
+					value="{!$Label.ic_reset}" onclick="resetRows();" accesskey="r" />
+			</apex:pageBlockButtons>
+			<apex:outputLink style="bottom: 28px;position: relative;float:right;color: #015BA7;font-size: 91%;padding-right: 5px;"
+				value="#" onclick="openHelpPopup();return false" id="HelpLink">{!$Label.ic_help}<img
+					src="/img/alohaSkin/help_orange.png" alt="Help" title="Help"
+					style="left: 5px; position: relative; margin-right: 15px;" />
+			</apex:outputLink>
+			<apex:actionRegion >
+				<apex:actionFunction name="delSelRecs"
+					action="{!deleteSelectedRecords}"
+					oncomplete="countFields(); insertMultipleRecords(vClipboard);"
+					rerender="ic_pb_capture,ic_msgs" status="status">
+					<apex:param name="positionsToRemove"
+						assignTo="{!positionsToRemove}" value="" />
+				</apex:actionFunction>
+			</apex:actionRegion>
+			<apex:actionFunction name="addEmptyRows" action="{!addRows}"
+				oncomplete="countFields();" immediate="true"
+				rerender="ic_pb_capture, ic_msgs" status="status">
+				<apex:param name="rows" assignTo="{!rowAmount}" value="" />
+			</apex:actionFunction>
+			<apex:actionFunction name="changeLayout" action="{!changeLayout}"
+				oncomplete="countFields();" immediate="true"
+				rerender="ic_pb_capture, ic_msgs" status="status">
+				<apex:param name="layout" assignTo="{!selectedlayout}" value="" />
+			</apex:actionFunction>
+			<apex:actionFunction name="refreshTables" action="{!refresh}" immediate="true" status="status" rerender="ic_pb_capture, ic_msgs" oncomplete="countFields();prepareIt();">
+				<apex:param name="param" assignTo="{!selectedCaptureMethod}"
+					value="" />
+			</apex:actionFunction>
+<!-- 			    -->
+			
+			<!--            <apex:actionFunction name="refreshBar" action="{!refreshLayoutAfterConfigPopup}"  immediate="true" rerender="ic_pb_capture" status="status"/>-->
+
+			<apex:actionregion >
+				<apex:actionFunction action="{!reset}" name="resetRows"
+					rerender="L,AC,PA" />
+			</apex:actionregion>
+
+			<apex:panelGrid columns="10" id="navi" style="margin-left: 20px;">
+				<apex:actionRegion >
+					<apex:selectList id="captureTypeSelection" size="1"
+						value="{!selectedCaptureMethod}"
+						onchange="refresh('{!$Component.captureTypeSelection}'); return false;">
+						<apex:selectOptions value="{!options}" />
+					</apex:selectList>
+				</apex:actionRegion>
+				<apex:actionRegion >
+					<apex:outputPanel layout="block">
+						<apex:inputText value="{!rowAmount}" id="rowAmount" size="2"
+							style="margin-left: 5px; width: 30px;" />
+						<input class="btn" type="button" name="addEmptyRecords"
+							value="{!$Label.ic_add_rows}"
+							onclick="addRecords('{!$Component.rowAmount}');return false;"
+							accesskey="a" />
+					</apex:outputPanel>
+				</apex:actionRegion>
+				<apex:actionRegion >
+					<apex:selectList id="LayoutLead" size="1" value="{!selectedlayout}"
+						onchange="changeLayoutJS('{!$Component.LayoutLead}'); return false;">
+						<apex:selectOptions value="{!optionsLayout}" />
+					</apex:selectList>
+				</apex:actionRegion>
+				<apex:outputPanel rendered="{!isElement}">
+					<apex:commandLink action="{!openConfig}" value="{!$Label.capture__ic_edit}"
+						immediate="true">
+						<apex:param name="type" value="edit" />
+					</apex:commandLink>
+                    |&nbsp;
+                    <apex:commandLink action="{!deleteLayout}"
+						value="{!$Label.capture__ic_deleteview}" immediate="true" />
+                    |
+                </apex:outputPanel>
+				<apex:commandLink action="{!openConfig}"
+					value="{!$Label.capture__ic_new_view}" immediate="true">
+					<apex:param name="type" value="new" />
+				</apex:commandLink>
+			</apex:panelGrid>
+
+			<apex:actionStatus id="status" onstart="setHiddenBG();"
+				onstop="afterHiddenBG();">
+				<apex:facet name="start">
+					<div
+						style="position: relative; z-index: 2; left: 45%; top: 65px; font-size: 1 em; font-weight: bold; color: #666;">
+						<img style="margin-right: 10px;" src="/img/loading.gif" />{!$Label.ic_wait}
+					</div>
+				</apex:facet>
+			</apex:actionStatus>
+			<div id="loading"
+				style="display: none; position: relative; z-index: 2; left: 45%; top: 65px; font-size: 1 em; font-weight: bold; color: #666;">
+				<img style="vertical-align: middle; margin-right: 10px;"
+					src="/img/loading.gif" />{!$Label.ic_wait}
+			</div>
+
+			<apex:pageBlockSection title="{!$Label.capture__ic_heading_section}"
+				id="header" />
+			<div
+				style="overflow-x: auto; overflow-y: hidden; position: relative;"
+				id="TheTable">
+				<apex:pageBlockSection id="L"
+					rendered="{!SelectedCaptureMethod='L'}">
+					<apex:pageBlockTable value="{!capturedLRecords}" var="obj"
+						styleClass="detailList ic_IDTable" id="IDTable">
+						<apex:column headerValue="#">
+							<apex:outputText styleclass="ic_position"
+								value="{!obj.position+1}" />
+						</apex:column>
+						<apex:column >
+							<apex:facet name="header">
+								<input type="checkbox" name="checkall"
+									onclick="checkUncheckAll(this);" />
+							</apex:facet>
+							<apex:inputCheckbox id="checked" styleClass="ic_checkBox"
+								value="{!obj.checked}" />
+						</apex:column>
+						<!--                    <apex:repeat value="{!$ObjectType.Lead.FieldSets.PARX_Interface}" var="field">-->
+						<apex:repeat id="leads" value="{!leadFields}" var="field">
+							<apex:column id="field"
+								headerValue="{!$ObjectType.Lead.Fields[field].label}">
+								<table>
+									<tr>
+										<td class="ic_border" style="border: 0; padding: 0px;"><apex:inputField id="captureInput" styleclass="ic_inputFields"
+												onfocus="focusedElement = '{!$Component.captureInput}'; return false;"
+												value="{!obj.lead[field]}" /></td>
+									</tr>
+									<tr>
+										<td style="border: 0; padding: 0px;">
+											<!-- onkeyup="formatCells(document.getElementById('{!$Component.captureInput}').value);" -->
+											<apex:outputLink style="font-size:10px;color:red;"
+												rendered="{!(LOWER(field)=='lastname'||LOWER(field)=='company'||LOWER(field)=='email') && obj.isDuplicate[LOWER(field)] && NOT(LOWER(field) =='lastname' && obj.isDuplicateFirstNameLastName[LOWER(field)])}"
+												onclick="openDuplicatePopup('{!obj.DuplicateId[LOWER(field)]}');return false"
+												id="theLink">{!$Label.capture__ic_duplicate}</apex:outputLink> <apex:outputLink style="font-size:10px;color:red;"
+												rendered="{!LOWER(field) =='lastname' && obj.isDuplicateFirstNameLastName[LOWER(field)]}"
+												onclick="openDuplicatePopup('{!obj.DuplicateId[LOWER(field)]}');return false"
+												id="theLink2">{!$Label.capture__ic_duplicate + ': '+ $ObjectType.Lead.Fields['FirstName'].label + '/' + $ObjectType.Lead.Fields['LastName'].label}</apex:outputLink>
+										</td>
+									</tr>
+								</table>
+							</apex:column>
+						</apex:repeat>
+						<apex:column id="campaign" headerValue="{!$Label.capture__ic_campaignname}"
+							rendered="{!isMarketingUser}">
+
+							<apex:outputPanel id="thePanelCampaign" layout="block">
+
+								<table style="border: 0">
+									<tr>
+										<td class="ic_border"
+											style="border: 0; padding: 0; border-width: 0; border-spacing: 0;">
+											<apex:inputField id="campaignname"
+												styleclass="ic_inputFields"
+												onfocus="focusedElement = '{!$Component.campaignname}'; wasLastPosition = true;"
+												value="{!obj.campaign['Name']}" 
+												required="false"/>
+										</td>
+										<td
+											style="border: 0; padding: 0; border-width: 0; border-spacing: 0; vertical-align: top; top: 2px; position: relative;">
+											<a href="#"
+											onclick="openLookupPopup(document.getElementsByName('{!$Component.campaignname}')[0].value, '{!obj.position}', 'Campaign'); return false">
+												<img src="/s.gif" alt="{!$Label.ic_lookupwindow}"
+												class="lookupIcon" onblur="this.className = 'lookupIcon';"
+												onfocus="this.className = 'lookupIconOn';"
+												onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';"
+												onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';"
+												title="{!$Label.ic_lookupwindow}" />
+										</a>
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 0; padding: 0px;"><apex:outputLabel style="color:red;font-size:10px;"
+												rendered="{!obj.isCampaignError}"
+												value="{!$Label.capture__ic_CampaignNotFound}" /></td>
+									</tr>
+								</table>
+
+							</apex:outputPanel>
+						</apex:column>
+					</apex:pageBlockTable>
+					<apex:actionRegion >
+						<apex:actionFunction action="{!autocompleteCampaignLead}"
+							name="autoCompleteCamp" rerender="L">
+							<apex:param name="theID" assignTo="{!id}" value="" />
+							<apex:param name="position" assignTo="{!position}" value="" />
+						</apex:actionFunction>
+					</apex:actionRegion>
+				</apex:pageBlockSection>
+
+				<apex:pageBlockSection id="AC"
+					rendered="{!SelectedCaptureMethod='AC'}">
+					<apex:pageBlockTable value="{!capturedACRecords}" var="obj"
+						styleClass="detailList ic_IDTable" style="width:100%;"
+						id="IDTable">
+						<apex:column headerValue="#">
+							<apex:outputText styleclass="ic_position"
+								value="{!obj.position+1}" />
+						</apex:column>
+						<apex:column >
+							<apex:facet name="header">
+								<input type="checkbox" name="checkall"
+									onclick="checkUncheckAll(this);" />
+							</apex:facet>
+							<apex:inputCheckbox id="checked" styleClass="ic_checkBox"
+								value="{!obj.checked}" />
+						</apex:column>
+						<apex:column id="account"
+							headerValue="{!$ObjectType.Account.Fields.Name.Label}"
+							width="530px">
+							<apex:outputPanel id="thePanel" layout="block">
+
+								<table style="border: 0">
+									<tr>
+										<td
+											style="border: 0; padding: 0; border-width: 0; border-spacing: 0;">
+											<table>
+												<tr>
+													<td class="ic_border" style="border: 0; padding: 0px;"><div
+															class="requiredInput">
+															<div class="requiredBlock"></div>
+															<apex:inputField id="accountname"
+																styleclass="ic_inputFields"
+																onfocus="focusedElement = '{!$Component.accountname}';"
+																value="{!obj.account.Name}" />
+														</div></td>
+												</tr>
+												<tr>
+													<td style="border: 0; padding: 0px;">
+														<!-- onkeyup="formatCells(document.getElementById('{!$Component.accountname}').value);" -->
+														<apex:outputLink style="font-size:10px;color:red;"
+															rendered="{!obj.isDuplicate['name']}"
+															onclick="openDuplicatePopup('{!obj.DuplicateId['name']}');return false"
+															id="theLink">{!$Label.capture__ic_duplicate + ': ' + $ObjectType.Account.Fields['Name'].label +  if(obj.isDuplicateAccSite['name'], '/' + $ObjectType.Account.Fields['Site'].label, '')  +  if(obj.isDuplicateBillingStreet['name'], '/' + $ObjectType.Account.Fields['BillingStreet'].label, '')}</apex:outputLink>
+														<!--                                             <apex:outputLink style="font-size:10px;color:red;" rendered="{!obj.isDuplicateAccSite['name']}" onclick="openDuplicatePopup('{!obj.DuplicateId['name']}');return false" id="theLink2">{!$Label.ic_duplicate + ': '+ $ObjectType.Account.Fields['Name'].label + '/' + $ObjectType.Account.Fields['Site'].label}</apex:outputLink>-->
+														<apex:outputLabel style="font-size:10px;color:red;"
+															rendered="{!obj.isDuplicateFoundAfterSaved['name']}"
+															id="theLink3">{!$Label.capture__ic_duplicateErrorAfterSaved}</apex:outputLabel>
+													</td>
+												</tr>
+											</table>
+										</td>
+										<td
+											style="border: 0; padding: 0; border-width: 0; border-spacing: 0; vertical-align: top; top: 2px; position: relative;">
+											<a href="#"
+											onclick="openLookupPopup(document.getElementsByName('{!$Component.accountname}')[0].value, '{!obj.position}', 'Account'); return false">
+												<img src="/s.gif" alt="{!$Label.ic_lookupwindow}"
+												class="lookupIcon" onblur="this.className = 'lookupIcon';"
+												onfocus="this.className = 'lookupIconOn';"
+												onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';"
+												onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';"
+												title="{!$Label.ic_lookupwindow}" />
+										</a>
+										</td>
+									</tr>
+								</table>
+
+							</apex:outputPanel>
+						</apex:column>
+
+						<!--                        <apex:column id="field" headerValue="{!$ObjectType.Account.Fields['site'].label}" rendered="{!isAccountSiteCreateable}">-->
+						<!--                            <table ><tr><td class="ic_border" style="border: 0;padding:0px;"> -->
+						<!--                                <apex:inputField id="captureInput" styleclass="ic_inputFields" onfocus="focusedElement = '{!$Component.captureInput}';"  value="{!obj.account['site']}"/>  onkeyup="formatCells(document.getElementById('{!$Component.captureInput}').value);" -->
+						<!--                            </td></tr></table>-->
+						<!--                        </apex:column>-->
+
+						<apex:repeat id="accounts" value="{!accountFields}" var="field">
+							<apex:column id="field"
+								headerValue="{!$ObjectType.Account.Fields[field].label}">
+								<table>
+									<tr>
+										<td class="ic_border" style="border: 0; padding: 0px;"><apex:inputField id="captureInput" styleclass="ic_inputFields"
+												onfocus="focusedElement = '{!$Component.captureInput}';"
+												value="{!obj.account[field]}" /> <!-- onkeyup="formatCells(document.getElementById('{!$Component.captureInput}').value);" -->
+
+										</td>
+									</tr>
+								</table>
+							</apex:column>
+						</apex:repeat>
+						<apex:repeat id="contacts" value="{!contactFields}" var="field"
+							rendered="{!onlyAccount==false}">
+							<apex:column id="field"
+								headerValue="{!$ObjectType.Contact.Fields[field].label}"
+								rendered="{!onlyAccount==false}">
+								<table>
+									<tr>
+										<td class="ic_border" style="border: 0; padding: 0px;"><apex:inputField id="captureInput" styleclass="ic_inputFields"
+												onfocus="focusedElement = '{!$Component.captureInput}';"
+												value="{!obj.contact[field]}" /></td>
+									</tr>
+									<tr>
+										<td style="border: 0; padding: 0px;">
+											<!-- onkeyup="formatCells(document.getElementById('{!$Component.captureInput}').value);" -->
+											<apex:outputLink style="font-size:10px;color:red;"
+												rendered="{!(LOWER(field)=='lastname' ||LOWER(field)=='email')&& obj.isDuplicate[LOWER(field)] && NOT(LOWER(field) =='lastname' && obj.isDuplicateFirstNameLastName[LOWER(field)])}"
+												onclick="openDuplicatePopup('{!obj.DuplicateId[LOWER(field)]}');return false"
+												id="theLink">{!$Label.capture__ic_duplicate}</apex:outputLink> <apex:outputLink style="font-size:10px;color:red;"
+												rendered="{!LOWER(field) =='lastname' && obj.isDuplicateFirstNameLastName[LOWER(field)]}"
+												onclick="openDuplicatePopup('{!obj.DuplicateId[LOWER(field)]}');return false"
+												id="theLink2">{!$Label.capture__ic_duplicate + ': '+ $ObjectType.Contact.Fields['FirstName'].label + '/' + $ObjectType.Contact.Fields['LastName'].label}</apex:outputLink>
+										</td>
+									</tr>
+								</table>
+								<!--                            <apex:inputField value="{!obj.contact[field]}" />-->
+							</apex:column>
+						</apex:repeat>
+
+						<apex:column id="campaign" headerValue="{!$Label.capture__ic_campaignname}"
+							rendered="{!isMarketingUser && onlyAccount==false}">
+							<apex:outputPanel id="thePanelCampaign" layout="block">
+
+								<table style="border: 0">
+									<tr>
+										<td class="ic_border"
+											style="border: 0; padding: 0; border-width: 0; border-spacing: 0;">
+											<apex:inputField id="campaignname"
+												styleclass="ic_inputFields"
+												onfocus="focusedElement = '{!$Component.campaignname}'; wasLastPosition = true;"
+												value="{!obj.campaign['Name']}" 
+												required="false"/>
+										</td>
+										<td
+											style="border: 0; padding: 0; border-width: 0; border-spacing: 0; vertical-align: top; top: 2px; position: relative;">
+											<a href="#"
+											onclick="openLookupPopup(document.getElementsByName('{!$Component.campaignname}')[0].value, '{!obj.position}', 'Campaign'); return false">
+												<img src="/s.gif" alt="{!$Label.ic_lookupwindow}"
+												class="lookupIcon" onblur="this.className = 'lookupIcon';"
+												onfocus="this.className = 'lookupIconOn';"
+												onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';"
+												onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';"
+												title="{!$Label.ic_lookupwindow}" />
+										</a>
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 0; padding: 0px;"><apex:outputLabel style="color:red;font-size:10px;"
+												rendered="{!obj.isCampaignError}"
+												value="{!$Label.capture__ic_CampaignNotFound}" /></td>
+									</tr>
+								</table>
+
+							</apex:outputPanel>
+						</apex:column>
+					</apex:pageBlockTable>
+					<apex:actionRegion >
+						<apex:actionFunction action="{!autocompleteAccount}"
+							name="autoCompleteAcc" rerender="AC">
+							<apex:param name="theID" assignTo="{!id}" value="" />
+							<apex:param name="position" assignTo="{!position}" value="" />
+						</apex:actionFunction>
+
+						<apex:actionFunction action="{!autocompleteCampaignAcc}"
+							name="autoCompleteCamp" rerender="AC">
+							<apex:param name="theID" assignTo="{!id}" value="" />
+							<apex:param name="position" assignTo="{!position}" value="" />
+						</apex:actionFunction>
+					</apex:actionRegion>
+				</apex:pageBlockSection>
+				<apex:pageBlockSection id="PA"
+					rendered="{!SelectedCaptureMethod='PA'}">
+					<apex:pageBlockTable value="{!capturedPARecords}" var="obj"
+						styleClass="detailList ic_IDTable" style="width:100%;"
+						id="IDTable">
+						<apex:column headerValue="#">
+							<apex:outputText styleclass="ic_position"
+								value="{!obj.position+1}" />
+						</apex:column>
+						<apex:column >
+							<apex:facet name="header">
+								<input type="checkbox" name="checkall"
+									onclick="checkUncheckAll(this);" />
+							</apex:facet>
+							<apex:inputCheckbox id="checked" styleClass="ic_checkBox"
+								value="{!obj.checked}" />
+						</apex:column>
+						<apex:repeat id="contacts" value="{!contactFields}" var="field">
+							<apex:column id="field"
+								headerValue="{!$ObjectType.Contact.Fields[field].label}">
+								<table>
+									<tr>
+										<td class="ic_border" style="border: 0; padding: 0px;"><apex:inputField id="captureInput" styleclass="ic_inputFields"
+												onfocus="focusedElement = '{!$Component.captureInput}';"
+												value="{!obj.contact[field]}" /></td>
+									</tr>
+									<tr>
+										<td style="border: 0; padding: 0px;">
+											<!-- onkeyup="formatCells(document.getElementById('{!$Component.captureInput}').value);" -->
+											<apex:outputLink style="font-size:10px;color:red;"
+												rendered="{!(LOWER(field)=='lastname' ||LOWER(field)=='email')&& obj.isDuplicate[LOWER(field)] && NOT(LOWER(field) =='lastname' && obj.isDuplicateFirstNameLastName[LOWER(field)])}"
+												onclick="openDuplicatePopup('{!obj.DuplicateId[LOWER(field)]}');return false"
+												id="theLink">{!$Label.capture__ic_duplicate}</apex:outputLink> <apex:outputLink style="font-size:10px;color:red;"
+												rendered="{!LOWER(field) =='lastname' && obj.isDuplicateFirstNameLastName[LOWER(field)]}"
+												onclick="openDuplicatePopup('{!obj.DuplicateId[LOWER(field)]}');return false"
+												id="theLink2">{!$Label.capture__ic_duplicate + ': '+ $ObjectType.Contact.Fields['FirstName'].label + '/' + $ObjectType.Contact.Fields['LastName'].label}</apex:outputLink>
+										</td>
+									</tr>
+								</table>
+								<!--                            <apex:inputField value="{!obj.contact[field]}" />-->
+							</apex:column>
+						</apex:repeat>
+						<apex:repeat id="accounts" value="{!accountFields}" var="field">
+							<apex:column id="field"
+								headerValue="{!$ObjectType.Account.Fields[field].label}">
+								<table>
+									<tr>
+										<td class="ic_border" style="border: 0; padding: 0px;"><apex:inputField id="captureInput" styleclass="ic_inputFields"
+												onfocus="focusedElement = '{!$Component.captureInput}';"
+												value="{!obj.account[field]}" /> <!-- onkeyup="formatCells(document.getElementById('{!$Component.captureInput}').value);" -->
+										</td>
+									</tr>
+								</table>
+							</apex:column>
+						</apex:repeat>
+						<apex:column id="campaign" headerValue="{!$Label.capture__ic_campaignname}"
+							rendered="{!isMarketingUser}">
+							<apex:outputPanel id="thePanelCampaign" layout="block">
+								<table style="border: 0">
+									<tr>
+										<td class="ic_border"
+											style="border: 0; padding: 0; border-width: 0; border-spacing: 0;">
+											<apex:inputField id="campaignname"
+												styleclass="ic_inputFields"
+												onfocus="focusedElement = '{!$Component.campaignname}'; wasLastPosition = true;"
+												value="{!obj.campaign['Name']}" 
+												required="false"/>
+										</td>
+										<td
+											style="border: 0; padding: 0; border-width: 0; border-spacing: 0; vertical-align: top; top: 2px; position: relative;">
+											<a href="#"
+											onclick="openLookupPopup(document.getElementsByName('{!$Component.campaignname}')[0].value, '{!obj.position}', 'Campaign'); return false">
+												<img src="/s.gif" alt="{!$Label.ic_lookupwindow}"
+												class="lookupIcon" onblur="this.className = 'lookupIcon';"
+												onfocus="this.className = 'lookupIconOn';"
+												onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';"
+												onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';"
+												title="{!$Label.ic_lookupwindow}" />
+										</a>
+										</td>
+									</tr>
+									<tr>
+										<td style="border: 0; padding: 0px;"><apex:outputLabel style="color:red;font-size:10px;"
+												rendered="{!obj.isCampaignError}"
+												value="{!$Label.capture__ic_CampaignNotFound}" /></td>
+									</tr>
+								</table>
+
+							</apex:outputPanel>
+						</apex:column>
+					</apex:pageBlockTable>
+					<apex:actionRegion >
+						<apex:actionFunction action="{!autocompleteCampaignPA}"
+							name="autoCompleteCamp" rerender="PA">
+							<apex:param name="theID" assignTo="{!id}" value="" />
+							<apex:param name="position" assignTo="{!position}" value="" />
+						</apex:actionFunction>
+					</apex:actionRegion>
+				</apex:pageBlockSection>
+			</div>
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

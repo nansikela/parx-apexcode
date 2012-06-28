@@ -1,0 +1,31 @@
+<apex:page showheader="false" id="LinkActivationFailed" sidebar="false" title="{!$Label.de_title}"  
+    cache="false" expires="2592000" standardStylesheets="false" >
+
+<apex:composition template="{!$Site.Template}">
+
+        <apex:define name="body">
+            
+            <div id="insidecontent" class="loginbackground" >
+                
+                <div class="contentText">
+                    <div id="contact" class="transparent_login" >
+                        <p><b>{!$Label.newsletter_activation_header}</b></p>
+                        
+                        <apex:outputPanel layout="block" id="posttext" style="float: left;">
+                            <p>{!$Label.newsletter_activation_fail}</p>
+                        </apex:outputPanel>
+                    </div>
+                    <div style="top: 30px;position: relative;">
+                        
+                    </div>
+                </div>
+                <div  style="float: left;top: 220px;position: relative;">
+                    
+                </div>
+            </div>
+            
+            
+    </apex:define>
+</apex:composition>
+<site:previewAsAdmin />
+</apex:page>

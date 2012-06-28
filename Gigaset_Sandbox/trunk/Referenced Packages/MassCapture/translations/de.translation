@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label>&amp;</label>
+        <name>ic_AccountContact</name>
+    </customLabels>
+    <customLabels>
+        <label>Nur</label>
+        <name>ic_AccountOnly</name>
+    </customLabels>
+    <customLabels>
+        <label>Kampagne existiert nicht</label>
+        <name>ic_CampaignNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label>Objekte auswählen</label>
+        <name>ic_ChooseObject</name>
+    </customLabels>
+    <customLabels>
+        <label>Keine Duplikate gefunden</label>
+        <name>ic_DuplicateFound</name>
+    </customLabels>
+    <customLabels>
+        <label>Bitte Wert eingeben</label>
+        <name>ic_EnterValue</name>
+    </customLabels>
+    <customLabels>
+        <label>Name ist leer</label>
+        <name>ic_NameEmpty</name>
+    </customLabels>
+    <customLabels>
+        <label>Name existiert schon</label>
+        <name>ic_NameExists</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_NothingToSave --></label>
+        <name>ic_NothingToSave</name>
+    </customLabels>
+    <customLabels>
+        <label>Gespeichert</label>
+        <name>ic_Saved</name>
+    </customLabels>
+    <customLabels>
+        <label>Kampagnenname ist falsch</label>
+        <name>ic_WrongCampaign</name>
+    </customLabels>
+    <customLabels>
+        <label>Firma</label>
+        <name>ic_account</name>
+    </customLabels>
+    <customLabels>
+        <label>Hinzufügen</label>
+        <name>ic_add</name>
+    </customLabels>
+    <customLabels>
+        <label>Zeilen hinzufügen</label>
+        <name>ic_add_rows</name>
+    </customLabels>
+    <customLabels>
+        <label>Verfügbare Felder</label>
+        <name>ic_availablefields</name>
+    </customLabels>
+    <customLabels>
+        <label>Unten</label>
+        <name>ic_bottom</name>
+    </customLabels>
+    <customLabels>
+        <label>Kampagnenname</label>
+        <name>ic_campaignname</name>
+    </customLabels>
+    <customLabels>
+        <label>Abbrechen</label>
+        <name>ic_cancel</name>
+    </customLabels>
+    <customLabels>
+        <label>Kontakte</label>
+        <name>ic_contact</name>
+    </customLabels>
+    <customLabels>
+        <label>Kopieren</label>
+        <name>ic_copy</name>
+    </customLabels>
+    <customLabels>
+        <label>Löschen</label>
+        <name>ic_delete</name>
+    </customLabels>
+    <customLabels>
+        <label>Löschen</label>
+        <name>ic_deleteview</name>
+    </customLabels>
+    <customLabels>
+        <label>Nach unten</label>
+        <name>ic_down</name>
+    </customLabels>
+    <customLabels>
+        <label>Duplikat gefunden</label>
+        <name>ic_duplicate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_duplicateErrorAfterSaved --></label>
+        <name>ic_duplicateErrorAfterSaved</name>
+    </customLabels>
+    <customLabels>
+        <label>Bearbeiten</label>
+        <name>ic_edit</name>
+    </customLabels>
+    <customLabels>
+        <label>Zu vielen Zeilen: max. 100 Zeilen</label>
+        <name>ic_error_max_rows_reached</name>
+    </customLabels>
+    <customLabels>
+        <label>Anzuzeigende Felder auswählen für</label>
+        <name>ic_field2display</name>
+    </customLabels>
+    <customLabels>
+        <label>Los!</label>
+        <name>ic_go</name>
+    </customLabels>
+    <customLabels>
+        <label>Neue Datensätze</label>
+        <name>ic_heading_section</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_help --></label>
+        <name>ic_help</name>
+    </customLabels>
+    <customLabels>
+        <label>ist ein Pflichtfeld!</label>
+        <name>ic_isRequired</name>
+    </customLabels>
+    <customLabels>
+        <label>Ansichtsname eingeben</label>
+        <name>ic_layoutName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_lead --></label>
+        <name>ic_lead</name>
+    </customLabels>
+    <customLabels>
+        <label>Nachschlagebeziehung (Neues Fenster)</label>
+        <name>ic_lookupwindow</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_masscapture --></label>
+        <name>ic_masscapture</name>
+    </customLabels>
+    <customLabels>
+        <label>Mehrere Datensätze hinzufügen</label>
+        <name>ic_multipleCapture</name>
+    </customLabels>
+    <customLabels>
+        <label>Mehrere Datensätze hinzufügen</label>
+        <name>ic_multipleCaptureHeading</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_name --></label>
+        <name>ic_name</name>
+    </customLabels>
+    <customLabels>
+        <label>Neue Ansicht erstellen</label>
+        <name>ic_new_view</name>
+    </customLabels>
+    <customLabels>
+        <label>Keine</label>
+        <name>ic_none</name>
+    </customLabels>
+    <customLabels>
+        <label>Einfügen</label>
+        <name>ic_paste</name>
+    </customLabels>
+    <customLabels>
+        <label>Personenaccounts</label>
+        <name>ic_person_account</name>
+    </customLabels>
+    <customLabels>
+        <label>Entfernen</label>
+        <name>ic_remove</name>
+    </customLabels>
+    <customLabels>
+        <label>Zurücksetzen</label>
+        <name>ic_reset</name>
+    </customLabels>
+    <customLabels>
+        <label>Speichern</label>
+        <name>ic_save</name>
+    </customLabels>
+    <customLabels>
+        <label>Duplikate suchen</label>
+        <name>ic_save_dup</name>
+    </customLabels>
+    <customLabels>
+        <label>Speichern unter</label>
+        <name>ic_saveas</name>
+    </customLabels>
+    <customLabels>
+        <label>Ausgewählte Felder</label>
+        <name>ic_selectedfields</name>
+    </customLabels>
+    <customLabels>
+        <label>Sie haben zu vielen Zeilen ausgewählt. Nur eine Zeile ist erlaubt.</label>
+        <name>ic_tooManyRows</name>
+    </customLabels>
+    <customLabels>
+        <label>Oben</label>
+        <name>ic_top</name>
+    </customLabels>
+    <customLabels>
+        <label>Nach oben</label>
+        <name>ic_up</name>
+    </customLabels>
+    <customLabels>
+        <label>Laden...</label>
+        <name>ic_wait</name>
+    </customLabels>
+    <customLabels>
+        <label>Zur Verbesserung des Suchergebnisses können Sie &quot;*&quot; (ein Sternchen) als Platzhalter zusammen mit anderen Zeichen verwenden.</label>
+        <name>lookup_description</name>
+    </customLabels>
+    <customLabels>
+        <label>Nachschlagen</label>
+        <name>lookup_heading</name>
+    </customLabels>
+    <customLabels>
+        <label>Suchergebnisse</label>
+        <name>lookup_heading_result</name>
+    </customLabels>
+    <customLabels>
+        <label>Suche</label>
+        <name>lookup_search</name>
+    </customLabels>
+    <customTabs>
+        <label><!-- Mass Capture --></label>
+        <name>Mass_Capture</name>
+    </customTabs>
+</Translations>

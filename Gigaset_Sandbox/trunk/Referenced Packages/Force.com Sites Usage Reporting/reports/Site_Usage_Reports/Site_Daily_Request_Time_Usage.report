@@ -28,7 +28,7 @@
         </chartSummaries>
         <chartType>LineGrouped</chartType>
         <enableHoverLabels>false</enableHoverLabels>
-        <expandOthers>false</expandOthers>
+        <expandOthers>true</expandOthers>
         <groupingColumn>Site.UsageHistory$UsageDate</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_BOTTOM</location>
@@ -52,12 +52,6 @@
         <lowColor>#54C254</lowColor>
         <midColor>#C2C254</midColor>
     </colorRanges>
-    <columns>
-        <field>Site.UsageHistory$UsageDate</field>
-    </columns>
-    <columns>
-        <field>Site.UsageHistory$LimitType</field>
-    </columns>
     <description>Site Daily Request Time Usage</description>
     <filter>
         <criteriaItems>
@@ -65,6 +59,7 @@
             <operator>equals</operator>
             <value>501</value>
         </criteriaItems>
+        <language>en_US</language>
     </filter>
     <format>Matrix</format>
     <groupingsAcross>
@@ -84,7 +79,6 @@
     </groupingsDown>
     <name>Site Daily Request Time Usage</name>
     <reportType>Site_Usage_Reports__c</reportType>
-    <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Site.UsageHistory$UsageDate</dateColumn>

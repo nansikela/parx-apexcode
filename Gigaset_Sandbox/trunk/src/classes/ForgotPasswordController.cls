@@ -3,25 +3,27 @@ public class ForgotPasswordController {
 	public String username {get; set;}    
 	public Boolean success { get; set;}
 	public String defaultlanguage { get; set; }
-	          
+	private final String homepageid;
+	      
 	public ForgotPasswordController() {
 		defaultlanguage=System_Settings.setLanguage();
 		success=false;
+		homepageid = System_Settings.homepageid;
 	}
 	
 		
-	public PageReference forgotPassword() { 
+	public PageReference forgotPassword() {
 		if (username==null || username=='') {
 			ApexPages.Message msg = new ApexPages.Message(ApexPages.Severity.FATAL,Label.site.enter_password);
 			ApexPages.addMessage(msg);
 		} else {
 			success = Site.forgotPassword(username);
 		}
-		return null;    
+		return null;
 	}
 	
 	public PageReference goHome() {
-  		return System_Settings.goHome();
+  		return new PageReference(Page.page.getUrl() + '?pageid=' + homepageid);//System_Settings.goHome();
   	}         
 	
 	public static testMethod void testForgotPasswordController() {      

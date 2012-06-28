@@ -16,7 +16,7 @@
                         	<p>{!$Label.login_posttext}</p>
                         </apex:outputPanel>
                     </div>
-                    <div style="top: 30px;position: relative;">
+                    <div style="top: 30px; right: 10px; float: right; position: relative;">
                         <c:contentblock name="column"/>
                     </div>
                 </div>

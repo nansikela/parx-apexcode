@@ -51,7 +51,6 @@ Version 42.6.0</description>
     </types>
     <types>
         <members>GoogleAdWordsDashboards</members>
-        <members>GoogleAdWordsDashboards/GoogleAdWordsDashboard</members>
         <name>Dashboard</name>
     </types>
     <types>
@@ -91,5 +90,5 @@ Version 42.6.0</description>
         <members>GoogleAdWordsReports/WebLeadSourcebyDate</members>
         <name>Report</name>
     </types>
-    <version>20.0</version>
+    <version>24.0</version>
 </Package>

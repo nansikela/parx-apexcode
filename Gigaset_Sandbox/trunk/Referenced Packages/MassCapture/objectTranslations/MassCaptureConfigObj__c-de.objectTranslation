@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>MassCaptureConfigObj</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>MassCaptureConfigObj</value>
+    </caseValues>
+    <fields>
+        <label><!-- Fields --></label>
+        <name>Fields__c</name>
+    </fields>
+    <fields>
+        <label><!-- MassCaptureConfig --></label>
+        <name>MassCaptureConfig__c</name>
+        <relationshipLabel><!-- MassCaptureConfigObj --></relationshipLabel>
+    </fields>
+    <gender>Neuter</gender>
+    <layouts>
+        <layout>MassCaptureConfigObj-Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

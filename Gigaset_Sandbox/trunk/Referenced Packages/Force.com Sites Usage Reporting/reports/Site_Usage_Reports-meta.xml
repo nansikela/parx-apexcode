@@ -4,6 +4,6 @@
     <name>Site / Portal Usage Reports</name>
     <publicFolderAccess>ReadWrite</publicFolderAccess>
     <sharedTo>
-        <groups>Administration</groups>
+        <group>Administration294141</group>
     </sharedTo>
 </ReportFolder>

@@ -63,14 +63,8 @@
         <midColor>#C2C254</midColor>
     </colorRanges>
     <columns>
-        <field>Site$MasterLabel</field>
-    </columns>
-    <columns>
         <aggregateTypes>Sum</aggregateTypes>
         <field>Site.UsageHistory$Usage</field>
-    </columns>
-    <columns>
-        <field>Site.UsageHistory$LimitType</field>
     </columns>
     <description>Current Period Page Views</description>
     <filter>
@@ -79,6 +73,7 @@
             <operator>equals</operator>
             <value>502,509</value>
         </criteriaItems>
+        <language>en_US</language>
     </filter>
     <format>Matrix</format>
     <groupingsAcross>
@@ -93,7 +88,6 @@
     </groupingsDown>
     <name>Current Period Page Views</name>
     <reportType>Site_Usage_Reports__c</reportType>
-    <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Site.UsageHistory$UsageDate</dateColumn>
