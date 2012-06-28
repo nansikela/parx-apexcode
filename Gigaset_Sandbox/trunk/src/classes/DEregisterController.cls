@@ -25,6 +25,8 @@ public class DEregisterController {
   public String stdErrorText='';
   public Set<String> gfks = new Set<String>();
   public Boolean showDistribution { get; set; }
+  public Boolean show_DECT_Multizellen { get; set; }
+  public Boolean show_DECT { get; set; }
   public String selectedGfk { get; set; }
   public String[] selectedDistribution { get; set; }
   public String[] selectedProDistributions { get; set; }
@@ -36,9 +38,12 @@ public class DEregisterController {
   public Boolean isPro { get; set; }
   public string portal { get; set; }
   public String privacypageurl { get; set; }
+  public String termsofuseurl { get; set; }
   public Boolean showprivacy { get; set; }
   public String marginleft { get; set; }
-
+  public CustomLabel__c privacy {get;set;}
+  public CustomLabel__c termsOfUse {get;set;}
+	
   
   // constructor
   public DEregisterController() {
@@ -55,14 +60,15 @@ public class DEregisterController {
     l.Land_Auswahl__c=SystemSettings.PortalCountry;
     l.Gigaset_Extranet__c=!isPro;
     l.Gigaset_Pro__c=isPro;
-    if (showprivacy) step=0;
-    else step=1;
+    l.Info_per_Email__c = true;
+    l.Verkauf_von_DECT_Multizellen__c = false;
+    show_DECT = l.Verkauf_von_DECT_Multizellen__c;
+    step=1;
     backcounter=-1;
     messages='';
     isAuthenticated=SystemSettings.isPortalUser();
     showShippingAddress=false;
-    if (showprivacy) disabledStep1=true;
-    else disabledStep1=false;
+    disabledStep1=false;
     disabledStep2=true;
     disabledStep3=true;
     showPhoneErr=false;
@@ -82,15 +88,33 @@ public class DEregisterController {
     f = Schema.sObjectType.User.fields.Datenschutzerkl_rung_zugestimmt__c;
     labelPrivacy=f.getLabel();
     showDistribution=false;
+    show_DECT_Multizellen = (isPro && portal == 'de') ? true : false ;
     selectedGfk='';
     selectedDistribution=new String[]{};
     selectedProDistributions=new String[]{};
     fillGfks();
     fillDistributions();
     //privacypageurl=Page.page.getUrl() + '?pageid=' + SystemSettings.privacyprotectionid;
-    privacypageurl=Site.getCurrentSiteUrl()+'page' + '?pageid=' + SystemSettings.privacyprotectionid;
+	privacy = null;
+	termsOfUse = null;
+	system.debug(isPro+' / '+portal+' / '+System_Settings.setLanguage());
+	try {
+		for(CustomLabel__c cl : [SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :portal AND LanguageCode__c = :System_Settings.setLanguage() AND CommonCode__c = 'extranet_privacy' ])
+			privacy = cl;
+		
+		for(CustomLabel__c cl : [SELECT Label__c, ExternalUrl__c FROM CustomLabel__c WHERE isPro__c = :isPro AND Portal__c = :portal AND LanguageCode__c = :System_Settings.setLanguage() AND CommonCode__c = 'extranet_terms_of_use' ])
+       		termsOfUse = cl;
+	} catch(Exception e) {
+		system.debug(e.getMessage());
+	}
+	system.debug('PRIVACY: '+privacy);
+	system.debug('TERMS OF USE: '+termsOfUse);
   }
   
+  public String getBaseTopNaviUrl() {
+    	return System_Settings.baseurl+portal.substring(0,2)+'/'+String.valueOf(System_Settings.setLanguage()).substring(0,2)+'/';
+  }
+    
   private void fillGfks() {
     gfks = new Set<String>();
     gfks.add('Warenhaus');
@@ -121,6 +145,7 @@ public class DEregisterController {
     Integer retval=99;
     if (l!=null) {
       try {
+      	l.HasOptedOutOfEmail = true;
         insert l;
         l=new Lead();
         retval=step;
@@ -170,11 +195,6 @@ public class DEregisterController {
   }
   
   // getter
-  public String getActive0() {
-    if (step==0) return 'active';
-    else return '';
-  }
-  
   public String getActive1() {
     if (step==1) return 'active';
     else return '';
@@ -189,7 +209,7 @@ public class DEregisterController {
     if (step==3) return 'active';
     else return '';
   }
-  
+    
   public String getServiceHotlineUrl() {
     pageReference basispage = Page.page;
     if (basispage!=null) 
@@ -230,15 +250,7 @@ public class DEregisterController {
      showHotlineErr=false;
      showDistributionErr=false;
      errorText=stdErrorText;
-     if (step==0) {
-       if (!l.Datenschutzerkl_rung_zugestimmt__c) {
-         hasErr=true;
-         ApexPages.Message apm = new ApexPages.Message(ApexPages.Severity.FATAL, labelPrivacy + ': ' + System.label.privacy_noaccesswithoutaccept);
-         ApexPages.addMessage(apm);
-       } else {
-         l.Zustimmung_Datenschutzerkl_rung_am__c=System.today();
-       }
-     }
+    
      // distribution selection
      if (step==3) {
        if (!selectedDistribution.isEmpty() && selectedDistribution!=null) l.Distribution__c=putDistributions();
@@ -255,7 +267,18 @@ public class DEregisterController {
        } else {
          showProDistributionErr=false;
        }
+       
+       if(showPrivacy) {
+	 		if (!l.Datenschutzerkl_rung_zugestimmt__c) {
+	 			ApexPages.Message apm = new ApexPages.Message(ApexPages.Severity.FATAL, labelPrivacy + ': ' + System.label.privacy_noaccesswithoutaccept);
+				ApexPages.addMessage(apm);
+				hasErr=true;
+	 		} else {
+	 			l.Zustimmung_Datenschutzerkl_rung_am__c=System.today();
+	 		}
+	 	}
      }
+     
      if (step==2 && ((l.Anmeldung_Hotlinetelefon__c && (l.Sonstige_Telefonnummer__c==null || l.Sonstige_Telefonnummer__c==''))||(l.Anmeldung_Telefon__c && (l.Telefon_Kontakt__c==null || l.Telefon_Kontakt__c=='')) || (l.Anmeldung_Mobiltelefon__c && (l.MobilePhone==null || l.MobilePhone=='')))) {
        if (l.Anmeldung_Telefon__c && (l.Telefon_Kontakt__c==null || l.Telefon_Kontakt__c=='')) {
          //ApexPages.Message apm = new ApexPages.Message(ApexPages.Severity.FATAL, labelPhone + ': ' + System.label.registration_errormsg);
@@ -354,11 +377,11 @@ public class DEregisterController {
        if (step==2) disabledStep2=false;
        if (step==3) disabledStep3=false;
        if (step==4) {
-         step=insertLead();
-         backcounter=backcounter-2;
-       }
+		 	step=insertLead();
+		 	backcounter=backcounter-2;
+	   }
      }
-     return null;
+       return null;
    }
    
    public PageReference previousStep() {
@@ -374,6 +397,12 @@ public class DEregisterController {
      showShippingAddress=!showShippingAddress;
      showShippingAddressDummy=showShippingAddress; 
      return null;
+   }
+   
+   public PageReference DECTFieldUpdateAction() {
+   	 system.debug('SHOW_DECT: '+show_DECT);
+   	 l.Verkauf_von_DECT_Multizellen__c = show_DECT;
+   	 return null;
    }
    
    public PageReference relationshipSelectionAction() {

@@ -1,0 +1,8 @@
+<apex:page controller="Permalink" action="{!init}">
+    <apex:outputPanel rendered="{!NOT(notFound)}">
+        <b>Loading...</b>
+    </apex:outputPanel>
+    <apex:outputPanel rendered="{!notFound}">
+        <b>{!$Label.permalink_not_found}</b>
+    </apex:outputPanel>
+</apex:page>

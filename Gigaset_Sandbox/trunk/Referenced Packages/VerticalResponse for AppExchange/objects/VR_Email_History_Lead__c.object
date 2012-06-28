@@ -113,6 +113,7 @@
     </fields>
     <fields>
         <fullName>Lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <deprecated>false</deprecated>
         <description>Corresponds to the salesforce.com Lead who was sent a VerticalResponse email</description>
         <externalId>false</externalId>
@@ -120,6 +121,7 @@
         <referenceTo>Lead</referenceTo>
         <relationshipLabel>VR Email History Lead</relationshipLabel>
         <relationshipName>VR_Email_History_Lead</relationshipName>
+        <required>false</required>
         <type>Lookup</type>
     </fields>
     <fields>

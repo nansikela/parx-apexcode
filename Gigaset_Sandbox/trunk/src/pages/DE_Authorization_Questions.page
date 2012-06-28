@@ -1,0 +1,10 @@
+<apex:page showheader="false" sidebar="false" id="de_authorization_questions"
+	controller="DETemplateController" title="{!$Label.de_title}"
+	language="{!defaultlanguage}" action="{!init}">
+	
+<apex:composition template="{!$Site.Template}">
+		<apex:define name="body">
+		<c:DE_Authorization_Questions />
+	</apex:define>
+</apex:composition>
+</apex:page>

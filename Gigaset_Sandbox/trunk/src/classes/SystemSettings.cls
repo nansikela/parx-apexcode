@@ -23,6 +23,7 @@ global class SystemSettings {
     global static final Id homepageid=getPageid('Home');
     global static final Id imprintpageid=getPageid('Imprint');
     global static final Id privacyprotectionid=getPageId('PrivacyProtection');
+    global static final Id termsOfUseid=getPageId('Terms of Use');
      
     // menu
     global static final Id kontaktpageid=getPageid('Kontakt');
@@ -271,7 +272,7 @@ global class SystemSettings {
         }   
         if (privacyEnabled) {   
             if (currentusercontact!=null && (currentusercontact.Datenschutzerkl_rung_zugestimmt__c==null || !currentusercontact.Datenschutzerkl_rung_zugestimmt__c)) {
-                return true;
+                return false; //Privacy Approval is for already registered users not required anymore. - Date: 14.06.12
             }
         }
         return false;

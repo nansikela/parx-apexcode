@@ -68,6 +68,7 @@
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <maxValuesDisplayed>5</maxValuesDisplayed>
             <report>Site_Usage_Reports/Top_Sites_by_Page_Views</report>
+            <showPicturesOnTables>true</showPicturesOnTables>
             <sortBy>RowLabelAscending</sortBy>
             <title>Top 5 Sites Based On Page Views</title>
         </components>
@@ -79,6 +80,7 @@
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <maxValuesDisplayed>5</maxValuesDisplayed>
             <report>Site_Usage_Reports/Top_Bandwidth_Consuming_Sites</report>
+            <showPicturesOnTables>true</showPicturesOnTables>
             <sortBy>RowLabelAscending</sortBy>
             <title>Top 5 Bandwidth Consuming Sites</title>
         </components>
@@ -90,6 +92,7 @@
             <indicatorMiddleColor>#C2C254</indicatorMiddleColor>
             <maxValuesDisplayed>5</maxValuesDisplayed>
             <report>Site_Usage_Reports/Top_Resource_Consuming_Sites</report>
+            <showPicturesOnTables>true</showPicturesOnTables>
             <sortBy>RowLabelAscending</sortBy>
             <title>Top 5 Resource Consuming Sites</title>
         </components>

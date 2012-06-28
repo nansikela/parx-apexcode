@@ -1,0 +1,307 @@
+<apex:page controller="Capture.MassCaptureConfig" id="Page" tabStyle="Mass_Capture__tab">
+	<apex:form id="Form">
+	  <apex:outputPanel id="thePan">
+	  	<apex:inputText value="{!lang}" id="lang" style="display:none;" />
+	   <apex:PageMessages id="ic_msgs" rendered="{!isMessagesShown}"/>
+	   <apex:includescript value="{!$Resource.Capture__jquery16min}"/>
+	   <script> 
+		function DisplayHideRow() {
+			if(document.getElementById('Page:Form:Block:Section01:radio:0').checked) {
+				document.getElementById('Page:Form:Block:Repeat:1:Section').style.display = 'block';
+			}
+			else {
+				document.getElementById('Page:Form:Block:Repeat:1:Section').style.display = 'none';
+			}
+		}
+		function openHelpPopup() {
+		      var url;
+		      url= 'https://masscapture.secure.force.com/docs';
+		      winWidth = 1024;
+		      winHeight = 768;
+		      if(screen) {
+		      	winWidth = screen.width;
+		        	winHeight = screen.height;
+		      }
+		       
+		      newWin= window.open(url , 'Help','height='+winHeight+',width='+winWidth);
+		      if (window.focus) {
+		          newWin.focus();
+		      }
+		            
+		      return false;
+	      }
+		var $MassCapture = jQuery.noConflict();
+		var label = '{!$Label.ic_none}';
+		$MassCapture('[id$=lang]').ready(function() {
+			label = $MassCapture('[id$=lang]').val();
+		});
+		
+		$MassCapture(document).ready(function() {
+			$MassCapture.each($MassCapture('.MassCaptureSelectIn'), function() {
+				if($MassCapture('option', this).size() == 0) {
+					$MassCapture(this).append(new Option('– '+label+' –', '-'));
+				}
+			});
+			
+			$MassCapture.each($MassCapture('.MassCaptureSelectOut'), function() {
+				if($MassCapture('option', this).size() == 0) {
+					$MassCapture(this).append(new Option('– '+label+' –', '-'));
+				}
+			});
+		    
+		    $MassCapture('.rightArrowIcon').click(function(){
+		    	label = $MassCapture('[id$=lang]').val();
+		        var i = $MassCapture(this).attr("id").replace('Buttonin', 'In').replace(/:/g, '\\:');
+				var o = $MassCapture(this).attr("id").replace('Buttonin', 'Out').replace(/:/g, '\\:');
+
+		        $MassCapture("#"+o+" option:selected").attr('selectedIndex', '-1').children("option:selected").removeAttr("selected");
+		        
+		        $MassCapture.each($MassCapture("#"+o).children("option:selected"), function() {
+		        	this.selected = false;
+		        });
+
+		        $MassCapture("#"+o).find('option:contains(– '+label+' –)').remove();
+				
+				if($MassCapture("#"+i).val() != '-')
+		        	$MassCapture("#"+i+" option:selected").appendTo("#"+o);
+		    	
+				$MassCapture.each($MassCapture('.MassCaptureSelectIn'), function() {
+					if($MassCapture('option', this).size() == 0) {
+						$MassCapture(this).append(new Option('– '+label+' –', '-'));
+					}
+				});
+				
+				$MassCapture.each($MassCapture('.MassCaptureSelectOut'), function() {
+					if($MassCapture('option', this).size() == 0) {
+						$MassCapture(this).append(new Option('– '+label+' –', '-'));
+					}
+				});
+		    });
+		    
+		    $MassCapture('.leftArrowIcon').click(function(){
+		    	label = $MassCapture('[id$=lang]').val();	
+		   	   	var position = $MassCapture(this).attr("id").split(":Repeat:")[1].split(":Section")[0];
+		    	var i = $MassCapture(this).attr("id").replace('Buttonout', 'In').replace(/:/g, '\\:');
+				var o = $MassCapture(this).attr("id").replace('Buttonout', 'Out').replace(/:/g, '\\:');
+			  	
+				var Objects = '{!Objects}'.split("[")[1].split("]")[0].split(", ");
+				var FieldRequiredList = '{!FieldsRequired}'.split(Objects[position] + "=[")[1].split("]")[0].split(", ");
+
+			  	$MassCapture("#"+o+" option:selected").each(function() {	
+					if ($MassCapture(this).val() != '-' && $MassCapture.inArray($MassCapture(this).val() , FieldRequiredList)==-1) 
+						$MassCapture(this).appendTo("#"+i);
+					else if ($MassCapture(this).val() != '-')
+						alert($MassCapture(this).text() + ' {!$Label.ic_isRequired}');
+			  	});
+		       	
+		        $MassCapture("#"+i).find('option:contains(– '+label+' –)').remove();
+		    	
+	    		$MassCapture.each($MassCapture('.MassCaptureSelectIn'), function() {
+					if($MassCapture('option', this).size() == 0) {
+						$MassCapture(this).append(new Option('– '+label+' –', '-'));
+					}
+				});
+			
+				$MassCapture.each($MassCapture('.MassCaptureSelectOut'), function() {
+					if($MassCapture('option', this).size() == 0) {
+						$MassCapture(this).append(new Option('– '+label+' –', '-'));
+					}
+				});
+		
+		    });
+		    
+		    $MassCapture('.upArrowIcon').bind('click', function() {
+				var o = $MassCapture(this).attr("id").replace('Buttonup', 'Out').replace(/:/g, '\\:');
+		        $MassCapture('#' + o + ' option:selected').each( function() {
+		            var newPos = $MassCapture('#'+ o+' option').index(this) - 1;
+		            if (newPos > -1) {
+		                $MassCapture('#'+o+' option').eq(newPos).before("<option value='"+$MassCapture(this).val()+"' selected='selected'>"+$MassCapture(this).text()+"</option>");
+		                $MassCapture(this).remove();
+		            }
+		        }); 
+		    }); 
+		    
+		    $MassCapture('.downArrowIcon').bind('click', function() {
+		        var o = $MassCapture(this).attr("id").replace('Buttondown', 'Out').replace(/:/g, '\\:');
+		        var countOptions = $MassCapture('#'+o+' option').size(); 
+		        $MassCapture($MassCapture('#'+o+' option:selected').get().reverse()).each( function() {
+		            var newPos = $MassCapture('#'+o+' option').index(this) + 1;
+		            if (newPos < countOptions) {
+		                $MassCapture('#'+o+' option').eq(newPos).after("<option value='"+$MassCapture(this).val()+"' selected='selected'>"+$MassCapture(this).text()+"</option>");
+		                $MassCapture(this).remove();
+		            }
+		        });
+		    });
+		    
+		    $MassCapture('.doubleArrowUp').bind('click', function() {
+				var o = $MassCapture(this).attr("id").replace('Buttondoubleup', 'Out').replace(/:/g, '\\:');
+		        $MassCapture($MassCapture('#'+o+' option:selected').get().reverse()).each( function() {
+		            var newPos = 0;
+		            $MassCapture('#'+o+' option').eq(newPos).before("<option value='"+$MassCapture(this).val()+"' selected='selected'>"+$MassCapture(this).text()+"</option>");
+		            $MassCapture(this).remove();
+		        });
+		    });
+		    
+		    $MassCapture('.doubleArrowDwn').bind('click', function() {
+				var o = $MassCapture(this).attr("id").replace('Buttondoubledown', 'Out').replace(/:/g, '\\:');
+		        $MassCapture('#' + o + ' option:selected').each( function() {
+		            var newPos = $MassCapture('#'+o+' option').size()-1;
+		            $MassCapture('#'+o+' option').eq(newPos).after("<option value='"+$MassCapture(this).val()+"' selected='selected'>"+$MassCapture(this).text()+"</option>");
+		            $MassCapture(this).remove();
+		        });
+		    });
+		    
+		    $MassCapture('.saveButton').bind('click', function() {
+				var BaseId = 'Page\\:Form\\:Block\\:Repeat\\:';
+				var EndId = '\\:Section\\:Out';
+				var output = '';
+				var i = 0;
+
+				for(i= 0 ; i < $MassCapture('#'+ 'Page\\:Form\\:Block span').size(); i ++ ) {
+					$MassCapture('#' + BaseId + i + EndId + ' option').each( function() {
+						output += $MassCapture(this).val() + ' ';
+					});
+					output += ' - ';
+				}			
+				var name = $MassCapture('#Page\\:Form\\:Block\\:Section0\\:fieldName').val();
+				if(document.getElementById('Page:Form:Block:Section01:radio:0') != null)
+					saveFunction(document.getElementById('Page:Form:Block:Section01:radio:0').checked, output, name, $MassCapture(this).attr("id"));
+		    		else
+		    			saveFunction(false, output, name, $MassCapture(this).attr("id"));
+		    		
+		    });
+		});
+		window.onload = DisplayHideRow;
+	</script>
+
+   
+    	
+		<apex:pageBlock title="{!$Label.capture__ic_masscapture}" id="Block" mode="edit">
+			<apex:outputLink style="padding-right: 15px;position: absolute;right: 0px;top: 18px;color: #015BA7;font-size: 91%;" value="#" onclick="openHelpPopup();return false" id="HelpLink">{!$Label.ic_help}<img src="/img/alohaSkin/help_orange.png" alt="Help" title="Help" style="left: 5px;position: relative;margin-right: 15px;"/></apex:outputLink>
+	        
+			<apex:pageBlockButtons >        
+				<apex:actionRegion >       
+		                	<apex:commandButton onclick="return false" value="{!$Label.capture__ic_save}" styleClass="saveButton" rerender="saveButton" id="saveButton"/>
+		                	<apex:commandButton rendered="{!(not(isNew))}" onclick="return false" value="{!$Label.capture__ic_saveas}" styleClass="saveButton" rerender="saveUnderButton" id="saveUnderButton"/>
+			            <apex:actionFunction name="saveFunction" action="{!save}"  rerender="thePan">
+			                <apex:param name="RadioButtonChoosen" value=""/> 
+			                <apex:param name="Fields" value=""/> 
+			                <apex:param name="Name" value=""/>
+			                <apex:param name="ButtonId" value=""/>
+			            </apex:actionFunction>
+		            </apex:actionRegion>
+		             	<apex:commandButton action="{!ComeBack}" value="{!$Label.capture__ic_cancel}" id="closeButton" immediate="true"/>
+		        
+		                	
+            	</apex:pageBlockButtons> 
+	           
+	            <apex:pageBlockSection title="{!$Label.capture__ic_layoutName}" columns="2" id="Section0" >
+	            	<apex:inputField value="{!MCC.Name}" id="fieldName" required="true"/>
+	            </apex:pageBlockSection> 
+	            <apex:pageBlockSection title="{!$Label.capture__ic_ChooseObject}" columns="1" id="Section01" rendered="{!MCC.Capture__Type__c == 'Contacts'}" >
+	            	<apex:selectRadio value="{!RadioButtonChoice}" layout="pageDirection" onclick="DisplayHideRow();return true;" id="radio">
+           				<apex:selectOptions value="{!RadioButtonList}"/>
+            		</apex:selectRadio>
+	            </apex:pageBlockSection> 
+	            <apex:repeat value="{!Objects}" var="objectName" id="Repeat">
+	    			<apex:pageBlockSection title="{!$Label.capture__ic_field2display & ' ' & translation[objectName]}" columns="1" id="Section">
+		       		<apex:outputPanel id="Panel" style="width:500px;">
+<!--		       			<div style="width:400px;text-align:center;">-->
+<!--		       		    	<apex:outputLabel value="{!LabelObjects[objectName]}" style="font-weight:bold;font-size:15px;"/><br/>-->
+<!--		       	      	</div>-->
+		       	      	<table style="float:left;text-align: center;" title="{!objectName}">
+		       	      		<tr>
+		       	       			<td style="vertical-align:middle;">
+		       	       				<apex:outputLabel value="{!$Label.capture__ic_availablefields}" style="font-weight: bold;"/><br/>
+							    	<apex:selectList multiselect="true" id="In" size="15" styleclass="MassCaptureSelectIn" style="float:left;">
+							            <apex:selectOptions value="{!FieldsIn[objectName]}"/>
+							        </apex:selectList>
+				        		</td>
+				       			<td style="vertical-align:middle;">
+				       				<div>
+							        	<apex:outputLabel value="{!$Label.capture__ic_add}"/>
+									</div>
+									<div>
+							        	<a href="javascript:void(0);">
+							        		<apex:image id="Buttonin" value="/s.gif" styleClass="rightArrowIcon" style="margin-bottom: 2px;"/>
+							        	</a>
+							        </div>   
+							        <div>				       		
+							       		<a href="javascript:void(0);">
+							       			<apex:image id="Buttonout" value="/s.gif" styleClass="leftArrowIcon"/>
+							       		</a>
+							       	</div>
+							       	<div>
+							       		<apex:outputLabel value="{!$Label.capture__ic_remove}"/>
+							       	</div>
+				        		</td>
+				        		<td style="vertical-align:middle;">
+				        			<apex:outputLabel value="{!$Label.capture__ic_selectedfields}" style="font-weight: bold;"/><br/>
+							        <apex:selectList multiselect="true" id="Out" size="15" styleclass="MassCaptureSelectOut" style="float:left;">
+							            <apex:selectOptions value="{!FieldsOut[objectName]}"/>
+							        </apex:selectList>
+				   				</td>
+				   				<td style="vertical-align:middle;">
+				   					<div>
+				   						<apex:outputLabel value="{!$Label.capture__ic_top}"/>
+				   					</div>
+				   					<div>
+								        <a href="javascript:void(0);">
+								        	<apex:image id="Buttondoubleup" value="/s.gif" styleClass="doubleArrowUp"/>
+								        </a>
+							        </div>
+							        <div> 
+							        	<apex:outputLabel value="{!$Label.capture__ic_up}"/>
+							        </div>  
+							        <div>
+								        <a href="javascript:void(0);">
+								        	<apex:image id="Buttonup" value="/s.gif" styleClass="upArrowIcon" style="margin-bottom: 2px;"/>
+								        </a>	 
+							        </div>
+							        <div> 			       		
+								       	<a href="javascript:void(0);">
+								       		<apex:image id="Buttondown" value="/s.gif" styleClass="downArrowIcon"/>
+								       	</a>
+							       	</div>
+							       	<div> 
+							       		<apex:outputLabel value="{!$Label.capture__ic_down}"/>
+							       	</div>
+							       	<div> 
+								        <a href="javascript:void(0);">
+								        	<apex:image id="Buttondoubledown" value="/s.gif" styleClass="doubleArrowDwn"/>
+								        </a>
+								    </div>
+								    <div>     
+							       		<apex:outputLabel value="{!$Label.capture__ic_bottom}"/>
+							       	</div>
+				       			</td> 
+				       		</tr>
+				       	</table>
+				    </apex:outputPanel>
+		    	   </apex:pageBlockSection>
+		    </apex:repeat>
+	    </apex:pageBlock>
+	 </apex:outputPanel>
+    </apex:form>
+    
+    <style>
+      label {
+		vertical-align:middle;
+	}
+    	.MassCaptureSelectIn {
+    	}
+    	
+    	.MassCaptureSelectOut {
+    	}
+    	
+        .apexp .bPageBlock .detailList {
+    		width:800px;
+    	}
+    	a#Page\:Form\:Block\:HelpLink{
+    	    text-decoration: none;
+      }
+      a#Page\:Form\:Block\:HelpLink:hover{
+    	    text-decoration: underline;
+      }
+    </style>
+</apex:page>

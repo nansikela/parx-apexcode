@@ -18,6 +18,7 @@ global class TrainingController {
    	//public  List<Modulen> Modules {get;set;}
    	list<Modulen> modules=new list<Modulen>();
     public  List<Modulen> Modules_modulesSecondPage2 {get;set;}
+    public  List<Module> Modules_modulesSecondPageMobile {get;set;} //For mobile!
 	//public  List<Booken> Books {get;set;} 
 	public  String newsid {get;set;}
 	public Boolean isPro { get; private set; }
@@ -37,7 +38,6 @@ global class TrainingController {
 	public NextTopShop__c NTS {get;set;}
 	//public PageReference CMSpage = Page.page;
 	 
-	
 	public class Modulen {
 		public list<Training_Module__c> Module {get; set;}
 		public integer ModuleNumber {get;set;}
@@ -74,23 +74,20 @@ global class TrainingController {
   		} 
 	}
 	
-	public TrainingController(CRD_pageTemplatesController templateCtrl){
-		portal=System_Settings.portal;
-		progressURL = Page.page.getUrl() + '?pageid=' + System_Settings.ProgressId;
-		isPro=isPro;
-		isMobile = System_Settings.isMobileActivated();
-		defaultlanguage=System_Settings.setLanguage();
-		//Books=getBooksForBooks();
-		system.debug(isMobile);
-		u0 = System_Settings.currentuser;
-		c0 = System_Settings.currentusercontact;
-		
-		Modules_showFirstpage = true;
-		Modules_showProcesspage = false;
-		Modules_showThirdpage = false;
-	}
-	
 	//NEEDED FOR MOBILE VERSION! -----------------------------------------------------------------
+	
+	private list<Attachment> atts;
+	
+	public class Module {
+		public Training_Module__c element {get; set;}
+		public String backgroundImgPath {get;set;}
+		public Module(Training_Module__c tm) {
+			element = tm;
+			backgroundImgPath = '';
+		}
+	} 
+	
+	
 	public TrainingController(TemplateController templateCtrl){
 		
 		String bookID;
@@ -117,6 +114,22 @@ global class TrainingController {
 	}
 	//END ----------------------------------------------------------------------------------------
 	
+	public TrainingController(CRD_pageTemplatesController templateCtrl){
+		portal=System_Settings.portal;
+		progressURL = Page.page.getUrl() + '?pageid=' + System_Settings.ProgressId;
+		isPro=isPro;
+		isMobile = System_Settings.isMobileActivated();
+		defaultlanguage=System_Settings.setLanguage();
+		//Books=getBooksForBooks();
+		system.debug(isMobile);
+		u0 = System_Settings.currentuser;
+		c0 = System_Settings.currentusercontact;
+		
+		Modules_showFirstpage = true;
+		Modules_showProcesspage = false;
+		Modules_showThirdpage = false;
+	}
+	
 	public TrainingController(){
 		isLektoraLoaded = false;
 		portal=System_Settings.portal;
@@ -138,7 +151,7 @@ global class TrainingController {
 	public list<Booken> getBooks(){
 		system.debug('page ref: '+system.currentPageReference());
 		System.debug('Training getBooks Start');
-		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c,New_Modules__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:portal AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Book__c> TB= new list<Training_Book__c>([select id, Buchhaenger__c, New_Modules__c, New_Modules_Mobile__c, Titel__c from Training_Book__c where Gigaset_Pro__c =: isPro AND Portal__c =:portal AND Aktiv__c = true ORDER by Sortierung__c]);
 		Integer i = 0;
 		list<Booken> Books = new list<Booken>(); 
 		Booken book;
@@ -148,7 +161,7 @@ global class TrainingController {
 			Books.add(book);
 		}
 		
-		for(Booken b:Books) {
+		for(Booken b:Books) { 
 		//	if(b.Buchhaenger__c) {
 				b.Helfer = 70 * i + 58;
 				b.Helfer_BH = 72.5 * i + 15;
@@ -321,8 +334,18 @@ global class TrainingController {
 		Modules_showProcesspage = false; 
 		Modules_showThirdpage = false;
 		
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Beschreibung__c, Training_Book__c, showTick__c, showCoins__c, Dauer__c, Punkte__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
+		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Active_Mobile__c, Titel__c, Beschreibung__c, Training_Book__c, showTick__c, showCoins__c, Dauer__c, Punkte__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
 
+		// FOR MOBILE
+		set<ID> moduleIDs = new set<ID>();
+		for(Training_Module__c tm : TMList)
+			if(!moduleIDs.contains(tm.ID))
+				moduleIDs.add(tm.ID);
+				
+		if(moduleIDs.size() > 0) {
+			atts = [Select Name, ParentID, Body From Attachment Where ParentID IN :moduleIDs AND Name Like '%mobile%'];
+		}
+		//END
 		
 		list<String> TMIds = new list<String>();
 		for(Training_Module__c TM:TMlist) {
@@ -344,11 +367,21 @@ global class TrainingController {
 		Integer i=0;
 		Modules_modulesSecondPage2 = new list<Modulen>();
 		Modules_modulesSecondPage1 = new list<Training_Module__c>();
+		Modules_modulesSecondPageMobile = new list<Module>();
 		Modulen modul = new Modulen();
 		system.debug('TrainingController Debug: isMobile '+isMobile);
 		for(Training_Module__c TM:TMlist) {
 			if(isMobile) {
-				Modules_modulesSecondPage1.add(TM);	
+				if(TM.active_mobile__c) {
+					Module m = new Module(TM);
+					for(Attachment att : atts) {
+						if(att.ParentID == TM.ID) {
+							m.backgroundImgPath = '/servlet/servlet.FileDownload?file='+att.ID;
+							break;
+						}
+					}
+					Modules_modulesSecondPageMobile.add(m);
+				}		
 			}else{
 				if(i<5)
 					Modules_modulesSecondPage1.add(TM);
@@ -390,8 +423,18 @@ global class TrainingController {
 			}
 
 		}
-		list<Training_Module__c> TMlist= new list<Training_Module__c>([select id, Titel__c, Beschreibung__c, Training_Book__c, showTick__c, showCoins__c, Dauer__c, Punkte__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
-
+		list<Training_Module__c> TMlist = new list<Training_Module__c>([select id, Titel__c, Active_Mobile__c, Beschreibung__c, Training_Book__c, showTick__c, showCoins__c, Dauer__c, Punkte__c  from Training_Module__c where Training_Book__r.Gigaset_Pro__c =: isPro AND Training_Book__r.Portal__c =:portal AND Training_Book__c =: Modules_book.Id AND Aktiv__c = true ORDER by Sortierung__c]);
+		
+		// FOR MOBILE
+		set<ID> moduleIDs = new set<ID>();
+		for(Training_Module__c tm : TMList)
+			if(!moduleIDs.contains(tm.ID))
+				moduleIDs.add(tm.ID);
+				
+		if(moduleIDs.size() > 0) {
+			atts = [Select Name, ParentID, Body From Attachment Where ParentID IN :moduleIDs AND Name Like '%mobile%'];
+		}
+		//END
 		
 		list<String> TMIds = new list<String>();
 		for(Training_Module__c TM:TMlist) {
@@ -413,11 +456,21 @@ global class TrainingController {
 		Integer i=0;
 		Modules_modulesSecondPage2 = new list<Modulen>();
 		Modules_modulesSecondPage1 = new list<Training_Module__c>();
+		Modules_modulesSecondPageMobile = new list<Module>();
 		Modulen modul = new Modulen();
 		system.debug('TrainingController Debug: isMobile '+isMobile);
 		for(Training_Module__c TM:TMlist) {
 			if(isMobile) {
-				Modules_modulesSecondPage1.add(TM);	
+				if(TM.active_mobile__c) {
+					Module m = new Module(TM);
+					for(Attachment att : atts) {
+						if((att.ParentID+'').contains(TM.ID)) {
+							m.backgroundImgPath = '/servlet/servlet.FileDownload?file='+att.ID;
+							break;
+						}
+					}
+					Modules_modulesSecondPageMobile.add(m);
+				}		
 			}else{
 				if(i<5)
 					Modules_modulesSecondPage1.add(TM);

@@ -1,0 +1,18 @@
+<apex:component controller="DE_Authorization_Controller" allowDML="true" id="DE_Authorization_Questions_component">
+<apex:outputPanel id="form">
+<apex:form id="questionform" >
+<!--	<apex:outputLabel value="{!$ObjectType.User.fields.DE_Authorization_Number_of_Employees__c.label}*" for="employees"/>-->
+<!--	<apex:inputField value="{!currentUser.DE_Authorization_Number_of_Employees__c}" id="employees" required="true" styleClass="FieldRequired"/>-->
+<!--	-->
+<!--	<apex:outputLabel value="{!$ObjectType.User.fields.DE_Authorization_consumer_products__c.label}*" for="consumerProducts"/>-->
+<!--	<apex:inputField value="{!currentUser.DE_Authorization_consumer_products__c}" id="consumerProducts" required="true" styleClass="FieldRequired"/>-->
+	<apex:repeat value="{!fields}" var="f">
+<!--		<apex:outputLabel value="{!$ObjectType.User.fields.DE_Authorization_Number_of_Employees__c.label}*" for="employees"/>-->
+		<apex:outputText style="label" value="{!$ObjectType.User.fields[f.fieldPath].label}"/>
+		<apex:inputfield value="{!currentUser[f.fieldPath]}" required="{!OR(f.required, f.dbrequired)}"/>
+	</apex:repeat>
+	<apex:commandButton value="zurück" action="{!goToIntroduction}" id="back"/>
+	<apex:commandButton value="absenden" action="{!goToConditions}" id="submit"/>
+</apex:form>
+</apex:outputPanel>
+</apex:component>

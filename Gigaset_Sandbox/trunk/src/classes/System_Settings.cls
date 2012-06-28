@@ -35,7 +35,8 @@ global class System_Settings {
     global static final Id loginmobileid=getPageid('Login Mobile');
     global static final Id homemobileid=getPageid('Home Mobile');
     global static final Id imprintpageid=getPageid('Imprint');
-    global static Id privacyprotectionid=getPageId('PrivacyProtection');
+    global static final Id privacyprotectionid=getPageId('PrivacyProtection');
+    global static final Id termsOfUseid=getPageId('Terms of Use');
     global static final Id landing_page = getPageId('Landing'); 
     global static final Id newsreaderpageid=getPageId('NewsReader');
     
@@ -295,7 +296,7 @@ global class System_Settings {
         if (System_Settings.contactid!=null && System_Settings.contactid!='' && privacyEnabled) {
         	if (currentusercontact==null) currentusercontact=getContact(contactid);
             if (currentusercontact!=null && (currentusercontact.Datenschutzerkl_rung_zugestimmt__c==null || !currentusercontact.Datenschutzerkl_rung_zugestimmt__c)) {
-                return true;
+               return false; //Privacy Approval is for already registered users not required anymore. - Date: 14.06.12
             }
         }
         return false;

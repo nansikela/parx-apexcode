@@ -51,7 +51,7 @@
         pageSize="{!pkbCon.articlesPerPage}"
         categories="{!pkbCon.selectedCategory}"
         hasMoreVar="more"
-        keyword="{!if(len(pkbCon.urlSearchQuery)!=0,'*'&pkbCon.urlSearchQuery&'*', '')}"
+        keyword="{!if(len(pkbCon.urlSearchQuery)!=0,pkbCon.urlSearchQuery, '')}"
         language="{!pkbCon.selectedLanguage}"
         pageNumber="{!currPage}" 
         id="knowledgeArticleList"

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value>MassCaptureConfig</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value>MassCaptureConfig</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value>MassCaptureConfig</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value>MassCaptureConfig</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value>MassCaptureConfig</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value>MassCaptureConfig</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value>MassCaptureConfig</value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value>MassCaptureConfig</value>
+    </caseValues>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Contacts</masterLabel>
+            <translation><!-- Contacts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Leads</masterLabel>
+            <translation><!-- Leads --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Person Accounts</masterLabel>
+            <translation><!-- Person Accounts --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- onlyAccount --></label>
+        <name>onlyAccount__c</name>
+    </fields>
+    <gender>Masculine</gender>
+    <layouts>
+        <layout>MassCaptureConfig-Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel>Ansichtsname</nameFieldLabel>
+</CustomObjectTranslation>

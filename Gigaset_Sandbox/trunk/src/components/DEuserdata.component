@@ -110,6 +110,10 @@
 			</div>
 			<div class="link_arrow"><apex:outputLink rendered="{!NOT(isPro)}" value="#" onclick="F=window.open('{!ServiceHotlineUrl}','','width=460,height=630');F.focus();" >{!$Label.servicehotline_infolink}</apex:outputLink></div>
 			<br />
+			<div style="padding-bottom: 8px;">
+				<apex:outputLabel value="{!$Label.clientdata_PIN}" rendered="{!AND(isPRO,portal='de')}" for="contactPIN" /> 
+					<apex:outputText id="contactPIN" value="{!$Label.PIN}" rendered="{!AND(isPRO,portal='de')}"  /> <br />
+			</div>
 			<apex:outputLabel value="{!$ObjectType.User.fields.Email.label}*" for="contactemail" />
 				<apex:inputField id="contactemail" value="{!u.Email}" required="true" styleClass="FieldRequired" />
 			<apex:outputLabel value="{!$ObjectType.User.fields.Funktion__c.label}" for="function" />

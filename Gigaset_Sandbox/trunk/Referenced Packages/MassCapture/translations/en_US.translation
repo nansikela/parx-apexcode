@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customLabels>
+        <label><!-- ic_AccountContact --></label>
+        <name>ic_AccountContact</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_AccountOnly --></label>
+        <name>ic_AccountOnly</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_CampaignNotFound --></label>
+        <name>ic_CampaignNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_ChooseObject --></label>
+        <name>ic_ChooseObject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_DuplicateFound --></label>
+        <name>ic_DuplicateFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_EnterValue --></label>
+        <name>ic_EnterValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_NameEmpty --></label>
+        <name>ic_NameEmpty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_NameExists --></label>
+        <name>ic_NameExists</name>
+    </customLabels>
+    <customLabels>
+        <label>Nothing to save!</label>
+        <name>ic_NothingToSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_Saved --></label>
+        <name>ic_Saved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_WrongCampaign --></label>
+        <name>ic_WrongCampaign</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_account --></label>
+        <name>ic_account</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_add --></label>
+        <name>ic_add</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_add_rows --></label>
+        <name>ic_add_rows</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_availablefields --></label>
+        <name>ic_availablefields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_bottom --></label>
+        <name>ic_bottom</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_campaignname --></label>
+        <name>ic_campaignname</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_cancel --></label>
+        <name>ic_cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_contact --></label>
+        <name>ic_contact</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_copy --></label>
+        <name>ic_copy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_delete --></label>
+        <name>ic_delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_deleteview --></label>
+        <name>ic_deleteview</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_down --></label>
+        <name>ic_down</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_duplicate --></label>
+        <name>ic_duplicate</name>
+    </customLabels>
+    <customLabels>
+        <label>Multiple items found. Click icon to refine search.</label>
+        <name>ic_duplicateErrorAfterSaved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_edit --></label>
+        <name>ic_edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_error_max_rows_reached --></label>
+        <name>ic_error_max_rows_reached</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_field2display --></label>
+        <name>ic_field2display</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_go --></label>
+        <name>ic_go</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_heading_section --></label>
+        <name>ic_heading_section</name>
+    </customLabels>
+    <customLabels>
+        <label>Help for this Page</label>
+        <name>ic_help</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_isRequired --></label>
+        <name>ic_isRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_layoutName --></label>
+        <name>ic_layoutName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_lead --></label>
+        <name>ic_lead</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_lookupwindow --></label>
+        <name>ic_lookupwindow</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_masscapture --></label>
+        <name>ic_masscapture</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_multipleCapture --></label>
+        <name>ic_multipleCapture</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_multipleCaptureHeading --></label>
+        <name>ic_multipleCaptureHeading</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_name --></label>
+        <name>ic_name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_new_view --></label>
+        <name>ic_new_view</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_none --></label>
+        <name>ic_none</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_paste --></label>
+        <name>ic_paste</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_person_account --></label>
+        <name>ic_person_account</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_remove --></label>
+        <name>ic_remove</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_reset --></label>
+        <name>ic_reset</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_save --></label>
+        <name>ic_save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_save_dup --></label>
+        <name>ic_save_dup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_saveas --></label>
+        <name>ic_saveas</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_selectedfields --></label>
+        <name>ic_selectedfields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_tooManyRows --></label>
+        <name>ic_tooManyRows</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_top --></label>
+        <name>ic_top</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_up --></label>
+        <name>ic_up</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ic_wait --></label>
+        <name>ic_wait</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lookup_description --></label>
+        <name>lookup_description</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lookup_heading --></label>
+        <name>lookup_heading</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lookup_heading_result --></label>
+        <name>lookup_heading_result</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- lookup_search --></label>
+        <name>lookup_search</name>
+    </customLabels>
+    <customTabs>
+        <label><!-- Mass Capture --></label>
+        <name>Mass_Capture</name>
+    </customTabs>
+</Translations>
