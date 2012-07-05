@@ -30,6 +30,9 @@ public with sharing class CampaignCallDownSettingsController{
         columnSettingsList.add( new ColumnSettings( 'Anrede',   campaignColumns == null ? false : campaignColumns.SALUTATION__c ));
         columnSettingsList.add( new ColumnSettings( 'Inhaber',            campaignColumns == null ? false : campaignColumns.OWNER__c ));
         columnSettingsList.add( new ColumnSettings( 'Adresse',      campaignColumns == null ? false : campaignColumns.ADDRESS__c ));
+        columnSettingsList.add( new ColumnSettings( 'Tage für Aktivitäen vor und nach Heute',      (campaignColumns == null || campaignColumns.DaysAroundToday__c == null) ? 14.0 : campaignColumns.DaysAroundToday__c ));
+        columnSettingsList.add( new ColumnSettings( 'Maximale Zahl der Aktivitäten in der Liste',      (campaignColumns == null || campaignColumns.TotalNumberOfActivities__c == null) ? 10.0 : campaignColumns.TotalNumberOfActivities__c ));
+        
     } 
 
     /**
@@ -62,6 +65,8 @@ public with sharing class CampaignCallDownSettingsController{
             campaignColumns.SALUTATION__c       = columnSettingsList[ 7 ].cValue;
             campaignColumns.TITLE__c            = columnSettingsList[ 0 ].cValue;
             campaignColumns.OWNER__c            = columnSettingsList[ 8 ].cValue;
+            campaignColumns.DaysAroundToday__c  = columnSettingsList[ 10 ].cDouble;
+            campaignColumns.TotalNumberOfActivities__c  = columnSettingsList[ 11 ].cDouble;
 
             
              upsert campaignColumns;
@@ -83,6 +88,7 @@ public with sharing class CampaignCallDownSettingsController{
     */
     public class  ColumnSettings{
         public String cName{ get; set; }
+        public Double cDouble { get; set; }
         public boolean cValue{ get; set; }
     
         /**
@@ -91,6 +97,11 @@ public with sharing class CampaignCallDownSettingsController{
         public ColumnSettings( string colName, boolean colValue ){
             cName=colName;
             cValue=colValue;
+        }
+        
+        public ColumnSettings( string colName, Double colDouble ){
+            cName=colName;
+            cDouble=(colDouble==null?10.0:colDouble);
         }   
     }
 

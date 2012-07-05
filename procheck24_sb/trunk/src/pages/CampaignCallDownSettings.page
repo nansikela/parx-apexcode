@@ -1,5 +1,6 @@
 <apex:page tabStyle="Campaign_Call_Down__tab" controller="CampaignCallDownSettingsController">
     <apex:sectionHeader title="Call Down Einstellungen"/>
+    <apex:pagemessages />
     <apex:form >
         <apex:pageBlock >
         <apex:pageBlockButtons location="top">
@@ -7,8 +8,9 @@
             </apex:pageBlockButtons>
             <apex:pageBlockTable value="{!columnSettingsList}" var="c">
               <apex:column value="{!c.cName}" headerValue="Spalten Name"/>
-              <apex:column headerValue="Anzeigen">
-                <apex:inputCheckbox value="{!c.cValue}"/>
+              <apex:column headerValue="Anzeigen/Wert" >
+                <apex:inputCheckbox value="{!c.cValue}" rendered="{!ISNULL(c.cDouble)}"/>
+                <apex:inputText value="{!c.cDouble}" rendered="{!NOT(ISNULL(c.cDouble))}"/>
               </apex:column>
             </apex:pageBlockTable>
       </apex:pageBlock>

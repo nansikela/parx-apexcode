@@ -10,7 +10,7 @@ labs@salesforce.com
 * updated Static Resources 
 
 */
-global with sharing class CampaignCallDownController{
+public with sharing class CampaignCallDownController{
     
     //setup appropriate variables
     private Boolean             hasCampaignID = false;
@@ -22,6 +22,7 @@ global with sharing class CampaignCallDownController{
     private transient CampaignMember[]    members; //the members for that campaign
     private Lead[]              relevantLeads; 
     private List<leadPlusTaskPlusContact>   leadPlusTasks;
+    private set<Id> allIds=new set<Id>();
     private Map<String, Boolean>            callDownColumns;    
     private List<Campaign>      activeCampaigns;
     public String               camp { get;set; } //campaign ID
@@ -35,8 +36,7 @@ global with sharing class CampaignCallDownController{
     public list<SelectOption>   bearbeiters;
     public string               ownerId{ get; set; }
     public string               bearbeiterId{ get; set; }
-    public static Id			recentRecordId	{get; set;}
-    public String				bearbeiterVisible { get; private set; }
+    public String				bearbeiterVisible { get; private set; } 
     
     /**
     *Constructor
@@ -99,19 +99,151 @@ global with sharing class CampaignCallDownController{
     * Returns activities for record
     *@return activities list<Task> list
     */
-    public list<Task> getRecordActivities() {
-    	if (recentRecordId!=null) return [SELECT Id, Subject, ActivityDate, Description FROM Task WHERE WhoId=:recentRecordId ORDER BY ActivityDate DESC limit 10];
-    	//else return [SELECT Id, Subject, ActivityDate, Description FROM Task WHERE WhoId='00Qc0000000xrqEEAQ' ORDER BY ActivityDate limit 10];
-    	else return new list<Task>();
+    @RemoteAction
+    public static list<TaskAndEvent> getRecordFutureActivities(String rId) {
+    	list<TaskAndEvent> tande = new list<TaskAndEvent>();
+    	map<Id, String> ownerAliasMap = new map<Id, String>();
+    	if (ownerAliasMap.isEmpty()) {
+        	for (User u: [SELECT Id, Alias FROM User]) {
+        		ownerAliasMap.put(u.id, u.Alias);
+        	}
+        }
+    	if (rId!=null) {
+    		// first of all we try to select one Event
+    		Integer daysaroundtoday=Integer.valueOf((CampaignColumns__c.getInstance()==null || CampaignColumns__c.getInstance().DaysAroundToday__c==null)?14.0:CampaignColumns__c.getInstance().DaysAroundToday__c);
+    		Date futuredate=System.today()+daysaroundtoday;
+    		Integer NumberOfActivities=Integer.valueOf(((CampaignColumns__c.getInstance()==null || CampaignColumns__c.getInstance().TotalNumberOfActivities__c==null)?10.0:CampaignColumns__c.getInstance().TotalNumberOfActivities__c)/2);
+    		for (Event e:[SELECT Id, Subject, ActivityDate, ActivityDateTime, Description, Owner.Alias, OwnerId FROM Event WHERE WhoId=:rId AND ActivityDate>=:System.today() AND ActivityDate<=:futuredate ORDER BY ActivityDate ASC limit 1]) {
+    			tande.add(new TaskAndEvent(e,ownerAliasMap));
+    		}
+    		// then we get the tasks
+    		NumberOfActivities-=tande.size();
+    		for (Task t:[SELECT Id, Subject, ActivityDate, Description, IsClosed, Status, OwnerId, Owner.Alias FROM Task WHERE WhoId=:rId AND ActivityDate>=:System.today() AND ActivityDate<=:futuredate ORDER BY ActivityDate ASC limit :NumberOfActivities]) {
+    			tande.add(new TaskAndEvent(t, ownerAliasMap));
+    		}
+    	}
+    	return sortTaskAndEvent(tande,'asc');
     }
     
     @RemoteAction
-    global static String getRecordMitgliedsinfo(String rId) {
-    	if (rId!=null) return getMemberinfo(rId);
+    public static list<TaskAndEvent> getRecordPastActivities(String rId) {
+    	list<TaskAndEvent> tande = new list<TaskAndEvent>();
+    	map<Id, String> ownerAliasMap = new map<Id, String>();
+    	if (ownerAliasMap.isEmpty()) {
+        	for (User u: [SELECT Id, Alias FROM User]) {
+        		ownerAliasMap.put(u.id, u.Alias);
+        	}
+        }
+    	if (rId!=null) {
+    		// first of all we try to select one Event
+    		Integer daysaroundtoday=Integer.valueOf((CampaignColumns__c.getInstance()==null || CampaignColumns__c.getInstance().DaysAroundToday__c==null)?14.0:CampaignColumns__c.getInstance().DaysAroundToday__c);		
+    		Date pastdate=System.today()-daysaroundtoday;
+    		Integer NumberOfActivities=Integer.valueOf(((CampaignColumns__c.getInstance()==null || CampaignColumns__c.getInstance().TotalNumberOfActivities__c==null)?10.0:CampaignColumns__c.getInstance().TotalNumberOfActivities__c)/2);
+    		for (Event e:[SELECT Id, Subject, ActivityDate, ActivityDateTime, Description, Owner.Alias, OwnerId FROM Event WHERE WhoId=:rId AND ActivityDate<:System.today() AND ActivityDate>=:pastdate ORDER BY ActivityDate DESC limit 1]) {
+    			tande.add(new TaskAndEvent(e, ownerAliasMap));
+    		}
+    		// then we get the tasks
+    		NumberOfActivities-=tande.size();
+    		for (Task t:[SELECT Id, Subject, ActivityDate, Description, IsClosed, Status, Owner.Alias, OwnerId FROM Task WHERE WhoId=:rId AND ActivityDate<:System.today() AND ActivityDate>=:pastdate ORDER BY ActivityDate DESC limit :NumberOfActivities]) {
+    			tande.add(new TaskAndEvent(t, ownerAliasMap));
+    		}
+    	}
+    	return sortTaskAndEvent(tande,'desc');
+    }
+    
+    /*
+    private static String deserializeActivities(list<TaskAndEvent> tande) {
+    	String result='';
+    	if (tande.isEmpty()) {
+    		result='Keine Aktivitäten vorhanden!';
+    	} else {
+    		// lets create a little table there
+    		result+='<table><thead><tr><td>Datum</td><td>Thema</td><td>Notiz</td></thead></tr><tbody>';
+    		for (TaskAndEvent te:tande) {
+    			result+='<tr>';
+    			if (te.acttype=='Event')
+    				result+='<td>'+te.e.ActivityDatetime+'</td><td>'+te.e.Subject+'<td></td>'+te.e.Description+'</td>';
+    			else
+    				result+='<td>'+te.t.ActivityDate+'</td><td>'+te.t.Subject+'<td></td>'+te.t.Description+'</td>';
+    			result+='</tr>';
+    		}
+    		result+='</tbody></table>';
+    	}
+    	return result;
+    }*/
+    
+    
+    /**
+    * returns memberinfo for hover
+    */
+    @RemoteAction
+    public static String getRecordMitgliedsinfo(String rId, String cId) {
+    	if (rId!=null) return getMemberinfo(rId, cId);
     	//else return [SELECT Id, Subject, ActivityDate, Description FROM Task WHERE WhoId='00Qc0000000xrqEEAQ' ORDER BY ActivityDate limit 10];
     	else return '';
     }
     
+    /**
+    * checks for duplicats
+    * returns the boolean value true if possible duplicate was found
+    */
+    @RemoteAction
+    public static list<String> checkDuplicate(String rId) {
+    	Lead l;
+    	Contact c;
+    	String leadid='';
+    	String lastname='';
+    	String firstname='';
+    	String email='';
+    	String company='';
+    	list<String> result = new list<String>();
+    	if (rId.startsWith('003')) {
+    		c=[SELECT Id, Lastname, Firstname, AccountId, Email, Account.Name FROM Contact WHERE Id=:rId];
+    		lastname=c.lastname;
+    		email=c.email==null?'':c.email;
+    		firstname=c.firstname==null?'':c.firstname;
+    		company=c.AccountId==null?'':c.Account.Name;
+    	}
+    	if (rId.startsWith('00Q')) {
+    		l=[SELECT Id, Lastname, Firstname, Company, Email FROM Lead WHERE Id=:rId];
+    		lastname=l.lastname;
+    		email=l.email==null?'':l.email;
+    		firstname=l.firstname==null?'':l.firstname;
+    		company=l.Company==null?'':l.Company;
+    	}
+    	System.debug('dupCheck: lastname: ' + lastname);
+    	// find possible duplicates
+    	Integer leadcounter=0;
+    	Integer contactcounter=0;
+    	if (company=='[nicht vorhanden]')
+    		leadcounter=[SELECT count() FROM Lead WHERE (Lastname like :lastname AND firstname like :firstname) OR email like :email];
+    	else
+    		leadcounter=[SELECT count() FROM Lead WHERE (Lastname like :lastname AND firstname like :firstname) OR Company like :company OR email like :email];
+    	System.debug('dupCheck: leadcounter: ' + leadcounter);
+    	if (leadcounter>0 && l!=null) leadid=l.id;
+    	else if (leadcounter>0 && c!=null) {
+    		if (company=='[nicht vorhanden]')
+    			leadid=[SELECT Id FROM Lead WHERE (Lastname like :lastname AND firstname like :firstname) OR email like :email limit 1].id;
+    		else
+    			leadid=[SELECT Id FROM Lead WHERE (Lastname like :lastname AND firstname like :firstname) OR Company like :company OR email like :email limit 1].id;
+    	}
+    	else {
+    		if (company=='[nicht vorhanden]')
+    			contactcounter=[SELECT count() FROM Contact WHERE (Lastname like :lastname AND firstname like :firstname) OR email like :email];
+    		else
+    			contactcounter=[SELECT count() FROM Contact WHERE (Lastname like :lastname AND firstname like :firstname) OR Account.Name like :company OR email like :email];
+    			System.debug('dupCheck: leadcounter: ' + contactcounter);
+    		if (contactcounter>0 && l!=null) leadid=l.id;
+    		else if (contactcounter>0 && c!=null) leadid='';
+    	}
+    	result.add(rId);result.add(leadid);
+    	return result;
+    }
+    
+    
+    public String getAllIdsAsJSON() {
+    	return JSON.serialize(allIds);
+    }
     /**
     *Update all status and log , retuen page reference for redirection
     *@return null
@@ -222,8 +354,8 @@ global with sharing class CampaignCallDownController{
     /**
     * return mitgliedsinfo from CampaignMember
     */
-    private static String getMemberinfo(String rId) {
-    	CampaignMember cm=[SELECT Id, ContactId, LeadId, Mitgliedsinfo__c FROM CampaignMember WHERE LeadId=:rId OR ContactId=:rId];
+    private static String getMemberinfo(String rId, String cId) {
+    	CampaignMember cm=[SELECT Id, ContactId, LeadId, Mitgliedsinfo__c, CampaignId FROM CampaignMember WHERE CampaignId=:cId AND (LeadId=:rId OR ContactId=:rId)];
 		if (cm!=null && cm.Mitgliedsinfo__c!=null)
 			return cm.Mitgliedsinfo__c;
     	return 'Keine bestehende Mitglieder Information vorhanden!';
@@ -238,7 +370,7 @@ global with sharing class CampaignCallDownController{
         Map<String, String>ownerMap = new Map<String, String>();
         //C.Vidal: bearbeiterMap
         Map<String, String>bearbeiterMap = new Map<String, String>();
-        relevantLeads.clear(); leadPlusTasks.clear(); 
+        relevantLeads.clear(); leadPlusTasks.clear(); allIds.clear();
         cStatusMapIsSet = false;
         if ( camp != null && camp.length( ) >3 ){
             //set some variable values
@@ -268,7 +400,7 @@ global with sharing class CampaignCallDownController{
                     else if( bearbeiterId != null && bearbeiterId != '--ALL--' ) {
                        query += ' AND Bearbeiter__c = :bearbeiterId ';
                     }
-                    query += ' limit 100';
+                    query += ' limit 50';
                 members = database.query(query);    
                /* if( status == null || status == '--ALL--' )
                     members = [select Id, ContactId, LeadId, Status, CampaignId, Campaign.Name,
@@ -297,11 +429,27 @@ global with sharing class CampaignCallDownController{
                 thisCampaign = members[ 0 ].Campaign.Name;
             else
                 thisCampaign ='';
+                
+            // collision detection get all tasks for those leads and contacts
+            for (CampaignMember m: members) {
+            	if (m.ContactId!=null)
+            		allids.add(m.ContactId);
+            	else
+            		allids.add(m.LeadId);
+            }
+            
+            map<Id, Task> alltasks = new map<Id, Task>();
+            Integer daysaroundtoday=Integer.valueOf((CampaignColumns__c.getInstance()==null || CampaignColumns__c.getInstance().DaysAroundToday__c==null)?14.0:CampaignColumns__c.getInstance().DaysAroundToday__c);
+            Date basedate=System.today().addDays(-daysaroundtoday);
+            for (Task t: [SELECT Id, Subject, ActivityDate, Whoid, isClosed, Status FROM Task WHERE Whoid IN :allids AND ActivityDate>=:basedate]) {
+            	alltasks.put(t.id, t);
+            }
                     
                 //loop through all leads, add relevent leads and their status
             for ( CampaignMember m : members ){
-                leadPlusTaskPlusContact lpt = new leadPlusTaskPlusContact( m, getcStatusMap( camp ), camp, thisCampaign );
+                leadPlusTaskPlusContact lpt = new leadPlusTaskPlusContact( m, getcStatusMap( camp ), camp, thisCampaign, alltasks );
                 leadPlusTasks.add( lpt );
+                
                 
                 //C.Vidal: null fixed.
                 ownerMap.put( lpt.ownerId, (lpt.ownerFirstName!=null?lpt.ownerFirstName:'') + ' ' + (lpt.ownerLastName!=null?lpt.ownerLastName:'') );
@@ -551,7 +699,6 @@ global with sharing class CampaignCallDownController{
         public String followupActivityDate {get; set;} // primitive field instead of whole task to reduce size of viewstate
         public String activityDateErrorMessage { get; set; }
         
-        
         public Boolean followupdesc { get; set; } // checkbox that controlls description of followup
         public String memStatus      {get; set;}
         public Map<String, String> localCStatusMap;
@@ -577,6 +724,8 @@ global with sharing class CampaignCallDownController{
         public string ownerId        {get; set;}
         public string accountName    {get; set;}
         public string callType       {get; set;}
+        public Boolean collision	{ get; set; }
+        set<String> chainedtitles = new set<String>{ 'Welcome Call', 'Tech Call', '1. Review Call', '2. Review Call', 'Follow up Call' };
     
         /**
         *Constructor
@@ -584,7 +733,7 @@ global with sharing class CampaignCallDownController{
         *@param statusMap a map of atatuses
         *@param camp id of campaign
         */  
-        public leadPlusTaskPlusContact( CampaignMember m, Map<String, String> statusMap, string camp, string campname ){
+        public leadPlusTaskPlusContact( CampaignMember m, Map<String, String> statusMap, string camp, string campname, map<Id, Task> alltasks ){
             //C.Vidal: fixed mismatch between contact and lead with the help field isconverted.
             if ( m.Lead.id != null && m.Lead.IsConverted == false){
                 cORl = 'lead';
@@ -597,6 +746,7 @@ global with sharing class CampaignCallDownController{
                 PHONE2 = m.Lead.Telefon_2__c;
                 MOBILE = m.Lead.MobilePhone;
                 COMPANY = m.Lead.Company;
+                collision=detectTaskCollision(m.Lead.Id, alltasks);
                 if( m.Lead.Street != null ){
                     ADDRESS = m.Lead.Street + '<br>';
                     if(m.Lead.City != null){
@@ -626,7 +776,7 @@ global with sharing class CampaignCallDownController{
                     ownerId = m.Lead.OwnerId; 
             }else{
                 cORl = 'contact';
-           
+           		
                 if( m.Contact.MailingStreet != null ){
                     ADDRESS = m.Contact.MailingStreet + '<br>';
                     if(m.Contact.MailingCity != null){
@@ -652,6 +802,7 @@ global with sharing class CampaignCallDownController{
                PHONE            = m.Contact.Phone;
                PHONE2 			= m.Contact.Telefon_2__c;
                MOBILE 			= m.Contact.MobilePhone;
+               collision=detectTaskCollision(m.Contact.Id, alltasks);
                if(m.Contact.Email != null){
                     EMAIL = '<a href="mailto:' + m.Contact.Email + '">' + m.Contact.Email + '</a>';     
                }else{
@@ -724,6 +875,99 @@ global with sharing class CampaignCallDownController{
             }
             return options;
         }
+        
+        /**
+		* @author Jochen Schrader
+		* @date 11/06/2012
+		* @param id for whoid in tasks
+		* @description Method returns true if a chained or followup task is near to today
+		*/
+		private Boolean detectTaskCollision(Id whoid, map<id, Task> alltasks) {
+			Boolean result=false;
+			for (Task t: alltasks.values()) {
+				Integer daysaroundtoday=Integer.valueOf((CampaignColumns__c.getInstance()==null || CampaignColumns__c.getInstance().DaysAroundToday__c==null)?14.0:CampaignColumns__c.getInstance().DaysAroundToday__c);
+				if (whoid!=null && whoid==t.whoid
+						// && !t.IsClosed
+						//&& chainedtitles.contains(t.Subject)
+						&& t.ActivityDate>=System.today().addDays(-daysaroundtoday) 
+						&& t.ActivityDate<=System.today().addDays(daysaroundtoday)) {
+					result=true;
+					System.debug('Matching task: ' + t.id + ' ' + t.Subject + ' ' + t.whoid);
+				}
+			}
+			return result;
+		}
    
+    }
+    
+    
+    private static list<TaskAndEvent> sortTaskAndEvent(list<TaskAndEvent> unsorted, String sortorder) {
+    	list<TaskAndEvent> sorted=new list<TaskAndEvent>();
+    	Date recentrecordDate;
+    	// sortorder could be asc or desc
+    	list<Date> datesToSort=new list<Date>(); 
+    	for (TaskAndEvent te:unsorted) {
+    		datesToSort.add(te.actdate);
+    	}
+    	
+    	datesToSort.sort();
+    	// asc
+    	if (sortorder=='asc') {
+	    	for (Date actdate:datesToSort) {
+	    		for (TaskAndEvent te:unsorted) {
+	    			if (te.actdate==actdate)
+	    				sorted.add(te);
+	    		}
+	    	}
+    	} else {
+    	// desc
+    		for (Integer i=datesToSort.size()-1;i>=0;i--) {
+    			Date actdate=datesToSort.get(i);
+    			for (TaskAndEvent te:unsorted) {
+	    			if (te.actdate==actdate)
+	    				sorted.add(te);
+	    		}
+    		}
+    	}
+    	
+    	return sorted;
+    }
+    
+    public class TaskAndEvent {
+    	public Task t {get;set;}
+    	public Event e { get;set;}
+    	public String acttype {get;set;}
+    	public Date actdate {get;set;}
+    	public String datestring {get;set;}
+    	public String futuredatestring {get;set;}
+    	public String datetimestring {get;set;}
+    	public String objId {get;set;}
+    	public String ownerAlias { get; set; }
+    	
+    	public taskAndEvent(Task act, map<Id, String> ownerAliasMap) {
+    		Integer daysaroundtoday=Integer.valueOf((CampaignColumns__c.getInstance()==null || CampaignColumns__c.getInstance().DaysAroundToday__c==null)?14.0:CampaignColumns__c.getInstance().DaysAroundToday__c);
+    		t=act;
+    		t.Description=t.Description==null?'':t.Description;
+    		ownerAlias=ownerAliasMap.get(t.OwnerId);
+    		objId=act.id;
+    		acttype='Task';
+    		actdate=t.ActivityDate;
+    		datestring=String.valueOf(t.ActivityDate.format());
+    		futuredatestring=String.valueOf(t.ActivityDate.addDays(daysaroundtoday).format());
+    		datetimestring=String.valueOf(t.ActivityDate.format());
+    	}
+    	
+    	public taskAndEvent(Event act, map<Id, String> ownerAliasMap) {
+    		Integer daysaroundtoday=Integer.valueOf((CampaignColumns__c.getInstance()==null || CampaignColumns__c.getInstance().DaysAroundToday__c==null)?14.0:CampaignColumns__c.getInstance().DaysAroundToday__c);
+    		e=act;
+    		objId=act.id;
+    		e.Description=e.Description==null?'':e.Description;
+    		ownerAlias=ownerAliasMap.get(e.OwnerId);
+    		acttype='Event';
+    		actdate=e.ActivityDate;
+    		datestring=String.valueOf(e.ActivityDate.format());
+    		futuredatestring=String.valueOf(e.ActivityDate.addDays(daysaroundtoday).format());
+    		datetimestring=String.valueOf(e.ActivityDatetime.format('dd.mm.yyyy hh:mm'));
+    	}
     }
 }

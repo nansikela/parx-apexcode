@@ -1,14 +1,99 @@
 <apex:page controller="CampaignCallDownController" id="callbacklist" > 
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.js"></script>
+   <script src="{!URLFOR($Resource.jQuery, 'js/jquery-ui-1.8.21.custom.min.js')}"/>
+   <apex:stylesheet value="{!URLFOR($Resource.jQuery, 'css/cupertino/jquery-ui-1.8.21.custom.css')}"/>
+
+	<style>
+	
+		a:hover{  
+		    text-decoration: none;  
+		}  
+  
+  
+		#container{  
+		    width: 820px;  
+		    margin-left: auto;  
+		    margin-right: auto;  
+		    padding: 50px 0 0 0;  
+		  
+		}  
+		  
+		.editHover{  
+		    background-color: #E8F3FF;  
+		}  
+		  
+		.editBox{  
+		    width: 326px;  
+		    min-height: 20px;  
+		    padding: 10px 15px;  
+		    background-color: #fff;  
+		    border: 2px solid #E8F3FF;  
+		}  
+		  
+		ul{  
+		    list-style: none;  
+		}  
+		  
+		.editel {  
+		    width: 330px;  
+		    min-height: 20px;  
+		    padding: 10px 15px;  
+		    margin: 5px;  
+		}  
+		  
+		.editel.noPad{  
+		    padding: 0;  
+		    width: 360px;  
+		}  
+		  
+		.editel.form{  
+		    width: 100%;  
+		}  
+		  
+		.btnSave, .btnCancel{  
+		    padding: 6px 30px 6px 75px;  
+		}  
+		  
+		.block{  
+		    float: left;  
+		    margin: 20px 0;  
+		}  
+	</style>
 
 	<script type="text/javascript">
-	function getRemoteMemberInfo(recordId) {
+	var mposx;
+	var mposy;
+	var resultlength;
+	var subjectlist=["Welcome Call","Tech Call", "1. Review Call", "2. Review Call", "Follow up"];
+
+	
+        function checkForDuplicate(rId) {
+        	CampaignCallDownController.checkDuplicate(rId,
+					function(result, event){
+				            if (event.status) {
+				            	innerHTML='<a href="/lead/leadmergewizard.jsp?retURL=%2F' + result[1] + '&id=' + result[1] + '" alt="Link to duplicate check" target="_blank"><img src="/img/msg_icons/warning16.png" title="Warnung: mögliches Duplikat!"/></a>';
+				            	if (result[1]!='') {
+				                	$('#'+result[0]).html(innerHTML);
+				                	$("#responseErrorsDupCheck").html('');
+				                } else
+				                	$("#"+result[0]).html('');
+				            } else if (event.type === 'exception') {
+				                $("#responseErrorsDupCheck").html(event.message);
+				            } else {
+				                $("#responseErrorsDupCheck").html(event.message);
+				            }
+				        });
+		}
+		
+	
+	function getRemoteMemberInfo(recordId,cId) {
 	
 <!--    Visualforce.remoting.Manager.invokeAction(-->
 <!--	        '{!$RemoteAction.CampaignCallDownController.getRecordMitgliedsinfo}', -->
 <!--	        recordId, -->
 <!--	        function(result, event){-->
 <!--	            if (event.status) {-->
-<!--	                document.getElementById('minfotext').innerHTML = result-->
+<!--	                $('#minfotext').html(result)-->
 <!--	            } else if (event.type === 'exception') {-->
 <!--	                document.getElementById("responseErrors").innerHTML = event.message;-->
 <!--	            } else {-->
@@ -17,17 +102,77 @@
 <!--	        }, -->
 <!--	        {escape: true}-->
 <!--	    );-->
-	CampaignCallDownController.getRecordMitgliedsinfo(recordId,
+	CampaignCallDownController.getRecordMitgliedsinfo(recordId,cId,
 		function(result, event){
 	            if (event.status) {
-	                document.getElementById('minfotext').innerHTML = result
+	                $('#minfotext').html(result)
 	            } else if (event.type === 'exception') {
-	                document.getElementById("responseErrors").innerHTML = event.message;
+	                $("#responseErrors").html(event.message);
 	            } else {
-	                document.getElementById("responseErrors").innerHTML = event.message;
+	                $("#responseErrors").html(event.message);
 	            }
 	        });
 	}	
+	
+	function getFutureActivities(recordId) {
+		CampaignCallDownController.getRecordFutureActivities(recordId,
+		function(result, event){
+	            if (event.status) {
+	                var innerHTML = '';
+	                resultlength=result.length;
+	                if (result.length==0) {
+	                	innerHTML='Keine Aktivitäten vorhanden';
+	                } else {
+	                	innerHTML='<table>';
+		            	for(i = 0; i < result.length; i++) {
+		            		if (result[i].acttype=="Task") {
+		            			localdate=result[i].datestring==null?"":result[i].datestring;
+		            			innerHTML += "<tr><td><a href='/"+ result[i].t.Id +"/e?tsk12=Abgeschlossen&close=1&email=1' target='_blank'>Cls</a>&nbsp;|&nbsp;<a href='/" + result[i].t.Id + "/e?email=1&tsk4=" + result[i].futuredatestring + "&reminder_dt=" + result[i].futuredatestring + "' target='_blank'>Edit</a></td><td>" + result[i].ownerAlias + "</td><td>"+localdate+"</td><td>"+result[i].t.Subject+"</td><td>"+result[i].t.Description+"</td></tr>";
+		            		} else {
+		            			localdate=result[i].datetimestring==null?"":result[i].datetimestring;
+		            			innerHTML += "<tr><td></td><<td>" + result[i].ownerAlias + "</td><td>"+localdate+"</td><td>"+result[i].e.Subject+"</td><td>"+result[i].e.Description+"</td></tr>";
+		            		}
+		            	}
+		            	innerHTML+="</table>";
+	            	}
+	            	$('#openactinfotext').html(innerHTML);
+	            } else if (event.type === 'exception') {
+	                $("#responseErrorsAct").html(event.message);
+	            } else {
+	                $("#responseErrorsAct").html(event.message);
+	            }
+	        });
+	}
+	
+	function getPastActivities(recordId) {
+		CampaignCallDownController.getRecordPastActivities(recordId,
+		function(result, event){
+	            if (event.status) {
+	            	var innerHTML = '';
+	                resultlength=result.length;
+	                if (result.length==0) {
+	                	innerHTML='Keine Aktivitäten vorhanden';
+	                } else {
+	                	innerHTML='<table>';
+		            	for(i = 0; i < result.length; i++) {
+		            		if (result[i].acttype=="Task") {
+		            			localdate=result[i].datestring==null?"":result[i].datestring;
+		            			innerHTML += "<tr><td><a href='/"+ result[i].t.Id +"/e?tsk12=Abgeschlossen&close=1&email=1' target='_blank'>Cls</a>&nbsp;|&nbsp;<a href='/" + result[i].t.Id + "/e?email=1&tsk4=" + result[i].futuredatestring + "&reminder_dt=" + result[i].futuredatestring + "' target='_blank'>Edit</a></td><td>" + result[i].ownerAlias + "</td><td>"+localdate+"</td><td>"+result[i].t.Subject+"</td><td>"+result[i].t.Description+"</td></tr>";
+		            		} else {
+		            			localdate=result[i].datetimestring==null?"":result[i].datetimestring;
+		            			innerHTML += "<tr><td></td><td>" + result[i].ownerAlias + "</td><td>"+localdate+"</td><td>"+result[i].e.Subject+"</td><td>"+result[i].e.Description+"</td></tr>";
+		            		}
+		            	}
+		            	innerHTML+="</table>";
+		            }
+		            $('#closedactinfotext').html(innerHTML);
+	            } else if (event.type === 'exception') {
+	                $("#responseErrorsAct").html(event.message);
+	            } else {
+	                $("#responseErrorsAct").html(event.message);
+	            }
+	        });
+	}
 	
 	
 	function mouseposition(e)
@@ -38,17 +183,50 @@
 	  document.getElementById('{!$Component.theMemberInfoLayer}').style.left = x + 10 + "px";
 	}
 	
-	function displayMemberInfoHover(recordId) {
-		getRemoteMemberInfo(recordId);
+	
+	function displayMemberInfoHover(recordId,cId) {
+		getRemoteMemberInfo(recordId,cId);
 		document.getElementById('{!$Component.theMemberInfoLayer}').style.visibility='visible';
 	  	document.onmousemove=mouseposition;
     }
     
     function hideMemberInfoHover() {
     	document.getElementById('{!$Component.theMemberInfoLayer}').style.visibility='hidden';
-    	document.onmousemove=null;
     	document.getElementById('minfotext').innerHTML = "lade Mitgliedsinfo ...";
 	}
+	
+	function displayActInfoHover(recordId, e) {
+		$('#openactinfotext').html("lade offene Aktivitäten ...");
+    	$('#closedactinfotext').html("lade abgeschlossene Aktivitäten ...");
+		getFutureActivities(recordId);
+		getPastActivities(recordId);
+		// capture the mouse position
+	    var posx = 0;
+	    var posy = 0;
+	    if (!e) var e = window.event;
+	    if (e.pageX || e.pageY)
+	    {
+	        posx = e.pageX;
+	        posy = e.pageY;
+	    }
+	    else if (e.clientX || e.clientY)
+	    {
+	        posx = e.clientX;
+	        posy = e.clientY;
+	    }
+	    document.getElementById('{!$Component.theActivityLayer}').style.top = posy + 10 - 100 + "px";
+	    document.getElementById('{!$Component.theActivityLayer}').style.left = posx + 10 + "px";
+		document.getElementById('{!$Component.theActivityLayer}').style.visibility='visible';
+    }
+    
+    function hideActInfoHover(e) {
+    	document.getElementById('{!$Component.theActivityLayer}').style.visibility='hidden';
+    	//document.getElementById('callbacklist:calls:pb_calllist:callList:1:theActivityLayerActionRegion').focus();
+    	$('#openactinfotext').html("lade offene Aktivitäten ...");
+    	$('#closedactinfotext').html("lade abgeschlossene Aktivitäten ...");
+	}
+
+
 	</script>
 	
   <apex:sectionHeader title="Call Down Liste" id="sectionHeader"/>
@@ -69,11 +247,11 @@
             
             <script>
                 function toggleCheckbox(checkbox) {
-                    if(checkbox.checked && document.getElementById('bearbeiterList')!=null) {
-                        document.getElementById('bearbeiterList').style.visibility = 'hidden';
+                    if(checkbox.checked && $('#bearbeiterList')!=null) {
+                        $('#bearbeiterList').css({'visibility':'hidden'});
                     }
-                    else if (!checkbox.checked && document.getElementById('bearbeiterList')!=null) {
-                        document.getElementById('bearbeiterList').style.visibility = 'visible';
+                    else if (!checkbox.checked && $('#bearbeiterList')!=null) {
+                        $('#bearbeiterList').css({'visibility':'visible'});
                     }
                 }
             </script>
@@ -130,12 +308,102 @@
         </apex:pageBlock>
   <!-- End of the filter block-->       
  <!-- Start of the list block -->
-        <apex:pageBlock >
+        <apex:pageBlock id="pb_calllist">
+        <!-- javascript block -->
+        <script type="text/javascript">
+        	var counter=0;
+        	//if(counter==0) checkForDuplicates();
+        	var aktiv;
+        	var allids={!AllIdsAsJSON};
+        	if (counter==0)
+       			aktiv = window.setInterval("checkForDuplicates()", 50);
+        	
+        	var i=0;
+
+			function checkForDuplicates() {
+				if (allids.length>=i)
+					CampaignCallDownController.checkDuplicate(allids[i],
+					function(result, event){
+				            if (event.status) {
+				            	innerHTML='<a href="/lead/leadmergewizard.jsp?retURL=%2F' + result[1] + '&id=' + result[1] + '" alt="Link to duplicate check" target="_blank"><img src="/img/msg_icons/warning16.png" title="Warnung: mögliches Duplikat!"/></a>';
+				            	if (result[1]!='') {
+				                	$('#'+result[0]).html(innerHTML);
+				                	$("#responseErrorsDupCheck").html('');
+				                } else
+				                	$('#'+result[0]).html('');
+				            } else if (event.type === 'exception') {
+				                $("#responseErrorsDupCheck").html(event.message);
+				            } else {
+				                $("#responseErrorsDupCheck").html(event.message);
+				        }});
+				    
+				i++;
+				if (i>=allids.length) window.clearInterval(aktiv);
+			}
+
+			counter++;
+			
+			function inPlaceEdit() {
+			    var oldText, newText;  
+			 	 
+			    $(".editable").hover(  
+			                    function()  
+			                    {  
+			                       $(this).addClass("editHover");  
+			                    },  
+			                    function()  
+			                    {  
+			                        $(this).removeClass("editHover");  
+			                    }  
+			                    );  
+			  
+			    $(".editable").bind("dblclick", replaceHTML);  
+			  
+			    $(document).delegate(".btnSave","click",  
+			                    function()  
+			                    {  
+			                        newText = $(this).siblings("form")  
+			                                         .children(".editBox")  
+			                                         .val().replace(/"/g, "&quot;");  
+			  
+			                        $(this).parent()  
+			                               .html(newText)  
+			                               .removeClass("noPad")  
+			                               .bind("dblclick", replaceHTML);  
+			                    }  
+			                    );   
+			  
+			    $(document).delegate(".btnDiscard","click",  
+			                    function()  
+			                    {  
+			                        $(this).parent()  
+			                               .html(oldText)  
+			                               .removeClass("noPad")  
+			                               .bind("dblclick", replaceHTML);  
+			                    }  
+			                    );   
+			  
+			    function replaceHTML()  
+			                    {  
+			                        oldText = $(this).html()  
+			                                         .replace(/"/g, "&quot;");  
+			  
+			                        $(this).addClass("noPad")  
+			                               .html("")  
+			                               .html('<form><input type="text" class="editBox" value="' + oldText + '" /> </form><a href="#" class="btnSave">Save changes</a>')
+			                               .unbind('dblclick', replaceHTML);  
+			  
+			                    }  
+  			}
+
+		</script>	
+	
 			<apex:outputPanel layout="block" style="float: right; padding-right: 5px; padding-bottom: 5px">
                 <apex:commandButton action="{!updateAll}" value="Update All" reRender="callList,pageMessageBlock" status="counterStatus"/>
             </apex:outputPanel>
             <apex:outputPanel layout="block" style="clear: both;">
             </apex:outputPanel>
+            <div id="responseErrorsDupCheck" style="visibility: hidden;"></div>
            <apex:actionStatus id="counterStatus">
               <apex:facet name="start">  
                 <apex:outputPanel id="processing">
@@ -146,14 +414,15 @@
                 </apex:outputPanel>   
               </apex:facet>
               <apex:facet name="stop">
-                    <apex:pageBlockTable value="{!leadPlusTasks}" var="lpt" id="callList">
+<!--              	onRowMouseOver="if(counter==0) checkForDuplicate();"-->
+                    <apex:pageBlockTable value="{!leadPlusTasks}" var="lpt" id="callList" >	
                         <apex:column value="{!lpt.ownerFirstName} {!lpt.ownerLastName}" headerValue="Inhaber" rendered="{!$Setup.CampaignColumns__c.OWNER__c}" />
                         <apex:column value="{!lpt.SALUTATION}" headerValue="Anrede" rendered="{!$Setup.CampaignColumns__c.SALUTATION__c}" />
                         <apex:column >
                             <apex:facet name="header">
                                 <apex:commandLink action="{!sortByName}" Value="Name" rerender="calls"/>
                             </apex:facet>
-                            <apex:outputLink value="/{!lpt.ID}" target="_blank" onmouseover="displayMemberInfoHover('{!lpt.Id}');" onmouseout="hideMemberInfoHover();" >
+                            <apex:outputLink value="/{!lpt.ID}" target="_blank" onmouseover="displayMemberInfoHover('{!lpt.Id}','{!camp}');" onmouseout="hideMemberInfoHover();" >
                             	{!lpt.NAME}
                             </apex:outputLink>
                         </apex:column>
@@ -168,8 +437,14 @@
                             </apex:facet>
                         </apex:column>
                         <apex:column headerValue="Lead/Kontakt">
+<!--                        checkForDuplicate('{!lpt.Id}');-->
+                        	<apex:outputPanel id="theActivityLayerActionRegion" onmouseover="checkForDuplicate('{!lpt.Id}');displayActInfoHover('{!lpt.Id}', event);">
                             <apex:image id="cORlImage1" url="{!URLFOR($Resource.CampaignCallDown, 'images/contactsImage.png')}" rendered="{!lpt.cORl == 'contact'}"/>
                             <apex:image id="cORlImage2" url="{!URLFOR($Resource.CampaignCallDown, 'images/leadsImage.png')}" rendered="{!lpt.cORl == 'lead'}"/>
+                            <apex:image id="collisionWarning" url="/img/msg_icons/error16.png" title="Warnung: möglicher Terminkonflikt!" rendered="{!lpt.collision}" style="vertical-align: top;"/>
+                            </apex:outputPanel>
+<!--                            <script>checkForDuplicate('{!lpt.Id}');</script>-->
+                            <div id="{!lpt.Id}" style="float: right;"></div>
                         </apex:column>
                         <apex:column headerValue="Adresse" rendered="{!$Setup.CampaignColumns__c.ADDRESS__c}">
                             <apex:outputText value="{!lpt.ADDRESS}" escape="false"/>
@@ -210,32 +485,33 @@
 <!--                                <apex:inputField value="{!lpt.followup.ActivityDate}" />-->
                             </c:specialDateField>
                             <apex:outputText style="color:red" value="{!lpt.activityDateErrorMessage}" rendered="{!LEN(lpt.activityDateErrorMessage)>0}"/>
-                        </apex:column>  
+                        </apex:column> 
                     </apex:pageBlockTable>
                    </apex:facet>
                   </apex:actionStatus>
   </apex:pageBlock> 
   </apex:form>
-	<apex:outputPanel layout="block" style="position:absolute; top: -2000px; left: -2000px" id="theMemberInfoLayer" >
-<!--  	<apex:outputLink value="#" onclick="hideMemberInfoHover();">Close</apex:outputLink>-->
+	<apex:outputPanel id="theMemberInfoLayer" layout="block" style="position:absolute; top: -2000px; left: -2000px; z-index: 200;"  >
+<!--  	<apex:outputLink value="#" onclick="hideMemberInfoHover();window.scrollTo(500,500);">Close</apex:outputLink>-->
   	<div id="responseErrors"></div> 
 	<apex:pageBlock id="mitgliedsinfo" title="Mitgliedsinfo">
 			<!-- div with own id was necesary,  $Component did not work with javascript remote! -->
 			<div id="minfotextdiv"><pre id="minfotext" style="font-family: Arial,Helvetica,sans-serif; font-size: 100%;">lade Mitgliedsinfo ...</pre></div>
 	</apex:pageBlock>
   </apex:outputPanel>
-<!--  	<apex:pageBlock id="tasklist">-->
-<!--                    <apex:pageBlockTable value="{!recordActivities}" var="t" id="tlist">-->
-<!--                    	<apex:column headerValue="Datum">-->
-<!--                    		<apex:outputField value="{!t.ActivityDate}" />-->
-<!--                    	</apex:column>-->
-<!--                    	<apex:column headerValue="Thema">-->
-<!--                    		<apex:outputField value="{!t.Subject}" />-->
-<!--                    	</apex:column>-->
-<!--                    	<apex:column headerValue="Anmerkung">-->
-<!--                    		<apex:outputField value="{!t.Description}" />-->
-<!--                    	</apex:column>-->
-<!--                    </apex:pageBlockTable>-->
-<!--  	</apex:pageBlock>-->
+  
+  <apex:outputPanel id="theActivityLayer" layout="block" style="max-width: 480px; position:absolute; top: -2000px; left: -2000px; background-color: lightgrey !important; padding-left: 8px; padding-right: 8px;-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;">
+  	<div id="closeAction" style="text-align: left; padding-top: 3px; margin-bottom: -5px; " >
+<!--  	IMPORTANT	onclick huepft der Browser an den Anfang der Seite. Onmousedown bleibt er im gescrollten Zustand stehen-->
+		<apex:outputLink value="#" onmousedown="hideActInfoHover(event);"  ><apex:image value="/img/func_icons/remove12.gif" /></apex:outputLink>
+  	</div>
+  	<div id="responseErrorsAct"></div>
+  	<apex:pageBlock id="openinfo" title="Zukünftige Aktivitäten">
+  		<div id="openactinfodiv"><div id="openactinfotext" style="font-family: Arial,Helvetica,sans-serif; font-size: 100%;">lade offene Aktivitäten ...</div></div>
+  	</apex:pageBlock>
+  	<apex:pageBlock id="closedinfo" title="Aktivitätsverlauf">
+  		<div id="closedactinfodiv"><div id="closedactinfotext" style="font-family: Arial,Helvetica,sans-serif; font-size: 100%;">lade abgeschlossene Aktivitäten ...</div></div>
+  	</apex:pageBlock>
+  </apex:outputPanel>
 
 </apex:page>
