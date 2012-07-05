@@ -201,6 +201,34 @@ private class CampaignCallDownControllerTest {
 	  	
 	  	sO=ccdc1.getcampaignItems();
 	  	
+	  	ccdc1.getAllIdsAsJSON();
+	  	// tests with leads
+	  	CampaignCallDownController.checkDuplicate(testLead1.Id);
+	  	Task task1=new Task(ActivityDate=system.today()+1,Subject='test',Description='test',whoid=testLead1.Id);
+	  	insert task1;
+	  	Task task2=new Task(ActivityDate=system.today()-1,Subject='test',Description='test',whoid=testLead1.Id);
+	  	insert task2;
+	  	Event Event1=new Event(ActivityDateTime=system.now()+1,Subject='test',Description='test',whoid=testLead1.Id,DurationInMinutes=60);
+	  	insert Event1;
+	  	Event Event2=new Event(ActivityDateTime=system.now()-1,Subject='test',Description='test',whoid=testLead1.Id,DurationInMinutes=60);
+	  	insert Event2;
+	  	CampaignCallDownController.getRecordFutureActivities(testLead1.Id);
+	  	CampaignCallDownController.getRecordPastActivities(testLead1.Id);
+	  	CampaignCallDownController.getRecordMitgliedsinfo(testLead1.Id,testCampaign.Id);
+	  	// tests with contact
+	  	CampaignCallDownController.checkDuplicate(testContact.Id);
+	  	Task task1c=new Task(ActivityDate=system.today()+1,Subject='test',Description='test',whoid=testContact.Id);
+	  	insert task1c;
+	  	Task task2c=new Task(ActivityDate=system.today()-1,Subject='test',Description='test',whoid=testContact.Id);
+	  	insert task2c;
+	  	Event Event1c=new Event(ActivityDateTime=system.now()+1,Subject='test',Description='test',whoid=testContact.Id,DurationInMinutes=60);
+	  	insert Event1c;
+	  	Event Event2c=new Event(ActivityDateTime=system.now()-1,Subject='test',Description='test',whoid=testContact.Id,DurationInMinutes=60);
+	  	insert Event2c;
+	  	CampaignCallDownController.getRecordFutureActivities(testContact.Id);
+	  	CampaignCallDownController.getRecordPastActivities(testContact.Id);
+	  	CampaignCallDownController.getRecordMitgliedsinfo(testContact.Id,testCampaign.Id);
+	  	
 	  	List<Selectoption> auxCampList = new List<Selectoption>(); 
 	  	auxCampList.add(new SelectOption( '1','SELECT' ));
 	  	
